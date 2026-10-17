@@ -51,18 +51,21 @@ model User {
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
 
-  credential        Credential?
-  sessions          Session[]
-  verificationCodes VerificationCode[]
-  consents          ConsentRecord[]
-  roles             UserRole[]               @relation("UserRoles")
-  rolesGranted      UserRole[]               @relation("UserRolesGrantedBy")
-  memberships       Membership[]
-  mediaAssets       MediaAsset[]
-  notifications     Notification[]
-  notificationPrefs NotificationPreference[]
-  deviceTokens      DeviceToken[]
-  adminTotp         AdminTotp?
+  credential          Credential?
+  sessions            Session[]
+  verificationCodes   VerificationCode[]
+  consents            ConsentRecord[]
+  roles               UserRole[]                 @relation("UserRoles")
+  rolesGranted        UserRole[]                 @relation("UserRolesGrantedBy")
+  memberships         Membership[]
+  mediaAssets         MediaAsset[]
+  notifications       Notification[]
+  notificationPrefs   NotificationPreference[]
+  deviceTokens        DeviceToken[]
+  adminTotp           AdminTotp?
+  creativeProfile     CreativeProfile?
+  suggestionsMade     SpecialisationSuggestion[] @relation("SuggestionAuthor")
+  suggestionsResolved SpecialisationSuggestion[] @relation("SuggestionResolver")
 
   @@index([status])
   @@index([createdAt])

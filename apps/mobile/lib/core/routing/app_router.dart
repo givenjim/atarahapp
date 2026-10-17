@@ -11,6 +11,8 @@ import '../../features/auth/signup_screen.dart';
 import '../../features/auth/splash_screen.dart';
 import '../../features/auth/verify_screen.dart';
 import '../../features/auth/welcome_screen.dart';
+import '../../features/onboarding/onboarding_providers.dart';
+import '../../features/onboarding/onboarding_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/shell/app_shell.dart';
 import '../../features/shell/future_route_screen.dart';
@@ -65,6 +67,7 @@ GoRouter appRouter(Ref ref) {
   final devTools = ref.watch(appConfigProvider).showDevTools;
   final refresh = ValueNotifier<int>(0);
   ref.listen(sessionStatusProvider, (_, _) => refresh.value++);
+  ref.listen(onboardingGateProvider, (_, _) => refresh.value++);
   ref.onDispose(refresh.dispose);
 
   String phaseOf(GoRouterState s) => s.pathParameters['phase'] ?? 'later';
@@ -77,6 +80,7 @@ GoRouter appRouter(Ref ref) {
       status: ref.read(sessionStatusProvider),
       uri: state.uri,
       devTools: devTools,
+      onboarding: ref.read(onboardingGateProvider),
     ),
     routes: [
       GoRoute(path: Routes.splash, builder: (_, _) => const SplashScreen()),
@@ -113,14 +117,9 @@ GoRouter appRouter(Ref ref) {
         builder: (_, state) =>
             LegalScreen(type: state.pathParameters['type'] ?? 'TERMS'),
       ),
-      // Creative profile setup is built in P1-M2; until then the way in is labelled, and back goes Home.
       GoRoute(
         path: Routes.onboarding,
-        builder: (context, _) => FutureRouteScreen(
-          phase: 'p1',
-          name: AppLocalizations.of(context).onboardingPlaceholderName,
-          onBack: () => context.go(Routes.home),
-        ),
+        builder: (_, _) => const OnboardingScreen(),
       ),
       if (devTools)
         GoRoute(

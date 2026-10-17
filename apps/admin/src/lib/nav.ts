@@ -64,6 +64,14 @@ export const NAV: readonly NavSection[] = [
     summary: 'Articles, help articles and legal documents.',
   },
   {
+    slug: 'taxonomy',
+    label: 'Taxonomy',
+    href: '/taxonomy',
+    permission: 'taxonomy.manage',
+    phase: 'live',
+    summary: 'Disciplines, specialisations, skills, interests and the suggestion queue.',
+  },
+  {
     slug: 'learning',
     label: 'Learning',
     href: '/learning',

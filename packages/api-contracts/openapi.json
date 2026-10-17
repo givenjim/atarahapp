@@ -1548,6 +1548,1156 @@
           "Public"
         ]
       }
+    },
+    "/api/v1/taxonomy/disciplines": {
+      "get": {
+        "operationId": "disciplines",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/DisciplineDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Taxonomy"
+        ]
+      }
+    },
+    "/api/v1/taxonomy/skills": {
+      "get": {
+        "operationId": "skills",
+        "parameters": [
+          {
+            "name": "discipline",
+            "required": false,
+            "in": "query",
+            "description": "Discipline id or slug. Returns general skills plus that discipline’s skills.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TaxonomyItemDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Taxonomy"
+        ]
+      }
+    },
+    "/api/v1/taxonomy/interests": {
+      "get": {
+        "operationId": "interests",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TaxonomyItemDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Taxonomy"
+        ]
+      }
+    },
+    "/api/v1/taxonomy/development-areas": {
+      "get": {
+        "operationId": "developmentAreas",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TaxonomyItemDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Taxonomy"
+        ]
+      }
+    },
+    "/api/v1/taxonomy/specialisations/suggestions": {
+      "post": {
+        "operationId": "suggest",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuggestSpecialisationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/SuggestionReceiptDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Taxonomy"
+        ]
+      }
+    },
+    "/api/v1/locations/countries": {
+      "get": {
+        "operationId": "countries",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CountryDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Locations"
+        ]
+      }
+    },
+    "/api/v1/locations/counties": {
+      "get": {
+        "operationId": "counties",
+        "parameters": [
+          {
+            "name": "country",
+            "required": false,
+            "in": "query",
+            "description": "ISO country code or country id. Defaults to the first active country.",
+            "schema": {
+              "example": "KE",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CountyDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Locations"
+        ]
+      }
+    },
+    "/api/v1/locations/counties/match": {
+      "get": {
+        "operationId": "match",
+        "parameters": [
+          {
+            "name": "q",
+            "required": true,
+            "in": "query",
+            "description": "A place name from the device’s reverse lookup.",
+            "schema": {
+              "example": "Nairobi County",
+              "type": "string"
+            }
+          },
+          {
+            "name": "country",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": "KE",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/CountyMatchDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Locations"
+        ]
+      }
+    },
+    "/api/v1/me/onboarding": {
+      "get": {
+        "operationId": "state",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/OnboardingStateDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Onboarding"
+        ]
+      },
+      "patch": {
+        "operationId": "saveStep",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveOnboardingStepDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/OnboardingStateDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Onboarding"
+        ]
+      }
+    },
+    "/api/v1/me/onboarding/complete": {
+      "post": {
+        "operationId": "completeOnboarding",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/OnboardingCompleteDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Onboarding"
+        ]
+      }
+    },
+    "/api/v1/me/avatar": {
+      "post": {
+        "operationId": "setAvatar",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetAvatarDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/OnboardingStateDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Onboarding"
+        ]
+      },
+      "delete": {
+        "operationId": "removeAvatar",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/OnboardingStateDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Onboarding"
+        ]
+      }
+    },
+    "/api/v1/handles/{handle}/availability": {
+      "get": {
+        "operationId": "availability",
+        "parameters": [
+          {
+            "name": "handle",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/HandleAvailabilityDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Onboarding"
+        ]
+      }
+    },
+    "/api/v1/admin/taxonomy/{kind}": {
+      "get": {
+        "operationId": "listTaxonomy",
+        "parameters": [
+          {
+            "name": "kind",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "enum": [
+                "disciplines",
+                "specialisations",
+                "skills",
+                "interests",
+                "development-areas"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "disciplineId",
+            "required": false,
+            "in": "query",
+            "description": "Specialisations and skills: only this discipline (id).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeArchived",
+            "required": false,
+            "in": "query",
+            "description": "Include archived entries. Default true for admins.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AdminTaxonomyItemDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Admin Taxonomy"
+        ]
+      },
+      "post": {
+        "operationId": "createTaxonomy",
+        "parameters": [
+          {
+            "name": "kind",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "enum": [
+                "disciplines",
+                "specialisations",
+                "skills",
+                "interests",
+                "development-areas"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaxonomyItemDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AdminTaxonomyItemDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Admin Taxonomy"
+        ]
+      }
+    },
+    "/api/v1/admin/taxonomy/{kind}/reorder": {
+      "post": {
+        "operationId": "reorderTaxonomy",
+        "parameters": [
+          {
+            "name": "kind",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "enum": [
+                "disciplines",
+                "specialisations",
+                "skills",
+                "interests",
+                "development-areas"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReorderTaxonomyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AdminTaxonomyItemDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Admin Taxonomy"
+        ]
+      }
+    },
+    "/api/v1/admin/taxonomy/{kind}/{id}": {
+      "patch": {
+        "operationId": "updateTaxonomy",
+        "parameters": [
+          {
+            "name": "kind",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "enum": [
+                "disciplines",
+                "specialisations",
+                "skills",
+                "interests",
+                "development-areas"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaxonomyItemDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AdminTaxonomyItemDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Admin Taxonomy"
+        ]
+      }
+    },
+    "/api/v1/admin/specialisation-suggestions": {
+      "get": {
+        "operationId": "listSuggestions",
+        "parameters": [
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PENDING",
+                "APPROVED",
+                "MERGED",
+                "REJECTED"
+              ]
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AdminSuggestionDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Admin Taxonomy"
+        ]
+      }
+    },
+    "/api/v1/admin/specialisation-suggestions/{id}/approve": {
+      "post": {
+        "operationId": "approveSuggestion",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApproveSuggestionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AdminSuggestionDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Admin Taxonomy"
+        ]
+      }
+    },
+    "/api/v1/admin/specialisation-suggestions/{id}/merge": {
+      "post": {
+        "operationId": "mergeSuggestion",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MergeSuggestionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AdminSuggestionDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Admin Taxonomy"
+        ]
+      }
+    },
+    "/api/v1/admin/specialisation-suggestions/{id}/reject": {
+      "post": {
+        "operationId": "rejectSuggestion",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectSuggestionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AdminSuggestionDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Admin Taxonomy"
+        ]
+      }
     }
   },
   "info": {
@@ -2736,6 +3886,790 @@
           "body",
           "isDraft"
         ]
+      },
+      "SpecialisationDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name"
+        ]
+      },
+      "DisciplineDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string",
+            "description": "Lucide icon name."
+          },
+          "specialisations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SpecialisationDto"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "icon",
+          "specialisations"
+        ]
+      },
+      "TaxonomyItemDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name"
+        ]
+      },
+      "SuggestionReceiptDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "APPROVED",
+              "MERGED",
+              "REJECTED"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "status"
+        ]
+      },
+      "SuggestSpecialisationDto": {
+        "type": "object",
+        "properties": {
+          "disciplineId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "example": "Puppetry",
+            "minLength": 2,
+            "maxLength": 60
+          }
+        },
+        "required": [
+          "disciplineId",
+          "name"
+        ]
+      },
+      "CountryDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isoCode": {
+            "type": "string",
+            "example": "KE"
+          },
+          "name": {
+            "type": "string"
+          },
+          "callingCode": {
+            "type": "string",
+            "example": "+254"
+          }
+        },
+        "required": [
+          "id",
+          "isoCode",
+          "name",
+          "callingCode"
+        ]
+      },
+      "CountyDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string",
+            "example": "NBI"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "name"
+        ]
+      },
+      "CountyMatchDto": {
+        "type": "object",
+        "properties": {
+          "county": {
+            "nullable": true,
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CountyDto"
+              }
+            ]
+          },
+          "countryId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          }
+        },
+        "required": [
+          "county",
+          "countryId"
+        ]
+      },
+      "DisciplineLite": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "icon"
+        ]
+      },
+      "OnboardingProfileDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "handle": {
+            "type": "string",
+            "nullable": true
+          },
+          "bio": {
+            "type": "string",
+            "nullable": true
+          },
+          "headline": {
+            "type": "string",
+            "nullable": true
+          },
+          "discipline": {
+            "nullable": true,
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DisciplineLite"
+              }
+            ]
+          },
+          "specialisations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaxonomyItemDto"
+            }
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaxonomyItemDto"
+            }
+          },
+          "interests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaxonomyItemDto"
+            }
+          },
+          "developmentAreas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaxonomyItemDto"
+            }
+          },
+          "countryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "countyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "countyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "town": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationVisibility": {
+            "type": "string",
+            "enum": [
+              "PUBLIC",
+              "MEMBERS",
+              "PRIVATE"
+            ]
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true,
+            "description": "Signed avatar URL (600 px), when a photo is set."
+          }
+        },
+        "required": [
+          "id",
+          "displayName",
+          "handle",
+          "bio",
+          "headline",
+          "discipline",
+          "specialisations",
+          "skills",
+          "interests",
+          "developmentAreas",
+          "countryId",
+          "countryName",
+          "countyId",
+          "countyName",
+          "town",
+          "locationVisibility",
+          "avatarUrl"
+        ]
+      },
+      "CompletionItemDto": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "number"
+          },
+          "done": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "key",
+          "label",
+          "weight",
+          "done"
+        ]
+      },
+      "CompletionDto": {
+        "type": "object",
+        "properties": {
+          "percent": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompletionItemDto"
+            }
+          },
+          "next": {
+            "description": "The most valuable missing items, heaviest first.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompletionItemDto"
+            }
+          }
+        },
+        "required": [
+          "percent",
+          "items",
+          "next"
+        ]
+      },
+      "OnboardingStateDto": {
+        "type": "object",
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "INTRO",
+              "DISCIPLINE",
+              "SPECIALISATION",
+              "SKILLS",
+              "LOCATION",
+              "BASICS",
+              "PHOTO",
+              "DONE"
+            ],
+            "description": "The step to show next (the resume point)."
+          },
+          "completed": {
+            "type": "boolean",
+            "description": "True once the member finished onboarding and holds a Passport."
+          },
+          "profile": {
+            "$ref": "#/components/schemas/OnboardingProfileDto"
+          },
+          "completion": {
+            "$ref": "#/components/schemas/CompletionDto"
+          },
+          "passportNumber": {
+            "type": "string",
+            "nullable": true,
+            "example": "ATR-NBI-0042"
+          }
+        },
+        "required": [
+          "step",
+          "completed",
+          "profile",
+          "completion",
+          "passportNumber"
+        ]
+      },
+      "SaveOnboardingStepDto": {
+        "type": "object",
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "INTRO",
+              "DISCIPLINE",
+              "SPECIALISATION",
+              "SKILLS",
+              "LOCATION",
+              "BASICS",
+              "PHOTO"
+            ]
+          },
+          "skipped": {
+            "type": "boolean",
+            "description": "Skip this step: nothing is saved, the member moves on."
+          },
+          "disciplineId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "DISCIPLINE. Changing it clears specialisations."
+          },
+          "specialisationIds": {
+            "description": "SPECIALISATION. Must belong to the chosen discipline.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "skillIds": {
+            "description": "SKILLS.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "interestIds": {
+            "description": "SKILLS.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "developmentAreaIds": {
+            "description": "SKILLS (areas to develop).",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "countryId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "LOCATION."
+          },
+          "countyId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "LOCATION. Must belong to the country."
+          },
+          "town": {
+            "type": "string",
+            "maxLength": 80,
+            "description": "LOCATION. Optional town or neighbourhood."
+          },
+          "locationVisibility": {
+            "type": "string",
+            "enum": [
+              "PUBLIC",
+              "MEMBERS",
+              "PRIVATE"
+            ],
+            "description": "LOCATION. Who can see the county."
+          },
+          "displayName": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 60,
+            "description": "BASICS."
+          },
+          "handle": {
+            "type": "string",
+            "description": "BASICS. Lower-case letters, digits and underscores, 3 to 30 characters."
+          },
+          "bio": {
+            "type": "string",
+            "maxLength": 160,
+            "description": "BASICS. Short bio, up to 160 characters."
+          }
+        },
+        "required": [
+          "step"
+        ]
+      },
+      "PassportPreviewDto": {
+        "type": "object",
+        "properties": {
+          "passportNumber": {
+            "type": "string",
+            "example": "ATR-NBI-0042"
+          },
+          "issuedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "passportNumber",
+          "issuedAt"
+        ]
+      },
+      "OnboardingCompleteDto": {
+        "type": "object",
+        "properties": {
+          "state": {
+            "$ref": "#/components/schemas/OnboardingStateDto"
+          },
+          "passport": {
+            "$ref": "#/components/schemas/PassportPreviewDto"
+          }
+        },
+        "required": [
+          "state",
+          "passport"
+        ]
+      },
+      "SetAvatarDto": {
+        "type": "object",
+        "properties": {
+          "mediaId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "A READY image the member uploaded through /media (PUBLIC)."
+          }
+        },
+        "required": [
+          "mediaId"
+        ]
+      },
+      "HandleAvailabilityDto": {
+        "type": "object",
+        "properties": {
+          "handle": {
+            "type": "string"
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "INVALID",
+              "RESERVED",
+              "TAKEN"
+            ],
+            "nullable": true
+          },
+          "suggestions": {
+            "description": "Free alternatives when the handle is taken or reserved.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "handle",
+          "available",
+          "reason",
+          "suggestions"
+        ]
+      },
+      "AdminTaxonomyItemDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string",
+            "nullable": true,
+            "description": "Disciplines only."
+          },
+          "disciplineId": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid",
+            "description": "Specialisations and skills."
+          },
+          "disciplineName": {
+            "type": "string",
+            "nullable": true
+          },
+          "sortOrder": {
+            "type": "number"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "usage": {
+            "type": "number",
+            "description": "How many members currently use it."
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "icon",
+          "disciplineId",
+          "disciplineName",
+          "sortOrder",
+          "isActive",
+          "usage"
+        ]
+      },
+      "CreateTaxonomyItemDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 60
+          },
+          "icon": {
+            "type": "string",
+            "description": "Disciplines only: a Lucide icon name."
+          },
+          "disciplineId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Required for specialisations; optional for skills (blank = general)."
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ReorderTaxonomyDto": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "description": "Ids in the new order. Applies within the same list (discipline) only.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "ids"
+        ]
+      },
+      "UpdateTaxonomyItemDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 60
+          },
+          "icon": {
+            "type": "string"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "false archives the entry (hidden from new selections, kept on existing profiles)."
+          }
+        }
+      },
+      "AdminSuggestionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "disciplineId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "disciplineName": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "APPROVED",
+              "MERGED",
+              "REJECTED"
+            ]
+          },
+          "suggestedById": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "suggestedByName": {
+            "type": "string"
+          },
+          "specialisationId": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid"
+          },
+          "resolutionNote": {
+            "type": "string",
+            "nullable": true
+          },
+          "resolvedAt": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "disciplineId",
+          "disciplineName",
+          "status",
+          "suggestedById",
+          "suggestedByName",
+          "specialisationId",
+          "resolutionNote",
+          "resolvedAt",
+          "createdAt"
+        ]
+      },
+      "ApproveSuggestionDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Publish it under a corrected name."
+          }
+        }
+      },
+      "MergeSuggestionDto": {
+        "type": "object",
+        "properties": {
+          "specialisationId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The existing specialisation this suggestion duplicates."
+          }
+        },
+        "required": [
+          "specialisationId"
+        ]
+      },
+      "RejectSuggestionDto": {
+        "type": "object",
+        "properties": {
+          "note": {
+            "type": "string",
+            "maxLength": 300
+          }
+        }
       }
     }
   }

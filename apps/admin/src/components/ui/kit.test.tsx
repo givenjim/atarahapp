@@ -171,6 +171,7 @@ describe('navigation and Soon panels', () => {
       'Roles & Permissions',
       'Verification',
       'Content',
+      'Taxonomy',
       'Learning',
       'Opportunities',
       'Mentorship',
@@ -190,11 +191,16 @@ describe('navigation and Soon panels', () => {
     const moderator = visibleNav(['admin.access', 'report.view']).map((s) => s.slug);
     expect(moderator).toEqual(['dashboard', 'community']);
     expect(visibleNav([])).toEqual([]);
+    expect(visibleNav(['admin.access', 'taxonomy.manage']).map((s) => s.slug)).toEqual([
+      'dashboard',
+      'taxonomy',
+    ]);
   });
 
-  it('only Users and Audit Logs are live; everything else names its phase', () => {
+  it('only Users, Taxonomy and Audit Logs are live; everything else names its phase', () => {
     expect(NAV.filter((s) => s.phase === 'live').map((s) => s.slug)).toEqual([
       'users',
+      'taxonomy',
       'audit-logs',
     ]);
     render(<SoonPanel section={sectionBySlug('payments')!} />);

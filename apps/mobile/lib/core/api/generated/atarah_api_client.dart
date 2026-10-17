@@ -11,6 +11,10 @@ import 'admin/admin_client.dart';
 import 'media/media_client.dart';
 import 'notifications/notifications_client.dart';
 import 'public/public_client.dart';
+import 'taxonomy/taxonomy_client.dart';
+import 'locations/locations_client.dart';
+import 'onboarding/onboarding_client.dart';
+import 'admin_taxonomy/admin_taxonomy_client.dart';
 
 /// Atarah API `v1.0`.
 ///
@@ -30,6 +34,10 @@ class AtarahApiClient {
   MediaClient? _media;
   NotificationsClient? _notifications;
   PublicClient? _public;
+  TaxonomyClient? _taxonomy;
+  LocationsClient? _locations;
+  OnboardingClient? _onboarding;
+  AdminTaxonomyClient? _adminTaxonomy;
 
   AuthClient get auth => _auth ??= AuthClient(_dio, baseUrl: _baseUrl);
 
@@ -46,4 +54,16 @@ class AtarahApiClient {
       _notifications ??= NotificationsClient(_dio, baseUrl: _baseUrl);
 
   PublicClient get public => _public ??= PublicClient(_dio, baseUrl: _baseUrl);
+
+  TaxonomyClient get taxonomy =>
+      _taxonomy ??= TaxonomyClient(_dio, baseUrl: _baseUrl);
+
+  LocationsClient get locations =>
+      _locations ??= LocationsClient(_dio, baseUrl: _baseUrl);
+
+  OnboardingClient get onboarding =>
+      _onboarding ??= OnboardingClient(_dio, baseUrl: _baseUrl);
+
+  AdminTaxonomyClient get adminTaxonomy =>
+      _adminTaxonomy ??= AdminTaxonomyClient(_dio, baseUrl: _baseUrl);
 }

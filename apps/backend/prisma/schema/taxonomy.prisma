@@ -11,7 +11,8 @@ model Country {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  counties County[]
+  counties         County[]
+  creativeProfiles CreativeProfile[]
 
   @@map("countries")
 }
@@ -27,8 +28,9 @@ model County {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  country Country @relation(fields: [countryId], references: [id], onDelete: Restrict)
-  towns   Town[]
+  country          Country           @relation(fields: [countryId], references: [id], onDelete: Restrict)
+  towns            Town[]
+  creativeProfiles CreativeProfile[]
 
   @@unique([countryId, code])
   @@unique([countryId, name])
@@ -62,6 +64,9 @@ model Discipline {
 
   specialisations Specialisation[]
   skills          Skill[]
+  primaryOf       CreativeProfile[]          @relation("PrimaryDiscipline")
+  creatives       CreativeDiscipline[]
+  suggestions     SpecialisationSuggestion[]
 
   @@map("disciplines")
 }
@@ -76,7 +81,9 @@ model Specialisation {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  discipline Discipline @relation(fields: [disciplineId], references: [id], onDelete: Restrict)
+  discipline  Discipline                 @relation(fields: [disciplineId], references: [id], onDelete: Restrict)
+  creatives   CreativeSpecialisation[]
+  suggestions SpecialisationSuggestion[]
 
   @@unique([disciplineId, slug])
   @@map("specialisations")
@@ -93,7 +100,8 @@ model Skill {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  discipline Discipline? @relation(fields: [disciplineId], references: [id], onDelete: SetNull)
+  discipline Discipline?     @relation(fields: [disciplineId], references: [id], onDelete: SetNull)
+  creatives  CreativeSkill[]
 
   @@index([disciplineId])
   @@map("skills")
@@ -108,6 +116,8 @@ model Interest {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  creatives CreativeInterest[]
+
   @@map("interests")
 }
 
@@ -120,6 +130,8 @@ model DevelopmentArea {
   isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  creatives CreativeDevelopmentArea[]
 
   @@map("development_areas")
 }

@@ -153,6 +153,23 @@ export class MediaService {
     return this.view(await this.owned(ownerId, id));
   }
 
+  /**
+   * Signed URL for one rendition (200, 600 or 1200 px) of a READY image, for rendering someone's picture.
+   * The caller has already decided the viewer may see it; this does no ownership check.
+   */
+  async imageUrl(id: string | null, width: 200 | 600 | 1200 = 600): Promise<string | null> {
+    if (!id) return null;
+    const asset = await this.prisma.mediaAsset.findFirst({
+      where: { id, status: 'READY', kind: 'IMAGE', deletedAt: null },
+    });
+    if (!asset) return null;
+    const ttl =
+      asset.bucket === 'PUBLIC' ? PUBLIC_DOWNLOAD_TTL_SECONDS : PRIVATE_DOWNLOAD_TTL_SECONDS;
+    const key =
+      (asset.variants as Record<string, string> | null)?.[String(width)] ?? asset.objectKey;
+    return this.storage.signedDownloadUrl(bucketKind(asset.bucket), key, ttl);
+  }
+
   async remove(ownerId: string, id: string): Promise<void> {
     const asset = await this.owned(ownerId, id);
     await this.prisma.mediaAsset.update({

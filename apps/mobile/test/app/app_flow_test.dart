@@ -1,3 +1,4 @@
+import 'package:atarah/core/api/generated/export.dart';
 import 'package:atarah/core/app/app.dart';
 import 'package:atarah/core/config/app_config.dart';
 import 'package:atarah/core/connectivity/connectivity_provider.dart';
@@ -6,11 +7,13 @@ import 'package:atarah/core/networking/failures.dart';
 import 'package:atarah/core/providers.dart';
 import 'package:atarah/core/routing/app_router.dart';
 import 'package:atarah/core/storage/token_store.dart';
+import 'package:atarah/features/onboarding/onboarding_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 
+import '../support/fake_onboarding.dart';
 import '../support/fakes.dart';
 
 ProviderContainer? _container;
@@ -27,6 +30,12 @@ Widget app(
         AppConfig(flavor: flavor, apiBaseUrl: 'http://test.local'),
       ),
       authRepositoryProvider.overrideWithValue(repo),
+      onboardingRepositoryProvider.overrideWithValue(
+        FakeOnboardingRepository(
+          completed: true,
+          step: OnboardingStateDtoStep.done,
+        ),
+      ),
       tokenStoreProvider.overrideWithValue(MemoryTokenStore()),
       isOnlineProvider.overrideWith((ref) => online ?? Stream.value(true)),
     ],

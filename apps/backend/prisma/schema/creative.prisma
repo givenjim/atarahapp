@@ -1,0 +1,183 @@
+// Creative identity: the profile built during onboarding, its taxonomy selections, the Creative Passport
+// and the specialisation suggestion queue. Owner module: creative. Taxonomies themselves live in taxonomy.prisma.
+
+/// The step a member should see next. Saved with every onboarding step so onboarding resumes where it stopped.
+enum OnboardingStep {
+  INTRO
+  DISCIPLINE
+  SPECIALISATION
+  SKILLS
+  LOCATION
+  BASICS
+  PHOTO
+  DONE
+}
+
+enum SuggestionStatus {
+  PENDING
+  APPROVED
+  MERGED
+  REJECTED
+}
+
+/// One per member. Created the first time onboarding or the profile is opened. Fields a member skipped stay null.
+model CreativeProfile {
+  id                    String         @id @default(uuid()) @db.Uuid
+  userId                String         @unique @db.Uuid
+  /// Lower-case public handle (atarah.app/{handle}). Unique across all members; null until chosen.
+  handle                String?        @unique @db.Citext
+  displayName           String
+  headline              String?
+  bio                   String?
+  primaryDisciplineId   String?        @db.Uuid
+  countryId             String?        @db.Uuid
+  countyId              String?        @db.Uuid
+  /// Free text town or neighbourhood (optional).
+  town                  String?
+  /// Who can see the county. Default MEMBERS (Master Prompt 6.2).
+  locationVisibility    Visibility     @default(MEMBERS)
+  avatarMediaId         String?        @db.Uuid
+  onboardingStep        OnboardingStep @default(INTRO)
+  onboardingCompletedAt DateTime?
+  /// Cached result of the profile completion engine (0-100). Recomputed on every profile write.
+  completionPercent     Int            @default(0)
+  createdAt             DateTime       @default(now())
+  updatedAt             DateTime       @updatedAt
+
+  user              User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  primaryDiscipline Discipline?               @relation("PrimaryDiscipline", fields: [primaryDisciplineId], references: [id], onDelete: SetNull)
+  country           Country?                  @relation(fields: [countryId], references: [id], onDelete: SetNull)
+  county            County?                   @relation(fields: [countyId], references: [id], onDelete: SetNull)
+  avatarMedia       MediaAsset?               @relation(fields: [avatarMediaId], references: [id], onDelete: SetNull)
+  disciplines       CreativeDiscipline[]
+  specialisations   CreativeSpecialisation[]
+  skills            CreativeSkill[]
+  interests         CreativeInterest[]
+  developmentAreas  CreativeDevelopmentArea[]
+  passport          CreativePassport?
+
+  @@index([primaryDisciplineId])
+  @@index([countyId])
+  @@map("creative_profiles")
+}
+
+/// Every discipline a member practises. The primary one is also denormalised on the profile.
+model CreativeDiscipline {
+  profileId    String   @db.Uuid
+  disciplineId String   @db.Uuid
+  isPrimary    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+
+  profile    CreativeProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  discipline Discipline      @relation(fields: [disciplineId], references: [id], onDelete: Restrict)
+
+  @@id([profileId, disciplineId])
+  @@index([disciplineId])
+  @@map("creative_disciplines")
+}
+
+model CreativeSpecialisation {
+  profileId        String   @db.Uuid
+  specialisationId String   @db.Uuid
+  createdAt        DateTime @default(now())
+
+  profile        CreativeProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  specialisation Specialisation  @relation(fields: [specialisationId], references: [id], onDelete: Restrict)
+
+  @@id([profileId, specialisationId])
+  @@index([specialisationId])
+  @@map("creative_specialisations")
+}
+
+model CreativeSkill {
+  profileId String      @db.Uuid
+  skillId   String      @db.Uuid
+  /// Null until the member rates it (P1-M3).
+  level     SkillLevel?
+  source    SkillSource @default(SELF_DECLARED)
+  createdAt DateTime    @default(now())
+
+  profile CreativeProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  skill   Skill           @relation(fields: [skillId], references: [id], onDelete: Restrict)
+
+  @@id([profileId, skillId])
+  @@index([skillId])
+  @@map("creative_skills")
+}
+
+model CreativeInterest {
+  profileId  String   @db.Uuid
+  interestId String   @db.Uuid
+  createdAt  DateTime @default(now())
+
+  profile  CreativeProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  interest Interest        @relation(fields: [interestId], references: [id], onDelete: Restrict)
+
+  @@id([profileId, interestId])
+  @@index([interestId])
+  @@map("creative_interests")
+}
+
+model CreativeDevelopmentArea {
+  profileId         String   @db.Uuid
+  developmentAreaId String   @db.Uuid
+  createdAt         DateTime @default(now())
+
+  profile         CreativeProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  developmentArea DevelopmentArea @relation(fields: [developmentAreaId], references: [id], onDelete: Restrict)
+
+  @@id([profileId, developmentAreaId])
+  @@index([developmentAreaId])
+  @@map("creative_development_areas")
+}
+
+/// A member's request for a specialisation that is not in the list. Resolved by an admin.
+model SpecialisationSuggestion {
+  id               String           @id @default(uuid()) @db.Uuid
+  userId           String           @db.Uuid
+  disciplineId     String           @db.Uuid
+  name             String
+  status           SuggestionStatus @default(PENDING)
+  /// Set when approved (the new specialisation) or merged (the existing one it was merged into).
+  specialisationId String?          @db.Uuid
+  resolvedById     String?          @db.Uuid
+  resolutionNote   String?
+  resolvedAt       DateTime?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  user           User            @relation("SuggestionAuthor", fields: [userId], references: [id], onDelete: Cascade)
+  resolvedBy     User?           @relation("SuggestionResolver", fields: [resolvedById], references: [id], onDelete: SetNull)
+  discipline     Discipline      @relation(fields: [disciplineId], references: [id], onDelete: Restrict)
+  specialisation Specialisation? @relation(fields: [specialisationId], references: [id], onDelete: SetNull)
+
+  @@index([status, createdAt])
+  @@index([userId, status])
+  @@map("specialisation_suggestions")
+}
+
+/// Issued once when onboarding completes and never changed: ATR-{COUNTY CODE}-{sequence}.
+model CreativePassport {
+  id             String   @id @default(uuid()) @db.Uuid
+  profileId      String   @unique @db.Uuid
+  passportNumber String   @unique
+  /// The three-letter code and sequence the number was built from, kept so the number can be audited.
+  countyCode     String   @db.Char(3)
+  sequence       Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  profile CreativeProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@unique([countyCode, sequence])
+  @@map("creative_passports")
+}
+
+/// Last sequence issued per county code. Incremented atomically (INSERT ... ON CONFLICT DO UPDATE).
+model PassportCounter {
+  countyCode String   @id @db.Char(3)
+  lastValue  Int      @default(0)
+  updatedAt  DateTime @updatedAt
+
+  @@map("passport_counters")
+}

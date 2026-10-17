@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../support/app_harness.dart';
+import '../support/fake_onboarding.dart';
 import '../support/fakes.dart';
 
 ApiFailure api(
@@ -35,9 +36,10 @@ Future<Harness> start(
   WidgetTester t, {
   FakeAuthRepository? auth,
   FakeContentRepository? content,
+  FakeOnboardingRepository? onboarding,
   String? at,
 }) async {
-  final h = Harness(auth: auth, content: content);
+  final h = Harness(auth: auth, content: content, onboarding: onboarding);
   await h.pump(t);
   if (at != null) {
     h.router.go(at);
@@ -278,16 +280,21 @@ void main() {
     testWidgets('a correct code signs in and continues to onboarding', (
       t,
     ) async {
-      final h = await start(t, at: location);
+      final h = await start(
+        t,
+        at: location,
+        onboarding: FakeOnboardingRepository(),
+      );
       await typeInto(t, 0, '482913');
       await tapText(t, 'Verify');
       expect(h.auth.calls, contains('verify:nia@example.com:482913'));
+      // A brand-new member lands on the first setup step.
       expect(h.path, '/onboarding');
-      expect(find.text('Soon · P1'), findsOneWidget);
-      expect(find.text('Creative profile setup'), findsOneWidget);
+      expect(find.text("Let's set up your creative identity"), findsOneWidget);
       expect(h.events, contains('verification_completed'));
-      // Back goes Home.
-      await tapText(t, 'Go back');
+      // Back on the first step leaves setup for Home.
+      await t.tap(find.bySemanticsLabel('Back'));
+      await t.pumpAndSettle();
       expect(find.byType(AtTabBar), findsOneWidget);
     });
 

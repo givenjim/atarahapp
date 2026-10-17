@@ -146,3 +146,32 @@ All enums below exist in the database now (`enums.prisma`, `identity.prisma`, `m
 | P1-M9     | `SavedItem`, `HelpArticle`, `FaqEntry`, `DataExportRequest`, `AccountDeletionRequest`, `TwoStepSetting`                                                                                                                          |
 | P2        | `Payment`, `PaymentEvent`, `Refund`, `Transaction`, `Payout`; seller, listing, enquiry; mentor, session type, availability, booking, feedback; `VerificationCase` family; CV/EPK share links                                     |
 | P3        | `AiInteraction`, `CreativeOrganisation`, `CountyEcosystemStat`, `RisingTalentPick`                                                                                                                                               |
+
+## 6. Profile completion weights (P1-M2)
+
+One engine (`apps/backend/src/creative/completion.ts`) scores every profile; the result is cached in `creative_profiles.completionPercent` and returned with the list of what is missing. Weights add up to 100 (a unit test guards that).
+
+| Item             | Weight | Done when                                            |
+| ---------------- | -----: | ---------------------------------------------------- |
+| Profile photo    |     15 | an avatar is attached                                |
+| First project    |     15 | at least one project (P1-M4; counts as 0 until then) |
+| Short bio        |     10 | at least 20 characters                               |
+| Discipline       |     10 | a primary discipline is set                          |
+| Specialisation   |     10 | at least one                                         |
+| Skills           |     10 | at least three                                       |
+| Location         |     10 | a county is set                                      |
+| Experience       |     10 | at least one (P1-M4; counts as 0 until then)         |
+| Headline         |      5 | not blank (edited from P1-M3)                        |
+| Verified contact |      5 | email or phone verified                              |
+
+The "next" list is the three heaviest missing items. Interests and areas to develop are collected but do not score (they improve recommendations, not credibility).
+
+## 7. Entities added in P1-M2
+
+| Entity                                                                                                         | Table                        | Notes                                                                                                                                     |
+| -------------------------------------------------------------------------------------------------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `CreativeProfile`                                                                                              | `creative_profiles`          | 1:1 User. `handle` citext unique, CHECK `^[a-z0-9_]{3,30}$`. `onboardingStep`, `onboardingCompletedAt`, `completionPercent` (CHECK 0-100) |
+| `CreativeDiscipline`, `CreativeSpecialisation`, `CreativeSkill`, `CreativeInterest`, `CreativeDevelopmentArea` | `creative_*`                 | Composite keys. `CreativeDiscipline` has one primary per member (partial unique index). `CreativeSkill.level` null until rated (P1-M3)    |
+| `SpecialisationSuggestion`                                                                                     | `specialisation_suggestions` | `PENDING`, `APPROVED`, `MERGED`, `REJECTED`; resolver, note, resulting specialisation                                                     |
+| `CreativePassport`                                                                                             | `creative_passports`         | 1:1 profile. `passportNumber` unique, `(countyCode, sequence)` unique. Never changes                                                      |
+| `PassportCounter`                                                                                              | `passport_counters`          | Last sequence issued per county code, incremented atomically                                                                              |

@@ -255,6 +255,167 @@
   "passwordsDontMatch": "The passwords don't match.",
   "resetAction": "Reset password",
   "resetDone": "Password updated. You were signed out of your other devices.",
-  "onboardingPlaceholderName": "Creative profile setup",
-  "codeIncomplete": "Enter all 6 digits."
+  "codeIncomplete": "Enter all 6 digits.",
+  "obSkip": "Skip",
+  "obStepOf": "Step {n} of {total}",
+  "@obStepOf": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "obGettingStarted": "Getting started",
+  "obProgressLabel": "Setup progress",
+  "obGetStarted": "Get started",
+  "obContinue": "Continue",
+  "obFinish": "Finish",
+  "obIntroTitle": "Let's set up your creative identity",
+  "obIntroBody": "Four short steps. Each one makes the opportunities, people and learning you see more relevant.",
+  "obIntroDisciplineTitle": "Your discipline",
+  "obIntroDisciplineBody": "What you create and your specialization",
+  "obIntroSkillsTitle": "Skills & interests",
+  "obIntroSkillsBody": "What you’re good at and want to grow",
+  "obIntroLocationTitle": "Location",
+  "obIntroLocationBody": "For local people, events and opportunities",
+  "obIntroBasicsTitle": "Profile basics",
+  "obIntroBasicsBody": "Your name, a short bio and a photo",
+  "obDisciplineTitle": "What do you create?",
+  "obDisciplineBody": "Your discipline helps us show you more relevant opportunities, people and learning.",
+  "obDisciplineRequired": "Choose what you create, or skip this step.",
+  "obSpecTitle": "Your specialization",
+  "obSpecBodyPrefix": "Within ",
+  "obSpecBodySuffix": " — pick any that describe your practice.",
+  "obSpecNeedDiscipline": "Choose your discipline first, then come back to pick your specialization.",
+  "obSuggest": "Suggest a specialization",
+  "obSuggestTitle": "Suggest a specialization",
+  "obSuggestBody": "Tell us what is missing from the {discipline} list. We review every suggestion.",
+  "@obSuggestBody": {
+    "placeholders": {
+      "discipline": {
+        "type": "String"
+      }
+    }
+  },
+  "obSuggestLabel": "Specialization name",
+  "obSuggestSend": "Send suggestion",
+  "obSuggestEmpty": "Enter a name for the specialization.",
+  "obSuggestThanksTitle": "Thanks, we'll take a look",
+  "obSuggestThanksBody": "We'll tell you when “{name}” is added or merged. You can carry on meanwhile.",
+  "@obSuggestThanksBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "obSuggestDone": "Done",
+  "obSkillsTitle": "Skills & interests",
+  "obSkillsBody": "These power your learning recommendations, discovery and opportunity matches.",
+  "obGroupSkills": "Skills",
+  "obGroupInterests": "Interests",
+  "obGroupGrow": "Areas to develop",
+  "obSelectedCount": "{count} selected",
+  "@obSelectedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "obLimitReached": "You can pick up to {max}.",
+  "@obLimitReached": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "obLocTitle": "Where are you based?",
+  "obLocBody": "For local discovery, regional opportunities and your county's creative community.",
+  "obCountry": "Country",
+  "obCounty": "County",
+  "obTown": "Town or neighbourhood (optional)",
+  "obSelectPlaceholder": "Select",
+  "obUseLocation": "Use my current location",
+  "obLocating": "Finding your county…",
+  "obLocationFound": "We set your county to {county}.",
+  "@obLocationFound": {
+    "placeholders": {
+      "county": {
+        "type": "String"
+      }
+    }
+  },
+  "obLocationNoMatch": "We couldn't match your location to a county. Choose it from the list.",
+  "obLocationDenied": "Location permission is off. Choose your county from the list.",
+  "obLocationDeniedForever": "Location is blocked for Atarah in your phone settings. Choose your county from the list.",
+  "obLocationServicesOff": "Location is switched off on this phone. Choose your county from the list.",
+  "obLocationFailed": "We couldn't get your location. Choose your county from the list.",
+  "obCountyRequired": "Choose your county, or skip this step.",
+  "obChooseCounty": "Choose a county",
+  "obChooseCountry": "Choose a country",
+  "obSearch": "Search",
+  "obNoResults": "Nothing matches that.",
+  "obWhoSees": "Who can see your location?",
+  "obVisPublic": "Public",
+  "obVisMembers": "Members",
+  "obVisPrivate": "Private",
+  "obVisPublicNote": "Anyone, including people outside Atarah, can see your county.",
+  "obVisMembersNote": "Only signed-in Atarah members can see your county.",
+  "obVisPrivateNote": "Hidden from everyone. Still used to personalise what you see.",
+  "obBasicsTitle": "Introduce yourself",
+  "obBasicsBody": "A name and a line or two — you can expand this into your Creative Passport later.",
+  "obDisplayName": "Display name",
+  "obDisplayNameError": "Enter the name you want people to see.",
+  "obProfileLink": "Profile link",
+  "obHandleChecking": "Checking…",
+  "obHandleAvailable": "{handle} is available.",
+  "@obHandleAvailable": {
+    "placeholders": {
+      "handle": {
+        "type": "String"
+      }
+    }
+  },
+  "obHandleTaken": "That profile link is taken.",
+  "obHandleReserved": "That link is reserved. Try another.",
+  "obHandleInvalid": "Use 3 to 30 letters, numbers or underscores.",
+  "obHandleTry": "Try one of these",
+  "obHandleRequired": "Choose your profile link.",
+  "obShortBio": "Short bio",
+  "obHelpWrite": "Help me write this",
+  "obBioCount": "{count} / 160",
+  "@obBioCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "obPhotoTitle": "Add a profile photo",
+  "obPhotoBody": "Profiles with a clear photo get more connection requests and mentor replies.",
+  "obGallery": "Gallery",
+  "obTakePhoto": "Take photo",
+  "obPhotoSkip": "Skip for now",
+  "obPhotoUploading": "Uploading your photo…",
+  "obPhotoAdded": "Photo added.",
+  "obPhotoRemove": "Remove photo",
+  "obPhotoPreview": "Profile photo preview",
+  "obPhotoPickFailed": "We couldn't open that photo. Try another.",
+  "obCropTitle": "Crop your photo",
+  "obCropUse": "Use photo",
+  "obCropCancel": "Cancel",
+  "obDoneTitle": "Your creative journey starts here.",
+  "obDoneBody": "Your Creative Passport is live. Complete it at your own pace — Atarah gets more useful as it grows.",
+  "obPassportLabel": "CREATIVE PASSPORT",
+  "obSpecNotSet": "Specialization not set",
+  "obLocationNotSet": "Location not set",
+  "obCompletion": "Profile completion",
+  "obGoHome": "Go to Home",
+  "obLoadFailedTitle": "We couldn't load your setup",
+  "obHandleSuggestionsLabel": "Available alternatives"
 }

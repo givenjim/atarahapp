@@ -532,6 +532,310 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/taxonomy/disciplines": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["disciplines"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/taxonomy/skills": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["skills"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/taxonomy/interests": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["interests"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/taxonomy/development-areas": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["developmentAreas"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/taxonomy/specialisations/suggestions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["suggest"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/locations/countries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["countries"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/locations/counties": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["counties"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/locations/counties/match": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["match"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/onboarding": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["state"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["saveStep"];
+        trace?: never;
+    };
+    "/api/v1/me/onboarding/complete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["completeOnboarding"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/avatar": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["setAvatar"];
+        delete: operations["removeAvatar"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/handles/{handle}/availability": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["availability"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/taxonomy/{kind}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["listTaxonomy"];
+        put?: never;
+        post: operations["createTaxonomy"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/taxonomy/{kind}/reorder": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["reorderTaxonomy"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/taxonomy/{kind}/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["updateTaxonomy"];
+        trace?: never;
+    };
+    "/api/v1/admin/specialisation-suggestions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["listSuggestions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/specialisation-suggestions/{id}/approve": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["approveSuggestion"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/specialisation-suggestions/{id}/merge": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["mergeSuggestion"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/specialisation-suggestions/{id}/reject": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["rejectSuggestion"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -881,6 +1185,253 @@ export interface components {
             body: string;
             /** @description True until the owner publishes reviewed text. Show it as a draft. */
             isDraft: boolean;
+        };
+        SpecialisationDto: {
+            /** Format: uuid */
+            id: string;
+            slug: string;
+            name: string;
+        };
+        DisciplineDto: {
+            /** Format: uuid */
+            id: string;
+            slug: string;
+            name: string;
+            /** @description Lucide icon name. */
+            icon: string;
+            specialisations: components["schemas"]["SpecialisationDto"][];
+        };
+        TaxonomyItemDto: {
+            /** Format: uuid */
+            id: string;
+            slug: string;
+            name: string;
+        };
+        SuggestionReceiptDto: {
+            /** Format: uuid */
+            id: string;
+            name: string;
+            /** @enum {string} */
+            status: "PENDING" | "APPROVED" | "MERGED" | "REJECTED";
+        };
+        SuggestSpecialisationDto: {
+            /** Format: uuid */
+            disciplineId: string;
+            /** @example Puppetry */
+            name: string;
+        };
+        CountryDto: {
+            /** Format: uuid */
+            id: string;
+            /** @example KE */
+            isoCode: string;
+            name: string;
+            /** @example +254 */
+            callingCode: string;
+        };
+        CountyDto: {
+            /** Format: uuid */
+            id: string;
+            /** @example NBI */
+            code: string;
+            name: string;
+        };
+        CountyMatchDto: {
+            county: components["schemas"]["CountyDto"] | null;
+            /** Format: uuid */
+            countryId: string | null;
+        };
+        DisciplineLite: {
+            /** Format: uuid */
+            id: string;
+            name: string;
+            icon: string;
+        };
+        OnboardingProfileDto: {
+            /** Format: uuid */
+            id: string;
+            displayName: string;
+            handle: string | null;
+            bio: string | null;
+            headline: string | null;
+            discipline: components["schemas"]["DisciplineLite"] | null;
+            specialisations: components["schemas"]["TaxonomyItemDto"][];
+            skills: components["schemas"]["TaxonomyItemDto"][];
+            interests: components["schemas"]["TaxonomyItemDto"][];
+            developmentAreas: components["schemas"]["TaxonomyItemDto"][];
+            countryId: string | null;
+            countryName: string | null;
+            countyId: string | null;
+            countyName: string | null;
+            town: string | null;
+            /** @enum {string} */
+            locationVisibility: "PUBLIC" | "MEMBERS" | "PRIVATE";
+            /** @description Signed avatar URL (600 px), when a photo is set. */
+            avatarUrl: string | null;
+        };
+        CompletionItemDto: {
+            key: string;
+            label: string;
+            weight: number;
+            done: boolean;
+        };
+        CompletionDto: {
+            percent: number;
+            items: components["schemas"]["CompletionItemDto"][];
+            /** @description The most valuable missing items, heaviest first. */
+            next: components["schemas"]["CompletionItemDto"][];
+        };
+        OnboardingStateDto: {
+            /**
+             * @description The step to show next (the resume point).
+             * @enum {string}
+             */
+            step: "INTRO" | "DISCIPLINE" | "SPECIALISATION" | "SKILLS" | "LOCATION" | "BASICS" | "PHOTO" | "DONE";
+            /** @description True once the member finished onboarding and holds a Passport. */
+            completed: boolean;
+            profile: components["schemas"]["OnboardingProfileDto"];
+            completion: components["schemas"]["CompletionDto"];
+            /** @example ATR-NBI-0042 */
+            passportNumber: string | null;
+        };
+        SaveOnboardingStepDto: {
+            /** @enum {string} */
+            step: "INTRO" | "DISCIPLINE" | "SPECIALISATION" | "SKILLS" | "LOCATION" | "BASICS" | "PHOTO";
+            /** @description Skip this step: nothing is saved, the member moves on. */
+            skipped?: boolean;
+            /**
+             * Format: uuid
+             * @description DISCIPLINE. Changing it clears specialisations.
+             */
+            disciplineId?: string;
+            /** @description SPECIALISATION. Must belong to the chosen discipline. */
+            specialisationIds?: string[];
+            /** @description SKILLS. */
+            skillIds?: string[];
+            /** @description SKILLS. */
+            interestIds?: string[];
+            /** @description SKILLS (areas to develop). */
+            developmentAreaIds?: string[];
+            /**
+             * Format: uuid
+             * @description LOCATION.
+             */
+            countryId?: string;
+            /**
+             * Format: uuid
+             * @description LOCATION. Must belong to the country.
+             */
+            countyId?: string;
+            /** @description LOCATION. Optional town or neighbourhood. */
+            town?: string;
+            /**
+             * @description LOCATION. Who can see the county.
+             * @enum {string}
+             */
+            locationVisibility?: "PUBLIC" | "MEMBERS" | "PRIVATE";
+            /** @description BASICS. */
+            displayName?: string;
+            /** @description BASICS. Lower-case letters, digits and underscores, 3 to 30 characters. */
+            handle?: string;
+            /** @description BASICS. Short bio, up to 160 characters. */
+            bio?: string;
+        };
+        PassportPreviewDto: {
+            /** @example ATR-NBI-0042 */
+            passportNumber: string;
+            /** Format: date-time */
+            issuedAt: string;
+        };
+        OnboardingCompleteDto: {
+            state: components["schemas"]["OnboardingStateDto"];
+            passport: components["schemas"]["PassportPreviewDto"];
+        };
+        SetAvatarDto: {
+            /**
+             * Format: uuid
+             * @description A READY image the member uploaded through /media (PUBLIC).
+             */
+            mediaId: string;
+        };
+        HandleAvailabilityDto: {
+            handle: string;
+            available: boolean;
+            /** @enum {string|null} */
+            reason: "INVALID" | "RESERVED" | "TAKEN" | null;
+            /** @description Free alternatives when the handle is taken or reserved. */
+            suggestions: string[];
+        };
+        AdminTaxonomyItemDto: {
+            /** Format: uuid */
+            id: string;
+            slug: string;
+            name: string;
+            /** @description Disciplines only. */
+            icon: string | null;
+            /**
+             * Format: uuid
+             * @description Specialisations and skills.
+             */
+            disciplineId: string | null;
+            disciplineName: string | null;
+            sortOrder: number;
+            isActive: boolean;
+            /** @description How many members currently use it. */
+            usage: number;
+        };
+        CreateTaxonomyItemDto: {
+            name: string;
+            /** @description Disciplines only: a Lucide icon name. */
+            icon?: string;
+            /**
+             * Format: uuid
+             * @description Required for specialisations; optional for skills (blank = general).
+             */
+            disciplineId?: string;
+        };
+        ReorderTaxonomyDto: {
+            /** @description Ids in the new order. Applies within the same list (discipline) only. */
+            ids: string[];
+        };
+        UpdateTaxonomyItemDto: {
+            name?: string;
+            icon?: string;
+            /** @description false archives the entry (hidden from new selections, kept on existing profiles). */
+            isActive?: boolean;
+        };
+        AdminSuggestionDto: {
+            /** Format: uuid */
+            id: string;
+            name: string;
+            /** Format: uuid */
+            disciplineId: string;
+            disciplineName: string;
+            /** @enum {string} */
+            status: "PENDING" | "APPROVED" | "MERGED" | "REJECTED";
+            /** Format: uuid */
+            suggestedById: string;
+            suggestedByName: string;
+            /** Format: uuid */
+            specialisationId: string | null;
+            resolutionNote: string | null;
+            /** Format: date-time */
+            resolvedAt: string | null;
+            /** Format: date-time */
+            createdAt: string;
+        };
+        ApproveSuggestionDto: {
+            /** @description Publish it under a corrected name. */
+            name?: string;
+        };
+        MergeSuggestionDto: {
+            /**
+             * Format: uuid
+             * @description The existing specialisation this suggestion duplicates.
+             */
+            specialisationId: string;
+        };
+        RejectSuggestionDto: {
+            note?: string;
         };
     };
     responses: never;
@@ -1809,6 +2360,606 @@ export interface operations {
                 content: {
                     "application/json": {
                         data: components["schemas"]["LegalDocumentDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    disciplines: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["DisciplineDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    skills: {
+        parameters: {
+            query?: {
+                /** @description Discipline id or slug. Returns general skills plus that discipline’s skills. */
+                discipline?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["TaxonomyItemDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    interests: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["TaxonomyItemDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    developmentAreas: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["TaxonomyItemDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    suggest: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SuggestSpecialisationDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["SuggestionReceiptDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    countries: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CountryDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    counties: {
+        parameters: {
+            query?: {
+                /** @description ISO country code or country id. Defaults to the first active country. */
+                country?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CountyDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    match: {
+        parameters: {
+            query: {
+                /** @description A place name from the device’s reverse lookup. */
+                q: string;
+                country?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CountyMatchDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    state: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["OnboardingStateDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    saveStep: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SaveOnboardingStepDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["OnboardingStateDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    completeOnboarding: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["OnboardingCompleteDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    setAvatar: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SetAvatarDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["OnboardingStateDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    removeAvatar: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["OnboardingStateDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    availability: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                handle: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["HandleAvailabilityDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    listTaxonomy: {
+        parameters: {
+            query?: {
+                /** @description Specialisations and skills: only this discipline (id). */
+                disciplineId?: string;
+                /** @description Include archived entries. Default true for admins. */
+                includeArchived?: boolean;
+            };
+            header?: never;
+            path: {
+                kind: "disciplines" | "specialisations" | "skills" | "interests" | "development-areas";
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminTaxonomyItemDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    createTaxonomy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                kind: "disciplines" | "specialisations" | "skills" | "interests" | "development-areas";
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateTaxonomyItemDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminTaxonomyItemDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    reorderTaxonomy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                kind: "disciplines" | "specialisations" | "skills" | "interests" | "development-areas";
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReorderTaxonomyDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminTaxonomyItemDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    updateTaxonomy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                kind: "disciplines" | "specialisations" | "skills" | "interests" | "development-areas";
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateTaxonomyItemDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminTaxonomyItemDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    listSuggestions: {
+        parameters: {
+            query?: {
+                status?: "PENDING" | "APPROVED" | "MERGED" | "REJECTED";
+                page?: number;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminSuggestionDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    approveSuggestion: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ApproveSuggestionDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminSuggestionDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    mergeSuggestion: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MergeSuggestionDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminSuggestionDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    rejectSuggestion: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RejectSuggestionDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminSuggestionDto"];
                         meta?: {
                             [key: string]: unknown;
                         };

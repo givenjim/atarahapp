@@ -1,3 +1,4 @@
+import '../../features/onboarding/onboarding_providers.dart';
 import '../auth/session_controller.dart';
 import 'routes.dart';
 
@@ -24,11 +25,14 @@ String _withFrom(String target, Uri current) {
 ///    splash. The intended destination is remembered in `?from=`.
 ///  * Signed out: only public routes are reachable; anything else goes to welcome, remembering where the
 ///    member was headed ("sign in, then return to the intended destination").
-///  * Signed in: the auth screens are skipped; the member goes to the remembered destination or home.
+///  * Signed in: the auth screens are skipped. A member whose profile setup is unfinished resumes it; anyone
+///    else goes to the remembered destination or home. While the setup state loads, the splash keeps showing.
+///    Setup never blocks other routes: the member can leave it and come back (Home offers to finish it).
 String? computeRedirect({
   required SessionStatus status,
   required Uri uri,
   required bool devTools,
+  OnboardingGate onboarding = OnboardingGate.complete,
 }) {
   final path = uri.path;
   final from = uri.queryParameters['from'];
@@ -51,7 +55,14 @@ String? computeRedirect({
 
     case SessionStatus.signedIn:
       if (Routes.authScreens.contains(path)) {
-        return safeDestination(from) ?? Routes.home;
+        switch (onboarding) {
+          case OnboardingGate.pending:
+            return path == Routes.splash ? null : _withFrom(Routes.splash, uri);
+          case OnboardingGate.incomplete:
+            return Routes.onboarding;
+          case OnboardingGate.complete:
+            return safeDestination(from) ?? Routes.home;
+        }
       }
       return null;
   }

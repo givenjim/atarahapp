@@ -49,7 +49,8 @@ model MediaAsset {
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
 
-  owner User? @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  owner    User?             @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  avatarOf CreativeProfile[]
 
   @@unique([bucket, objectKey])
   @@index([ownerId, status])

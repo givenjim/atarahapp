@@ -1102,17 +1102,629 @@ abstract class AppLocalizations {
   /// **'Password updated. You were signed out of your other devices.'**
   String get resetDone;
 
-  /// No description provided for @onboardingPlaceholderName.
-  ///
-  /// In en, this message translates to:
-  /// **'Creative profile setup'**
-  String get onboardingPlaceholderName;
-
   /// No description provided for @codeIncomplete.
   ///
   /// In en, this message translates to:
   /// **'Enter all 6 digits.'**
   String get codeIncomplete;
+
+  /// No description provided for @obSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get obSkip;
+
+  /// No description provided for @obStepOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {n} of {total}'**
+  String obStepOf(int n, int total);
+
+  /// No description provided for @obGettingStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Getting started'**
+  String get obGettingStarted;
+
+  /// No description provided for @obProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Setup progress'**
+  String get obProgressLabel;
+
+  /// No description provided for @obGetStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get started'**
+  String get obGetStarted;
+
+  /// No description provided for @obContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get obContinue;
+
+  /// No description provided for @obFinish.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish'**
+  String get obFinish;
+
+  /// No description provided for @obIntroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s set up your creative identity'**
+  String get obIntroTitle;
+
+  /// No description provided for @obIntroBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Four short steps. Each one makes the opportunities, people and learning you see more relevant.'**
+  String get obIntroBody;
+
+  /// No description provided for @obIntroDisciplineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your discipline'**
+  String get obIntroDisciplineTitle;
+
+  /// No description provided for @obIntroDisciplineBody.
+  ///
+  /// In en, this message translates to:
+  /// **'What you create and your specialization'**
+  String get obIntroDisciplineBody;
+
+  /// No description provided for @obIntroSkillsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Skills & interests'**
+  String get obIntroSkillsTitle;
+
+  /// No description provided for @obIntroSkillsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'What you’re good at and want to grow'**
+  String get obIntroSkillsBody;
+
+  /// No description provided for @obIntroLocationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get obIntroLocationTitle;
+
+  /// No description provided for @obIntroLocationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'For local people, events and opportunities'**
+  String get obIntroLocationBody;
+
+  /// No description provided for @obIntroBasicsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile basics'**
+  String get obIntroBasicsTitle;
+
+  /// No description provided for @obIntroBasicsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your name, a short bio and a photo'**
+  String get obIntroBasicsBody;
+
+  /// No description provided for @obDisciplineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What do you create?'**
+  String get obDisciplineTitle;
+
+  /// No description provided for @obDisciplineBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your discipline helps us show you more relevant opportunities, people and learning.'**
+  String get obDisciplineBody;
+
+  /// No description provided for @obDisciplineRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose what you create, or skip this step.'**
+  String get obDisciplineRequired;
+
+  /// No description provided for @obSpecTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your specialization'**
+  String get obSpecTitle;
+
+  /// No description provided for @obSpecBodyPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Within '**
+  String get obSpecBodyPrefix;
+
+  /// No description provided for @obSpecBodySuffix.
+  ///
+  /// In en, this message translates to:
+  /// **' — pick any that describe your practice.'**
+  String get obSpecBodySuffix;
+
+  /// No description provided for @obSpecNeedDiscipline.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your discipline first, then come back to pick your specialization.'**
+  String get obSpecNeedDiscipline;
+
+  /// No description provided for @obSuggest.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggest a specialization'**
+  String get obSuggest;
+
+  /// No description provided for @obSuggestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggest a specialization'**
+  String get obSuggestTitle;
+
+  /// No description provided for @obSuggestBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us what is missing from the {discipline} list. We review every suggestion.'**
+  String obSuggestBody(String discipline);
+
+  /// No description provided for @obSuggestLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Specialization name'**
+  String get obSuggestLabel;
+
+  /// No description provided for @obSuggestSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send suggestion'**
+  String get obSuggestSend;
+
+  /// No description provided for @obSuggestEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a name for the specialization.'**
+  String get obSuggestEmpty;
+
+  /// No description provided for @obSuggestThanksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks, we\'ll take a look'**
+  String get obSuggestThanksTitle;
+
+  /// No description provided for @obSuggestThanksBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll tell you when “{name}” is added or merged. You can carry on meanwhile.'**
+  String obSuggestThanksBody(String name);
+
+  /// No description provided for @obSuggestDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get obSuggestDone;
+
+  /// No description provided for @obSkillsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Skills & interests'**
+  String get obSkillsTitle;
+
+  /// No description provided for @obSkillsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'These power your learning recommendations, discovery and opportunity matches.'**
+  String get obSkillsBody;
+
+  /// No description provided for @obGroupSkills.
+  ///
+  /// In en, this message translates to:
+  /// **'Skills'**
+  String get obGroupSkills;
+
+  /// No description provided for @obGroupInterests.
+  ///
+  /// In en, this message translates to:
+  /// **'Interests'**
+  String get obGroupInterests;
+
+  /// No description provided for @obGroupGrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Areas to develop'**
+  String get obGroupGrow;
+
+  /// No description provided for @obSelectedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} selected'**
+  String obSelectedCount(int count);
+
+  /// No description provided for @obLimitReached.
+  ///
+  /// In en, this message translates to:
+  /// **'You can pick up to {max}.'**
+  String obLimitReached(int max);
+
+  /// No description provided for @obLocTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Where are you based?'**
+  String get obLocTitle;
+
+  /// No description provided for @obLocBody.
+  ///
+  /// In en, this message translates to:
+  /// **'For local discovery, regional opportunities and your county\'s creative community.'**
+  String get obLocBody;
+
+  /// No description provided for @obCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get obCountry;
+
+  /// No description provided for @obCounty.
+  ///
+  /// In en, this message translates to:
+  /// **'County'**
+  String get obCounty;
+
+  /// No description provided for @obTown.
+  ///
+  /// In en, this message translates to:
+  /// **'Town or neighbourhood (optional)'**
+  String get obTown;
+
+  /// No description provided for @obSelectPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Select'**
+  String get obSelectPlaceholder;
+
+  /// No description provided for @obUseLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Use my current location'**
+  String get obUseLocation;
+
+  /// No description provided for @obLocating.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding your county…'**
+  String get obLocating;
+
+  /// No description provided for @obLocationFound.
+  ///
+  /// In en, this message translates to:
+  /// **'We set your county to {county}.'**
+  String obLocationFound(String county);
+
+  /// No description provided for @obLocationNoMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t match your location to a county. Choose it from the list.'**
+  String get obLocationNoMatch;
+
+  /// No description provided for @obLocationDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission is off. Choose your county from the list.'**
+  String get obLocationDenied;
+
+  /// No description provided for @obLocationDeniedForever.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is blocked for Atarah in your phone settings. Choose your county from the list.'**
+  String get obLocationDeniedForever;
+
+  /// No description provided for @obLocationServicesOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is switched off on this phone. Choose your county from the list.'**
+  String get obLocationServicesOff;
+
+  /// No description provided for @obLocationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t get your location. Choose your county from the list.'**
+  String get obLocationFailed;
+
+  /// No description provided for @obCountyRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your county, or skip this step.'**
+  String get obCountyRequired;
+
+  /// No description provided for @obChooseCounty.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a county'**
+  String get obChooseCounty;
+
+  /// No description provided for @obChooseCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a country'**
+  String get obChooseCountry;
+
+  /// No description provided for @obSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get obSearch;
+
+  /// No description provided for @obNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing matches that.'**
+  String get obNoResults;
+
+  /// No description provided for @obWhoSees.
+  ///
+  /// In en, this message translates to:
+  /// **'Who can see your location?'**
+  String get obWhoSees;
+
+  /// No description provided for @obVisPublic.
+  ///
+  /// In en, this message translates to:
+  /// **'Public'**
+  String get obVisPublic;
+
+  /// No description provided for @obVisMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get obVisMembers;
+
+  /// No description provided for @obVisPrivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Private'**
+  String get obVisPrivate;
+
+  /// No description provided for @obVisPublicNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone, including people outside Atarah, can see your county.'**
+  String get obVisPublicNote;
+
+  /// No description provided for @obVisMembersNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Only signed-in Atarah members can see your county.'**
+  String get obVisMembersNote;
+
+  /// No description provided for @obVisPrivateNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden from everyone. Still used to personalise what you see.'**
+  String get obVisPrivateNote;
+
+  /// No description provided for @obBasicsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Introduce yourself'**
+  String get obBasicsTitle;
+
+  /// No description provided for @obBasicsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A name and a line or two — you can expand this into your Creative Passport later.'**
+  String get obBasicsBody;
+
+  /// No description provided for @obDisplayName.
+  ///
+  /// In en, this message translates to:
+  /// **'Display name'**
+  String get obDisplayName;
+
+  /// No description provided for @obDisplayNameError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the name you want people to see.'**
+  String get obDisplayNameError;
+
+  /// No description provided for @obProfileLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile link'**
+  String get obProfileLink;
+
+  /// No description provided for @obHandleChecking.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking…'**
+  String get obHandleChecking;
+
+  /// No description provided for @obHandleAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'{handle} is available.'**
+  String obHandleAvailable(String handle);
+
+  /// No description provided for @obHandleTaken.
+  ///
+  /// In en, this message translates to:
+  /// **'That profile link is taken.'**
+  String get obHandleTaken;
+
+  /// No description provided for @obHandleReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'That link is reserved. Try another.'**
+  String get obHandleReserved;
+
+  /// No description provided for @obHandleInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Use 3 to 30 letters, numbers or underscores.'**
+  String get obHandleInvalid;
+
+  /// No description provided for @obHandleTry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try one of these'**
+  String get obHandleTry;
+
+  /// No description provided for @obHandleRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your profile link.'**
+  String get obHandleRequired;
+
+  /// No description provided for @obShortBio.
+  ///
+  /// In en, this message translates to:
+  /// **'Short bio'**
+  String get obShortBio;
+
+  /// No description provided for @obHelpWrite.
+  ///
+  /// In en, this message translates to:
+  /// **'Help me write this'**
+  String get obHelpWrite;
+
+  /// No description provided for @obBioCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} / 160'**
+  String obBioCount(int count);
+
+  /// No description provided for @obPhotoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a profile photo'**
+  String get obPhotoTitle;
+
+  /// No description provided for @obPhotoBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Profiles with a clear photo get more connection requests and mentor replies.'**
+  String get obPhotoBody;
+
+  /// No description provided for @obGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get obGallery;
+
+  /// No description provided for @obTakePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take photo'**
+  String get obTakePhoto;
+
+  /// No description provided for @obPhotoSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip for now'**
+  String get obPhotoSkip;
+
+  /// No description provided for @obPhotoUploading.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading your photo…'**
+  String get obPhotoUploading;
+
+  /// No description provided for @obPhotoAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo added.'**
+  String get obPhotoAdded;
+
+  /// No description provided for @obPhotoRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove photo'**
+  String get obPhotoRemove;
+
+  /// No description provided for @obPhotoPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile photo preview'**
+  String get obPhotoPreview;
+
+  /// No description provided for @obPhotoPickFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t open that photo. Try another.'**
+  String get obPhotoPickFailed;
+
+  /// No description provided for @obCropTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Crop your photo'**
+  String get obCropTitle;
+
+  /// No description provided for @obCropUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Use photo'**
+  String get obCropUse;
+
+  /// No description provided for @obCropCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get obCropCancel;
+
+  /// No description provided for @obDoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your creative journey starts here.'**
+  String get obDoneTitle;
+
+  /// No description provided for @obDoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Creative Passport is live. Complete it at your own pace — Atarah gets more useful as it grows.'**
+  String get obDoneBody;
+
+  /// No description provided for @obPassportLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'CREATIVE PASSPORT'**
+  String get obPassportLabel;
+
+  /// No description provided for @obSpecNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Specialization not set'**
+  String get obSpecNotSet;
+
+  /// No description provided for @obLocationNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Location not set'**
+  String get obLocationNotSet;
+
+  /// No description provided for @obCompletion.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile completion'**
+  String get obCompletion;
+
+  /// No description provided for @obGoHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Home'**
+  String get obGoHome;
+
+  /// No description provided for @obLoadFailedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load your setup'**
+  String get obLoadFailedTitle;
+
+  /// No description provided for @obHandleSuggestionsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Available alternatives'**
+  String get obHandleSuggestionsLabel;
 }
 
 class _AppLocalizationsDelegate

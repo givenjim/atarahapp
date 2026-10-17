@@ -239,3 +239,59 @@ Dated, numbered entries (Master Prompt §9.2). Format: decision, context, option
 - **Phone numbers** are normalised on the device the same way the API does it (Kenyan local formats to +254, E.164), so the form can show the right error first; the server stays the authority.
 - **Artwork:** the splash ribbon and welcome collage use the design prototype's images as placeholders (`apps/mobile/assets/images`). The prototype's "1,280 creatives" counter was left out because it is sample data; a real count comes with the community features.
 - **Analytics:** `user_registered`, `verification_completed` and `sign_in` are emitted through the analytics interface. The sink is still the no-op one until an analytics provider is chosen, so no event leaves the device yet.
+
+## DEC-033 — Emulator runs at the end of each phase
+
+- **Date:** 2026-10-17 (owner instruction, replaces "emulator at P1-M5")
+- The Android emulator and on-device integration tests run **only at the end of each phase**, or when the owner asks for them in between. Anything not implemented or wrong is fixed from that pass.
+- Until then every milestone is verified with `flutter analyze`, widget and golden tests, backend tests and (admin) Playwright. `integration_test` journeys are still written and analysed, but not executed. Milestone reports say "emulator not run (deferred to the end of the phase by the owner)" and never claim device evidence.
+- The phase-end emulator pass becomes part of the phase gate checklist.
+
+## DEC-034 — P1-M2 profile model, completion engine and Passport
+
+- **Date:** 2026-10-17
+- **One profile row per member** (`CreativeProfile`), created on first use with the sign-up name as display name. Skipped steps stay null; nothing is invented.
+- **Discipline** is stored twice on purpose: `primaryDisciplineId` on the profile (fast joins, foreign key) and `CreativeDiscipline` (all disciplines, `isPrimary`, one primary per member by a partial unique index) for when members can add more later. Both are written in one transaction. Changing the primary discipline clears specialisations and discipline-specific skills.
+- **Resume point:** `onboardingStep` (INTRO ... PHOTO, DONE) is the step to show next. Saving an earlier step again never moves it back. Skip saves nothing and still advances it.
+- **Caps** (abuse guards, not product rules): 20 skills, 10 specialisations, 10 interests, 10 areas to develop. Bio 160 characters (the prototype's counter). Display name 2 to 60.
+- **Completion engine** (`apps/backend/src/creative/completion.ts`, weights in `docs/DOMAIN.md`): one pure function, cached in `CreativeProfile.completionPercent` on every write. Projects and experience are counted from P1-M4; until then they are 0, so the highest reachable score today is 75%. That is honest rather than hiding the items; the next-items list tells the member what is missing.
+- **Passport number** `ATR-{COUNTY CODE}-{sequence}` is issued once at completion from a per-county atomic counter (`passport_counters`, INSERT ... ON CONFLICT ... RETURNING inside the completion transaction). Concurrent completions never share a number, and a double tap on Finish wastes none (the losing transaction rolls back its increment). **A member who never set a county gets the code `GEN`** (not a county code, so it cannot collide). The number never changes, so such a member keeps `GEN` even if they add a county later. **Owner to confirm** this fallback, or to require a county.
+- **Completion without a handle:** a member who skipped the basics step gets a handle made from their name (first free of `name`, `name2`, ...), so a profile link always exists once setup is finished.
+- **Setup is closed once finished** (`PATCH /me/onboarding` then answers 409). Editing the profile arrives in P1-M3.
+
+## DEC-035 — Profile links (handles)
+
+- **Date:** 2026-10-17
+- 3 to 30 lower-case letters, digits and underscores, stored in a `citext` unique column with a CHECK constraint. Input is trimmed, lower-cased and a leading `@` dropped. A reserved list (admin, atarah, support, route names ...) is refused. Uniqueness is decided by the database: two simultaneous claims give one winner and one 409 with up to three free alternatives.
+- `GET /handles/{handle}/availability` needs a signed-in member and is throttled (40 per minute). A member's own handle counts as available. The app checks 400 ms after typing and ignores outdated answers; if the check cannot run (offline, throttled) typing is not blocked, because the save validates again.
+- Handles are not changeable in setup after finishing; the change flow (with limits) belongs to P1-M3.
+
+## DEC-036 — Profile photo
+
+- **Date:** 2026-10-17
+- Picker: `image_picker` (gallery or camera, bounded to 1600 px before cropping). Crop: `crop_your_image` (pure Dart, square result with a circular guide, because photos are shown in circles). Upload: the existing media pipeline (signed PUT to the PUBLIC bucket, confirm, wait for the validation and resize job, then `POST /me/avatar`). The server accepts only a READY image the member owns in the PUBLIC bucket, and replacing a photo deletes the old file.
+- The app polls the media record for up to 45 seconds. If the worker is not running the upload times out with a clear message (the API alone does not process media).
+- **PARTIAL until the phase-end device pass:** the picker, camera permission prompt and crop gestures have not run on a device. The cropper and picker sit behind small seams, so widget tests cover everything around them.
+
+## DEC-037 — Location
+
+- **Date:** 2026-10-17
+- Country and county come from the database (Kenya seeded, 47 counties). "Use my current location" asks for **coarse location only**, once, on tap; the phone's own geocoder (no third party, no API key) turns it into place names, and the server matches the name to a county (`GET /locations/counties/match`: "Nairobi City County" matches Nairobi; no clear match returns null and the member chooses). Coordinates never leave the device.
+- If the geocoder is missing on a device (some phones without Google services) the member sees "We couldn't get your location. Choose your county from the list." **PARTIAL until the phase-end device pass** (permission prompt and real geocoding untested).
+- Town is free text for now (the `towns` table is admin-managed and empty). Visibility defaults to Members only, as in the Master Prompt, and is stored on the profile; enforcement in profile responses comes with P1-M3.
+
+## DEC-038 — Setup routing and the profile-setup gate
+
+- **Date:** 2026-10-17
+- After sign-in (splash, welcome, verify, sign-in) a member with unfinished setup is sent to `/onboarding`, which resumes at the saved step; a finished member goes Home or to the remembered destination. While the setup state loads, the splash keeps showing. If the state cannot be loaded the member is **not** trapped: they go Home, and `/onboarding` still works from a link.
+- Setup does not block other routes, so a member can leave it (Back on the first step goes Home) and return. Home will offer to finish it when P1-M5 builds Home.
+- Taxonomy lists, locations and handle checks need a signed-in member; none of them are public.
+
+## DEC-039 — Specialisation suggestions and admin taxonomy
+
+- **Date:** 2026-10-17
+- A member can have 5 pending suggestions, asking again for the same name returns the open one, and a name already in the list is refused with a pointer to it.
+- Admin approve creates the specialisation (optionally under a corrected name), merge points the suggestion at an existing one of the **same discipline**, reject keeps an optional note. Decisions are atomic (two admins at once: one wins, the other gets 409), audited, and the suggester gets a PROFILE notification. If the suggester still practises that discipline, the approved or merged specialisation is also added to their profile (a small courtesy; easy to remove).
+- Taxonomy admin: create, rename, archive and restore, reorder, with usage counts. Slugs never change. Archived entries leave new selections but stay on profiles that already have them. Nothing is deleted. Permission `taxonomy.manage` (CONTENT_ADMIN, PLATFORM_ADMIN, SUPER_ADMIN). The admin e2e signs in as the existing PLATFORM_ADMIN fixture, so a CONTENT_ADMIN-only login is covered by the backend integration tests but not by Playwright.
+- **API naming:** controller method names become OpenAPI operation ids, which must be unique or the generated clients break. `list` and `complete` collided, so the admin list is `listTaxonomy` and onboarding completion is `completeOnboarding`.
+- Swagger tag names must be plain ASCII ("Admin Taxonomy"): a "·" in a tag produced a directory name that broke the Dart generator.

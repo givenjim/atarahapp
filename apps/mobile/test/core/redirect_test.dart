@@ -1,15 +1,18 @@
 import 'package:atarah/core/auth/session_controller.dart';
 import 'package:atarah/core/routing/redirect.dart';
+import 'package:atarah/features/onboarding/onboarding_providers.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 String? redirect(
   SessionStatus status,
   String location, {
   bool devTools = true,
+  OnboardingGate onboarding = OnboardingGate.complete,
 }) => computeRedirect(
   status: status,
   uri: Uri.parse(location),
   devTools: devTools,
+  onboarding: onboarding,
 );
 
 void main() {
@@ -170,6 +173,69 @@ void main() {
           '/welcome?from=${Uri.encodeQueryComponent('https://evil.example')}',
         ),
         '/home',
+      );
+    });
+  });
+
+  group('profile setup gate (signed in)', () {
+    String? gate(OnboardingGate g, String location) =>
+        redirect(SessionStatus.signedIn, location, onboarding: g);
+
+    test('unfinished setup resumes from the splash and every auth screen', () {
+      for (final p in [
+        '/splash',
+        '/welcome',
+        '/signin',
+        '/verify?identifier=x',
+      ]) {
+        expect(gate(OnboardingGate.incomplete, p), '/onboarding', reason: p);
+      }
+    });
+
+    test('unfinished setup wins over a remembered destination', () {
+      expect(
+        gate(OnboardingGate.incomplete, '/splash?from=%2Fmentors%2F7'),
+        '/onboarding',
+      );
+    });
+
+    test('while setup state loads the splash keeps showing, remembering where to go', () {
+      expect(gate(OnboardingGate.pending, '/splash'), isNull);
+      expect(gate(OnboardingGate.pending, '/verify?identifier=x'), '/splash');
+      // An auth screen is never remembered as the destination.
+      expect(
+        gate(OnboardingGate.pending, '/signin?from=%2Fmentors%2F7'),
+        '/splash',
+      );
+    });
+
+    test('finished setup goes home or to the remembered destination', () {
+      expect(gate(OnboardingGate.complete, '/splash'), '/home');
+      expect(
+        gate(OnboardingGate.complete, '/splash?from=%2Fmentors%2F7'),
+        '/mentors/7',
+      );
+    });
+
+    test(
+      'setup never blocks other routes, and /onboarding stays reachable',
+      () {
+        for (final g in OnboardingGate.values) {
+          expect(gate(g, '/home'), isNull, reason: '$g');
+          expect(gate(g, '/opportunities/42'), isNull, reason: '$g');
+          expect(gate(g, '/onboarding'), isNull, reason: '$g');
+        }
+      },
+    );
+
+    test('signed out is unaffected by the gate', () {
+      expect(
+        redirect(
+          SessionStatus.signedOut,
+          '/onboarding',
+          onboarding: OnboardingGate.incomplete,
+        ),
+        '/welcome?from=%2Fonboarding',
       );
     });
   });

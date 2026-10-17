@@ -66,5 +66,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Atarah uses your location once to suggest your county. You can choose it yourself instead.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Take a profile photo.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Choose a profile photo.</string>
 </dict>
 </plist>

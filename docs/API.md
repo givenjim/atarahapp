@@ -117,3 +117,34 @@ No sign-in needed.
 | ----------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | `GET /config/public`          | `{ googleSignIn: boolean }`. Apps show optional features only when true                                         |
 | `GET /legal/{TERMS\|PRIVACY}` | `{ type, version, title, body, isDraft }`. Latest published version, else the seeded draft with `isDraft: true` |
+
+## Creative profile and onboarding (P1-M2)
+
+Member bearer token. Reading taxonomies and locations needs only sign-in; writes need `profile.edit`.
+
+| Endpoint                                                       | Notes                                                                                                                                            |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `GET /taxonomy/disciplines`                                    | Active disciplines in order, each with its active specialisations                                                                                |
+| `GET /taxonomy/skills?discipline=`                             | General skills plus that discipline's (id or slug). 404 for an unknown discipline                                                                |
+| `GET /taxonomy/interests`, `GET /taxonomy/development-areas`   | Active entries in order                                                                                                                          |
+| `POST /taxonomy/specialisations/suggestions`                   | `{ disciplineId, name }` → 201 `{ id, name, status }`. 409 if already in the list; 429 after 5 pending; asking twice returns the open one        |
+| `GET /locations/countries`, `GET /locations/counties?country=` | Country by ISO code or id (default: first active). 47 Kenyan counties with codes                                                                 |
+| `GET /locations/counties/match?q=&country=`                    | `{ county \| null, countryId }`. Maps a phone's place name to a county; null when unclear                                                        |
+| `GET /me/onboarding`                                           | `{ step, completed, profile, completion: { percent, items, next }, passportNumber }`. Creates the profile row on first call                      |
+| `PATCH /me/onboarding`                                         | `{ step, skipped?, ...that step's fields }` (see below) → the same state. `skipped: true` saves nothing and advances. 409 once setup is finished |
+| `POST /me/onboarding/complete`                                 | Issues the Passport (idempotent) → `{ state, passport: { passportNumber, issuedAt } }`                                                           |
+| `POST /me/avatar` / `DELETE /me/avatar`                        | `{ mediaId }` of a READY public image the member uploaded through `/media`. Returns the state                                                    |
+| `GET /handles/{handle}/availability`                           | `{ handle, available, reason: INVALID \| RESERVED \| TAKEN \| null, suggestions[] }`. Throttled                                                  |
+
+Step fields: `DISCIPLINE` `disciplineId`; `SPECIALISATION` `specialisationIds` (must belong to the discipline); `SKILLS` `skillIds`, `interestIds`, `developmentAreaIds` (a list that is sent, even empty, replaces; one not sent is left alone); `LOCATION` `countryId`, `countyId`, `town`, `locationVisibility`; `BASICS` `displayName`, `handle`, `bio` (160); `INTRO` and `PHOTO` carry nothing. Field problems come back as `VALIDATION_ERROR` or `CONFLICT` with `details.field` (and, for a taken handle, `details.reason` and `details.suggestions`).
+
+### Admin taxonomy (permission `taxonomy.manage`)
+
+| Endpoint                                              | Notes                                                                                                                   |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `GET /admin/taxonomy/{kind}`                          | kind: `disciplines`, `specialisations`, `skills`, `interests`, `development-areas`. Includes archived and a usage count |
+| `POST /admin/taxonomy/{kind}`                         | `{ name, icon?, disciplineId? }`. 409 on a duplicate. Audited                                                           |
+| `PATCH /admin/taxonomy/{kind}/{id}`                   | `{ name?, icon?, isActive? }`. `isActive: false` archives. The slug never changes                                       |
+| `POST /admin/taxonomy/{kind}/reorder`                 | `{ ids[] }` within one list (one discipline). Returns the list in the new order                                         |
+| `GET /admin/specialisation-suggestions?status=&page=` | Oldest first, paged                                                                                                     |
+| `POST /admin/specialisation-suggestions/{id}/approve` | `{ name? }`. `/merge` `{ specialisationId }` (same discipline), `/reject` `{ note? }`. 409 if decided                   |

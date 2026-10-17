@@ -14,6 +14,10 @@ async function main(): Promise<void> {
   }
   const prisma = new PrismaClient({ datasourceUrl: process.env.ATARAH_DATABASE_URL });
   try {
+    if (process.argv[2] === 'cleanup-taxonomy') {
+      await cleanupTaxonomy(prisma, process.argv[3] ?? '');
+      return;
+    }
     const run = randomBytes(4).toString('hex');
     const password = `E2e-${randomBytes(6).toString('hex')}-1`;
     const passwordHash = await argon2.hash(password, { type: argon2.argon2id });
@@ -54,6 +58,27 @@ async function main(): Promise<void> {
   } finally {
     await prisma.$disconnect();
   }
+}
+
+/**
+ * Removes the disciplines whose name starts with `prefix` (default "E2E Taxonomy ") together with their
+ * specialisations and suggestions, which the admin API can only archive. Never touches seeded rows: a
+ * prefix shorter than "E2E " is refused.
+ */
+async function cleanupTaxonomy(prisma: PrismaClient, prefix: string): Promise<void> {
+  if (!prefix.startsWith('E2E ') || prefix.length < 8) {
+    throw new Error('cleanup-taxonomy needs a prefix that starts with "E2E ".');
+  }
+  const disciplines = await prisma.discipline.findMany({
+    where: { name: { startsWith: prefix } },
+    select: { id: true },
+  });
+  const disciplineId = { in: disciplines.map((d) => d.id) };
+  await prisma.specialisationSuggestion.deleteMany({ where: { disciplineId } });
+  await prisma.creativeSpecialisation.deleteMany({ where: { specialisation: { disciplineId } } });
+  await prisma.specialisation.deleteMany({ where: { disciplineId } });
+  await prisma.discipline.deleteMany({ where: { id: disciplineId } });
+  process.stdout.write(JSON.stringify({ removedDisciplines: disciplines.length }));
 }
 
 main().catch((err: unknown) => {

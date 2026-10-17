@@ -555,8 +555,348 @@ class AppLocalizationsEn extends AppLocalizations {
       'Password updated. You were signed out of your other devices.';
 
   @override
-  String get onboardingPlaceholderName => 'Creative profile setup';
+  String get codeIncomplete => 'Enter all 6 digits.';
 
   @override
-  String get codeIncomplete => 'Enter all 6 digits.';
+  String get obSkip => 'Skip';
+
+  @override
+  String obStepOf(int n, int total) {
+    return 'Step $n of $total';
+  }
+
+  @override
+  String get obGettingStarted => 'Getting started';
+
+  @override
+  String get obProgressLabel => 'Setup progress';
+
+  @override
+  String get obGetStarted => 'Get started';
+
+  @override
+  String get obContinue => 'Continue';
+
+  @override
+  String get obFinish => 'Finish';
+
+  @override
+  String get obIntroTitle => 'Let\'s set up your creative identity';
+
+  @override
+  String get obIntroBody =>
+      'Four short steps. Each one makes the opportunities, people and learning you see more relevant.';
+
+  @override
+  String get obIntroDisciplineTitle => 'Your discipline';
+
+  @override
+  String get obIntroDisciplineBody => 'What you create and your specialization';
+
+  @override
+  String get obIntroSkillsTitle => 'Skills & interests';
+
+  @override
+  String get obIntroSkillsBody => 'What you’re good at and want to grow';
+
+  @override
+  String get obIntroLocationTitle => 'Location';
+
+  @override
+  String get obIntroLocationBody =>
+      'For local people, events and opportunities';
+
+  @override
+  String get obIntroBasicsTitle => 'Profile basics';
+
+  @override
+  String get obIntroBasicsBody => 'Your name, a short bio and a photo';
+
+  @override
+  String get obDisciplineTitle => 'What do you create?';
+
+  @override
+  String get obDisciplineBody =>
+      'Your discipline helps us show you more relevant opportunities, people and learning.';
+
+  @override
+  String get obDisciplineRequired =>
+      'Choose what you create, or skip this step.';
+
+  @override
+  String get obSpecTitle => 'Your specialization';
+
+  @override
+  String get obSpecBodyPrefix => 'Within ';
+
+  @override
+  String get obSpecBodySuffix => ' — pick any that describe your practice.';
+
+  @override
+  String get obSpecNeedDiscipline =>
+      'Choose your discipline first, then come back to pick your specialization.';
+
+  @override
+  String get obSuggest => 'Suggest a specialization';
+
+  @override
+  String get obSuggestTitle => 'Suggest a specialization';
+
+  @override
+  String obSuggestBody(String discipline) {
+    return 'Tell us what is missing from the $discipline list. We review every suggestion.';
+  }
+
+  @override
+  String get obSuggestLabel => 'Specialization name';
+
+  @override
+  String get obSuggestSend => 'Send suggestion';
+
+  @override
+  String get obSuggestEmpty => 'Enter a name for the specialization.';
+
+  @override
+  String get obSuggestThanksTitle => 'Thanks, we\'ll take a look';
+
+  @override
+  String obSuggestThanksBody(String name) {
+    return 'We\'ll tell you when “$name” is added or merged. You can carry on meanwhile.';
+  }
+
+  @override
+  String get obSuggestDone => 'Done';
+
+  @override
+  String get obSkillsTitle => 'Skills & interests';
+
+  @override
+  String get obSkillsBody =>
+      'These power your learning recommendations, discovery and opportunity matches.';
+
+  @override
+  String get obGroupSkills => 'Skills';
+
+  @override
+  String get obGroupInterests => 'Interests';
+
+  @override
+  String get obGroupGrow => 'Areas to develop';
+
+  @override
+  String obSelectedCount(int count) {
+    return '$count selected';
+  }
+
+  @override
+  String obLimitReached(int max) {
+    return 'You can pick up to $max.';
+  }
+
+  @override
+  String get obLocTitle => 'Where are you based?';
+
+  @override
+  String get obLocBody =>
+      'For local discovery, regional opportunities and your county\'s creative community.';
+
+  @override
+  String get obCountry => 'Country';
+
+  @override
+  String get obCounty => 'County';
+
+  @override
+  String get obTown => 'Town or neighbourhood (optional)';
+
+  @override
+  String get obSelectPlaceholder => 'Select';
+
+  @override
+  String get obUseLocation => 'Use my current location';
+
+  @override
+  String get obLocating => 'Finding your county…';
+
+  @override
+  String obLocationFound(String county) {
+    return 'We set your county to $county.';
+  }
+
+  @override
+  String get obLocationNoMatch =>
+      'We couldn\'t match your location to a county. Choose it from the list.';
+
+  @override
+  String get obLocationDenied =>
+      'Location permission is off. Choose your county from the list.';
+
+  @override
+  String get obLocationDeniedForever =>
+      'Location is blocked for Atarah in your phone settings. Choose your county from the list.';
+
+  @override
+  String get obLocationServicesOff =>
+      'Location is switched off on this phone. Choose your county from the list.';
+
+  @override
+  String get obLocationFailed =>
+      'We couldn\'t get your location. Choose your county from the list.';
+
+  @override
+  String get obCountyRequired => 'Choose your county, or skip this step.';
+
+  @override
+  String get obChooseCounty => 'Choose a county';
+
+  @override
+  String get obChooseCountry => 'Choose a country';
+
+  @override
+  String get obSearch => 'Search';
+
+  @override
+  String get obNoResults => 'Nothing matches that.';
+
+  @override
+  String get obWhoSees => 'Who can see your location?';
+
+  @override
+  String get obVisPublic => 'Public';
+
+  @override
+  String get obVisMembers => 'Members';
+
+  @override
+  String get obVisPrivate => 'Private';
+
+  @override
+  String get obVisPublicNote =>
+      'Anyone, including people outside Atarah, can see your county.';
+
+  @override
+  String get obVisMembersNote =>
+      'Only signed-in Atarah members can see your county.';
+
+  @override
+  String get obVisPrivateNote =>
+      'Hidden from everyone. Still used to personalise what you see.';
+
+  @override
+  String get obBasicsTitle => 'Introduce yourself';
+
+  @override
+  String get obBasicsBody =>
+      'A name and a line or two — you can expand this into your Creative Passport later.';
+
+  @override
+  String get obDisplayName => 'Display name';
+
+  @override
+  String get obDisplayNameError => 'Enter the name you want people to see.';
+
+  @override
+  String get obProfileLink => 'Profile link';
+
+  @override
+  String get obHandleChecking => 'Checking…';
+
+  @override
+  String obHandleAvailable(String handle) {
+    return '$handle is available.';
+  }
+
+  @override
+  String get obHandleTaken => 'That profile link is taken.';
+
+  @override
+  String get obHandleReserved => 'That link is reserved. Try another.';
+
+  @override
+  String get obHandleInvalid => 'Use 3 to 30 letters, numbers or underscores.';
+
+  @override
+  String get obHandleTry => 'Try one of these';
+
+  @override
+  String get obHandleRequired => 'Choose your profile link.';
+
+  @override
+  String get obShortBio => 'Short bio';
+
+  @override
+  String get obHelpWrite => 'Help me write this';
+
+  @override
+  String obBioCount(int count) {
+    return '$count / 160';
+  }
+
+  @override
+  String get obPhotoTitle => 'Add a profile photo';
+
+  @override
+  String get obPhotoBody =>
+      'Profiles with a clear photo get more connection requests and mentor replies.';
+
+  @override
+  String get obGallery => 'Gallery';
+
+  @override
+  String get obTakePhoto => 'Take photo';
+
+  @override
+  String get obPhotoSkip => 'Skip for now';
+
+  @override
+  String get obPhotoUploading => 'Uploading your photo…';
+
+  @override
+  String get obPhotoAdded => 'Photo added.';
+
+  @override
+  String get obPhotoRemove => 'Remove photo';
+
+  @override
+  String get obPhotoPreview => 'Profile photo preview';
+
+  @override
+  String get obPhotoPickFailed => 'We couldn\'t open that photo. Try another.';
+
+  @override
+  String get obCropTitle => 'Crop your photo';
+
+  @override
+  String get obCropUse => 'Use photo';
+
+  @override
+  String get obCropCancel => 'Cancel';
+
+  @override
+  String get obDoneTitle => 'Your creative journey starts here.';
+
+  @override
+  String get obDoneBody =>
+      'Your Creative Passport is live. Complete it at your own pace — Atarah gets more useful as it grows.';
+
+  @override
+  String get obPassportLabel => 'CREATIVE PASSPORT';
+
+  @override
+  String get obSpecNotSet => 'Specialization not set';
+
+  @override
+  String get obLocationNotSet => 'Location not set';
+
+  @override
+  String get obCompletion => 'Profile completion';
+
+  @override
+  String get obGoHome => 'Go to Home';
+
+  @override
+  String get obLoadFailedTitle => 'We couldn\'t load your setup';
+
+  @override
+  String get obHandleSuggestionsLabel => 'Available alternatives';
 }

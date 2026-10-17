@@ -1,40 +1,5 @@
-import { readFileSync } from 'node:fs';
-import { expect, test, type Page } from '@playwright/test';
-import { generateSync } from 'otplib';
-import { FIXTURE_FILE } from './global-setup';
-
-interface Fixtures {
-  adminEmail: string;
-  adminName: string;
-  password: string;
-  memberEmail: string;
-  memberName: string;
-}
-const fx = (): Fixtures => JSON.parse(readFileSync(FIXTURE_FILE, 'utf8')) as Fixtures;
-
-/** A code from the next 30-second step: the one used at enrolment cannot be replayed for re-authentication. */
-const nextStepCode = (secret: string) =>
-  generateSync({ secret, epoch: Math.floor(Date.now() / 1000) + 30 });
-
-async function signInWithEnrolment(page: Page, f: Fixtures): Promise<string> {
-  await page.goto('/login');
-  await page.getByLabel('Email').fill(f.adminEmail);
-  await page.getByLabel('Password').fill(f.password);
-  await page.getByRole('button', { name: 'Continue' }).click();
-
-  await expect(page.getByRole('heading', { name: 'Set up your authenticator' })).toBeVisible();
-  const secret = (await page.getByTestId('totp-secret').textContent())!.trim();
-  await page.getByLabel('Code from your authenticator app').fill(generateSync({ secret }));
-  await page.getByRole('button', { name: 'Verify and finish' }).click();
-
-  await expect(page.getByRole('heading', { name: 'Save your recovery codes' })).toBeVisible();
-  await expect(
-    page.getByRole('list', { name: 'Recovery codes' }).getByRole('listitem'),
-  ).not.toHaveCount(0);
-  await page.getByRole('button', { name: 'I have saved them' }).click();
-  await expect(page.getByRole('heading', { name: 'Dashboard', exact: true })).toBeVisible();
-  return secret;
-}
+import { expect, test } from '@playwright/test';
+import { fx, nextStepCode, signInWithEnrolment } from './helpers';
 
 test('admin signs in with TOTP, suspends a member, sees the audit entry, and reactivates', async ({
   page,

@@ -366,3 +366,60 @@ pre.json {
     padding: 20px 16px;
   }
 }
+
+/* ---- taxonomy ---- */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px 16px 0;
+  border-bottom: 1px solid var(--at-color-divider);
+}
+.tab {
+  padding: 10px 16px;
+  border-radius: var(--at-radius-tile) var(--at-radius-tile) 0 0;
+  color: var(--at-color-body);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-bottom: 3px solid transparent;
+}
+.tab:hover {
+  background: var(--at-color-tint3);
+}
+.tab[aria-current='page'] {
+  color: var(--at-color-primary-pressed);
+  border-bottom-color: var(--at-color-primary);
+}
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+  justify-content: space-between;
+  padding: 16px;
+}
+.toolbar .filters {
+  padding: 0;
+}
+.row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.button.small {
+  min-height: 34px;
+  padding: 0 14px;
+  font-size: 0.875rem;
+}
+tr.archived td {
+  color: var(--at-color-muted);
+  background: var(--at-color-tint4);
+}
+.pill.muted {
+  background: var(--at-color-divider);
+  color: var(--at-color-muted);
+}
+.notice {
+  margin: 0 16px 12px;
+}
