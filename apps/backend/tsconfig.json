@@ -1,0 +1,12 @@
+{
+  "extends": "../../packages/shared-config/tsconfig.nest.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "rootDir": "./",
+    "types": ["node", "jest"],
+    "noEmit": false
+  },
+  "include": ["src/**/*", "test/**/*", "scripts/**/*", "prisma/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

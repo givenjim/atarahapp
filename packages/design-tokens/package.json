@@ -1,0 +1,16 @@
+{
+  "name": "@atarah/design-tokens",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Single source of design tokens with generators for Flutter (Dart) and web/admin (CSS, TypeScript).",
+  "type": "module",
+  "main": "dist/tokens.ts",
+  "exports": {
+    "./tokens.json": "./tokens.json",
+    "./tokens.css": "./dist/tokens.css",
+    "./tokens": "./dist/tokens.ts"
+  },
+  "scripts": {
+    "generate": "node generate.mjs"
+  }
+}

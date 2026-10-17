@@ -1,0 +1,20 @@
+# Secret scanning configuration (Master Prompt §1: no secrets in the repo).
+# Run over the working tree without git:  gitleaks dir . --config .gitleaks.toml
+title = "Atarah"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Dependencies, build output and generated artefacts are not source."
+paths = [
+  '''(^|/)node_modules/''',
+  '''(^|/)\.next/''',
+  '''(^|/)dist/''',
+  '''(^|/)build/''',
+  '''(^|/)\.dart_tool/''',
+  '''(^|/)\.gradle/''',
+  '''(^|/)\.pub-cache/''',
+  '''apps/mobile/android/\.gradle/''',
+  '''pnpm-lock\.yaml$''',
+]

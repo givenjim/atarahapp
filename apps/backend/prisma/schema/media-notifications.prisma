@@ -1,0 +1,111 @@
+// Media and notifications. Owner modules: media, notifications.
+
+enum MediaKind {
+  IMAGE
+  VIDEO
+  AUDIO
+  DOCUMENT
+}
+
+enum StorageBucket {
+  PUBLIC
+  PRIVATE
+  /// Government ID and verification evidence. Encrypted, reviewer-only, short-lived URLs.
+  EVIDENCE
+}
+
+enum MediaStatus {
+  PENDING_UPLOAD
+  UPLOADED
+  PROCESSING
+  READY
+  REJECTED
+  DELETED
+}
+
+enum DevicePlatform {
+  ANDROID
+  IOS
+  WEB
+}
+
+model MediaAsset {
+  id              String        @id @default(uuid()) @db.Uuid
+  ownerId         String?       @db.Uuid
+  kind            MediaKind
+  bucket          StorageBucket
+  objectKey       String
+  mimeType        String
+  sizeBytes       BigInt
+  status          MediaStatus   @default(PENDING_UPLOAD)
+  width           Int?
+  height          Int?
+  durationSeconds Int?
+  /// Generated renditions, e.g. { "200": "key", "600": "key", "1200": "key" }
+  variants        Json?
+  checksum        String?
+  rejectionReason String?
+  deletedAt       DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  owner User? @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+
+  @@unique([bucket, objectKey])
+  @@index([ownerId, status])
+  @@map("media_assets")
+}
+
+model Notification {
+  id        String               @id @default(uuid()) @db.Uuid
+  userId    String               @db.Uuid
+  category  NotificationCategory
+  title     String
+  body      String
+  /// In-app route the notification opens, e.g. /opportunities/{id}.
+  deepLink  String?
+  data      Json?
+  readAt    DateTime?
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([userId, readAt])
+  @@index([userId, category, createdAt(sort: Desc)])
+  @@map("notifications")
+}
+
+/// Per category and channel. Defaults are created lazily; absence means the category default (on).
+model NotificationPreference {
+  id           String               @id @default(uuid()) @db.Uuid
+  userId       String               @db.Uuid
+  category     NotificationCategory
+  pushEnabled  Boolean              @default(true)
+  emailEnabled Boolean              @default(true)
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, category])
+  @@map("notification_preferences")
+}
+
+model DeviceToken {
+  id         String         @id @default(uuid()) @db.Uuid
+  userId     String         @db.Uuid
+  token      String         @unique
+  platform   DevicePlatform
+  appVersion String?
+  lastSeenAt DateTime       @default(now())
+  revokedAt  DateTime?
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, revokedAt])
+  @@map("device_tokens")
+}

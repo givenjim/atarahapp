@@ -1,0 +1,36 @@
+{
+  "name": "@atarah/web",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Atarah public and member web app.",
+  "scripts": {
+    "dev": "next dev --port 3100",
+    "build": "next build",
+    "start": "next start --port 3100",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@atarah/api-contracts": "workspace:*",
+    "@atarah/design-tokens": "workspace:*",
+    "next": "^16.4.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@atarah/shared-config": "workspace:*",
+    "@eslint/js": "^9",
+    "@testing-library/jest-dom": "^6.9.0",
+    "@testing-library/react": "^16.3.3",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^16.4.2",
+    "jsdom": "^30.1.3",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8",
+    "vitest": "^5.0.5"
+  }
+}

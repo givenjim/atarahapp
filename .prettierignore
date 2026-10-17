@@ -1,0 +1,15 @@
+node_modules
+dist
+build
+.next
+coverage
+design/prototype
+docs/MASTER_PROMPT.md
+pnpm-lock.yaml
+apps/mobile
+packages/api-contracts/generated
+packages/api-contracts/src/schema.d.ts
+packages/api-contracts/openapi.json
+next-env.d.ts
+test-results
+playwright-report

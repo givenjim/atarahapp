@@ -1,0 +1,13 @@
+# Generates the Dart API client from the backend's OpenAPI contract.
+# Regenerate after every API change:  dart run swagger_parser   (then: dart run build_runner build)
+swagger_parser:
+  schema_path: ../../packages/api-contracts/openapi.json
+  output_directory: lib/core/api/generated
+  language: dart
+  json_serializer: json_serializable
+  root_client: true
+  root_client_name: AtarahApiClient
+  client_postfix: Client
+  put_in_folder: true
+  enums_to_json: true
+  unknown_enum_value: true

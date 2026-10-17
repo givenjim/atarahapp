@@ -1,0 +1,197 @@
+{
+  "@@locale": "en",
+  "appName": "Atarah",
+  "tagline": "CREATE · CONNECT · GROW",
+  "soonPhase": "Soon · P{phase}",
+  "@soonPhase": {
+    "placeholders": {
+      "phase": {
+        "type": "int"
+      }
+    }
+  },
+  "soonLater": "Soon · Later",
+  "futureTitle": "Coming soon",
+  "futureBody": "We're building this part of Atarah. It will open up as the app grows.",
+  "futureBack": "Go back",
+  "offlineBanner": "You're offline. Saved content is still available.",
+  "needsConnection": "Needs a connection",
+  "back": "Back",
+  "close": "Close",
+  "seeAll": "See all",
+  "retry": "Try again",
+  "loading": "Loading",
+  "verified": "Verified",
+  "verifiedByAtarah": "Verified by Atarah",
+  "selfDeclared": "Self-declared",
+  "verificationRejected": "Not verified",
+  "verificationExpired": "Verification expired",
+  "verificationRevoked": "Verification revoked",
+  "underReview": "Under review",
+  "showPassword": "Show password",
+  "hidePassword": "Hide password",
+  "clear": "Clear",
+  "remove": "Remove",
+  "codeDigit": "Digit {position} of {total}",
+  "@codeDigit": {
+    "placeholders": {
+      "position": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "passwordStrengthWeak": "Weak — use 8+ characters with a number",
+  "passwordStrengthOk": "Almost — add a number",
+  "passwordStrengthStrong": "Strong — 8+ characters with a number",
+  "premiumGateTitle": "{feature} is part of Pro",
+  "@premiumGateTitle": {
+    "placeholders": {
+      "feature": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumWhatItDoes": "What it does",
+  "premiumWhyItMatters": "Why it matters",
+  "premiumHowToGet": "How to get it",
+  "premiumSeePro": "See Pro · {price}",
+  "@premiumSeePro": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumScholarship": "Check scholarship eligibility",
+  "errorAtarahTitle": "Something went wrong on our side",
+  "errorAtarahBody": "Your work is safe. Try again in a moment.",
+  "errorExternalTitle": "That site isn't responding",
+  "errorExternalBody": "Atarah is working normally. The other site may be down.",
+  "errorInvalidLinkTitle": "This link no longer works",
+  "errorInvalidLinkBody": "It may have moved or expired.",
+  "emptyTitle": "Nothing here yet",
+  "leavingTitle": "You're leaving Atarah",
+  "leavingBody": "You're going to {domain}. Atarah doesn't receive or process this application.",
+  "@leavingBody": {
+    "placeholders": {
+      "domain": {
+        "type": "String"
+      }
+    }
+  },
+  "leavingTrack": "Track this as applied in Activity",
+  "leavingContinue": "Continue to website",
+  "leavingStay": "Stay on Atarah",
+  "aiAssisted": "AI-assisted",
+  "aiTestMode": "AI preview (test mode)",
+  "aiDisclaimer": "Check facts and names before applying — you're responsible for what you publish.",
+  "aiDiscard": "Discard",
+  "aiApply": "Apply",
+  "tabHome": "Home",
+  "tabExplore": "Explore",
+  "tabCommunity": "Community",
+  "tabOpportunities": "Opportunities",
+  "tabProfile": "Profile",
+  "uploadDrop": "Tap to add files",
+  "uploadRetry": "Upload failed. Tap to retry.",
+  "uploading": "Uploading {percent}%",
+  "@uploading": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "featured": "Featured",
+  "sourceConfirmed": "Source confirmed",
+  "externalSource": "External source",
+  "contactSupport": "Contact support",
+  "saveItem": "Save {title}",
+  "@saveItem": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "unsaveItem": "Remove from saved: {title}",
+  "@unsaveItem": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "likeAction": "Like, {count} likes",
+  "@likeAction": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unlikeAction": "Unlike, {count} likes",
+  "@unlikeAction": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repliesAction": "Replies, {count}",
+  "@repliesAction": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shareAction": "Share",
+  "savePost": "Save post",
+  "unsavePost": "Unsave post",
+  "moreOptions": "More options",
+  "improveSkill": "Improve this skill",
+  "findOpportunities": "Find opportunities",
+  "verifyAction": "Verify",
+  "joinAction": "Join",
+  "joinedAction": "Joined",
+  "creativePassport": "CREATIVE PASSPORT",
+  "unreadPrefix": "Unread.",
+  "welcomeHeadline": "One creative identity. Many connected possibilities.",
+  "welcomeCreateAccount": "Create account",
+  "welcomeSignIn": "Sign in",
+  "devSignInEntry": "Developer sign in",
+  "devSignInTitle": "Developer sign in",
+  "devSignInBody": "Development builds only. Signs in with a real account on the local API.",
+  "emailOrPhone": "Email or phone number",
+  "passwordLabel": "Password",
+  "signInAction": "Sign in",
+  "signOut": "Sign out",
+  "signingOut": "Signing out",
+  "splashCheckingTitle": "Checking your session",
+  "splashOfflineTitle": "Can't reach Atarah",
+  "splashOfflineBody": "We couldn't check your session. Your saved content is still on this device.",
+  "profileMembershipFree": "Free plan",
+  "profileMembershipPro": "Atarah Pro",
+  "profileCreativePassport": "Creative Passport",
+  "profileActivity": "Activity",
+  "profileSettings": "Settings",
+  "profileMembership": "Membership",
+  "featureHome": "Home",
+  "featureExplore": "Explore",
+  "featureCommunity": "Community",
+  "featureOpportunities": "Opportunities",
+  "featureNotifications": "Notifications",
+  "featureCreativeProfile": "Creative profile",
+  "featureProject": "Project",
+  "featureCourse": "Course",
+  "featureLesson": "Lesson",
+  "featureListing": "Marketplace listing",
+  "featureMentor": "Mentor",
+  "featureArticle": "Article",
+  "featureGroup": "Group",
+  "featurePost": "Discussion"
+}

@@ -1,0 +1,67 @@
+// Membership: plans, subscriptions, entitlements. Owner module: membership.
+// Premium is entitlement-driven and enforced by the backend. The Pro price lives in PlatformSetting, not here.
+
+model MembershipPlan {
+  id          String            @id @default(uuid()) @db.Uuid
+  key         MembershipPlanKey @unique
+  name        String
+  description String
+  isActive    Boolean           @default(true)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  entitlements MembershipEntitlement[]
+  memberships  Membership[]
+
+  @@map("membership_plans")
+}
+
+model Entitlement {
+  id          String         @id @default(uuid()) @db.Uuid
+  key         EntitlementKey @unique
+  description String
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  plans MembershipEntitlement[]
+
+  @@map("entitlements")
+}
+
+/// Which entitlements a plan grants.
+model MembershipEntitlement {
+  planId        String   @db.Uuid
+  entitlementId String   @db.Uuid
+  createdAt     DateTime @default(now())
+
+  plan        MembershipPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+  entitlement Entitlement    @relation(fields: [entitlementId], references: [id], onDelete: Cascade)
+
+  @@id([planId, entitlementId])
+  @@map("membership_entitlements")
+}
+
+/// A member's subscription. At most one ACTIVE or PAST_DUE membership per user (partial unique index
+/// in the init_foundation migration). CANCELLED stays entitled until `currentPeriodEnd`.
+model Membership {
+  id               String           @id @default(uuid()) @db.Uuid
+  userId           String           @db.Uuid
+  planId           String           @db.Uuid
+  source           MembershipSource
+  status           MembershipStatus @default(ACTIVE)
+  startsAt         DateTime         @default(now())
+  currentPeriodEnd DateTime?
+  cancelledAt      DateTime?
+  grantedById      String?          @db.Uuid
+  note             String?
+  version          Int              @default(0)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  user User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan MembershipPlan @relation(fields: [planId], references: [id], onDelete: Restrict)
+
+  @@index([userId, status])
+  @@index([status, currentPeriodEnd])
+  @@map("memberships")
+}

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<script src="_ds/modernist-92942278-38b0-45eb-ae33-378b336c3544/_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="icons.js"></script>
+</helmet>
+
+<sc-if value="{{ is.splash }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ nav.welcome }}" style="position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,#8b7bff 0,transparent 45%),radial-gradient(circle at 10% 90%,#2f2783 0,transparent 50%),linear-gradient(180deg,#4a36e0,#3b2bc4);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer">
+    <img src="assets/ribbon.png" alt="" style="width:120px;height:146px;object-fit:cover;border-radius:28px;opacity:.9">
+    <div style="font-weight:800;font-size:44px;letter-spacing:.01em;margin-top:22px">ATARAH</div>
+    <div style="font-size:13px;letter-spacing:.2em;opacity:.8;margin-top:6px">CREATE · CONNECT · GROW</div>
+    <div style="position:absolute;bottom:56px;width:120px;height:4px;border-radius:4px;background:rgba(255,255,255,.25)"><div style="width:60%;height:100%;border-radius:4px;background:#fff"></div></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.welcome }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;color:#15133d;background:radial-gradient(circle at 100% 0%,#e4dcff 0,transparent 40%),radial-gradient(circle at 0% 45%,#f4eeff 0,transparent 40%),#fff">
+    <div style="flex:1;overflow-y:auto;min-height:0;padding:16px 22px 0">
+      <div style="font-weight:800;font-size:28px">ATARA<span style="color:#5b45f0">H</span></div>
+      <div style="font-size:12px;letter-spacing:.14em;color:#77758f;margin-top:4px">Create · Connect · Grow</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px">
+        <img src="assets/p_zuri.png" alt="" style="width:100%;height:150px;object-fit:cover;border-radius:20px">
+        <div style="display:grid;gap:10px"><img src="assets/p_amani.png" alt="" style="width:100%;height:70px;object-fit:cover;border-radius:16px"><div style="height:70px;border-radius:16px;background:linear-gradient(135deg,#1c1a4a,#2f2783);display:flex;align-items:center;gap:10px;padding:0 14px;color:#fff;font-size:12.5px;font-weight:600"><lc-i name="sparkles" size="18"></lc-i>1,280 creatives</div></div>
+      </div>
+      <h1 style="font-weight:800;font-size:32px;line-height:1.12;letter-spacing:-.02em;margin:26px 0 12px;text-wrap:pretty">One creative identity. Many connected possibilities.</h1>
+      <p style="font-size:15px;line-height:1.6;color:#4a4868;margin:0">Learn, connect, discover opportunities and grow your career — from one profile that works everywhere in Atarah.</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px">
+        <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4"><div style="height:78px;border-radius:16px;background:{{ p.bg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;font-size:11.5px;font-weight:600"><span style="color:{{ p.fg }}"><lc-i name="{{ p.icon }}" size="22"></lc-i></span>{{ p.t }}</div></sc-for>
+      </div>
+    </div>
+    <div style="flex:none;padding:18px 22px 14px;display:flex;flex-direction:column;gap:10px">
+      <button onClick="{{ nav.signup }}" style="width:100%;height:54px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:15.5px;cursor:pointer;box-shadow:0 10px 22px rgba(91,69,240,.3)">Create account</button>
+      <button onClick="{{ nav.signin }}" style="width:100%;height:54px;border:1.5px solid #dcd8f5;border-radius:999px;background:#fff;color:#5b45f0;font-weight:700;font-size:15.5px;cursor:pointer">Sign in</button>
+      <div style="display:flex;justify-content:center;gap:18px;font-size:12px;color:#77758f;padding-top:2px"><a href="#" style="color:inherit">Terms</a><a href="#" style="color:inherit">Privacy</a></div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ auth.on }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;color:#15133d;background:radial-gradient(circle at 100% 0%,#ebe5ff 0,transparent 38%),#fff">
+    <div style="flex:none;padding:6px 14px"><button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:44px;border-radius:14px;border:1px solid #ecebf4;background:#fff;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="22"></lc-i></button></div>
+    <div style="flex:1;overflow-y:auto;min-height:0;padding:14px 22px 20px">
+
+      <sc-if value="{{ is.signup }}" hint-placeholder-val="{{ false }}">
+        <h1 style="font-weight:800;font-size:30px;letter-spacing:-.02em;margin:0 0 8px">Create your account</h1>
+        <p style="font-size:14.5px;color:#4a4868;margin:0 0 24px">Takes under a minute. You'll set up your creative profile next.</p>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <label style="display:block"><span style="display:block;font-size:13px;font-weight:600;margin-bottom:7px">Full name</span><input value="Nia Wairimu" style="width:100%;height:52px;padding:0 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;font-size:15px;color:#15133d" style-focus="border-color:#7b6cf6;box-shadow:0 0 0 4px #efecff"></label>
+          <label style="display:block"><span style="display:block;font-size:13px;font-weight:600;margin-bottom:7px">Email or phone number</span><input value="nia@wairimu.studio" style="width:100%;height:52px;padding:0 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;font-size:15px;color:#15133d" style-focus="border-color:#7b6cf6;box-shadow:0 0 0 4px #efecff"></label>
+          <label style="display:block"><span style="display:block;font-size:13px;font-weight:600;margin-bottom:7px">Password</span>
+            <span style="position:relative;display:block"><input type="{{ pwType }}" value="animate2026" style="width:100%;height:52px;padding:0 50px 0 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;font-size:15px;color:#15133d" style-focus="border-color:#7b6cf6;box-shadow:0 0 0 4px #efecff"><button onClick="{{ togglePw }}" aria-label="Show password" style="position:absolute;right:4px;top:4px;width:44px;height:44px;border:0;background:none;cursor:pointer;color:#77758f;display:grid;place-items:center"><lc-i name="{{ pwIcon }}" size="18"></lc-i></button></span>
+            <span style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px"><span style="height:4px;border-radius:4px;background:#5b45f0"></span><span style="height:4px;border-radius:4px;background:#5b45f0"></span><span style="height:4px;border-radius:4px;background:#5b45f0"></span><span style="height:4px;border-radius:4px;background:#e4e2ef"></span></span>
+            <span style="display:block;font-size:12px;color:#1f9d55;margin-top:6px">Strong — 8+ characters with a number</span>
+          </label>
+          <button onClick="{{ toggleAgree }}" style="display:flex;gap:12px;align-items:center;text-align:left;background:none;border:0;padding:0;cursor:pointer;font-size:13px;color:#4a4868"><span style="width:22px;height:22px;flex:none;border-radius:7px;border:1.5px solid {{ agreeBd }};display:grid;place-items:center;background:{{ agreeBg }};color:#fff"><lc-i name="check" size="14" stroke="3"></lc-i></span><span>I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a></span></button>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;margin:24px 0 16px;color:#a3a1b8;font-size:12px"><span style="flex:1;height:1px;background:#ecebf4"></span>or<span style="flex:1;height:1px;background:#ecebf4"></span></div>
+        <button style="width:100%;height:52px;border-radius:999px;border:1px solid #e4e2ef;background:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-size:14.5px;font-weight:600;color:#15133d;cursor:pointer"><span style="width:22px;height:22px;border-radius:50%;background:#f1eeff;color:#5b45f0;display:grid;place-items:center;font-weight:800;font-size:12px">G</span>Continue with Google</button>
+      </sc-if>
+
+      <sc-if value="{{ is.signin }}" hint-placeholder-val="{{ false }}">
+        <h1 style="font-weight:800;font-size:30px;letter-spacing:-.02em;margin:0 0 8px">Welcome back</h1>
+        <p style="font-size:14.5px;color:#4a4868;margin:0 0 24px">Sign in to continue your creative journey.</p>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <label style="display:block"><span style="display:block;font-size:13px;font-weight:600;margin-bottom:7px">Email or phone number</span><input value="nia@wairimu.studio" style="width:100%;height:52px;padding:0 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;font-size:15px;color:#15133d"></label>
+          <label style="display:block"><span style="display:block;font-size:13px;font-weight:600;margin-bottom:7px">Password</span><input type="password" value="animate" style="width:100%;height:52px;padding:0 16px;border-radius:14px;border:1.5px solid {{ errBd }};background:#fafafe;font-size:15px;color:#15133d"></label>
+          <sc-if value="{{ signErr }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:10px;padding:12px 14px;border-radius:14px;background:#fdecf2;color:#b4234f;font-size:13px;line-height:1.45"><lc-i name="circle-alert" size="18"></lc-i><span>That password doesn't match this account. Check it and try again, or reset it.</span></div></sc-if>
+          <a href="#" onClick="{{ nav.forgot }}" style="font-size:14px;font-weight:600;align-self:flex-end">Forgot password?</a>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ is.verify }}" hint-placeholder-val="{{ false }}">
+        <div style="width:64px;height:64px;border-radius:20px;background:#f1eeff;color:#5b45f0;display:grid;place-items:center;margin-bottom:20px"><lc-i name="mail-check" size="28"></lc-i></div>
+        <h1 style="font-weight:800;font-size:28px;letter-spacing:-.02em;margin:0 0 8px">Verify your email</h1>
+        <p style="font-size:14.5px;line-height:1.55;color:#4a4868;margin:0 0 24px">Enter the 6-digit code we sent to <b style="color:#15133d">nia@wairimu.studio</b>.</p>
+        <div style="position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:8px">
+          <sc-for list="{{ codeBoxes }}" as="b" hint-placeholder-count="6"><div style="height:58px;border-radius:14px;border:1.5px solid {{ b.bd }};background:{{ b.bg }};display:grid;place-items:center;font-weight:800;font-size:22px">{{ b.d }}</div></sc-for>
+          <input aria-label="Verification code" inputmode="numeric" maxlength="6" value="{{ code }}" onInput="{{ setCode }}" style="position:absolute;inset:0;opacity:0;font-size:16px">
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;margin-top:14px"><span style="color:#77758f">Didn't get it?</span><span style="color:#5b45f0;font-weight:600">Resend in 0:42</span></div>
+        <div style="margin-top:26px;padding:16px;border-radius:18px;background:#f6f4ff;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:12px;font-size:13px;line-height:1.5"><span style="color:#5b45f0"><lc-i name="shield-check" size="18"></lc-i></span><span><b>Why we verify:</b> it protects your creative identity and is needed before you message, apply or book.</span></div>
+          <div style="display:flex;gap:12px;font-size:13px;line-height:1.5"><span style="color:#5b45f0"><lc-i name="arrow-right" size="18"></lc-i></span><span><b>What's next:</b> four short steps to set up your creative profile.</span></div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ is.forgot }}" hint-placeholder-val="{{ false }}">
+        <div style="width:64px;height:64px;border-radius:20px;background:#fff1e5;color:#f08a24;display:grid;place-items:center;margin-bottom:20px"><lc-i name="key-round" size="28"></lc-i></div>
+        <h1 style="font-weight:800;font-size:28px;letter-spacing:-.02em;margin:0 0 8px">Forgot password?</h1>
+        <p style="font-size:14.5px;line-height:1.55;color:#4a4868;margin:0 0 24px">Enter the email or phone on your account and we'll send a recovery code.</p>
+        <label style="display:block"><span style="display:block;font-size:13px;font-weight:600;margin-bottom:7px">Email or phone number</span><input value="nia@wairimu.studio" style="width:100%;height:52px;padding:0 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;font-size:15px;color:#15133d"></label>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:10px;margin-top:16px;padding:12px 14px;border-radius:14px;background:#e9f8ee;color:#16784a;font-size:13px"><lc-i name="circle-check" size="18"></lc-i>Code sent. It expires in 15 minutes.</div></sc-if>
+      </sc-if>
+
+      <sc-if value="{{ is.reset }}" hint-placeholder-val="{{ false }}">
+        <h1 style="font-weight:800;font-size:28px;letter-spacing:-.02em;margin:0 0 8px">Set a new password</h1>
+        <p style="font-size:14.5px;line-height:1.55;color:#4a4868;margin:0 0 24px">You'll be signed out of other devices.</p>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <label style="display:block"><span style="display:block;font-size:13px;font-weight:600;margin-bottom:7px">Recovery code</span><input value="731904" style="width:100%;height:52px;padding:0 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;font-size:15px;letter-spacing:.3em;color:#15133d"></label>
+          <label style="display:block"><span style="display:block;font-size:13px;font-weight:600;margin-bottom:7px">New password</span><input type="password" value="newpassword26" style="width:100%;height:52px;padding:0 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;font-size:15px;color:#15133d"></label>
+          <label style="display:block"><span style="display:block;font-size:13px;font-weight:600;margin-bottom:7px">Confirm new password</span><input type="password" value="newpassword26" style="width:100%;height:52px;padding:0 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;font-size:15px;color:#15133d"></label>
+        </div>
+      </sc-if>
+    </div>
+    <div style="flex:none;padding:12px 22px 14px;display:flex;flex-direction:column;gap:12px;align-items:center">
+      <button onClick="{{ auth.go }}" disabled="{{ auth.dis }}" style="width:100%;height:54px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:15.5px;cursor:pointer;box-shadow:0 10px 22px rgba(91,69,240,.28);opacity:{{ auth.op }}">{{ auth.cta }}</button>
+      <sc-if value="{{ is.signup }}"><div style="font-size:13px;color:#4a4868">Already a member? <a href="#" onClick="{{ nav.signin }}" style="font-weight:700">Sign in</a></div></sc-if>
+      <sc-if value="{{ is.signin }}"><div style="font-size:13px;color:#4a4868">New to Atarah? <a href="#" onClick="{{ nav.signup }}" style="font-weight:700">Create an account</a></div></sc-if>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ ob.on }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;color:#15133d;background:radial-gradient(circle at 100% 0%,#ebe5ff 0,transparent 36%),#fff">
+    <div style="flex:none;padding:6px 14px 0">
+      <div style="display:flex;align-items:center;gap:10px">
+        <button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:44px;border-radius:14px;border:1px solid #ecebf4;background:#fff;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="22"></lc-i></button>
+        <div style="flex:1;height:6px;border-radius:6px;background:#efedf7"><div style="height:100%;width:{{ ob.pct }};border-radius:6px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);transition:width .3s"></div></div>
+        <button onClick="{{ ob.skip }}" style="height:44px;padding:0 8px;background:none;border:0;cursor:pointer;font-size:14px;font-weight:600;color:#77758f">Skip</button>
+      </div>
+      <div style="font-size:12.5px;font-weight:600;color:#5b45f0;padding:14px 8px 0">{{ ob.step }}</div>
+    </div>
+    <div style="flex:1;overflow-y:auto;min-height:0;padding:6px 22px 20px">
+
+      <sc-if value="{{ is.ob_intro }}" hint-placeholder-val="{{ false }}">
+        <h1 style="font-weight:800;font-size:30px;line-height:1.15;letter-spacing:-.02em;margin:0 0 10px">Let's set up your creative identity</h1>
+        <p style="font-size:15px;line-height:1.55;color:#4a4868;margin:0 0 22px">Four short steps. Each one makes the opportunities, people and learning you see more relevant.</p>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ introSteps }}" as="r" hint-placeholder-count="4"><div style="display:flex;gap:14px;align-items:center;padding:16px;border-radius:18px;border:1px solid #ecebf4;background:#fff"><span style="width:48px;height:48px;border-radius:14px;background:{{ r.bg }};color:{{ r.fg }};display:grid;place-items:center;flex:none"><lc-i name="{{ r.icon }}" size="22"></lc-i></span><div><div style="font-weight:700;font-size:15px">{{ r.t }}</div><div style="font-size:13px;color:#77758f;margin-top:2px">{{ r.d }}</div></div></div></sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ is.ob_disc }}" hint-placeholder-val="{{ false }}">
+        <h1 style="font-weight:800;font-size:28px;letter-spacing:-.02em;margin:0 0 8px">What do you create?</h1>
+        <p style="font-size:14px;line-height:1.55;color:#4a4868;margin:0 0 20px">Your discipline helps us show you more relevant opportunities, people and learning.</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+          <sc-for list="{{ discs }}" as="d" hint-placeholder-count="9">
+            <button onClick="{{ d.pick }}" aria-pressed="{{ d.on }}" style="height:96px;border-radius:16px;border:1px solid {{ d.bd }};background:{{ d.bg }};color:{{ d.fg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:0 6px;cursor:pointer;font-size:12.5px;font-weight:600;line-height:1.2;text-align:center;box-shadow:{{ d.sh }}"><lc-i name="{{ d.icon }}" size="24" stroke="1.7"></lc-i>{{ d.label }}</button>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ is.ob_spec }}" hint-placeholder-val="{{ false }}">
+        <h1 style="font-weight:800;font-size:28px;letter-spacing:-.02em;margin:0 0 8px">Your specialization</h1>
+        <p style="font-size:14px;line-height:1.55;color:#4a4868;margin:0 0 20px">Within <b style="color:#5b45f0">{{ disc }}</b> — pick any that describe your practice.</p>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ specs }}" as="c" hint-placeholder-count="6"><button onClick="{{ c.toggle }}" style="height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-radius:16px;border:1.5px solid {{ c.rowBd }};background:{{ c.rowBg }};cursor:pointer;font-size:15px;font-weight:600;color:#15133d">{{ c.label }}<span style="width:24px;height:24px;border-radius:50%;border:1.5px solid {{ c.bd }};background:{{ c.bg }};color:#fff;display:grid;place-items:center"><lc-i name="check" size="14" stroke="3"></lc-i></span></button></sc-for>
+          <button style="height:52px;display:flex;align-items:center;gap:8px;padding:0 16px;border-radius:16px;border:1.5px dashed #d6d0fb;background:none;cursor:pointer;font-size:14px;font-weight:600;color:#5b45f0"><lc-i name="plus" size="18"></lc-i>Suggest a specialization</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ is.ob_skills }}" hint-placeholder-val="{{ false }}">
+        <h1 style="font-weight:800;font-size:28px;letter-spacing:-.02em;margin:0 0 8px">Skills & interests</h1>
+        <p style="font-size:14px;line-height:1.55;color:#4a4868;margin:0">These power your learning recommendations, discovery and opportunity matches.</p>
+        <sc-for list="{{ skillGroups }}" as="g" hint-placeholder-count="3">
+          <div style="display:flex;justify-content:space-between;margin:22px 0 10px"><span style="font-weight:700;font-size:15px">{{ g.label }}</span><span style="font-size:12.5px;color:#77758f">{{ g.count }} selected</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ g.items }}" as="c"><button onClick="{{ c.toggle }}" style="height:38px;display:inline-flex;align-items:center;gap:6px;padding:0 14px;border-radius:999px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};cursor:pointer;font-size:13px;font-weight:500"><lc-i name="{{ c.icon }}" size="14"></lc-i>{{ c.label }}</button></sc-for></div>
+        </sc-for>
+      </sc-if>
+
+      <sc-if value="{{ is.ob_loc }}" hint-placeholder-val="{{ false }}">
+        <h1 style="font-weight:800;font-size:28px;letter-spacing:-.02em;margin:0 0 8px">Where are you based?</h1>
+        <p style="font-size:14px;line-height:1.55;color:#4a4868;margin:0 0 20px">For local discovery, regional opportunities and your county's creative community.</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div><div style="font-size:13px;font-weight:600;margin-bottom:7px">Country</div><div style="height:52px;padding:0 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;display:flex;align-items:center;justify-content:space-between;font-size:15px">Kenya<lc-i name="chevron-down" size="18"></lc-i></div></div>
+          <div><div style="font-size:13px;font-weight:600;margin-bottom:7px">County</div><div style="height:52px;padding:0 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;display:flex;align-items:center;justify-content:space-between;font-size:15px">Nairobi<lc-i name="chevron-down" size="18"></lc-i></div></div>
+          <div><div style="font-size:13px;font-weight:600;margin-bottom:7px">Town or neighbourhood (optional)</div><input value="Kilimani" style="width:100%;height:52px;padding:0 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;font-size:15px;color:#15133d"></div>
+          <button style="display:flex;align-items:center;gap:8px;background:none;border:0;padding:0;cursor:pointer;font-size:14px;font-weight:600;color:#5b45f0"><lc-i name="locate-fixed" size="18"></lc-i>Use my current location</button>
+        </div>
+        <div style="margin-top:22px;padding:16px;border-radius:18px;background:#f6f4ff">
+          <div style="font-weight:700;font-size:14px;margin-bottom:12px">Who can see your location?</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;border-radius:999px;background:#fff">
+            <sc-for list="{{ visOpts }}" as="v" hint-placeholder-count="3"><button onClick="{{ v.pick }}" style="height:38px;border:0;border-radius:999px;background:{{ v.bg }};color:{{ v.fg }};cursor:pointer;font-size:12.5px;font-weight:600">{{ v.label }}</button></sc-for>
+          </div>
+          <div style="font-size:12.5px;color:#4a4868;margin-top:10px">{{ visNote }}</div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ is.ob_basics }}" hint-placeholder-val="{{ false }}">
+        <h1 style="font-weight:800;font-size:28px;letter-spacing:-.02em;margin:0 0 8px">Introduce yourself</h1>
+        <p style="font-size:14px;line-height:1.55;color:#4a4868;margin:0 0 20px">A name and a line or two — you can expand this into your Creative Passport later.</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div><div style="font-size:13px;font-weight:600;margin-bottom:7px">Display name</div><input value="Nia Wairimu" style="width:100%;height:52px;padding:0 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;font-size:15px;color:#15133d"></div>
+          <div><div style="font-size:13px;font-weight:600;margin-bottom:7px">Profile link</div><div style="height:52px;padding:0 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;display:flex;align-items:center;font-size:15px"><span style="color:#a3a1b8">atarah.app/</span>niawairimu</div></div>
+          <div><div style="font-size:13px;font-weight:600;margin-bottom:7px">Short bio</div><textarea style="width:100%;min-height:120px;padding:14px 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;font-size:15px;line-height:1.5;color:#15133d;resize:none">{{ bio }}</textarea>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><button style="display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:999px;border:0;background:#f1eeff;cursor:pointer;font-size:12.5px;font-weight:600;color:#5b45f0"><lc-i name="sparkles" size="15"></lc-i>Help me write this</button><span style="font-size:12px;color:#77758f">{{ bioCount }} / 160</span></div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ is.ob_photo }}" hint-placeholder-val="{{ false }}">
+        <h1 style="font-weight:800;font-size:28px;letter-spacing:-.02em;margin:0 0 8px">Add a profile photo</h1>
+        <p style="font-size:14px;line-height:1.55;color:#4a4868;margin:0 0 24px">Profiles with a clear photo get more connection requests and mentor replies.</p>
+        <div style="display:flex;justify-content:center"><div style="position:relative;width:200px;height:200px"><img src="assets/p_nia.png" alt="Profile preview" style="width:200px;height:200px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 6px #fff,0 0 0 8px #d6d0fb"><span style="position:absolute;right:10px;bottom:10px;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#7b6cf6,#5a46ee);color:#fff;display:grid;place-items:center;box-shadow:0 0 0 4px #fff"><lc-i name="camera" size="20"></lc-i></span></div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px">
+          <button style="height:52px;border-radius:16px;border:1px solid #e4e2ef;background:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:600;color:#15133d;cursor:pointer"><lc-i name="image" size="18"></lc-i>Gallery</button>
+          <button style="height:52px;border-radius:16px;border:1px solid #e4e2ef;background:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:600;color:#15133d;cursor:pointer"><lc-i name="camera" size="18"></lc-i>Take photo</button>
+        </div>
+      </sc-if>
+    </div>
+    <div style="flex:none;padding:12px 22px 14px"><button onClick="{{ ob.next }}" style="width:100%;height:54px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:15.5px;cursor:pointer;box-shadow:0 10px 22px rgba(91,69,240,.28)">{{ ob.cta }}</button></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.ob_done }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;color:#fff;background:radial-gradient(circle at 85% 10%,#8b7bff 0,transparent 40%),linear-gradient(180deg,#4a36e0,#3b2bc4)">
+    <div style="flex:1;overflow-y:auto;min-height:0;padding:30px 22px">
+      <div style="width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center"><lc-i name="party-popper" size="30"></lc-i></div>
+      <h1 style="font-weight:800;font-size:36px;line-height:1.1;letter-spacing:-.02em;margin:22px 0 12px">Your creative journey starts here.</h1>
+      <p style="font-size:15px;line-height:1.6;margin:0 0 26px;opacity:.88">Your Creative Passport is live. Complete it at your own pace — Atarah gets more useful as it grows.</p>
+      <div style="border-radius:22px;background:#fff;color:#15133d;padding:18px;box-shadow:0 20px 40px rgba(20,10,80,.3)">
+        <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;letter-spacing:.1em;color:#77758f"><span>CREATIVE PASSPORT</span><span>ATR · NBO · 0042</span></div>
+        <div style="display:flex;gap:14px;align-items:center;margin-top:14px"><img src="assets/p_nia.png" alt="" style="width:64px;height:64px;border-radius:16px;object-fit:cover"><div><div style="font-weight:800;font-size:19px">Nia Wairimu</div><div style="font-size:13px;color:#4a4868;margin-top:2px">{{ disc }} · {{ specLine }}</div><div style="font-size:12.5px;color:#77758f;display:flex;gap:4px;align-items:center;margin-top:2px"><lc-i name="map-pin" size="12"></lc-i>Nairobi, Kenya</div></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:12.5px;margin:16px 0 6px"><span style="color:#4a4868">Profile completion</span><b>35%</b></div>
+        <div style="height:8px;border-radius:8px;background:#efedf7"><div style="width:35%;height:100%;border-radius:8px;background:linear-gradient(90deg,#7b6cf6,#5a46ee)"></div></div>
+      </div>
+    </div>
+    <div style="flex:none;padding:12px 22px 14px"><button onClick="{{ nav.home }}" style="width:100%;height:54px;border:0;border-radius:999px;background:#fff;color:#4a36e0;font-weight:700;font-size:15.5px;cursor:pointer">Go to Home</button></div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const DISC=[['Music','music'],['Acting','drama'],['Dance','person-standing'],['Writing','pen-line'],['Fashion','shirt'],['Visual Art','palette'],['Photography','camera'],['Film / Video','clapperboard'],['Design','pen-tool'],['Animation','aperture'],['Production','sliders-vertical'],['Entrepreneur','lightbulb']];
+const SPEC={Music:['Singer','Producer','Instrumentalist','DJ','Songwriter'],Photography:['Portrait','Documentary','Fashion','Commercial','Event'],'Film / Video':['Director','Cinematographer','Editor','Producer','Screenwriter'],Design:['Brand identity','UI / UX','Illustration','Motion','Packaging'],Animation:['2D animation','3D animation','Motion graphics','Character design','Storyboarding'],Fashion:['Designer','Stylist','Pattern maker','Model'],Writing:['Poet','Screenwriter','Journalist','Copywriter'],Acting:['Stage','Screen','Voice','Improv'],Dance:['Contemporary','Afro-fusion','Choreography','Hip hop'],'Visual Art':['Painter','Illustrator','Muralist','Printmaker','Digital artist'],Production:['Event production','Stage management','Lighting','Set design'],Entrepreneur:['Agency founder','Label owner','Curator','Talent manager']};
+const SK={skills:['After Effects','Toon Boom','Procreate','Storyboarding','Character design','Colour','Blender','Client management'],ints:['Music videos','Kids content','Brand campaigns','Film festivals','Comics','Games'],grow:['Pricing my work','Building a portfolio','Grant writing','Personal branding','Legal awareness']};
+const OB=['ob_intro','ob_disc','ob_spec','ob_skills','ob_loc','ob_basics','ob_photo'];
+const AUTH={signup:['Create account','verify'],signin:['Sign in','home'],verify:['Verify','ob_intro'],forgot:['Send recovery code','reset'],reset:['Save and sign in','signin']};
+const VIS={Public:'Anyone, including people outside Atarah, can see your county.',Members:'Only signed-in Atarah members can see your county.',Private:'Hidden from everyone. Still used to personalise what you see.'};
+class Component extends DCLogic {
+  state={disc:'Animation',spec:['2D animation','Character design'],skills:['After Effects','Procreate','Storyboarding'],ints:['Music videos','Comics'],grow:['Pricing my work','Grant writing'],vis:'Members',agree:true,pw:false,code:'482',signErr:false,sent:false};
+  tog(key,v){this.setState(s=>({[key]:s[key].includes(v)?s[key].filter(x=>x!==v):[...s[key],v]}));}
+  renderVals(){
+    const st=this.state,nav=this.props.nav||{},s=this.props.screen;
+    const obi=OB.indexOf(s), nextId=obi>=0?(OB[obi+1]||'ob_done'):null;
+    const chip=(key,label)=>{const on=st[key].includes(label);return{label,toggle:()=>this.tog(key,label),bg:on?'#5b45f0':'#fff',fg:on?'#fff':'#15133d',bd:on?'#5b45f0':'#e4e2ef',icon:on?'check':'plus',rowBg:on?'#f6f4ff':'#fff',rowBd:on?'#7b6cf6':'#ecebf4'};};
+    const bio='Illustrator and 2D animator in Nairobi. I make characters for music videos, brands and kids’ stories.';
+    const a=AUTH[s];
+    let authGo=a?nav[a[1]]:null, authCta=a?a[0]:'';
+    if(s==='signin'){ authCta=st.signErr?'Try again':'Sign in'; authGo=()=>{ if(!st.signErr) this.setState({signErr:true}); else { this.setState({signErr:false}); nav.home&&nav.home(); } }; }
+    if(s==='forgot'){ authCta=st.sent?'Enter recovery code':'Send recovery code'; authGo=()=>{ if(!st.sent) this.setState({sent:true}); else nav.reset&&nav.reset(); }; }
+    const dis=s==='verify'&&st.code.length<6;
+    return {
+      nav,is:{[s]:true},disc:st.disc,
+      auth:{on:!!a,cta:authCta,go:authGo,dis,op:dis?'.5':'1'},
+      pillars:[{icon:'user',t:'Identity',bg:'#f1eeff',fg:'#5b45f0'},{icon:'graduation-cap',t:'Learn',bg:'#e9f8ee',fg:'#1f9d55'},{icon:'users',t:'Connect',bg:'#fdecf2',fg:'#e8457a'},{icon:'briefcase',t:'Earn',bg:'#fff1e5',fg:'#f08a24'}],
+      pwType:st.pw?'text':'password',pwIcon:st.pw?'eye-off':'eye',togglePw:e=>{e.preventDefault();this.setState({pw:!st.pw});},
+      agreeBg:st.agree?'#5b45f0':'#fff',agreeBd:st.agree?'#5b45f0':'#cfccdf',toggleAgree:()=>this.setState({agree:!st.agree}),
+      signErr:st.signErr,errBd:st.signErr?'#e8457a':'#e4e2ef',sent:st.sent,
+      code:st.code,setCode:e=>this.setState({code:e.target.value.replace(/\D/g,'').slice(0,6)}),
+      codeBoxes:[0,1,2,3,4,5].map(i=>({d:st.code[i]||'',bd:i===st.code.length?'#7b6cf6':(st.code[i]?'#cfc8fb':'#e4e2ef'),bg:st.code[i]?'#f6f4ff':'#fafafe'})),
+      ob:{on:obi>=0,step:obi===0?'Getting started':('Step '+obi+' of 6'),pct:Math.round((obi+1)/(OB.length+1)*100)+'%',next:()=>nav[nextId]&&nav[nextId](),skip:()=>nav[nextId]&&nav[nextId](),cta:obi===0?'Get started':(obi===OB.length-1?'Finish':'Continue')},
+      introSteps:[{icon:'palette',t:'Your discipline',d:'What you create and your specialization',bg:'#f1eeff',fg:'#5b45f0'},{icon:'sparkles',t:'Skills & interests',d:'What you’re good at and want to grow',bg:'#e9f8ee',fg:'#1f9d55'},{icon:'map-pin',t:'Location',d:'For local people, events and opportunities',bg:'#fdecf2',fg:'#e8457a'},{icon:'user',t:'Profile basics',d:'Your name, a short bio and a photo',bg:'#fff1e5',fg:'#f08a24'}],
+      discs:DISC.map(([label,icon])=>{const on=st.disc===label;return{label,icon,on,pick:()=>this.setState({disc:label,spec:[]}),bg:on?'#5b45f0':'#fff',fg:on?'#fff':'#15133d',bd:on?'#5b45f0':'#ecebf4',sh:on?'0 8px 18px rgba(91,69,240,.3)':'none'};}),
+      specs:(SPEC[st.disc]||[]).map(l=>chip('spec',l)),
+      specLine:st.spec.length?st.spec[0]:'Specialization not set',
+      skillGroups:[['skills','Skills'],['ints','Interests'],['grow','Areas to develop']].map(([k,label])=>({label,count:st[k].length,items:SK[k].map(l=>chip(k,l))})),
+      visOpts:['Public','Members','Private'].map(l=>({label:l==='Members'?'Members':l,pick:()=>this.setState({vis:l}),bg:st.vis===l?'#5b45f0':'transparent',fg:st.vis===l?'#fff':'#4a4868'})),
+      visNote:VIS[st.vis],bio,bioCount:bio.length
+    };
+  }
+}
+</script>
+</body>
+</html>

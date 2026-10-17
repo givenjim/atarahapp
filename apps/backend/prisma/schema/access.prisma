@@ -1,0 +1,65 @@
+// Access: roles, permissions, role grants. Owner module: access.
+// Effective access = account status + roles + entitlements + verification + ownership + visibility + flags.
+
+model Role {
+  id          String   @id @default(uuid()) @db.Uuid
+  key         RoleKey  @unique
+  name        String
+  description String
+  /// Administrative roles require TOTP and re-authentication for sensitive actions.
+  isStaff     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  permissions RolePermission[]
+  users       UserRole[]
+
+  @@map("roles")
+}
+
+/// Explicit capabilities, `resource.action`. Never hard-code screen access.
+model Permission {
+  id              String   @id @default(uuid()) @db.Uuid
+  key             String   @unique
+  description     String
+  /// True for capabilities every active member holds without any role (entitlements are checked separately).
+  isMemberDefault Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  roles RolePermission[]
+
+  @@map("permissions")
+}
+
+model RolePermission {
+  roleId       String   @db.Uuid
+  permissionId String   @db.Uuid
+  createdAt    DateTime @default(now())
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+/// Roles are additive. Nobody can grant themselves a role; grants are audited. `revokedAt` keeps history.
+model UserRole {
+  id          String    @id @default(uuid()) @db.Uuid
+  userId      String    @db.Uuid
+  roleId      String    @db.Uuid
+  grantedById String?   @db.Uuid
+  grantedAt   DateTime  @default(now())
+  revokedAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user      User  @relation("UserRoles", fields: [userId], references: [id], onDelete: Cascade)
+  role      Role  @relation(fields: [roleId], references: [id], onDelete: Restrict)
+  grantedBy User? @relation("UserRolesGrantedBy", fields: [grantedById], references: [id], onDelete: SetNull)
+
+  @@index([userId, revokedAt])
+  @@index([roleId])
+  @@map("user_roles")
+}

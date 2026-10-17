@@ -1,0 +1,55 @@
+// Platform plumbing: audit log, settings, feature flags. Owner modules: audit, admin (settings, flags).
+
+enum AuditActorType {
+  USER
+  ADMIN
+  SYSTEM
+}
+
+/// Append-only. A database trigger rejects UPDATE and DELETE (see the init_system migration).
+model AuditLog {
+  id         String         @id @default(uuid()) @db.Uuid
+  actorId    String?        @db.Uuid
+  actorType  AuditActorType
+  action     String
+  entityType String
+  entityId   String?
+  before     Json?
+  after      Json?
+  ip         String?
+  requestId  String?
+  createdAt  DateTime       @default(now())
+
+  @@index([entityType, entityId])
+  @@index([actorId, createdAt])
+  @@index([action, createdAt])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
+/// Runtime-tunable values (prices, windows, limits). Never hard-code these in application code.
+model PlatformSetting {
+  id          String   @id @default(uuid()) @db.Uuid
+  key         String   @unique
+  value       Json
+  description String?
+  updatedById String?  @db.Uuid
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("platform_settings")
+}
+
+/// Capability switches (kebab-case keys). `phase` records the Master Prompt phase that delivers the capability.
+model FeatureFlag {
+  id          String   @id @default(uuid()) @db.Uuid
+  key         String   @unique
+  description String
+  enabled     Boolean  @default(false)
+  phase       Int
+  updatedById String?  @db.Uuid
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("feature_flags")
+}

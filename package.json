@@ -1,0 +1,28 @@
+{
+  "name": "atarah",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Atarah — Create · Connect · Grow. A Luxaion Creatives product.",
+  "packageManager": "pnpm@12.14.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "bootstrap": "node scripts/bootstrap.mjs",
+    "lint": "pnpm -r --if-present lint",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test": "pnpm -r --if-present test",
+    "build": "pnpm -r --if-present build",
+    "format": "prettier --write . --ignore-path .prettierignore",
+    "format:check": "prettier --check . --ignore-path .prettierignore",
+    "check:brand": "node scripts/check-brand.mjs",
+    "gen:tokens": "pnpm --filter @atarah/design-tokens --if-present generate",
+    "gen:api": "pnpm --filter @atarah/api-contracts --if-present generate",
+    "db:migrate": "pnpm --filter @atarah/backend --if-present db:migrate",
+    "db:seed": "pnpm --filter @atarah/backend --if-present db:seed"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}

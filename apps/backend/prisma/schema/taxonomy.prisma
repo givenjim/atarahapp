@@ -1,0 +1,157 @@
+// Taxonomies and locations. Seeded by the reference seed, managed by admins afterwards.
+// Never hard-code Kenya in logic: country -> county/region -> town.
+
+model Country {
+  id          String   @id @default(uuid()) @db.Uuid
+  /// ISO 3166-1 alpha-2
+  isoCode     String   @unique @db.Char(2)
+  name        String
+  callingCode String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  counties County[]
+
+  @@map("countries")
+}
+
+model County {
+  id        String   @id @default(uuid()) @db.Uuid
+  countryId String   @db.Uuid
+  /// Three-letter Atarah code used in Creative Passport numbers (ATR-NBI-0042). Unique within a country.
+  code      String   @db.Char(3)
+  name      String
+  sortOrder Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  country Country @relation(fields: [countryId], references: [id], onDelete: Restrict)
+  towns   Town[]
+
+  @@unique([countryId, code])
+  @@unique([countryId, name])
+  @@map("counties")
+}
+
+model Town {
+  id        String   @id @default(uuid()) @db.Uuid
+  countyId  String   @db.Uuid
+  name      String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  county County @relation(fields: [countyId], references: [id], onDelete: Restrict)
+
+  @@unique([countyId, name])
+  @@map("towns")
+}
+
+model Discipline {
+  id        String   @id @default(uuid()) @db.Uuid
+  slug      String   @unique
+  name      String
+  /// Lucide icon name, same as the design prototype.
+  icon      String
+  sortOrder Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  specialisations Specialisation[]
+  skills          Skill[]
+
+  @@map("disciplines")
+}
+
+model Specialisation {
+  id           String   @id @default(uuid()) @db.Uuid
+  disciplineId String   @db.Uuid
+  slug         String
+  name         String
+  sortOrder    Int      @default(0)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  discipline Discipline @relation(fields: [disciplineId], references: [id], onDelete: Restrict)
+
+  @@unique([disciplineId, slug])
+  @@map("specialisations")
+}
+
+model Skill {
+  id           String   @id @default(uuid()) @db.Uuid
+  slug         String   @unique
+  name         String
+  /// Null means a general skill offered to every discipline.
+  disciplineId String?  @db.Uuid
+  sortOrder    Int      @default(0)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  discipline Discipline? @relation(fields: [disciplineId], references: [id], onDelete: SetNull)
+
+  @@index([disciplineId])
+  @@map("skills")
+}
+
+model Interest {
+  id        String   @id @default(uuid()) @db.Uuid
+  slug      String   @unique
+  name      String
+  sortOrder Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("interests")
+}
+
+/// "Areas to develop" in onboarding.
+model DevelopmentArea {
+  id        String   @id @default(uuid()) @db.Uuid
+  slug      String   @unique
+  name      String
+  sortOrder Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("development_areas")
+}
+
+/// Skill Labs categories. Content and course tables join these in P1-M8.
+model LearningCategory {
+  id        String                @id @default(uuid()) @db.Uuid
+  slug      String                @unique
+  name      String
+  group     LearningCategoryGroup
+  sortOrder Int                   @default(0)
+  isActive  Boolean               @default(true)
+  createdAt DateTime              @default(now())
+  updatedAt DateTime              @updatedAt
+
+  @@index([group, sortOrder])
+  @@map("learning_categories")
+}
+
+/// Marketplace categories. Listings join these in P2-M3.
+model MarketplaceCategory {
+  id        String   @id @default(uuid()) @db.Uuid
+  slug      String   @unique
+  name      String
+  /// Lucide icon name from the prototype.
+  icon      String
+  /// Design-token tone (violet, pink, orange, green, blue, purple, amber) rather than a raw colour.
+  tone      String
+  sortOrder Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("marketplace_categories")
+}

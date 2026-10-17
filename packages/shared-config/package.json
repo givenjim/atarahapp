@@ -1,0 +1,31 @@
+{
+  "name": "@atarah/shared-config",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Shared ESLint, Prettier and TypeScript configuration for Atarah TypeScript apps.",
+  "type": "module",
+  "exports": {
+    "./eslint": "./eslint.config.base.mjs",
+    "./prettier": "./prettier.config.mjs",
+    "./tsconfig.base.json": "./tsconfig.base.json",
+    "./tsconfig.nest.json": "./tsconfig.nest.json",
+    "./tsconfig.next.json": "./tsconfig.next.json"
+  },
+  "files": [
+    "eslint.config.base.mjs",
+    "prettier.config.mjs",
+    "tsconfig.base.json",
+    "tsconfig.nest.json",
+    "tsconfig.next.json"
+  ],
+  "peerDependencies": {
+    "@eslint/js": "^9",
+    "eslint": "^9",
+    "typescript-eslint": "^8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9",
+    "eslint": "^9",
+    "typescript-eslint": "^8"
+  }
+}

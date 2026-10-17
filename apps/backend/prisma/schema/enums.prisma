@@ -1,0 +1,340 @@
+// Canonical vocabulary (Master Prompt §6). Values are exact and shared by every module.
+// Where the prompt's enum name collides with an entity of the same name, the enum carries a `Key`
+// suffix (RoleKey, MembershipPlanKey, EntitlementKey). Values are unchanged. See DEC-014.
+
+// ---- 6.1 Accounts, roles, membership -------------------------------------------------------
+
+enum AccountStatus {
+  PENDING_VERIFICATION
+  ACTIVE
+  SUSPENDED
+  DEACTIVATED
+  DELETED
+}
+
+/// Assignable, additive roles. Every active account is implicitly a member; Premium and Verified are never roles.
+enum RoleKey {
+  MENTOR
+  SELLER
+  OPPORTUNITY_PROVIDER
+  INSTRUCTOR
+  MODERATOR
+  CONTENT_ADMIN
+  PLATFORM_ADMIN
+  SUPER_ADMIN
+}
+
+enum MembershipPlanKey {
+  FREE
+  PRO
+}
+
+enum MembershipSource {
+  PAID
+  SCHOLARSHIP
+  ADMIN_GRANT
+  PARTNER
+}
+
+enum MembershipStatus {
+  ACTIVE
+  PAST_DUE
+  CANCELLED
+  EXPIRED
+}
+
+enum EntitlementKey {
+  MENTORSHIP_BOOKING
+  CREATIVE_VERIFICATION
+  SKILL_VERIFICATION
+  REDUCED_MARKETPLACE_FEES
+  PREMIUM_CONTENT
+}
+
+// ---- 6.2 Identity and visibility -----------------------------------------------------------
+
+enum Visibility {
+  PUBLIC
+  MEMBERS
+  PRIVATE
+}
+
+enum PublicationStatus {
+  DRAFT
+  IN_REVIEW
+  PUBLISHED
+  ARCHIVED
+}
+
+enum SkillLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+enum SkillSource {
+  SELF_DECLARED
+  LEARNING
+  VERIFIED
+}
+
+enum VerificationStatus {
+  NOT_SUBMITTED
+  SUBMITTED
+  UNDER_REVIEW
+  VERIFIED
+  REJECTED
+  EXPIRED
+  REVOKED
+}
+
+enum GrowthStrength {
+  EARLY
+  GROWING
+  ACTIVE
+  STRONG
+}
+
+enum CreativeDocumentFormat {
+  CV
+  BIO
+  EPK
+  DECK
+}
+
+// ---- 6.3 Opportunities ---------------------------------------------------------------------
+
+enum OpportunityType {
+  GRANT
+  FUNDING
+  JOB
+  INTERNSHIP
+  GIG
+  COMPETITION
+  FESTIVAL
+  PARTNERSHIP
+  FELLOWSHIP
+  RESIDENCY
+  PROGRAMME
+}
+
+enum OpportunityTrust {
+  VERIFIED
+  SOURCE_CONFIRMED
+  EXTERNAL_SOURCE
+}
+
+enum OpportunityStatus {
+  DRAFT
+  PENDING_REVIEW
+  PUBLISHED
+  CLOSED
+  EXPIRED
+  ARCHIVED
+  REMOVED
+}
+
+enum ApplicationMethod {
+  EXTERNAL_WEBSITE
+  EMAIL
+  /// Reserved; not built before Phase 3.
+  IN_APP
+}
+
+enum OpportunityTrackingStatus {
+  SAVED
+  IN_PROGRESS
+  APPLIED
+  COMPLETED
+}
+
+enum OpportunityOutcome {
+  AWARDED
+  NOT_SELECTED
+  WITHDRAWN
+  UNKNOWN
+}
+
+// ---- 6.4 Learning and content --------------------------------------------------------------
+
+enum ContentSource {
+  ATARAH
+  PARTNER
+  EXTERNAL
+}
+
+enum ContentDelivery {
+  NATIVE
+  EMBEDDED
+  EXTERNAL_LINK
+}
+
+enum LearningContentType {
+  COURSE
+  TUTORIAL
+  TOOLKIT
+  WEBINAR
+  MASTERCLASS
+  ARTICLE
+}
+
+enum LearningCategoryGroup {
+  CREATIVE
+  BUSINESS
+  PROFESSIONAL
+}
+
+/// "Locked" is computed, never stored.
+enum LessonProgressStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+}
+
+// ---- 6.5 Community -------------------------------------------------------------------------
+
+enum PostType {
+  UPDATE
+  QUESTION
+  DISCUSSION
+  COLLABORATION
+  /// Staff only.
+  ANNOUNCEMENT
+}
+
+enum PostAudience {
+  PUBLIC
+  MEMBERS
+  CONNECTIONS
+  GROUP
+}
+
+enum GroupType {
+  DISCIPLINE
+  LOCATION
+  INTEREST
+  PROGRAMME
+}
+
+/// Blocking is a separate Block record, not a status.
+enum ConnectionStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  REMOVED
+}
+
+enum ReportReason {
+  INAPPROPRIATE
+  HARASSMENT
+  SCAM
+  MISLEADING
+  IMPERSONATION
+  IP_INFRINGEMENT
+  OTHER
+}
+
+enum ReportStatus {
+  SUBMITTED
+  IN_REVIEW
+  RESOLVED
+  DISMISSED
+  ESCALATED
+}
+
+enum ModerationAction {
+  NO_ACTION
+  WARN_USER
+  HIDE_CONTENT
+  REMOVE_CONTENT
+  RESTORE_CONTENT
+  RESTRICT_ACCOUNT
+  SUSPEND_ACCOUNT
+  ESCALATE
+}
+
+// ---- 6.6 Marketplace and mentorship --------------------------------------------------------
+
+enum ListingType {
+  SERVICE
+  PRODUCT
+}
+
+enum PricingType {
+  FIXED
+  RANGE
+  ON_REQUEST
+}
+
+enum ListingStatus {
+  DRAFT
+  UNDER_REVIEW
+  PUBLISHED
+  REJECTED
+  SUSPENDED
+  ARCHIVED
+}
+
+enum ProfileServiceStatus {
+  PROFILE_ONLY
+  ON_MARKETPLACE
+}
+
+enum EnquiryStatus {
+  NEW
+  REPLIED
+  CLOSED
+}
+
+enum MentorSessionFormat {
+  VIDEO_CALL
+  /// Later.
+  IN_PERSON
+}
+
+enum BookingStatus {
+  PENDING_PAYMENT
+  CONFIRMED
+  COMPLETED
+  CANCELLED_BY_MENTEE
+  CANCELLED_BY_MENTOR
+  DECLINED_BY_MENTOR
+  NO_SHOW
+  PAYMENT_FAILED
+}
+
+// ---- 6.7 Payments and notifications --------------------------------------------------------
+
+enum PaymentMethod {
+  MPESA
+  CARD
+}
+
+enum PaymentPurpose {
+  MEMBERSHIP
+  MENTORSHIP
+  VERIFICATION
+  OTHER
+}
+
+enum PaymentStatus {
+  INITIATED
+  PENDING
+  SUCCEEDED
+  FAILED
+  CANCELLED
+  REFUNDED
+  PARTIALLY_REFUNDED
+}
+
+/// Payments, membership, security and account notices use SYSTEM.
+enum NotificationCategory {
+  OPPORTUNITIES
+  MENTORSHIP
+  COMMUNITY
+  LEARNING
+  PROFILE
+  MARKETPLACE
+  SYSTEM
+}

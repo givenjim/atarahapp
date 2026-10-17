@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<script src="_ds/modernist-92942278-38b0-45eb-ae33-378b336c3544/_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="icons.js"></script>
+</helmet>
+
+<sc-if value="{{ is.mentorship }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;color:#15133d;background:radial-gradient(circle at 100% 0%,#fde0ea 0,transparent 30%),radial-gradient(circle at 70% 6%,#ece6ff 0,transparent 35%),#fff">
+    <div style="flex:1;overflow-y:auto;min-height:0">
+      <div style="padding:6px 14px 0"><button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:44px;border-radius:14px;border:1px solid #ecebf4;background:#fff;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="22"></lc-i></button></div>
+      <div style="padding:14px 22px 0"><div style="display:flex;gap:8px;align-items:center"><span style="color:#e8457a"><lc-i name="handshake" size="26" stroke="1.7"></lc-i></span><span style="display:inline-flex;gap:5px;height:26px;align-items:center;padding:0 12px;border-radius:999px;background:linear-gradient(90deg,#fde7c4,#fbd38d);color:#8a5a00;font-size:12px;font-weight:700"><lc-i name="crown" size="13"></lc-i>Premium</span></div><h1 style="font-weight:800;font-size:32px;letter-spacing:-.02em;margin:10px 0 8px">Mentorship</h1><p style="font-size:15px;line-height:1.55;color:#4a4868;margin:0">One-to-one time with experienced creatives who've been where you're going.</p></div>
+      <sc-if value="{{ ctx.premium }}" hint-placeholder-val="{{ false }}">
+        <div onClick="{{ nav.my_mentorship }}" style="margin:18px 22px 0;padding:16px;border-radius:18px;background:linear-gradient(135deg,#1c1a4a,#2f2783);color:#fff;display:flex;gap:14px;align-items:center;cursor:pointer"><img src="assets/p_wanjiku.png" alt="" style="width:52px;height:52px;border-radius:14px;object-fit:cover"><div style="flex:1"><div style="font-size:12px;color:rgba(255,255,255,.7)">Next session · Thu 23 Oct, 4:00pm</div><div style="font-weight:700;font-size:15px;margin-top:2px">Career strategy with Wanjiku</div></div><lc-i name="chevron-right" size="20"></lc-i></div>
+      </sc-if>
+      <div style="font-weight:700;font-size:20px;padding:0 22px;margin:24px 0 12px">How it works</div>
+      <div style="display:flex;flex-direction:column;gap:10px;padding:0 22px">
+        <sc-for list="{{ how }}" as="h"><div style="display:flex;gap:14px;align-items:center;padding:14px 16px;border-radius:18px;background:{{ h.bg }}"><span style="width:40px;height:40px;flex:none;border-radius:50%;background:#fff;color:{{ h.fg }};display:grid;place-items:center;font-weight:800;font-size:15px">{{ h.n }}</span><div><div style="font-weight:700;font-size:14.5px">{{ h.t }}</div><div style="font-size:12.5px;color:#4a4868;margin-top:2px">{{ h.d }}</div></div></div></sc-for>
+      </div>
+      <div style="font-weight:700;font-size:20px;padding:0 22px;margin:24px 0 6px">Who it's for</div>
+      <p style="font-size:14px;line-height:1.6;color:#4a4868;margin:0 22px">Emerging and mid-career creatives preparing a portfolio, pricing their work, applying for funding or planning their next move.</p>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0 22px;margin:24px 0 12px"><div style="font-weight:700;font-size:20px">Top mentors</div><button onClick="{{ nav.mentors }}" style="border:0;background:none;color:#5b45f0;font-size:13.5px;font-weight:600;cursor:pointer">See all</button></div>
+      <div style="display:flex;gap:12px;overflow-x:auto;padding:0 22px 24px">
+        <sc-for list="{{ mentorsList }}" as="m"><div onClick="{{ nav.mentor }}" style="flex:none;width:150px;padding:12px;border-radius:18px;border:1px solid #ecebf4;background:#fff;cursor:pointer"><img src="{{ m.img }}" alt="" style="width:100%;aspect-ratio:1;border-radius:12px;object-fit:cover"><div style="font-weight:700;font-size:13.5px;margin-top:10px">{{ m.n }}</div><div style="font-size:11.5px;color:#77758f;margin-top:2px">{{ m.e }}</div></div></sc-for>
+      </div>
+    </div>
+    <div style="flex:none;padding:12px 22px;border-top:1px solid #f0eff6;background:#fff"><button onClick="{{ nav.mentors }}" style="width:100%;height:54px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 10px 22px rgba(91,69,240,.28)">Find a mentor</button></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.mentors }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;overflow-y:auto;color:#15133d;background:radial-gradient(circle at 100% 0%,#ece6ff 0,transparent 35%),#fff">
+    <div style="display:flex;align-items:center;gap:10px;padding:6px 14px"><button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:44px;border-radius:14px;border:1px solid #ecebf4;background:#fff;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="22"></lc-i></button><span style="flex:1"></span><button onClick="{{ nav.filters }}" aria-label="Filters" style="width:44px;height:44px;border-radius:14px;border:0;background:#f1eeff;color:#5b45f0;cursor:pointer;display:grid;place-items:center"><lc-i name="sliders-horizontal" size="19"></lc-i></button></div>
+    <h1 style="font-weight:800;font-size:30px;letter-spacing:-.02em;margin:8px 22px 0">Find a mentor</h1>
+    <div style="display:flex;gap:8px;overflow-x:auto;padding:16px 22px 4px"><sc-for list="{{ mfilters }}" as="f"><button onClick="{{ f.pick }}" style="flex:none;display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border-radius:999px;border:1px solid {{ f.bd }};background:{{ f.bg }};color:{{ f.fg }};font-size:13px;font-weight:600;cursor:pointer">{{ f.label }}</button></sc-for></div>
+    <div style="display:flex;flex-direction:column;gap:12px;padding:12px 22px 28px">
+      <sc-for list="{{ mentorsList }}" as="m" hint-placeholder-count="4">
+        <div onClick="{{ nav.mentor }}" style="padding:16px;border-radius:18px;border:1px solid #ecebf4;background:#fff;box-shadow:0 4px 16px rgba(40,30,120,.04);cursor:pointer">
+          <div style="display:flex;gap:14px"><img src="{{ m.img }}" alt="" style="width:76px;height:76px;flex:none;border-radius:14px;object-fit:cover"><div style="flex:1;min-width:0"><div style="display:flex;gap:5px;align-items:center;font-weight:700;font-size:15.5px">{{ m.n }}<span style="color:#fff;display:inline-flex"><lc-i name="badge-check" size="15" fill="#5b45f0"></lc-i></span></div><div style="font-size:12.5px;color:#4a4868;margin-top:2px">{{ m.t }}</div><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><sc-for list="{{ m.tags }}" as="t"><span style="display:inline-flex;height:22px;align-items:center;padding:0 9px;border-radius:999px;background:#f1eeff;color:#5b45f0;font-size:11px;font-weight:500">{{ t }}</span></sc-for></div></div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid #f2f1f8;font-size:12.5px"><span style="display:flex;gap:4px;align-items:center;color:#16784a;font-weight:600"><lc-i name="calendar-check" size="14"></lc-i>{{ m.next }}</span><span style="display:flex;gap:3px;align-items:center;font-weight:700"><span style="color:#f5a524"><lc-i name="star" size="13" fill="#f5a524"></lc-i></span>{{ m.r }}</span><b style="color:#5b45f0">{{ m.p }}</b></div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.mentor }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#fff;color:#15133d">
+    <div style="flex:1;overflow-y:auto;min-height:0">
+      <div style="height:280px;position:relative;background:#222"><img src="assets/p_wanjiku.png" alt="Wanjiku Njeri" style="width:100%;height:100%;object-fit:cover"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,14,40,.35),transparent 35%,rgba(16,14,40,.6))"></div><button onClick="{{ nav.back }}" aria-label="Back" style="position:absolute;left:14px;top:6px;width:44px;height:44px;border-radius:14px;border:0;background:rgba(255,255,255,.25);backdrop-filter:blur(8px);cursor:pointer;color:#fff;display:grid;place-items:center"><lc-i name="chevron-left" size="22"></lc-i></button><button aria-label="Share" style="position:absolute;right:14px;top:6px;width:44px;height:44px;border-radius:14px;border:0;background:rgba(255,255,255,.25);backdrop-filter:blur(8px);cursor:pointer;color:#fff;display:grid;place-items:center"><lc-i name="share-2" size="19"></lc-i></button></div>
+      <div style="margin-top:-28px;position:relative;border-radius:28px 28px 0 0;background:#fff;padding:22px">
+        <div style="display:flex;gap:6px;align-items:center;font-weight:800;font-size:24px">Wanjiku Njeri<span style="color:#fff;display:inline-flex"><lc-i name="badge-check" size="20" fill="#5b45f0"></lc-i></span></div>
+        <div style="font-size:14px;color:#4a4868;margin-top:2px">Creative director and producer · 14 years</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px"><div style="padding:12px;border-radius:14px;background:#fff8ec"><div style="font-weight:800;font-size:17px">4.9</div><div style="font-size:11.5px;color:#77758f">38 reviews</div></div><div style="padding:12px;border-radius:14px;background:#f1eeff"><div style="font-weight:800;font-size:17px">120+</div><div style="font-size:11.5px;color:#77758f">Sessions</div></div><div style="padding:12px;border-radius:14px;background:#e9f8ee"><div style="font-weight:800;font-size:17px">EAT</div><div style="font-size:11.5px;color:#77758f">Nairobi time</div></div></div>
+        <p style="font-size:14.5px;line-height:1.65;color:#2c2a50;margin:18px 0 0">I've produced campaigns for Safaricom and Netflix Africa. I help creatives package their work, price with confidence and build a sustainable studio.</p>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px"><sc-for list="{{ expertise }}" as="t"><span style="display:inline-flex;height:28px;align-items:center;padding:0 12px;border-radius:999px;background:#f1eeff;color:#5b45f0;font-size:12px;font-weight:600">{{ t }}</span></sc-for></div>
+        <div style="font-weight:700;font-size:17px;margin:22px 0 10px">Choose a session</div>
+        <div style="display:flex;flex-direction:column;gap:10px"><sc-for list="{{ sessions }}" as="x"><button onClick="{{ x.pick }}" style="display:flex;gap:12px;align-items:center;width:100%;padding:14px 16px;border-radius:16px;border:1.5px solid {{ x.bd }};background:{{ x.bg }};cursor:pointer;text-align:left;color:#15133d"><span style="width:22px;height:22px;flex:none;border-radius:50%;border:2px solid {{ x.rd }};display:grid;place-items:center"><span style="width:10px;height:10px;border-radius:50%;background:{{ x.dot }}"></span></span><span style="flex:1"><span style="display:block;font-weight:700;font-size:14.5px">{{ x.t }}</span><span style="font-size:12.5px;color:#77758f">{{ x.d }}</span></span><b style="font-size:14px">{{ x.p }}</b></button></sc-for></div>
+        <div style="font-weight:700;font-size:17px;margin:22px 0 10px">Credentials</div>
+        <sc-for list="{{ creds }}" as="c"><div style="display:flex;gap:10px;font-size:13.5px;margin-bottom:8px;color:#2c2a50"><span style="color:#5b45f0"><lc-i name="award" size="17"></lc-i></span>{{ c }}</div></sc-for>
+      </div>
+    </div>
+    <div style="flex:none;padding:12px 22px;border-top:1px solid #f0eff6">
+      <sc-if value="{{ ctx.premium }}" hint-placeholder-val="{{ true }}"><button onClick="{{ nav.book }}" style="width:100%;height:54px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 10px 22px rgba(91,69,240,.28)">Book session · {{ selPrice }}</button></sc-if>
+      <sc-if value="{{ notPremium }}" hint-placeholder-val="{{ false }}"><button onClick="{{ nav.st_premium }}" style="width:100%;height:54px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px"><lc-i name="crown" size="17"></lc-i>Unlock mentorship with Pro</button></sc-if>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ flow.on }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#fff;color:#15133d">
+    <div style="flex:none;display:flex;align-items:center;gap:10px;padding:6px 14px"><button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:44px;border-radius:14px;border:1px solid #ecebf4;background:#fff;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="22"></lc-i></button><div style="flex:1;font-weight:700;font-size:17px">{{ flow.title }}</div></div>
+    <div style="flex:none;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:6px 22px 0"><sc-for list="{{ flow.steps }}" as="p"><div><div style="height:5px;border-radius:5px;background:{{ p.c }}"></div><div style="font-size:11px;font-weight:600;color:{{ p.t }};margin-top:6px">{{ p.l }}</div></div></sc-for></div>
+    <div style="flex:1;overflow-y:auto;min-height:0;padding:18px 22px">
+
+      <sc-if value="{{ is.book }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:16px;background:#f7f6fd"><img src="assets/p_wanjiku.png" alt="" style="width:46px;height:46px;border-radius:12px;object-fit:cover"><div><div style="font-weight:700;font-size:14.5px">{{ selName }}</div><div style="font-size:12.5px;color:#77758f">with Wanjiku Njeri · {{ selDur }}</div></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin:22px 0 10px"><div style="font-weight:700;font-size:16px">October 2026</div><div style="display:flex;gap:6px"><span style="width:32px;height:32px;border-radius:10px;border:1px solid #ecebf4;display:grid;place-items:center"><lc-i name="chevron-left" size="16"></lc-i></span><span style="width:32px;height:32px;border-radius:10px;border:1px solid #ecebf4;display:grid;place-items:center"><lc-i name="chevron-right" size="16"></lc-i></span></div></div>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px"><sc-for list="{{ days }}" as="d"><button onClick="{{ d.pick }}" disabled="{{ d.off }}" style="height:64px;border-radius:14px;border:1px solid {{ d.bd }};background:{{ d.bg }};color:{{ d.fg }};cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;opacity:{{ d.op }}"><span style="font-size:11px;font-weight:600">{{ d.w }}</span><span style="font-size:17px;font-weight:800">{{ d.n }}</span></button></sc-for></div>
+        <div style="font-weight:700;font-size:16px;margin:22px 0 10px">Available times · EAT</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><sc-for list="{{ times }}" as="t"><button onClick="{{ t.pick }}" style="height:44px;border-radius:12px;border:1px solid {{ t.bd }};background:{{ t.bg }};color:{{ t.fg }};font-size:13.5px;font-weight:600;cursor:pointer">{{ t.l }}</button></sc-for></div>
+        <div style="font-weight:700;font-size:16px;margin:22px 0 8px">What would you like to work on?</div>
+        <textarea style="width:100%;min-height:100px;padding:14px 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;font-size:14.5px;line-height:1.5;color:#15133d;resize:none">I’m preparing for the Digital Storytelling Grant and want feedback on my treatment and budget.</textarea>
+      </sc-if>
+
+      <sc-if value="{{ is.pay_summary }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:18px;border-radius:20px;border:1px solid #ecebf4">
+          <div style="display:flex;gap:12px;align-items:center"><img src="assets/p_wanjiku.png" alt="" style="width:52px;height:52px;border-radius:14px;object-fit:cover"><div><div style="font-weight:700;font-size:15px">Wanjiku Njeri</div><div style="font-size:12.5px;color:#77758f">Creative director · Verified mentor</div></div></div>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px;font-size:13.5px"><sc-for list="{{ summary }}" as="r"><div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#77758f">{{ r.l }}</span><b style="text-align:right">{{ r.v }}</b></div></sc-for></div>
+          <div style="height:1px;background:#ecebf4;margin:16px 0"></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#77758f;margin-bottom:8px"><span>Session</span><span>{{ selPrice }}</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#77758f;margin-bottom:12px"><span>Service fee</span><span>KES 0 · Pro member</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:17px;font-weight:800"><span>Total</span><span style="color:#5b45f0">{{ selPrice }}</span></div>
+        </div>
+        <div style="margin-top:14px;padding:14px 16px;border-radius:16px;background:#fff8ec;display:flex;gap:10px;font-size:13px;line-height:1.5"><span style="color:#c78a10"><lc-i name="info" size="18"></lc-i></span><span><b>Cancellation:</b> free up to 24 hours before. After that, 50% is refunded.</span></div>
+      </sc-if>
+
+      <sc-if value="{{ is.pay }}" hint-placeholder-val="{{ false }}">
+        <div style="font-weight:700;font-size:16px;margin-bottom:10px">Payment method</div>
+        <div style="display:flex;flex-direction:column;gap:10px"><sc-for list="{{ methods }}" as="m"><button onClick="{{ m.pick }}" style="display:flex;gap:12px;align-items:center;width:100%;padding:14px 16px;border-radius:16px;border:1.5px solid {{ m.bd }};background:{{ m.bg }};cursor:pointer;text-align:left;color:#15133d"><span style="width:44px;height:44px;border-radius:12px;background:{{ m.ibg }};color:{{ m.ifg }};display:grid;place-items:center"><lc-i name="{{ m.i }}" size="20"></lc-i></span><span style="flex:1"><span style="display:block;font-weight:700;font-size:14.5px">{{ m.t }}</span><span style="font-size:12.5px;color:#77758f">{{ m.d }}</span></span><span style="width:22px;height:22px;border-radius:50%;border:2px solid {{ m.rd }};display:grid;place-items:center"><span style="width:10px;height:10px;border-radius:50%;background:{{ m.dot }}"></span></span></button></sc-for></div>
+        <div style="font-size:13px;font-weight:600;margin:18px 0 7px">M-Pesa number</div>
+        <div style="height:52px;padding:0 16px;border-radius:14px;border:1.5px solid #7b6cf6;box-shadow:0 0 0 4px #efecff;background:#fff;display:flex;align-items:center;gap:10px;font-size:15px"><span style="color:#77758f">+254</span>712 345 678</div>
+        <div style="font-size:12.5px;color:#77758f;margin-top:8px">You'll get an M-Pesa prompt to confirm with your PIN.</div>
+        <div style="display:flex;gap:8px;align-items:center;justify-content:center;font-size:12px;color:#77758f;margin-top:24px"><lc-i name="lock" size="14"></lc-i>Secure payment processed by Luxaion</div>
+      </sc-if>
+    </div>
+    <div style="flex:none;padding:12px 22px;border-top:1px solid #f0eff6"><button onClick="{{ flow.go }}" style="width:100%;height:54px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 10px 22px rgba(91,69,240,.28)">{{ flow.cta }}</button></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.pay_done }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;color:#15133d;background:radial-gradient(circle at 50% 18%,#e4dcff 0,transparent 40%),#fff">
+    <div style="flex:1;overflow-y:auto;min-height:0;padding:40px 22px 20px;display:flex;flex-direction:column;align-items:center;text-align:center">
+      <div style="width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,#7b6cf6,#5a46ee);color:#fff;display:grid;place-items:center;box-shadow:0 0 0 12px #efecff,0 20px 40px rgba(91,69,240,.35)"><lc-i name="check" size="44" stroke="3"></lc-i></div>
+      <h1 style="font-weight:800;font-size:28px;margin:30px 0 8px">Booking confirmed</h1>
+      <p style="font-size:14.5px;line-height:1.6;color:#4a4868;margin:0;max-width:290px">Payment received. Wanjiku has been notified and you'll get a reminder an hour before.</p>
+      <div style="width:100%;margin-top:24px;padding:18px;border-radius:20px;border:1px solid #ecebf4;text-align:left">
+        <div style="display:flex;gap:12px;align-items:center"><img src="assets/p_wanjiku.png" alt="" style="width:48px;height:48px;border-radius:12px;object-fit:cover"><div><div style="font-weight:700;font-size:14.5px">{{ selName }}</div><div style="font-size:12.5px;color:#77758f">Wanjiku Njeri</div></div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px"><div style="padding:10px 12px;border-radius:12px;background:#f1eeff"><div style="font-size:11px;color:#77758f">When</div><div style="font-weight:700;font-size:13px">Thu 23 Oct · {{ selTime }}</div></div><div style="padding:10px 12px;border-radius:12px;background:#e9f8ee"><div style="font-size:11px;color:#77758f">Paid</div><div style="font-weight:700;font-size:13px">{{ selPrice }} · M-Pesa</div></div></div>
+      </div>
+    </div>
+    <div style="flex:none;padding:12px 22px;display:flex;flex-direction:column;gap:10px"><button onClick="{{ nav.my_mentorship }}" style="width:100%;height:54px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:15px;cursor:pointer">Go to My mentorship</button><button style="width:100%;height:50px;border:1.5px solid #dcd8f5;border-radius:999px;background:#fff;color:#5b45f0;font-weight:700;font-size:14.5px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px"><lc-i name="calendar-plus" size="18"></lc-i>Add to calendar</button></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.my_mentorship }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;overflow-y:auto;color:#15133d;background:radial-gradient(circle at 100% 0%,#fde0ea 0,transparent 30%),#fff">
+    <div style="padding:6px 14px"><button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:44px;border-radius:14px;border:1px solid #ecebf4;background:#fff;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="22"></lc-i></button></div>
+    <h1 style="font-weight:800;font-size:30px;letter-spacing:-.02em;margin:8px 22px 0">My mentorship</h1>
+    <div style="display:flex;gap:4px;padding:4px;border-radius:999px;background:#f5f4fb;margin:16px 22px 0"><sc-for list="{{ mtabs }}" as="t"><button onClick="{{ t.pick }}" style="flex:1;height:38px;border:0;border-radius:999px;background:{{ t.bg }};color:{{ t.fg }};font-weight:600;font-size:13px;cursor:pointer;box-shadow:{{ t.sh }}">{{ t.label }}</button></sc-for></div>
+    <div style="display:flex;flex-direction:column;gap:12px;padding:16px 22px 28px">
+      <sc-if value="{{ mt.Upcoming }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:18px;border-radius:20px;background:linear-gradient(135deg,#1c1a4a,#2f2783);color:#fff"><div style="display:flex;gap:12px;align-items:center"><img src="assets/p_wanjiku.png" alt="" style="width:52px;height:52px;border-radius:14px;object-fit:cover"><div style="flex:1"><div style="font-weight:700;font-size:15px">Career strategy</div><div style="font-size:12.5px;color:rgba(255,255,255,.75)">Wanjiku Njeri · 60 min</div></div></div><div style="display:flex;gap:8px;align-items:center;font-size:13px;margin-top:14px"><lc-i name="calendar" size="15"></lc-i>Thu 23 Oct · 4:00pm EAT</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px"><button style="height:42px;border:0;border-radius:999px;background:#fff;color:#4a36e0;font-weight:700;font-size:13.5px;cursor:pointer">Join call</button><button style="height:42px;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:none;color:#fff;font-weight:700;font-size:13.5px;cursor:pointer">Reschedule</button></div></div>
+      </sc-if>
+      <sc-if value="{{ mt.Past }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:16px;border-radius:18px;border:1px solid #ecebf4"><div style="display:flex;gap:12px;align-items:center"><img src="assets/p_amani.png" alt="" style="width:46px;height:46px;border-radius:12px;object-fit:cover"><div style="flex:1"><div style="font-weight:700;font-size:14.5px">Portfolio review</div><div style="font-size:12.5px;color:#77758f">Amani Otieno · 2 Oct</div></div></div><div style="margin-top:12px;padding:12px 14px;border-radius:14px;background:#fff8ec;font-size:13px;display:flex;justify-content:space-between;align-items:center"><span>How was your session?</span><span style="display:flex;gap:2px;color:#f5a524"><lc-i name="star" size="16"></lc-i><lc-i name="star" size="16"></lc-i><lc-i name="star" size="16"></lc-i><lc-i name="star" size="16"></lc-i><lc-i name="star" size="16"></lc-i></span></div></div>
+      </sc-if>
+      <sc-if value="{{ mt.Payments }}" hint-placeholder-val="{{ false }}">
+        <sc-for list="{{ payments }}" as="p"><div style="display:flex;gap:12px;align-items:center;padding:14px;border-radius:16px;background:#f7f6fd"><span style="width:40px;height:40px;border-radius:12px;background:#e9f8ee;color:#1f9d55;display:grid;place-items:center"><lc-i name="receipt" size="18"></lc-i></span><div style="flex:1"><div style="font-weight:700;font-size:14px">{{ p.t }}</div><div style="font-size:12px;color:#77758f">{{ p.d }}</div></div><b style="font-size:14px">{{ p.a }}</b></div></sc-for>
+      </sc-if>
+      <div style="font-weight:700;font-size:17px;margin-top:10px">Your mentors</div>
+      <div style="display:flex;gap:12px"><img onClick="{{ nav.mentor }}" src="assets/p_wanjiku.png" alt="" style="width:60px;height:60px;border-radius:50%;object-fit:cover;cursor:pointer"><img src="assets/p_amani.png" alt="" style="width:60px;height:60px;border-radius:50%;object-fit:cover"><button onClick="{{ nav.mentors }}" aria-label="Find a mentor" style="width:60px;height:60px;border-radius:50%;border:1.5px dashed #cfc8fb;background:#f8f6ff;color:#5b45f0;cursor:pointer;display:grid;place-items:center"><lc-i name="plus" size="22"></lc-i></button></div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.mentor_tools }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;overflow-y:auto;color:#15133d;background:radial-gradient(circle at 100% 0%,#ece6ff 0,transparent 35%),#fff">
+    <div style="padding:6px 14px"><button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:44px;border-radius:14px;border:1px solid #ecebf4;background:#fff;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="22"></lc-i></button></div>
+    <h1 style="font-weight:800;font-size:30px;letter-spacing:-.02em;margin:8px 22px 0">Mentor tools</h1>
+    <sc-if value="{{ notMentor }}" hint-placeholder-val="{{ false }}">
+      <div style="margin:18px 22px;padding:22px;border-radius:22px;background:#f7f6fd"><span style="width:56px;height:56px;border-radius:18px;background:#f1eeff;color:#5b45f0;display:grid;place-items:center"><lc-i name="graduation-cap" size="26"></lc-i></span><div style="font-weight:800;font-size:19px;margin:14px 0 6px">Become a mentor</div><div style="font-size:14px;line-height:1.55;color:#4a4868">Share your experience with emerging creatives. Apply with your Creative Passport — our team reviews every application.</div><button style="margin-top:16px;height:48px;padding:0 22px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:14.5px;cursor:pointer">Apply to mentor</button></div>
+    </sc-if>
+    <sc-if value="{{ ctx.mentor }}" hint-placeholder-val="{{ false }}">
+      <div style="font-weight:700;font-size:18px;margin:20px 22px 10px">Booking requests</div>
+      <div style="display:flex;flex-direction:column;gap:10px;padding:0 22px"><sc-for list="{{ requests }}" as="r"><div style="padding:14px;border-radius:18px;border:1px solid #ecebf4"><div style="display:flex;gap:12px;align-items:center"><img src="{{ r.img }}" alt="" style="width:44px;height:44px;border-radius:50%;object-fit:cover"><div style="flex:1"><div style="font-weight:700;font-size:14px">{{ r.n }}</div><div style="font-size:12px;color:#77758f">{{ r.s }}</div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px"><button style="height:40px;border:1.5px solid #dcd8f5;border-radius:999px;background:#fff;color:#5b45f0;font-weight:700;font-size:13px;cursor:pointer">Decline</button><button style="height:40px;border:0;border-radius:999px;background:#5b45f0;color:#fff;font-weight:700;font-size:13px;cursor:pointer">Accept</button></div></div></sc-for></div>
+      <div style="font-weight:700;font-size:18px;margin:22px 22px 10px">Weekly availability</div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding:0 22px 28px"><sc-for list="{{ avail }}" as="a"><div onClick="{{ a.toggle }}" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-radius:14px;background:#f7f6fd;cursor:pointer"><div><div style="font-weight:700;font-size:14px">{{ a.d }}</div><div style="font-size:12px;color:#77758f">{{ a.h }}</div></div><span style="width:48px;height:28px;border-radius:999px;background:{{ a.track }};position:relative"><span style="position:absolute;top:3px;left:{{ a.knob }};width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:left .2s"></span></span></div></sc-for></div>
+    </sc-if>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SESS=[['30-min portfolio review','Quick, focused feedback','KES 2,500','30 min'],['60-min career strategy','Pricing, positioning, next steps','KES 4,500','60 min'],['4-week growth programme','4 sessions + async feedback','KES 15,000','4 × 60 min']];
+const sel=(on)=>({bg:on?'#5b45f0':'#fff',fg:on?'#fff':'#15133d',bd:on?'#5b45f0':'#e4e2ef'});
+const seg=(on)=>({bg:on?'#fff':'transparent',fg:on?'#5b45f0':'#4a4868',sh:on?'0 2px 8px rgba(40,30,120,.08)':'none'});
+const FLOW={book:['Book a session','Review booking','pay_summary',0],pay_summary:['Order summary','Continue to payment','pay',1],pay:['Payment','Pay now','pay_done',2]};
+class Component extends DCLogic {
+  state={sess:1,day:3,time:'4:00pm',method:'M-Pesa',mtab:'Upcoming',mf:{Verified:true},av:{0:true,2:true,3:true}};
+  renderVals(){
+    const st=this.state,nav=this.props.nav||{},s=this.props.screen,ctx=this.props.ctx||{};
+    const [sn,,sp,sd]=SESS[st.sess];
+    const f=FLOW[s];
+    return {
+      nav,ctx,is:{[s]:true},notPremium:!ctx.premium,notMentor:!ctx.mentor,
+      how:[{n:'1',t:'Find a mentor',d:'Filter by discipline, expertise and price',bg:'#f1eeff',fg:'#5b45f0'},{n:'2',t:'Book a session',d:'Pick a time that suits you',bg:'#e9f8ee',fg:'#1f9d55'},{n:'3',t:'Meet and grow',d:'Video call, notes and follow-ups',bg:'#fff1e5',fg:'#f08a24'}],
+      mentorsList:[{n:'Wanjiku Njeri',e:'Creative direction',t:'Creative director · 14 yrs',tags:['Producing','Pricing','Pitching'],img:'assets/p_wanjiku.png',next:'Next: Thu',r:'4.9',p:'From KES 2,500'},{n:'Amani Otieno',e:'Music production',t:'Sound engineer · 9 yrs',tags:['Mixing','Releases'],img:'assets/p_amani.png',next:'Next: Today',r:'4.8',p:'From KES 2,000'},{n:'Zuri Mwangi',e:'Documentary',t:'Photographer · 11 yrs',tags:['Storytelling','Grants'],img:'assets/p_zuri.png',next:'Next: Mon',r:'5.0',p:'From KES 3,000'},{n:'Kiptoo Langat',e:'Brand design',t:'Graphic designer · 8 yrs',tags:['Branding','Clients'],img:'assets/p_kiptoo.png',next:'Next: Fri',r:'4.7',p:'From KES 2,000'}],
+      mfilters:['Verified','Animation','Available this week','Under KES 3,000','Video call'].map(l=>({label:l,pick:()=>this.setState(x=>({mf:{...x.mf,[l]:!x.mf[l]}})),...sel(!!st.mf[l])})),
+      expertise:['Creative direction','Producing','Pricing','Pitching','Studio building'],
+      sessions:SESS.map(([t,d,p],i)=>{const on=st.sess===i;return{t,d,p,pick:()=>this.setState({sess:i}),bg:on?'#f6f4ff':'#fff',bd:on?'#7b6cf6':'#ecebf4',rd:on?'#5b45f0':'#cfccdf',dot:on?'#5b45f0':'transparent'};}),
+      creds:['Former Head of Content, Mdundo','Netflix Africa producer fellowship 2022','Juror, Kalasha Awards 2024'],
+      selName:sn,selPrice:sp,selDur:sd,selTime:st.time,
+      flow:{on:!!f,title:f?f[0]:'',cta:f?f[1]:'',go:f?nav[f[2]]:null,steps:['Date & time','Summary','Payment'].map((l,i)=>({l,c:f&&i<=f[3]?'#5b45f0':'#efedf7',t:f&&i<=f[3]?'#5b45f0':'#a3a1b8'}))},
+      days:[['Mon','20'],['Tue','21'],['Wed','22'],['Thu','23'],['Fri','24'],['Sat','25']].map(([w,n],i)=>{const on=st.day===i,off=i===1||i===5;return{w,n,off,op:off?'.4':'1',pick:()=>this.setState({day:i}),...sel(on)};}),
+      times:['9:00am','11:30am','2:00pm','4:00pm','5:30pm','7:00pm'].map(l=>({l,pick:()=>this.setState({time:l}),...sel(st.time===l)})),
+      summary:[{l:'Session',v:sn},{l:'Date',v:'Thursday 23 October 2026'},{l:'Time',v:st.time+' EAT'},{l:'Duration',v:sd},{l:'Format',v:'Video call'}],
+      methods:[['M-Pesa','smartphone','Pay with your Safaricom line','#e9f8ee','#1f9d55'],['Card','credit-card','Visa or Mastercard','#f1eeff','#5b45f0']].map(([t,i,d,ibg,ifg])=>{const on=st.method===t;return{t,i,d,ibg,ifg,pick:()=>this.setState({method:t}),bg:on?'#f6f4ff':'#fff',bd:on?'#7b6cf6':'#ecebf4',rd:on?'#5b45f0':'#cfccdf',dot:on?'#5b45f0':'transparent'};}),
+      mtabs:['Upcoming','Past','Payments'].map(l=>({label:l,pick:()=>this.setState({mtab:l}),...seg(st.mtab===l)})),mt:{[st.mtab]:true},
+      payments:[{t:'Career strategy · Wanjiku',d:'15 Oct 2026 · M-Pesa',a:'KES 4,500'},{t:'Portfolio review · Amani',d:'28 Sep 2026 · Card',a:'KES 2,000'}],
+      requests:[{n:'Nia Wairimu',s:'Career strategy · Thu 23 Oct, 4pm',img:'assets/p_nia.png'},{n:'Kiptoo Langat',s:'Portfolio review · Fri 24 Oct, 11:30am',img:'assets/p_kiptoo.png'}],
+      avail:['Monday','Tuesday','Wednesday','Thursday','Friday'].map((d,i)=>{const on=!!st.av[i];return{d,h:on?'2:00pm – 7:00pm':'Unavailable',toggle:()=>this.setState(x=>({av:{...x.av,[i]:!x.av[i]}})),track:on?'#5b45f0':'#dcdbe6',knob:on?'23px':'3px'};})
+    };
+  }
+}
+</script>
+</body>
+</html>

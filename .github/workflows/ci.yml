@@ -1,0 +1,190 @@
+name: CI
+
+# Pipeline definition only: the owner pushes it. It has not been executed on GitHub, so treat the first run as
+# the real test of the YAML. Every command below was run locally by the same name (see docs/DEVELOPMENT.md).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  # Dev-only values for the CI containers. They are not secrets and never leave the runner.
+  ATARAH_ENV: test
+  CI: 'true'
+
+jobs:
+  repo-checks:
+    name: Brand check and secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Brand check
+        run: node scripts/check-brand.mjs
+      - name: Secret scan (gitleaks, working tree)
+        run: |
+          curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz | tar -xz gitleaks
+          ./gitleaks dir . --config .gitleaks.toml --no-banner --redact
+
+  node:
+    name: Lint, typecheck, test and build (backend, web, admin)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      # Placeholders so the OpenAPI export can load the app configuration. Nothing connects to them.
+      ATARAH_DATABASE_URL: postgresql://atarah:unused@localhost:5432/atarah
+      ATARAH_REDIS_URL: redis://localhost:6379
+      ATARAH_S3_ENDPOINT: http://localhost:9000
+      ATARAH_S3_ACCESS_KEY: unused
+      ATARAH_S3_SECRET_KEY: unused
+      ATARAH_JWT_ACCESS_SECRET: ci-access-secret-ci-access-secret-0000000
+      ATARAH_REFRESH_TOKEN_PEPPER: ci-refresh-pepper-ci-refresh-pepper-0000
+      ATARAH_CODE_PEPPER: ci-code-pepper-ci-code-pepper-000000000
+      ATARAH_DATA_ENCRYPTION_KEY: ci-data-key-ci-data-key-ci-0000000000
+      ATARAH_PUBLIC_URL: http://localhost:3000
+      ATARAH_CORS_ORIGINS: http://localhost:3200
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4 # version comes from "packageManager" in package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @atarah/backend db:generate
+      - name: Format
+        run: pnpm format:check
+      - name: Lint
+        run: pnpm lint
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Contract is up to date
+        run: |
+          pnpm gen:api
+          git diff --exit-code packages/api-contracts
+      - name: Test (backend integration tests start PostgreSQL, Redis and S3 with Testcontainers)
+        run: pnpm test
+      - name: Build
+        run: pnpm build
+      - name: Upload builds for the e2e job
+        uses: actions/upload-artifact@v4
+        with:
+          name: builds
+          retention-days: 1
+          path: |
+            apps/backend/dist
+            apps/admin/.next
+            apps/web/.next
+
+  admin-e2e:
+    name: Admin Playwright flow
+    runs-on: ubuntu-latest
+    needs: node
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: atarah
+          POSTGRES_PASSWORD: atarah_ci_password
+          POSTGRES_DB: atarah
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U atarah" --health-interval 5s --health-timeout 3s --health-retries 20
+      redis:
+        image: redis:7-alpine
+        ports: ['6379:6379']
+        options: >-
+          --health-cmd "redis-cli ping" --health-interval 5s --health-timeout 3s --health-retries 20
+    env:
+      ATARAH_ENV: dev
+      ATARAH_DATABASE_URL: postgresql://atarah:atarah_ci_password@localhost:5432/atarah
+      ATARAH_REDIS_URL: redis://localhost:6379
+      ATARAH_S3_ENDPOINT: http://localhost:9000
+      ATARAH_S3_ACCESS_KEY: ci_access
+      ATARAH_S3_SECRET_KEY: ci_secret_key_value
+      ATARAH_JWT_ACCESS_SECRET: ci-access-secret-ci-access-secret-0000000
+      ATARAH_REFRESH_TOKEN_PEPPER: ci-refresh-pepper-ci-refresh-pepper-0000
+      ATARAH_CODE_PEPPER: ci-code-pepper-ci-code-pepper-000000000
+      ATARAH_DATA_ENCRYPTION_KEY: ci-data-key-ci-data-key-ci-0000000000
+      ATARAH_PUBLIC_URL: http://localhost:3000
+      ATARAH_CORS_ORIGINS: http://localhost:3200
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @atarah/backend db:generate
+      - uses: actions/download-artifact@v4
+        with:
+          name: builds
+          path: .
+      - name: Migrate and seed
+        working-directory: apps/backend
+        run: |
+          pnpm db:migrate:deploy
+          pnpm db:seed
+      - name: Start the backend
+        working-directory: apps/backend
+        run: |
+          nohup node dist/main.js > backend.log 2>&1 &
+          for i in $(seq 1 40); do curl -sf http://localhost:3000/health/live && break; sleep 2; done
+      - name: Install Chromium
+        working-directory: apps/admin
+        run: npx playwright install --with-deps chromium
+      - name: Playwright
+        working-directory: apps/admin
+        run: pnpm e2e
+      - name: Backend log on failure
+        if: failure()
+        run: cat apps/backend/backend.log
+      - name: Playwright report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results
+          path: apps/admin/test-results
+
+  flutter:
+    name: Flutter analyze, test and Android debug build
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: apps/mobile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.0
+          cache: true
+      - run: flutter pub get
+      - name: Generated code is up to date and formatted
+        run: |
+          dart run swagger_parser
+          dart run build_runner build --delete-conflicting-outputs
+          flutter gen-l10n
+          dart format lib test integration_test
+          git diff --exit-code .
+      - run: flutter analyze
+      - run: flutter test
+      - name: Android debug build (dev flavour)
+        run: flutter build apk --debug --flavor dev -t lib/main_dev.dart

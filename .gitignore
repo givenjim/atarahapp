@@ -1,0 +1,58 @@
+# Dependencies and build output
+node_modules/
+dist/
+build/
+.next/
+out/
+coverage/
+.turbo/
+*.tsbuildinfo
+
+# Environment and secrets (templates are committed as .env.example)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.jks
+*.keystore
+key.properties
+google-services.json
+GoogleService-Info.plist
+firebase_options.dart
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+**/android/.gradle/
+**/android/local.properties
+**/ios/Pods/
+**/ios/.symlinks/
+*.g.dart.bak
+
+# Local infrastructure data
+infrastructure/.data/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.log
+
+# Claude Code local state
+.claude/settings.local.json
+
+# Generated design tokens are committed so web/admin builds do not depend on running the generator first.
+!packages/design-tokens/dist/
+
+# Playwright
+test-results/
+playwright-report/
+apps/admin/e2e/.fixtures/
+*.tsbuildinfo

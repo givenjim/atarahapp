@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<script src="_ds/modernist-92942278-38b0-45eb-ae33-378b336c3544/_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="icons.js"></script>
+</helmet>
+
+<sc-if value="{{ is.home }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;overflow-y:auto;background:#fff;color:#15133d">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:14px 22px 10px">
+      <div>
+        <div style="font-weight:800;font-size:34px;line-height:1;letter-spacing:-.01em">ATARA<span style="color:#5b45f0">H</span></div>
+        <div style="font-size:12.5px;letter-spacing:.14em;color:#77758f;margin-top:6px">Create · Connect · Grow</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding-top:2px">
+        <button onClick="{{ nav.notifications }}" aria-label="Notifications" style="position:relative;width:40px;height:40px;border:0;background:none;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="bell" size="23"></lc-i><span style="position:absolute;top:7px;right:8px;width:8px;height:8px;border-radius:50%;background:#5b45f0;border:2px solid #fff"></span></button>
+        <button onClick="{{ nav.profile }}" aria-label="My profile" style="width:42px;height:42px;border-radius:50%;border:0;background:#ece8ff;color:#5b45f0;font-weight:700;font-size:17px;cursor:pointer">N</button>
+      </div>
+    </div>
+    <div style="margin:4px 0 0;padding:28px 22px 22px;border-radius:28px 28px 0 0;background:radial-gradient(circle at 92% 18%,#e7e0ff 0,transparent 42%),radial-gradient(circle at 70% 60%,#f3edff 0,transparent 45%),linear-gradient(180deg,#f8f7fe,#fff);position:relative;overflow:hidden">
+      <img src="assets/ribbon.png" alt="" style="position:absolute;right:-4px;top:12px;width:122px;height:148px;object-fit:cover;opacity:.95">
+      <h1 style="font-weight:800;font-size:34px;line-height:1.1;letter-spacing:-.02em;margin:0 0 12px">Welcome, Nia</h1>
+      <p style="font-size:15.5px;line-height:1.6;color:#4a4868;margin:0;max-width:240px">Your creative journey matters. Let's build what's next.</p>
+      <div style="width:64px;height:3px;border-radius:3px;background:linear-gradient(90deg,#5b45f0,#a78bfa);margin:16px 0 0 4px;transform:rotate(-8deg)"></div>
+      <div style="margin-top:28px;border-radius:18px;padding:20px;background:linear-gradient(135deg,#1c1a4a 0%,#25206a 55%,#2f2783 100%);color:#fff;box-shadow:0 14px 30px rgba(28,26,74,.25)">
+        <div onClick="{{ nav.passport }}" style="display:flex;gap:18px;align-items:center;cursor:pointer">
+          <div style="width:92px;height:92px;flex:none;border-radius:50%;background:conic-gradient(#8b7bff 0 60%,rgba(255,255,255,.14) 60% 100%);display:grid;place-items:center"><div style="width:76px;height:76px;border-radius:50%;background:#211d58;display:grid;place-items:center;font-weight:700;font-size:20px">60%</div></div>
+          <div style="flex:1;min-width:0"><div style="font-weight:700;font-size:17px;margin-bottom:6px">Profile completion</div><div style="font-size:13px;line-height:1.55;color:rgba(255,255,255,.8)">Complete your profile to unlock more opportunities and get better recommendations.</div></div>
+          <lc-i name="chevron-right" size="20"></lc-i>
+        </div>
+        <button onClick="{{ nav.passport }}" style="margin-top:18px;width:100%;height:48px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:15px;cursor:pointer" style-hover="filter:brightness(1.08)">View profile</button>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0 22px;margin:22px 0 14px"><div style="font-weight:700;font-size:20px">Quick Access</div><button onClick="{{ nav.explore }}" style="border:0;background:none;color:#5b45f0;font-size:13.5px;font-weight:600;cursor:pointer">See all</button></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:0 22px">
+      <sc-for list="{{ quick }}" as="q" hint-placeholder-count="4">
+        <button onClick="{{ q.go }}" style="height:96px;border:0;border-radius:16px;background:{{ q.bg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;color:#15133d;font-size:12px;font-weight:600" style-hover="transform:translateY(-2px)"><span style="color:{{ q.fg }}"><lc-i name="{{ q.icon }}" size="28" stroke="1.8"></lc-i></span>{{ q.label }}</button>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0 22px;margin:28px 0 14px"><div style="font-weight:700;font-size:20px">Featured</div><button onClick="{{ nav.opps }}" style="border:0;background:none;color:#5b45f0;font-size:13.5px;font-weight:600;cursor:pointer">See all</button></div>
+    <div onClick="{{ nav.opp }}" style="margin:0 22px;height:210px;border-radius:16px;overflow:hidden;position:relative;cursor:pointer;background:#2a2a35">
+      <img src="assets/photo_cam.png" alt="Photographer at work" style="position:absolute;right:0;top:0;width:72%;height:100%;object-fit:cover">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,14,40,.95) 0%,rgba(16,14,40,.8) 38%,rgba(16,14,40,.1) 75%),linear-gradient(0deg,rgba(16,14,40,.75),transparent 45%)"></div>
+      <div style="position:absolute;left:20px;right:20px;bottom:18px;color:#fff">
+        <span style="display:inline-flex;height:28px;align-items:center;padding:0 12px;border-radius:999px;background:#6a55f2;font-size:12.5px;font-weight:600">Featured Opportunity</span>
+        <div style="font-weight:700;font-size:22px;line-height:1.25;margin:12px 0 10px;max-width:220px">Digital Storytelling Grant Program</div>
+        <div style="font-size:12.5px;color:rgba(255,255,255,.88)">Creative Economy Kenya · Deadline: 14 Nov 2026</div>
+      </div>
+      <span style="position:absolute;right:16px;top:50%;margin-top:-18px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.28);backdrop-filter:blur(6px);display:grid;place-items:center;color:#fff"><lc-i name="chevron-right" size="20"></lc-i></span>
+    </div>
+
+    <div onClick="{{ nav.lesson }}" style="margin:16px 22px 0;padding:18px;border-radius:18px;background:#f6f4ff;display:flex;gap:16px;align-items:center;cursor:pointer">
+      <span style="width:48px;height:48px;flex:none;border-radius:50%;background:#e6f7ec;color:#1f9d55;display:grid;place-items:center"><lc-i name="sprout" size="24"></lc-i></span>
+      <div style="flex:1"><div style="font-weight:700;font-size:15px;margin-bottom:4px">Continue: Character Animation Basics</div><div style="font-size:13px;line-height:1.5;color:#4a4868">Lesson 4 of 7 · 12 min left</div><div style="height:6px;border-radius:6px;background:#e6e2fb;margin-top:10px"><div style="width:57%;height:100%;border-radius:6px;background:linear-gradient(90deg,#7b6cf6,#5a46ee)"></div></div></div>
+      <lc-i name="chevron-right" size="20"></lc-i>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0 22px;margin:28px 0 4px"><div style="font-weight:700;font-size:20px">Recommended for you</div><button onClick="{{ nav.opps }}" style="border:0;background:none;color:#5b45f0;font-size:13.5px;font-weight:600;cursor:pointer">See all</button></div>
+    <div style="padding:0 22px 10px;font-size:12.5px;color:#77758f">Because you selected Animation and Visual Art</div>
+    <div style="display:flex;gap:12px;overflow-x:auto;padding:4px 22px 6px">
+      <sc-for list="{{ recOpps }}" as="o" hint-placeholder-count="3">
+        <div onClick="{{ nav.opp }}" style="flex:none;width:250px;padding:16px;border-radius:18px;border:1px solid #ecebf4;background:#fff;box-shadow:0 4px 16px rgba(40,30,120,.04);cursor:pointer">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="display:inline-flex;height:24px;align-items:center;padding:0 10px;border-radius:999px;background:{{ o.tbg }};color:{{ o.tfg }};font-size:11.5px;font-weight:600">{{ o.type }}</span><lc-i name="bookmark" size="18"></lc-i></div>
+          <div style="font-weight:700;font-size:15.5px;line-height:1.3;margin:12px 0 4px">{{ o.title }}</div>
+          <div style="font-size:12.5px;color:#4a4868;display:flex;align-items:center;gap:5px">{{ o.org }}<span style="color:#5b45f0"><lc-i name="badge-check" size="14"></lc-i></span></div>
+          <div style="display:flex;gap:14px;font-size:12px;color:#77758f;margin-top:12px"><span style="display:flex;gap:4px;align-items:center"><lc-i name="map-pin" size="13"></lc-i>{{ o.loc }}</span><span style="display:flex;gap:4px;align-items:center"><lc-i name="calendar" size="13"></lc-i>{{ o.due }}</span></div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0 22px;margin:26px 0 14px"><div style="font-weight:700;font-size:20px">Creatives to meet</div><button onClick="{{ nav.explore }}" style="border:0;background:none;color:#5b45f0;font-size:13.5px;font-weight:600;cursor:pointer">See all</button></div>
+    <div style="display:flex;gap:12px;overflow-x:auto;padding:0 22px 6px">
+      <sc-for list="{{ meet }}" as="c" hint-placeholder-count="4">
+        <div onClick="{{ nav.creative }}" style="flex:none;width:132px;padding:12px;border-radius:18px;border:1px solid #ecebf4;background:#fff;cursor:pointer">
+          <img src="{{ c.img }}" alt="{{ c.name }}" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;display:block">
+          <div style="font-weight:700;font-size:13.5px;margin-top:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.name }}</div>
+          <div style="font-size:11.5px;color:#77758f;margin-top:2px">{{ c.disc }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0 22px;margin:26px 0 14px"><div style="font-weight:700;font-size:20px">From the community</div><button onClick="{{ nav.community }}" style="border:0;background:none;color:#5b45f0;font-size:13.5px;font-weight:600;cursor:pointer">See all</button></div>
+    <div onClick="{{ nav.post }}" style="margin:0 22px;padding:16px;border-radius:18px;border:1px solid #ecebf4;cursor:pointer">
+      <div style="display:flex;gap:10px;align-items:center"><img src="assets/p_wanjiku.png" alt="" style="width:36px;height:36px;border-radius:50%;object-fit:cover"><div style="flex:1"><div style="font-weight:700;font-size:13.5px">Wanjiku Njeri</div><div style="font-size:11.5px;color:#77758f">Discussion · Film Kenya group</div></div></div>
+      <div style="font-size:14px;line-height:1.55;margin-top:10px">How are you pricing short-form brand content in 2026? Sharing my rate card and what changed this year.</div>
+      <div style="display:flex;gap:16px;font-size:12px;color:#77758f;margin-top:12px"><span style="display:flex;gap:5px;align-items:center"><lc-i name="heart" size="14"></lc-i>48</span><span style="display:flex;gap:5px;align-items:center"><lc-i name="message-circle" size="14"></lc-i>23 replies</span></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 22px 0">
+      <div onClick="{{ nav.market }}" style="padding:16px;border-radius:18px;background:#fff1e5;cursor:pointer"><span style="color:#f08a24"><lc-i name="store" size="24"></lc-i></span><div style="font-weight:700;font-size:15px;margin:12px 0 4px">Marketplace</div><div style="font-size:12px;line-height:1.45;color:#4a4868">Hire creatives or sell your services</div></div>
+      <div onClick="{{ nav.mentorship }}" style="padding:16px;border-radius:18px;background:#fdecf2;cursor:pointer"><span style="color:#e8457a"><lc-i name="handshake" size="24"></lc-i></span><div style="font-weight:700;font-size:15px;margin:12px 0 4px">Mentorship</div><div style="font-size:12px;line-height:1.45;color:#4a4868">Book time with industry mentors</div></div>
+    </div>
+
+    <div onClick="{{ nav.article }}" style="margin:16px 22px 28px;padding:18px;border-radius:18px;background:#f6f4ff;display:flex;gap:16px;align-items:center;cursor:pointer">
+      <span style="width:48px;height:48px;flex:none;border-radius:50%;background:#ece8ff;color:#5b45f0;display:grid;place-items:center"><lc-i name="book-open" size="22"></lc-i></span>
+      <div style="flex:1"><div style="font-weight:700;font-size:15px;margin-bottom:4px">Grow your creative career</div><div style="font-size:13px;line-height:1.5;color:#4a4868">How to price commissioned illustration in Kenya — a 6-minute read.</div></div>
+      <lc-i name="chevron-right" size="20"></lc-i>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.explore }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;overflow-y:auto;color:#15133d;background:radial-gradient(circle at 100% 0%,#e4dcff 0,transparent 38%),radial-gradient(circle at 75% 20%,#f1ebff 0,transparent 35%),#fff">
+    <div style="padding:10px 22px 0;display:flex;justify-content:space-between;align-items:flex-start">
+      <div>
+        <span style="color:#7b6cf6"><lc-i name="sparkles" size="26" stroke="1.6"></lc-i></span>
+        <h1 style="font-weight:800;font-size:32px;line-height:1.1;letter-spacing:-.02em;margin:8px 0 12px">Explore creatives</h1>
+        <p style="font-size:15.5px;line-height:1.55;color:#4a4868;margin:0;max-width:270px">Discover amazing talent, connect and be inspired.</p>
+      </div>
+      <button onClick="{{ nav.search }}" aria-label="Search" style="margin-top:14px;width:50px;height:50px;border-radius:14px;border:0;background:#fff;box-shadow:0 6px 18px rgba(60,40,160,.1);cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="search" size="23"></lc-i></button>
+    </div>
+    <div style="display:flex;gap:10px;overflow-x:auto;padding:24px 22px 6px">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="6">
+        <button onClick="{{ c.pick }}" style="flex:none;min-width:84px;height:72px;padding:0 14px;border-radius:14px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;font-size:13.5px;font-weight:500;box-shadow:{{ c.sh }}"><lc-i name="{{ c.icon }}" size="20" stroke="1.7"></lc-i>{{ c.label }}</button>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;padding:14px 22px 0">
+      <sc-for list="{{ people }}" as="p" hint-placeholder-count="5">
+        <div onClick="{{ nav.creative }}" style="display:flex;gap:16px;align-items:center;padding:16px;border-radius:18px;border:1px solid #ecebf4;background:#fff;box-shadow:0 4px 16px rgba(40,30,120,.04);cursor:pointer" style-hover="border-color:#d6d0fb">
+          <img src="{{ p.img }}" alt="{{ p.name }}" style="width:96px;height:96px;flex:none;border-radius:12px;object-fit:cover">
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:6px;font-weight:700;font-size:16px">{{ p.name }}<sc-if value="{{ p.verified }}"><span style="color:#fff;display:inline-flex"><lc-i name="badge-check" size="17" fill="#5b45f0" stroke="2"></lc-i></span></sc-if></div>
+            <div style="font-size:13.5px;color:#4a4868;margin:3px 0 9px">{{ p.role }}</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ p.tags }}" as="t"><span style="display:inline-flex;height:24px;align-items:center;padding:0 10px;border-radius:999px;background:#f1eeff;color:#5b45f0;font-size:11.5px;font-weight:500">{{ t }}</span></sc-for></div>
+            <div style="display:flex;gap:5px;align-items:center;font-size:12px;color:#4a4868;margin-top:9px"><lc-i name="map-pin" size="13"></lc-i>{{ p.loc }}</div>
+          </div>
+          <lc-i name="chevron-right" size="20"></lc-i>
+        </div>
+      </sc-for>
+      <sc-if value="{{ noPeople }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:28px 20px;border-radius:18px;border:1px dashed #d6d0fb;text-align:center;font-size:14px;color:#4a4868">No creatives in this discipline yet nearby. <a href="#" onClick="{{ resetCat }}" style="font-weight:600">Show all</a></div>
+      </sc-if>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0 22px;margin:28px 0 14px"><div style="font-weight:700;font-size:20px">More to explore</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 22px">
+      <sc-for list="{{ eco }}" as="e" hint-placeholder-count="6">
+        <button onClick="{{ e.go }}" style="text-align:left;padding:16px;border-radius:16px;border:0;background:{{ e.bg }};cursor:pointer;color:#15133d;display:flex;flex-direction:column;gap:10px"><span style="color:{{ e.fg }}"><lc-i name="{{ e.icon }}" size="24" stroke="1.8"></lc-i></span><span style="font-weight:700;font-size:14.5px">{{ e.label }}</span><span style="font-size:12px;color:#4a4868;line-height:1.4">{{ e.d }}</span></button>
+      </sc-for>
+    </div>
+
+    <div onClick="{{ nav.passport }}" style="margin:16px 22px 28px;padding:18px;border-radius:18px;background:#f3f1ff;display:flex;gap:16px;align-items:center;cursor:pointer">
+      <span style="width:54px;height:54px;flex:none;border-radius:50%;background:#e4dfff;color:#5b45f0;display:grid;place-items:center"><lc-i name="users" size="24"></lc-i></span>
+      <div style="flex:1"><div style="font-weight:700;font-size:14.5px;color:#1c1a4a;margin-bottom:4px">Want to be discovered?</div><div style="font-size:13px;line-height:1.5;color:#5b45f0">Complete your profile and showcase your work to the Atarah community.</div></div>
+      <lc-i name="chevron-right" size="20"></lc-i>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ showSearch }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#fff;color:#15133d">
+    <div style="flex:none;display:flex;gap:10px;align-items:center;padding:8px 18px 12px">
+      <button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:48px;flex:none;border:0;background:none;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="24"></lc-i></button>
+      <div style="flex:1;height:48px;display:flex;align-items:center;gap:10px;padding:0 14px;border-radius:14px;border:1.5px solid #7b6cf6;background:#fff;box-shadow:0 0 0 4px #efecff"><lc-i name="search" size="18"></lc-i><input value="{{ q }}" onInput="{{ setQ }}" aria-label="Search Atarah" style="flex:1;border:0;outline:0;font-size:15px;background:none;color:#15133d"><lc-i name="x" size="16"></lc-i></div>
+      <button onClick="{{ nav.filters }}" aria-label="Filters" style="width:48px;height:48px;flex:none;border-radius:14px;border:0;background:#f1eeff;color:#5b45f0;cursor:pointer;display:grid;place-items:center;position:relative"><lc-i name="sliders-horizontal" size="20"></lc-i><span style="position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:#5b45f0"></span></button>
+    </div>
+    <div style="flex:none;display:flex;gap:8px;overflow-x:auto;padding:0 18px 12px;border-bottom:1px solid #f0eff6">
+      <sc-for list="{{ stabs }}" as="t" hint-placeholder-count="5">
+        <button onClick="{{ t.pick }}" style="flex:none;height:36px;padding:0 14px;border-radius:999px;border:1px solid {{ t.bd }};background:{{ t.bg }};color:{{ t.fg }};font-size:13px;font-weight:600;cursor:pointer">{{ t.label }} <span style="opacity:.65;font-weight:500">{{ t.n }}</span></button>
+      </sc-for>
+    </div>
+    <div style="flex:1;overflow-y:auto;min-height:0;padding:6px 18px 24px">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;padding:12px 0 4px"><span style="font-size:12px;color:#77758f;width:100%">Recent</span><sc-for list="{{ recent }}" as="r"><span style="display:inline-flex;gap:6px;align-items:center;height:30px;padding:0 12px;border-radius:999px;background:#f7f6fd;font-size:12.5px;color:#4a4868"><lc-i name="history" size="13"></lc-i>{{ r }}</span></sc-for></div>
+      <sc-for list="{{ results }}" as="g" hint-placeholder-count="3">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin:20px 0 10px"><div style="font-weight:700;font-size:16px">{{ g.label }}</div><span style="font-size:13px;font-weight:600;color:#5b45f0">See all {{ g.n }}</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ g.items }}" as="r">
+            <div onClick="{{ r.go }}" style="display:flex;gap:12px;align-items:center;padding:12px;border-radius:16px;border:1px solid #ecebf4;cursor:pointer">
+              <sc-if value="{{ r.img }}"><img src="{{ r.img }}" alt="" style="width:52px;height:52px;border-radius:12px;object-fit:cover;flex:none"></sc-if>
+              <sc-if value="{{ r.icon }}"><span style="width:52px;height:52px;border-radius:12px;flex:none;display:grid;place-items:center;background:{{ r.bg }};color:{{ r.fg }}"><lc-i name="{{ r.icon }}" size="22"></lc-i></span></sc-if>
+              <div style="flex:1;min-width:0"><div style="font-weight:700;font-size:14px">{{ r.t }}</div><div style="font-size:12.5px;color:#77758f;margin-top:2px">{{ r.s }}</div></div>
+              <lc-i name="chevron-right" size="18"></lc-i>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.filters }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ nav.back }}" style="position:absolute;inset:0;background:rgba(21,19,61,.45);z-index:5"></div>
+  <div style="position:absolute;left:0;right:0;bottom:0;max-height:88%;display:flex;flex-direction:column;background:#fff;border-radius:28px 28px 0 0;z-index:6;color:#15133d;box-shadow:0 -10px 40px rgba(21,19,61,.2)">
+    <div style="flex:none;padding:10px 22px 0"><div style="width:40px;height:4px;border-radius:4px;background:#dcdbe6;margin:0 auto 14px"></div><div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:800;font-size:22px">Filters</div><button onClick="{{ resetF }}" style="border:0;background:none;color:#5b45f0;font-weight:600;font-size:14px;cursor:pointer">Reset</button></div></div>
+    <div style="flex:1;overflow-y:auto;padding:8px 22px 12px">
+      <sc-for list="{{ fgroups }}" as="g" hint-placeholder-count="3">
+        <div style="font-weight:700;font-size:14px;margin:18px 0 10px">{{ g.label }}</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{ g.items }}" as="c"><button onClick="{{ c.toggle }}" style="height:38px;padding:0 14px;border-radius:999px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font-size:13px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:6px">{{ c.label }}</button></sc-for></div>
+      </sc-for>
+      <div onClick="{{ toggleVer }}" style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding:14px 16px;border-radius:14px;background:#f7f6fd;cursor:pointer"><div><div style="font-weight:700;font-size:14px">Verified only</div><div style="font-size:12px;color:#77758f">Identity or skills verified by Atarah</div></div><span style="width:48px;height:28px;border-radius:999px;background:{{ verTrack }};position:relative;transition:background .2s"><span style="position:absolute;top:3px;left:{{ verKnob }};width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:left .2s"></span></span></div>
+    </div>
+    <div style="flex:none;padding:12px 22px 16px;border-top:1px solid #f0eff6"><button onClick="{{ nav.back }}" style="width:100%;height:52px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 8px 20px rgba(91,69,240,.28)">Show 24 results</button></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.economy }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;overflow-y:auto;color:#15133d;background:radial-gradient(circle at 100% 0%,#e4dcff 0,transparent 38%),#fff">
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 14px"><button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:44px;border:0;background:none;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="24"></lc-i></button></div>
+    <div style="padding:0 22px">
+      <span style="display:inline-flex;height:26px;align-items:center;padding:0 12px;border-radius:999px;background:#f1eeff;color:#5b45f0;font-size:12px;font-weight:600">Kenya</span>
+      <h1 style="font-weight:800;font-size:30px;line-height:1.12;letter-spacing:-.02em;margin:12px 0 10px">Creative economy</h1>
+      <p style="font-size:15px;line-height:1.55;color:#4a4868;margin:0">See where creative work is happening across the country — people, organisations and opportunities by county.</p>
+    </div>
+    <div style="margin:20px 22px 0;height:220px;border-radius:20px;position:relative;overflow:hidden;background:linear-gradient(135deg,#1c1a4a,#2f2783 60%,#5a46ee)">
+      <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 70%,rgba(139,123,255,.5) 0,transparent 30%),radial-gradient(circle at 70% 40%,rgba(167,139,250,.45) 0,transparent 28%)"></div>
+      <div style="position:absolute;left:18px;top:16px;color:#fff;font-size:12px;display:flex;gap:6px;align-items:center;opacity:.85"><lc-i name="map" size="14"></lc-i>Interactive county map</div>
+      <sc-for list="{{ pins }}" as="p"><span style="position:absolute;left:{{ p.x }};top:{{ p.y }};display:flex;align-items:center;gap:6px;padding:5px 10px 5px 6px;border-radius:999px;background:#fff;font-size:11.5px;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,.2)"><span style="width:8px;height:8px;border-radius:50%;background:#5b45f0"></span>{{ p.n }}</span></sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 22px 0">
+      <sc-for list="{{ ecoStats }}" as="s"><div style="padding:14px 12px;border-radius:16px;background:#f7f6fd"><div style="font-weight:800;font-size:20px">{{ s.v }}</div><div style="font-size:11.5px;color:#77758f;margin-top:2px">{{ s.l }}</div></div></sc-for>
+    </div>
+    <div style="font-weight:700;font-size:20px;padding:0 22px;margin:26px 0 12px">Counties</div>
+    <div style="display:flex;flex-direction:column;gap:10px;padding:0 22px 28px">
+      <sc-for list="{{ counties }}" as="c" hint-placeholder-count="4">
+        <div onClick="{{ nav.county }}" style="display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;border:1px solid #ecebf4;cursor:pointer"><span style="width:44px;height:44px;border-radius:12px;background:{{ c.bg }};color:{{ c.fg }};display:grid;place-items:center;font-weight:800;font-size:13px">{{ c.code }}</span><div style="flex:1"><div style="font-weight:700;font-size:15px">{{ c.name }}</div><div style="font-size:12.5px;color:#77758f">{{ c.meta }}</div></div><lc-i name="chevron-right" size="18"></lc-i></div>
+      </sc-for>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.county }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;overflow-y:auto;color:#15133d;background:#fff">
+    <div style="padding:6px 14px 22px;background:linear-gradient(135deg,#1c1a4a,#2f2783);color:#fff;border-radius:0 0 28px 28px">
+      <button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:44px;border:0;background:none;cursor:pointer;color:#fff;display:grid;place-items:center"><lc-i name="chevron-left" size="24"></lc-i></button>
+      <div style="padding:0 8px"><div style="font-size:12px;opacity:.75;letter-spacing:.1em">COUNTY ECOSYSTEM</div><h1 style="font-weight:800;font-size:30px;margin:6px 0 8px">Nairobi</h1><div style="font-size:13.5px;opacity:.85">612 creatives · 48 organisations · 31 open opportunities</div></div>
+    </div>
+    <div style="font-weight:700;font-size:18px;padding:0 22px;margin:22px 0 12px">Disciplines</div>
+    <div style="display:flex;flex-direction:column;gap:12px;padding:0 22px">
+      <sc-for list="{{ discBars }}" as="d"><div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span style="font-weight:600">{{ d.l }}</span><span style="color:#77758f">{{ d.n }}</span></div><div style="height:8px;border-radius:8px;background:#f1eeff"><div style="height:100%;width:{{ d.w }};border-radius:8px;background:linear-gradient(90deg,#7b6cf6,#5a46ee)"></div></div></div></sc-for>
+    </div>
+    <div style="font-weight:700;font-size:18px;padding:0 22px;margin:26px 0 12px">Organisations</div>
+    <div style="display:flex;flex-direction:column;gap:10px;padding:0 22px">
+      <sc-for list="{{ orgs }}" as="o"><div style="display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:16px;border:1px solid #ecebf4"><span style="width:40px;height:40px;border-radius:12px;background:{{ o.bg }};color:{{ o.fg }};display:grid;place-items:center"><lc-i name="building-2" size="19"></lc-i></span><div style="flex:1"><div style="font-weight:700;font-size:14px">{{ o.n }}</div><div style="font-size:12px;color:#77758f">{{ o.t }}</div></div></div></sc-for>
+    </div>
+    <div style="font-weight:700;font-size:18px;padding:0 22px;margin:26px 0 12px">Rising talent</div>
+    <div style="display:flex;gap:12px;overflow-x:auto;padding:0 22px 28px">
+      <sc-for list="{{ meet }}" as="c"><div onClick="{{ nav.creative }}" style="flex:none;width:110px;cursor:pointer"><img src="{{ c.img }}" alt="" style="width:110px;height:110px;border-radius:16px;object-fit:cover"><div style="font-weight:700;font-size:13px;margin-top:8px">{{ c.name }}</div><div style="font-size:11.5px;color:#77758f">{{ c.disc }}</div></div></sc-for>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.article }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#fff;color:#15133d">
+    <div style="flex:none;display:flex;align-items:center;justify-content:space-between;padding:6px 14px"><button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:44px;border:0;background:none;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="24"></lc-i></button><div style="display:flex;gap:4px"><button aria-label="Save" style="width:44px;height:44px;border:0;background:none;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="bookmark" size="20"></lc-i></button><button aria-label="Share" style="width:44px;height:44px;border:0;background:none;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="share-2" size="20"></lc-i></button></div></div>
+    <div style="flex:1;overflow-y:auto;min-height:0;padding:0 22px 28px">
+      <span style="display:inline-flex;height:26px;align-items:center;gap:6px;padding:0 12px;border-radius:999px;background:#f1eeff;color:#5b45f0;font-size:12px;font-weight:600"><lc-i name="badge-check" size="13"></lc-i>Atarah Editorial</span>
+      <h1 style="font-weight:800;font-size:28px;line-height:1.2;letter-spacing:-.02em;margin:14px 0 12px;text-wrap:pretty">How to price commissioned illustration in Kenya</h1>
+      <div style="display:flex;gap:10px;align-items:center;font-size:12.5px;color:#77758f"><img src="assets/p_kiptoo.png" alt="" style="width:30px;height:30px;border-radius:50%;object-fit:cover"><span><b style="color:#15133d">Kiptoo Langat</b> · 6 min read · 9 Oct 2026</span></div>
+      <div style="height:190px;border-radius:18px;margin:20px 0;background:linear-gradient(135deg,#ece8ff,#f8e8ff);position:relative;overflow:hidden"><img src="assets/ribbon.png" alt="" style="position:absolute;right:20px;top:20px;height:150px"></div>
+      <p style="font-size:15.5px;line-height:1.7;color:#2c2a50;margin:0 0 14px">Most early-career illustrators under-price because they quote by the hour. Clients don't buy hours — they buy usage, reach and reliability.</p>
+      <p style="font-size:15.5px;line-height:1.7;color:#2c2a50;margin:0 0 14px">Start with a day rate that covers your costs and the time you can't bill, then add a licence fee based on where the work will appear and for how long.</p>
+      <div style="padding:16px 18px;border-radius:16px;background:#f6f4ff;font-size:14.5px;line-height:1.6;color:#2c2a50;margin:6px 0 14px"><b style="color:#5b45f0">Rule of thumb:</b> an editorial spot and a national billboard are not the same job, even if they take the same afternoon.</div>
+      <p style="font-size:15.5px;line-height:1.7;color:#2c2a50;margin:0">Put your rates in your Atarah services so buyers see a starting price before they message you.</p>
+      <div onClick="{{ nav.course }}" style="margin-top:22px;display:flex;gap:14px;align-items:center;padding:14px;border-radius:16px;border:1px solid #ecebf4;cursor:pointer"><span style="width:44px;height:44px;border-radius:12px;background:#e6f7ec;color:#1f9d55;display:grid;place-items:center"><lc-i name="graduation-cap" size="20"></lc-i></span><div style="flex:1"><div style="font-size:12px;color:#77758f">Related Skill Lab</div><div style="font-weight:700;font-size:14px">Pricing Your Creative Work</div></div><lc-i name="chevron-right" size="18"></lc-i></div>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const PEOPLE=[
+ {name:'Nia Wairimu',role:'Illustrator and animator',tags:['Animation','Visual Art'],loc:'Nairobi, Kenya',img:'assets/p_nia.png',verified:true,cat:['Animation','Design']},
+ {name:'Amani Otieno',role:'Sound engineer and producer',tags:['Music','Audio Production'],loc:'Nairobi, Kenya',img:'assets/p_amani.png',verified:false,cat:['Music']},
+ {name:'Zuri Mwangi',role:'Photographer and filmmaker',tags:['Photography','Film'],loc:'Mombasa, Kenya',img:'assets/p_zuri.png',verified:false,cat:['Film','Photography']},
+ {name:'Kiptoo Langat',role:'Graphic designer and visual artist',tags:['Design','Branding'],loc:'Kisumu, Kenya',img:'assets/p_kiptoo.png',verified:false,cat:['Design']},
+ {name:'Wanjiku Njeri',role:'Creative director and producer',tags:['Film','Storytelling'],loc:'Nairobi, Kenya',img:'assets/p_wanjiku.png',verified:false,cat:['Film']}];
+const CATS=[['All','layout-grid'],['Animation','aperture'],['Dance','person-standing'],['Design','pen-tool'],['Film','clapperboard'],['Music','music'],['Photography','camera']];
+const STABS=[['All',''],['Creatives','24'],['Opportunities','6'],['Learning','4'],['Marketplace','9'],['Mentors','3']];
+const FG={Discipline:['Animation','Illustration','Photography','Film','Design','Music'],Location:['Nairobi','Mombasa','Kisumu','Nakuru','Remote'],Availability:['Open to commissions','Open to collaboration','Hiring']};
+const sel=(on)=>({bg:on?'#5b45f0':'#fff',fg:on?'#fff':'#15133d',bd:on?'#5b45f0':'#e4e2ef'});
+class Component extends DCLogic {
+  state={cat:'All',q:'animators in Nairobi',stab:'All',f:['Animation','Nairobi'],ver:true};
+  renderVals(){
+    const st=this.state,nav=this.props.nav||{},s=this.props.screen;
+    const people=PEOPLE.filter(p=>st.cat==='All'||p.cat.includes(st.cat));
+    const tog=v=>this.setState(x=>({f:x.f.includes(v)?x.f.filter(y=>y!==v):[...x.f,v]}));
+    return {
+      nav,is:{[s]:true},showSearch:s==='search'||s==='filters',
+      quick:[{label:'Profile',icon:'user',bg:'#f1eeff',fg:'#5b45f0',go:nav.profile},{label:'Learning',icon:'graduation-cap',bg:'#e9f8ee',fg:'#1f9d55',go:nav.labs},{label:'Community',icon:'users',bg:'#fdecf2',fg:'#e8457a',go:nav.community},{label:'Opportunities',icon:'briefcase',bg:'#fff1e5',fg:'#f08a24',go:nav.opps}],
+      recOpps:[{type:'Grant',tbg:'#f1eeff',tfg:'#5b45f0',title:'Animation Futures Fund 2026',org:'Kenya Film Commission',loc:'Kenya',due:'14 Nov'},{type:'Gig',tbg:'#fff1e5',tfg:'#c76a10',title:'Explainer video for fintech launch',org:'Pesa Labs',loc:'Remote',due:'2 Nov'},{type:'Festival',tbg:'#fdecf2',tfg:'#c62f63',title:'Nairobi Animation Week — open call',org:'NAW',loc:'Nairobi',due:'30 Nov'}],
+      meet:PEOPLE.slice(1).map(p=>({name:p.name,disc:p.tags[0],img:p.img})),
+      cats:CATS.map(([label,icon])=>{const on=st.cat===label;return{label,icon,pick:()=>this.setState({cat:label}),bg:on?'#5b45f0':'#fff',fg:on?'#fff':'#15133d',bd:on?'#5b45f0':'#ecebf4',sh:on?'0 8px 18px rgba(91,69,240,.3)':'none'};}),
+      people,noPeople:people.length===0,resetCat:e=>{e.preventDefault();this.setState({cat:'All'});},
+      eco:[{label:'Skill Labs',icon:'graduation-cap',d:'Courses, tutorials, toolkits',bg:'#e9f8ee',fg:'#1f9d55',go:nav.labs},{label:'Opportunities',icon:'briefcase',d:'Grants, gigs, jobs, festivals',bg:'#fff1e5',fg:'#f08a24',go:nav.opps},{label:'Marketplace',icon:'store',d:'Services and products',bg:'#fdecf2',fg:'#e8457a',go:nav.market},{label:'Mentorship',icon:'handshake',d:'Book industry mentors',bg:'#f1eeff',fg:'#5b45f0',go:nav.mentorship},{label:'Articles',icon:'book-open',d:'Guides and stories',bg:'#eaf3ff',fg:'#2f6fe0',go:nav.article},{label:'Creative economy',icon:'map',d:'Counties and ecosystems',bg:'#f6f0ff',fg:'#8b5cf6',go:nav.economy}],
+      q:st.q,setQ:e=>this.setState({q:e.target.value}),
+      stabs:STABS.map(([label,n])=>({label,n,pick:()=>this.setState({stab:label}),...sel(st.stab===label)})),
+      recent:['music grants','branding mentors','motion design courses'],
+      results:[
+       {label:'Creatives',n:24,items:PEOPLE.slice(0,2).map(p=>({t:p.name,s:p.role+' · '+p.loc,img:p.img,go:nav.creative}))},
+       {label:'Opportunities',n:6,items:[{t:'Animation Futures Fund 2026',s:'Grant · Kenya Film Commission',icon:'briefcase',bg:'#fff1e5',fg:'#f08a24',go:nav.opp}]},
+       {label:'Learning',n:4,items:[{t:'Character Animation Basics',s:'Course · Atarah · 7 lessons',icon:'graduation-cap',bg:'#e9f8ee',fg:'#1f9d55',go:nav.course}]},
+       {label:'Mentors',n:3,items:[{t:'Wanjiku Njeri',s:'Creative direction · from KES 2,500',img:'assets/p_wanjiku.png',go:nav.mentor}]}].filter(g=>st.stab==='All'||g.label===st.stab),
+      fgroups:Object.entries(FG).map(([label,items])=>({label,items:items.map(l=>({label:l,toggle:()=>tog(l),...sel(st.f.includes(l))}))})),
+      resetF:()=>this.setState({f:[],ver:false}),toggleVer:()=>this.setState({ver:!st.ver}),
+      verTrack:st.ver?'#5b45f0':'#dcdbe6',verKnob:st.ver?'23px':'3px',
+      pins:[{n:'Nairobi',x:'48%',y:'58%'},{n:'Mombasa',x:'62%',y:'80%'},{n:'Kisumu',x:'12%',y:'44%'},{n:'Nakuru',x:'30%',y:'28%'}],
+      ecoStats:[{v:'47',l:'Counties'},{v:'1,280',l:'Creatives'},{v:'96',l:'Open calls'}],
+      counties:[{code:'NBI',name:'Nairobi',meta:'612 creatives · 31 opportunities',bg:'#f1eeff',fg:'#5b45f0'},{code:'MSA',name:'Mombasa',meta:'184 creatives · 9 opportunities',bg:'#fff1e5',fg:'#f08a24'},{code:'KSM',name:'Kisumu',meta:'141 creatives · 7 opportunities',bg:'#e9f8ee',fg:'#1f9d55'},{code:'NKR',name:'Nakuru',meta:'98 creatives · 5 opportunities',bg:'#fdecf2',fg:'#e8457a'}],
+      discBars:[{l:'Music',n:'164',w:'82%'},{l:'Film / Video',n:'131',w:'66%'},{l:'Fashion',n:'102',w:'51%'},{l:'Visual Art & Animation',n:'96',w:'48%'},{l:'Design',n:'71',w:'36%'}],
+      orgs:[{n:'Kenya Film Commission',t:'Government agency',bg:'#f1eeff',fg:'#5b45f0'},{n:'GoDown Arts Centre',t:'Creative space',bg:'#fff1e5',fg:'#f08a24'},{n:'Nairobi Design Week',t:'Festival',bg:'#fdecf2',fg:'#e8457a'}]
+    };
+  }
+}
+</script>
+</body>
+</html>

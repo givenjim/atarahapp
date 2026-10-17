@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<script src="_ds/modernist-92942278-38b0-45eb-ae33-378b336c3544/_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="icons.js"></script>
+<style>
+:root{--f:'Plus Jakarta Sans',system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--f);color:#15133d;-webkit-font-smoothing:antialiased;background:#f4f2fc}
+button,input,textarea,select{font-family:inherit}
+:focus{outline:none}:focus-visible{outline:2px solid #5b45f0;outline-offset:2px}
+a{color:#5b45f0;text-decoration:none}a:hover{color:#4330d6}
+::-webkit-scrollbar{width:0;height:0}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-wrap:wrap;gap:32px;padding:32px 24px;justify-content:center;align-items:flex-start;background:radial-gradient(circle at 15% 0%,#ece7ff 0,transparent 40%),radial-gradient(circle at 90% 30%,#f5e9ff 0,transparent 40%),#f6f5fc;color:#15133d">
+  <sc-if value="{{ showMap }}" hint-placeholder-val="{{ true }}">
+    <aside style="width:268px;flex:none;height:866px;display:flex;flex-direction:column;background:#fff;border-radius:24px;border:1px solid #ecebf4;box-shadow:0 10px 30px rgba(60,40,160,.06);overflow:hidden">
+      <div style="padding:20px 20px 14px;border-bottom:1px solid #ecebf4">
+        <div style="font-weight:800;font-size:22px;letter-spacing:-.01em">ATARA<span style="color:#5b45f0">H</span></div>
+        <div style="font-size:11px;letter-spacing:.14em;color:#77758f;margin-top:2px">CREATE · CONNECT · GROW</div>
+        <div style="font-size:12px;color:#77758f;margin-top:10px">{{ total }} screens · tap any to jump</div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:4px 10px 16px">
+        <sc-for list="{{ groups }}" as="g" hint-placeholder-count="6">
+          <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#77758f;padding:16px 10px 6px"><span>{{ g.label }}</span><span>{{ g.count }}</span></div>
+          <sc-for list="{{ g.items }}" as="it">
+            <button onClick="{{ it.go }}" style="display:flex;gap:10px;width:100%;text-align:left;padding:8px 10px;border:0;border-radius:10px;background:{{ it.bg }};color:{{ it.fg }};font-size:13px;font-weight:{{ it.fw }};line-height:1.3;cursor:pointer" style-hover="background:#f4f2ff">
+              <span style="font-variant-numeric:tabular-nums;opacity:.55;width:20px;flex:none">{{ it.num }}</span><span>{{ it.label }}</span>
+            </button>
+          </sc-for>
+        </sc-for>
+      </div>
+    </aside>
+  </sc-if>
+
+  <div style="width:404px;height:866px;flex:none;border-radius:54px;background:#0f0f14;padding:7px;box-shadow:0 30px 70px rgba(60,40,160,.2),inset 0 0 0 2px #2a2a33">
+    <div style="width:100%;height:100%;border-radius:47px;overflow:hidden;position:relative;background:#fff;display:flex;flex-direction:column">
+      <div style="flex:none;height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font-size:14px;font-weight:600;background:{{ sbBg }};color:{{ sbFg }};position:relative;z-index:3">
+        <span style="display:flex;gap:8px;align-items:center">9:48<lc-i name="shield" size="13"></lc-i><lc-i name="smartphone" size="13"></lc-i></span>
+        <span style="position:absolute;left:50%;top:10px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#0f0f14"></span>
+        <span style="display:flex;gap:5px;align-items:center"><lc-i name="wifi" size="15" stroke="2.5"></lc-i><lc-i name="signal" size="15" stroke="2.5"></lc-i><lc-i name="battery-full" size="17"></lc-i></span>
+      </div>
+      <sc-if value="{{ ctx.offline }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:none;display:flex;align-items:center;gap:8px;margin:0 12px 6px;padding:9px 14px;border-radius:12px;background:#15133d;color:#fff;font-size:12px;z-index:3"><lc-i name="wifi-off" size="15"></lc-i><span>You're offline. Saved content is still available.</span></div>
+      </sc-if>
+      <div style="flex:1;position:relative;min-height:0">
+        <sc-if value="{{ f.AtarahEntry }}" hint-placeholder-val="{{ false }}"><dc-import name="AtarahEntry" screen="{{ screen }}" nav="{{ nav }}" ctx="{{ ctx }}" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import></sc-if>
+        <sc-if value="{{ f.AtarahDiscover }}" hint-placeholder-val="{{ false }}"><dc-import name="AtarahDiscover" screen="{{ screen }}" nav="{{ nav }}" ctx="{{ ctx }}" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import></sc-if>
+        <sc-if value="{{ f.AtarahCommunity }}" hint-placeholder-val="{{ false }}"><dc-import name="AtarahCommunity" screen="{{ screen }}" nav="{{ nav }}" ctx="{{ ctx }}" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import></sc-if>
+        <sc-if value="{{ f.AtarahOpps }}" hint-placeholder-val="{{ false }}"><dc-import name="AtarahOpps" screen="{{ screen }}" nav="{{ nav }}" ctx="{{ ctx }}" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import></sc-if>
+        <sc-if value="{{ f.AtarahLearn }}" hint-placeholder-val="{{ false }}"><dc-import name="AtarahLearn" screen="{{ screen }}" nav="{{ nav }}" ctx="{{ ctx }}" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import></sc-if>
+        <sc-if value="{{ f.AtarahMarket }}" hint-placeholder-val="{{ false }}"><dc-import name="AtarahMarket" screen="{{ screen }}" nav="{{ nav }}" ctx="{{ ctx }}" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import></sc-if>
+        <sc-if value="{{ f.AtarahMentor }}" hint-placeholder-val="{{ false }}"><dc-import name="AtarahMentor" screen="{{ screen }}" nav="{{ nav }}" ctx="{{ ctx }}" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import></sc-if>
+        <sc-if value="{{ f.AtarahIdentity }}" hint-placeholder-val="{{ false }}"><dc-import name="AtarahIdentity" screen="{{ screen }}" nav="{{ nav }}" ctx="{{ ctx }}" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import></sc-if>
+        <sc-if value="{{ f.AtarahAccount }}" hint-placeholder-val="{{ false }}"><dc-import name="AtarahAccount" screen="{{ screen }}" nav="{{ nav }}" ctx="{{ ctx }}" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import></sc-if>
+      </div>
+      <sc-if value="{{ showTabs }}" hint-placeholder-val="{{ true }}">
+        <nav style="flex:none;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 6px 0;background:#fff;border-top:1px solid #f0eff6;z-index:3">
+          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+            <button onClick="{{ t.go }}" aria-label="{{ t.label }}" style="height:58px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;border:0;background:none;color:{{ t.color }};cursor:pointer;font-size:11.5px;font-weight:{{ t.fw }}">
+              <span style="width:56px;height:32px;border-radius:999px;display:grid;place-items:center;background:{{ t.pill }}"><lc-i name="{{ t.icon }}" size="21" fill="{{ t.fill }}"></lc-i></span><span>{{ t.label }}</span>
+            </button>
+          </sc-for>
+        </nav>
+      </sc-if>
+      <div style="flex:none;height:22px;display:grid;place-items:center;background:{{ gbBg }};z-index:3"><div style="width:132px;height:4px;border-radius:4px;background:{{ gbFg }}"></div></div>
+    </div>
+  </div>
+
+  <div style="width:288px;flex:none;background:#fff;border-radius:24px;border:1px solid #ecebf4;box-shadow:0 10px 30px rgba(60,40,160,.06);padding:22px">
+    <div style="display:flex;justify-content:space-between;align-items:center"><span style="display:inline-flex;height:26px;align-items:center;padding:0 12px;border-radius:999px;background:#f1eeff;color:#5b45f0;font-size:12px;font-weight:600">{{ cur.group }}</span><span style="font-size:12px;color:#77758f;font-variant-numeric:tabular-nums">{{ cur.num }} / {{ total }}</span></div>
+    <div style="font-weight:800;font-size:28px;line-height:1.1;letter-spacing:-.02em;padding:16px 0 10px">{{ cur.label }}</div>
+    <p style="font-size:14px;line-height:1.6;color:#4a4868;margin:0 0 20px;text-wrap:pretty">{{ cur.note }}</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button onClick="{{ prev }}" style="height:46px;display:flex;align-items:center;justify-content:center;gap:6px;border:1.5px solid #dcd8f5;border-radius:999px;background:#fff;cursor:pointer;font-size:13px;font-weight:700;color:#5b45f0" style-hover="background:#f6f4ff"><lc-i name="chevron-left" size="16"></lc-i>Previous</button>
+      <button onClick="{{ next }}" style="height:46px;display:flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);cursor:pointer;font-size:13px;font-weight:700;color:#fff" style-hover="filter:brightness(1.06)">Next<lc-i name="chevron-right" size="16"></lc-i></button>
+    </div>
+    <div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#77758f;padding:24px 0 8px">Viewing as</div>
+    <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+      <div style="display:flex;justify-content:space-between;padding:10px 14px;border-radius:12px;background:#f7f6fd"><span style="color:#77758f">Membership</span><span style="font-weight:700">{{ view.plan }}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:10px 14px;border-radius:12px;background:#f7f6fd"><span style="color:#77758f">Roles</span><span style="font-weight:700">{{ view.role }}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:10px 14px;border-radius:12px;background:#f7f6fd"><span style="color:#77758f">Connection</span><span style="font-weight:700">{{ view.conn }}</span></div>
+    </div>
+    <p style="font-size:12px;line-height:1.5;color:#77758f;margin:12px 0 0">Switch membership, roles and connectivity in Tweaks — premium gates, role tools and offline behaviour update across screens.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;membership&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;free&quot;,&quot;premium&quot;],&quot;default&quot;:&quot;free&quot;,&quot;tsType&quot;:&quot;'free'|'premium'&quot;,&quot;section&quot;:&quot;Viewer&quot;},&quot;role&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;creative&quot;,&quot;mentor&quot;,&quot;seller&quot;,&quot;mentor + seller&quot;],&quot;default&quot;:&quot;creative&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Viewer&quot;},&quot;offline&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Viewer&quot;},&quot;showMap&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+const GROUPS = [
+ {label:'Entry', file:'AtarahEntry', items:[
+  ['splash','Splash','Brand moment while the app checks session and onboarding state, then routes to Welcome, Onboarding or Home. Tap to continue.'],
+  ['welcome','Welcome','Introduces the proposition before registration: one creative identity powering learning, community, opportunity and income.'],
+  ['signup','Sign up','Intentionally light registration — name, contact, password. Profile detail is collected later in onboarding.'],
+  ['signin','Sign in','Returning members. The first attempt shows the inline error state; tap again to continue.'],
+  ['verify','Verification','States what is being verified, why it matters and what happens next. Type a code to see the boxes fill.'],
+  ['forgot','Forgot password','Request a recovery code by email or phone.'],
+  ['reset','Account recovery','Enter the recovery code and set a new password.']]},
+ {label:'Onboarding', file:'AtarahEntry', items:[
+  ['ob_intro','Introduction','Sets expectations: four short steps and why each one makes Atarah more useful.'],
+  ['ob_disc','Creative discipline','Single choice of primary discipline. The taxonomy is admin-managed.'],
+  ['ob_spec','Specialization','Specializations adapt to the chosen discipline.'],
+  ['ob_skills','Skills & interests','Skills, interests and areas to develop — feeds learning, discovery and opportunity relevance.'],
+  ['ob_loc','Location','Location for local discovery, with visibility chosen right where it is collected.'],
+  ['ob_basics','Profile basics','Name and short bio. Everything else can be completed later.'],
+  ['ob_photo','Profile image','Upload or take a profile photo, or skip for now.'],
+  ['ob_done','Onboarding complete','“Your creative journey starts here.” A first look at the Creative Passport, then straight to Home.']]},
+ {label:'Home & Explore', file:'AtarahDiscover', items:[
+  ['home','Home','Answers “what should I do next?” — profile completion, quick access, featured opportunity, then learning, community, creatives, marketplace and mentorship.'],
+  ['explore','Explore creatives','The discovery engine: discipline filters, creative cards and entry points to every ecosystem area.'],
+  ['search','Search results','Cross-platform search with results grouped by type rather than one long list.'],
+  ['filters','Filters sheet','Context-sensitive filters in a bottom sheet — progressively revealed.'],
+  ['economy','Creative economy','Kenya’s creative economy — geography first, then counties, disciplines and rising talent.'],
+  ['county','County ecosystem','One county’s ecosystem: disciplines, organisations, regional opportunities and people.'],
+  ['article','Article','Long-form reading with a clear source label.']]},
+ {label:'Community', file:'AtarahCommunity', items:[
+  ['community','Community feed','Useful creative participation — discussions, updates, questions, announcements.'],
+  ['post','Discussion','A thread with replies. Report and mute live in the overflow menu.'],
+  ['compose','New post','Full-screen creation: type, content, media, audience. Drafts autosave.'],
+  ['groups','Groups','Groups by discipline, location, interest and programme.'],
+  ['group','Group','A single group: pinned announcement, discussions and members.'],
+  ['creatives','Creative discovery','Find creatives by discipline, location and verification. View, connect or save.'],
+  ['creative','Creative profile','The public profile: who they are, what they make and how to work with them.']]},
+ {label:'Opportunities', file:'AtarahOpps', items:[
+  ['opps','Opportunities','Featured, closing soon and recent — with categories, search and saved one tap away.'],
+  ['opp_list','Category: Grants','A single category with sort and filters.'],
+  ['opp','Opportunity detail','What, who for, requirements, deadline, verification and how to apply — plus profile gaps against requirements.'],
+  ['opp_ai','Explain (AI)','Contextual AI: a plain-language summary, clearly labelled as assistance.'],
+  ['opp_leave','Leaving Atarah','External applications are stated explicitly before the user leaves the app.'],
+  ['opp_saved','Saved & applied','Saved opportunities organised as All, Closing soon, Applied and Completed.']]},
+ {label:'Learning', file:'AtarahLearn', items:[
+  ['labs','Skill Labs','The learning hub: continue learning, featured labs, categories and recommendations with reasons.'],
+  ['lab_cat','Learning category','One category, filterable by content type.'],
+  ['course','Course detail','What it teaches, who it is for, structure, provider, delivery type and progress.'],
+  ['lesson','Lesson','Native lesson player with progress and next lesson.'],
+  ['my_learning','My learning','Active, completed and saved learning.']]},
+ {label:'Marketplace', file:'AtarahMarket', items:[
+  ['market','Marketplace','Services, products and creative sellers — connected back to creative identity.'],
+  ['market_browse','Services','Browse services with price, seller and verification.'],
+  ['listing','Listing detail','What is offered, by whom, what it includes and costs, and how to engage.'],
+  ['seller','Seller profile','Marketplace activity tied to the seller’s Creative Passport.'],
+  ['listing_new','Create listing','Intent → input → preview → publish, with draft saving.'],
+  ['my_listings','My listings','Seller tools: listing status and buyer interest. Shown with the seller role.']]},
+ {label:'Mentorship', file:'AtarahMentor', items:[
+  ['mentorship','Mentorship','A premium area that explains what mentorship is and how it works before asking for anything.'],
+  ['mentors','Mentor directory','Compare mentors by discipline, expertise, availability, price and verification.'],
+  ['mentor','Mentor profile','Credentials, sessions, pricing, availability and reviews. Free members see the premium path.'],
+  ['book','Booking','Service, date and time, and the objective for the session.'],
+  ['pay_summary','Order summary','What is being purchased, from whom, for how long, at what price, with cancellation terms.'],
+  ['pay','Payment','M-Pesa or card through the Luxaion payment process.'],
+  ['pay_done','Confirmation','Booking confirmed — what happened and what to do next.'],
+  ['my_mentorship','My mentorship','Upcoming and past sessions, mentors and payments.'],
+  ['mentor_tools','Mentor tools','Booking requests, availability and feedback. Shown with the mentor role.']]},
+ {label:'Creative identity', file:'AtarahIdentity', items:[
+  ['profile','My profile','The personal control centre for identity, work, roles, membership and settings.'],
+  ['passport','Creative Passport','The professional identity artifact, with per-section visibility and multi-dimensional growth.'],
+  ['portfolio','Portfolio','Featured work, projects, media, publications, performances and achievements.'],
+  ['project','Project detail','The work first, then the story: role, skills, collaborators and outcome.'],
+  ['project_new','Add project','“Tell the story of your work” — with optional AI help describing it.'],
+  ['skills','Skills','Structured skills with level and verification status, linked to learning and opportunities.'],
+  ['experience','Experience','Professional history as a timeline.'],
+  ['achievements','Achievements','Awards, certifications, features and selections.'],
+  ['services','Services','Services offered, linked to Marketplace listings.'],
+  ['cv','Creative CV / EPK','Turn the profile into a CV, artist bio, EPK or portfolio deck.'],
+  ['verification','Verification','Why, what is required, current status and next step.'],
+  ['ai_bio','Improve bio (AI)','AI suggestion beside the original. Never overwrites without consent.']]},
+ {label:'Activity', file:'AtarahAccount', items:[
+  ['activity','Activity','Resume unfinished journeys across saved items, applications, learning, marketplace and mentorship.'],
+  ['notifications','Notifications','Grouped by usefulness, filterable by category.'],
+  ['saved','Saved items','One saved area for opportunities, learning, creatives, listings, mentors and articles.'],
+  ['applications','Applications','Opportunities applied to, with status.']]},
+ {label:'Settings', file:'AtarahAccount', items:[
+  ['settings','Settings','Account, privacy, notifications, membership, security, help and legal.'],
+  ['membership','Membership','Current plan, benefits and access — no fake urgency.'],
+  ['account','Account','Name, contact details and account management.'],
+  ['privacy','Privacy & visibility','Public, members-only or private — per field.'],
+  ['notif_settings','Notification settings','Per-category push and email preferences.'],
+  ['security','Security','Password, two-step verification and active sessions.'],
+  ['help','Help','Search, FAQs, support and safety.'],
+  ['legal','Legal','Terms, privacy and policies.'],
+  ['delete','Delete account','Destructive action with explicit consequences and deliberate confirmation.']]},
+ {label:'System states', file:'AtarahAccount', items:[
+  ['st_loading','Loading','Skeletons preserve layout instead of full-screen spinners.'],
+  ['st_empty','Empty states','Every empty list offers a meaningful next action. Switch between examples.'],
+  ['st_error','Error','What happened, whether to act, and what to do next — distinguishes Atarah, external and invalid-resource failures.'],
+  ['st_offline','Offline','Cached content stays readable; actions that need the server are clearly marked.'],
+  ['st_premium','Premium gate','Premium features explain what they do, why they matter and how to access them.']]}
+];
+const FLAT = []; const INDEX = {};
+GROUPS.forEach(g => g.items.forEach(([id,label,note]) => { const x = {id,label,note,group:g.label,file:g.file,num:String(FLAT.length+1).padStart(2,'0')}; INDEX[id]=x; FLAT.push(x); }));
+const NO_TABS = new Set(['article','filters','post','compose','creative','opp','opp_ai','opp_leave','course','lesson','listing','seller','listing_new','mentor','book','pay_summary','pay','pay_done','project','project_new','cv','verification','ai_bio','membership','account','privacy','notif_settings','security','help','legal','delete','st_premium']);
+const TABS = [['home','house','Home'],['explore','compass','Explore'],['community','users','Community'],['opps','briefcase','Opportunities'],['profile','user','Profile']];
+const DARK = new Set(['splash','ob_done']);
+function tabOf(s){
+  const f = INDEX[s].file;
+  if (s==='home'||s==='st_loading'||s==='st_offline') return 'home';
+  if (f==='AtarahDiscover'||f==='AtarahLearn'||f==='AtarahMarket'||f==='AtarahMentor') return 'explore';
+  if (f==='AtarahCommunity') return 'community';
+  if (f==='AtarahOpps') return 'opps';
+  return 'profile';
+}
+class Component extends DCLogic {
+  state = { screen: (() => { try { const v = localStorage.getItem('atarah.screen'); return INDEX[v] ? v : 'splash'; } catch(e) { return 'splash'; } })(), hist: [] };
+  nav = (() => { const n = { back: () => this.back() }; FLAT.forEach(x => { n[x.id] = () => this.go(x.id); }); return n; })();
+  go(id){ if (!INDEX[id] || id===this.state.screen) return; this.setState(s => ({ screen:id, hist:[...s.hist, s.screen].slice(-50) })); }
+  back(){ this.setState(s => { const h=[...s.hist]; const p=h.pop() || (INDEX[s.screen].file==='AtarahEntry'?'welcome':'home'); return { screen:p, hist:h }; }); }
+  componentDidUpdate(){ try { localStorage.setItem('atarah.screen', this.state.screen); } catch(e){} }
+  renderVals(){
+    const s = this.state.screen, cur = INDEX[s], p = this.props;
+    const role = p.role ?? 'creative', premium = (p.membership ?? 'free')==='premium', offline = !!p.offline;
+    const ctx = { premium, offline, mentor: role.includes('mentor'), seller: role.includes('seller') };
+    const i = FLAT.indexOf(cur), tab = tabOf(s), entry = cur.file==='AtarahEntry', dark = DARK.has(s);
+    return {
+      screen: s, nav: this.nav, ctx, cur, total: FLAT.length,
+      f: { [cur.file]: true },
+      showMap: p.showMap ?? true,
+      showTabs: !entry && !NO_TABS.has(s),
+      sbBg: dark ? '#4a36e0' : 'transparent', sbFg: dark ? '#fff' : '#15133d',
+      gbBg: dark ? '#3b2bc4' : '#fff', gbFg: dark ? 'rgba(255,255,255,.8)' : '#15133d',
+      groups: GROUPS.map(g => ({ label:g.label, count:g.items.length, items:g.items.map(([id,label]) => ({ label, num:INDEX[id].num, go:this.nav[id], bg:id===s?'#ece8ff':'transparent', fg:id===s?'#4330d6':'#15133d', fw:id===s?'700':'500' })) })),
+      tabs: TABS.map(([id,icon,label]) => { const on = id===tab; return { icon, label, go:this.nav[id], color: on?'#5b45f0':'#4a4868', fw: on?'700':'500', pill: on?'#ece8ff':'transparent', fill: on?'rgba(91,69,240,.18)':'none' }; }),
+      prev: () => this.go(FLAT[(i-1+FLAT.length)%FLAT.length].id),
+      next: () => this.go(FLAT[(i+1)%FLAT.length].id),
+      view: { plan: premium?'Atarah Pro':'Free', role: role==='creative'?'Creative':'Creative + '+role.replace('mentor + seller','mentor, seller'), conn: offline?'Offline':'Online' }
+    };
+  }
+}
+</script>
+</body>
+</html>

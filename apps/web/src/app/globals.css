@@ -1,0 +1,136 @@
+@import '@atarah/design-tokens/tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--at-font-family);
+  color: var(--at-color-body);
+  background: var(--at-color-white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--at-color-primary);
+}
+
+:focus-visible {
+  outline: 3px solid var(--at-color-primary);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.wordmark {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--at-color-ink);
+}
+
+.wordmark span {
+  color: var(--at-color-primary);
+}
+
+.tagline {
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--at-color-muted);
+}
+
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, var(--at-color-tint3) 0%, var(--at-color-white) 60%);
+}
+
+.header,
+.main,
+.footer {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding-inline: 22px;
+}
+
+.header {
+  padding-block: 28px;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 40px 64px;
+}
+
+.hero-title {
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--at-color-ink);
+  max-width: 18ch;
+}
+
+.hero-copy {
+  margin: 0 0 32px;
+  font-size: 1.125rem;
+  max-width: 52ch;
+  color: var(--at-color-body);
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 28px;
+  border-radius: var(--at-radius-pill);
+  background: var(--at-color-primary);
+  color: var(--at-color-white);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: var(--at-shadow-cta);
+}
+
+.button:hover {
+  background: var(--at-color-primary-pressed);
+}
+
+.notice {
+  display: inline-flex;
+  align-items: center;
+  min-height: 54px;
+  padding: 0 22px;
+  border-radius: var(--at-radius-pill);
+  background: var(--at-color-tint1);
+  color: var(--at-color-primary-pressed);
+  font-weight: 700;
+}
+
+.footer {
+  padding-block: 28px;
+  font-size: 0.875rem;
+  color: var(--at-color-muted);
+}

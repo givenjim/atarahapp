@@ -1,0 +1,12 @@
+// Atarah database schema. Split by domain under prisma/schema/ (Prisma multi-file schema).
+// Conventions (Master Prompt §7.3): UUID keys, createdAt/updatedAt on every table (audit_logs is
+// append-only and has no updatedAt), enums for lifecycles, @@map to snake_case plural tables.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("ATARAH_DATABASE_URL")
+}

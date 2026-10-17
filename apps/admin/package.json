@@ -1,0 +1,41 @@
+{
+  "name": "@atarah/admin",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Atarah admin console.",
+  "scripts": {
+    "dev": "next dev --port 3200",
+    "build": "next build",
+    "start": "next start --port 3200",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "e2e": "playwright test"
+  },
+  "dependencies": {
+    "@atarah/api-contracts": "workspace:*",
+    "@atarah/design-tokens": "workspace:*",
+    "next": "^16.4.2",
+    "server-only": "^0.0.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@atarah/shared-config": "workspace:*",
+    "@eslint/js": "^9",
+    "@playwright/test": "^1.64.1",
+    "@testing-library/jest-dom": "^6.9.0",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^16.4.2",
+    "jsdom": "^30.1.3",
+    "otplib": "^13.5.0",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8",
+    "vitest": "^5.0.5"
+  }
+}

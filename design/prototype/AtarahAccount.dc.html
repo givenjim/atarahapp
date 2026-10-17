@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<script src="_ds/modernist-92942278-38b0-45eb-ae33-378b336c3544/_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="icons.js"></script>
+</helmet>
+
+<sc-if value="{{ sub.on }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;color:#15133d;background:radial-gradient(circle at 100% 0%,#ece6ff 0,transparent 35%),#fff">
+    <div style="flex:none;display:flex;align-items:center;gap:10px;padding:6px 14px"><button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:44px;border-radius:14px;border:1px solid #ecebf4;background:#fff;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="22"></lc-i></button><div style="flex:1;font-weight:700;font-size:18px">{{ sub.title }}</div><sc-if value="{{ is.notifications }}"><button onClick="{{ nav.notif_settings }}" aria-label="Notification settings" style="width:44px;height:44px;border-radius:14px;border:0;background:#f1eeff;color:#5b45f0;cursor:pointer;display:grid;place-items:center"><lc-i name="settings-2" size="19"></lc-i></button></sc-if></div>
+    <div style="flex:1;overflow-y:auto;min-height:0;padding:8px 22px 28px">
+
+      <sc-if value="{{ is.activity }}" hint-placeholder-val="{{ false }}">
+        <div style="font-weight:700;font-size:16px;margin:6px 0 10px">Pick up where you left off</div>
+        <div style="display:flex;flex-direction:column;gap:10px"><sc-for list="{{ resume }}" as="r"><div onClick="{{ r.go }}" style="display:flex;gap:12px;align-items:center;padding:14px;border-radius:18px;border:1px solid #ecebf4;background:#fff;cursor:pointer"><span style="width:44px;height:44px;flex:none;border-radius:14px;background:{{ r.bg }};color:{{ r.fg }};display:grid;place-items:center"><lc-i name="{{ r.i }}" size="20"></lc-i></span><div style="flex:1"><div style="font-size:11.5px;color:#77758f;font-weight:600">{{ r.k }}</div><div style="font-weight:700;font-size:14px">{{ r.t }}</div></div><lc-i name="chevron-right" size="18"></lc-i></div></sc-for></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px"><sc-for list="{{ hubs }}" as="h"><button onClick="{{ h.go }}" style="text-align:left;padding:16px;border-radius:16px;border:0;background:{{ h.bg }};cursor:pointer;color:#15133d;display:flex;flex-direction:column;gap:10px"><span style="color:{{ h.fg }}"><lc-i name="{{ h.i }}" size="22"></lc-i></span><span style="font-weight:700;font-size:14px">{{ h.l }}</span><span style="font-size:12px;color:#4a4868">{{ h.m }}</span></button></sc-for></div>
+      </sc-if>
+
+      <sc-if value="{{ is.notifications }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px"><sc-for list="{{ ncats }}" as="t"><button onClick="{{ t.pick }}" style="flex:none;height:36px;padding:0 14px;border-radius:999px;border:1px solid {{ t.bd }};background:{{ t.bg }};color:{{ t.fg }};font-size:13px;font-weight:600;cursor:pointer">{{ t.label }}</button></sc-for></div>
+        <sc-for list="{{ ngroups }}" as="g"><div style="font-size:12.5px;font-weight:700;color:#77758f;margin:18px 0 8px">{{ g.l }}</div><div style="display:flex;flex-direction:column;gap:8px"><sc-for list="{{ g.items }}" as="n"><div onClick="{{ n.go }}" style="display:flex;gap:12px;padding:14px;border-radius:16px;background:{{ n.rbg }};cursor:pointer"><span style="width:40px;height:40px;flex:none;border-radius:50%;background:{{ n.bg }};color:{{ n.fg }};display:grid;place-items:center"><lc-i name="{{ n.i }}" size="18"></lc-i></span><div style="flex:1"><div style="font-size:13.5px;line-height:1.45"><b>{{ n.t }}</b> {{ n.d }}</div><div style="font-size:11.5px;color:#a3a1b8;margin-top:3px">{{ n.ago }}</div></div><sc-if value="{{ n.unread }}"><span style="width:8px;height:8px;border-radius:50%;background:#5b45f0;margin-top:6px"></span></sc-if></div></sc-for></div></sc-for>
+      </sc-if>
+
+      <sc-if value="{{ is.saved }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px"><sc-for list="{{ scats }}" as="t"><button onClick="{{ t.pick }}" style="flex:none;height:36px;padding:0 14px;border-radius:999px;border:1px solid {{ t.bd }};background:{{ t.bg }};color:{{ t.fg }};font-size:13px;font-weight:600;cursor:pointer">{{ t.label }}</button></sc-for></div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px"><sc-for list="{{ savedItems }}" as="r"><div onClick="{{ r.go }}" style="display:flex;gap:12px;align-items:center;padding:12px;border-radius:16px;border:1px solid #ecebf4;cursor:pointer"><sc-if value="{{ r.img }}"><img src="{{ r.img }}" alt="" style="width:52px;height:52px;border-radius:12px;object-fit:cover;flex:none"></sc-if><sc-if value="{{ r.i }}"><span style="width:52px;height:52px;flex:none;border-radius:12px;background:{{ r.bg }};color:{{ r.fg }};display:grid;place-items:center"><lc-i name="{{ r.i }}" size="22"></lc-i></span></sc-if><div style="flex:1;min-width:0"><div style="font-size:11.5px;color:#5b45f0;font-weight:700">{{ r.k }}</div><div style="font-weight:700;font-size:14px;margin-top:1px">{{ r.t }}</div><div style="font-size:12px;color:#77758f">{{ r.s }}</div></div><span style="color:#5b45f0"><lc-i name="bookmark" size="18" fill="#5b45f0"></lc-i></span></div></sc-for></div>
+      </sc-if>
+
+      <sc-if value="{{ is.applications }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:10px"><sc-for list="{{ apps }}" as="a"><div onClick="{{ nav.opp }}" style="padding:16px;border-radius:18px;border:1px solid #ecebf4;background:#fff;cursor:pointer"><div style="display:flex;justify-content:space-between;gap:10px"><div style="font-weight:700;font-size:14.5px">{{ a.t }}</div><span style="display:inline-flex;height:24px;align-items:center;padding:0 10px;border-radius:999px;background:{{ a.sbg }};color:{{ a.sfg }};font-size:11.5px;font-weight:600;white-space:nowrap">{{ a.s }}</span></div><div style="font-size:12.5px;color:#77758f;margin-top:4px">{{ a.o }}</div><div style="display:flex;gap:6px;align-items:center;font-size:12px;color:#4a4868;margin-top:10px"><lc-i name="{{ a.i }}" size="14"></lc-i>{{ a.m }}</div></div></sc-for></div>
+      </sc-if>
+
+      <sc-if value="{{ is.membership }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:20px;border-radius:22px;background:radial-gradient(circle at 90% 10%,rgba(167,139,250,.55) 0,transparent 40%),linear-gradient(135deg,#1c1a4a,#2f2783);color:#fff;position:relative;overflow:hidden"><img src="assets/ribbon.png" alt="" style="position:absolute;right:-16px;bottom:-24px;height:130px;opacity:.6"><div style="font-size:12px;opacity:.75;font-weight:600">CURRENT PLAN</div><div style="font-weight:800;font-size:26px;margin-top:4px">{{ plan.name }}</div><div style="font-size:13px;opacity:.85;margin-top:4px">{{ plan.sub }}</div></div>
+        <div style="font-weight:700;font-size:16px;margin:22px 0 10px">What's included</div>
+        <div style="border-radius:18px;border:1px solid #ecebf4;overflow:hidden"><div style="display:grid;grid-template-columns:1fr 56px 56px;padding:10px 14px;background:#f7f6fd;font-size:12px;font-weight:700;color:#77758f"><span>Feature</span><span>Free</span><span style="color:#5b45f0">Pro</span></div><sc-for list="{{ features }}" as="f"><div style="display:grid;grid-template-columns:1fr 56px 56px;padding:12px 14px;border-top:1px solid #f2f1f8;font-size:13.5px;align-items:center"><span>{{ f.l }}</span><span style="color:{{ f.fc }}"><lc-i name="{{ f.fi }}" size="17"></lc-i></span><span style="color:#5b45f0"><lc-i name="check" size="17" stroke="2.5"></lc-i></span></div></sc-for></div>
+        <div style="margin-top:14px;padding:14px 16px;border-radius:16px;background:#e9f8ee;display:flex;gap:10px;font-size:13px;line-height:1.5"><span style="color:#1f9d55"><lc-i name="graduation-cap" size="18"></lc-i></span><span><b>Scholarships:</b> students and programme participants may qualify for free Pro access.</span></div>
+        <sc-if value="{{ ctx.premium }}" hint-placeholder-val="{{ false }}"><div style="font-weight:700;font-size:16px;margin:22px 0 10px">Billing</div><div style="display:flex;justify-content:space-between;padding:14px 16px;border-radius:16px;background:#f7f6fd;font-size:13.5px"><span>Next payment · 15 Nov 2026</span><b>KES 1,200</b></div></sc-if>
+        <sc-if value="{{ notPremium }}" hint-placeholder-val="{{ true }}"><button onClick="{{ nav.pay }}" style="margin-top:18px;width:100%;height:54px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 10px 22px rgba(91,69,240,.28)">Upgrade to Pro · KES 1,200/month</button><div style="font-size:12px;color:#77758f;text-align:center;margin-top:8px">Cancel anytime. No hidden fees.</div></sc-if>
+      </sc-if>
+
+      <sc-if value="{{ is.account }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <sc-for list="{{ acctFields }}" as="f"><div><div style="font-size:13px;font-weight:600;margin-bottom:7px">{{ f.l }}</div><div style="height:52px;padding:0 16px;border-radius:14px;border:1px solid #e4e2ef;background:#fafafe;display:flex;align-items:center;justify-content:space-between;font-size:15px">{{ f.v }}<sc-if value="{{ f.ver }}"><span style="display:inline-flex;gap:4px;align-items:center;font-size:12px;font-weight:600;color:#16784a"><lc-i name="circle-check" size="14"></lc-i>Verified</span></sc-if></div></div></sc-for>
+        </div>
+        <button style="margin-top:20px;width:100%;height:52px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:15px;cursor:pointer">Save changes</button>
+      </sc-if>
+
+      <sc-if value="{{ is.privacy }}" hint-placeholder-val="{{ false }}">
+        <p style="font-size:13.5px;line-height:1.55;color:#4a4868;margin:0 0 14px">Choose who sees each part of your profile. Private details still power your recommendations.</p>
+        <div style="display:flex;flex-direction:column;gap:10px"><sc-for list="{{ privRows }}" as="p"><div style="padding:14px 16px;border-radius:16px;border:1px solid #ecebf4;background:#fff"><div style="font-weight:700;font-size:14px;margin-bottom:10px">{{ p.l }}</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;border-radius:999px;background:#f5f4fb"><sc-for list="{{ p.opts }}" as="o"><button onClick="{{ o.pick }}" style="height:34px;border:0;border-radius:999px;background:{{ o.bg }};color:{{ o.fg }};font-size:12px;font-weight:600;cursor:pointer;box-shadow:{{ o.sh }}">{{ o.label }}</button></sc-for></div></div></sc-for></div>
+      </sc-if>
+
+      <sc-if value="{{ is.notif_settings }}" hint-placeholder-val="{{ false }}">
+        <div style="border-radius:18px;border:1px solid #ecebf4;overflow:hidden"><div style="display:grid;grid-template-columns:1fr 64px 64px;padding:10px 16px;background:#f7f6fd;font-size:12px;font-weight:700;color:#77758f"><span>Category</span><span>Push</span><span>Email</span></div><sc-for list="{{ nset }}" as="n"><div style="display:grid;grid-template-columns:1fr 64px 64px;padding:12px 16px;border-top:1px solid #f2f1f8;align-items:center"><div><div style="font-weight:600;font-size:14px">{{ n.l }}</div><div style="font-size:11.5px;color:#77758f">{{ n.d }}</div></div><span onClick="{{ n.tp }}" style="width:44px;height:26px;border-radius:999px;background:{{ n.pt }};position:relative;cursor:pointer"><span style="position:absolute;top:3px;left:{{ n.pk }};width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:left .2s"></span></span><span onClick="{{ n.te }}" style="width:44px;height:26px;border-radius:999px;background:{{ n.et }};position:relative;cursor:pointer"><span style="position:absolute;top:3px;left:{{ n.ek }};width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:left .2s"></span></span></div></sc-for></div>
+      </sc-if>
+
+      <sc-if value="{{ is.security }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:16px;border:1px solid #ecebf4"><span style="width:40px;height:40px;border-radius:12px;background:#f1eeff;color:#5b45f0;display:grid;place-items:center"><lc-i name="key-round" size="18"></lc-i></span><div style="flex:1"><div style="font-weight:700;font-size:14px">Password</div><div style="font-size:12px;color:#77758f">Changed 3 months ago</div></div><span style="font-size:13px;font-weight:700;color:#5b45f0">Change</span></div>
+          <div onClick="{{ toggle2fa }}" style="display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:16px;border:1px solid #ecebf4;cursor:pointer"><span style="width:40px;height:40px;border-radius:12px;background:#e9f8ee;color:#1f9d55;display:grid;place-items:center"><lc-i name="shield-check" size="18"></lc-i></span><div style="flex:1"><div style="font-weight:700;font-size:14px">Two-step verification</div><div style="font-size:12px;color:#77758f">SMS code when signing in on a new device</div></div><span style="width:48px;height:28px;border-radius:999px;background:{{ tfaTrack }};position:relative"><span style="position:absolute;top:3px;left:{{ tfaKnob }};width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:left .2s"></span></span></div>
+        </div>
+        <div style="font-weight:700;font-size:16px;margin:22px 0 10px">Active sessions</div>
+        <div style="display:flex;flex-direction:column;gap:8px"><sc-for list="{{ sessions }}" as="x"><div style="display:flex;gap:12px;align-items:center;padding:12px 16px;border-radius:16px;background:#f7f6fd"><span style="color:#4a4868"><lc-i name="{{ x.i }}" size="20"></lc-i></span><div style="flex:1"><div style="font-weight:700;font-size:13.5px">{{ x.d }}</div><div style="font-size:12px;color:#77758f">{{ x.m }}</div></div><sc-if value="{{ x.other }}"><button style="height:32px;padding:0 12px;border-radius:999px;border:1.5px solid #f6c6d6;background:#fff;color:#c62f63;font-size:12px;font-weight:700;cursor:pointer">Sign out</button></sc-if></div></sc-for></div>
+      </sc-if>
+
+      <sc-if value="{{ is.help }}" hint-placeholder-val="{{ false }}">
+        <div style="height:50px;display:flex;align-items:center;gap:10px;padding:0 16px;border-radius:14px;border:1px solid #ecebf4;background:#fff;color:#77758f;font-size:14.5px"><lc-i name="search" size="18"></lc-i>Search help articles</div>
+        <div style="font-weight:700;font-size:16px;margin:20px 0 10px">Frequently asked</div>
+        <div style="display:flex;flex-direction:column;gap:8px"><sc-for list="{{ faqs }}" as="q"><div style="border-radius:16px;border:1px solid #ecebf4;overflow:hidden"><button onClick="{{ q.toggle }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border:0;background:#fff;cursor:pointer;text-align:left;font-weight:600;font-size:14px;color:#15133d">{{ q.q }}<lc-i name="{{ q.icon }}" size="18"></lc-i></button><sc-if value="{{ q.open }}"><div style="padding:0 16px 14px;font-size:13.5px;line-height:1.55;color:#4a4868">{{ q.a }}</div></sc-if></div></sc-for></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px"><div style="padding:16px;border-radius:16px;background:#f1eeff"><span style="color:#5b45f0"><lc-i name="message-circle" size="22"></lc-i></span><div style="font-weight:700;font-size:14px;margin-top:8px">Chat with us</div><div style="font-size:12px;color:#4a4868">Replies in ~2h</div></div><div style="padding:16px;border-radius:16px;background:#fdecf2"><span style="color:#e8457a"><lc-i name="shield-alert" size="22"></lc-i></span><div style="font-weight:700;font-size:14px;margin-top:8px">Safety centre</div><div style="font-size:12px;color:#4a4868">Report, block, mute</div></div></div>
+      </sc-if>
+
+      <sc-if value="{{ is.legal }}" hint-placeholder-val="{{ false }}">
+        <div style="border-radius:18px;border:1px solid #ecebf4;overflow:hidden"><sc-for list="{{ legal }}" as="l"><div style="display:flex;gap:12px;align-items:center;padding:14px 16px;border-top:{{ l.bt }}"><span style="color:#5b45f0"><lc-i name="file-text" size="18"></lc-i></span><div style="flex:1"><div style="font-weight:600;font-size:14px">{{ l.t }}</div><div style="font-size:12px;color:#77758f">{{ l.d }}</div></div><lc-i name="chevron-right" size="17"></lc-i></div></sc-for></div>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ showSettings }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;overflow-y:auto;color:#15133d;background:radial-gradient(circle at 100% 0%,#ece6ff 0,transparent 35%),#fff">
+    <div style="display:flex;align-items:center;gap:10px;padding:6px 14px"><button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:44px;border-radius:14px;border:1px solid #ecebf4;background:#fff;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="22"></lc-i></button></div>
+    <h1 style="font-weight:800;font-size:30px;letter-spacing:-.02em;margin:6px 22px 16px">Settings</h1>
+    <sc-for list="{{ setGroups }}" as="g"><div style="font-size:12.5px;font-weight:700;color:#77758f;margin:16px 22px 8px">{{ g.l }}</div><div style="margin:0 22px;border-radius:18px;border:1px solid #ecebf4;background:#fff;overflow:hidden"><sc-for list="{{ g.items }}" as="r"><button onClick="{{ r.go }}" style="width:100%;display:flex;gap:14px;align-items:center;padding:12px 16px;border:0;border-top:{{ r.bt }};background:none;cursor:pointer;text-align:left;color:{{ r.c }}" style-hover="background:#faf9ff"><span style="width:38px;height:38px;flex:none;border-radius:12px;background:{{ r.bg }};color:{{ r.fg }};display:grid;place-items:center"><lc-i name="{{ r.i }}" size="18"></lc-i></span><span style="flex:1;font-weight:600;font-size:14.5px">{{ r.l }}</span><span style="font-size:12.5px;color:#77758f">{{ r.m }}</span><lc-i name="chevron-right" size="17"></lc-i></button></sc-for></div></sc-for>
+    <div style="height:28px"></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.delete }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;background:rgba(21,19,61,.5);z-index:5;display:grid;place-items:center;padding:22px">
+    <div style="width:100%;border-radius:26px;background:#fff;padding:24px;color:#15133d;box-shadow:0 30px 60px rgba(21,19,61,.3)">
+      <span style="width:56px;height:56px;border-radius:18px;background:#fdecf2;color:#c62f63;display:grid;place-items:center"><lc-i name="trash-2" size="26"></lc-i></span>
+      <div style="font-weight:800;font-size:21px;margin:16px 0 8px">Delete your account?</div>
+      <p style="font-size:14px;line-height:1.55;color:#4a4868;margin:0 0 12px">This can't be undone. You will permanently lose:</p>
+      <sc-for list="{{ lose }}" as="t"><div style="display:flex;gap:8px;font-size:13.5px;margin-bottom:6px;color:#2c2a50"><span style="color:#c62f63"><lc-i name="x" size="16"></lc-i></span>{{ t }}</div></sc-for>
+      <div style="font-size:13px;font-weight:600;margin:14px 0 7px">Type DELETE to confirm</div>
+      <input value="{{ delText }}" onInput="{{ setDel }}" placeholder="DELETE" style="width:100%;height:48px;padding:0 14px;border-radius:14px;border:1.5px solid #f6c6d6;background:#fff;font-size:15px;letter-spacing:.08em;color:#15133d">
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px"><button onClick="{{ nav.welcome }}" disabled="{{ delDisabled }}" style="height:50px;border:0;border-radius:999px;background:#c62f63;color:#fff;font-weight:700;font-size:14.5px;cursor:pointer;opacity:{{ delOp }}">Delete account permanently</button><button onClick="{{ nav.back }}" style="height:46px;border:0;border-radius:999px;background:none;color:#5b45f0;font-weight:700;font-size:14.5px;cursor:pointer">Keep my account</button></div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.st_loading }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;overflow:hidden;background:#fff;padding:14px 22px">
+    <div style="display:flex;justify-content:space-between"><div><div style="width:150px;height:30px;border-radius:10px;background:linear-gradient(90deg,#f1f0f7,#e7e5f2,#f1f0f7)"></div><div style="width:120px;height:12px;border-radius:6px;background:#f1f0f7;margin-top:10px"></div></div><div style="width:42px;height:42px;border-radius:50%;background:#f1f0f7"></div></div>
+    <div style="height:28px"></div><div style="width:200px;height:28px;border-radius:10px;background:#f1f0f7"></div><div style="width:240px;height:14px;border-radius:6px;background:#f4f3f9;margin-top:12px"></div><div style="width:180px;height:14px;border-radius:6px;background:#f4f3f9;margin-top:8px"></div>
+    <div style="height:180px;border-radius:18px;margin-top:24px;background:linear-gradient(135deg,#e9e7f4,#f3f2f9)"></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px"><div style="height:96px;border-radius:16px;background:#f4f3f9"></div><div style="height:96px;border-radius:16px;background:#f4f3f9"></div><div style="height:96px;border-radius:16px;background:#f4f3f9"></div><div style="height:96px;border-radius:16px;background:#f4f3f9"></div></div>
+    <div style="height:200px;border-radius:16px;margin-top:24px;background:linear-gradient(90deg,#f1f0f7,#e9e7f4,#f1f0f7)"></div>
+    <div style="position:absolute;left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:8px;align-items:center;padding:8px 14px;border-radius:999px;background:#15133d;color:#fff;font-size:12px"><lc-i name="loader-circle" size="14"></lc-i>Loading your home</div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.st_empty }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#fff;color:#15133d">
+    <div style="flex:none;display:flex;gap:8px;overflow-x:auto;padding:12px 22px"><sc-for list="{{ emptyTabs }}" as="t"><button onClick="{{ t.pick }}" style="flex:none;height:36px;padding:0 14px;border-radius:999px;border:1px solid {{ t.bd }};background:{{ t.bg }};color:{{ t.fg }};font-size:13px;font-weight:600;cursor:pointer">{{ t.label }}</button></sc-for></div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 36px 40px">
+      <div style="width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,{{ empty.bg }} 0,#fff 70%);display:grid;place-items:center"><span style="width:84px;height:84px;border-radius:28px;background:{{ empty.bg }};color:{{ empty.fg }};display:grid;place-items:center"><lc-i name="{{ empty.i }}" size="38" stroke="1.6"></lc-i></span></div>
+      <div style="font-weight:800;font-size:22px;margin-top:20px;text-wrap:pretty">{{ empty.t }}</div>
+      <div style="font-size:14px;line-height:1.55;color:#4a4868;margin-top:8px">{{ empty.d }}</div>
+      <button onClick="{{ empty.go }}" style="margin-top:22px;height:50px;padding:0 26px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:14.5px;cursor:pointer;box-shadow:0 10px 22px rgba(91,69,240,.28)">{{ empty.cta }}</button>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.st_error }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#fff;color:#15133d">
+    <div style="flex:none;padding:12px 22px"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;border-radius:999px;background:#f5f4fb"><sc-for list="{{ errTabs }}" as="t"><button onClick="{{ t.pick }}" style="height:36px;border:0;border-radius:999px;background:{{ t.bg }};color:{{ t.fg }};font-size:12px;font-weight:600;cursor:pointer;box-shadow:{{ t.sh }}">{{ t.label }}</button></sc-for></div></div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 36px 40px">
+      <span style="width:96px;height:96px;border-radius:32px;background:{{ err.bg }};color:{{ err.fg }};display:grid;place-items:center"><lc-i name="{{ err.i }}" size="42" stroke="1.6"></lc-i></span>
+      <div style="font-weight:800;font-size:22px;margin-top:22px">{{ err.t }}</div>
+      <div style="font-size:14px;line-height:1.55;color:#4a4868;margin-top:8px">{{ err.d }}</div>
+      <button onClick="{{ err.go }}" style="margin-top:22px;height:50px;padding:0 26px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:14.5px;cursor:pointer;display:flex;gap:8px;align-items:center"><lc-i name="{{ err.ci }}" size="17"></lc-i>{{ err.cta }}</button>
+      <button onClick="{{ nav.help }}" style="margin-top:10px;height:44px;border:0;background:none;color:#5b45f0;font-weight:700;font-size:14px;cursor:pointer">Contact support</button>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.st_offline }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;overflow-y:auto;background:#fff;color:#15133d;padding:8px 22px 28px">
+    <div style="display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:14px;background:#15133d;color:#fff;font-size:13px"><lc-i name="wifi-off" size="17"></lc-i><span style="flex:1">You're offline. Some information may be out of date.</span><span style="font-weight:700;color:#b9adff">Retry</span></div>
+    <div style="font-weight:700;font-size:18px;margin:20px 0 4px">Saved for offline</div>
+    <div style="font-size:12.5px;color:#77758f;margin-bottom:12px">Last updated today at 8:12am</div>
+    <div style="display:flex;flex-direction:column;gap:10px"><sc-for list="{{ cached }}" as="c"><div style="display:flex;gap:12px;align-items:center;padding:14px;border-radius:16px;border:1px solid #ecebf4"><span style="width:44px;height:44px;flex:none;border-radius:12px;background:{{ c.bg }};color:{{ c.fg }};display:grid;place-items:center"><lc-i name="{{ c.i }}" size="20"></lc-i></span><div style="flex:1"><div style="font-weight:700;font-size:14px">{{ c.t }}</div><div style="font-size:12px;color:#77758f">{{ c.s }}</div></div><span style="display:inline-flex;gap:4px;align-items:center;font-size:11.5px;font-weight:600;color:#16784a"><lc-i name="circle-check" size="13"></lc-i>Available</span></div></sc-for></div>
+    <div style="font-weight:700;font-size:18px;margin:22px 0 12px">Needs a connection</div>
+    <div style="display:flex;flex-direction:column;gap:10px;opacity:.6"><sc-for list="{{ needNet }}" as="c"><div style="display:flex;gap:12px;align-items:center;padding:14px;border-radius:16px;background:#f7f6fd"><span style="color:#77758f"><lc-i name="{{ c.i }}" size="20"></lc-i></span><div style="flex:1;font-weight:600;font-size:14px">{{ c.t }}</div><span style="display:inline-flex;gap:4px;align-items:center;font-size:11.5px;font-weight:600;color:#77758f"><lc-i name="cloud-off" size="13"></lc-i>Offline</span></div></sc-for></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.st_premium }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;color:#15133d;background:radial-gradient(circle at 80% 8%,#e4dcff 0,transparent 40%),radial-gradient(circle at 10% 30%,#fff1d6 0,transparent 30%),#fff">
+    <div style="flex:none;padding:6px 14px"><button onClick="{{ nav.back }}" aria-label="Close" style="width:44px;height:44px;border-radius:14px;border:1px solid #ecebf4;background:#fff;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="x" size="20"></lc-i></button></div>
+    <div style="flex:1;overflow-y:auto;min-height:0;padding:6px 22px 20px">
+      <span style="display:inline-flex;gap:5px;height:28px;align-items:center;padding:0 12px;border-radius:999px;background:linear-gradient(90deg,#fde7c4,#fbd38d);color:#8a5a00;font-size:12.5px;font-weight:700"><lc-i name="crown" size="14"></lc-i>Atarah Pro</span>
+      <h1 style="font-weight:800;font-size:30px;line-height:1.15;letter-spacing:-.02em;margin:14px 0 10px">Mentorship is part of Pro</h1>
+      <p style="font-size:15px;line-height:1.6;color:#4a4868;margin:0">Book one-to-one sessions with verified mentors who've built careers in your discipline.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px"><sc-for list="{{ proWhy }}" as="w"><div style="display:flex;gap:14px;align-items:center;padding:14px 16px;border-radius:18px;background:{{ w.bg }}"><span style="width:42px;height:42px;flex:none;border-radius:50%;background:#fff;color:{{ w.fg }};display:grid;place-items:center"><lc-i name="{{ w.i }}" size="20"></lc-i></span><div><div style="font-weight:700;font-size:14.5px">{{ w.t }}</div><div style="font-size:12.5px;color:#4a4868;margin-top:2px">{{ w.d }}</div></div></div></sc-for></div>
+      <div style="margin-top:16px;padding:14px 16px;border-radius:16px;border:1px dashed #cfc8fb;font-size:13px;line-height:1.5;color:#4a4868">Sessions are paid separately. Pro gives you access, lower fees and verification.</div>
+    </div>
+    <div style="flex:none;padding:12px 22px;display:flex;flex-direction:column;gap:8px"><button onClick="{{ nav.membership }}" style="width:100%;height:54px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 10px 22px rgba(91,69,240,.28)">See Pro · KES 1,200/month</button><button onClick="{{ nav.membership }}" style="height:44px;border:0;background:none;color:#5b45f0;font-weight:700;font-size:14px;cursor:pointer">Check scholarship eligibility</button></div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SUB={activity:'Activity',notifications:'Notifications',saved:'Saved',applications:'Applications',membership:'Membership',account:'Account',privacy:'Privacy & visibility',notif_settings:'Notification settings',security:'Security',help:'Help',legal:'Legal'};
+const sel=(on)=>({bg:on?'#5b45f0':'#fff',fg:on?'#fff':'#15133d',bd:on?'#5b45f0':'#e4e2ef'});
+const seg=(on)=>({bg:on?'#fff':'transparent',fg:on?'#5b45f0':'#4a4868',sh:on?'0 2px 8px rgba(40,30,120,.08)':'none'});
+const EMPTY={Portfolio:{i:'image-plus',bg:'#f1eeff',fg:'#5b45f0',t:'Your portfolio is waiting for its first project.',d:'Projects tell the story of your work — and unlock more opportunities.',cta:'Add project',go:'project_new'},Opportunities:{i:'bookmark',bg:'#fff1e5',fg:'#f08a24',t:'Save opportunities you want to come back to.',d:'Tap the bookmark on any grant, gig or open call.',cta:'Explore opportunities',go:'opps'},Learning:{i:'graduation-cap',bg:'#e9f8ee',fg:'#1f9d55',t:'Start building your creative skills.',d:'Skill Labs has courses, toolkits and masterclasses for your discipline.',cta:'Explore Skill Labs',go:'labs'},Mentorship:{i:'handshake',bg:'#fdecf2',fg:'#e8457a',t:'Find someone who can help you move forward.',d:'Mentors offer portfolio reviews, career strategy and more.',cta:'Find a mentor',go:'mentors'}};
+const ERR={Atarah:{i:'cloud-alert',bg:'#f1eeff',fg:'#5b45f0',t:'Couldn’t load opportunities',d:'Atarah is having trouble right now. Your saved items are safe. Try again in a moment.',cta:'Try again',ci:'refresh-cw',go:'opps'},External:{i:'globe',bg:'#fff1e5',fg:'#f08a24',t:'YouTube isn’t responding',d:'This lesson is hosted on an external site that’s currently unavailable. Atarah is working normally.',cta:'Go back to course',ci:'arrow-left',go:'course'},Invalid:{i:'link-2-off',bg:'#fdecf2',fg:'#c62f63',t:'This link no longer works',d:'The resource may have been moved or removed by its provider. We’ve let the team know.',cta:'Find similar',ci:'search',go:'lab_cat'}};
+class Component extends DCLogic {
+  state={ncat:'All',scat:'All',priv:{0:'Public',1:'Members',2:'Private',3:'Members',4:'Public'},ns:{p0:true,e0:true,p1:true,p2:true,p3:true,e3:true,p4:true},tfa:true,faq:0,del:'',empty:'Portfolio',err:'Atarah'};
+  renderVals(){
+    const st=this.state,nav=this.props.nav||{},s=this.props.screen,ctx=this.props.ctx||{};
+    const flipNs=k=>()=>this.setState(x=>({ns:{...x.ns,[k]:!x.ns[k]}}));
+    const notifs=[{c:'Opportunities',t:'Animation Futures Fund',d:'closes in 4 days. You saved this.',i:'briefcase',bg:'#fff1e5',fg:'#f08a24',ago:'1h ago',g:'Today',unread:true,go:nav.opp},{c:'Mentorship',t:'Wanjiku Njeri',d:'confirmed your session for Thu 23 Oct, 4pm.',i:'calendar-check',bg:'#fdecf2',fg:'#e8457a',ago:'3h ago',g:'Today',unread:true,go:nav.my_mentorship},{c:'Community',t:'Zuri Mwangi',d:'accepted your connection request.',i:'user-check',bg:'#f1eeff',fg:'#5b45f0',ago:'5h ago',g:'Today',go:nav.creative},{c:'Learning',t:'New Skill Lab:',d:'Storyboarding for Advertising — recommended for you.',i:'graduation-cap',bg:'#e9f8ee',fg:'#1f9d55',ago:'Yesterday',g:'Earlier',go:nav.course},{c:'Profile',t:'Verification update:',d:'your 2D Animation skill is under review.',i:'badge-check',bg:'#f1eeff',fg:'#5b45f0',ago:'2 days ago',g:'Earlier',go:nav.verification},{c:'Marketplace',t:'Amani Otieno',d:'is interested in your lyric video service.',i:'store',bg:'#fdecf2',fg:'#e8457a',ago:'3 days ago',g:'Earlier',go:nav.my_listings}].filter(n=>st.ncat==='All'||n.c===st.ncat).map(n=>({...n,rbg:n.unread?'#f8f6ff':'#fff'}));
+    const saved=[{k:'Opportunity',t:'Digital Storytelling Grant',s:'Closes 14 Nov',i:'hand-coins',bg:'#f1eeff',fg:'#5b45f0',go:nav.opp,c:'Opportunities'},{k:'Creative',t:'Zuri Mwangi',s:'Photographer · Mombasa',img:'assets/p_zuri.png',go:nav.creative,c:'Creatives'},{k:'Learning',t:'Pricing Your Creative Work',s:'Toolkit · 25 min',i:'wallet',bg:'#fff1e5',fg:'#f08a24',go:nav.course,c:'Learning'},{k:'Mentor',t:'Wanjiku Njeri',s:'Creative direction',img:'assets/p_wanjiku.png',go:nav.mentor,c:'Mentors'},{k:'Listing',t:'Brand portrait session',s:'Zuri Mwangi · From KES 15,000',i:'camera',bg:'#fdecf2',fg:'#e8457a',go:nav.listing,c:'Listings'},{k:'Article',t:'How to price commissioned illustration',s:'Atarah Editorial · 6 min',i:'book-open',bg:'#eaf3ff',fg:'#2f6fe0',go:nav.article,c:'Articles'}].filter(x=>st.scat==='All'||x.c===st.scat);
+    const ngroups=['Today','Earlier'].map(l=>({l,items:notifs.filter(n=>n.g===l)})).filter(g=>g.items.length);
+    const row=(l,i,bg,fg,m,go,k,c)=>({l,i,bg,fg,m,go,bt:k?'1px solid #f2f1f8':'0',c:c||'#15133d'});
+    const faqs=[['How is my Creative Passport used?','It powers your public profile, recommendations and applications. You choose what’s public in Privacy.'],['Does Atarah process external applications?','No. When an opportunity is external we tell you before you leave, and you apply on the provider’s site.'],['How do I become a mentor?','Go to Profile → Mentor tools and apply with your Passport. Every application is reviewed.']];
+    const tfa=st.tfa;
+    return {
+      nav,ctx,is:{[s]:true},notPremium:!ctx.premium,
+      sub:{on:!!SUB[s],title:SUB[s]||''},showSettings:s==='settings'||s==='delete',
+      resume:[{k:'LEARNING',t:'Character Animation Basics · Lesson 4',i:'graduation-cap',bg:'#e9f8ee',fg:'#1f9d55',go:nav.lesson},{k:'OPPORTUNITY',t:'Digital Storytelling Grant — 2 requirements left',i:'briefcase',bg:'#fff1e5',fg:'#f08a24',go:nav.opp},{k:'PORTFOLIO',t:'Draft: Kesho kids series pilot',i:'image',bg:'#f1eeff',fg:'#5b45f0',go:nav.project_new}],
+      hubs:[{l:'Notifications',m:'2 unread',i:'bell',bg:'#f1eeff',fg:'#5b45f0',go:nav.notifications},{l:'Saved',m:'12 items',i:'bookmark',bg:'#e9f8ee',fg:'#1f9d55',go:nav.saved},{l:'Applications',m:'3 tracked',i:'send',bg:'#fff1e5',fg:'#f08a24',go:nav.applications},{l:'Mentorship',m:'1 upcoming',i:'handshake',bg:'#fdecf2',fg:'#e8457a',go:nav.my_mentorship},{l:'Learning',m:'2 in progress',i:'graduation-cap',bg:'#eaf3ff',fg:'#2f6fe0',go:nav.my_learning},{l:'Marketplace',m:'2 enquiries',i:'store',bg:'#fff8ec',fg:'#c78a10',go:nav.my_listings}],
+      ncats:['All','Opportunities','Mentorship','Community','Learning','Profile','Marketplace'].map(l=>({label:l,pick:()=>this.setState({ncat:l}),...sel(st.ncat===l)})),ngroups,
+      scats:['All','Opportunities','Learning','Creatives','Listings','Mentors','Articles'].map(l=>({label:l,pick:()=>this.setState({scat:l}),...sel(st.scat===l)})),savedItems:saved,
+      apps:[{t:'Explainer video for fintech launch',o:'Pesa Labs · Gig',s:'Applied',sbg:'#e9f8ee',sfg:'#16784a',i:'external-link',m:'Applied on external website · 8 Oct'},{t:'Nairobi Animation Week — open call',o:'NAW Festival · Festival',s:'In progress',sbg:'#fff1e5',sfg:'#c76a10',i:'clock',m:'Deadline 30 Nov · 2 of 3 items ready'},{t:'Young Illustrators Bursary 2025',o:'Goethe-Institut · Grant',s:'Completed',sbg:'#f1eeff',sfg:'#5b45f0',i:'trophy',m:'Awarded · Added to achievements'}],
+      plan:{name:ctx.premium?'Atarah Pro':'Free',sub:ctx.premium?'Renews 15 Nov 2026 · KES 1,200/month':'Learning, community and opportunities — free forever'},
+      features:[['Creative Passport & portfolio',1],['Opportunities & Skill Labs',1],['Community & groups',1],['Mentorship booking',0],['Verified Creative',0],['Reduced marketplace fees',0]].map(([l,f])=>({l,fi:f?'check':'minus',fc:f?'#1f9d55':'#c9c7d6'})),
+      acctFields:[{l:'Full name',v:'Nia Wairimu'},{l:'Email',v:'nia@wairimu.studio',ver:true},{l:'Phone',v:'+254 712 345 678',ver:true},{l:'Username',v:'@niawairimu'}],
+      privRows:['Contact details','Location','Portfolio','Experience','Activity'].map((l,i)=>({l,opts:['Public','Members','Private'].map(o=>({label:o==='Members'?'Members only':o,pick:()=>this.setState(x=>({priv:{...x.priv,[i]:o}})),...seg(st.priv[i]===o)}))})),
+      nset:[['Opportunities','Deadlines and new matches'],['Mentorship','Bookings and reminders'],['Community','Replies and connections'],['Learning','Course updates'],['Marketplace','Buyer interest']].map(([l,d],i)=>{const p=!!st.ns['p'+i],e=!!st.ns['e'+i];return{l,d,tp:flipNs('p'+i),te:flipNs('e'+i),pt:p?'#5b45f0':'#dcdbe6',pk:p?'21px':'3px',et:e?'#5b45f0':'#dcdbe6',ek:e?'21px':'3px'};}),
+      toggle2fa:()=>this.setState({tfa:!tfa}),tfaTrack:tfa?'#5b45f0':'#dcdbe6',tfaKnob:tfa?'23px':'3px',
+      sessions:[{i:'smartphone',d:'Pixel 8 · This device',m:'Nairobi · Active now'},{i:'laptop',d:'Chrome on MacBook',m:'Nairobi · 2 days ago',other:true}],
+      faqs:faqs.map(([q,a],i)=>({q,a,open:st.faq===i,icon:st.faq===i?'chevron-up':'chevron-down',toggle:()=>this.setState({faq:st.faq===i?-1:i})})),
+      legal:[['Terms of Service','Updated 1 Sep 2026'],['Privacy Policy','How we use your data'],['Community Guidelines','What’s welcome on Atarah'],['Payments & Refunds','Mentorship and marketplace']].map(([t,d],k)=>({t,d,bt:k?'1px solid #f2f1f8':'0'})),
+      setGroups:[{l:'Account',items:[row('Account','user','#f1eeff','#5b45f0','',nav.account,0),row('Privacy & visibility','eye','#e9f8ee','#1f9d55','',nav.privacy,1),row('Notifications','bell','#fff1e5','#f08a24','',nav.notif_settings,1),row('Membership','crown','#fff8ec','#c78a10',ctx.premium?'Pro':'Free',nav.membership,1),row('Security','shield','#eaf3ff','#2f6fe0','',nav.security,1)]},{l:'Support',items:[row('Help','circle-help','#f1eeff','#5b45f0','',nav.help,0),row('Legal','file-text','#f2f1f6','#4a4868','',nav.legal,1)]},{l:'Account actions',items:[row('Log out','log-out','#f2f1f6','#4a4868','',nav.welcome,0),row('Delete account','trash-2','#fdecf2','#c62f63','',nav.delete,1,'#c62f63')]}],
+      lose:['Your Creative Passport and portfolio','Saved items and applications','Mentorship history and messages'],
+      delText:st.del,setDel:e=>this.setState({del:e.target.value}),delDisabled:st.del!=='DELETE',delOp:st.del==='DELETE'?'1':'.45',
+      emptyTabs:Object.keys(EMPTY).map(l=>({label:l,pick:()=>this.setState({empty:l}),...sel(st.empty===l)})),
+      empty:{...EMPTY[st.empty],go:nav[EMPTY[st.empty].go]},
+      errTabs:[['Atarah','Atarah'],['External','External'],['Invalid','Invalid link']].map(([k,l])=>({label:l,pick:()=>this.setState({err:k}),...seg(st.err===k)})),
+      err:{...ERR[st.err],go:nav[ERR[st.err].go]},
+      cached:[{t:'Your Creative Passport',s:'Profile · 60% complete',i:'id-card',bg:'#f1eeff',fg:'#5b45f0'},{t:'Character Animation Basics',s:'4 lessons downloaded',i:'graduation-cap',bg:'#e9f8ee',fg:'#1f9d55'},{t:'Saved opportunities',s:'3 items',i:'bookmark',bg:'#fff1e5',fg:'#f08a24'}],
+      needNet:[{t:'Apply to opportunities',i:'send'},{t:'Book mentorship',i:'calendar'},{t:'Post to community',i:'message-circle'}],
+      proWhy:[{t:'What it does',d:'Book verified mentors and get skill verification',i:'sparkles',bg:'#f1eeff',fg:'#5b45f0'},{t:'Why it matters',d:'Feedback and trust signals that open doors',i:'trending-up',bg:'#e9f8ee',fg:'#1f9d55'},{t:'How to get it',d:'Upgrade, or apply for a scholarship',i:'key-round',bg:'#fff1e5',fg:'#f08a24'}]
+    };
+  }
+}
+</script>
+</body>
+</html>

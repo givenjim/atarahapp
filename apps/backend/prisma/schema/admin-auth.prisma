@@ -1,0 +1,20 @@
+// Administrator multi-factor authentication. Owner module: identity (admin auth).
+
+/// TOTP enrolment for staff accounts. The secret is AES-256-GCM encrypted; recovery codes are stored hashed.
+model AdminTotp {
+  id                 String    @id @default(uuid()) @db.Uuid
+  userId             String    @unique @db.Uuid
+  /// iv.tag.ciphertext, base64url
+  secretEncrypted    String
+  /// Null until the first code is verified; an unconfirmed secret cannot sign anyone in.
+  confirmedAt        DateTime?
+  /// Time step of the last accepted code. Codes at or before it are rejected (replay protection).
+  lastUsedTimeStep   Int?
+  recoveryCodeHashes String[]
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("admin_totp")
+}

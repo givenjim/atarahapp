@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<script src="_ds/modernist-92942278-38b0-45eb-ae33-378b336c3544/_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="icons.js"></script>
+</helmet>
+
+<sc-if value="{{ is.labs }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;overflow-y:auto;color:#15133d;background:radial-gradient(circle at 100% 0%,#d8f5e3 0,transparent 32%),radial-gradient(circle at 70% 6%,#ece6ff 0,transparent 35%),#fff">
+    <div style="padding:6px 14px 0;display:flex;justify-content:space-between"><button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:44px;border-radius:14px;border:1px solid #ecebf4;background:#fff;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="22"></lc-i></button><button onClick="{{ nav.my_learning }}" style="height:44px;padding:0 16px;border-radius:999px;border:0;background:#fff;box-shadow:0 6px 18px rgba(60,40,160,.1);cursor:pointer;color:#15133d;font-size:13.5px;font-weight:700;display:flex;gap:6px;align-items:center"><lc-i name="library" size="17"></lc-i>My learning</button></div>
+    <div style="padding:14px 22px 0"><span style="color:#1f9d55"><lc-i name="graduation-cap" size="26" stroke="1.7"></lc-i></span><h1 style="font-weight:800;font-size:32px;letter-spacing:-.02em;margin:8px 0 8px">Skill Labs</h1><p style="font-size:15px;line-height:1.55;color:#4a4868;margin:0">Build the skills that move your creative career forward.</p></div>
+    <div onClick="{{ nav.lesson }}" style="margin:20px 22px 0;padding:18px;border-radius:18px;background:linear-gradient(135deg,#1c1a4a,#25206a 55%,#2f2783);color:#fff;cursor:pointer;box-shadow:0 14px 30px rgba(28,26,74,.22)">
+      <div style="font-size:12px;color:rgba(255,255,255,.7);font-weight:600;letter-spacing:.06em">CONTINUE LEARNING</div>
+      <div style="display:flex;gap:16px;align-items:center;margin-top:10px"><div style="width:72px;height:72px;flex:none;border-radius:50%;background:conic-gradient(#8b7bff 0 57%,rgba(255,255,255,.14) 57% 100%);display:grid;place-items:center"><div style="width:58px;height:58px;border-radius:50%;background:#221e5c;display:grid;place-items:center;font-weight:700;font-size:15px">57%</div></div><div style="flex:1"><div style="font-weight:700;font-size:16.5px;line-height:1.3">Character Animation Basics</div><div style="font-size:12.5px;color:rgba(255,255,255,.75);margin-top:4px">Lesson 4 of 7 · Walk cycles</div></div><lc-i name="circle-play" size="30" stroke="1.5"></lc-i></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0 22px;margin:26px 0 14px"><div style="font-weight:700;font-size:20px">Featured Labs</div><button onClick="{{ nav.lab_cat }}" style="border:0;background:none;color:#5b45f0;font-size:13.5px;font-weight:600;cursor:pointer">See all</button></div>
+    <div style="display:flex;gap:12px;overflow-x:auto;padding:0 22px 6px">
+      <sc-for list="{{ featured }}" as="c" hint-placeholder-count="3"><div onClick="{{ nav.course }}" style="flex:none;width:220px;border-radius:18px;overflow:hidden;border:1px solid #ecebf4;background:#fff;cursor:pointer"><div style="height:120px;background:{{ c.bg }};position:relative;overflow:hidden"><sc-if value="{{ c.img }}"><img src="{{ c.img }}" alt="" style="width:100%;height:100%;object-fit:cover"></sc-if><span style="position:absolute;left:10px;top:10px;display:inline-flex;height:24px;align-items:center;padding:0 10px;border-radius:999px;background:rgba(255,255,255,.92);color:#15133d;font-size:11px;font-weight:700">{{ c.src }}</span></div><div style="padding:14px"><div style="font-weight:700;font-size:14.5px;line-height:1.3">{{ c.t }}</div><div style="font-size:12px;color:#77758f;margin-top:6px">{{ c.m }}</div></div></div></sc-for>
+    </div>
+    <div style="font-weight:700;font-size:20px;padding:0 22px;margin:26px 0 12px">Categories</div>
+    <div style="display:flex;flex-direction:column;gap:14px;padding:0 22px">
+      <sc-for list="{{ catGroups }}" as="g"><div><div style="font-size:12.5px;font-weight:700;color:#77758f;margin-bottom:8px">{{ g.l }}</div><div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{ g.items }}" as="c"><button onClick="{{ nav.lab_cat }}" style="height:36px;padding:0 14px;border-radius:999px;border:0;background:{{ g.bg }};color:{{ g.fg }};font-size:13px;font-weight:600;cursor:pointer">{{ c }}</button></sc-for></div></div></sc-for>
+    </div>
+    <div style="font-weight:700;font-size:20px;padding:0 22px;margin:26px 0 4px">Recommended for you</div>
+    <div style="font-size:12.5px;color:#77758f;padding:0 22px 12px">Because you want to improve pricing and grant writing</div>
+    <div style="display:flex;flex-direction:column;gap:12px;padding:0 22px 28px">
+      <sc-for list="{{ rec }}" as="c"><div onClick="{{ nav.course }}" style="display:flex;gap:14px;align-items:center;padding:14px;border-radius:18px;border:1px solid #ecebf4;background:#fff;cursor:pointer"><span style="width:56px;height:56px;flex:none;border-radius:14px;background:{{ c.bg }};color:{{ c.fg }};display:grid;place-items:center"><lc-i name="{{ c.i }}" size="24"></lc-i></span><div style="flex:1;min-width:0"><div style="font-weight:700;font-size:14.5px">{{ c.t }}</div><div style="font-size:12px;color:#77758f;margin-top:3px">{{ c.m }}</div><span style="display:inline-flex;gap:4px;align-items:center;height:22px;padding:0 9px;border-radius:999px;background:{{ c.sbg }};color:{{ c.sfg }};font-size:11px;font-weight:600;margin-top:7px"><lc-i name="{{ c.si }}" size="11"></lc-i>{{ c.src }}</span></div><lc-i name="chevron-right" size="18"></lc-i></div></sc-for>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.lab_cat }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;overflow-y:auto;color:#15133d;background:radial-gradient(circle at 100% 0%,#ece6ff 0,transparent 35%),#fff">
+    <div style="padding:6px 14px"><button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:44px;border-radius:14px;border:1px solid #ecebf4;background:#fff;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="22"></lc-i></button></div>
+    <div style="padding:6px 22px 0"><span style="display:inline-flex;height:26px;align-items:center;padding:0 12px;border-radius:999px;background:#f1eeff;color:#5b45f0;font-size:12px;font-weight:600">Professional</span><h1 style="font-weight:800;font-size:30px;letter-spacing:-.02em;margin:10px 0 6px">Portfolio Building</h1><div style="font-size:13.5px;color:#4a4868">12 resources</div></div>
+    <div style="display:flex;gap:8px;overflow-x:auto;padding:16px 22px 4px"><sc-for list="{{ ctypes }}" as="t"><button onClick="{{ t.pick }}" style="flex:none;height:36px;padding:0 14px;border-radius:999px;border:1px solid {{ t.bd }};background:{{ t.bg }};color:{{ t.fg }};font-size:13px;font-weight:600;cursor:pointer">{{ t.label }}</button></sc-for></div>
+    <div style="display:flex;flex-direction:column;gap:12px;padding:12px 22px 28px">
+      <sc-for list="{{ catItems }}" as="c" hint-placeholder-count="4"><div onClick="{{ nav.course }}" style="padding:14px;border-radius:18px;border:1px solid #ecebf4;background:#fff;cursor:pointer;display:flex;gap:14px"><div style="width:84px;height:84px;flex:none;border-radius:14px;background:{{ c.bg }};display:grid;place-items:center;color:#fff"><lc-i name="{{ c.i }}" size="26"></lc-i></div><div style="flex:1;min-width:0"><div style="display:flex;gap:6px;flex-wrap:wrap"><span style="display:inline-flex;height:22px;align-items:center;padding:0 9px;border-radius:999px;background:#f1eeff;color:#5b45f0;font-size:11px;font-weight:600">{{ c.type }}</span><span style="display:inline-flex;gap:4px;height:22px;align-items:center;padding:0 9px;border-radius:999px;background:{{ c.sbg }};color:{{ c.sfg }};font-size:11px;font-weight:600"><lc-i name="{{ c.si }}" size="11"></lc-i>{{ c.src }}</span></div><div style="font-weight:700;font-size:14.5px;line-height:1.3;margin-top:8px">{{ c.t }}</div><div style="font-size:12px;color:#77758f;margin-top:4px">{{ c.m }}</div></div></div></sc-for>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.course }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#fff;color:#15133d">
+    <div style="flex:1;overflow-y:auto;min-height:0">
+      <div style="height:220px;position:relative;background:radial-gradient(circle at 70% 40%,#c4b5fd 0,transparent 45%),linear-gradient(135deg,#ece8ff,#f7e8ff);overflow:hidden"><img src="assets/ribbon.png" alt="" style="position:absolute;right:40px;top:30px;height:170px"><button onClick="{{ nav.back }}" aria-label="Back" style="position:absolute;left:14px;top:6px;width:44px;height:44px;border-radius:14px;border:0;background:rgba(255,255,255,.75);cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="22"></lc-i></button><button aria-label="Save" style="position:absolute;right:14px;top:6px;width:44px;height:44px;border-radius:14px;border:0;background:rgba(255,255,255,.75);cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="bookmark" size="19"></lc-i></button></div>
+      <div style="margin-top:-28px;position:relative;border-radius:28px 28px 0 0;background:#fff;padding:22px">
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><span style="display:inline-flex;gap:5px;height:26px;align-items:center;padding:0 12px;border-radius:999px;background:#f1eeff;color:#5b45f0;font-size:12px;font-weight:600"><lc-i name="badge-check" size="13"></lc-i>Atarah Course</span><span style="display:inline-flex;height:26px;align-items:center;padding:0 12px;border-radius:999px;background:#f2f1f6;color:#4a4868;font-size:12px;font-weight:600">In-app lessons</span></div>
+        <h1 style="font-weight:800;font-size:25px;line-height:1.22;margin:12px 0 8px">Character Animation Basics</h1>
+        <div style="display:flex;gap:14px;font-size:12.5px;color:#4a4868"><span style="display:flex;gap:4px;align-items:center"><lc-i name="signal" size="13"></lc-i>Beginner</span><span style="display:flex;gap:4px;align-items:center"><lc-i name="layers" size="13"></lc-i>7 lessons</span><span style="display:flex;gap:4px;align-items:center"><lc-i name="clock" size="13"></lc-i>1h 20m</span></div>
+        <div style="margin-top:16px;padding:14px 16px;border-radius:16px;background:#f7f6fd"><div style="display:flex;justify-content:space-between;font-size:13px"><span style="font-weight:600">Your progress</span><b style="color:#5b45f0">4 / 7</b></div><div style="height:8px;border-radius:8px;background:#e6e2fb;margin-top:8px"><div style="width:57%;height:100%;border-radius:8px;background:linear-gradient(90deg,#7b6cf6,#5a46ee)"></div></div></div>
+        <div style="font-weight:700;font-size:17px;margin:22px 0 8px">What you'll learn</div>
+        <sc-for list="{{ learn }}" as="t"><div style="display:flex;gap:10px;font-size:14px;line-height:1.5;margin-bottom:8px;color:#2c2a50"><span style="color:#1f9d55"><lc-i name="circle-check" size="17"></lc-i></span>{{ t }}</div></sc-for>
+        <div style="font-weight:700;font-size:17px;margin:18px 0 6px">Who it's for</div>
+        <p style="font-size:14px;line-height:1.6;color:#2c2a50;margin:0">Illustrators and designers moving into 2D animation. No prior animation experience needed.</p>
+        <div style="font-weight:700;font-size:17px;margin:22px 0 10px">Lessons</div>
+        <div style="display:flex;flex-direction:column;gap:8px"><sc-for list="{{ lessons }}" as="l"><div onClick="{{ nav.lesson }}" style="display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;border:1px solid {{ l.bd }};background:{{ l.bg }};cursor:pointer"><span style="width:32px;height:32px;flex:none;border-radius:50%;background:{{ l.ibg }};color:{{ l.ifg }};display:grid;place-items:center"><lc-i name="{{ l.i }}" size="16"></lc-i></span><div style="flex:1"><div style="font-weight:600;font-size:13.5px">{{ l.t }}</div><div style="font-size:11.5px;color:#77758f">{{ l.d }}</div></div></div></sc-for></div>
+        <div style="margin-top:18px;display:flex;gap:12px;align-items:center;padding:14px;border-radius:16px;background:#f7f6fd"><img src="assets/p_kiptoo.png" alt="" style="width:44px;height:44px;border-radius:50%;object-fit:cover"><div><div style="font-size:12px;color:#77758f">Taught by</div><div style="font-weight:700;font-size:14px">Kiptoo Langat · Tuko Animation</div></div></div>
+      </div>
+    </div>
+    <div style="flex:none;padding:12px 22px;border-top:1px solid #f0eff6"><button onClick="{{ nav.lesson }}" style="width:100%;height:54px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 10px 22px rgba(91,69,240,.28)">Continue learning</button></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.lesson }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#fff;color:#15133d">
+    <div style="flex:none;height:220px;position:relative;background:#0f0e26">
+      <img src="assets/p_nia.png" alt="" style="width:100%;height:100%;object-fit:cover;opacity:.55">
+      <button onClick="{{ nav.back }}" aria-label="Back" style="position:absolute;left:14px;top:6px;width:44px;height:44px;border-radius:14px;border:0;background:rgba(255,255,255,.2);backdrop-filter:blur(6px);cursor:pointer;color:#fff;display:grid;place-items:center"><lc-i name="chevron-left" size="22"></lc-i></button>
+      <button onClick="{{ togglePlay }}" aria-label="Play" style="position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;border:0;background:rgba(255,255,255,.95);color:#5b45f0;cursor:pointer;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.3)"><lc-i name="{{ playIcon }}" size="26" fill="#5b45f0"></lc-i></button>
+      <div style="position:absolute;left:16px;right:16px;bottom:14px;display:flex;gap:10px;align-items:center;color:#fff;font-size:11.5px"><span>04:12</span><div style="flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,.3)"><div style="width:42%;height:100%;border-radius:4px;background:#8b7bff"></div></div><span>10:05</span></div>
+    </div>
+    <div style="flex:1;overflow-y:auto;min-height:0;padding:20px 22px">
+      <div style="font-size:12.5px;color:#5b45f0;font-weight:700">Lesson 4 of 7</div>
+      <h1 style="font-weight:800;font-size:23px;margin:6px 0 12px">Walk cycles that feel alive</h1>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px"><sc-for list="{{ segs }}" as="g"><span style="height:6px;border-radius:6px;background:{{ g }}"></span></sc-for></div>
+      <p style="font-size:14.5px;line-height:1.65;color:#2c2a50;margin:18px 0 0">Start with the contact, down, passing and up poses. Keep the hips leading — the shoulders counter-rotate to balance the body.</p>
+      <div style="margin-top:16px;padding:14px 16px;border-radius:16px;background:#e9f8ee;display:flex;gap:10px;font-size:13.5px;line-height:1.5"><span style="color:#1f9d55"><lc-i name="pencil-ruler" size="18"></lc-i></span><span><b>Practice:</b> animate a 12-frame walk and add it to your portfolio as a work-in-progress.</span></div>
+      <button style="margin-top:12px;width:100%;display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:14px;border:1px solid #e4dfff;background:#f8f6ff;cursor:pointer;text-align:left;font-size:13.5px;font-weight:600;color:#15133d"><span style="color:#5b45f0"><lc-i name="sparkles" size="17"></lc-i></span>What should I learn next?</button>
+    </div>
+    <div style="flex:none;display:flex;gap:10px;padding:12px 22px;border-top:1px solid #f0eff6"><button onClick="{{ nav.course }}" style="width:54px;height:54px;border-radius:50%;border:1.5px solid #dcd8f5;background:#fff;color:#5b45f0;cursor:pointer;display:grid;place-items:center" aria-label="All lessons"><lc-i name="list" size="20"></lc-i></button><button onClick="{{ nav.my_learning }}" style="flex:1;height:54px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);color:#fff;font-weight:700;font-size:15px;cursor:pointer">Mark complete & next</button></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.my_learning }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;overflow-y:auto;color:#15133d;background:radial-gradient(circle at 100% 0%,#d8f5e3 0,transparent 32%),#fff">
+    <div style="padding:6px 14px"><button onClick="{{ nav.back }}" aria-label="Back" style="width:44px;height:44px;border-radius:14px;border:1px solid #ecebf4;background:#fff;cursor:pointer;color:#15133d;display:grid;place-items:center"><lc-i name="chevron-left" size="22"></lc-i></button></div>
+    <h1 style="font-weight:800;font-size:30px;letter-spacing:-.02em;margin:8px 22px 0">My learning</h1>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 22px 0"><sc-for list="{{ lstats }}" as="s"><div style="padding:14px 12px;border-radius:16px;background:{{ s.bg }}"><div style="font-weight:800;font-size:20px;color:{{ s.fg }}">{{ s.v }}</div><div style="font-size:11.5px;color:#4a4868;margin-top:2px">{{ s.l }}</div></div></sc-for></div>
+    <div style="display:flex;gap:4px;padding:4px;border-radius:999px;background:#f5f4fb;margin:16px 22px 0"><sc-for list="{{ ltabs }}" as="t"><button onClick="{{ t.pick }}" style="flex:1;height:38px;border:0;border-radius:999px;background:{{ t.bg }};color:{{ t.fg }};font-weight:600;font-size:13px;cursor:pointer;box-shadow:{{ t.sh }}">{{ t.label }}</button></sc-for></div>
+    <div style="display:flex;flex-direction:column;gap:12px;padding:16px 22px 28px">
+      <sc-for list="{{ myItems }}" as="c"><div onClick="{{ nav.course }}" style="padding:16px;border-radius:18px;border:1px solid #ecebf4;background:#fff;cursor:pointer"><div style="display:flex;gap:12px;align-items:center"><span style="width:46px;height:46px;border-radius:14px;background:{{ c.bg }};color:{{ c.fg }};display:grid;place-items:center;flex:none"><lc-i name="{{ c.i }}" size="21"></lc-i></span><div style="flex:1"><div style="font-weight:700;font-size:14.5px">{{ c.t }}</div><div style="font-size:12px;color:#77758f">{{ c.m }}</div></div><b style="font-size:13px;color:{{ c.fg }}">{{ c.p }}</b></div><div style="height:6px;border-radius:6px;background:#efedf7;margin-top:12px"><div style="height:100%;width:{{ c.p }};border-radius:6px;background:{{ c.bar }}"></div></div></div></sc-for>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SRC={atarah:['Atarah Course','badge-check','#f1eeff','#5b45f0'],partner:['Partner content','handshake','#fff1e5','#c76a10'],external:['External resource','external-link','#f2f1f6','#4a4868']};
+const src=k=>{const [src,si,sbg,sfg]=SRC[k];return{src,si,sbg,sfg};};
+const sel=(on)=>({bg:on?'#5b45f0':'#fff',fg:on?'#fff':'#15133d',bd:on?'#5b45f0':'#e4e2ef'});
+const seg=(on)=>({bg:on?'#fff':'transparent',fg:on?'#5b45f0':'#4a4868',sh:on?'0 2px 8px rgba(40,30,120,.08)':'none'});
+class Component extends DCLogic {
+  state={ctype:'All',play:false,ltab:'Active'};
+  renderVals(){
+    const st=this.state,nav=this.props.nav||{},s=this.props.screen;
+    const my={Active:[{t:'Character Animation Basics',m:'Lesson 4 of 7',p:'57%',i:'aperture',bg:'#f1eeff',fg:'#5b45f0',bar:'linear-gradient(90deg,#7b6cf6,#5a46ee)'},{t:'Pricing Your Creative Work',m:'Toolkit · 3 of 5 sections',p:'60%',i:'wallet',bg:'#fff1e5',fg:'#f08a24',bar:'#f08a24'}],Completed:[{t:'Building a Professional Portfolio',m:'Completed 28 Sep · Certificate added to Passport',p:'100%',i:'award',bg:'#e9f8ee',fg:'#1f9d55',bar:'#1f9d55'}],Saved:[{t:'Grant Writing for Creatives',m:'Webinar · Partner content',p:'0%',i:'file-pen',bg:'#fdecf2',fg:'#e8457a',bar:'#e8457a'}]};
+    const items=[{type:'Course',t:'Building a Professional Portfolio',m:'Atarah · Intermediate · 35 min',i:'folder-open',bg:'linear-gradient(135deg,#7b6cf6,#5a46ee)',...src('atarah')},{type:'Toolkit',t:'Case study template for creatives',m:'Download · 12 pages',i:'file-text',bg:'linear-gradient(135deg,#34d399,#1f9d55)',...src('atarah')},{type:'Webinar',t:'What curators look for in a portfolio',m:'GoDown Arts Centre · 52 min',i:'video',bg:'linear-gradient(135deg,#fdba74,#f08a24)',...src('partner')},{type:'Tutorial',t:'Build a portfolio site in an afternoon',m:'YouTube · 18 min · opens outside Atarah',i:'globe',bg:'linear-gradient(135deg,#f9a8d4,#e8457a)',...src('external')}];
+    return {
+      nav,is:{[s]:true},
+      featured:[{t:'Character Animation Basics',m:'7 lessons · Beginner',bg:'linear-gradient(135deg,#1c1a4a,#5a46ee)',img:'assets/p_nia.png',src:'Atarah'},{t:'Documentary Storytelling',m:'Masterclass · 2h',bg:'#ddd',img:'assets/photo_cam.png',src:'Partner'},{t:'Brand Identity Systems',m:'5 lessons · Intermediate',bg:'linear-gradient(135deg,#ffd6b8,#f08a24)',img:'assets/p_kiptoo.png',src:'Atarah'}],
+      catGroups:[{l:'Creative',bg:'#f1eeff',fg:'#5b45f0',items:['Animation','Music','Acting','Writing','Fashion','Visual Arts','Production']},{l:'Business',bg:'#fff1e5',fg:'#c76a10',items:['Financial Literacy','Entrepreneurship','Branding','Marketing']},{l:'Professional',bg:'#e9f8ee',fg:'#16784a',items:['Portfolio Building','Client Management','Legal Awareness','Career Development']}],
+      rec:[{t:'Pricing Your Creative Work',m:'Toolkit · 25 min',i:'wallet',bg:'#fff1e5',fg:'#f08a24',...src('atarah')},{t:'Grant Writing for Creatives',m:'Webinar · 1h',i:'file-pen',bg:'#fdecf2',fg:'#e8457a',...src('partner')},{t:'Copyright basics in Kenya',m:'Article · 8 min',i:'scale',bg:'#eaf3ff',fg:'#2f6fe0',...src('external')}],
+      ctypes:['All','Course','Tutorial','Toolkit','Webinar','Masterclass'].map(l=>({label:l,pick:()=>this.setState({ctype:l}),...sel(st.ctype===l)})),
+      catItems:items.filter(x=>st.ctype==='All'||x.type===st.ctype),
+      learn:['Key poses and timing for believable motion','Walk and run cycles','Squash, stretch and anticipation','Exporting loops for social and portfolio'],
+      lessons:['Why motion sells character','Timing and spacing','Squash and stretch','Walk cycles that feel alive','Run cycles','Acting a simple scene','Export and share'].map((t,i)=>{const done=i<3,cur=i===3;return{t:(i+1)+'. '+t,d:done?'Completed':(cur?'In progress · 10 min':(i>4?'12 min':'9 min')),i:done?'check':(cur?'play':'lock'),ibg:done?'#e9f8ee':(cur?'#5b45f0':'#f2f1f6'),ifg:done?'#1f9d55':(cur?'#fff':'#a3a1b8'),bg:cur?'#f6f4ff':'#fff',bd:cur?'#cfc8fb':'#ecebf4'};}),
+      togglePlay:()=>this.setState({play:!st.play}),playIcon:st.play?'pause':'play',
+      segs:[0,1,2,3,4,5,6].map(i=>i<3?'#5b45f0':(i===3?'#b9adff':'#efedf7')),
+      lstats:[{v:'2',l:'In progress',bg:'#f1eeff',fg:'#5b45f0'},{v:'1',l:'Completed',bg:'#e9f8ee',fg:'#1f9d55'},{v:'3h',l:'This month',bg:'#fff1e5',fg:'#f08a24'}],
+      ltabs:['Active','Completed','Saved'].map(l=>({label:l,pick:()=>this.setState({ltab:l}),...seg(st.ltab===l)})),
+      myItems:my[st.ltab]
+    };
+  }
+}
+</script>
+</body>
+</html>

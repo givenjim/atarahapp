@@ -1,0 +1,69 @@
+﻿# Local development services for Atarah. Dev-only credentials; never reuse them elsewhere.
+# Host ports are offset (55432 postgres, 56379 redis, 59000 s3, 51025/58025 mailpit) so Atarah can
+# run beside other local projects that use the default ports.
+# Start: `just infra-up`   Stop: `just infra-down`
+name: atarah
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: atarah-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: atarah
+      POSTGRES_PASSWORD: atarah_dev_password
+      POSTGRES_DB: atarah
+    ports:
+      - '55432:5432'
+    volumes:
+      - atarah-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U atarah -d atarah']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    container_name: atarah-redis
+    restart: unless-stopped
+    command: ['redis-server', '--appendonly', 'yes']
+    ports:
+      - '56379:6379'
+    volumes:
+      - atarah-redis-data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  # S3-compatible object storage for local development (Scality CloudServer). MinIO's public images are no
+  # longer pullable, and the application only uses the S3 API, so any S3-compatible server works (DEC-009).
+  s3:
+    image: zenko/cloudserver:latest
+    container_name: atarah-s3
+    restart: unless-stopped
+    environment:
+      SCALITY_ACCESS_KEY_ID: atarah_s3
+      SCALITY_SECRET_ACCESS_KEY: atarah_s3_dev_password
+      S3BACKEND: file
+      REMOTE_MANAGEMENT_DISABLE: '1'
+    ports:
+      - '59000:8000'
+    volumes:
+      - atarah-s3-data:/usr/src/app/localData
+      - atarah-s3-meta:/usr/src/app/localMetadata
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: atarah-mailpit
+    restart: unless-stopped
+    ports:
+      - '51025:1025'
+      - '58025:8025'
+
+volumes:
+  atarah-postgres-data:
+  atarah-redis-data:
+  atarah-s3-data:
+  atarah-s3-meta:

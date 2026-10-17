@@ -1,0 +1,172 @@
+// Identity: accounts, credentials, sessions, one-time codes, consent. Owner module: identity.
+// Account status, roles, membership, verification and ownership are separate concepts (never one user.role).
+
+enum SessionClient {
+  ANDROID
+  IOS
+  WEB
+  ADMIN
+}
+
+enum CodeChannel {
+  EMAIL
+  SMS
+}
+
+enum CodePurpose {
+  REGISTRATION
+  PASSWORD_RESET
+  TWO_STEP
+  CHANGE_EMAIL
+  CHANGE_PHONE
+}
+
+enum LegalDocumentType {
+  TERMS
+  PRIVACY
+  COMMUNITY_GUIDELINES
+  PAYMENTS_REFUNDS
+  SELLER_TERMS
+  MENTOR_TERMS
+}
+
+/// Every account holds at least one of email or phone (CHECK constraint in the init_foundation migration).
+model User {
+  id              String        @id @default(uuid()) @db.Uuid
+  email           String?       @unique @db.Citext
+  /// E.164, e.g. +254712345678
+  phone           String?       @unique
+  emailVerifiedAt DateTime?
+  phoneVerifiedAt DateTime?
+  fullName        String
+  status          AccountStatus @default(PENDING_VERIFICATION)
+  statusReason    String?
+  statusChangedAt DateTime?
+  timeZone        String        @default("Africa/Nairobi")
+  locale          String        @default("en")
+  lastLoginAt     DateTime?
+  /// Demo seed records are flagged and never shown in production.
+  isDemo          Boolean       @default(false)
+  deletedAt       DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  credential        Credential?
+  sessions          Session[]
+  verificationCodes VerificationCode[]
+  consents          ConsentRecord[]
+  roles             UserRole[]               @relation("UserRoles")
+  rolesGranted      UserRole[]               @relation("UserRolesGrantedBy")
+  memberships       Membership[]
+  mediaAssets       MediaAsset[]
+  notifications     Notification[]
+  notificationPrefs NotificationPreference[]
+  deviceTokens      DeviceToken[]
+  adminTotp         AdminTotp?
+
+  @@index([status])
+  @@index([createdAt])
+  @@map("users")
+}
+
+model Credential {
+  id                String   @id @default(uuid()) @db.Uuid
+  userId            String   @unique @db.Uuid
+  /// Argon2id PHC string.
+  passwordHash      String
+  passwordChangedAt DateTime @default(now())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("credentials")
+}
+
+/// One row per refresh-token generation. `familyId` ties a rotation chain together so reuse of a rotated
+/// token can revoke the whole family. Powers Settings > Security > Active sessions.
+model Session {
+  id               String        @id @default(uuid()) @db.Uuid
+  userId           String        @db.Uuid
+  familyId         String        @db.Uuid
+  /// SHA-256 of the opaque refresh token (HMAC with a server pepper). The token itself is never stored.
+  refreshTokenHash String        @unique
+  client           SessionClient
+  deviceName       String?
+  approxLocation   String?
+  ip               String?
+  userAgent        String?
+  lastActiveAt     DateTime      @default(now())
+  /// Last password+TOTP re-authentication on this session (admin sensitive actions).
+  reauthAt         DateTime?
+  expiresAt        DateTime
+  rotatedAt        DateTime?
+  revokedAt        DateTime?
+  revokedReason    String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, revokedAt])
+  @@index([familyId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+/// Six-digit one-time codes. Stored hashed, single-use, rate-limited; issuing a new code invalidates older ones.
+model VerificationCode {
+  id          String      @id @default(uuid()) @db.Uuid
+  userId      String      @db.Uuid
+  channel     CodeChannel
+  purpose     CodePurpose
+  /// Where the code was sent (normalised email/phone). Needed to verify a change-of-contact flow.
+  destination String
+  codeHash    String
+  attempts    Int         @default(0)
+  expiresAt   DateTime
+  consumedAt  DateTime?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, purpose, createdAt])
+  @@index([expiresAt])
+  @@map("verification_codes")
+}
+
+/// Consent captured with version and timestamp (Kenya Data Protection Act, 2019).
+model ConsentRecord {
+  id           String            @id @default(uuid()) @db.Uuid
+  userId       String            @db.Uuid
+  documentType LegalDocumentType
+  version      String
+  acceptedAt   DateTime          @default(now())
+  ip           String?
+  source       String            @default("signup")
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, documentType])
+  @@map("consent_records")
+}
+
+/// Legal text is supplied by the product owner. Until then every row is a DRAFT placeholder.
+model LegalDocument {
+  id          String            @id @default(uuid()) @db.Uuid
+  type        LegalDocumentType
+  version     String
+  title       String
+  body        String
+  status      PublicationStatus @default(DRAFT)
+  effectiveAt DateTime?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@unique([type, version])
+  @@index([type, status])
+  @@map("legal_documents")
+}

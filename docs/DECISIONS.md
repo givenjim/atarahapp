@@ -1,0 +1,227 @@
+# Atarah — Decisions Log
+
+Dated, numbered entries (Master Prompt §9.2). Format: decision, context, options, choice, reason, impact.
+
+## DEC-001 — Start from an empty workspace; no repository assessment
+
+- **Date:** 2026-10-17
+- **Context:** P0-M1 asks for `docs/REPO_ASSESSMENT.md` only when a CREA-8 repository already exists. The working directory contained only the design zip.
+- **Options:** (a) write an empty assessment; (b) skip it and say why.
+- **Choice:** Skip; this entry is the record.
+- **Impact:** None. No existing code to reuse or migrate.
+
+## DEC-002 — `just` instead of `make` on the Windows host
+
+- **Date:** 2026-10-17
+- **Context:** P0-M1 asks for a root `Makefile` or `justfile`. The development machine is Windows 11 without `make`.
+- **Options:** Install GNU make (via Chocolatey/Scoop), or use `just`.
+- **Choice:** `justfile` (installed with `winget install Casey.Just`). Recipe names use hyphens (`db-migrate`, `gen-api`) because `just` does not allow `:` in recipe names. The `pnpm` root scripts (`pnpm db:migrate`, `pnpm gen:api`) keep the colon names from the Master Prompt.
+- **Impact:** Anywhere the prompt says `make setup` read `just setup`.
+
+## DEC-003 — Brand check implemented in Node, with a shell wrapper
+
+- **Date:** 2026-10-17
+- **Context:** §P0-M2 names `scripts/check-brand.sh`. The host is Windows PowerShell.
+- **Choice:** Implementation in `scripts/check-brand.mjs` (runs everywhere); `scripts/check-brand.sh` is a two-line wrapper for Linux CI.
+- **Impact:** CI calls `scripts/check-brand.sh` on Linux; developers can run `pnpm check:brand`.
+
+## DEC-004 — Dart workspace tooling: no Melos until a second Dart package exists
+
+- **Date:** 2026-10-17
+- **Context:** P0-M1 says "Melos (or a documented script) for Dart". At P0-M1 there is exactly one Dart package (`apps/mobile`); the generated Dart API client arrives with P0-M3/P0-M7.
+- **Choice:** Use documented `just` recipes that run `flutter` commands in `apps/mobile`. Revisit adding Melos when `packages/api-contracts` ships a Dart client package.
+- **Impact:** None functionally.
+
+## DEC-005 — Package manager version
+
+- **Date:** 2026-10-17
+- **Context:** `npm i -g pnpm` installed pnpm 12.14.0 on this machine (Node 26.5.0).
+- **Choice:** Pin `packageManager: pnpm@12.14.0` and `engines.node >= 22` in the root `package.json`; `.nvmrc` says 22 (the LTS line the backend will target). Record any incompatibility found with Node 26 here.
+- **Impact:** Contributors need pnpm 12 and Node 22 or newer.
+
+## DEC-006 — Master Prompt stored verbatim
+
+- **Date:** 2026-10-17
+- **Choice:** `docs/MASTER_PROMPT.md` is a byte-for-byte copy of `ATARAH_MASTER_PROMPT.md` supplied by the product owner. It is excluded from Prettier and from the brand check (it names "CREA-8" as history).
+
+## DEC-007 — Product identifiers assumed (owner decisions #1 in Master Prompt §12)
+
+- **Date:** 2026-10-17
+- **Context:** Production domain and app IDs are owner decision #1; the prompt names defaults.
+- **Choice:** Domain `atarah.app`; Android `applicationId` `app.atarah.mobile` (flavours `.dev`, `.staging`); iOS bundle ID `app.atarah.mobile`; Dart package `atarah`; npm scope `@atarah`. Applied when each project is scaffolded (mobile in P0-M7).
+- **Impact:** Flagged in every gate report until the owner confirms.
+
+## DEC-008 — P0-M2 rename scope
+
+- **Date:** 2026-10-17
+- **Context:** No legacy code exists (DEC-001), so there is nothing to rename in source. The retired working name survives only in the owner-supplied specification documents under `design/prototype/uploads/` and in this log's history notes.
+- **Choice:** Enforce the new name from the first file: every identifier is created as Atarah, and `scripts/check-brand.mjs` guards against regressions. P0-M2 is therefore "convention + guard", not a bulk rename.
+
+## DEC-009 — Dev object storage: S3-compatible server instead of MinIO
+
+- **Date:** 2026-10-17
+- **Context:** §5.1 and P0-M9 name MinIO for local storage. On the dev host, `minio/minio` and `minio/mc` are not pullable from Docker Hub, and `quay.io/minio/*` returned 401 / no manifest.
+- **Options:** Keep trying MinIO tags; use another S3-compatible server; skip local storage.
+- **Choice:** `zenko/cloudserver` (Scality, S3-compatible) in `infrastructure/docker-compose.yml`. Bucket creation moves from a compose init container to the backend storage module (idempotent `ensureBuckets` on startup in non-production).
+- **Impact:** The backend only uses the S3 API (path-style addressing, signed URLs), so MinIO or any S3 service remains a valid drop-in for staging and production. Revisit if the owner wants MinIO specifically.
+
+## DEC-010 — Offset host ports for local services
+
+- **Date:** 2026-10-17
+- **Context:** Other local projects on the dev host (including earlier-named containers) already bind 5432 and 6379.
+- **Choice:** Atarah uses PostgreSQL 55432, Redis 56379, S3 59000, Mailpit SMTP 51025 / UI 58025. Existing containers are left untouched.
+- **Impact:** `.env.example` and the compose file use these ports; Testcontainers (P0-M3) picks random ports and is unaffected.
+
+## DEC-011 — Health probes live outside `/api/v1`
+
+- **Date:** 2026-10-17
+- **Context:** P0-M3 lists `/health/live` and `/health/ready` and separately says the API is under `/api/v1`.
+- **Choice:** Probes are served at `/health/live` and `/health/ready` (excluded from the global prefix, hidden from Swagger, exempt from throttling) so orchestrators and uptime checks do not depend on the API version. Responses still use the `{ data }` envelope; a failed readiness check returns 503 with an `EXTERNAL_SERVICE_ERROR` envelope whose `details.checks` names the failing dependency.
+
+## DEC-012 — Backend lint: `consistent-type-imports` disabled for the NestJS app
+
+- **Date:** 2026-10-17
+- **Context:** The shared ESLint base enforces `import type` for type-only imports. In NestJS, constructor-injected classes are only used as types in source but are read at runtime through decorator metadata; converting them to `import type` silently breaks dependency injection.
+- **Choice:** Rule stays on in the shared base (web and admin), turned off in `apps/backend/eslint.config.mjs`.
+
+## DEC-013 — Build and tooling notes (backend)
+
+- **Date:** 2026-10-17
+- `tsconfig.build.json` sets `incremental: false`. With `deleteOutDir`, a stale `.tsbuildinfo` made `nest build` skip emitting files, producing a broken `dist/` (found when the worker failed to start).
+- Prisma is pinned to 6.x and configured through `prisma.config.ts` (the `package.json#prisma` key is deprecated). Multi-file schema in `prisma/schema/`.
+- pnpm 12 blocks dependency install scripts; the allow-list is `allowBuilds` in `pnpm-workspace.yaml`.
+- BullMQ connection options are cast (`as unknown as ConnectionOptions`) because BullMQ bundles its own ioredis typings; the object is structurally identical.
+- Integration tests stub only the S3 storage adapter (PostgreSQL and Redis are real Testcontainers). The real S3 adapter is exercised against a real S3 server in P0-M9.
+
+## DEC-014 — Enum names that collide with entity names get a `Key` suffix
+
+- **Date:** 2026-10-17
+- **Context:** Master Prompt §6.1 names enums `Role`, `MembershipPlan` and `Entitlement`, while P0-M4 also lists entities `Role`, `MembershipPlan` and `Entitlement`. Prisma cannot have an enum and a model with the same name.
+- **Choice:** Models keep the entity names; enums are `RoleKey`, `MembershipPlanKey`, `EntitlementKey`. Values are exactly the prompt's. API and UI vocabulary is unaffected.
+
+## DEC-015 — Permissions seed: member defaults, role grants, and where `payment.manage` sits
+
+- **Date:** 2026-10-17
+- **Context:** The Roles & Permissions Matrix (specification document) and §6.1 differ: the matrix lets content admins manage opportunities and treats "Admin" as one column; §6.1 says content admins do not manage opportunities or decide verification, platform admins need a separate `payment.manage`, and members are implicit rather than a stored role. §6.1 wins (precedence order).
+- **Choice:** `Permission.isMemberDefault` marks what every ACTIVE account holds without a role. Roles carry only additional capabilities. `PLATFORM_ADMIN` has `payment.view` but not `payment.manage`; `SUPER_ADMIN` holds every permission including `payment.manage`. Seeded permission keys are `resource.action`; the exact set is in `prisma/seed/data/access.ts` and is asserted by tests.
+- **Impact:** A way to grant `payment.manage` to a specific non-super admin (per-user permission grants) is not modelled yet; revisit in P2-M1 when payments land and the owner confirms who handles finance.
+
+## DEC-016 — Taxonomy seed scope
+
+- **Date:** 2026-10-17
+- **Choice:** Skills, interests and development areas are seeded exactly as the prototype lists them (general skills, `disciplineId` null); per-discipline skill lists are left to admins, as the prompt says. Towns are not seeded. County codes are Atarah-assigned three-letter identifiers (e.g. NBI, MSA, KSM, NKR) and are permanent once used in a Passport number.
+- Learning and marketplace category tables, and `LegalDocument`, are created in the baseline (earlier than the milestones that use them) so the reference seed can include them as P0-M4 requires. Help-article placeholders are seeded in P1-M9 with `HelpArticle`.
+- Settings values for owner decisions (#7 commission 0 %, #8 marketplace fee 0 %, #9 Pro price, #10 scholarship 6 months, #11 SLA 5 days, #15 support email) are the prompt's stated defaults and remain flagged for the owner.
+
+## DEC-017 — Backend tests run Jest with `--experimental-vm-modules`
+
+- **Date:** 2026-10-17
+- **Context:** `otplib` v13 depends on ESM-only crypto packages. Jest's CommonJS module system cannot load them without ESM support. `ts-jest` still compiles our TypeScript to CommonJS.
+- **Choice:** `pnpm test`, `test:unit` and `test:integration` invoke `node --experimental-vm-modules node_modules/jest/bin/jest.js`. Running plain `npx jest` fails on suites that import `otplib`.
+- **Alternative rejected:** a hand-written TOTP implementation (more code to get wrong in a security path).
+
+## DEC-018 — API is bearer-token only; cookies live in the Next.js servers
+
+- **Date:** 2026-10-17
+- **Context:** §5.5 says web and admin use `httpOnly`/`Secure`/`SameSite=Lax` cookies with CSRF protection.
+- **Choice:** The NestJS API never sets cookies. The web and admin Next.js servers (BFF) call the API with the bearer token and keep the access and refresh tokens in `httpOnly` cookies themselves, adding CSRF protection on their own mutating routes (P0-M8). This keeps one authentication mechanism in the API for mobile, web and admin.
+
+## DEC-019 — Auth behaviour details the prompt leaves open
+
+- **Date:** 2026-10-17
+- Sign-up returns `409 CONFLICT` with `details.reason = ACCOUNT_EXISTS` and a per-field message (the prototype shows "An account with this email already exists. Sign in instead?"). This is the one place existence is revealed; sign-in, resend, verify and forgot-password never reveal it.
+- Signing in to an unverified account with the right password sends a fresh code (cooldown permitting) and returns `403 VERIFICATION_REQUIRED` (`details.reason = ACCOUNT_NOT_VERIFIED`) so the app can open the verify screen.
+- Refresh tokens get a 10 second reuse grace window so a client retrying a refresh does not destroy its own session (DEC-020 describes the attack path).
+- `Session.approxLocation` stays empty until a GeoIP source is chosen (P1-M9, Security screen). IP and user agent are stored.
+- Admin refresh tokens live 12 hours; the 30 minute idle timeout applies on top.
+- Access tokens carry a unique `jti`.
+- Registration records consent against the latest `LegalDocument` version for Terms and Privacy (`0.0-draft` until the owner supplies legal text).
+- `FORBIDDEN` for a suspended/deactivated account and `VERIFICATION_REQUIRED` for a pending one are returned on every authenticated route, including mid-session.
+
+## DEC-020 — Findings from the first auth test run (fixed)
+
+- `@ValidateNested()` accepts `undefined`, so omitting `consent` created an account without consent. Fixed with `@IsDefined()`; covered by a test.
+- Access tokens issued in the same second were byte-identical. Fixed with a `jti`.
+
+## DEC-021 — Text colours darkened to meet 4.5:1 (accessibility over exact prototype hex)
+
+- **Date:** 2026-10-17
+- **Context:** §8.1 lists the prototype's exact colours; §7.5 requires 4.5:1 contrast for body text. Several prototype text colours measure below 4.5:1 on their backgrounds (muted `#77758f` on white is 4.44; warning `#c76a10` on its tint is about 3.5; amber `#c78a10` about 2.8; info and purple about 4.1 and 3.9; the Pro pill text 4.18).
+- **Choice:** Fills, borders and icon colours keep the prototype hex values. Only **text** colours change, by the smallest amount that passes: `muted` `#77758f`→`#6f6d85`; warning strong `#c76a10`→`#a95a0e`; amber strong `#c78a10`→`#97690c`; info strong `#2f6fe0`→`#2d69d5`; purple strong `#8b5cf6`→`#7c52db`; Pro text `#8a5a00`→`#805400`. Placeholder text now uses `muted` (the prototype's `faint` is 2.5:1). `faint` is used only for icons and disabled states.
+- **Impact:** Visible difference is slight (a few percent darker). `contrast_test.dart` asserts every text/background pair the components use, so a future token edit that breaks contrast fails CI. Revisit with the product owner if exact prototype colours are preferred over AA compliance.
+
+## DEC-022 — Fonts, icons and test fidelity
+
+- **Date:** 2026-10-17
+- Plus Jakarta Sans 400/500/600/700/800 (SIL OFL 1.1, from the font's official repository) is bundled in `apps/mobile/assets/fonts/` with its licence file. Icons use the `lucide_icons_flutter` package (same names as the prototype).
+- Flutter tests replace all fonts with block glyphs unless real fonts are loaded, which made the first goldens meaningless. `test/flutter_test_config.dart` now loads both fonts for every test.
+- Flutter's pixel-sampling `textContrastGuideline` is unreliable on anti-aliased small text with real fonts (reported 1.3:1 for dark text on white). Contrast is verified from the token pairs instead (`contrast_test.dart`). Tap-target and label guidelines still run against every gallery entry, plus a 200 % text-scale overflow check.
+- Goldens use a comparator that tolerates 0.5 % differing pixels (`tolerant_golden_comparator.dart`) because text anti-aliasing differs slightly between machines. They were generated on the Windows dev host; if CI runs on Linux, regenerate them there once with `flutter test --update-goldens`.
+
+## DEC-023 — Scope of the P0-M6 component set
+
+- **Date:** 2026-10-17
+- All 32 `At*` components in §8.2 and the 12 domain widgets (`CreativeCard` … `SavedItemRow`) are built now as **presentational** widgets: every string, number and image is a parameter; they embed no sample data and never fetch. Domain-specific view models are introduced by the feature milestones that supply the data.
+- Strings that belong to components are in `lib/core/l10n/app_en.arb` (generated `AppLocalizations`). A handful of labels in domain widgets that carry data (for example the type label on a card) are passed in by the caller.
+- The gallery (`ComponentGalleryScreen`) uses neutral "Sample …" placeholders and is not routed yet; it is added to the dev-flavour router in P0-M7. `lib/main.dart` temporarily opens it.
+- Findings the tests forced into the components: text fields were 57px high instead of 52, prefix text could overflow at 200 % text, a segmented control's tap area was 40px, a media tile's remove button was clipped to a 36px tap area, and two cards overflowed at large text. All fixed.
+
+## DEC-024 — Typed API contract end to end (OpenAPI → Dart client)
+
+- **Date:** 2026-10-17
+- **Context:** §7.2 makes OpenAPI the contract for generated Dart and TypeScript clients. The first export had request schema names with no properties and no response shapes, so a generated client would have been untyped.
+- **Choice:** Every request and response model carries explicit `@ApiProperty` decorators (the Nest Swagger CLI plugin is not used because the export script and Jest run through ts-node, where the plugin does not apply). `ApiEnvelope(Model)` documents the `{ data, meta }` wrapper. Operation ids are plain method names, so the client reads `auth.login(...)`. The user-agent header is read by a param decorator so it is not listed as an API parameter.
+- **Mobile:** `swagger_parser` (config `apps/mobile/swagger_parser.yaml`) generates Retrofit clients and `json_serializable` models into `lib/core/api/generated/`. Regenerate with `pnpm gen:api` then `dart run swagger_parser && dart run build_runner build`.
+
+## DEC-025 — Mobile architecture choices for the shell
+
+- **Date:** 2026-10-17
+- **Router:** `go_router` with a `StatefulShellRoute.indexedStack` for the five tabs. Detail, placeholder and auth screens are top-level routes, so the tab bar hides on them (the prototype's `NO_TABS` behaviour). Redirect rules are a pure function (`computeRedirect`) with its own tests. A deep link that arrives before the session check finishes, or while signed out, is remembered in `?from=` and honoured after sign-in. Only in-app absolute paths are accepted as a destination (no open redirects).
+- **Deep links:** `https://atarah.app/<path>` (verified App Links once `assetlinks.json` is published, P3-M4) and `atarah://app/<path>` (the host is fixed to `app` so the URI path maps straight onto routes).
+- **Riverpod 3 retries failed providers automatically.** The session check opts out (`noAutomaticRetry`) so an offline launch shows "Can't reach Atarah" with a Try again button instead of an endless splash.
+- **Token storage:** `flutter_secure_storage` (Android Keystore / iOS Keychain). The access token is short-lived; the refresh token is rotated on every use by the backend. Concurrent 401s share **one** refresh (`SessionRefresher`), otherwise parallel refreshes would replay a rotated token and the backend would end the session. A terminal reason (`TOKEN_REUSED`, `SESSION_IDLE`) ends the session without trying to refresh. Safe GETs retry twice on connection errors; writes are never retried automatically.
+- **Developer sign-in** (dev flavour only) signs in to the real API with an existing account. It exists so the app shell can be reached and tested until the real sign-in screens ship in P1-M1. It is compiled out of the route table in staging and production.
+- **Welcome buttons:** "Create account" and "Sign in" open their labelled Phase 1 placeholder until P1-M1 (no dead buttons).
+- **Firebase:** not initialised yet. Real Firebase configs are not committed (§1) and push is wired with the notifications module (P0-M9, P1-M9). Sentry initialises only when `ATARAH_SENTRY_DSN` is provided.
+- **iOS:** the bundle id is `app.atarah.mobile`. iOS flavours (schemes and xcconfig) are not configured and no iOS build was produced: this host is Windows. Reported as not verifiable here.
+- **Android signing:** release builds use the debug key locally. Release keystores live outside the repository and are supplied by CI (P3-M8).
+- **Staging and production API hosts** (`api.staging.atarah.app`, `api.atarah.app`) are assumptions until the owner confirms the domain (DEC-007); override with `--dart-define ATARAH_API_BASE_URL`.
+
+## DEC-026 — Android minSdk 26 and sentry_flutter 10
+
+- **Date:** 2026-10-17
+- **Context:** `sentry_flutter` 8.x pins Kotlin language version 1.6, which the Kotlin 2.4 toolchain rejects, so the Android build failed. Version 10 builds but declares `minSdk 26`.
+- **Choice:** Upgrade to `sentry_flutter ^10.1.0` and set the app `minSdk` to 26 (Android 8.0). Devices below Android 8.0 are a very small share and are not supported. Owner can revisit if a wider reach is required (it would mean dropping or swapping the crash-reporting SDK).
+
+## DEC-027 — Admin console session handling (BFF) and navigation phases
+
+- **Date:** 2026-10-17
+- **Context:** DEC-018 puts cookies and CSRF in the Next server. P0-M8 needed the concrete design and a phase label for every unbuilt section.
+- **Choice:** The admin app is a backend-for-frontend. Tokens live only in `httpOnly`, `SameSite=Lax`, `Secure` (production) cookies set by the Next server; the browser never sees a token. All mutations are Server Actions, which Next protects with an Origin check, so no separate CSRF token is needed. `src/proxy.ts` rotates an expired access token with the refresh cookie and forwards the new cookies to the page being rendered; no session means a redirect to `/login`. The password step stores the challenge token in a five-minute cookie. First-time recovery codes travel to their own page in a two-minute `httpOnly` cookie (a Server Action that sets cookies re-renders its own route, which would otherwise wipe them).
+- **Sidebar:** all 18 sections of the Admin Platform spec, each tied to the permission that grants it (`apps/admin/src/lib/nav.ts`); hiding is a convenience, the backend enforces the same permission. Phases shown on unbuilt sections: Dashboard, Roles & Permissions, Content, Learning, Opportunities, Community & Reports, Notifications, Analytics, Settings = **P1** (P1-M10 and the module milestones); Memberships, Verification, Mentorship, Marketplace, Payments = **P2**; Creative Economy, AI = **P3**. Users and Audit Logs are live. The phase mapping is my reading of the milestone list, flagged for the owner to confirm.
+- **Account actions:** an administrator cannot suspend or reactivate their own account; only a super admin can change a PLATFORM_ADMIN or SUPER_ADMIN account. Suspension ends every live session immediately. Both actions need recent re-authentication and are audited with before/after state and the reason.
+
+## DEC-028 — Generated TypeScript client and e2e fixtures
+
+- **Date:** 2026-10-17
+- **Choice:** `@atarah/api-contracts` ships `src/schema.d.ts` (generated with `openapi-typescript` from `openapi.json`) and a small typed `openapi-fetch` client (`createApiClient`). `pnpm gen:api` exports the contract and regenerates the types. Web and admin import it; paths include the `/api/v1` prefix because that is how the contract names them.
+- **E2E:** the Playwright flow runs against the real backend and creates a fresh administrator and member through `apps/backend/scripts/e2e-fixtures.ts` (dev only, refuses any other `ATARAH_ENV`, records flagged `isDemo`). The test enrols TOTP through the real UI and reads the secret from the page, so no secret is seeded or shared between runs. A code from the next 30-second step is used for re-authentication to avoid the replay guard.
+
+## DEC-029 — Media pipeline rules
+
+- **Date:** 2026-10-17
+- **Context:** §5.5/§7.4 require signed uploads, MIME sniffing, size limits, EXIF stripping and private-by-default buckets.
+- **Choice:** Clients upload straight to storage with a signed `PUT` whose content type and exact length are signed, then confirm. A queue job (`media`) reads the first 4 KB, identifies the real type from the bytes (JPEG, PNG, WebP, WAV, PDF, MP4/MOV/M4A, WebM, Ogg, MP3), and rejects anything that is not on the allow-list or does not match the declared type. Images are decoded and re-encoded, which removes all metadata (EXIF, GPS), with a 50-megapixel decode limit against decompression bombs, and get 200/600/1200 px WebP renditions. Other kinds are marked ready after sniffing. Rejected objects are deleted and audited as `media.reject`. Allowed types: images JPEG/PNG/WebP, video MP4/MOV/WebM, audio MP3/M4A/WAV/Ogg, documents PDF only (a CV in Word format is an owner question, not assumed). The member endpoint offers only `PUBLIC` and `PRIVATE`; the `EVIDENCE` bucket is reserved for the verification module (P2-M6). Every download is a short-lived signed URL (private 15 min, public 1 h), so a bare object key never works. The lookup answers "not found" for another member's file. A member may hold at most 50 unfinished uploads per day.
+- **Not built yet:** clean-up of abandoned `PENDING_UPLOAD` rows and orphan objects; scheduled with the maintenance jobs in P3-M5.
+
+## DEC-030 — Notification fan-out, push provider and preferences
+
+- **Date:** 2026-10-17
+- **Choice:** `NotificationsService.notify()` is the only way a module messages a member. It always stores the in-app notification, then queues delivery per channel: push when the member has push on for the category and an active device token, email when email is on and the address is verified, SMS only when the caller asks and the phone is verified. Missing preference rows mean "on". Notices marked `critical` (password changed, suspension, payment failure) ignore push and email preferences. Deep links must be in-app paths (`/...`), never URLs, to rule out open redirects; email links are built from `ATARAH_APP_LINK_BASE_URL` (assumed `https://atarah.app`, DEC-007). Delivery re-checks the member's state (suspended or deleted members get nothing) and revokes device tokens that FCM reports as invalid. Failed jobs are retried by BullMQ with exponential backoff. A member keeps at most ten active device tokens; a token that appears under another member's sign-in is reassigned, never shared.
+- **Providers:** push goes through `PushProvider`. With Firebase credentials it uses FCM (`firebase-admin`); without them, development and test use a recording sink and any deployed environment fails the job loudly. **FCM delivery is not verified:** request building, batching and invalid-token handling are tested against a fake client only, because no Firebase project credentials exist yet (owner decision). Email uses the SMTP provider (Mailpit locally); the production email and SMS providers are owner decisions (§12 #2 and #3).
+- **Not built yet:** notification list, mark-read and unread count (P1-M9); broadcast to audiences (P1-M9).
+
+## DEC-031 — Secret scanning with gitleaks
+
+- **Date:** 2026-10-17
+- **Choice:** `.gitleaks.toml` extends the default ruleset and skips dependencies and build output. The gate runs `gitleaks dir . --config .gitleaks.toml` over the working tree (this workspace is not a git repository). CI downloads the pinned release binary instead of using the licensed GitHub Action. The one finding during M9 was the Playwright fixture file holding a random throwaway password; the test now deletes it on teardown.
