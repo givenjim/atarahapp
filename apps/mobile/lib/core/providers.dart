@@ -6,6 +6,7 @@ import 'api/generated/export.dart';
 import 'auth/auth_repository.dart';
 import 'auth/session_controller.dart';
 import 'config/app_config.dart';
+import 'content/content_repository.dart';
 import 'networking/dio_factory.dart';
 import 'networking/session_refresher.dart';
 import 'storage/token_store.dart';
@@ -65,3 +66,12 @@ AuthRepository authRepository(Ref ref) => AuthRepository(
   api: ref.watch(apiClientProvider),
   store: ref.watch(tokenStoreProvider),
 );
+
+@Riverpod(keepAlive: true)
+ContentRepository contentRepository(Ref ref) =>
+    ContentRepository(api: ref.watch(apiClientProvider));
+
+/// Whether "Continue with Google" is shown. Off until the server says otherwise.
+@riverpod
+Future<bool> googleSignInEnabled(Ref ref) =>
+    ref.watch(contentRepositoryProvider).googleSignInEnabled();

@@ -225,3 +225,17 @@ Dated, numbered entries (Master Prompt §9.2). Format: decision, context, option
 
 - **Date:** 2026-10-17
 - **Choice:** `.gitleaks.toml` extends the default ruleset and skips dependencies and build output. The gate runs `gitleaks dir . --config .gitleaks.toml` over the working tree (this workspace is not a git repository). CI downloads the pinned release binary instead of using the licensed GitHub Action. The one finding during M9 was the Playwright fixture file holding a random throwaway password; the test now deletes it on teardown.
+
+## DEC-032 — P1-M1 entry and authentication screens
+
+- **Date:** 2026-10-17
+- **Developer sign-in removed.** The real sign-in screen replaces it, so the dev-only screen and its route are gone. The dev flavour keeps only the component gallery.
+- **Onboarding entry.** A new member who verifies is sent to `/onboarding`, which is a labelled "Soon · P1" placeholder (Creative profile setup) whose back button goes Home, until P1-M2 builds the real steps. Splash routing for "signed in but onboarding incomplete" needs the profile model from P1-M2, so Phase 1 splash currently sends every signed-in member Home. Nothing else is hidden behind this.
+- **Verify screen:** the Verify button is the only way to submit (no auto-submit on the sixth digit), because the milestone says the button is disabled until six digits and an accidental auto-submit would burn one of the limited attempts. The countdown is driven by the server's `resendAvailableAt`; the app never invents its own cooldown. A sign-in with the right password on an unverified account opens the verify screen, because the API has already sent a fresh code.
+- **Forgot and reset:** requesting a code opens the reset screen with the "Code sent. It expires in 15 minutes." banner. A successful reset signs the member in with the new password and shows a dismissible banner at the top of the app: "Password updated. You were signed out of your other devices." (a snackbar covered the tab bar and blocked taps on a real screen).
+- **Server messages are shown as the server wrote them** (wrong password, lock-out, unverified, code invalid), so the wording lives in one place. The lock-out message gets one extra line pointing at resetting the password.
+- **Continue with Google:** shown only when `GET /config/public` says `googleSignIn` is on (default off; an unreachable server counts as off). The Google SDK and OAuth credentials are an owner decision (Master Prompt section 12); with the flag on but no SDK wired, the button opens a labelled "Soon · Later" screen instead of doing nothing.
+- **New public endpoints:** `GET /config/public` and `GET /legal/{TERMS|PRIVACY}`. Until the owner publishes reviewed text, the seeded draft is returned with `isDraft: true` and shown under a "draft, not reviewed" banner. Legal text is never written by me.
+- **Phone numbers** are normalised on the device the same way the API does it (Kenyan local formats to +254, E.164), so the form can show the right error first; the server stays the authority.
+- **Artwork:** the splash ribbon and welcome collage use the design prototype's images as placeholders (`apps/mobile/assets/images`). The prototype's "1,280 creatives" counter was left out because it is sample data; a real count comes with the community features.
+- **Analytics:** `user_registered`, `verification_completed` and `sign_in` are emitted through the analytics interface. The sink is still the no-op one until an analytics provider is chosen, so no event leaves the device yet.

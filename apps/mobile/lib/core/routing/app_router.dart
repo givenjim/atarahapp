@@ -3,9 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../core/design_system/gallery/component_gallery.dart';
+import '../../features/auth/forgot_screen.dart';
+import '../../features/auth/legal_screen.dart';
+import '../../features/auth/reset_screen.dart';
+import '../../features/auth/signin_screen.dart';
+import '../../features/auth/signup_screen.dart';
 import '../../features/auth/splash_screen.dart';
+import '../../features/auth/verify_screen.dart';
 import '../../features/auth/welcome_screen.dart';
-import '../../features/dev/dev_sign_in_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/shell/app_shell.dart';
 import '../../features/shell/future_route_screen.dart';
@@ -76,16 +81,52 @@ GoRouter appRouter(Ref ref) {
     routes: [
       GoRoute(path: Routes.splash, builder: (_, _) => const SplashScreen()),
       GoRoute(path: Routes.welcome, builder: (_, _) => const WelcomeScreen()),
-      if (devTools) ...[
-        GoRoute(
-          path: Routes.devSignIn,
-          builder: (_, _) => const DevSignInScreen(),
+      GoRoute(path: Routes.signup, builder: (_, _) => const SignUpScreen()),
+      GoRoute(path: Routes.signin, builder: (_, _) => const SignInScreen()),
+      GoRoute(
+        path: Routes.verify,
+        builder: (_, state) {
+          final q = state.uri.queryParameters;
+          final ms = int.tryParse(q['resendAt'] ?? '');
+          return VerifyScreen(
+            identifier: q['identifier'] ?? '',
+            resendAt: ms == null
+                ? null
+                : DateTime.fromMillisecondsSinceEpoch(ms),
+          );
+        },
+      ),
+      GoRoute(
+        path: Routes.forgot,
+        builder: (_, state) =>
+            ForgotScreen(identifier: state.uri.queryParameters['identifier']),
+      ),
+      GoRoute(
+        path: Routes.reset,
+        builder: (_, state) => ResetScreen(
+          identifier: state.uri.queryParameters['identifier'] ?? '',
+          codeJustSent: state.uri.queryParameters['sent'] == '1',
         ),
+      ),
+      GoRoute(
+        path: Routes.legal,
+        builder: (_, state) =>
+            LegalScreen(type: state.pathParameters['type'] ?? 'TERMS'),
+      ),
+      // Creative profile setup is built in P1-M2; until then the way in is labelled, and back goes Home.
+      GoRoute(
+        path: Routes.onboarding,
+        builder: (context, _) => FutureRouteScreen(
+          phase: 'p1',
+          name: AppLocalizations.of(context).onboardingPlaceholderName,
+          onBack: () => context.go(Routes.home),
+        ),
+      ),
+      if (devTools)
         GoRoute(
           path: Routes.devGallery,
           builder: (_, _) => const ComponentGalleryScreen(),
         ),
-      ],
       GoRoute(
         path: Routes.soon,
         builder: (_, state) => FutureRouteScreen(

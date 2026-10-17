@@ -108,3 +108,12 @@ Member bearer token, permission `notification.manage.own`.
 | `PUT /notifications/preferences` | Same shape; send only the categories to change                                                            |
 | `POST /devices`                  | `{ token, platform: ANDROID \| IOS \| WEB, appVersion? }` → `{ id }`. Re-registering a token refreshes it |
 | `DELETE /devices/{id}`           | 204. Call on sign-out                                                                                     |
+
+## Public content (P1-M1)
+
+No sign-in needed.
+
+| Endpoint                      | Notes                                                                                                           |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `GET /config/public`          | `{ googleSignIn: boolean }`. Apps show optional features only when true                                         |
+| `GET /legal/{TERMS\|PRIVACY}` | `{ type, version, title, body, isDraft }`. Latest published version, else the seeded draft with `isDraft: true` |

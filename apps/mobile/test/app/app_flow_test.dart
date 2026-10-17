@@ -90,40 +90,32 @@ void main() {
       expect(find.byType(AtTabBar), findsOneWidget);
       expect(repo.calls.where((c) => c == 'restore').length, 2);
     });
-
-    testWidgets('production builds have no developer sign-in', (t) async {
-      await pumpApp(t, FakeAuthRepository(), flavor: Flavor.prod);
-      expect(find.text('Developer sign in'), findsNothing);
-      await pumpApp(t, FakeAuthRepository(), flavor: Flavor.dev);
-      expect(find.text('Developer sign in'), findsOneWidget);
-    });
   });
 
   group('sign in and out', () {
-    testWidgets(
-      'developer sign-in reaches the shell and shows the real member',
-      (t) async {
-        final repo = FakeAuthRepository()
-          ..signInResult = fakeUser(name: 'Amani Test', pro: true);
-        await pumpApp(t, repo);
-        await t.tap(find.text('Developer sign in'));
-        await t.pumpAndSettle();
-        await t.enterText(
-          find.byType(TextField).at(0),
-          'amani@test.atarah.local',
-        );
-        await t.enterText(find.byType(TextField).at(1), 'secret-1');
-        await t.tap(find.text('Sign in').last);
-        await t.pumpAndSettle();
-        expect(repo.calls, contains('signIn:amani@test.atarah.local'));
-        expect(find.byType(AtTabBar), findsOneWidget);
+    testWidgets('sign-in reaches the shell and shows the real member', (
+      t,
+    ) async {
+      final repo = FakeAuthRepository()
+        ..signInResult = fakeUser(name: 'Amani Test', pro: true);
+      await pumpApp(t, repo);
+      await t.tap(find.text('Sign in'));
+      await t.pumpAndSettle();
+      await t.enterText(
+        find.byType(TextField).at(0),
+        'amani@test.atarah.local',
+      );
+      await t.enterText(find.byType(TextField).at(1), 'secret-1');
+      await t.tap(find.text('Sign in').last);
+      await t.pumpAndSettle();
+      expect(repo.calls, contains('signIn:amani@test.atarah.local'));
+      expect(find.byType(AtTabBar), findsOneWidget);
 
-        await t.tap(find.text('Profile'));
-        await t.pumpAndSettle();
-        expect(find.text('Amani Test'), findsOneWidget);
-        expect(find.text('Atarah Pro'), findsOneWidget);
-      },
-    );
+      await t.tap(find.text('Profile'));
+      await t.pumpAndSettle();
+      expect(find.text('Amani Test'), findsOneWidget);
+      expect(find.text('Atarah Pro'), findsOneWidget);
+    });
 
     testWidgets(
       'a failed sign-in shows the server message and stays on the form',
@@ -136,7 +128,7 @@ void main() {
           ),
         );
         await pumpApp(t, repo);
-        await t.tap(find.text('Developer sign in'));
+        await t.tap(find.text('Sign in'));
         await t.pumpAndSettle();
         await t.enterText(find.byType(TextField).at(0), 'a@b.co');
         await t.enterText(find.byType(TextField).at(1), 'wrong');
@@ -179,7 +171,7 @@ void main() {
       expect(router().state.uri.path, '/welcome');
       expect(router().state.uri.queryParameters['from'], '/opportunities/42');
 
-      await t.tap(find.text('Developer sign in'));
+      await t.tap(find.text('Sign in'));
       await t.pumpAndSettle();
       await t.enterText(find.byType(TextField).at(0), 'a@b.co');
       await t.enterText(find.byType(TextField).at(1), 'secret-1');

@@ -10,12 +10,14 @@ class FutureRouteScreen extends StatelessWidget {
     required this.phase,
     this.name,
     this.showBack = true,
+    this.onBack,
   });
 
   /// `p1`, `p2`, `p3` or `later`.
   final String phase;
   final String? name;
   final bool showBack;
+  final VoidCallback? onBack;
 
   static AtFuturePhase parsePhase(String raw) => switch (raw.toLowerCase()) {
     'p1' => AtFuturePhase.p1,
@@ -30,6 +32,7 @@ class FutureRouteScreen extends StatelessWidget {
       phase: parsePhase(phase),
       featureName: name,
       showBack: showBack,
+      onBack: onBack,
     );
   }
 }

@@ -1473,6 +1473,81 @@
           "Notifications"
         ]
       }
+    },
+    "/api/v1/config/public": {
+      "get": {
+        "operationId": "config",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PublicConfigDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Public"
+        ]
+      }
+    },
+    "/api/v1/legal/{type}": {
+      "get": {
+        "operationId": "legal",
+        "parameters": [
+          {
+            "name": "type",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/LegalDocumentDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Public"
+        ]
+      }
     }
   },
   "info": {
@@ -2616,6 +2691,50 @@
         "required": [
           "token",
           "platform"
+        ]
+      },
+      "PublicConfigDto": {
+        "type": "object",
+        "properties": {
+          "googleSignIn": {
+            "type": "boolean",
+            "description": "Show \"Continue with Google\" only when true."
+          }
+        },
+        "required": [
+          "googleSignIn"
+        ]
+      },
+      "LegalDocumentDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "TERMS",
+              "PRIVACY"
+            ]
+          },
+          "version": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "isDraft": {
+            "type": "boolean",
+            "description": "True until the owner publishes reviewed text. Show it as a draft."
+          }
+        },
+        "required": [
+          "type",
+          "version",
+          "title",
+          "body",
+          "isDraft"
         ]
       }
     }

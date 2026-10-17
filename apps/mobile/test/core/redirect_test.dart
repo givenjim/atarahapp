@@ -57,14 +57,34 @@ void main() {
       },
     );
 
-    test('welcome is public; dev routes only exist with dev tools', () {
-      expect(redirect(SessionStatus.signedOut, '/welcome'), isNull);
-      expect(redirect(SessionStatus.signedOut, '/dev/sign-in'), isNull);
-      expect(redirect(SessionStatus.signedOut, '/dev/gallery'), isNull);
-      expect(
-        redirect(SessionStatus.signedOut, '/dev/sign-in', devTools: false),
+    test('the whole sign-in family and the legal text are public', () {
+      for (final p in [
         '/welcome',
+        '/signup',
+        '/signin',
+        '/verify?identifier=a%40b.co',
+        '/forgot',
+        '/reset?identifier=a%40b.co',
+        '/legal/TERMS',
+        '/legal/PRIVACY',
+        '/dev/gallery',
+      ]) {
+        expect(redirect(SessionStatus.signedOut, p), isNull, reason: p);
+      }
+    });
+
+    test('the onboarding entry and the app itself need a session', () {
+      expect(
+        redirect(SessionStatus.signedOut, '/onboarding'),
+        '/welcome?from=%2Fonboarding',
       );
+      expect(
+        redirect(SessionStatus.signedOut, '/home'),
+        startsWith('/welcome'),
+      );
+    });
+
+    test('the developer gallery only exists with dev tools', () {
       expect(
         redirect(SessionStatus.signedOut, '/dev/gallery', devTools: false),
         startsWith('/welcome'),
@@ -78,7 +98,17 @@ void main() {
       () {
         expect(redirect(SessionStatus.signedIn, '/splash'), '/home');
         expect(redirect(SessionStatus.signedIn, '/welcome'), '/home');
-        expect(redirect(SessionStatus.signedIn, '/dev/sign-in'), '/home');
+        for (final p in ['/signup', '/signin', '/forgot']) {
+          expect(redirect(SessionStatus.signedIn, p), '/home', reason: p);
+        }
+        // A new member who just verified is sent on to onboarding.
+        expect(
+          redirect(
+            SessionStatus.signedIn,
+            '/verify?identifier=a%40b.co&from=%2Fonboarding',
+          ),
+          '/onboarding',
+        );
         expect(
           redirect(
             SessionStatus.signedIn,
@@ -124,7 +154,9 @@ void main() {
           'javascript:alert(1)',
           '/welcome',
           '/splash',
-          '/dev/sign-in',
+          '/signin',
+          '/signup',
+          '/verify',
         ]) {
           expect(safeDestination(bad), isNull, reason: '$bad');
         }

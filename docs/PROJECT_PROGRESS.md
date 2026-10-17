@@ -2,11 +2,11 @@
 
 Single authoritative register (Master Prompt §9.1). Updated after every milestone.
 
-- **Overall status:** Phase 0 complete, waiting for the product owner (gate report: `docs/GATE_REPORT_P0.md`)
-- **Current phase:** 0 — Foundation
-- **Current milestone:** none (Phase 1 starts only when the product owner says so)
+- **Overall status:** Phase 1 in progress, one milestone at a time; waiting for the product owner after each milestone
+- **Current phase:** 1 — Core Member Experience
+- **Current milestone:** P1-M1 done; P1-M2 starts only when the product owner says so
 - **Last verified:** 2026-10-17
-- **Progress:** 9 / 35 milestones completed (completed ÷ planned, excluding deferred and cancelled)
+- **Progress:** 10 / 35 milestones completed (completed ÷ planned, excluding deferred and cancelled)
 
 Statuses: `NOT STARTED`, `IN PROGRESS`, `BLOCKED`, `IN REVIEW`, `COMPLETED`, `DEFERRED`, `CANCELLED`.
 Layer columns: `—` not applicable, `NOT STARTED`, `PARTIAL`, `DONE`.
@@ -24,7 +24,7 @@ Layer columns: `—` not applicable, `NOT STARTED`, `PARTIAL`, `DONE`.
 | P0-M7  | Mobile app shell                                                   | COMPLETED   | —       | DONE   | —    | —     | 239 Flutter pass (widget, a11y, contrast, goldens, redirect, networking) + 1 on-device journey | YES (Android emulator, real API; iOS NOT verified: Windows host) | Router, session, secure tokens, offline banner, flavours, deep links, typed client. Firebase not initialised; minSdk 26 (DEC-026)                               |
 | P0-M8  | Web and admin shells                                               | COMPLETED   | DONE    | —      | DONE | DONE  | 189 backend, 13 admin kit, 5 web, 1 Playwright pass                                            | N/A (web)                                                        | Admin users/audit endpoints; admin BFF with TOTP; 18-section sidebar, Users and Audit Logs live; generated TS client (DEC-027, DEC-028)                         |
 | P0-M9  | Infrastructure, storage, notifications and CI                      | COMPLETED   | DONE    | —      | —    | —     | 234 backend (media 10 + notifications 10 + 25 unit new) pass                                   | N/A                                                              | Media pipeline on real S3; notification fan-out on real queue; bootstrap script; CI workflow (not run on GitHub); gitleaks clean; FCM unverified (DEC-029..031) |
-| P1-M1  | Entry and authentication screens                                   | NOT STARTED |         |        |      |       |                                                                                                |                                                                  |                                                                                                                                                                 |
+| P1-M1  | Entry and authentication screens                                   | COMPLETED   | DONE    | DONE   | —    | —     | 291 Flutter, 4 new backend; widget tests for every state                                       | YES (Android emulator, real API + Mailpit; iOS not verifiable)   | Seven screens + legal text + public config; dev sign-in removed; onboarding entry is a labelled placeholder until P1-M2 (DEC-032)                               |
 | P1-M2  | Onboarding and creative profile creation                           | NOT STARTED |         |        |      |       |                                                                                                |                                                                  |                                                                                                                                                                 |
 | P1-M3  | My profile, Creative Passport and public creative profile          | NOT STARTED |         |        |      |       |                                                                                                |                                                                  |                                                                                                                                                                 |
 | P1-M4  | Portfolio, projects, skills, experience, achievements and services | NOT STARTED |         |        |      |       |                                                                                                |                                                                  |                                                                                                                                                                 |

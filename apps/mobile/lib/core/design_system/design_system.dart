@@ -3,6 +3,7 @@ library;
 
 export 'components/at_tap_target.dart';
 export 'components/avatars_progress.dart';
+export 'components/banners.dart';
 export 'components/brand.dart';
 export 'components/buttons.dart';
 export 'components/chips_tags.dart';

@@ -134,8 +134,9 @@ flutter run --flavor dev -t lib/main_dev.dart --dart-define=ATARAH_API_BASE_URL=
 
 flutter analyze && dart format --set-exit-if-changed lib test && flutter test
 
-# On-device journey against the real backend (needs the demo seed)
-flutter test integration_test/app_journey_test.dart --flavor dev -d emulator-5554 \
+# On-device journeys against the real backend (register, sign in, reset). Codes are read from Mailpit, so
+# `just infra-up` must be running (override with --dart-define=ATARAH_MAILPIT_URL=...).
+flutter test integration_test/auth_journeys_test.dart --flavor dev -d emulator-5554 \
   --dart-define=ATARAH_API_BASE_URL=http://10.0.2.2:3000
 ```
 

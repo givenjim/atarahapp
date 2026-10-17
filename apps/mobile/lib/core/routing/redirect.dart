@@ -7,8 +7,7 @@ String? safeDestination(String? from) {
   if (!from.startsWith('/') || from.startsWith('//')) return null;
   final path = Uri.tryParse(from)?.path;
   if (path == null) return null;
-  const authPaths = {Routes.splash, Routes.welcome, Routes.devSignIn};
-  if (authPaths.contains(path)) return null;
+  if (Routes.authScreens.contains(path)) return null;
   return from;
 }
 
@@ -51,8 +50,7 @@ String? computeRedirect({
       return _withFrom(Routes.welcome, uri);
 
     case SessionStatus.signedIn:
-      const authScreens = {Routes.splash, Routes.welcome, Routes.devSignIn};
-      if (authScreens.contains(path)) {
+      if (Routes.authScreens.contains(path)) {
         return safeDestination(from) ?? Routes.home;
       }
       return null;

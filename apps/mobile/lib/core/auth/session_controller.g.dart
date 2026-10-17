@@ -39,7 +39,7 @@ final class SessionControllerProvider
   SessionController create() => SessionController();
 }
 
-String _$sessionControllerHash() => r'edc7eeef2159c4ad10a11986d5dffdeee9626db4';
+String _$sessionControllerHash() => r'3867df6225b7260c126904936f38b5414e4443c7';
 
 /// The signed-in member, or null when signed out. Starts by restoring a stored session.
 /// `AsyncLoading` means "checking", and `AsyncError` means the check failed (usually offline).

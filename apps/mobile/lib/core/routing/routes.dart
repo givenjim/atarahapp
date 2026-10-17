@@ -2,7 +2,13 @@
 abstract final class Routes {
   static const splash = '/splash';
   static const welcome = '/welcome';
-  static const devSignIn = '/dev/sign-in';
+  static const signup = '/signup';
+  static const signin = '/signin';
+  static const verify = '/verify';
+  static const forgot = '/forgot';
+  static const reset = '/reset';
+  static const legal = '/legal/:type';
+  static const onboarding = '/onboarding';
   static const devGallery = '/dev/gallery';
 
   // The five tab roots (the bottom bar).
@@ -32,10 +38,24 @@ abstract final class Routes {
       ? '/soon/$phase'
       : '/soon/$phase?name=${Uri.encodeQueryComponent(name)}';
 
+  /// The sign-in family. A signed-in member is sent past these.
+  static const authScreens = {
+    splash,
+    welcome,
+    signup,
+    signin,
+    verify,
+    forgot,
+    reset,
+  };
+
+  static String legalPath(String type) => '/legal/$type';
+
   /// Paths a signed-out member may open.
   static bool isPublic(String path, {required bool devTools}) {
-    if (path == welcome) return true;
-    if (devTools && (path == devSignIn || path == devGallery)) return true;
+    if (authScreens.contains(path) && path != splash) return true;
+    if (path.startsWith('/legal/')) return true;
+    if (devTools && path == devGallery) return true;
     return false;
   }
 }

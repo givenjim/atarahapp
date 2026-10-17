@@ -286,16 +286,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcomeSignIn => 'Sign in';
 
   @override
-  String get devSignInEntry => 'Developer sign in';
-
-  @override
-  String get devSignInTitle => 'Developer sign in';
-
-  @override
-  String get devSignInBody =>
-      'Development builds only. Signs in with a real account on the local API.';
-
-  @override
   String get emailOrPhone => 'Email or phone number';
 
   @override
@@ -379,4 +369,194 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get featurePost => 'Discussion';
+
+  @override
+  String get welcomeSubhead =>
+      'Learn, connect, discover opportunities and grow your career — from one profile that works everywhere in Atarah.';
+
+  @override
+  String get pillarIdentity => 'Identity';
+
+  @override
+  String get pillarLearn => 'Learn';
+
+  @override
+  String get pillarConnect => 'Connect';
+
+  @override
+  String get pillarEarn => 'Earn';
+
+  @override
+  String get welcomeTerms => 'Terms';
+
+  @override
+  String get welcomePrivacy => 'Privacy';
+
+  @override
+  String get legalDraftBanner =>
+      'This is a draft that has not been reviewed yet. It is not the final text.';
+
+  @override
+  String get legalUnavailable => 'We couldn\'t load this document.';
+
+  @override
+  String get legalTermsTitle => 'Terms of Service';
+
+  @override
+  String get legalPrivacyTitle => 'Privacy Policy';
+
+  @override
+  String get signupTitle => 'Create your account';
+
+  @override
+  String get signupSubtitle =>
+      'Takes under a minute. You\'ll set up your creative profile next.';
+
+  @override
+  String get fullNameLabel => 'Full name';
+
+  @override
+  String get fullNameError => 'Enter your full name.';
+
+  @override
+  String get identifierError => 'Enter a valid email address or phone number.';
+
+  @override
+  String get identifierHintPhone =>
+      'Phone numbers starting with 0 or 7 are treated as Kenyan (+254).';
+
+  @override
+  String get passwordRuleError =>
+      'Use at least 8 characters, including a number.';
+
+  @override
+  String get consentPrefix => 'I agree to the ';
+
+  @override
+  String get consentAnd => ' and ';
+
+  @override
+  String get consentTermsLink => 'Terms of Service';
+
+  @override
+  String get consentPrivacyLink => 'Privacy Policy';
+
+  @override
+  String get consentRequired =>
+      'You need to accept the Terms and Privacy Policy to continue.';
+
+  @override
+  String get signupAction => 'Continue';
+
+  @override
+  String get googleContinue => 'Continue with Google';
+
+  @override
+  String get alreadyMember => 'Already a member?';
+
+  @override
+  String get newToAtarah => 'New to Atarah?';
+
+  @override
+  String get createAnAccount => 'Create an account';
+
+  @override
+  String get signInInstead => 'Sign in instead';
+
+  @override
+  String get verifyTitleEmail => 'Verify your email';
+
+  @override
+  String get verifyTitlePhone => 'Verify your phone number';
+
+  @override
+  String get verifyBody => 'Enter the 6-digit code we sent to';
+
+  @override
+  String get verifyDidntGet => 'Didn\'t get it?';
+
+  @override
+  String verifyResendIn(String time) {
+    return 'Resend in $time';
+  }
+
+  @override
+  String get verifyResend => 'Resend code';
+
+  @override
+  String get verifyResent => 'New code sent.';
+
+  @override
+  String get verifyWhyLead => 'Why we verify:';
+
+  @override
+  String get verifyWhyBody =>
+      ' it protects your creative identity and is needed before you message, apply or book.';
+
+  @override
+  String get verifyNextLead => 'What\'s next:';
+
+  @override
+  String get verifyNextBody =>
+      ' four short steps to set up your creative profile.';
+
+  @override
+  String get verifyCodeLabel => 'Verification code';
+
+  @override
+  String get signInTitle => 'Welcome back';
+
+  @override
+  String get signInSubtitle => 'Sign in to continue your creative journey.';
+
+  @override
+  String get forgotPasswordLink => 'Forgot password?';
+
+  @override
+  String get signInLockedHint =>
+      'You can also reset your password to sign in right away.';
+
+  @override
+  String get forgotTitle => 'Reset your password';
+
+  @override
+  String get forgotBody =>
+      'Enter the email or phone on your account and we\'ll send a recovery code.';
+
+  @override
+  String get forgotSent => 'Code sent. It expires in 15 minutes.';
+
+  @override
+  String get forgotAction => 'Send code';
+
+  @override
+  String get resetTitle => 'Set a new password';
+
+  @override
+  String get resetBody => 'You\'ll be signed out of other devices.';
+
+  @override
+  String get recoveryCodeLabel => 'Recovery code';
+
+  @override
+  String get newPasswordLabel => 'New password';
+
+  @override
+  String get confirmPasswordLabel => 'Confirm new password';
+
+  @override
+  String get passwordsDontMatch => 'The passwords don\'t match.';
+
+  @override
+  String get resetAction => 'Reset password';
+
+  @override
+  String get resetDone =>
+      'Password updated. You were signed out of your other devices.';
+
+  @override
+  String get onboardingPlaceholderName => 'Creative profile setup';
+
+  @override
+  String get codeIncomplete => 'Enter all 6 digits.';
 }

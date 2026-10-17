@@ -592,24 +592,6 @@ abstract class AppLocalizations {
   /// **'Sign in'**
   String get welcomeSignIn;
 
-  /// No description provided for @devSignInEntry.
-  ///
-  /// In en, this message translates to:
-  /// **'Developer sign in'**
-  String get devSignInEntry;
-
-  /// No description provided for @devSignInTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Developer sign in'**
-  String get devSignInTitle;
-
-  /// No description provided for @devSignInBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Development builds only. Signs in with a real account on the local API.'**
-  String get devSignInBody;
-
   /// No description provided for @emailOrPhone.
   ///
   /// In en, this message translates to:
@@ -777,6 +759,360 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Discussion'**
   String get featurePost;
+
+  /// No description provided for @welcomeSubhead.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn, connect, discover opportunities and grow your career — from one profile that works everywhere in Atarah.'**
+  String get welcomeSubhead;
+
+  /// No description provided for @pillarIdentity.
+  ///
+  /// In en, this message translates to:
+  /// **'Identity'**
+  String get pillarIdentity;
+
+  /// No description provided for @pillarLearn.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn'**
+  String get pillarLearn;
+
+  /// No description provided for @pillarConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect'**
+  String get pillarConnect;
+
+  /// No description provided for @pillarEarn.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn'**
+  String get pillarEarn;
+
+  /// No description provided for @welcomeTerms.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms'**
+  String get welcomeTerms;
+
+  /// No description provided for @welcomePrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy'**
+  String get welcomePrivacy;
+
+  /// No description provided for @legalDraftBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a draft that has not been reviewed yet. It is not the final text.'**
+  String get legalDraftBanner;
+
+  /// No description provided for @legalUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load this document.'**
+  String get legalUnavailable;
+
+  /// No description provided for @legalTermsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Service'**
+  String get legalTermsTitle;
+
+  /// No description provided for @legalPrivacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get legalPrivacyTitle;
+
+  /// No description provided for @signupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your account'**
+  String get signupTitle;
+
+  /// No description provided for @signupSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Takes under a minute. You\'ll set up your creative profile next.'**
+  String get signupSubtitle;
+
+  /// No description provided for @fullNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get fullNameLabel;
+
+  /// No description provided for @fullNameError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your full name.'**
+  String get fullNameError;
+
+  /// No description provided for @identifierError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email address or phone number.'**
+  String get identifierError;
+
+  /// No description provided for @identifierHintPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone numbers starting with 0 or 7 are treated as Kenyan (+254).'**
+  String get identifierHintPhone;
+
+  /// No description provided for @passwordRuleError.
+  ///
+  /// In en, this message translates to:
+  /// **'Use at least 8 characters, including a number.'**
+  String get passwordRuleError;
+
+  /// No description provided for @consentPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'I agree to the '**
+  String get consentPrefix;
+
+  /// No description provided for @consentAnd.
+  ///
+  /// In en, this message translates to:
+  /// **' and '**
+  String get consentAnd;
+
+  /// No description provided for @consentTermsLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Service'**
+  String get consentTermsLink;
+
+  /// No description provided for @consentPrivacyLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get consentPrivacyLink;
+
+  /// No description provided for @consentRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'You need to accept the Terms and Privacy Policy to continue.'**
+  String get consentRequired;
+
+  /// No description provided for @signupAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get signupAction;
+
+  /// No description provided for @googleContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get googleContinue;
+
+  /// No description provided for @alreadyMember.
+  ///
+  /// In en, this message translates to:
+  /// **'Already a member?'**
+  String get alreadyMember;
+
+  /// No description provided for @newToAtarah.
+  ///
+  /// In en, this message translates to:
+  /// **'New to Atarah?'**
+  String get newToAtarah;
+
+  /// No description provided for @createAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account'**
+  String get createAnAccount;
+
+  /// No description provided for @signInInstead.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in instead'**
+  String get signInInstead;
+
+  /// No description provided for @verifyTitleEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify your email'**
+  String get verifyTitleEmail;
+
+  /// No description provided for @verifyTitlePhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify your phone number'**
+  String get verifyTitlePhone;
+
+  /// No description provided for @verifyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 6-digit code we sent to'**
+  String get verifyBody;
+
+  /// No description provided for @verifyDidntGet.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t get it?'**
+  String get verifyDidntGet;
+
+  /// No description provided for @verifyResendIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend in {time}'**
+  String verifyResendIn(String time);
+
+  /// No description provided for @verifyResend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code'**
+  String get verifyResend;
+
+  /// No description provided for @verifyResent.
+  ///
+  /// In en, this message translates to:
+  /// **'New code sent.'**
+  String get verifyResent;
+
+  /// No description provided for @verifyWhyLead.
+  ///
+  /// In en, this message translates to:
+  /// **'Why we verify:'**
+  String get verifyWhyLead;
+
+  /// No description provided for @verifyWhyBody.
+  ///
+  /// In en, this message translates to:
+  /// **' it protects your creative identity and is needed before you message, apply or book.'**
+  String get verifyWhyBody;
+
+  /// No description provided for @verifyNextLead.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s next:'**
+  String get verifyNextLead;
+
+  /// No description provided for @verifyNextBody.
+  ///
+  /// In en, this message translates to:
+  /// **' four short steps to set up your creative profile.'**
+  String get verifyNextBody;
+
+  /// No description provided for @verifyCodeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification code'**
+  String get verifyCodeLabel;
+
+  /// No description provided for @signInTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get signInTitle;
+
+  /// No description provided for @signInSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to continue your creative journey.'**
+  String get signInSubtitle;
+
+  /// No description provided for @forgotPasswordLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get forgotPasswordLink;
+
+  /// No description provided for @signInLockedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'You can also reset your password to sign in right away.'**
+  String get signInLockedHint;
+
+  /// No description provided for @forgotTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset your password'**
+  String get forgotTitle;
+
+  /// No description provided for @forgotBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the email or phone on your account and we\'ll send a recovery code.'**
+  String get forgotBody;
+
+  /// No description provided for @forgotSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Code sent. It expires in 15 minutes.'**
+  String get forgotSent;
+
+  /// No description provided for @forgotAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Send code'**
+  String get forgotAction;
+
+  /// No description provided for @resetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a new password'**
+  String get resetTitle;
+
+  /// No description provided for @resetBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll be signed out of other devices.'**
+  String get resetBody;
+
+  /// No description provided for @recoveryCodeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Recovery code'**
+  String get recoveryCodeLabel;
+
+  /// No description provided for @newPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get newPasswordLabel;
+
+  /// No description provided for @confirmPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm new password'**
+  String get confirmPasswordLabel;
+
+  /// No description provided for @passwordsDontMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'The passwords don\'t match.'**
+  String get passwordsDontMatch;
+
+  /// No description provided for @resetAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get resetAction;
+
+  /// No description provided for @resetDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Password updated. You were signed out of your other devices.'**
+  String get resetDone;
+
+  /// No description provided for @onboardingPlaceholderName.
+  ///
+  /// In en, this message translates to:
+  /// **'Creative profile setup'**
+  String get onboardingPlaceholderName;
+
+  /// No description provided for @codeIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter all 6 digits.'**
+  String get codeIncomplete;
 }
 
 class _AppLocalizationsDelegate

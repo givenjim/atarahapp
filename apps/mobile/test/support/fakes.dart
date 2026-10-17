@@ -27,7 +27,16 @@ MeDto fakeUser({
 
 /// In-memory stand-in for [AuthRepository]. Records calls and can be scripted to fail.
 class FakeAuthRepository implements AuthRepository {
-  FakeAuthRepository({this.restored, this.restoreFailure, this.signInFailure});
+  FakeAuthRepository({
+    this.restored,
+    this.restoreFailure,
+    this.signInFailure,
+    this.registerFailure,
+    this.verifyFailure,
+    this.resendFailure,
+    this.forgotFailure,
+    this.resetFailure,
+  });
 
   MeDto? restored;
   AppFailure? restoreFailure;
@@ -55,6 +64,68 @@ class FakeAuthRepository implements AuthRepository {
     final failure = signInFailure;
     if (failure != null) throw failure;
     return signInResult;
+  }
+
+  /// Scripted outcomes for the new flows. A null failure means success.
+  AppFailure? registerFailure;
+  AppFailure? verifyFailure;
+  AppFailure? resendFailure;
+  AppFailure? forgotFailure;
+  AppFailure? resetFailure;
+  DateTime? resendAvailableAt;
+  MeDto verifyResult = fakeUser();
+
+  @override
+  Future<CodeTicket> register({
+    required String fullName,
+    required String identifier,
+    required String password,
+  }) async {
+    calls.add('register:$identifier');
+    final f = registerFailure;
+    if (f != null) throw f;
+    return CodeTicket(
+      destination: identifier,
+      resendAvailableAt:
+          resendAvailableAt ?? DateTime.now().add(const Duration(seconds: 42)),
+    );
+  }
+
+  @override
+  Future<MeDto> verify({
+    required String identifier,
+    required String code,
+  }) async {
+    calls.add('verify:$identifier:$code');
+    final f = verifyFailure;
+    if (f != null) throw f;
+    return verifyResult;
+  }
+
+  @override
+  Future<DateTime?> resendCode(String identifier) async {
+    calls.add('resend:$identifier');
+    final f = resendFailure;
+    if (f != null) throw f;
+    return DateTime.now().add(const Duration(seconds: 60));
+  }
+
+  @override
+  Future<void> requestPasswordReset(String identifier) async {
+    calls.add('forgot:$identifier');
+    final f = forgotFailure;
+    if (f != null) throw f;
+  }
+
+  @override
+  Future<void> resetPassword({
+    required String identifier,
+    required String code,
+    required String newPassword,
+  }) async {
+    calls.add('reset:$identifier:$code');
+    final f = resetFailure;
+    if (f != null) throw f;
   }
 
   @override

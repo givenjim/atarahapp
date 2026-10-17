@@ -344,3 +344,89 @@ final class AuthRepositoryProvider
 }
 
 String _$authRepositoryHash() => r'3a5bdbb08fce4b4f75058238d8b0d4fead2b08f1';
+
+@ProviderFor(contentRepository)
+final contentRepositoryProvider = ContentRepositoryProvider._();
+
+final class ContentRepositoryProvider
+    extends
+        $FunctionalProvider<
+          ContentRepository,
+          ContentRepository,
+          ContentRepository
+        >
+    with $Provider<ContentRepository> {
+  ContentRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'contentRepositoryProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$contentRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<ContentRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ContentRepository create(Ref ref) {
+    return contentRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ContentRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ContentRepository>(value),
+    );
+  }
+}
+
+String _$contentRepositoryHash() => r'65755893b333a0b247782cb4aecb47f046ec6d3e';
+
+/// Whether "Continue with Google" is shown. Off until the server says otherwise.
+
+@ProviderFor(googleSignInEnabled)
+final googleSignInEnabledProvider = GoogleSignInEnabledProvider._();
+
+/// Whether "Continue with Google" is shown. Off until the server says otherwise.
+
+final class GoogleSignInEnabledProvider
+    extends $FunctionalProvider<AsyncValue<bool>, bool, FutureOr<bool>>
+    with $FutureModifier<bool>, $FutureProvider<bool> {
+  /// Whether "Continue with Google" is shown. Off until the server says otherwise.
+  GoogleSignInEnabledProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'googleSignInEnabledProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$googleSignInEnabledHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<bool> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<bool> create(Ref ref) {
+    return googleSignInEnabled(ref);
+  }
+}
+
+String _$googleSignInEnabledHash() =>
+    r'4668fe5da2a99efbd553fed36c14c15756987d06';

@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../api/generated/export.dart';
 import '../providers.dart';
+import 'auth_repository.dart';
 
 part 'session_controller.g.dart';
 
@@ -24,6 +25,56 @@ class SessionController extends _$SessionController {
         .signIn(identifier: identifier, password: password);
     ref.read(analyticsProvider).track('sign_in');
     state = AsyncData(user);
+  }
+
+  /// Creates the account and sends the first code. Returns when the member may ask for another.
+  Future<CodeTicket> register({
+    required String fullName,
+    required String identifier,
+    required String password,
+  }) async {
+    final ticket = await ref
+        .read(authRepositoryProvider)
+        .register(
+          fullName: fullName,
+          identifier: identifier,
+          password: password,
+        );
+    ref.read(analyticsProvider).track('user_registered');
+    return ticket;
+  }
+
+  /// A correct code signs the member in; the router then leaves the auth screens.
+  Future<void> verify({
+    required String identifier,
+    required String code,
+  }) async {
+    final user = await ref
+        .read(authRepositoryProvider)
+        .verify(identifier: identifier, code: code);
+    ref.read(analyticsProvider).track('verification_completed');
+    state = AsyncData(user);
+  }
+
+  Future<DateTime?> resendCode(String identifier) =>
+      ref.read(authRepositoryProvider).resendCode(identifier);
+
+  Future<void> requestPasswordReset(String identifier) =>
+      ref.read(authRepositoryProvider).requestPasswordReset(identifier);
+
+  /// Sets the new password, then signs in with it. The API has already ended the member's other sessions.
+  Future<void> resetPasswordAndSignIn({
+    required String identifier,
+    required String code,
+    required String newPassword,
+  }) async {
+    final repo = ref.read(authRepositoryProvider);
+    await repo.resetPassword(
+      identifier: identifier,
+      code: code,
+      newPassword: newPassword,
+    );
+    await signIn(identifier: identifier, password: newPassword);
   }
 
   Future<void> signOut() async {

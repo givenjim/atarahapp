@@ -10,6 +10,7 @@ import 'admin_auth/admin_auth_client.dart';
 import 'admin/admin_client.dart';
 import 'media/media_client.dart';
 import 'notifications/notifications_client.dart';
+import 'public/public_client.dart';
 
 /// Atarah API `v1.0`.
 ///
@@ -28,6 +29,7 @@ class AtarahApiClient {
   AdminClient? _admin;
   MediaClient? _media;
   NotificationsClient? _notifications;
+  PublicClient? _public;
 
   AuthClient get auth => _auth ??= AuthClient(_dio, baseUrl: _baseUrl);
 
@@ -42,4 +44,6 @@ class AtarahApiClient {
 
   NotificationsClient get notifications =>
       _notifications ??= NotificationsClient(_dio, baseUrl: _baseUrl);
+
+  PublicClient get public => _public ??= PublicClient(_dio, baseUrl: _baseUrl);
 }

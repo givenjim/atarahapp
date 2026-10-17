@@ -83,7 +83,7 @@ lib/core
   connectivity/  isOnline stream -> global AtOfflineBanner
   analytics/     AnalyticsSink interface (no-op in dev)
   design_system/ tokens.g.dart, AtTheme, At* components, dev gallery
-lib/features     auth (splash, welcome), dev (developer sign-in, dev flavour only), profile, shell (tab shell, placeholder route)
+lib/features     auth (splash, welcome, signup, verify, signin, forgot, reset, legal), profile, shell (tab shell, notices, placeholder route)
 ```
 
 Session lifecycle: launch → `/splash` (checking stored tokens via `GET /users/me`) → signed out: `/welcome`; signed in: remembered deep link or `/home`. A server-ended session (refresh rejected, token reuse, idle) calls `SessionController.expire()` and the router returns to welcome.
