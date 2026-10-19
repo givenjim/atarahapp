@@ -37,6 +37,8 @@ abstract final class Routes {
   static const group = '/groups/:id';
   static const post = '/posts/:id';
   static const notifications = '/notifications';
+  static const search = '/search';
+  static const articles = '/articles';
 
   /// Generic "coming soon" screen. `/soon/p2?name=Marketplace`
   static const soon = '/soon/:phase';
@@ -61,6 +63,10 @@ abstract final class Routes {
   /// A creative's profile. [preview] is the owner's "Public view" of their own page.
   static String creativePath(String handle, {bool preview = false}) =>
       '/creatives/${Uri.encodeComponent(handle)}${preview ? '?preview=1' : ''}';
+
+  /// One article by its slug.
+  static String articlePath(String slug) =>
+      '/articles/${Uri.encodeComponent(slug)}';
 
   /// A project. With a [handle] it is that member's project; without, the signed-in member's own.
   /// [preview] (`public` or `members`) is the owner's "Public view" of their own page.

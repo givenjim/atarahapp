@@ -393,3 +393,42 @@ Dated, numbered entries (Master Prompt §9.2). Format: decision, context, option
 - **Date:** 2026-10-19
 - Moderators (permission `moderation.act`) can see any **published** project, hide it with a reason of 5 to 300 characters, and restore it. Each action is audited (`portfolio.project.hide`, `.restore`, entity type `project`), the owner is notified, and profile completion is recalculated (a hidden project does not count). Drafts are not shown to moderators.
 - There is no appeal flow yet: the owner is told to edit the project and contact support. **Owner: say if you want an in-app appeal.**
+
+## DEC-055 — Finding creatives and search
+
+- **Date:** 2026-10-19
+- Search uses PostgreSQL `pg_trgm` (typo tolerance) with `ILIKE`, ranked by name, handle, headline, field and skill. What someone types is matched as words, never as a pattern.
+- **Visibility holds in the query:** only finished, active accounts are found; the viewer is never listed; a member's skills are matched only when their Skills section is not private; the county filter only matches people who show their county; PRIVATE fields are never returned.
+- Search covers creatives and articles today. A kind that is not built (opportunities, learning, marketplace, mentors) returns **no group**, and joins when its milestone ships.
+- **"Verified only"** reads a new `creative_verifications` table (status `VERIFIED`). Nothing writes to it until Phase 2 verification cases exist, so the filter honestly returns nobody until an admin seeds a row. Cards show the tick only for `VERIFIED`.
+- Recent searches are saved when the member **submits** a search or opens a result, not on every keystroke. Newest first, ten at most, no duplicates, deletable one at a time or all at once.
+- The filters sheet is built to be reused: Explore passes discipline, location, availability, verified and sort. Opportunities will pass its own groups in P1-M7.
+
+## DEC-056 — Home
+
+- **Date:** 2026-10-19
+- One request, `GET /home`, returns the greeting, completion, unread count, the article card, recommendations and people to meet. A section that fails is left out and named in `unavailable`; the rest still shows.
+- Recommendations are rule-based and always say why: an article's tags are matched to the member's disciplines, specialisations, interests and skills ("Because you selected Animation and Visual Art"). With no match there is nothing, not a random pick. People to meet are scored by same discipline, shared skills and same county, then newest; anyone already connected or pending is left out. Each says why ("Also works in Animation", "New on Atarah").
+- Hidden until their milestone, not drawn empty: **Featured opportunity** (P1-M7), **Continue learning** (P1-M8), **From the community** (P1-M6). The profile completion card is hidden at 100%.
+- Marketplace and Mentorship tiles stay, opening their labelled "Soon · P2" screens. The bell opens Notifications (labelled "Soon · P1" until P1-M9).
+- The article card is the one an admin pinned, else the newest published. An archived article is un-pinned automatically.
+
+## DEC-057 — Articles
+
+- **Date:** 2026-10-19
+- Bodies are structured blocks (paragraph, heading, callout, image, quote), never HTML. Read time is calculated (200 words a minute). Image blocks must be PUBLIC images the editor uploaded.
+- Lifecycle: draft, in review, published, archived (and back to draft). Submitting needs a summary and at least one block, and Partner or External content needs a source label. **Scheduling** is a publish time in the future: the article is published but stays hidden until then. Every step is audited (`content.article.*`). One editor may take an article all the way to published; there is no separate reviewer rule yet.
+- Slugs are made from the title once and never change. Articles can be read without an account (shared links work); saving needs one.
+- The **related Skill Lab card** is not built: it needs courses (P1-M8). The column and card join then.
+- Editors upload hero and body images through `POST /admin/media/uploads` (needs `media.manage`), because the member upload route needs a member permission that staff roles do not hold.
+- Development seed adds two clearly marked demo articles (`isDemo`). Production has none, so Home shows no article until an editor publishes one.
+
+## DEC-058 — Saved items
+
+- **Date:** 2026-10-19
+- `PUT/DELETE /me/saved/ARTICLE/{id}` and `GET /me/saved` exist now (P1-M9 builds the Saved screen). Saved rows point at an article without a foreign key; an article that is archived or unpublished drops out of the list. Other kinds join with their features.
+
+## DEC-059 — Pagination is documented on every paged route
+
+- **Date:** 2026-10-19
+- `page` and `limit` (and `cursor` for feeds) are now in the OpenAPI contract, so the generated app and admin clients can send them. Behaviour of existing routes is unchanged.

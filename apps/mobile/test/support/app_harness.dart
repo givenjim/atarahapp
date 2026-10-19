@@ -10,6 +10,7 @@ import 'package:atarah/core/networking/failures.dart';
 import 'package:atarah/core/providers.dart';
 import 'package:atarah/core/routing/app_router.dart';
 import 'package:atarah/core/storage/token_store.dart';
+import 'package:atarah/features/discover/discover_providers.dart';
 import 'package:atarah/features/onboarding/onboarding_providers.dart';
 import 'package:atarah/features/portfolio/portfolio_providers.dart';
 import 'package:atarah/features/profile/profile_providers.dart';
@@ -18,6 +19,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 
+import 'fake_discover.dart';
 import 'fake_onboarding.dart';
 import 'fake_portfolio.dart';
 import 'fake_profile.dart';
@@ -134,6 +136,7 @@ class Harness {
     FakePhotoPicker? picker,
     FakeProfileRepository? profile,
     FakePortfolioRepository? portfolio,
+    FakeDiscoverRepository? discover,
     FakeMediaPicker? media,
     Flavor flavor = Flavor.dev,
   }) : auth = auth ?? FakeAuthRepository(),
@@ -149,6 +152,7 @@ class Harness {
        picker = picker ?? FakePhotoPicker(),
        profile = profile ?? FakeProfileRepository(),
        portfolio = portfolio ?? FakePortfolioRepository(),
+       discover = discover ?? FakeDiscoverRepository(),
        media = media ?? FakeMediaPicker(),
        analytics = RecordingAnalytics() {
     container = ProviderContainer(
@@ -164,6 +168,7 @@ class Harness {
         photoPickerProvider.overrideWithValue(this.picker),
         profileRepositoryProvider.overrideWithValue(this.profile),
         portfolioRepositoryProvider.overrideWithValue(this.portfolio),
+        discoverRepositoryProvider.overrideWithValue(this.discover),
         mediaPickerProvider.overrideWithValue(this.media),
         videoViewProvider.overrideWithValue(fakePlayer),
         audioViewProvider.overrideWithValue(fakePlayer),
@@ -189,6 +194,7 @@ class Harness {
   final FakePhotoPicker picker;
   final FakeProfileRepository profile;
   final FakePortfolioRepository portfolio;
+  final FakeDiscoverRepository discover;
   final FakeMediaPicker media;
 
   /// Text handed to the share sheet and addresses opened in the browser.

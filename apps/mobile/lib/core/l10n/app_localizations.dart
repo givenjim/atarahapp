@@ -3513,6 +3513,516 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We couldn\'t open that link.'**
   String get leavingOpenFailed;
+
+  /// No description provided for @dcWelcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome, {name}'**
+  String dcWelcome(String name);
+
+  /// No description provided for @dcWelcomeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your creative journey matters. Let\'s build what\'s next.'**
+  String get dcWelcomeBody;
+
+  /// No description provided for @dcNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get dcNotifications;
+
+  /// No description provided for @dcNotificationsUnread.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Notifications, 1 unread} other{Notifications, {count} unread}}'**
+  String dcNotificationsUnread(int count);
+
+  /// No description provided for @dcYourProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Your profile'**
+  String get dcYourProfile;
+
+  /// No description provided for @dcCompletion.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile completion'**
+  String get dcCompletion;
+
+  /// No description provided for @dcCompletionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete your profile to unlock more opportunities and get better recommendations.'**
+  String get dcCompletionBody;
+
+  /// No description provided for @dcCompletionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile completion, {percent} percent'**
+  String dcCompletionLabel(int percent);
+
+  /// No description provided for @dcViewProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'View profile'**
+  String get dcViewProfile;
+
+  /// No description provided for @dcQuickAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Access'**
+  String get dcQuickAccess;
+
+  /// No description provided for @dcSkillLabs.
+  ///
+  /// In en, this message translates to:
+  /// **'Skill Labs'**
+  String get dcSkillLabs;
+
+  /// No description provided for @dcSkillLabsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Short courses for working creatives'**
+  String get dcSkillLabsBody;
+
+  /// No description provided for @dcPortfolio.
+  ///
+  /// In en, this message translates to:
+  /// **'Portfolio'**
+  String get dcPortfolio;
+
+  /// No description provided for @dcPassport.
+  ///
+  /// In en, this message translates to:
+  /// **'Passport'**
+  String get dcPassport;
+
+  /// No description provided for @dcRecommended.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended for you'**
+  String get dcRecommended;
+
+  /// No description provided for @dcCreativesToMeet.
+  ///
+  /// In en, this message translates to:
+  /// **'Creatives to meet'**
+  String get dcCreativesToMeet;
+
+  /// No description provided for @dcMarketplace.
+  ///
+  /// In en, this message translates to:
+  /// **'Marketplace'**
+  String get dcMarketplace;
+
+  /// No description provided for @dcMarketplaceBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Hire creatives or sell your services'**
+  String get dcMarketplaceBody;
+
+  /// No description provided for @dcMentorship.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentorship'**
+  String get dcMentorship;
+
+  /// No description provided for @dcMentorshipBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Book time with industry mentors'**
+  String get dcMentorshipBody;
+
+  /// No description provided for @dcGrowCareer.
+  ///
+  /// In en, this message translates to:
+  /// **'Grow your creative career'**
+  String get dcGrowCareer;
+
+  /// No description provided for @dcOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get dcOpen;
+
+  /// No description provided for @dcLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load this'**
+  String get dcLoadFailed;
+
+  /// No description provided for @dcExploreTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore creatives'**
+  String get dcExploreTitle;
+
+  /// No description provided for @dcExploreBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover amazing talent, connect and be inspired.'**
+  String get dcExploreBody;
+
+  /// No description provided for @dcSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search creatives, articles'**
+  String get dcSearchHint;
+
+  /// No description provided for @dcFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters'**
+  String get dcFilters;
+
+  /// No description provided for @dcAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get dcAll;
+
+  /// No description provided for @dcRemoveFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove filter {name}'**
+  String dcRemoveFilter(String name);
+
+  /// No description provided for @dcOpenToCommissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Open to commissions'**
+  String get dcOpenToCommissions;
+
+  /// No description provided for @dcVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified by Atarah'**
+  String get dcVerified;
+
+  /// No description provided for @dcVerifiedOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified only'**
+  String get dcVerifiedOnly;
+
+  /// No description provided for @dcVerifiedOnlyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Identity or skills verified by Atarah'**
+  String get dcVerifiedOnlyBody;
+
+  /// No description provided for @dcCreativesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 creative} other{{count} creatives}}'**
+  String dcCreativesCount(int count);
+
+  /// No description provided for @dcNoCreativesNearby.
+  ///
+  /// In en, this message translates to:
+  /// **'No creatives in this discipline yet nearby.'**
+  String get dcNoCreativesNearby;
+
+  /// No description provided for @dcShowAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all'**
+  String get dcShowAll;
+
+  /// No description provided for @dcNoCreativesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No creatives to show yet'**
+  String get dcNoCreativesYet;
+
+  /// No description provided for @dcNoCreativesYetBody.
+  ///
+  /// In en, this message translates to:
+  /// **'People appear here when they finish setting up their profile.'**
+  String get dcNoCreativesYetBody;
+
+  /// No description provided for @dcMoreToExplore.
+  ///
+  /// In en, this message translates to:
+  /// **'More to explore'**
+  String get dcMoreToExplore;
+
+  /// No description provided for @dcOpportunitiesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Grants, calls and jobs'**
+  String get dcOpportunitiesBody;
+
+  /// No description provided for @dcArticles.
+  ///
+  /// In en, this message translates to:
+  /// **'Articles'**
+  String get dcArticles;
+
+  /// No description provided for @dcArticlesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories and advice for creatives'**
+  String get dcArticlesBody;
+
+  /// No description provided for @dcCreativeEconomy.
+  ///
+  /// In en, this message translates to:
+  /// **'Creative economy'**
+  String get dcCreativeEconomy;
+
+  /// No description provided for @dcCreativeEconomyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'See where creative work is happening across Kenya'**
+  String get dcCreativeEconomyBody;
+
+  /// No description provided for @dcDiscoveredTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Want to be discovered?'**
+  String get dcDiscoveredTitle;
+
+  /// No description provided for @dcDiscoveredBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete your profile and showcase your work to the Atarah community.'**
+  String get dcDiscoveredBody;
+
+  /// No description provided for @dcReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get dcReset;
+
+  /// No description provided for @dcDiscipline.
+  ///
+  /// In en, this message translates to:
+  /// **'Discipline'**
+  String get dcDiscipline;
+
+  /// No description provided for @dcLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get dcLocation;
+
+  /// No description provided for @dcCounty.
+  ///
+  /// In en, this message translates to:
+  /// **'County'**
+  String get dcCounty;
+
+  /// No description provided for @dcAnywhere.
+  ///
+  /// In en, this message translates to:
+  /// **'Anywhere'**
+  String get dcAnywhere;
+
+  /// No description provided for @dcChooseCounty.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose county'**
+  String get dcChooseCounty;
+
+  /// No description provided for @dcAvailability.
+  ///
+  /// In en, this message translates to:
+  /// **'Availability'**
+  String get dcAvailability;
+
+  /// No description provided for @dcSortBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by'**
+  String get dcSortBy;
+
+  /// No description provided for @dcSortRelevance.
+  ///
+  /// In en, this message translates to:
+  /// **'Best match'**
+  String get dcSortRelevance;
+
+  /// No description provided for @dcSortRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Newest'**
+  String get dcSortRecent;
+
+  /// No description provided for @dcShowResults.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Show 1 result} other{Show {count} results}}'**
+  String dcShowResults(int count);
+
+  /// No description provided for @dcShowResultsLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Show results'**
+  String get dcShowResultsLoading;
+
+  /// No description provided for @dcClearSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear search'**
+  String get dcClearSearch;
+
+  /// No description provided for @dcRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent'**
+  String get dcRecent;
+
+  /// No description provided for @dcClearAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all'**
+  String get dcClearAll;
+
+  /// No description provided for @dcRemoveRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove recent search {query}'**
+  String dcRemoveRecent(String query);
+
+  /// No description provided for @dcSearchEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Atarah'**
+  String get dcSearchEmptyTitle;
+
+  /// No description provided for @dcSearchEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Find creatives by name, field or skill, and articles by topic.'**
+  String get dcSearchEmptyBody;
+
+  /// No description provided for @dcSearchTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Type at least 2 characters.'**
+  String get dcSearchTooShort;
+
+  /// No description provided for @dcNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No results for \"{query}\"'**
+  String dcNoResults(String query);
+
+  /// No description provided for @dcNoResultsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the spelling or try a different word.'**
+  String get dcNoResultsBody;
+
+  /// No description provided for @dcCreatives.
+  ///
+  /// In en, this message translates to:
+  /// **'Creatives'**
+  String get dcCreatives;
+
+  /// No description provided for @dcAllCount.
+  ///
+  /// In en, this message translates to:
+  /// **'All ({count})'**
+  String dcAllCount(int count);
+
+  /// No description provided for @dcCreativesTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Creatives ({count})'**
+  String dcCreativesTab(int count);
+
+  /// No description provided for @dcArticlesTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Articles ({count})'**
+  String dcArticlesTab(int count);
+
+  /// No description provided for @dcSeeAllCount.
+  ///
+  /// In en, this message translates to:
+  /// **'See all {count}'**
+  String dcSeeAllCount(int count);
+
+  /// No description provided for @dcSourceAtarah.
+  ///
+  /// In en, this message translates to:
+  /// **'Atarah Editorial'**
+  String get dcSourceAtarah;
+
+  /// No description provided for @dcSourcePartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner'**
+  String get dcSourcePartner;
+
+  /// No description provided for @dcSourceExternal.
+  ///
+  /// In en, this message translates to:
+  /// **'External source'**
+  String get dcSourceExternal;
+
+  /// No description provided for @dcReadMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} min read'**
+  String dcReadMinutes(int count);
+
+  /// No description provided for @dcShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get dcShare;
+
+  /// No description provided for @dcSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save article'**
+  String get dcSave;
+
+  /// No description provided for @dcUnsave.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from saved'**
+  String get dcUnsave;
+
+  /// No description provided for @dcSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t save that. Try again.'**
+  String get dcSaveFailed;
+
+  /// No description provided for @dcRuleOfThumb.
+  ///
+  /// In en, this message translates to:
+  /// **'Rule of thumb'**
+  String get dcRuleOfThumb;
+
+  /// No description provided for @dcArticleGone.
+  ///
+  /// In en, this message translates to:
+  /// **'This article is not available'**
+  String get dcArticleGone;
+
+  /// No description provided for @dcArticleGoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It may have been removed or not published yet.'**
+  String get dcArticleGoneBody;
+
+  /// No description provided for @dcNoArticles.
+  ///
+  /// In en, this message translates to:
+  /// **'No articles yet'**
+  String get dcNoArticles;
+
+  /// No description provided for @dcNoArticlesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'New stories and advice will appear here.'**
+  String get dcNoArticlesBody;
 }
 
 class _AppLocalizationsDelegate
