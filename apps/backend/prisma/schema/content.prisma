@@ -1,0 +1,111 @@
+// Editorial content, saved items, search history and the pinned items on Home.
+// Owner modules: content (articles, saved, home curation), discover (recent searches).
+
+enum ArticleStatus {
+  DRAFT
+  IN_REVIEW
+  PUBLISHED
+  ARCHIVED
+}
+
+/// What a member can save. Later milestones add their own values (opportunities, courses, listings, mentors).
+enum SavedItemType {
+  ARTICLE
+}
+
+/// An editorial article. `body` is a list of structured blocks (paragraph, heading, callout, image, quote), never
+/// HTML. A PUBLISHED article with a future `publishedAt` is scheduled: members see it once that time has passed.
+model Article {
+  id          String        @id @default(uuid()) @db.Uuid
+  /// Chosen when the draft is created and never changed, so shared links keep working.
+  slug        String        @unique
+  title       String
+  summary     String
+  body        Json          @default("[]")
+  heroMediaId String?       @db.Uuid
+  /// The byline shown under the title.
+  authorName  String
+  source      ContentSource @default(ATARAH)
+  /// Required for PARTNER and EXTERNAL content: who it came from ("Creative Economy Kenya").
+  sourceLabel String?
+  readMinutes Int           @default(1)
+  status      ArticleStatus @default(DRAFT)
+  publishedAt DateTime?
+  /// Lower-case slugs. Recommendations match them against a member's disciplines, specialisations, skills and interests.
+  tags        String[]      @default([])
+  createdById String        @db.Uuid
+  updatedById String?       @db.Uuid
+  /// Development seed content. Never present in production.
+  isDemo      Boolean       @default(false)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  heroMedia MediaAsset?  @relation("ArticleHero", fields: [heroMediaId], references: [id], onDelete: SetNull)
+  createdBy User         @relation("ArticleCreator", fields: [createdById], references: [id], onDelete: Restrict)
+  updatedBy User?        @relation("ArticleEditor", fields: [updatedById], references: [id], onDelete: SetNull)
+  pinnedOn  HomeConfig[]
+
+  @@index([status, publishedAt(sort: Desc)])
+  @@index([title(ops: raw("gin_trgm_ops"))], type: Gin, map: "articles_title_trgm")
+  @@map("articles")
+}
+
+/// One row per member and saved thing. `targetId` points at the table named by `type`; there is no foreign
+/// key because the target differs per type, so readers drop rows whose target is gone or no longer visible.
+model SavedItem {
+  id        String        @id @default(uuid()) @db.Uuid
+  userId    String        @db.Uuid
+  type      SavedItemType
+  targetId  String        @db.Uuid
+  createdAt DateTime      @default(now())
+
+  user User @relation("SavedBy", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, type, targetId])
+  @@index([userId, type, createdAt(sort: Desc)])
+  @@map("saved_items")
+}
+
+/// What a member searched for, newest first, ten at most. Searching the same words again moves it to the top.
+model RecentSearch {
+  id         String   @id @default(uuid()) @db.Uuid
+  userId     String   @db.Uuid
+  query      String
+  /// Lower-cased, whitespace-collapsed form used to avoid duplicates.
+  normalized String
+  usedAt     DateTime @default(now())
+
+  user User @relation("RecentSearcher", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, normalized])
+  @@index([userId, usedAt(sort: Desc)])
+  @@map("recent_searches")
+}
+
+/// What admins pin on Home. A single row (id `home`). The featured opportunity pin joins it in P1-M7.
+model HomeConfig {
+  id                String   @id @default("home")
+  featuredArticleId String?  @db.Uuid
+  updatedById       String?  @db.Uuid
+  updatedAt         DateTime @updatedAt
+
+  featuredArticle Article? @relation(fields: [featuredArticleId], references: [id], onDelete: SetNull)
+  updatedBy       User?    @relation("HomeConfigEditor", fields: [updatedById], references: [id], onDelete: SetNull)
+
+  @@map("home_config")
+}
+
+/// What Atarah has confirmed about a creative. P1-M5 only reads it (the "Verified only" filter and the tick);
+/// the verification cases that set it arrive in Phase 2, so until then it is empty unless an admin seeds it.
+model CreativeVerification {
+  profileId  String             @id @db.Uuid
+  status     VerificationStatus @default(NOT_SUBMITTED)
+  verifiedAt DateTime?
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+
+  profile CreativeProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([status])
+  @@map("creative_verifications")
+}

@@ -3,7 +3,9 @@ import { LoggerModule } from 'nestjs-pino';
 import { AccessModule } from './access/access.module';
 import { AdminModule } from './admin/admin.module';
 import { AuditModule } from './audit/audit.module';
+import { ContentModule } from './content/content.module';
 import { CreativeModule } from './creative/creative.module';
+import { DiscoverModule } from './discover/discover.module';
 import { buildLoggerParams } from './common/logger.config';
 import { RateLimitModule } from './common/rate-limit.module';
 import { AppConfigService } from './config/app-config.service';
@@ -43,6 +45,8 @@ import { StorageModule } from './storage/storage.module';
     NotificationsModule,
     PublicContentModule,
     CreativeModule,
+    ContentModule,
+    DiscoverModule,
     HealthModule,
   ],
 })

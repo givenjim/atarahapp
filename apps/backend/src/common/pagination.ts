@@ -1,3 +1,4 @@
+import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsInt, IsOptional, IsString, Max, MaxLength, Min } from 'class-validator';
 import { ApiException } from './api.exception';
@@ -7,12 +8,14 @@ export const MAX_LIMIT = 100;
 
 /** Offset pagination for admin tables and bounded lists: `?page=1&limit=20`. */
 export class PageQueryDto {
+  @ApiPropertyOptional({ minimum: 1, default: 1 })
   @IsOptional()
   @Type(() => Number)
   @IsInt()
   @Min(1)
   page: number = 1;
 
+  @ApiPropertyOptional({ minimum: 1, maximum: MAX_LIMIT, default: DEFAULT_LIMIT })
   @IsOptional()
   @Type(() => Number)
   @IsInt()
@@ -23,11 +26,13 @@ export class PageQueryDto {
 
 /** Cursor pagination for feeds: `?cursor=...&limit=20`. */
 export class CursorQueryDto {
+  @ApiPropertyOptional({ description: 'Opaque cursor from the previous page.' })
   @IsOptional()
   @IsString()
   @MaxLength(512)
   cursor?: string;
 
+  @ApiPropertyOptional({ minimum: 1, maximum: MAX_LIMIT, default: DEFAULT_LIMIT })
   @IsOptional()
   @Type(() => Number)
   @IsInt()

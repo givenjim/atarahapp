@@ -1428,6 +1428,310 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/articles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/articles/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["detail"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/saved": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["saved"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/saved/{type}/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put: operations["save"];
+        post?: never;
+        delete: operations["unsave"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/articles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["list"];
+        put?: never;
+        post: operations["create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/articles/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["update"];
+        trace?: never;
+    };
+    "/api/v1/admin/articles/{id}/submit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["submit"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/articles/{id}/return": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["returnToDraft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/articles/{id}/publish": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["publish"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/articles/{id}/archive": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["archive"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/articles/{id}/restore": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["restore"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/home": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["homeConfig"];
+        put: operations["setHomeConfig"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/media/uploads": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["requestUpload"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/media/{id}/complete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["complete"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/home": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["homeFeed"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/creatives": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["creativeList"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["find"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/recent-searches": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["recent"];
+        put?: never;
+        post: operations["record"];
+        delete: operations["clear"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/recent-searches/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["remove"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -2562,6 +2866,250 @@ export interface components {
             /** @description Shown to the owner. */
             reason: string;
         };
+        ArticleCardDto: {
+            /** Format: uuid */
+            id: string;
+            slug: string;
+            title: string;
+            summary: string;
+            /** @enum {string} */
+            source: "ATARAH" | "PARTNER" | "EXTERNAL";
+            sourceLabel?: string | null;
+            authorName: string;
+            readMinutes: number;
+            /** Format: date-time */
+            publishedAt: string;
+            heroUrl?: string | null;
+            tags: string[];
+        };
+        ArticleBlockDto: {
+            /** @enum {string} */
+            type: "paragraph" | "heading" | "callout" | "image" | "quote";
+            text?: string | null;
+            title?: string | null;
+            /** @description Signed image URL. */
+            imageUrl?: string | null;
+            caption?: string | null;
+            attribution?: string | null;
+        };
+        ArticleDto: {
+            /** Format: uuid */
+            id: string;
+            slug: string;
+            title: string;
+            summary: string;
+            /** @enum {string} */
+            source: "ATARAH" | "PARTNER" | "EXTERNAL";
+            sourceLabel?: string | null;
+            authorName: string;
+            readMinutes: number;
+            /** Format: date-time */
+            publishedAt: string;
+            heroUrl?: string | null;
+            tags: string[];
+            blocks: components["schemas"]["ArticleBlockDto"][];
+            /** @description Whether the signed-in viewer saved it. False when signed out. */
+            saved: boolean;
+            /** @description Public link to share. */
+            shareUrl: string;
+        };
+        SavedArticleDto: {
+            /** Format: date-time */
+            savedAt: string;
+            article: components["schemas"]["ArticleCardDto"];
+        };
+        AdminArticleListItemDto: {
+            /** Format: uuid */
+            id: string;
+            slug: string;
+            title: string;
+            authorName: string;
+            /** @enum {string} */
+            status: "DRAFT" | "IN_REVIEW" | "PUBLISHED" | "ARCHIVED";
+            /** @enum {string} */
+            source: "ATARAH" | "PARTNER" | "EXTERNAL";
+            /** Format: date-time */
+            publishedAt?: string | null;
+            /** @description Published with a time that has not come yet. */
+            scheduled: boolean;
+            /** @description Pinned on Home. */
+            featured: boolean;
+            /** Format: date-time */
+            updatedAt: string;
+        };
+        AdminArticleBlockDto: {
+            /** @enum {string} */
+            type: "paragraph" | "heading" | "callout" | "image" | "quote";
+            text?: string | null;
+            title?: string | null;
+            /** @description Signed image URL. */
+            imageUrl?: string | null;
+            caption?: string | null;
+            attribution?: string | null;
+            /** Format: uuid */
+            mediaId?: string | null;
+        };
+        AdminArticleDto: {
+            /** Format: uuid */
+            id: string;
+            slug: string;
+            title: string;
+            authorName: string;
+            /** @enum {string} */
+            status: "DRAFT" | "IN_REVIEW" | "PUBLISHED" | "ARCHIVED";
+            /** @enum {string} */
+            source: "ATARAH" | "PARTNER" | "EXTERNAL";
+            /** Format: date-time */
+            publishedAt?: string | null;
+            /** @description Published with a time that has not come yet. */
+            scheduled: boolean;
+            /** @description Pinned on Home. */
+            featured: boolean;
+            /** Format: date-time */
+            updatedAt: string;
+            summary: string;
+            sourceLabel?: string | null;
+            readMinutes: number;
+            tags: string[];
+            /** Format: uuid */
+            heroMediaId?: string | null;
+            heroUrl?: string | null;
+            blocks: components["schemas"]["AdminArticleBlockDto"][];
+            /** Format: date-time */
+            createdAt: string;
+        };
+        CreateArticleDto: {
+            title: string;
+            /** @description The byline. */
+            authorName: string;
+        };
+        ArticleBlockInputDto: {
+            /** @enum {string} */
+            type: "paragraph" | "heading" | "callout" | "image" | "quote";
+            /** @description The words of a paragraph, heading, callout or quote. */
+            text?: string;
+            /** @description Callout heading, such as "Rule of thumb". */
+            title?: string;
+            /**
+             * Format: uuid
+             * @description An image block: a PUBLIC image you uploaded.
+             */
+            mediaId?: string;
+            caption?: string;
+            /** @description Who said it, for a quote. */
+            attribution?: string;
+        };
+        UpdateArticleDto: {
+            title?: string;
+            summary?: string;
+            authorName?: string;
+            /** @enum {string} */
+            source?: "ATARAH" | "PARTNER" | "EXTERNAL";
+            /** @description Who it came from. Empty clears it. */
+            sourceLabel?: string;
+            /**
+             * Format: uuid
+             * @description A PUBLIC image you uploaded. Send an empty string to remove it.
+             */
+            heroMediaId?: string;
+            tags?: string[];
+            blocks?: components["schemas"]["ArticleBlockInputDto"][];
+        };
+        PublishArticleDto: {
+            /**
+             * Format: date-time
+             * @description Go live at this time. Leave out to publish now.
+             */
+            publishAt?: string;
+        };
+        HomeConfigDto: {
+            /** Format: uuid */
+            featuredArticleId?: string | null;
+            featuredArticleTitle?: string | null;
+            /** Format: date-time */
+            updatedAt?: string | null;
+        };
+        SetHomeConfigDto: {
+            /**
+             * Format: uuid
+             * @description A published article. Null un-pins.
+             */
+            featuredArticleId?: string | null;
+        };
+        RecommendationDto: {
+            /**
+             * @description More kinds join as opportunities and Skill Labs arrive.
+             * @enum {string}
+             */
+            type: "ARTICLE";
+            id: string;
+            title: string;
+            subtitle?: string | null;
+            imageUrl?: string | null;
+            /** @description In-app route that opens it. */
+            path: string;
+            /** @description Why it is suggested, e.g. "Because you selected Animation". */
+            reason: string;
+        };
+        CreativeCardDto: {
+            handle: string;
+            displayName: string;
+            headline?: string | null;
+            avatarUrl?: string | null;
+            discipline?: components["schemas"]["DisciplineLite"] | null;
+            /** @description Up to three skills, only when the member shows them. */
+            tags: string[];
+            /** @description County, only when the member shows it to you. */
+            location?: string | null;
+            /** @description Verified by Atarah. */
+            verified: boolean;
+            openToCommissions: boolean;
+            /** @description Why this person is suggested. */
+            reason?: string | null;
+        };
+        HomeDto: {
+            firstName: string;
+            completionPercent: number;
+            unreadNotifications: number;
+            /** @description The pinned article, else the newest. */
+            article?: components["schemas"]["ArticleCardDto"] | null;
+            recommended: components["schemas"]["RecommendationDto"][];
+            creatives: components["schemas"]["CreativeCardDto"][];
+            /** @description Sections that could not be loaded this time. The client hides them. */
+            unavailable: ("recommended" | "creatives" | "article")[];
+        };
+        SearchHitDto: {
+            /** @enum {string} */
+            type: "creatives" | "articles" | "opportunities" | "learning" | "marketplace" | "mentors";
+            id: string;
+            title: string;
+            subtitle?: string | null;
+            imageUrl?: string | null;
+            /** @description Verified by Atarah. */
+            verified: boolean;
+            /** @description In-app route that opens it. */
+            path: string;
+        };
+        SearchGroupDto: {
+            /** @enum {string} */
+            type: "creatives" | "articles" | "opportunities" | "learning" | "marketplace" | "mentors";
+            /** @description How many results there are in all. */
+            count: number;
+            items: components["schemas"]["SearchHitDto"][];
+        };
+        SearchResultDto: {
+            query: string;
+            /** @description One group per kind that exists today. A kind with no results has a count of zero. */
+            groups: components["schemas"]["SearchGroupDto"][];
+        };
+        RecentSearchDto: {
+            /** Format: uuid */
+            id: string;
+            query: string;
+        };
+        RecordSearchDto: {
+            query: string;
+        };
     };
     responses: never;
     parameters: never;
@@ -3108,6 +3656,8 @@ export interface operations {
     users: {
         parameters: {
             query?: {
+                page?: number;
+                limit?: number;
                 /** @description Matches name, email or phone. */
                 q?: string;
                 status?: "PENDING_VERIFICATION" | "ACTIVE" | "SUSPENDED" | "DEACTIVATED" | "DELETED";
@@ -3222,6 +3772,8 @@ export interface operations {
     audit: {
         parameters: {
             query?: {
+                page?: number;
+                limit?: number;
                 /** @description Exact action, e.g. user.suspend. */
                 action?: string;
                 entityType?: string;
@@ -5358,6 +5910,663 @@ export interface operations {
                         };
                     };
                 };
+            };
+        };
+    };
+    list: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                /** @description Only articles with this tag. */
+                tag?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ArticleCardDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    detail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ArticleDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    saved: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                type?: "ARTICLE";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["SavedArticleDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    save: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                type: "ARTICLE";
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    unsave: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                type: "ARTICLE";
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    list: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                status?: "DRAFT" | "IN_REVIEW" | "PUBLISHED" | "ARCHIVED";
+                /** @description Title or byline contains. */
+                q?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminArticleListItemDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateArticleDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminArticleDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminArticleDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateArticleDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminArticleDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    submit: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminArticleDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    returnToDraft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminArticleDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    publish: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PublishArticleDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminArticleDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    archive: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminArticleDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    restore: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminArticleDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    homeConfig: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["HomeConfigDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    setHomeConfig: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SetHomeConfigDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["HomeConfigDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    requestUpload: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RequestUploadDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["UploadTicketDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    complete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MediaAssetDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    homeFeed: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["HomeDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    creativeList: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                /** @description Name, headline, discipline or skill. */
+                q?: string;
+                disciplineId?: string;
+                specialisationId?: string;
+                /** @description Only people who chose to show their county to you. */
+                countyId?: string;
+                /** @description Only people open to commissions. */
+                available?: boolean;
+                /** @description Only people Atarah has verified. */
+                verified?: boolean;
+                sort?: "relevance" | "recent";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CreativeCardDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    find: {
+        parameters: {
+            query: {
+                page?: number;
+                limit?: number;
+                q: string;
+                /** @description One kind of result, paged. Leave out for every kind, three each. */
+                type?: "creatives" | "articles" | "opportunities" | "learning" | "marketplace" | "mentors";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["SearchResultDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    recent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["RecentSearchDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    record: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RecordSearchDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["RecentSearchDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    clear: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };

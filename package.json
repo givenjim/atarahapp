@@ -2,7 +2,7 @@
   "name": "atarah",
   "private": true,
   "version": "0.0.0",
-  "description": "Atarah — Create · Connect · Grow. A Luxaion Creatives product.",
+  "description": "Atarah \u2014 Create \u00b7 Connect \u00b7 Grow. A Luxaion Creatives product.",
   "packageManager": "pnpm@12.14.0",
   "engines": {
     "node": ">=22"
@@ -13,7 +13,7 @@
     "lint": "pnpm -r --if-present lint",
     "typecheck": "pnpm -r --if-present typecheck",
     "test": "pnpm -r --if-present test",
-    "build": "pnpm -r --if-present build",
+    "build": "node init && pnpm -r --if-present build",
     "format": "prettier --write . --ignore-path .prettierignore",
     "format:check": "prettier --check . --ignore-path .prettierignore",
     "check:brand": "node scripts/check-brand.mjs",
