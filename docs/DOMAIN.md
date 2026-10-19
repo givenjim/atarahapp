@@ -220,3 +220,15 @@ Entities: `ProfileSectionVisibility` (`profile_section_visibility`), `ProfileLin
 | `ProfileService`      | `profile_services`      | Price in minor units with `priceType`; status PROFILE_ONLY until the marketplace (P2-M3)                                                                                                         |
 
 Profile completion counts **published, visible projects** and experience entries. The Portfolio growth bar counts published projects; Professionalisation counts services, experience and achievements.
+
+## 11. Articles, saved items, search and Home (P1-M5)
+
+| Entity                 | Table                    | Notes                                                                                                                                                                                                                                            |
+| ---------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Article`              | `articles`               | `status` DRAFT, IN_REVIEW, PUBLISHED, ARCHIVED; `source` ATARAH, PARTNER or EXTERNAL (label required for the last two once published); body is a JSON list of blocks; `publishedAt` in the future means scheduled; `isDemo` for development seed |
+| `SavedItem`            | `saved_items`            | `type` (ARTICLE for now) and `targetId`, unique per member; no foreign key, readers drop rows whose target is gone                                                                                                                               |
+| `RecentSearch`         | `recent_searches`        | Unique per member and normalised words; ten kept                                                                                                                                                                                                 |
+| `HomeConfig`           | `home_config`            | One row (`home`): the pinned article. The featured opportunity joins in P1-M7                                                                                                                                                                    |
+| `CreativeVerification` | `creative_verifications` | Read by search and the tick; written by Phase 2 verification cases                                                                                                                                                                               |
+
+Search indexes: `pg_trgm` GIN indexes on profile name, headline, article title and skill name.

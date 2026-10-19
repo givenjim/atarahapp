@@ -21,11 +21,18 @@ class _AdminClient implements AdminClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<GetApiV1AdminUsersResponse> users({String? q, Status? status}) async {
+  Future<GetApiV1AdminUsersResponse> users({
+    String? q,
+    Status? status,
+    num? page = 1,
+    num? limit = 20,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'q': q,
       r'status': status?.toJson(),
+      r'page': page,
+      r'limit': limit,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -146,6 +153,8 @@ class _AdminClient implements AdminClient {
     String? entityType,
     String? entityId,
     String? actorId,
+    num? page = 1,
+    num? limit = 20,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -153,6 +162,8 @@ class _AdminClient implements AdminClient {
       r'entityType': entityType,
       r'entityId': entityId,
       r'actorId': actorId,
+      r'page': page,
+      r'limit': limit,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};

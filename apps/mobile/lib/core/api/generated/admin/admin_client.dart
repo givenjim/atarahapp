@@ -25,6 +25,8 @@ abstract class AdminClient {
   Future<GetApiV1AdminUsersResponse> users({
     @Query('q') String? q,
     @Query('status') Status? status,
+    @Query('page') num? page = 1,
+    @Query('limit') num? limit = 20,
   });
 
   @GET('/api/v1/admin/users/{id}')
@@ -49,5 +51,7 @@ abstract class AdminClient {
     @Query('entityType') String? entityType,
     @Query('entityId') String? entityId,
     @Query('actorId') String? actorId,
+    @Query('page') num? page = 1,
+    @Query('limit') num? limit = 20,
   });
 }

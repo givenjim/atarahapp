@@ -861,5 +861,181 @@
   "pjImageAlt": "Project image",
   "pjPlay": "Play",
   "pjPause": "Pause",
-  "leavingOpenFailed": "We couldn't open that link."
+  "leavingOpenFailed": "We couldn't open that link.",
+  "dcWelcome": "Welcome, {name}",
+  "@dcWelcome": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dcWelcomeBody": "Your creative journey matters. Let's build what's next.",
+  "dcNotifications": "Notifications",
+  "dcNotificationsUnread": "{count, plural, =1{Notifications, 1 unread} other{Notifications, {count} unread}}",
+  "@dcNotificationsUnread": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dcYourProfile": "Your profile",
+  "dcCompletion": "Profile completion",
+  "dcCompletionBody": "Complete your profile to unlock more opportunities and get better recommendations.",
+  "dcCompletionLabel": "Profile completion, {percent} percent",
+  "@dcCompletionLabel": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "dcViewProfile": "View profile",
+  "dcQuickAccess": "Quick Access",
+  "dcSkillLabs": "Skill Labs",
+  "dcSkillLabsBody": "Short courses for working creatives",
+  "dcPortfolio": "Portfolio",
+  "dcPassport": "Passport",
+  "dcRecommended": "Recommended for you",
+  "dcCreativesToMeet": "Creatives to meet",
+  "dcMarketplace": "Marketplace",
+  "dcMarketplaceBody": "Hire creatives or sell your services",
+  "dcMentorship": "Mentorship",
+  "dcMentorshipBody": "Book time with industry mentors",
+  "dcGrowCareer": "Grow your creative career",
+  "dcOpen": "Open",
+  "dcLoadFailed": "We couldn't load this",
+  "dcExploreTitle": "Explore creatives",
+  "dcExploreBody": "Discover amazing talent, connect and be inspired.",
+  "dcSearchHint": "Search creatives, articles",
+  "dcFilters": "Filters",
+  "dcAll": "All",
+  "dcRemoveFilter": "Remove filter {name}",
+  "@dcRemoveFilter": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dcOpenToCommissions": "Open to commissions",
+  "dcVerified": "Verified by Atarah",
+  "dcVerifiedOnly": "Verified only",
+  "dcVerifiedOnlyBody": "Identity or skills verified by Atarah",
+  "dcCreativesCount": "{count, plural, =1{1 creative} other{{count} creatives}}",
+  "@dcCreativesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dcNoCreativesNearby": "No creatives in this discipline yet nearby.",
+  "dcShowAll": "Show all",
+  "dcNoCreativesYet": "No creatives to show yet",
+  "dcNoCreativesYetBody": "People appear here when they finish setting up their profile.",
+  "dcMoreToExplore": "More to explore",
+  "dcOpportunitiesBody": "Grants, calls and jobs",
+  "dcArticles": "Articles",
+  "dcArticlesBody": "Stories and advice for creatives",
+  "dcCreativeEconomy": "Creative economy",
+  "dcCreativeEconomyBody": "See where creative work is happening across Kenya",
+  "dcDiscoveredTitle": "Want to be discovered?",
+  "dcDiscoveredBody": "Complete your profile and showcase your work to the Atarah community.",
+  "dcReset": "Reset",
+  "dcDiscipline": "Discipline",
+  "dcLocation": "Location",
+  "dcCounty": "County",
+  "dcAnywhere": "Anywhere",
+  "dcChooseCounty": "Choose county",
+  "dcAvailability": "Availability",
+  "dcSortBy": "Sort by",
+  "dcSortRelevance": "Best match",
+  "dcSortRecent": "Newest",
+  "dcShowResults": "{count, plural, =1{Show 1 result} other{Show {count} results}}",
+  "@dcShowResults": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dcShowResultsLoading": "Show results",
+  "dcClearSearch": "Clear search",
+  "dcRecent": "Recent",
+  "dcClearAll": "Clear all",
+  "dcRemoveRecent": "Remove recent search {query}",
+  "@dcRemoveRecent": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "dcSearchEmptyTitle": "Search Atarah",
+  "dcSearchEmptyBody": "Find creatives by name, field or skill, and articles by topic.",
+  "dcSearchTooShort": "Type at least 2 characters.",
+  "dcNoResults": "No results for \"{query}\"",
+  "@dcNoResults": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "dcNoResultsBody": "Check the spelling or try a different word.",
+  "dcCreatives": "Creatives",
+  "dcAllCount": "All ({count})",
+  "@dcAllCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dcCreativesTab": "Creatives ({count})",
+  "@dcCreativesTab": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dcArticlesTab": "Articles ({count})",
+  "@dcArticlesTab": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dcSeeAllCount": "See all {count}",
+  "@dcSeeAllCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dcSourceAtarah": "Atarah Editorial",
+  "dcSourcePartner": "Partner",
+  "dcSourceExternal": "External source",
+  "dcReadMinutes": "{count} min read",
+  "@dcReadMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dcShare": "Share",
+  "dcSave": "Save article",
+  "dcUnsave": "Remove from saved",
+  "dcSaveFailed": "We couldn't save that. Try again.",
+  "dcRuleOfThumb": "Rule of thumb",
+  "dcArticleGone": "This article is not available",
+  "dcArticleGoneBody": "It may have been removed or not published yet.",
+  "dcNoArticles": "No articles yet",
+  "dcNoArticlesBody": "New stories and advice will appear here."
 }

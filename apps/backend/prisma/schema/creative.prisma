@@ -83,9 +83,12 @@ model CreativeProfile {
   experiences                Experience[]
   achievements               Achievement[]
   profileServices            ProfileService[]
+  verification               CreativeVerification?
 
   @@index([primaryDisciplineId])
   @@index([countyId])
+  @@index([displayName(ops: raw("gin_trgm_ops"))], type: Gin, map: "creative_profiles_display_name_trgm")
+  @@index([headline(ops: raw("gin_trgm_ops"))], type: Gin, map: "creative_profiles_headline_trgm")
   @@map("creative_profiles")
 }
 

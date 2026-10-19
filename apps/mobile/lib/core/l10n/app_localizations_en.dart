@@ -1856,4 +1856,312 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get leavingOpenFailed => 'We couldn\'t open that link.';
+
+  @override
+  String dcWelcome(String name) {
+    return 'Welcome, $name';
+  }
+
+  @override
+  String get dcWelcomeBody =>
+      'Your creative journey matters. Let\'s build what\'s next.';
+
+  @override
+  String get dcNotifications => 'Notifications';
+
+  @override
+  String dcNotificationsUnread(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Notifications, $count unread',
+      one: 'Notifications, 1 unread',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dcYourProfile => 'Your profile';
+
+  @override
+  String get dcCompletion => 'Profile completion';
+
+  @override
+  String get dcCompletionBody =>
+      'Complete your profile to unlock more opportunities and get better recommendations.';
+
+  @override
+  String dcCompletionLabel(int percent) {
+    return 'Profile completion, $percent percent';
+  }
+
+  @override
+  String get dcViewProfile => 'View profile';
+
+  @override
+  String get dcQuickAccess => 'Quick Access';
+
+  @override
+  String get dcSkillLabs => 'Skill Labs';
+
+  @override
+  String get dcSkillLabsBody => 'Short courses for working creatives';
+
+  @override
+  String get dcPortfolio => 'Portfolio';
+
+  @override
+  String get dcPassport => 'Passport';
+
+  @override
+  String get dcRecommended => 'Recommended for you';
+
+  @override
+  String get dcCreativesToMeet => 'Creatives to meet';
+
+  @override
+  String get dcMarketplace => 'Marketplace';
+
+  @override
+  String get dcMarketplaceBody => 'Hire creatives or sell your services';
+
+  @override
+  String get dcMentorship => 'Mentorship';
+
+  @override
+  String get dcMentorshipBody => 'Book time with industry mentors';
+
+  @override
+  String get dcGrowCareer => 'Grow your creative career';
+
+  @override
+  String get dcOpen => 'Open';
+
+  @override
+  String get dcLoadFailed => 'We couldn\'t load this';
+
+  @override
+  String get dcExploreTitle => 'Explore creatives';
+
+  @override
+  String get dcExploreBody =>
+      'Discover amazing talent, connect and be inspired.';
+
+  @override
+  String get dcSearchHint => 'Search creatives, articles';
+
+  @override
+  String get dcFilters => 'Filters';
+
+  @override
+  String get dcAll => 'All';
+
+  @override
+  String dcRemoveFilter(String name) {
+    return 'Remove filter $name';
+  }
+
+  @override
+  String get dcOpenToCommissions => 'Open to commissions';
+
+  @override
+  String get dcVerified => 'Verified by Atarah';
+
+  @override
+  String get dcVerifiedOnly => 'Verified only';
+
+  @override
+  String get dcVerifiedOnlyBody => 'Identity or skills verified by Atarah';
+
+  @override
+  String dcCreativesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count creatives',
+      one: '1 creative',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dcNoCreativesNearby =>
+      'No creatives in this discipline yet nearby.';
+
+  @override
+  String get dcShowAll => 'Show all';
+
+  @override
+  String get dcNoCreativesYet => 'No creatives to show yet';
+
+  @override
+  String get dcNoCreativesYetBody =>
+      'People appear here when they finish setting up their profile.';
+
+  @override
+  String get dcMoreToExplore => 'More to explore';
+
+  @override
+  String get dcOpportunitiesBody => 'Grants, calls and jobs';
+
+  @override
+  String get dcArticles => 'Articles';
+
+  @override
+  String get dcArticlesBody => 'Stories and advice for creatives';
+
+  @override
+  String get dcCreativeEconomy => 'Creative economy';
+
+  @override
+  String get dcCreativeEconomyBody =>
+      'See where creative work is happening across Kenya';
+
+  @override
+  String get dcDiscoveredTitle => 'Want to be discovered?';
+
+  @override
+  String get dcDiscoveredBody =>
+      'Complete your profile and showcase your work to the Atarah community.';
+
+  @override
+  String get dcReset => 'Reset';
+
+  @override
+  String get dcDiscipline => 'Discipline';
+
+  @override
+  String get dcLocation => 'Location';
+
+  @override
+  String get dcCounty => 'County';
+
+  @override
+  String get dcAnywhere => 'Anywhere';
+
+  @override
+  String get dcChooseCounty => 'Choose county';
+
+  @override
+  String get dcAvailability => 'Availability';
+
+  @override
+  String get dcSortBy => 'Sort by';
+
+  @override
+  String get dcSortRelevance => 'Best match';
+
+  @override
+  String get dcSortRecent => 'Newest';
+
+  @override
+  String dcShowResults(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Show $count results',
+      one: 'Show 1 result',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dcShowResultsLoading => 'Show results';
+
+  @override
+  String get dcClearSearch => 'Clear search';
+
+  @override
+  String get dcRecent => 'Recent';
+
+  @override
+  String get dcClearAll => 'Clear all';
+
+  @override
+  String dcRemoveRecent(String query) {
+    return 'Remove recent search $query';
+  }
+
+  @override
+  String get dcSearchEmptyTitle => 'Search Atarah';
+
+  @override
+  String get dcSearchEmptyBody =>
+      'Find creatives by name, field or skill, and articles by topic.';
+
+  @override
+  String get dcSearchTooShort => 'Type at least 2 characters.';
+
+  @override
+  String dcNoResults(String query) {
+    return 'No results for \"$query\"';
+  }
+
+  @override
+  String get dcNoResultsBody => 'Check the spelling or try a different word.';
+
+  @override
+  String get dcCreatives => 'Creatives';
+
+  @override
+  String dcAllCount(int count) {
+    return 'All ($count)';
+  }
+
+  @override
+  String dcCreativesTab(int count) {
+    return 'Creatives ($count)';
+  }
+
+  @override
+  String dcArticlesTab(int count) {
+    return 'Articles ($count)';
+  }
+
+  @override
+  String dcSeeAllCount(int count) {
+    return 'See all $count';
+  }
+
+  @override
+  String get dcSourceAtarah => 'Atarah Editorial';
+
+  @override
+  String get dcSourcePartner => 'Partner';
+
+  @override
+  String get dcSourceExternal => 'External source';
+
+  @override
+  String dcReadMinutes(int count) {
+    return '$count min read';
+  }
+
+  @override
+  String get dcShare => 'Share';
+
+  @override
+  String get dcSave => 'Save article';
+
+  @override
+  String get dcUnsave => 'Remove from saved';
+
+  @override
+  String get dcSaveFailed => 'We couldn\'t save that. Try again.';
+
+  @override
+  String get dcRuleOfThumb => 'Rule of thumb';
+
+  @override
+  String get dcArticleGone => 'This article is not available';
+
+  @override
+  String get dcArticleGoneBody =>
+      'It may have been removed or not published yet.';
+
+  @override
+  String get dcNoArticles => 'No articles yet';
+
+  @override
+  String get dcNoArticlesBody => 'New stories and advice will appear here.';
 }

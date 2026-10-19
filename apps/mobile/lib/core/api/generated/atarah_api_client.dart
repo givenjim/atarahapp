@@ -18,6 +18,9 @@ import 'admin_taxonomy/admin_taxonomy_client.dart';
 import 'profile/profile_client.dart';
 import 'portfolio/portfolio_client.dart';
 import 'admin_portfolio/admin_portfolio_client.dart';
+import 'articles/articles_client.dart';
+import 'admin_content/admin_content_client.dart';
+import 'discover/discover_client.dart';
 
 /// Atarah API `v1.0`.
 ///
@@ -44,6 +47,9 @@ class AtarahApiClient {
   ProfileClient? _profile;
   PortfolioClient? _portfolio;
   AdminPortfolioClient? _adminPortfolio;
+  ArticlesClient? _articles;
+  AdminContentClient? _adminContent;
+  DiscoverClient? _discover;
 
   AuthClient get auth => _auth ??= AuthClient(_dio, baseUrl: _baseUrl);
 
@@ -81,4 +87,13 @@ class AtarahApiClient {
 
   AdminPortfolioClient get adminPortfolio =>
       _adminPortfolio ??= AdminPortfolioClient(_dio, baseUrl: _baseUrl);
+
+  ArticlesClient get articles =>
+      _articles ??= ArticlesClient(_dio, baseUrl: _baseUrl);
+
+  AdminContentClient get adminContent =>
+      _adminContent ??= AdminContentClient(_dio, baseUrl: _baseUrl);
+
+  DiscoverClient get discover =>
+      _discover ??= DiscoverClient(_dio, baseUrl: _baseUrl);
 }

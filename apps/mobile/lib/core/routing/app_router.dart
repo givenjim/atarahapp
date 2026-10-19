@@ -11,6 +11,11 @@ import '../../features/auth/signup_screen.dart';
 import '../../features/auth/splash_screen.dart';
 import '../../features/auth/verify_screen.dart';
 import '../../features/auth/welcome_screen.dart';
+import '../../features/discover/article_screen.dart';
+import '../../features/discover/articles_screen.dart';
+import '../../features/discover/explore_screen.dart';
+import '../../features/discover/home_screen.dart';
+import '../../features/discover/search_screen.dart';
 import '../../features/onboarding/onboarding_providers.dart';
 import '../../features/onboarding/onboarding_screen.dart';
 import '../../features/portfolio/achievements_screen.dart';
@@ -51,7 +56,6 @@ _detailRoutes = [
   (path: Routes.lesson, phase: 'p1', name: (l) => l.featureLesson),
   (path: Routes.listing, phase: 'p2', name: (l) => l.featureListing),
   (path: Routes.mentor, phase: 'p2', name: (l) => l.featureMentor),
-  (path: Routes.article, phase: 'p1', name: (l) => l.featureArticle),
   (path: Routes.group, phase: 'p1', name: (l) => l.featureGroup),
   (path: Routes.post, phase: 'p1', name: (l) => l.featurePost),
   (
@@ -61,9 +65,8 @@ _detailRoutes = [
   ),
 ];
 
+/// Tabs still waiting for their milestone (Home and Explore are built).
 final _tabRoots = [
-  _TabRoot(Routes.home, (l) => l.featureHome),
-  _TabRoot(Routes.explore, (l) => l.featureExplore),
   _TabRoot(Routes.community, (l) => l.featureCommunity),
   _TabRoot(Routes.opportunities, (l) => l.featureOpportunities),
 ];
@@ -161,6 +164,13 @@ GoRouter appRouter(Ref ref) {
         builder: (_, _) => const AchievementsScreen(),
       ),
       GoRoute(path: Routes.services, builder: (_, _) => const ServicesScreen()),
+      GoRoute(path: Routes.search, builder: (_, _) => const SearchScreen()),
+      GoRoute(path: Routes.articles, builder: (_, _) => const ArticlesScreen()),
+      GoRoute(
+        path: Routes.article,
+        builder: (_, state) =>
+            ArticleScreen(slug: state.pathParameters['slug'] ?? ''),
+      ),
       GoRoute(
         path: Routes.creative,
         builder: (_, state) => CreativeProfileScreen(
@@ -191,6 +201,19 @@ GoRouter appRouter(Ref ref) {
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => AppShell(shell: shell),
         branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(path: Routes.home, builder: (_, _) => const HomeScreen()),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.explore,
+                builder: (_, _) => const ExploreScreen(),
+              ),
+            ],
+          ),
           for (final tab in _tabRoots)
             StatefulShellBranch(
               routes: [

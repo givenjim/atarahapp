@@ -108,5 +108,66 @@ export async function runDemoSeed(prisma: PrismaClient): Promise<{ users: number
     });
     users += 1;
   }
+  await seedDemoArticles(prisma);
   return { users };
+}
+
+/** Two short editorial articles so Home, Explore and the article screen have something to show in development. */
+async function seedDemoArticles(prisma: PrismaClient): Promise<void> {
+  const author = await prisma.user.findUnique({ where: { email: 'admin@demo.atarah.test' } });
+  if (!author || (await prisma.article.count({ where: { isDemo: true } })) > 0) return;
+  const now = new Date();
+  const articles = [
+    {
+      slug: 'how-to-price-commissioned-illustration-in-kenya',
+      title: 'How to price commissioned illustration in Kenya',
+      summary:
+        'Most early-career illustrators under-price because they quote by the hour. Here is a better starting point.',
+      authorName: 'Demo Editor',
+      tags: ['animation', 'visual-art', 'pricing'],
+      body: [
+        {
+          type: 'paragraph',
+          text: 'Clients do not buy hours. They buy usage, reach and reliability.',
+        },
+        { type: 'heading', text: 'Start with a day rate' },
+        {
+          type: 'paragraph',
+          text: 'Cover your costs and the time you cannot bill, then add a licence fee based on where the work will appear and for how long.',
+        },
+        {
+          type: 'callout',
+          title: 'Rule of thumb',
+          text: 'An editorial spot and a national billboard are not the same job, even if they take the same afternoon.',
+        },
+      ],
+    },
+    {
+      slug: 'building-a-portfolio-that-gets-replies',
+      title: 'Building a portfolio that gets replies',
+      summary: 'Show fewer projects, explain your role in each, and make it easy to say yes.',
+      authorName: 'Demo Editor',
+      tags: ['portfolio', 'music'],
+      body: [
+        {
+          type: 'paragraph',
+          text: 'Pick your five strongest projects and say what you did on each.',
+        },
+        { type: 'quote', text: 'Show the work you want more of.', attribution: 'Demo Editor' },
+      ],
+    },
+  ];
+  for (const [i, a] of articles.entries()) {
+    await prisma.article.create({
+      data: {
+        ...a,
+        body: a.body,
+        status: 'PUBLISHED',
+        publishedAt: new Date(now.getTime() - i * 24 * 3600 * 1000),
+        readMinutes: 1,
+        createdById: author.id,
+        isDemo: true,
+      },
+    });
+  }
 }

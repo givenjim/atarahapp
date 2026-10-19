@@ -197,3 +197,26 @@ Member bearer token; reads need `profile.view`, writes `profile.edit`. Validatio
 | `GET /admin/projects?q=&hiddenOnly=&page=`   | Published projects with owner, for review; search by title, owner name or handle      |
 | `GET /admin/projects/{id}`                   | The whole project as the owner sees it, with the owner                                |
 | `POST /admin/projects/{id}/hide`, `/restore` | `{ reason }` (5 to 300). Audited; the owner is notified. 409 if already in that state |
+
+## Home, finding creatives, search and articles (P1-M5)
+
+Member bearer token (`profile.view`) unless noted. Paged lists use `?page=&limit=` and answer `meta.total`.
+
+| Endpoint                                                                                                                         | Notes                                                                                                                                                                                                                         |
+| -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET /home`                                                                                                                      | One payload: `firstName`, `completionPercent`, `unreadNotifications`, `article`, `recommended[]` (each with a `reason`), `creatives[]` (cards with a `reason`), `unavailable[]` (sections that failed; the client hides them) |
+| `GET /creatives?q=&disciplineId=&specialisationId=&countyId=&available=&verified=&sort=relevance\|recent`                        | Cards: handle, name, headline, avatar, discipline, up to three skills, county (only if shown to you), `verified`. `meta.total` drives "Show n results". Never lists the caller                                                |
+| `GET /search?q=&type=creatives\|articles&page=&limit=`                                                                           | `q` is 2 to 80 characters (else 400). Without `type`: a group per built kind with the first three hits and the full `count`. With `type`: that kind, paged. Unbuilt kinds return `groups: []`. Hits carry an in-app `path`    |
+| `GET /me/recent-searches`, `POST /me/recent-searches { query }`, `DELETE /me/recent-searches/{id}`, `DELETE /me/recent-searches` | Ten at most, newest first, per member                                                                                                                                                                                         |
+| `GET /articles?tag=`, `GET /articles/{slug}`                                                                                     | Public (optional token adds `saved`). Only published articles whose time has come; anything else is 404                                                                                                                       |
+| `GET /me/saved?type=ARTICLE`, `PUT /me/saved/ARTICLE/{id}`, `DELETE /me/saved/ARTICLE/{id}`                                      | `saved.manage.own`. Saving a draft or archived article is 404; removing twice is fine                                                                                                                                         |
+
+### Admin (needs `admin.access` + `article.manage`)
+
+| Endpoint                                                                       | Notes                                                                                                                                     |
+| ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET /admin/articles?status=&q=`, `POST /admin/articles { title, authorName }` | Create a draft; the slug is made from the title                                                                                           |
+| `GET/PATCH /admin/articles/{id}`                                               | `title`, `summary`, `authorName`, `source`, `sourceLabel`, `heroMediaId` (`""` removes), `tags[]`, `blocks[]` (sent whole). Archived: 409 |
+| `POST /admin/articles/{id}/submit\|return\|publish\|archive\|restore`          | `publish` takes `{ publishAt? }` (future = scheduled). Wrong state: 409; missing summary, content or source label: 400                    |
+| `GET/PUT /admin/home`                                                          | `{ featuredArticleId }`: only a published article can be pinned                                                                           |
+| `POST /admin/media/uploads`, `POST /admin/media/{id}/complete`                 | Editors' uploads (`media.manage`), same ticket flow as `/media`                                                                           |

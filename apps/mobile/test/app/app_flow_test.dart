@@ -7,6 +7,7 @@ import 'package:atarah/core/networking/failures.dart';
 import 'package:atarah/core/providers.dart';
 import 'package:atarah/core/routing/app_router.dart';
 import 'package:atarah/core/storage/token_store.dart';
+import 'package:atarah/features/discover/discover_providers.dart';
 import 'package:atarah/features/onboarding/onboarding_providers.dart';
 import 'package:atarah/features/profile/profile_providers.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 
+import '../support/fake_discover.dart';
 import '../support/fake_onboarding.dart';
 import '../support/fake_profile.dart';
 import '../support/fakes.dart';
@@ -43,6 +45,7 @@ Widget app(
           step: OnboardingStateDtoStep.done,
         ),
       ),
+      discoverRepositoryProvider.overrideWithValue(FakeDiscoverRepository()),
       tokenStoreProvider.overrideWithValue(MemoryTokenStore()),
       isOnlineProvider.overrideWith((ref) => online ?? Stream.value(true)),
     ],
@@ -90,7 +93,7 @@ void main() {
     testWidgets('a stored session opens the tab shell on Home', (t) async {
       await pumpApp(t, FakeAuthRepository(restored: fakeUser()));
       expect(find.byType(AtTabBar), findsOneWidget);
-      expect(find.text('Soon · P1'), findsOneWidget);
+      expect(find.text('Welcome, Nia'), findsOneWidget);
       expect(find.text('Home'), findsWidgets);
     });
 
@@ -205,10 +208,24 @@ void main() {
 
   group('tab shell', () {
     testWidgets(
-      'five tabs in order; each unbuilt tab is a labelled Phase 1 placeholder',
+      'five tabs in order; Home and Explore are real, the unbuilt ones are labelled Phase 1 placeholders',
       (t) async {
         await pumpApp(t, FakeAuthRepository(restored: fakeUser()));
-        final labels = ['Home', 'Explore', 'Community', 'Opportunities'];
+        Future<void> openTab(String label) async {
+          await t.tap(
+            find.descendant(
+              of: find.byType(AtTabBar),
+              matching: find.text(label),
+            ),
+          );
+          await t.pumpAndSettle();
+        }
+
+        await openTab('Explore');
+        expect(find.text('Explore creatives'), findsOneWidget);
+        await openTab('Home');
+        expect(find.text('Welcome, Nia'), findsOneWidget);
+        final labels = ['Community', 'Opportunities'];
         for (final label in labels) {
           await t.tap(
             find.descendant(
@@ -285,7 +302,6 @@ void main() {
       '/learning/lessons/3': 'Soon · P1',
       '/marketplace/listings/5': 'Soon · P2',
       '/mentors/7': 'Soon · P2',
-      '/articles/a-slug': 'Soon · P1',
       '/groups/12': 'Soon · P1',
       '/posts/77': 'Soon · P1',
       '/notifications': 'Soon · P1',
@@ -349,6 +365,9 @@ void main() {
       ); // skeletons animate forever
       expect(find.text('Component gallery'), findsOneWidget);
 
+      // Close the first app before the second one starts.
+      await t.pumpWidget(const SizedBox());
+      await t.pumpAndSettle();
       await pumpApp(
         t,
         FakeAuthRepository(restored: fakeUser()),

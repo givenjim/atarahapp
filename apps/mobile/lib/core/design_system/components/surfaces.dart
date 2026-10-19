@@ -99,10 +99,14 @@ class AtSectionHeader extends StatelessWidget {
     this.onSeeAll,
     this.compact = false,
     this.trailing,
+    this.seeAllLabel,
   });
 
   final String title;
   final VoidCallback? onSeeAll;
+
+  /// Replaces "See all", e.g. "See all 12".
+  final String? seeAllLabel;
 
   /// Smaller title used inside detail screens (17 instead of 20).
   final bool compact;
@@ -130,8 +134,8 @@ class AtSectionHeader extends StatelessWidget {
         ?trailing,
         if (onSeeAll != null)
           AtButton(
-            label: l10n.seeAll,
-            semanticLabel: '${l10n.seeAll}: $title',
+            label: seeAllLabel ?? l10n.seeAll,
+            semanticLabel: '${seeAllLabel ?? l10n.seeAll}: $title',
             onPressed: onSeeAll,
             variant: AtButtonVariant.tertiary,
             size: AtButtonSize.sm,

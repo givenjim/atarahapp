@@ -171,6 +171,8 @@ describe('navigation and Soon panels', () => {
       'Roles & Permissions',
       'Verification',
       'Content',
+      'Articles',
+      'Home curation',
       'Taxonomy',
       'Learning',
       'Opportunities',
@@ -196,15 +198,26 @@ describe('navigation and Soon panels', () => {
       'portfolio',
     ]);
     expect(visibleNav([])).toEqual([]);
+    expect(visibleNav(['admin.access', 'article.manage']).map((s) => s.slug)).toEqual([
+      'dashboard',
+      'content',
+      'articles',
+      'home-curation',
+    ]);
+    expect(visibleNav(['admin.access', 'moderation.act']).map((s) => s.slug)).not.toContain(
+      'articles',
+    );
     expect(visibleNav(['admin.access', 'taxonomy.manage']).map((s) => s.slug)).toEqual([
       'dashboard',
       'taxonomy',
     ]);
   });
 
-  it('only Users, Taxonomy, Portfolio and Audit Logs are live; everything else names its phase', () => {
+  it('only the built sections are live; everything else names its phase', () => {
     expect(NAV.filter((s) => s.phase === 'live').map((s) => s.slug)).toEqual([
       'users',
+      'articles',
+      'home-curation',
       'taxonomy',
       'portfolio',
       'audit-logs',

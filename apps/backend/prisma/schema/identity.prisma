@@ -69,6 +69,11 @@ model User {
   suggestionsMade       SpecialisationSuggestion[] @relation("SuggestionAuthor")
   suggestionsResolved   SpecialisationSuggestion[] @relation("SuggestionResolver")
   projectCollaborations ProjectCollaborator[]      @relation("ProjectCollaborations")
+  articlesCreated       Article[]                  @relation("ArticleCreator")
+  articlesEdited        Article[]                  @relation("ArticleEditor")
+  savedItems            SavedItem[]                @relation("SavedBy")
+  recentSearches        RecentSearch[]             @relation("RecentSearcher")
+  homeConfigEdits       HomeConfig[]               @relation("HomeConfigEditor")
 
   @@index([status])
   @@index([createdAt])
