@@ -38,6 +38,8 @@ class PublicProfileDto {
     required this.lockedSections,
     required this.connectionCount,
     required this.shareUrl,
+    this.portfolioCount,
+    this.serviceCount,
   });
 
   factory PublicProfileDto.fromJson(Map<String, Object?> json) =>
@@ -62,6 +64,12 @@ class PublicProfileDto {
   final List<TaxonomyItemDto>? skills;
   final List<ProfileLinkDto>? links;
   final ContactDetailsDto? contact;
+
+  /// Projects this viewer can open. Null while the Portfolio section is hidden from them.
+  final num? portfolioCount;
+
+  /// Null while the Services section is hidden from this viewer.
+  final num? serviceCount;
 
   /// Sections the caller may see (some have no content yet).
   final List<PublicProfileDtoVisibleSections> visibleSections;

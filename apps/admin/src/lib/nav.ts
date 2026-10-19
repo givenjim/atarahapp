@@ -112,6 +112,14 @@ export const NAV: readonly NavSection[] = [
     summary: 'Reports queue, moderation actions and appeals.',
   },
   {
+    slug: 'portfolio',
+    label: 'Portfolio',
+    href: '/portfolio',
+    permission: 'moderation.act',
+    phase: 'live',
+    summary: 'Review published portfolio projects, hide and restore them.',
+  },
+  {
     slug: 'creative-economy',
     label: 'Creative Economy',
     href: '/creative-economy',

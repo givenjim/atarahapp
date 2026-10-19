@@ -10,6 +10,12 @@ abstract final class Routes {
   static const legal = '/legal/:type';
   static const onboarding = '/onboarding';
   static const passport = '/passport';
+  static const portfolio = '/portfolio';
+  static const projectEdit = '/portfolio/:id/edit';
+  static const skills = '/skills';
+  static const experience = '/experience';
+  static const achievements = '/achievements';
+  static const services = '/services';
   static const devGallery = '/dev/gallery';
 
   // The five tab roots (the bottom bar).
@@ -55,6 +61,20 @@ abstract final class Routes {
   /// A creative's profile. [preview] is the owner's "Public view" of their own page.
   static String creativePath(String handle, {bool preview = false}) =>
       '/creatives/${Uri.encodeComponent(handle)}${preview ? '?preview=1' : ''}';
+
+  /// A project. With a [handle] it is that member's project; without, the signed-in member's own.
+  /// [preview] (`public` or `members`) is the owner's "Public view" of their own page.
+  static String projectPath(String id, {String? handle, String? preview}) {
+    final query = [
+      if (handle != null) 'handle=${Uri.encodeQueryComponent(handle)}',
+      if (preview != null) 'preview=$preview',
+    ].join('&');
+    return '/projects/${Uri.encodeComponent(id)}${query.isEmpty ? '' : '?$query'}';
+  }
+
+  /// The editor for a project, or for a new one when [id] is `new`.
+  static String projectEditPath(String id) =>
+      '/portfolio/${Uri.encodeComponent(id)}/edit';
 
   /// Paths a signed-out member may open.
   static bool isPublic(String path, {required bool devTools}) {

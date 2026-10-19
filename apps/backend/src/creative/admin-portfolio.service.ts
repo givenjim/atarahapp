@@ -117,7 +117,7 @@ export class AdminPortfolioService {
           actorType: 'ADMIN',
           actorId: actor.userId,
           action: `portfolio.project.${action}`,
-          entityType: 'Project',
+          entityType: 'project',
           entityId: id,
           before: { hidden: !hiding },
           after: { hidden: hiding, reason: reason ?? null, ownerUserId: row.profile.userId },

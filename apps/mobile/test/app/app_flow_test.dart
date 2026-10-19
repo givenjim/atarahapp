@@ -280,7 +280,6 @@ void main() {
 
   group('deep links', () {
     const links = {
-      '/projects/9': 'Soon · P1',
       '/opportunities/42': 'Soon · P1',
       '/learning/courses/3': 'Soon · P1',
       '/learning/lessons/3': 'Soon · P1',

@@ -52,6 +52,7 @@ Dio buildApiDio({
   final dio = Dio(_baseOptions(config));
   dio.interceptors.addAll([
     _RequestIdInterceptor(),
+    _OmitNullFieldsInterceptor(),
     AuthInterceptor(
       dio: dio,
       store: store,
@@ -61,6 +62,22 @@ Dio buildApiDio({
     RetryInterceptor(dio: dio, delay: retryDelay),
   ]);
   return dio;
+}
+
+/// The generated models write every unset field as `null`. For a partial update that would read as "set it to
+/// nothing", so unset top-level fields are left out of the body: the server then leaves them alone.
+class _OmitNullFieldsInterceptor extends Interceptor {
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    final data = options.data;
+    if (data is Map<String, dynamic> && data.containsValue(null)) {
+      options.data = {
+        for (final e in data.entries)
+          if (e.value != null) e.key: e.value,
+      };
+    }
+    handler.next(options);
+  }
 }
 
 class _RequestIdInterceptor extends Interceptor {

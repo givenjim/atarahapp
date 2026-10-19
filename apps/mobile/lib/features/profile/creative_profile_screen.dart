@@ -11,6 +11,7 @@ import '../../core/networking/failures.dart';
 import '../../core/providers.dart';
 import '../../core/routing/routes.dart';
 import '../onboarding/onboarding_providers.dart';
+import '../portfolio/creative_tabs.dart';
 import 'profile_labels.dart';
 import 'profile_providers.dart';
 import 'profile_repository.dart';
@@ -363,17 +364,13 @@ class _CreativeProfileScreenState extends ConsumerState<CreativeProfileScreen> {
                 ),
                 const SizedBox(height: 18),
                 switch (_tab) {
-                  0 => _About(profile: p, onOpenLink: _openLink),
-                  1 => _Locked(
+                  0 => _About(
                     profile: p,
-                    locked: PublicProfileDtoLockedSections.portfolio,
-                    emptyText: l10n.cpNoPortfolio,
+                    preview: _preview,
+                    onOpenLink: _openLink,
                   ),
-                  _ => _Locked(
-                    profile: p,
-                    locked: PublicProfileDtoLockedSections.services,
-                    emptyText: l10n.cpNoServices,
-                  ),
+                  1 => CreativePortfolioTab(profile: p, preview: _preview),
+                  _ => CreativeServicesTab(profile: p, preview: _preview),
                 },
               ],
             ),
@@ -540,9 +537,14 @@ class _Actions extends StatelessWidget {
 }
 
 class _About extends StatelessWidget {
-  const _About({required this.profile, required this.onOpenLink});
+  const _About({
+    required this.profile,
+    required this.preview,
+    required this.onOpenLink,
+  });
 
   final PublicProfileDto profile;
+  final PublicProfilePreview? preview;
   final ValueChanged<String> onOpenLink;
 
   @override
@@ -604,6 +606,7 @@ class _About extends StatelessWidget {
             ],
           ),
         ],
+        CreativeExperienceSection(profile: p, preview: preview),
         if (p.links != null && p.links!.isNotEmpty) ...[
           const SizedBox(height: 20),
           heading(l10n.cpLinksHeading),
@@ -672,48 +675,6 @@ class _About extends StatelessWidget {
           style: AtTextStyles.meta.copyWith(color: AtColors.muted),
         ),
       ],
-    );
-  }
-}
-
-/// Portfolio and Services tabs. Projects and services arrive in the next milestone, so when the section is
-/// visible the honest answer is "nothing yet"; when it is hidden from this viewer, it says so.
-class _Locked extends StatelessWidget {
-  const _Locked({
-    required this.profile,
-    required this.locked,
-    required this.emptyText,
-  });
-
-  final PublicProfileDto profile;
-  final PublicProfileDtoLockedSections locked;
-  final String emptyText;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final isLocked = profile.lockedSections.contains(locked);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 24),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            isLocked ? LucideIcons.lock : LucideIcons.layoutGrid,
-            size: 16,
-            color: AtColors.muted,
-          ),
-          const SizedBox(width: 8),
-          Flexible(
-            child: Text(
-              isLocked
-                  ? l10n.cpHidden(publicSectionLabel(l10n, locked))
-                  : emptyText,
-              style: AtTextStyles.bodySm.copyWith(color: AtColors.muted),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

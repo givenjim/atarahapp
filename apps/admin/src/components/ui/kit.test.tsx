@@ -177,6 +177,7 @@ describe('navigation and Soon panels', () => {
       'Mentorship',
       'Marketplace',
       'Community & Reports',
+      'Portfolio',
       'Creative Economy',
       'Payments',
       'Notifications',
@@ -190,6 +191,10 @@ describe('navigation and Soon panels', () => {
   it('shows only the sections the administrator has permission for', () => {
     const moderator = visibleNav(['admin.access', 'report.view']).map((s) => s.slug);
     expect(moderator).toEqual(['dashboard', 'community']);
+    expect(visibleNav(['admin.access', 'moderation.act']).map((s) => s.slug)).toEqual([
+      'dashboard',
+      'portfolio',
+    ]);
     expect(visibleNav([])).toEqual([]);
     expect(visibleNav(['admin.access', 'taxonomy.manage']).map((s) => s.slug)).toEqual([
       'dashboard',
@@ -197,10 +202,11 @@ describe('navigation and Soon panels', () => {
     ]);
   });
 
-  it('only Users, Taxonomy and Audit Logs are live; everything else names its phase', () => {
+  it('only Users, Taxonomy, Portfolio and Audit Logs are live; everything else names its phase', () => {
     expect(NAV.filter((s) => s.phase === 'live').map((s) => s.slug)).toEqual([
       'users',
       'taxonomy',
+      'portfolio',
       'audit-logs',
     ]);
     render(<SoonPanel section={sectionBySlug('payments')!} />);

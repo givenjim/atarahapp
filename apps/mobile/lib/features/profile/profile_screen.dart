@@ -46,8 +46,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     }
   }
 
-  /// Where the "next best step" leads. Editing the photo, discipline and skills arrives with the portfolio
-  /// milestone, so those open their labelled placeholder until then.
+  /// Where the "next best step" leads. Projects, skills and experience have their own screens now; changing the
+  /// photo, discipline, specialisation or location after setup is not built yet, so those open their labelled
+  /// placeholder.
   VoidCallback _nextAction(OwnProfileDto profile, CompletionItemDto item) {
     switch (item.key) {
       case 'bio':
@@ -55,6 +56,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         return () => _edit(profile);
       case 'contact':
         return () => context.push(Routes.passport);
+      case 'project':
+        return () => context.push(Routes.projectEditPath('new'));
+      case 'skills':
+        return () => context.push(Routes.skills);
+      case 'experience':
+        return () => context.push(Routes.experience);
       default:
         return () => _soon('p1', item.label);
     }
@@ -147,7 +154,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     title: l10n.pfPortfolio,
                     icon: LucideIcons.layoutGrid,
                     showDivider: true,
-                    onTap: () => _soon('p1', l10n.pfPortfolio),
+                    onTap: () => context.push(Routes.portfolio),
                   ),
                   AtListRow(
                     title: l10n.pfSkills,
@@ -155,28 +162,28 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     tone: AtTone.success,
                     trailing: _Count(profile.value?.counts.skills),
                     showDivider: true,
-                    onTap: () => _soon('p1', l10n.pfSkills),
+                    onTap: () => context.push(Routes.skills),
                   ),
                   AtListRow(
                     title: l10n.pfExperience,
                     icon: LucideIcons.briefcase,
                     tone: AtTone.warning,
                     showDivider: true,
-                    onTap: () => _soon('p1', l10n.pfExperience),
+                    onTap: () => context.push(Routes.experience),
                   ),
                   AtListRow(
                     title: l10n.pfAchievements,
                     icon: LucideIcons.award,
                     tone: AtTone.amber,
                     showDivider: true,
-                    onTap: () => _soon('p1', l10n.pfAchievements),
+                    onTap: () => context.push(Routes.achievements),
                   ),
                   AtListRow(
                     title: l10n.pfServices,
                     icon: LucideIcons.handshake,
                     tone: AtTone.pink,
                     showDivider: true,
-                    onTap: () => _soon('p1', l10n.pfServices),
+                    onTap: () => context.push(Routes.services),
                   ),
                   AtListRow(
                     title: l10n.pfConnections,

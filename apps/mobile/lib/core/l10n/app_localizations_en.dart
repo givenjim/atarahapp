@@ -1265,5 +1265,595 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get save => 'Save';
+
+  @override
+  String get skAddTitle => 'Add a skill';
+
+  @override
+  String get skEmptyTitle => 'No skills yet';
+
+  @override
+  String get skEmptyBody =>
+      'List what you do well so people can find you and see what you can offer.';
+
+  @override
+  String get skLevelLabel => 'Level';
+
+  @override
+  String get skLevelBeginner => 'Beginner';
+
+  @override
+  String get skLevelIntermediate => 'Intermediate';
+
+  @override
+  String get skLevelAdvanced => 'Advanced';
+
+  @override
+  String get skLevelExpert => 'Expert';
+
+  @override
+  String get skLevelUnrated => 'Not rated';
+
+  @override
+  String get skSourceSelf => 'Self-declared';
+
+  @override
+  String get skSourceLearning => 'From learning';
+
+  @override
+  String get skSourceVerified => 'Verified';
+
+  @override
+  String skUsedIn(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Used in $count projects',
+      one: 'Used in 1 project',
+      zero: 'Not used in a project yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get skImprove => 'Improve this skill';
+
+  @override
+  String get skFindOpportunities => 'Find opportunities';
+
+  @override
+  String get skVerify => 'Verify';
+
+  @override
+  String get skChangeLevel => 'Change level';
+
+  @override
+  String get skSearchLabel => 'Search skills';
+
+  @override
+  String get skNoMatches => 'No skills match. Try a different word.';
+
+  @override
+  String get skRemove => 'Remove skill';
+
+  @override
+  String skRemoveTitle(String name) {
+    return 'Remove $name?';
+  }
+
+  @override
+  String get skRemoveBody =>
+      'It leaves your profile. Projects that used it keep their own list.';
+
+  @override
+  String get xpAddTitle => 'Add experience';
+
+  @override
+  String get xpEditTitle => 'Edit experience';
+
+  @override
+  String get xpEmptyTitle => 'No experience yet';
+
+  @override
+  String get xpEmptyBody =>
+      'Add the studios, clients and roles that shaped your work.';
+
+  @override
+  String get xpPresent => 'Present';
+
+  @override
+  String get xpTitleLabel => 'Role';
+
+  @override
+  String get xpOrgLabel => 'Where';
+
+  @override
+  String get xpOrgHint => 'Company, studio, school or Freelance';
+
+  @override
+  String get xpLocationLabel => 'Location (optional)';
+
+  @override
+  String get xpStartLabel => 'Started';
+
+  @override
+  String get xpEndLabel => 'Ended';
+
+  @override
+  String get xpCurrentLabel => 'I work here now';
+
+  @override
+  String get xpDescriptionLabel => 'What you did (optional)';
+
+  @override
+  String get xpTitleError => 'Enter your role.';
+
+  @override
+  String get xpOrgError => 'Enter where you worked.';
+
+  @override
+  String get xpStartError => 'Choose when you started.';
+
+  @override
+  String get xpEndRequired =>
+      'Choose when you left, or switch on “I work here now”.';
+
+  @override
+  String get xpEndBeforeStart =>
+      'The end date cannot be before the start date.';
+
+  @override
+  String get xpDelete => 'Delete experience';
+
+  @override
+  String get xpDeleteTitle => 'Delete this experience?';
+
+  @override
+  String get xpDeleteBody => 'It is removed from your profile.';
+
+  @override
+  String get acAddTitle => 'Add achievement';
+
+  @override
+  String get acEditTitle => 'Edit achievement';
+
+  @override
+  String get acEmptyTitle => 'No achievements yet';
+
+  @override
+  String get acEmptyBody =>
+      'Awards, certificates, features and selections build trust in your work.';
+
+  @override
+  String get acTypeLabel => 'Type';
+
+  @override
+  String get acTypeAward => 'Award';
+
+  @override
+  String get acTypeCertificate => 'Certificate';
+
+  @override
+  String get acTypeFeature => 'Feature';
+
+  @override
+  String get acTypeSelection => 'Selection';
+
+  @override
+  String get acTypeNomination => 'Nomination';
+
+  @override
+  String get acTitleLabel => 'Title';
+
+  @override
+  String get acIssuerLabel => 'Given by (optional)';
+
+  @override
+  String get acDateLabel => 'Date (optional)';
+
+  @override
+  String get acUrlLabel => 'Link (optional)';
+
+  @override
+  String get acDescriptionLabel => 'Details (optional)';
+
+  @override
+  String get acTitleError => 'Enter a title.';
+
+  @override
+  String get acUrlError => 'Links must start with https://';
+
+  @override
+  String get acByAtarah => 'Added by Atarah';
+
+  @override
+  String get acDelete => 'Delete achievement';
+
+  @override
+  String get acDeleteTitle => 'Delete this achievement?';
+
+  @override
+  String get acDeleteBody => 'It is removed from your profile.';
+
+  @override
+  String get svAddTitle => 'Add a service';
+
+  @override
+  String get svEditTitle => 'Edit service';
+
+  @override
+  String get svEmptyTitle => 'No services yet';
+
+  @override
+  String get svEmptyBody =>
+      'Tell people what you can do for them and roughly what it costs.';
+
+  @override
+  String get svTitleLabel => 'Service';
+
+  @override
+  String get svDescriptionLabel => 'What is included (optional)';
+
+  @override
+  String get svPriceTypeLabel => 'Price';
+
+  @override
+  String get svTypeFixed => 'Fixed';
+
+  @override
+  String get svTypeRange => 'Range';
+
+  @override
+  String get svTypeOnRequest => 'On request';
+
+  @override
+  String get svPriceLabel => 'Price';
+
+  @override
+  String get svMinLabel => 'From';
+
+  @override
+  String get svMaxLabel => 'To';
+
+  @override
+  String get svTitleError => 'Enter the name of the service.';
+
+  @override
+  String get svPriceError => 'Enter a price in Kenya shillings.';
+
+  @override
+  String get svMaxError => 'The highest price must be at least the lowest.';
+
+  @override
+  String svPriceFixed(String amount) {
+    return 'KES $amount';
+  }
+
+  @override
+  String svPriceRange(String min, String max) {
+    return 'KES $min to $max';
+  }
+
+  @override
+  String get svPriceOnRequest => 'Price on request';
+
+  @override
+  String get svProfileOnly => 'Profile only';
+
+  @override
+  String get svOnMarketplace => 'On the marketplace';
+
+  @override
+  String get svPublish => 'Publish to marketplace';
+
+  @override
+  String get svViewListing => 'View listing';
+
+  @override
+  String get svEdit => 'Edit';
+
+  @override
+  String get svDelete => 'Delete service';
+
+  @override
+  String get svDeleteTitle => 'Delete this service?';
+
+  @override
+  String get svDeleteBody => 'It is removed from your profile.';
+
+  @override
+  String get pjAdd => 'Add project';
+
+  @override
+  String get pjAddTitle => 'Add a project';
+
+  @override
+  String get pjEditTitle => 'Edit project';
+
+  @override
+  String get pjAddZone => 'Add project';
+
+  @override
+  String get pjAll => 'All';
+
+  @override
+  String get pjFeatured => 'Featured';
+
+  @override
+  String get pjCatProjects => 'Projects';
+
+  @override
+  String get pjCatMediaPlural => 'Media';
+
+  @override
+  String get pjCatPublications => 'Publications';
+
+  @override
+  String get pjCatPerformances => 'Performances';
+
+  @override
+  String get pjCatProject => 'Project';
+
+  @override
+  String get pjCatMedia => 'Media';
+
+  @override
+  String get pjCatPublication => 'Publication';
+
+  @override
+  String get pjCatPerformance => 'Performance';
+
+  @override
+  String get pjEmptyBody =>
+      'Show your best work. Add a project to start your portfolio.';
+
+  @override
+  String get pjNothingInFilter => 'Nothing here yet.';
+
+  @override
+  String get pjDrafts => 'Drafts';
+
+  @override
+  String get pjDraft => 'Draft';
+
+  @override
+  String get pjHidden => 'Hidden';
+
+  @override
+  String get pjUntitled => 'Untitled project';
+
+  @override
+  String pjInviteTitle(String owner, String project) {
+    return '$owner tagged you on “$project”';
+  }
+
+  @override
+  String pjInviteRole(String role) {
+    return 'As $role';
+  }
+
+  @override
+  String get pjInviteAccept => 'Accept';
+
+  @override
+  String get pjInviteDecline => 'Decline';
+
+  @override
+  String get pjIntro =>
+      'Tell the story of your work. Your changes are saved as a draft while you type, and nobody sees it until you publish.';
+
+  @override
+  String get pjSaved => 'Draft saved';
+
+  @override
+  String get pjSaving => 'Saving…';
+
+  @override
+  String get pjSaveFailed =>
+      'Could not save yet. Check your connection; we will try again as you type.';
+
+  @override
+  String get pjSaveFirst => 'Save the project first, then add collaborators.';
+
+  @override
+  String get pjFilesHeading => 'Files';
+
+  @override
+  String get pjAddFiles => 'Add files';
+
+  @override
+  String pjFilesHint(int max) {
+    return 'Photos, video or audio. Up to $max files.';
+  }
+
+  @override
+  String get pjFileAlt => 'Project file';
+
+  @override
+  String get pjPickPhotos => 'Photos';
+
+  @override
+  String get pjPickVideo => 'Video';
+
+  @override
+  String get pjPickAudio => 'Audio';
+
+  @override
+  String get pjPickFailed => 'We could not open your files. Try again.';
+
+  @override
+  String get pjTitleLabel => 'Title';
+
+  @override
+  String get pjRoleLabel => 'Your role';
+
+  @override
+  String get pjClientLabel => 'Client (optional)';
+
+  @override
+  String get pjDateLabel => 'Date of the work';
+
+  @override
+  String get pjDateNotSet => 'Not set';
+
+  @override
+  String get pjDateClear => 'Clear date';
+
+  @override
+  String get pjCategoryHeading => 'Type of work';
+
+  @override
+  String get pjDescriptionLabel => 'Description';
+
+  @override
+  String get pjHelpDescribe => 'Help me describe this';
+
+  @override
+  String get pjOutcomeLabel => 'Outcome (optional)';
+
+  @override
+  String get pjOutcomeHint => 'What did the work achieve?';
+
+  @override
+  String get pjSkillsHeading => 'Skills used';
+
+  @override
+  String get pjAddSkill => 'Add a skill';
+
+  @override
+  String pjRemoveNamed(String name) {
+    return 'Remove $name';
+  }
+
+  @override
+  String get pjCollaborators => 'Collaborators';
+
+  @override
+  String get pjAddCollaborator => 'Add a collaborator';
+
+  @override
+  String get pjCollabMember => 'Atarah member';
+
+  @override
+  String get pjCollabName => 'Someone else';
+
+  @override
+  String get pjCollabRole => 'Their role (optional)';
+
+  @override
+  String get pjCollabSearch => 'Search by name or @handle';
+
+  @override
+  String get pjCollabNoMembers => 'No members found.';
+
+  @override
+  String get pjCollabNameLabel => 'Their name';
+
+  @override
+  String get pjCollabAddName => 'Add';
+
+  @override
+  String get pjCollabNameError => 'Enter their name.';
+
+  @override
+  String get pjCollabPending => 'Waiting to accept';
+
+  @override
+  String get pjLinks => 'Links';
+
+  @override
+  String get pjAddLink => 'Add a link';
+
+  @override
+  String get pjLinkLabel => 'Label';
+
+  @override
+  String get pjLinkUrl => 'Address';
+
+  @override
+  String get pjLinkError => 'Enter an address starting with https://';
+
+  @override
+  String get pjRemoveLink => 'Remove link';
+
+  @override
+  String get pjVisibilityHeading => 'Who can see it';
+
+  @override
+  String get pjVisibilityNote =>
+      'Your Portfolio setting in the Creative Passport also applies.';
+
+  @override
+  String get pjFeaturedToggle => 'Feature this project (up to 3)';
+
+  @override
+  String get pjPublish => 'Publish';
+
+  @override
+  String get pjSaveChanges => 'Save changes';
+
+  @override
+  String get pjSaveDraft => 'Save draft';
+
+  @override
+  String get pjPreview => 'Preview project';
+
+  @override
+  String get pjDelete => 'Delete project';
+
+  @override
+  String get pjDeleteTitle => 'Delete this project?';
+
+  @override
+  String get pjDeleteBody => 'It is removed from your portfolio and profile.';
+
+  @override
+  String get pjTitleError => 'Give your project a title.';
+
+  @override
+  String get pjShare => 'Share project';
+
+  @override
+  String get pjEdit => 'Edit project';
+
+  @override
+  String pjShareText(String title) {
+    return '$title on Atarah';
+  }
+
+  @override
+  String get pjNotFound => 'This project is not available';
+
+  @override
+  String pjHiddenNotice(String reason) {
+    return 'A moderator hid this project: $reason';
+  }
+
+  @override
+  String get pjDraftNotice => 'This is a draft. Only you can see it.';
+
+  @override
+  String get pjSkillsUsed => 'Skills used';
+
+  @override
+  String get pjOutcome => 'Outcome';
+
+  @override
+  String get pjMediaProcessing => 'This file is still being prepared.';
+
+  @override
+  String get pjMediaFailed => 'We could not play this file.';
+
+  @override
+  String get pjImageAlt => 'Project image';
+
+  @override
+  String get pjPlay => 'Play';
+
+  @override
+  String get pjPause => 'Pause';
+
+  @override
   String get leavingOpenFailed => 'We couldn\'t open that link.';
 }

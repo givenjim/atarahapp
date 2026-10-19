@@ -601,5 +601,265 @@
       }
     }
   },
+  "save": "Save",
+  "skAddTitle": "Add a skill",
+  "skEmptyTitle": "No skills yet",
+  "skEmptyBody": "List what you do well so people can find you and see what you can offer.",
+  "skLevelLabel": "Level",
+  "skLevelBeginner": "Beginner",
+  "skLevelIntermediate": "Intermediate",
+  "skLevelAdvanced": "Advanced",
+  "skLevelExpert": "Expert",
+  "skLevelUnrated": "Not rated",
+  "skSourceSelf": "Self-declared",
+  "skSourceLearning": "From learning",
+  "skSourceVerified": "Verified",
+  "skUsedIn": "{count, plural, =0{Not used in a project yet} =1{Used in 1 project} other{Used in {count} projects}}",
+  "@skUsedIn": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "skImprove": "Improve this skill",
+  "skFindOpportunities": "Find opportunities",
+  "skVerify": "Verify",
+  "skChangeLevel": "Change level",
+  "skSearchLabel": "Search skills",
+  "skNoMatches": "No skills match. Try a different word.",
+  "skRemove": "Remove skill",
+  "skRemoveTitle": "Remove {name}?",
+  "@skRemoveTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "skRemoveBody": "It leaves your profile. Projects that used it keep their own list.",
+  "xpAddTitle": "Add experience",
+  "xpEditTitle": "Edit experience",
+  "xpEmptyTitle": "No experience yet",
+  "xpEmptyBody": "Add the studios, clients and roles that shaped your work.",
+  "xpPresent": "Present",
+  "xpTitleLabel": "Role",
+  "xpOrgLabel": "Where",
+  "xpOrgHint": "Company, studio, school or Freelance",
+  "xpLocationLabel": "Location (optional)",
+  "xpStartLabel": "Started",
+  "xpEndLabel": "Ended",
+  "xpCurrentLabel": "I work here now",
+  "xpDescriptionLabel": "What you did (optional)",
+  "xpTitleError": "Enter your role.",
+  "xpOrgError": "Enter where you worked.",
+  "xpStartError": "Choose when you started.",
+  "xpEndRequired": "Choose when you left, or switch on “I work here now”.",
+  "xpEndBeforeStart": "The end date cannot be before the start date.",
+  "xpDelete": "Delete experience",
+  "xpDeleteTitle": "Delete this experience?",
+  "xpDeleteBody": "It is removed from your profile.",
+  "acAddTitle": "Add achievement",
+  "acEditTitle": "Edit achievement",
+  "acEmptyTitle": "No achievements yet",
+  "acEmptyBody": "Awards, certificates, features and selections build trust in your work.",
+  "acTypeLabel": "Type",
+  "acTypeAward": "Award",
+  "acTypeCertificate": "Certificate",
+  "acTypeFeature": "Feature",
+  "acTypeSelection": "Selection",
+  "acTypeNomination": "Nomination",
+  "acTitleLabel": "Title",
+  "acIssuerLabel": "Given by (optional)",
+  "acDateLabel": "Date (optional)",
+  "acUrlLabel": "Link (optional)",
+  "acDescriptionLabel": "Details (optional)",
+  "acTitleError": "Enter a title.",
+  "acUrlError": "Links must start with https://",
+  "acByAtarah": "Added by Atarah",
+  "acDelete": "Delete achievement",
+  "acDeleteTitle": "Delete this achievement?",
+  "acDeleteBody": "It is removed from your profile.",
+  "svAddTitle": "Add a service",
+  "svEditTitle": "Edit service",
+  "svEmptyTitle": "No services yet",
+  "svEmptyBody": "Tell people what you can do for them and roughly what it costs.",
+  "svTitleLabel": "Service",
+  "svDescriptionLabel": "What is included (optional)",
+  "svPriceTypeLabel": "Price",
+  "svTypeFixed": "Fixed",
+  "svTypeRange": "Range",
+  "svTypeOnRequest": "On request",
+  "svPriceLabel": "Price",
+  "svMinLabel": "From",
+  "svMaxLabel": "To",
+  "svTitleError": "Enter the name of the service.",
+  "svPriceError": "Enter a price in Kenya shillings.",
+  "svMaxError": "The highest price must be at least the lowest.",
+  "svPriceFixed": "KES {amount}",
+  "@svPriceFixed": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "svPriceRange": "KES {min} to {max}",
+  "@svPriceRange": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "svPriceOnRequest": "Price on request",
+  "svProfileOnly": "Profile only",
+  "svOnMarketplace": "On the marketplace",
+  "svPublish": "Publish to marketplace",
+  "svViewListing": "View listing",
+  "svEdit": "Edit",
+  "svDelete": "Delete service",
+  "svDeleteTitle": "Delete this service?",
+  "svDeleteBody": "It is removed from your profile.",
+  "pjAdd": "Add project",
+  "pjAddTitle": "Add a project",
+  "pjEditTitle": "Edit project",
+  "pjAddZone": "Add project",
+  "pjAll": "All",
+  "pjFeatured": "Featured",
+  "pjCatProjects": "Projects",
+  "pjCatMediaPlural": "Media",
+  "pjCatPublications": "Publications",
+  "pjCatPerformances": "Performances",
+  "pjCatProject": "Project",
+  "pjCatMedia": "Media",
+  "pjCatPublication": "Publication",
+  "pjCatPerformance": "Performance",
+  "pjEmptyBody": "Show your best work. Add a project to start your portfolio.",
+  "pjNothingInFilter": "Nothing here yet.",
+  "pjDrafts": "Drafts",
+  "pjDraft": "Draft",
+  "pjHidden": "Hidden",
+  "pjUntitled": "Untitled project",
+  "pjInviteTitle": "{owner} tagged you on “{project}”",
+  "@pjInviteTitle": {
+    "placeholders": {
+      "owner": {
+        "type": "String"
+      },
+      "project": {
+        "type": "String"
+      }
+    }
+  },
+  "pjInviteRole": "As {role}",
+  "@pjInviteRole": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "pjInviteAccept": "Accept",
+  "pjInviteDecline": "Decline",
+  "pjIntro": "Tell the story of your work. Your changes are saved as a draft while you type, and nobody sees it until you publish.",
+  "pjSaved": "Draft saved",
+  "pjSaving": "Saving…",
+  "pjSaveFailed": "Could not save yet. Check your connection; we will try again as you type.",
+  "pjSaveFirst": "Save the project first, then add collaborators.",
+  "pjFilesHeading": "Files",
+  "pjAddFiles": "Add files",
+  "pjFilesHint": "Photos, video or audio. Up to {max} files.",
+  "@pjFilesHint": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "pjFileAlt": "Project file",
+  "pjPickPhotos": "Photos",
+  "pjPickVideo": "Video",
+  "pjPickAudio": "Audio",
+  "pjPickFailed": "We could not open your files. Try again.",
+  "pjTitleLabel": "Title",
+  "pjRoleLabel": "Your role",
+  "pjClientLabel": "Client (optional)",
+  "pjDateLabel": "Date of the work",
+  "pjDateNotSet": "Not set",
+  "pjDateClear": "Clear date",
+  "pjCategoryHeading": "Type of work",
+  "pjDescriptionLabel": "Description",
+  "pjHelpDescribe": "Help me describe this",
+  "pjOutcomeLabel": "Outcome (optional)",
+  "pjOutcomeHint": "What did the work achieve?",
+  "pjSkillsHeading": "Skills used",
+  "pjAddSkill": "Add a skill",
+  "pjRemoveNamed": "Remove {name}",
+  "@pjRemoveNamed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "pjCollaborators": "Collaborators",
+  "pjAddCollaborator": "Add a collaborator",
+  "pjCollabMember": "Atarah member",
+  "pjCollabName": "Someone else",
+  "pjCollabRole": "Their role (optional)",
+  "pjCollabSearch": "Search by name or @handle",
+  "pjCollabNoMembers": "No members found.",
+  "pjCollabNameLabel": "Their name",
+  "pjCollabAddName": "Add",
+  "pjCollabNameError": "Enter their name.",
+  "pjCollabPending": "Waiting to accept",
+  "pjLinks": "Links",
+  "pjAddLink": "Add a link",
+  "pjLinkLabel": "Label",
+  "pjLinkUrl": "Address",
+  "pjLinkError": "Enter an address starting with https://",
+  "pjRemoveLink": "Remove link",
+  "pjVisibilityHeading": "Who can see it",
+  "pjVisibilityNote": "Your Portfolio setting in the Creative Passport also applies.",
+  "pjFeaturedToggle": "Feature this project (up to 3)",
+  "pjPublish": "Publish",
+  "pjSaveChanges": "Save changes",
+  "pjSaveDraft": "Save draft",
+  "pjPreview": "Preview project",
+  "pjDelete": "Delete project",
+  "pjDeleteTitle": "Delete this project?",
+  "pjDeleteBody": "It is removed from your portfolio and profile.",
+  "pjTitleError": "Give your project a title.",
+  "pjShare": "Share project",
+  "pjEdit": "Edit project",
+  "pjShareText": "{title} on Atarah",
+  "@pjShareText": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "pjNotFound": "This project is not available",
+  "pjHiddenNotice": "A moderator hid this project: {reason}",
+  "@pjHiddenNotice": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "pjDraftNotice": "This is a draft. Only you can see it.",
+  "pjSkillsUsed": "Skills used",
+  "pjOutcome": "Outcome",
+  "pjMediaProcessing": "This file is still being prepared.",
+  "pjMediaFailed": "We could not play this file.",
+  "pjImageAlt": "Project image",
+  "pjPlay": "Play",
+  "pjPause": "Pause",
   "leavingOpenFailed": "We couldn't open that link."
 }

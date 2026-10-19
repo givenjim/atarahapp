@@ -350,3 +350,46 @@ Dated, numbered entries (Master Prompt §9.2). Format: decision, context, option
 
 - **Date:** 2026-10-19
 - **Decision (owner):** no `MILESTONE_REPORT_*.md` files. `docs/PROGRESS.md` (phase and milestone tracker, with a "Where we are" block, evidence, suggested commit message and notes per milestone) replaces `docs/PROJECT_PROGRESS.md`. After every milestone it is updated and a summary is given in chat. This supersedes the report and register wording in Master Prompt §9.1 and §9.3. `GATE_REPORT_P0.md` stays as the phase gate record.
+
+## DEC-048 — Who can see a project
+
+- **Date:** 2026-10-19
+- A project is visible to a viewer only when **both** the member's Portfolio section and the project's own audience allow it, it is published, and a moderator has not hidden it. Drafts are never visible to anyone but the owner. The owner always sees their own, including hidden ones (with the reason).
+- A hidden section or project answers 404, the same as one that does not exist, so a closed door cannot be told from a missing one. The profile payload still lists `lockedSections`, so the app can say "hidden" instead of trying.
+- Experience and achievements share the **Experience** section's audience; there is no separate achievements section.
+
+## DEC-049 — Project files
+
+- **Date:** 2026-10-19
+- Up to 10 files per project: images, video and audio. Documents are refused. A file must be the member's own, in the public bucket, and not refused by the validation job. A draft may hold a file that is still processing; publishing waits until every file is ready.
+- Video and audio play with the platform player from signed addresses. Only YouTube and Vimeo links play inside the page (YouTube through the no-cookie host); the page cannot navigate anywhere else. Every other link goes through the "You're leaving Atarah" modal.
+- Uploading a 200 MB video streams from disk, never through memory.
+
+## DEC-050 — Collaborators
+
+- **Date:** 2026-10-19
+- Tagging a member sends them an in-app notification and the tag stays **pending** (not shown on the public project) until they accept. They can accept, decline, or take themselves off later. A person who is not on Atarah is typed in by name and shows at once.
+- A member can be tagged once per project; re-tagging after removal starts a new request. Up to 10 collaborators per project.
+- Finding members to tag uses a small search (`GET /members/search`). Explore (P1-M5) will bring real discovery; this stays minimal.
+
+## DEC-051 — Services and prices
+
+- **Date:** 2026-10-19
+- Prices are stored in **minor units** (cents) and travel on the API as **whole Kenya shillings**. `FIXED` needs a price, `RANGE` a lowest and a highest at least as high, `ON_REQUEST` none. A service stays "Profile only"; "Publish to marketplace" and "View listing" open their Phase 2 screen until the marketplace exists (P2-M3).
+
+## DEC-052 — Unset fields are left out of requests
+
+- **Date:** 2026-10-19
+- The generated models write every unset field as `null`. For a partial update that reads as "set it to nothing". The app's network layer now drops top-level `null` fields from request bodies, so the server leaves them alone. Clearing a text field is done by sending an empty string; the API documents that per field.
+
+## DEC-053 — Drafts save as the member types
+
+- **Date:** 2026-10-19
+- Opening "Add a project" creates nothing. The draft is created on the first change (typing or a file) and then saved about a second after each change, and when the member leaves. A save that cannot reach the server says so and keeps the form. "Save draft" saves and leaves. "Help me describe this" opens its labelled Phase 3 screen.
+- Sharing a project shares its title and the member's profile link, because projects have no public address yet. **Owner: confirm, or tell me the address you want for a project.**
+
+## DEC-054 — Portfolio moderation
+
+- **Date:** 2026-10-19
+- Moderators (permission `moderation.act`) can see any **published** project, hide it with a reason of 5 to 300 characters, and restore it. Each action is audited (`portfolio.project.hide`, `.restore`, entity type `project`), the owner is notified, and profile completion is recalculated (a hidden project does not count). Drafts are not shown to moderators.
+- There is no appeal flow yet: the owner is told to edit the project and contact support. **Owner: say if you want an in-app appeal.**

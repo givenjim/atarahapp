@@ -3234,6 +3234,1847 @@
           "Profile"
         ]
       }
+    },
+    "/api/v1/me/projects": {
+      "get": {
+        "operationId": "myProjects",
+        "parameters": [
+          {
+            "name": "listFilter",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "ALL",
+              "type": "string",
+              "enum": [
+                "ALL",
+                "DRAFTS",
+                "PUBLISHED"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ProjectCardDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      },
+      "post": {
+        "operationId": "createProject",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProjectDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ProjectDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/me/projects/{id}": {
+      "get": {
+        "operationId": "myProject",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ProjectDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      },
+      "patch": {
+        "operationId": "updateProject",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProjectDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ProjectDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      },
+      "delete": {
+        "operationId": "deleteProject",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/me/projects/{id}/publish": {
+      "post": {
+        "operationId": "publishProject",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ProjectDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/me/projects/{id}/collaborators": {
+      "post": {
+        "operationId": "addCollaborator",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCollaboratorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ProjectDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/me/projects/{id}/collaborators/{collaboratorId}": {
+      "delete": {
+        "operationId": "removeCollaborator",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "collaboratorId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ProjectDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/me/collaborations": {
+      "get": {
+        "operationId": "myCollaborations",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CollaborationDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/me/collaborations/{id}/accept": {
+      "post": {
+        "operationId": "acceptCollaboration",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/CollaborationDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/me/collaborations/{id}": {
+      "delete": {
+        "operationId": "leaveCollaboration",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/members/search": {
+      "get": {
+        "operationId": "searchMembers",
+        "parameters": [
+          {
+            "name": "q",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "minLength": 2,
+              "maxLength": 60,
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 20,
+              "default": 10,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/MemberHitDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/me/skills": {
+      "get": {
+        "operationId": "mySkills",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SkillEntryDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/me/skills/{skillId}": {
+      "put": {
+        "operationId": "setSkill",
+        "parameters": [
+          {
+            "name": "skillId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetSkillDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/SkillEntryDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      },
+      "delete": {
+        "operationId": "removeSkill",
+        "parameters": [
+          {
+            "name": "skillId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/me/experience": {
+      "get": {
+        "operationId": "myExperience",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ExperienceDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      },
+      "post": {
+        "operationId": "addExperience",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExperienceInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ExperienceDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/me/experience/{id}": {
+      "patch": {
+        "operationId": "updateExperience",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateExperienceDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ExperienceDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      },
+      "delete": {
+        "operationId": "deleteExperience",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/me/achievements": {
+      "get": {
+        "operationId": "myAchievements",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AchievementDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      },
+      "post": {
+        "operationId": "addAchievement",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AchievementInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AchievementDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/me/achievements/{id}": {
+      "patch": {
+        "operationId": "updateAchievement",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAchievementDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AchievementDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      },
+      "delete": {
+        "operationId": "deleteAchievement",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/me/services": {
+      "get": {
+        "operationId": "myServices",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ServiceDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      },
+      "post": {
+        "operationId": "addService",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ServiceDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/me/services/{id}": {
+      "patch": {
+        "operationId": "updateService",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ServiceDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      },
+      "delete": {
+        "operationId": "deleteService",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/creatives/{handle}/projects": {
+      "get": {
+        "operationId": "creativeProjects",
+        "parameters": [
+          {
+            "name": "handle",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "previewAs",
+            "required": false,
+            "in": "query",
+            "description": "Owner only: see the portfolio as the public or as other members do.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PUBLIC",
+                "MEMBERS"
+              ]
+            }
+          },
+          {
+            "name": "category",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PROJECT",
+                "MEDIA",
+                "PUBLICATION",
+                "PERFORMANCE"
+              ]
+            }
+          },
+          {
+            "name": "featuredOnly",
+            "required": false,
+            "in": "query",
+            "description": "Only featured projects.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ProjectCardDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/creatives/{handle}/projects/{id}": {
+      "get": {
+        "operationId": "creativeProject",
+        "parameters": [
+          {
+            "name": "handle",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "previewAs",
+            "required": false,
+            "in": "query",
+            "description": "Owner only: see the profile as the public or as other members do.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PUBLIC",
+                "MEMBERS"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ProjectDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/creatives/{handle}/skills": {
+      "get": {
+        "operationId": "creativeSkills",
+        "parameters": [
+          {
+            "name": "handle",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "previewAs",
+            "required": false,
+            "in": "query",
+            "description": "Owner only: see the profile as the public or as other members do.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PUBLIC",
+                "MEMBERS"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SkillEntryDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/creatives/{handle}/experience": {
+      "get": {
+        "operationId": "creativeExperience",
+        "parameters": [
+          {
+            "name": "handle",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "previewAs",
+            "required": false,
+            "in": "query",
+            "description": "Owner only: see the profile as the public or as other members do.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PUBLIC",
+                "MEMBERS"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ExperienceDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/creatives/{handle}/achievements": {
+      "get": {
+        "operationId": "creativeAchievements",
+        "parameters": [
+          {
+            "name": "handle",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "previewAs",
+            "required": false,
+            "in": "query",
+            "description": "Owner only: see the profile as the public or as other members do.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PUBLIC",
+                "MEMBERS"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AchievementDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/creatives/{handle}/services": {
+      "get": {
+        "operationId": "creativeServices",
+        "parameters": [
+          {
+            "name": "handle",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "previewAs",
+            "required": false,
+            "in": "query",
+            "description": "Owner only: see the profile as the public or as other members do.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PUBLIC",
+                "MEMBERS"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ServiceDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Portfolio"
+        ]
+      }
+    },
+    "/api/v1/admin/projects": {
+      "get": {
+        "operationId": "list",
+        "parameters": [
+          {
+            "name": "q",
+            "required": false,
+            "in": "query",
+            "description": "Matches the title, the owner’s name or handle.",
+            "schema": {
+              "maxLength": 80,
+              "type": "string"
+            }
+          },
+          {
+            "name": "hiddenOnly",
+            "required": false,
+            "in": "query",
+            "description": "Only projects a moderator has hidden.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AdminProjectDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Admin Portfolio"
+        ]
+      }
+    },
+    "/api/v1/admin/projects/{id}": {
+      "get": {
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AdminProjectDetailDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Admin Portfolio"
+        ]
+      }
+    },
+    "/api/v1/admin/projects/{id}/hide": {
+      "post": {
+        "operationId": "hide",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HideProjectDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AdminProjectDetailDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Admin Portfolio"
+        ]
+      }
+    },
+    "/api/v1/admin/projects/{id}/restore": {
+      "post": {
+        "operationId": "restore",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AdminProjectDetailDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Admin Portfolio"
+        ]
+      }
     }
   },
   "info": {
@@ -5836,6 +7677,16 @@
               }
             ]
           },
+          "portfolioCount": {
+            "type": "number",
+            "nullable": true,
+            "description": "Projects this viewer can open. Null while the Portfolio section is hidden from them."
+          },
+          "serviceCount": {
+            "type": "number",
+            "nullable": true,
+            "description": "Null while the Services section is hidden from this viewer."
+          },
           "visibleSections": {
             "type": "array",
             "description": "Sections the caller may see (some have no content yet).",
@@ -5960,6 +7811,1190 @@
           "state",
           "person",
           "since"
+        ]
+      },
+      "ProjectCardDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "PROJECT",
+              "MEDIA",
+              "PUBLICATION",
+              "PERFORMANCE"
+            ]
+          },
+          "projectDate": {
+            "type": "string",
+            "nullable": true,
+            "description": "A calendar date, YYYY-MM-DD."
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "PUBLISHED"
+            ]
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "PUBLIC",
+              "MEMBERS",
+              "PRIVATE"
+            ]
+          },
+          "coverUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "mediaCount": {
+            "type": "number"
+          },
+          "hidden": {
+            "type": "boolean",
+            "description": "Hidden by a moderator. Only the owner ever sees a hidden project."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "category",
+          "featured",
+          "status",
+          "visibility",
+          "mediaCount",
+          "hidden",
+          "updatedAt"
+        ]
+      },
+      "ProjectMediaDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "IMAGE",
+              "VIDEO",
+              "AUDIO",
+              "DOCUMENT"
+            ]
+          },
+          "mimeType": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PENDING_UPLOAD",
+              "UPLOADED",
+              "PROCESSING",
+              "READY",
+              "REJECTED",
+              "DELETED"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "description": "Signed URL; READY only."
+          },
+          "thumbnailUrl": {
+            "type": "string",
+            "nullable": true,
+            "description": "600 px image rendition."
+          },
+          "width": {
+            "type": "number",
+            "nullable": true
+          },
+          "height": {
+            "type": "number",
+            "nullable": true
+          },
+          "caption": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "mimeType",
+          "status"
+        ]
+      },
+      "ProjectLinkDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "label": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "embedUrl": {
+            "type": "string",
+            "nullable": true,
+            "description": "Set for YouTube and Vimeo links: the address of the embedded player."
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "url"
+        ]
+      },
+      "CollaboratorDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "A member’s display name, or the name typed in."
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "ACCEPTED",
+              "REMOVED"
+            ]
+          },
+          "handle": {
+            "type": "string",
+            "nullable": true,
+            "description": "Set when the collaborator is a member, so the app can open their profile."
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "status"
+        ]
+      },
+      "ProjectDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "PROJECT",
+              "MEDIA",
+              "PUBLICATION",
+              "PERFORMANCE"
+            ]
+          },
+          "projectDate": {
+            "type": "string",
+            "nullable": true,
+            "description": "A calendar date, YYYY-MM-DD."
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "PUBLISHED"
+            ]
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "PUBLIC",
+              "MEMBERS",
+              "PRIVATE"
+            ]
+          },
+          "coverUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "mediaCount": {
+            "type": "number"
+          },
+          "hidden": {
+            "type": "boolean",
+            "description": "Hidden by a moderator. Only the owner ever sees a hidden project."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "client": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "outcome": {
+            "type": "string",
+            "nullable": true
+          },
+          "discipline": {
+            "nullable": true,
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DisciplineLite"
+              }
+            ]
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaxonomyItemDto"
+            }
+          },
+          "media": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectMediaDto"
+            }
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectLinkDto"
+            }
+          },
+          "collaborators": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollaboratorDto"
+            }
+          },
+          "hiddenReason": {
+            "type": "string",
+            "nullable": true,
+            "description": "Owner only: why a moderator hid the project."
+          },
+          "publishedAt": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "category",
+          "featured",
+          "status",
+          "visibility",
+          "mediaCount",
+          "hidden",
+          "updatedAt",
+          "skills",
+          "media",
+          "links",
+          "collaborators"
+        ]
+      },
+      "CreateProjectDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 120,
+            "description": "A draft may have no title yet."
+          }
+        }
+      },
+      "UpdateProjectDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "role": {
+            "type": "string",
+            "maxLength": 80,
+            "description": "Your role on the project. Empty clears it."
+          },
+          "client": {
+            "type": "string",
+            "maxLength": 80,
+            "description": "Empty clears it."
+          },
+          "projectDate": {
+            "type": "string",
+            "description": "A calendar date, YYYY-MM-DD. Empty clears it."
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "PROJECT",
+              "MEDIA",
+              "PUBLICATION",
+              "PERFORMANCE"
+            ]
+          },
+          "disciplineId": {
+            "type": "object",
+            "format": "uuid",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "outcome": {
+            "type": "string",
+            "maxLength": 500,
+            "description": "What the work achieved."
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "PUBLIC",
+              "MEMBERS",
+              "PRIVATE"
+            ]
+          },
+          "mediaIds": {
+            "description": "Your uploaded files in display order; the first is the cover. Replaces the list. At most 10.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "skillIds": {
+            "description": "Skills used. Replaces the list. At most 10.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "links": {
+            "description": "External links. Replaces the list. At most 5.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfileLinkInputDto"
+            }
+          }
+        }
+      },
+      "AddCollaboratorDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "An Atarah member. They must accept."
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 60,
+            "description": "Someone who is not on Atarah."
+          },
+          "role": {
+            "type": "string",
+            "maxLength": 60
+          }
+        }
+      },
+      "CollaborationDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "ACCEPTED",
+              "REMOVED"
+            ]
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
+          "projectId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "projectTitle": {
+            "type": "string"
+          },
+          "ownerName": {
+            "type": "string"
+          },
+          "ownerHandle": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "projectId",
+          "projectTitle",
+          "ownerName"
+        ]
+      },
+      "MemberHitDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "handle": {
+            "type": "string"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "discipline": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "userId",
+          "displayName",
+          "handle"
+        ]
+      },
+      "SkillEntryDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "BEGINNER",
+              "INTERMEDIATE",
+              "ADVANCED",
+              "EXPERT"
+            ],
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "SELF_DECLARED",
+              "LEARNING",
+              "VERIFIED"
+            ]
+          },
+          "projectCount": {
+            "type": "number",
+            "description": "Published projects of yours that use this skill."
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "source",
+          "projectCount"
+        ]
+      },
+      "SetSkillDto": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": [
+              "BEGINNER",
+              "INTERMEDIATE",
+              "ADVANCED",
+              "EXPERT"
+            ]
+          }
+        },
+        "required": [
+          "level"
+        ]
+      },
+      "ExperienceDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "organisation": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "description": "A calendar date, YYYY-MM-DD."
+          },
+          "endDate": {
+            "type": "string",
+            "nullable": true,
+            "description": "A calendar date, YYYY-MM-DD."
+          },
+          "current": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "organisation",
+          "startDate",
+          "current"
+        ]
+      },
+      "ExperienceInputDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "organisation": {
+            "type": "string",
+            "maxLength": 80,
+            "description": "Company, studio, school or \"Freelance\"."
+          },
+          "location": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "startDate": {
+            "type": "string",
+            "description": "A calendar date, YYYY-MM-DD."
+          },
+          "endDate": {
+            "type": "string",
+            "description": "A calendar date, YYYY-MM-DD. Leave out while you still work there."
+          },
+          "current": {
+            "type": "boolean",
+            "description": "You still work there. Cannot be combined with an end date."
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 1000
+          }
+        },
+        "required": [
+          "title",
+          "organisation",
+          "startDate",
+          "current"
+        ]
+      },
+      "UpdateExperienceDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "organisation": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "location": {
+            "type": "string",
+            "maxLength": 80,
+            "description": "Empty clears it."
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Empty clears it."
+          },
+          "current": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 1000,
+            "description": "Empty clears it."
+          }
+        }
+      },
+      "AchievementDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "AWARD",
+              "CERTIFICATE",
+              "FEATURE",
+              "SELECTION",
+              "NOMINATION"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "issuer": {
+            "type": "string",
+            "nullable": true
+          },
+          "achievedOn": {
+            "type": "string",
+            "nullable": true,
+            "description": "A calendar date, YYYY-MM-DD."
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "MANUAL",
+              "SYSTEM"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "title",
+          "source"
+        ]
+      },
+      "AchievementInputDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "AWARD",
+              "CERTIFICATE",
+              "FEATURE",
+              "SELECTION",
+              "NOMINATION"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "issuer": {
+            "type": "string",
+            "maxLength": 80,
+            "description": "Who gave it."
+          },
+          "achievedOn": {
+            "type": "string",
+            "description": "A calendar date, YYYY-MM-DD."
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "url": {
+            "type": "string",
+            "description": "An https link to proof or coverage."
+          }
+        },
+        "required": [
+          "type",
+          "title"
+        ]
+      },
+      "UpdateAchievementDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "AWARD",
+              "CERTIFICATE",
+              "FEATURE",
+              "SELECTION",
+              "NOMINATION"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "issuer": {
+            "type": "string",
+            "maxLength": 80,
+            "description": "Empty clears it."
+          },
+          "achievedOn": {
+            "type": "string",
+            "description": "Empty clears it."
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 500,
+            "description": "Empty clears it."
+          },
+          "url": {
+            "type": "string",
+            "description": "Empty clears it."
+          }
+        }
+      },
+      "ServiceDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceType": {
+            "type": "string",
+            "enum": [
+              "FIXED",
+              "RANGE",
+              "ON_REQUEST"
+            ]
+          },
+          "priceMin": {
+            "type": "number",
+            "nullable": true,
+            "description": "Whole Kenya shillings."
+          },
+          "priceMax": {
+            "type": "number",
+            "nullable": true,
+            "description": "Whole Kenya shillings."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PROFILE_ONLY",
+              "ON_MARKETPLACE"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "priceType",
+          "status"
+        ]
+      },
+      "ServiceInputDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 600
+          },
+          "priceType": {
+            "type": "string",
+            "enum": [
+              "FIXED",
+              "RANGE",
+              "ON_REQUEST"
+            ]
+          },
+          "priceMin": {
+            "type": "number",
+            "description": "Whole Kenya shillings. FIXED and RANGE only."
+          },
+          "priceMax": {
+            "type": "number",
+            "description": "Whole Kenya shillings. RANGE only, at least the minimum."
+          }
+        },
+        "required": [
+          "title",
+          "priceType"
+        ]
+      },
+      "UpdateServiceDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 600,
+            "description": "Empty clears it."
+          },
+          "priceType": {
+            "type": "string",
+            "enum": [
+              "FIXED",
+              "RANGE",
+              "ON_REQUEST"
+            ]
+          },
+          "priceMin": {
+            "type": "number",
+            "nullable": true
+          },
+          "priceMax": {
+            "type": "number",
+            "nullable": true
+          }
+        }
+      },
+      "AdminProjectDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "PROJECT",
+              "MEDIA",
+              "PUBLICATION",
+              "PERFORMANCE"
+            ]
+          },
+          "projectDate": {
+            "type": "string",
+            "nullable": true,
+            "description": "A calendar date, YYYY-MM-DD."
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "PUBLISHED"
+            ]
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "PUBLIC",
+              "MEMBERS",
+              "PRIVATE"
+            ]
+          },
+          "coverUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "mediaCount": {
+            "type": "number"
+          },
+          "hidden": {
+            "type": "boolean",
+            "description": "Hidden by a moderator. Only the owner ever sees a hidden project."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ownerUserId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "ownerName": {
+            "type": "string"
+          },
+          "ownerHandle": {
+            "type": "string",
+            "nullable": true
+          },
+          "hiddenReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "hiddenAt": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "category",
+          "featured",
+          "status",
+          "visibility",
+          "mediaCount",
+          "hidden",
+          "updatedAt",
+          "ownerUserId",
+          "ownerName"
+        ]
+      },
+      "AdminProjectDetailDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "PROJECT",
+              "MEDIA",
+              "PUBLICATION",
+              "PERFORMANCE"
+            ]
+          },
+          "projectDate": {
+            "type": "string",
+            "nullable": true,
+            "description": "A calendar date, YYYY-MM-DD."
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "PUBLISHED"
+            ]
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "PUBLIC",
+              "MEMBERS",
+              "PRIVATE"
+            ]
+          },
+          "coverUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "mediaCount": {
+            "type": "number"
+          },
+          "hidden": {
+            "type": "boolean",
+            "description": "Hidden by a moderator. Only the owner ever sees a hidden project."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "client": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "outcome": {
+            "type": "string",
+            "nullable": true
+          },
+          "discipline": {
+            "nullable": true,
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DisciplineLite"
+              }
+            ]
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaxonomyItemDto"
+            }
+          },
+          "media": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectMediaDto"
+            }
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectLinkDto"
+            }
+          },
+          "collaborators": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollaboratorDto"
+            }
+          },
+          "hiddenReason": {
+            "type": "string",
+            "nullable": true,
+            "description": "Owner only: why a moderator hid the project."
+          },
+          "publishedAt": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time"
+          },
+          "ownerUserId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "ownerName": {
+            "type": "string"
+          },
+          "ownerHandle": {
+            "type": "string",
+            "nullable": true
+          },
+          "hiddenAt": {
+            "type": "string",
+            "nullable": true,
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "category",
+          "featured",
+          "status",
+          "visibility",
+          "mediaCount",
+          "hidden",
+          "updatedAt",
+          "skills",
+          "media",
+          "links",
+          "collaborators",
+          "ownerUserId",
+          "ownerName"
+        ]
+      },
+      "HideProjectDto": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 300,
+            "description": "Shown to the owner."
+          }
+        },
+        "required": [
+          "reason"
         ]
       }
     }

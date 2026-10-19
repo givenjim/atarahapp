@@ -195,7 +195,7 @@ Computed live by `apps/backend/src/creative/growth.ts` (unit-tested). Each bar i
 | ---------- | ------- | -------------------------------------------------------------------------------------- |
 | Bio        | Public  |                                                                                        |
 | Location   | Members | Stored on the profile (`locationVisibility`)                                           |
-| Portfolio  | Public  | Content from P1-M4                                                                     |
+| Portfolio  | Public  | Projects (P1-M4)                                                                       |
 | Skills     | Public  |                                                                                        |
 | Experience | Members | Content from P1-M4                                                                     |
 | Services   | Public  | Content from P1-M4                                                                     |
@@ -205,3 +205,18 @@ Computed live by `apps/backend/src/creative/growth.ts` (unit-tested). Each bar i
 Visibility matrix (who sees a section at each level): Public: everyone. Members: members and connections. Private: the owner only (contact is the one exception, for connections the owner allows).
 
 Entities: `ProfileSectionVisibility` (`profile_section_visibility`), `ProfileLink` (`profile_links`, https only), `Connection` (`connections`, one row per pair). New profile columns: `openToCommissions`, `contactShowEmail`, `contactShowPhone`, `contactForConnections`, `acceptConnections`.
+
+## 10. Portfolio, experience, achievements and services (P1-M4)
+
+| Entity                | Table                   | Notes                                                                                                                                                                                            |
+| --------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Project`             | `projects`              | `status` DRAFT or PUBLISHED, `visibility`, `category` (project, media, publication, performance), `featured` (max 3), moderation columns (`hiddenAt`, `hiddenReason`, `hiddenById`), soft delete |
+| `ProjectMedia`        | `project_media`         | Ordered files (the first is the cover); restricts deleting a file that is in use                                                                                                                 |
+| `ProjectSkill`        | `project_skills`        | Skills used                                                                                                                                                                                      |
+| `ProjectLink`         | `project_links`         | https only (database check); YouTube and Vimeo are embeddable                                                                                                                                    |
+| `ProjectCollaborator` | `project_collaborators` | A member (`userId`, status PENDING / ACCEPTED / REMOVED, unique per project) or a name; one of the two is required (check)                                                                       |
+| `Experience`          | `experiences`           | `current` roles have no end date; end on or after start (checks)                                                                                                                                 |
+| `Achievement`         | `achievements`          | Type (award, certificate, feature, selection, nomination), source MANUAL or SYSTEM, https link (check)                                                                                           |
+| `ProfileService`      | `profile_services`      | Price in minor units with `priceType`; status PROFILE_ONLY until the marketplace (P2-M3)                                                                                                         |
+
+Profile completion counts **published, visible projects** and experience entries. The Portfolio growth bar counts published projects; Professionalisation counts services, experience and achievements.

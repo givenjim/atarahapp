@@ -2404,6 +2404,1110 @@ abstract class AppLocalizations {
   /// **'Member since {date}'**
   String cpMemberSince(String date);
 
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @skAddTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a skill'**
+  String get skAddTitle;
+
+  /// No description provided for @skEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No skills yet'**
+  String get skEmptyTitle;
+
+  /// No description provided for @skEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'List what you do well so people can find you and see what you can offer.'**
+  String get skEmptyBody;
+
+  /// No description provided for @skLevelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Level'**
+  String get skLevelLabel;
+
+  /// No description provided for @skLevelBeginner.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get skLevelBeginner;
+
+  /// No description provided for @skLevelIntermediate.
+  ///
+  /// In en, this message translates to:
+  /// **'Intermediate'**
+  String get skLevelIntermediate;
+
+  /// No description provided for @skLevelAdvanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get skLevelAdvanced;
+
+  /// No description provided for @skLevelExpert.
+  ///
+  /// In en, this message translates to:
+  /// **'Expert'**
+  String get skLevelExpert;
+
+  /// No description provided for @skLevelUnrated.
+  ///
+  /// In en, this message translates to:
+  /// **'Not rated'**
+  String get skLevelUnrated;
+
+  /// No description provided for @skSourceSelf.
+  ///
+  /// In en, this message translates to:
+  /// **'Self-declared'**
+  String get skSourceSelf;
+
+  /// No description provided for @skSourceLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'From learning'**
+  String get skSourceLearning;
+
+  /// No description provided for @skSourceVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified'**
+  String get skSourceVerified;
+
+  /// No description provided for @skUsedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Not used in a project yet} =1{Used in 1 project} other{Used in {count} projects}}'**
+  String skUsedIn(int count);
+
+  /// No description provided for @skImprove.
+  ///
+  /// In en, this message translates to:
+  /// **'Improve this skill'**
+  String get skImprove;
+
+  /// No description provided for @skFindOpportunities.
+  ///
+  /// In en, this message translates to:
+  /// **'Find opportunities'**
+  String get skFindOpportunities;
+
+  /// No description provided for @skVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify'**
+  String get skVerify;
+
+  /// No description provided for @skChangeLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Change level'**
+  String get skChangeLevel;
+
+  /// No description provided for @skSearchLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Search skills'**
+  String get skSearchLabel;
+
+  /// No description provided for @skNoMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'No skills match. Try a different word.'**
+  String get skNoMatches;
+
+  /// No description provided for @skRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove skill'**
+  String get skRemove;
+
+  /// No description provided for @skRemoveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name}?'**
+  String skRemoveTitle(String name);
+
+  /// No description provided for @skRemoveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It leaves your profile. Projects that used it keep their own list.'**
+  String get skRemoveBody;
+
+  /// No description provided for @xpAddTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add experience'**
+  String get xpAddTitle;
+
+  /// No description provided for @xpEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit experience'**
+  String get xpEditTitle;
+
+  /// No description provided for @xpEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No experience yet'**
+  String get xpEmptyTitle;
+
+  /// No description provided for @xpEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the studios, clients and roles that shaped your work.'**
+  String get xpEmptyBody;
+
+  /// No description provided for @xpPresent.
+  ///
+  /// In en, this message translates to:
+  /// **'Present'**
+  String get xpPresent;
+
+  /// No description provided for @xpTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Role'**
+  String get xpTitleLabel;
+
+  /// No description provided for @xpOrgLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Where'**
+  String get xpOrgLabel;
+
+  /// No description provided for @xpOrgHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Company, studio, school or Freelance'**
+  String get xpOrgHint;
+
+  /// No description provided for @xpLocationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Location (optional)'**
+  String get xpLocationLabel;
+
+  /// No description provided for @xpStartLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Started'**
+  String get xpStartLabel;
+
+  /// No description provided for @xpEndLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Ended'**
+  String get xpEndLabel;
+
+  /// No description provided for @xpCurrentLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'I work here now'**
+  String get xpCurrentLabel;
+
+  /// No description provided for @xpDescriptionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'What you did (optional)'**
+  String get xpDescriptionLabel;
+
+  /// No description provided for @xpTitleError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your role.'**
+  String get xpTitleError;
+
+  /// No description provided for @xpOrgError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter where you worked.'**
+  String get xpOrgError;
+
+  /// No description provided for @xpStartError.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose when you started.'**
+  String get xpStartError;
+
+  /// No description provided for @xpEndRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose when you left, or switch on “I work here now”.'**
+  String get xpEndRequired;
+
+  /// No description provided for @xpEndBeforeStart.
+  ///
+  /// In en, this message translates to:
+  /// **'The end date cannot be before the start date.'**
+  String get xpEndBeforeStart;
+
+  /// No description provided for @xpDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete experience'**
+  String get xpDelete;
+
+  /// No description provided for @xpDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this experience?'**
+  String get xpDeleteTitle;
+
+  /// No description provided for @xpDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It is removed from your profile.'**
+  String get xpDeleteBody;
+
+  /// No description provided for @acAddTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add achievement'**
+  String get acAddTitle;
+
+  /// No description provided for @acEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit achievement'**
+  String get acEditTitle;
+
+  /// No description provided for @acEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No achievements yet'**
+  String get acEmptyTitle;
+
+  /// No description provided for @acEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Awards, certificates, features and selections build trust in your work.'**
+  String get acEmptyBody;
+
+  /// No description provided for @acTypeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get acTypeLabel;
+
+  /// No description provided for @acTypeAward.
+  ///
+  /// In en, this message translates to:
+  /// **'Award'**
+  String get acTypeAward;
+
+  /// No description provided for @acTypeCertificate.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificate'**
+  String get acTypeCertificate;
+
+  /// No description provided for @acTypeFeature.
+  ///
+  /// In en, this message translates to:
+  /// **'Feature'**
+  String get acTypeFeature;
+
+  /// No description provided for @acTypeSelection.
+  ///
+  /// In en, this message translates to:
+  /// **'Selection'**
+  String get acTypeSelection;
+
+  /// No description provided for @acTypeNomination.
+  ///
+  /// In en, this message translates to:
+  /// **'Nomination'**
+  String get acTypeNomination;
+
+  /// No description provided for @acTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get acTitleLabel;
+
+  /// No description provided for @acIssuerLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Given by (optional)'**
+  String get acIssuerLabel;
+
+  /// No description provided for @acDateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Date (optional)'**
+  String get acDateLabel;
+
+  /// No description provided for @acUrlLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Link (optional)'**
+  String get acUrlLabel;
+
+  /// No description provided for @acDescriptionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Details (optional)'**
+  String get acDescriptionLabel;
+
+  /// No description provided for @acTitleError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a title.'**
+  String get acTitleError;
+
+  /// No description provided for @acUrlError.
+  ///
+  /// In en, this message translates to:
+  /// **'Links must start with https://'**
+  String get acUrlError;
+
+  /// No description provided for @acByAtarah.
+  ///
+  /// In en, this message translates to:
+  /// **'Added by Atarah'**
+  String get acByAtarah;
+
+  /// No description provided for @acDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete achievement'**
+  String get acDelete;
+
+  /// No description provided for @acDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this achievement?'**
+  String get acDeleteTitle;
+
+  /// No description provided for @acDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It is removed from your profile.'**
+  String get acDeleteBody;
+
+  /// No description provided for @svAddTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a service'**
+  String get svAddTitle;
+
+  /// No description provided for @svEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit service'**
+  String get svEditTitle;
+
+  /// No description provided for @svEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No services yet'**
+  String get svEmptyTitle;
+
+  /// No description provided for @svEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell people what you can do for them and roughly what it costs.'**
+  String get svEmptyBody;
+
+  /// No description provided for @svTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Service'**
+  String get svTitleLabel;
+
+  /// No description provided for @svDescriptionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'What is included (optional)'**
+  String get svDescriptionLabel;
+
+  /// No description provided for @svPriceTypeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get svPriceTypeLabel;
+
+  /// No description provided for @svTypeFixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed'**
+  String get svTypeFixed;
+
+  /// No description provided for @svTypeRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Range'**
+  String get svTypeRange;
+
+  /// No description provided for @svTypeOnRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'On request'**
+  String get svTypeOnRequest;
+
+  /// No description provided for @svPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get svPriceLabel;
+
+  /// No description provided for @svMinLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get svMinLabel;
+
+  /// No description provided for @svMaxLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'To'**
+  String get svMaxLabel;
+
+  /// No description provided for @svTitleError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the name of the service.'**
+  String get svTitleError;
+
+  /// No description provided for @svPriceError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a price in Kenya shillings.'**
+  String get svPriceError;
+
+  /// No description provided for @svMaxError.
+  ///
+  /// In en, this message translates to:
+  /// **'The highest price must be at least the lowest.'**
+  String get svMaxError;
+
+  /// No description provided for @svPriceFixed.
+  ///
+  /// In en, this message translates to:
+  /// **'KES {amount}'**
+  String svPriceFixed(String amount);
+
+  /// No description provided for @svPriceRange.
+  ///
+  /// In en, this message translates to:
+  /// **'KES {min} to {max}'**
+  String svPriceRange(String min, String max);
+
+  /// No description provided for @svPriceOnRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Price on request'**
+  String get svPriceOnRequest;
+
+  /// No description provided for @svProfileOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile only'**
+  String get svProfileOnly;
+
+  /// No description provided for @svOnMarketplace.
+  ///
+  /// In en, this message translates to:
+  /// **'On the marketplace'**
+  String get svOnMarketplace;
+
+  /// No description provided for @svPublish.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish to marketplace'**
+  String get svPublish;
+
+  /// No description provided for @svViewListing.
+  ///
+  /// In en, this message translates to:
+  /// **'View listing'**
+  String get svViewListing;
+
+  /// No description provided for @svEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get svEdit;
+
+  /// No description provided for @svDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete service'**
+  String get svDelete;
+
+  /// No description provided for @svDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this service?'**
+  String get svDeleteTitle;
+
+  /// No description provided for @svDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It is removed from your profile.'**
+  String get svDeleteBody;
+
+  /// No description provided for @pjAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add project'**
+  String get pjAdd;
+
+  /// No description provided for @pjAddTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a project'**
+  String get pjAddTitle;
+
+  /// No description provided for @pjEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit project'**
+  String get pjEditTitle;
+
+  /// No description provided for @pjAddZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Add project'**
+  String get pjAddZone;
+
+  /// No description provided for @pjAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get pjAll;
+
+  /// No description provided for @pjFeatured.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured'**
+  String get pjFeatured;
+
+  /// No description provided for @pjCatProjects.
+  ///
+  /// In en, this message translates to:
+  /// **'Projects'**
+  String get pjCatProjects;
+
+  /// No description provided for @pjCatMediaPlural.
+  ///
+  /// In en, this message translates to:
+  /// **'Media'**
+  String get pjCatMediaPlural;
+
+  /// No description provided for @pjCatPublications.
+  ///
+  /// In en, this message translates to:
+  /// **'Publications'**
+  String get pjCatPublications;
+
+  /// No description provided for @pjCatPerformances.
+  ///
+  /// In en, this message translates to:
+  /// **'Performances'**
+  String get pjCatPerformances;
+
+  /// No description provided for @pjCatProject.
+  ///
+  /// In en, this message translates to:
+  /// **'Project'**
+  String get pjCatProject;
+
+  /// No description provided for @pjCatMedia.
+  ///
+  /// In en, this message translates to:
+  /// **'Media'**
+  String get pjCatMedia;
+
+  /// No description provided for @pjCatPublication.
+  ///
+  /// In en, this message translates to:
+  /// **'Publication'**
+  String get pjCatPublication;
+
+  /// No description provided for @pjCatPerformance.
+  ///
+  /// In en, this message translates to:
+  /// **'Performance'**
+  String get pjCatPerformance;
+
+  /// No description provided for @pjEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Show your best work. Add a project to start your portfolio.'**
+  String get pjEmptyBody;
+
+  /// No description provided for @pjNothingInFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here yet.'**
+  String get pjNothingInFilter;
+
+  /// No description provided for @pjDrafts.
+  ///
+  /// In en, this message translates to:
+  /// **'Drafts'**
+  String get pjDrafts;
+
+  /// No description provided for @pjDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get pjDraft;
+
+  /// No description provided for @pjHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden'**
+  String get pjHidden;
+
+  /// No description provided for @pjUntitled.
+  ///
+  /// In en, this message translates to:
+  /// **'Untitled project'**
+  String get pjUntitled;
+
+  /// No description provided for @pjInviteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{owner} tagged you on “{project}”'**
+  String pjInviteTitle(String owner, String project);
+
+  /// No description provided for @pjInviteRole.
+  ///
+  /// In en, this message translates to:
+  /// **'As {role}'**
+  String pjInviteRole(String role);
+
+  /// No description provided for @pjInviteAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get pjInviteAccept;
+
+  /// No description provided for @pjInviteDecline.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline'**
+  String get pjInviteDecline;
+
+  /// No description provided for @pjIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell the story of your work. Your changes are saved as a draft while you type, and nobody sees it until you publish.'**
+  String get pjIntro;
+
+  /// No description provided for @pjSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft saved'**
+  String get pjSaved;
+
+  /// No description provided for @pjSaving.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving…'**
+  String get pjSaving;
+
+  /// No description provided for @pjSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save yet. Check your connection; we will try again as you type.'**
+  String get pjSaveFailed;
+
+  /// No description provided for @pjSaveFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Save the project first, then add collaborators.'**
+  String get pjSaveFirst;
+
+  /// No description provided for @pjFilesHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Files'**
+  String get pjFilesHeading;
+
+  /// No description provided for @pjAddFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Add files'**
+  String get pjAddFiles;
+
+  /// No description provided for @pjFilesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos, video or audio. Up to {max} files.'**
+  String pjFilesHint(int max);
+
+  /// No description provided for @pjFileAlt.
+  ///
+  /// In en, this message translates to:
+  /// **'Project file'**
+  String get pjFileAlt;
+
+  /// No description provided for @pjPickPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos'**
+  String get pjPickPhotos;
+
+  /// No description provided for @pjPickVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video'**
+  String get pjPickVideo;
+
+  /// No description provided for @pjPickAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio'**
+  String get pjPickAudio;
+
+  /// No description provided for @pjPickFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not open your files. Try again.'**
+  String get pjPickFailed;
+
+  /// No description provided for @pjTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get pjTitleLabel;
+
+  /// No description provided for @pjRoleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Your role'**
+  String get pjRoleLabel;
+
+  /// No description provided for @pjClientLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Client (optional)'**
+  String get pjClientLabel;
+
+  /// No description provided for @pjDateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of the work'**
+  String get pjDateLabel;
+
+  /// No description provided for @pjDateNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get pjDateNotSet;
+
+  /// No description provided for @pjDateClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear date'**
+  String get pjDateClear;
+
+  /// No description provided for @pjCategoryHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Type of work'**
+  String get pjCategoryHeading;
+
+  /// No description provided for @pjDescriptionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get pjDescriptionLabel;
+
+  /// No description provided for @pjHelpDescribe.
+  ///
+  /// In en, this message translates to:
+  /// **'Help me describe this'**
+  String get pjHelpDescribe;
+
+  /// No description provided for @pjOutcomeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Outcome (optional)'**
+  String get pjOutcomeLabel;
+
+  /// No description provided for @pjOutcomeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What did the work achieve?'**
+  String get pjOutcomeHint;
+
+  /// No description provided for @pjSkillsHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Skills used'**
+  String get pjSkillsHeading;
+
+  /// No description provided for @pjAddSkill.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a skill'**
+  String get pjAddSkill;
+
+  /// No description provided for @pjRemoveNamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name}'**
+  String pjRemoveNamed(String name);
+
+  /// No description provided for @pjCollaborators.
+  ///
+  /// In en, this message translates to:
+  /// **'Collaborators'**
+  String get pjCollaborators;
+
+  /// No description provided for @pjAddCollaborator.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a collaborator'**
+  String get pjAddCollaborator;
+
+  /// No description provided for @pjCollabMember.
+  ///
+  /// In en, this message translates to:
+  /// **'Atarah member'**
+  String get pjCollabMember;
+
+  /// No description provided for @pjCollabName.
+  ///
+  /// In en, this message translates to:
+  /// **'Someone else'**
+  String get pjCollabName;
+
+  /// No description provided for @pjCollabRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Their role (optional)'**
+  String get pjCollabRole;
+
+  /// No description provided for @pjCollabSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by name or @handle'**
+  String get pjCollabSearch;
+
+  /// No description provided for @pjCollabNoMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'No members found.'**
+  String get pjCollabNoMembers;
+
+  /// No description provided for @pjCollabNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Their name'**
+  String get pjCollabNameLabel;
+
+  /// No description provided for @pjCollabAddName.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get pjCollabAddName;
+
+  /// No description provided for @pjCollabNameError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter their name.'**
+  String get pjCollabNameError;
+
+  /// No description provided for @pjCollabPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting to accept'**
+  String get pjCollabPending;
+
+  /// No description provided for @pjLinks.
+  ///
+  /// In en, this message translates to:
+  /// **'Links'**
+  String get pjLinks;
+
+  /// No description provided for @pjAddLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a link'**
+  String get pjAddLink;
+
+  /// No description provided for @pjLinkLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Label'**
+  String get pjLinkLabel;
+
+  /// No description provided for @pjLinkUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get pjLinkUrl;
+
+  /// No description provided for @pjLinkError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter an address starting with https://'**
+  String get pjLinkError;
+
+  /// No description provided for @pjRemoveLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove link'**
+  String get pjRemoveLink;
+
+  /// No description provided for @pjVisibilityHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Who can see it'**
+  String get pjVisibilityHeading;
+
+  /// No description provided for @pjVisibilityNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Portfolio setting in the Creative Passport also applies.'**
+  String get pjVisibilityNote;
+
+  /// No description provided for @pjFeaturedToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Feature this project (up to 3)'**
+  String get pjFeaturedToggle;
+
+  /// No description provided for @pjPublish.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish'**
+  String get pjPublish;
+
+  /// No description provided for @pjSaveChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get pjSaveChanges;
+
+  /// No description provided for @pjSaveDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Save draft'**
+  String get pjSaveDraft;
+
+  /// No description provided for @pjPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview project'**
+  String get pjPreview;
+
+  /// No description provided for @pjDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete project'**
+  String get pjDelete;
+
+  /// No description provided for @pjDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this project?'**
+  String get pjDeleteTitle;
+
+  /// No description provided for @pjDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It is removed from your portfolio and profile.'**
+  String get pjDeleteBody;
+
+  /// No description provided for @pjTitleError.
+  ///
+  /// In en, this message translates to:
+  /// **'Give your project a title.'**
+  String get pjTitleError;
+
+  /// No description provided for @pjShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share project'**
+  String get pjShare;
+
+  /// No description provided for @pjEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit project'**
+  String get pjEdit;
+
+  /// No description provided for @pjShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'{title} on Atarah'**
+  String pjShareText(String title);
+
+  /// No description provided for @pjNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'This project is not available'**
+  String get pjNotFound;
+
+  /// No description provided for @pjHiddenNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'A moderator hid this project: {reason}'**
+  String pjHiddenNotice(String reason);
+
+  /// No description provided for @pjDraftNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a draft. Only you can see it.'**
+  String get pjDraftNotice;
+
+  /// No description provided for @pjSkillsUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Skills used'**
+  String get pjSkillsUsed;
+
+  /// No description provided for @pjOutcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Outcome'**
+  String get pjOutcome;
+
+  /// No description provided for @pjMediaProcessing.
+  ///
+  /// In en, this message translates to:
+  /// **'This file is still being prepared.'**
+  String get pjMediaProcessing;
+
+  /// No description provided for @pjMediaFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not play this file.'**
+  String get pjMediaFailed;
+
+  /// No description provided for @pjImageAlt.
+  ///
+  /// In en, this message translates to:
+  /// **'Project image'**
+  String get pjImageAlt;
+
+  /// No description provided for @pjPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get pjPlay;
+
+  /// No description provided for @pjPause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get pjPause;
+
   /// No description provided for @leavingOpenFailed.
   ///
   /// In en, this message translates to:

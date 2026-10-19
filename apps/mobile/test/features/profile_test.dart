@@ -48,9 +48,31 @@ void main() {
       },
     );
 
-    testWidgets('the next best step opens its labelled screen', (t) async {
-      await openApp(t);
+    testWidgets('the next best step starts the first project', (t) async {
+      final h = await openApp(t);
       await tapText(t, 'Add your first project');
+      expect(h.path, '/portfolio/new/edit');
+    });
+
+    testWidgets('a step that cannot be done yet opens its labelled screen', (
+      t,
+    ) async {
+      await openApp(
+        t,
+        profile: FakeProfileRepository(
+          me: ownProfile(
+            next: const [
+              CompletionItemDto(
+                key: 'avatar',
+                label: 'Add a profile photo',
+                weight: 15,
+                done: false,
+              ),
+            ],
+          ),
+        ),
+      );
+      await tapText(t, 'Add a profile photo');
       expect(find.text('Soon · P1'), findsOneWidget);
     });
 
@@ -124,12 +146,8 @@ void main() {
         expect(find.text('3'), findsOneWidget);
         expect(find.text('2'), findsOneWidget);
         expect(find.text('1 waiting'), findsOneWidget);
+        // Portfolio, skills, experience, achievements and services are real screens now (see portfolio_test).
         for (final (label, phase) in [
-          ('Portfolio', 'Soon · P1'),
-          ('Skills', 'Soon · P1'),
-          ('Experience', 'Soon · P1'),
-          ('Achievements', 'Soon · P1'),
-          ('Services', 'Soon · P1'),
           ('Connections', 'Soon · P1'),
           ('Activity', 'Soon · P1'),
           ('Saved', 'Soon · P1'),

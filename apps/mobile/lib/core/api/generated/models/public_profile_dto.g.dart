@@ -47,6 +47,8 @@ PublicProfileDto _$PublicProfileDtoFromJson(Map<String, dynamic> json) =>
           .toList(),
       connectionCount: json['connectionCount'] as num?,
       shareUrl: json['shareUrl'] as String,
+      portfolioCount: json['portfolioCount'] as num?,
+      serviceCount: json['serviceCount'] as num?,
     );
 
 Map<String, dynamic> _$PublicProfileDtoToJson(PublicProfileDto instance) =>
@@ -66,6 +68,8 @@ Map<String, dynamic> _$PublicProfileDtoToJson(PublicProfileDto instance) =>
       'skills': instance.skills,
       'links': instance.links,
       'contact': instance.contact,
+      'portfolioCount': instance.portfolioCount,
+      'serviceCount': instance.serviceCount,
       'visibleSections': instance.visibleSections,
       'lockedSections': instance.lockedSections,
       'connectionCount': instance.connectionCount,

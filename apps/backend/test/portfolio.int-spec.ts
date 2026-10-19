@@ -24,7 +24,6 @@ describe('Portfolio, skills, experience, achievements, services and moderation (
   });
   afterAll(async () => {
     await prisma.notification.deleteMany({ where: { userId: { in: users } } });
-    await prisma.auditLog.deleteMany({ where: { entityType: 'Project', actorId: { in: users } } });
     await prisma.user.deleteMany({ where: { id: { in: users } } });
     await prisma.mediaAsset.deleteMany({ where: { objectKey: { startsWith: keyPrefix } } });
     await app.close();
@@ -603,11 +602,11 @@ describe('Portfolio, skills, experience, achievements, services and moderation (
           .post('/me/services', { title: 'Logos', priceType: 'ON_REQUEST' })
           .expect(201)
       ).body.data;
-      await as(b.token).patch(`/me/experience/${exp.id}`, { title: 'X' }).expect(404);
+      await as(b.token).patch(`/me/experience/${exp.id}`, { title: 'Xx' }).expect(404);
       await as(b.token).del(`/me/experience/${exp.id}`).expect(404);
-      await as(b.token).patch(`/me/achievements/${ach.id}`, { title: 'X' }).expect(404);
+      await as(b.token).patch(`/me/achievements/${ach.id}`, { title: 'Xx' }).expect(404);
       await as(b.token).del(`/me/achievements/${ach.id}`).expect(404);
-      await as(b.token).patch(`/me/services/${svc.id}`, { title: 'X' }).expect(404);
+      await as(b.token).patch(`/me/services/${svc.id}`, { title: 'Xx' }).expect(404);
       await as(b.token).del(`/me/services/${svc.id}`).expect(404);
     });
 
@@ -762,7 +761,7 @@ describe('Portfolio, skills, experience, achievements, services and moderation (
       await as(stranger.token).get(`/creatives/${owner.handle}/projects/${id}`).expect(200);
 
       const audit = await prisma.auditLog.findMany({
-        where: { entityType: 'Project', entityId: id },
+        where: { entityType: 'project', entityId: id },
         orderBy: { createdAt: 'asc' },
       });
       expect(audit.map((a) => a.action)).toEqual([

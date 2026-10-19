@@ -996,6 +996,438 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/me/projects": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["myProjects"];
+        put?: never;
+        post: operations["createProject"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/projects/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["myProject"];
+        put?: never;
+        post?: never;
+        delete: operations["deleteProject"];
+        options?: never;
+        head?: never;
+        patch: operations["updateProject"];
+        trace?: never;
+    };
+    "/api/v1/me/projects/{id}/publish": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["publishProject"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/projects/{id}/collaborators": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["addCollaborator"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/projects/{id}/collaborators/{collaboratorId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["removeCollaborator"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/collaborations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["myCollaborations"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/collaborations/{id}/accept": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["acceptCollaboration"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/collaborations/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["leaveCollaboration"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/members/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["searchMembers"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/skills": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["mySkills"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/skills/{skillId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put: operations["setSkill"];
+        post?: never;
+        delete: operations["removeSkill"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/experience": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["myExperience"];
+        put?: never;
+        post: operations["addExperience"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/experience/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["deleteExperience"];
+        options?: never;
+        head?: never;
+        patch: operations["updateExperience"];
+        trace?: never;
+    };
+    "/api/v1/me/achievements": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["myAchievements"];
+        put?: never;
+        post: operations["addAchievement"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/achievements/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["deleteAchievement"];
+        options?: never;
+        head?: never;
+        patch: operations["updateAchievement"];
+        trace?: never;
+    };
+    "/api/v1/me/services": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["myServices"];
+        put?: never;
+        post: operations["addService"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/services/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["deleteService"];
+        options?: never;
+        head?: never;
+        patch: operations["updateService"];
+        trace?: never;
+    };
+    "/api/v1/creatives/{handle}/projects": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["creativeProjects"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/creatives/{handle}/projects/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["creativeProject"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/creatives/{handle}/skills": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["creativeSkills"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/creatives/{handle}/experience": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["creativeExperience"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/creatives/{handle}/achievements": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["creativeAchievements"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/creatives/{handle}/services": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["creativeServices"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/projects": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/projects/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/projects/{id}/hide": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["hide"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/projects/{id}/restore": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["restore"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -1756,6 +2188,10 @@ export interface components {
             skills: components["schemas"]["TaxonomyItemDto"][] | null;
             links: components["schemas"]["ProfileLinkDto"][] | null;
             contact: components["schemas"]["ContactDetailsDto"] | null;
+            /** @description Projects this viewer can open. Null while the Portfolio section is hidden from them. */
+            portfolioCount?: number | null;
+            /** @description Null while the Services section is hidden from this viewer. */
+            serviceCount?: number | null;
             /** @description Sections the caller may see (some have no content yet). */
             visibleSections: ("BIO" | "LOCATION" | "PORTFOLIO" | "SKILLS" | "EXPERIENCE" | "SERVICES" | "LINKS" | "CONTACT")[];
             /** @description Sections hidden from the caller. */
@@ -1779,6 +2215,352 @@ export interface components {
             person: components["schemas"]["ConnectionPersonDto"];
             /** Format: date-time */
             since: string;
+        };
+        ProjectCardDto: {
+            /** Format: uuid */
+            id: string;
+            title: string;
+            role?: string | null;
+            /** @enum {string} */
+            category: "PROJECT" | "MEDIA" | "PUBLICATION" | "PERFORMANCE";
+            /** @description A calendar date, YYYY-MM-DD. */
+            projectDate?: string | null;
+            featured: boolean;
+            /** @enum {string} */
+            status: "DRAFT" | "PUBLISHED";
+            /** @enum {string} */
+            visibility: "PUBLIC" | "MEMBERS" | "PRIVATE";
+            coverUrl?: string | null;
+            mediaCount: number;
+            /** @description Hidden by a moderator. Only the owner ever sees a hidden project. */
+            hidden: boolean;
+            /** Format: date-time */
+            updatedAt: string;
+        };
+        ProjectMediaDto: {
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            kind: "IMAGE" | "VIDEO" | "AUDIO" | "DOCUMENT";
+            mimeType: string;
+            /** @enum {string} */
+            status: "PENDING_UPLOAD" | "UPLOADED" | "PROCESSING" | "READY" | "REJECTED" | "DELETED";
+            /** @description Signed URL; READY only. */
+            url?: string | null;
+            /** @description 600 px image rendition. */
+            thumbnailUrl?: string | null;
+            width?: number | null;
+            height?: number | null;
+            caption?: string | null;
+        };
+        ProjectLinkDto: {
+            /** Format: uuid */
+            id: string;
+            label: string;
+            url: string;
+            /** @description Set for YouTube and Vimeo links: the address of the embedded player. */
+            embedUrl?: string | null;
+        };
+        CollaboratorDto: {
+            /** Format: uuid */
+            id: string;
+            /** @description A member’s display name, or the name typed in. */
+            name: string;
+            role?: string | null;
+            /** @enum {string} */
+            status: "PENDING" | "ACCEPTED" | "REMOVED";
+            /** @description Set when the collaborator is a member, so the app can open their profile. */
+            handle?: string | null;
+            avatarUrl?: string | null;
+        };
+        ProjectDto: {
+            /** Format: uuid */
+            id: string;
+            title: string;
+            role?: string | null;
+            /** @enum {string} */
+            category: "PROJECT" | "MEDIA" | "PUBLICATION" | "PERFORMANCE";
+            /** @description A calendar date, YYYY-MM-DD. */
+            projectDate?: string | null;
+            featured: boolean;
+            /** @enum {string} */
+            status: "DRAFT" | "PUBLISHED";
+            /** @enum {string} */
+            visibility: "PUBLIC" | "MEMBERS" | "PRIVATE";
+            coverUrl?: string | null;
+            mediaCount: number;
+            /** @description Hidden by a moderator. Only the owner ever sees a hidden project. */
+            hidden: boolean;
+            /** Format: date-time */
+            updatedAt: string;
+            client?: string | null;
+            description?: string | null;
+            outcome?: string | null;
+            discipline?: components["schemas"]["DisciplineLite"] | null;
+            skills: components["schemas"]["TaxonomyItemDto"][];
+            media: components["schemas"]["ProjectMediaDto"][];
+            links: components["schemas"]["ProjectLinkDto"][];
+            collaborators: components["schemas"]["CollaboratorDto"][];
+            /** @description Owner only: why a moderator hid the project. */
+            hiddenReason?: string | null;
+            /** Format: date-time */
+            publishedAt?: string | null;
+        };
+        CreateProjectDto: {
+            /** @description A draft may have no title yet. */
+            title?: string;
+        };
+        UpdateProjectDto: {
+            title?: string;
+            /** @description Your role on the project. Empty clears it. */
+            role?: string;
+            /** @description Empty clears it. */
+            client?: string;
+            /** @description A calendar date, YYYY-MM-DD. Empty clears it. */
+            projectDate?: string;
+            /** @enum {string} */
+            category?: "PROJECT" | "MEDIA" | "PUBLICATION" | "PERFORMANCE";
+            /** Format: uuid */
+            disciplineId?: Record<string, never> | null;
+            description?: string;
+            /** @description What the work achieved. */
+            outcome?: string;
+            featured?: boolean;
+            /** @enum {string} */
+            visibility?: "PUBLIC" | "MEMBERS" | "PRIVATE";
+            /** @description Your uploaded files in display order; the first is the cover. Replaces the list. At most 10. */
+            mediaIds?: string[];
+            /** @description Skills used. Replaces the list. At most 10. */
+            skillIds?: string[];
+            /** @description External links. Replaces the list. At most 5. */
+            links?: components["schemas"]["ProfileLinkInputDto"][];
+        };
+        AddCollaboratorDto: {
+            /**
+             * Format: uuid
+             * @description An Atarah member. They must accept.
+             */
+            userId?: string;
+            /** @description Someone who is not on Atarah. */
+            name?: string;
+            role?: string;
+        };
+        CollaborationDto: {
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            status: "PENDING" | "ACCEPTED" | "REMOVED";
+            role?: string | null;
+            /** Format: uuid */
+            projectId: string;
+            projectTitle: string;
+            ownerName: string;
+            ownerHandle?: string | null;
+        };
+        MemberHitDto: {
+            /** Format: uuid */
+            userId: string;
+            displayName: string;
+            handle: string;
+            avatarUrl?: string | null;
+            discipline?: string | null;
+        };
+        SkillEntryDto: {
+            /** Format: uuid */
+            id: string;
+            slug: string;
+            name: string;
+            /** @enum {string|null} */
+            level?: "BEGINNER" | "INTERMEDIATE" | "ADVANCED" | "EXPERT" | null;
+            /** @enum {string} */
+            source: "SELF_DECLARED" | "LEARNING" | "VERIFIED";
+            /** @description Published projects of yours that use this skill. */
+            projectCount: number;
+        };
+        SetSkillDto: {
+            /** @enum {string} */
+            level: "BEGINNER" | "INTERMEDIATE" | "ADVANCED" | "EXPERT";
+        };
+        ExperienceDto: {
+            /** Format: uuid */
+            id: string;
+            title: string;
+            organisation: string;
+            location?: string | null;
+            /** @description A calendar date, YYYY-MM-DD. */
+            startDate: string;
+            /** @description A calendar date, YYYY-MM-DD. */
+            endDate?: string | null;
+            current: boolean;
+            description?: string | null;
+        };
+        ExperienceInputDto: {
+            title: string;
+            /** @description Company, studio, school or "Freelance". */
+            organisation: string;
+            location?: string;
+            /** @description A calendar date, YYYY-MM-DD. */
+            startDate: string;
+            /** @description A calendar date, YYYY-MM-DD. Leave out while you still work there. */
+            endDate?: string;
+            /** @description You still work there. Cannot be combined with an end date. */
+            current: boolean;
+            description?: string;
+        };
+        UpdateExperienceDto: {
+            title?: string;
+            organisation?: string;
+            /** @description Empty clears it. */
+            location?: string;
+            startDate?: string;
+            /** @description Empty clears it. */
+            endDate?: string;
+            current?: boolean;
+            /** @description Empty clears it. */
+            description?: string;
+        };
+        AchievementDto: {
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            type: "AWARD" | "CERTIFICATE" | "FEATURE" | "SELECTION" | "NOMINATION";
+            title: string;
+            issuer?: string | null;
+            /** @description A calendar date, YYYY-MM-DD. */
+            achievedOn?: string | null;
+            description?: string | null;
+            url?: string | null;
+            /** @enum {string} */
+            source: "MANUAL" | "SYSTEM";
+        };
+        AchievementInputDto: {
+            /** @enum {string} */
+            type: "AWARD" | "CERTIFICATE" | "FEATURE" | "SELECTION" | "NOMINATION";
+            title: string;
+            /** @description Who gave it. */
+            issuer?: string;
+            /** @description A calendar date, YYYY-MM-DD. */
+            achievedOn?: string;
+            description?: string;
+            /** @description An https link to proof or coverage. */
+            url?: string;
+        };
+        UpdateAchievementDto: {
+            /** @enum {string} */
+            type?: "AWARD" | "CERTIFICATE" | "FEATURE" | "SELECTION" | "NOMINATION";
+            title?: string;
+            /** @description Empty clears it. */
+            issuer?: string;
+            /** @description Empty clears it. */
+            achievedOn?: string;
+            /** @description Empty clears it. */
+            description?: string;
+            /** @description Empty clears it. */
+            url?: string;
+        };
+        ServiceDto: {
+            /** Format: uuid */
+            id: string;
+            title: string;
+            description?: string | null;
+            /** @enum {string} */
+            priceType: "FIXED" | "RANGE" | "ON_REQUEST";
+            /** @description Whole Kenya shillings. */
+            priceMin?: number | null;
+            /** @description Whole Kenya shillings. */
+            priceMax?: number | null;
+            /** @enum {string} */
+            status: "PROFILE_ONLY" | "ON_MARKETPLACE";
+        };
+        ServiceInputDto: {
+            title: string;
+            description?: string;
+            /** @enum {string} */
+            priceType: "FIXED" | "RANGE" | "ON_REQUEST";
+            /** @description Whole Kenya shillings. FIXED and RANGE only. */
+            priceMin?: number;
+            /** @description Whole Kenya shillings. RANGE only, at least the minimum. */
+            priceMax?: number;
+        };
+        UpdateServiceDto: {
+            title?: string;
+            /** @description Empty clears it. */
+            description?: string;
+            /** @enum {string} */
+            priceType?: "FIXED" | "RANGE" | "ON_REQUEST";
+            priceMin?: number | null;
+            priceMax?: number | null;
+        };
+        AdminProjectDto: {
+            /** Format: uuid */
+            id: string;
+            title: string;
+            role?: string | null;
+            /** @enum {string} */
+            category: "PROJECT" | "MEDIA" | "PUBLICATION" | "PERFORMANCE";
+            /** @description A calendar date, YYYY-MM-DD. */
+            projectDate?: string | null;
+            featured: boolean;
+            /** @enum {string} */
+            status: "DRAFT" | "PUBLISHED";
+            /** @enum {string} */
+            visibility: "PUBLIC" | "MEMBERS" | "PRIVATE";
+            coverUrl?: string | null;
+            mediaCount: number;
+            /** @description Hidden by a moderator. Only the owner ever sees a hidden project. */
+            hidden: boolean;
+            /** Format: date-time */
+            updatedAt: string;
+            /** Format: uuid */
+            ownerUserId: string;
+            ownerName: string;
+            ownerHandle?: string | null;
+            hiddenReason?: string | null;
+            /** Format: date-time */
+            hiddenAt?: string | null;
+        };
+        AdminProjectDetailDto: {
+            /** Format: uuid */
+            id: string;
+            title: string;
+            role?: string | null;
+            /** @enum {string} */
+            category: "PROJECT" | "MEDIA" | "PUBLICATION" | "PERFORMANCE";
+            /** @description A calendar date, YYYY-MM-DD. */
+            projectDate?: string | null;
+            featured: boolean;
+            /** @enum {string} */
+            status: "DRAFT" | "PUBLISHED";
+            /** @enum {string} */
+            visibility: "PUBLIC" | "MEMBERS" | "PRIVATE";
+            coverUrl?: string | null;
+            mediaCount: number;
+            /** @description Hidden by a moderator. Only the owner ever sees a hidden project. */
+            hidden: boolean;
+            /** Format: date-time */
+            updatedAt: string;
+            client?: string | null;
+            description?: string | null;
+            outcome?: string | null;
+            discipline?: components["schemas"]["DisciplineLite"] | null;
+            skills: components["schemas"]["TaxonomyItemDto"][];
+            media: components["schemas"]["ProjectMediaDto"][];
+            links: components["schemas"]["ProjectLinkDto"][];
+            collaborators: components["schemas"]["CollaboratorDto"][];
+            /** @description Owner only: why a moderator hid the project. */
+            hiddenReason?: string | null;
+            /** Format: date-time */
+            publishedAt?: string | null;
+            /** Format: uuid */
+            ownerUserId: string;
+            ownerName: string;
+            ownerHandle?: string | null;
+            /** Format: date-time */
+            hiddenAt?: string | null;
+        };
+        HideProjectDto: {
+            /** @description Shown to the owner. */
+            reason: string;
         };
     };
     responses: never;
@@ -3596,6 +4378,981 @@ export interface operations {
                 content: {
                     "application/json": {
                         data: components["schemas"]["ConnectionListItemDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    myProjects: {
+        parameters: {
+            query?: {
+                listFilter?: "ALL" | "DRAFTS" | "PUBLISHED";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ProjectCardDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    createProject: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateProjectDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ProjectDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    myProject: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ProjectDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    deleteProject: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    updateProject: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateProjectDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ProjectDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    publishProject: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ProjectDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    addCollaborator: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AddCollaboratorDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ProjectDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    removeCollaborator: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+                collaboratorId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ProjectDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    myCollaborations: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CollaborationDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    acceptCollaboration: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CollaborationDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    leaveCollaboration: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    searchMembers: {
+        parameters: {
+            query: {
+                q: string;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MemberHitDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    mySkills: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["SkillEntryDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    setSkill: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                skillId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SetSkillDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["SkillEntryDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    removeSkill: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                skillId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    myExperience: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ExperienceDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    addExperience: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ExperienceInputDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ExperienceDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    deleteExperience: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    updateExperience: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateExperienceDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ExperienceDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    myAchievements: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AchievementDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    addAchievement: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AchievementInputDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AchievementDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    deleteAchievement: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    updateAchievement: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateAchievementDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AchievementDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    myServices: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ServiceDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    addService: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ServiceInputDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ServiceDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    deleteService: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    updateService: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateServiceDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ServiceDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    creativeProjects: {
+        parameters: {
+            query?: {
+                /** @description Owner only: see the portfolio as the public or as other members do. */
+                previewAs?: "PUBLIC" | "MEMBERS";
+                category?: "PROJECT" | "MEDIA" | "PUBLICATION" | "PERFORMANCE";
+                /** @description Only featured projects. */
+                featuredOnly?: boolean;
+            };
+            header?: never;
+            path: {
+                handle: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ProjectCardDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    creativeProject: {
+        parameters: {
+            query?: {
+                /** @description Owner only: see the profile as the public or as other members do. */
+                previewAs?: "PUBLIC" | "MEMBERS";
+            };
+            header?: never;
+            path: {
+                handle: string;
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ProjectDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    creativeSkills: {
+        parameters: {
+            query?: {
+                /** @description Owner only: see the profile as the public or as other members do. */
+                previewAs?: "PUBLIC" | "MEMBERS";
+            };
+            header?: never;
+            path: {
+                handle: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["SkillEntryDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    creativeExperience: {
+        parameters: {
+            query?: {
+                /** @description Owner only: see the profile as the public or as other members do. */
+                previewAs?: "PUBLIC" | "MEMBERS";
+            };
+            header?: never;
+            path: {
+                handle: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ExperienceDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    creativeAchievements: {
+        parameters: {
+            query?: {
+                /** @description Owner only: see the profile as the public or as other members do. */
+                previewAs?: "PUBLIC" | "MEMBERS";
+            };
+            header?: never;
+            path: {
+                handle: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AchievementDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    creativeServices: {
+        parameters: {
+            query?: {
+                /** @description Owner only: see the profile as the public or as other members do. */
+                previewAs?: "PUBLIC" | "MEMBERS";
+            };
+            header?: never;
+            path: {
+                handle: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ServiceDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    list: {
+        parameters: {
+            query?: {
+                /** @description Matches the title, the owner’s name or handle. */
+                q?: string;
+                /** @description Only projects a moderator has hidden. */
+                hiddenOnly?: boolean;
+                page?: number;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminProjectDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminProjectDetailDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    hide: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["HideProjectDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminProjectDetailDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    restore: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminProjectDetailDto"];
                         meta?: {
                             [key: string]: unknown;
                         };

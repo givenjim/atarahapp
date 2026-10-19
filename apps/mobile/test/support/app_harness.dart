@@ -11,6 +11,7 @@ import 'package:atarah/core/providers.dart';
 import 'package:atarah/core/routing/app_router.dart';
 import 'package:atarah/core/storage/token_store.dart';
 import 'package:atarah/features/onboarding/onboarding_providers.dart';
+import 'package:atarah/features/portfolio/portfolio_providers.dart';
 import 'package:atarah/features/profile/profile_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,6 +19,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 
 import 'fake_onboarding.dart';
+import 'fake_portfolio.dart';
 import 'fake_profile.dart';
 import 'fakes.dart';
 
@@ -131,6 +133,8 @@ class Harness {
     FakeLocationLookup? location,
     FakePhotoPicker? picker,
     FakeProfileRepository? profile,
+    FakePortfolioRepository? portfolio,
+    FakeMediaPicker? media,
     Flavor flavor = Flavor.dev,
   }) : auth = auth ?? FakeAuthRepository(),
        content = content ?? FakeContentRepository(),
@@ -144,6 +148,8 @@ class Harness {
        location = location ?? FakeLocationLookup(),
        picker = picker ?? FakePhotoPicker(),
        profile = profile ?? FakeProfileRepository(),
+       portfolio = portfolio ?? FakePortfolioRepository(),
+       media = media ?? FakeMediaPicker(),
        analytics = RecordingAnalytics() {
     container = ProviderContainer(
       retry: noAutomaticRetry,
@@ -157,6 +163,11 @@ class Harness {
         locationLookupProvider.overrideWithValue(this.location),
         photoPickerProvider.overrideWithValue(this.picker),
         profileRepositoryProvider.overrideWithValue(this.profile),
+        portfolioRepositoryProvider.overrideWithValue(this.portfolio),
+        mediaPickerProvider.overrideWithValue(this.media),
+        videoViewProvider.overrideWithValue(fakePlayer),
+        audioViewProvider.overrideWithValue(fakePlayer),
+        embedViewProvider.overrideWithValue(fakePlayer),
         shareTextProvider.overrideWithValue((text) async => shared.add(text)),
         openLinkProvider.overrideWithValue((uri) async {
           opened.add(uri);
@@ -177,6 +188,8 @@ class Harness {
   final FakeLocationLookup location;
   final FakePhotoPicker picker;
   final FakeProfileRepository profile;
+  final FakePortfolioRepository portfolio;
+  final FakeMediaPicker media;
 
   /// Text handed to the share sheet and addresses opened in the browser.
   final List<String> shared = [];

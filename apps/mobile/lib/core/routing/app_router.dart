@@ -13,8 +13,16 @@ import '../../features/auth/verify_screen.dart';
 import '../../features/auth/welcome_screen.dart';
 import '../../features/onboarding/onboarding_providers.dart';
 import '../../features/onboarding/onboarding_screen.dart';
+import '../../features/portfolio/achievements_screen.dart';
+import '../../features/portfolio/experience_screen.dart';
+import '../../features/portfolio/portfolio_screen.dart';
+import '../../features/portfolio/project_editor_screen.dart';
+import '../../features/portfolio/project_screen.dart';
+import '../../features/portfolio/services_screen.dart';
+import '../../features/portfolio/skills_screen.dart';
 import '../../features/profile/creative_profile_screen.dart';
 import '../../features/profile/passport_screen.dart';
+import '../../features/profile/profile_repository.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/shell/app_shell.dart';
 import '../../features/shell/future_route_screen.dart';
@@ -38,7 +46,6 @@ final List<
   ({String path, String phase, String Function(AppLocalizations) name})
 >
 _detailRoutes = [
-  (path: Routes.project, phase: 'p1', name: (l) => l.featureProject),
   (path: Routes.opportunity, phase: 'p1', name: (l) => l.featureOpportunities),
   (path: Routes.course, phase: 'p1', name: (l) => l.featureCourse),
   (path: Routes.lesson, phase: 'p1', name: (l) => l.featureLesson),
@@ -123,6 +130,37 @@ GoRouter appRouter(Ref ref) {
         builder: (_, _) => const OnboardingScreen(),
       ),
       GoRoute(path: Routes.passport, builder: (_, _) => const PassportScreen()),
+      GoRoute(
+        path: Routes.portfolio,
+        builder: (_, _) => const PortfolioScreen(),
+      ),
+      GoRoute(
+        path: Routes.projectEdit,
+        builder: (_, state) =>
+            ProjectEditorScreen(projectId: state.pathParameters['id'] ?? 'new'),
+      ),
+      GoRoute(
+        path: Routes.project,
+        builder: (_, state) => ProjectScreen(
+          projectId: state.pathParameters['id'] ?? '',
+          handle: state.uri.queryParameters['handle'],
+          preview: switch (state.uri.queryParameters['preview']) {
+            'public' => PublicProfilePreview.public,
+            'members' => PublicProfilePreview.members,
+            _ => null,
+          },
+        ),
+      ),
+      GoRoute(path: Routes.skills, builder: (_, _) => const SkillsScreen()),
+      GoRoute(
+        path: Routes.experience,
+        builder: (_, _) => const ExperienceScreen(),
+      ),
+      GoRoute(
+        path: Routes.achievements,
+        builder: (_, _) => const AchievementsScreen(),
+      ),
+      GoRoute(path: Routes.services, builder: (_, _) => const ServicesScreen()),
       GoRoute(
         path: Routes.creative,
         builder: (_, state) => CreativeProfileScreen(
