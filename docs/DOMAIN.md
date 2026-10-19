@@ -175,3 +175,33 @@ The "next" list is the three heaviest missing items. Interests and areas to deve
 | `SpecialisationSuggestion`                                                                                     | `specialisation_suggestions` | `PENDING`, `APPROVED`, `MERGED`, `REJECTED`; resolver, note, resulting specialisation                                                     |
 | `CreativePassport`                                                                                             | `creative_passports`         | 1:1 profile. `passportNumber` unique, `(countyCode, sequence)` unique. Never changes                                                      |
 | `PassportCounter`                                                                                              | `passport_counters`          | Last sequence issued per county code, incremented atomically                                                                              |
+
+## 8. Creative growth formulas (P1-M3)
+
+Computed live by `apps/backend/src/creative/growth.ts` (unit-tested). Each bar is 0 to 100; the overall score is their average; strength is EARLY (below 25), GROWING (25 to 49), ACTIVE (50 to 74), STRONG (75 and above).
+
+| Bar                 | Formula                                                                                                                                                       |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Identity            | The completion engine's identity items (photo 15, bio 10, headline 5, discipline 10, specialisation 10, location 10, contact 5) as a share of their 65 points |
+| Portfolio           | 25 per published project, full at 4 (0 until P1-M4)                                                                                                           |
+| Skills              | 12.5 per skill, full at 8, plus 5 per verified skill (verified: P2-M6)                                                                                        |
+| Learning            | 25 per completed course plus 10 per course started (0 until P1-M8)                                                                                            |
+| Connections         | 10 per accepted connection, full at 10                                                                                                                        |
+| Professionalisation | 25 per service, 20 per experience, 10 per achievement, 20 for a verified identity (0 until P1-M4 and P2-M6)                                                   |
+
+## 9. Profile sections and audiences (P1-M3)
+
+| Section    | Default | Notes                                                                                  |
+| ---------- | ------- | -------------------------------------------------------------------------------------- |
+| Bio        | Public  |                                                                                        |
+| Location   | Members | Stored on the profile (`locationVisibility`)                                           |
+| Portfolio  | Public  | Content from P1-M4                                                                     |
+| Skills     | Public  |                                                                                        |
+| Experience | Members | Content from P1-M4                                                                     |
+| Services   | Public  | Content from P1-M4                                                                     |
+| Links      | Public  |                                                                                        |
+| Contact    | Private | Email and phone per the member's show preferences; accepted connections may be allowed |
+
+Visibility matrix (who sees a section at each level): Public: everyone. Members: members and connections. Private: the owner only (contact is the one exception, for connections the owner allows).
+
+Entities: `ProfileSectionVisibility` (`profile_section_visibility`), `ProfileLink` (`profile_links`, https only), `Connection` (`connections`, one row per pair). New profile columns: `openToCommissions`, `contactShowEmail`, `contactShowPhone`, `contactForConnections`, `acceptConnections`.

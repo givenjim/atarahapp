@@ -1725,6 +1725,690 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Available alternatives'**
   String get obHandleSuggestionsLabel;
+
+  /// No description provided for @pfPublicView.
+  ///
+  /// In en, this message translates to:
+  /// **'Public view'**
+  String get pfPublicView;
+
+  /// No description provided for @pfEditProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get pfEditProfile;
+
+  /// No description provided for @pfImproveBio.
+  ///
+  /// In en, this message translates to:
+  /// **'Improve my bio'**
+  String get pfImproveBio;
+
+  /// No description provided for @pfAddHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a headline'**
+  String get pfAddHeadline;
+
+  /// No description provided for @pfLocationNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Location not set'**
+  String get pfLocationNotSet;
+
+  /// No description provided for @pfLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load your profile'**
+  String get pfLoadFailed;
+
+  /// No description provided for @pfPassportCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Creative Passport'**
+  String get pfPassportCardTitle;
+
+  /// No description provided for @pfNextBestAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next best step'**
+  String get pfNextBestAction;
+
+  /// No description provided for @pfCompletionPercent.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% complete'**
+  String pfCompletionPercent(int percent);
+
+  /// No description provided for @pfAllDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Your profile is complete. Nice work.'**
+  String get pfAllDone;
+
+  /// No description provided for @pfYourTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Your tools'**
+  String get pfYourTools;
+
+  /// No description provided for @pfMentorTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentor tools'**
+  String get pfMentorTools;
+
+  /// No description provided for @pfSellerTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Seller tools'**
+  String get pfSellerTools;
+
+  /// No description provided for @pfMyIdentity.
+  ///
+  /// In en, this message translates to:
+  /// **'My creative identity'**
+  String get pfMyIdentity;
+
+  /// No description provided for @pfPortfolio.
+  ///
+  /// In en, this message translates to:
+  /// **'Portfolio'**
+  String get pfPortfolio;
+
+  /// No description provided for @pfSkills.
+  ///
+  /// In en, this message translates to:
+  /// **'Skills'**
+  String get pfSkills;
+
+  /// No description provided for @pfExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Experience'**
+  String get pfExperience;
+
+  /// No description provided for @pfAchievements.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievements'**
+  String get pfAchievements;
+
+  /// No description provided for @pfServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get pfServices;
+
+  /// No description provided for @pfConnections.
+  ///
+  /// In en, this message translates to:
+  /// **'Connections'**
+  String get pfConnections;
+
+  /// No description provided for @pfSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get pfSaved;
+
+  /// No description provided for @pfCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}'**
+  String pfCount(int count);
+
+  /// No description provided for @pfPendingRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} waiting'**
+  String pfPendingRequests(int count);
+
+  /// No description provided for @epTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get epTitle;
+
+  /// No description provided for @epDisplayName.
+  ///
+  /// In en, this message translates to:
+  /// **'Display name'**
+  String get epDisplayName;
+
+  /// No description provided for @epHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Headline'**
+  String get epHeadline;
+
+  /// No description provided for @epHeadlineHint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: Character animator in Nairobi'**
+  String get epHeadlineHint;
+
+  /// No description provided for @epBio.
+  ///
+  /// In en, this message translates to:
+  /// **'Short bio'**
+  String get epBio;
+
+  /// No description provided for @epLinks.
+  ///
+  /// In en, this message translates to:
+  /// **'Links'**
+  String get epLinks;
+
+  /// No description provided for @epLinkLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Label'**
+  String get epLinkLabel;
+
+  /// No description provided for @epLinkUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Address (https://)'**
+  String get epLinkUrl;
+
+  /// No description provided for @epAddLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a link'**
+  String get epAddLink;
+
+  /// No description provided for @epRemoveLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove link'**
+  String get epRemoveLink;
+
+  /// No description provided for @epLinksLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'You can add up to {max} links.'**
+  String epLinksLimit(int max);
+
+  /// No description provided for @epLinkInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a web address that starts with https://'**
+  String get epLinkInvalid;
+
+  /// No description provided for @epLinkLabelMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Give the link a label.'**
+  String get epLinkLabelMissing;
+
+  /// No description provided for @epContactPrefs.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact and availability'**
+  String get epContactPrefs;
+
+  /// No description provided for @epOpenToCommissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Open to commissions'**
+  String get epOpenToCommissions;
+
+  /// No description provided for @epShowEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Show my email when my contact details are visible'**
+  String get epShowEmail;
+
+  /// No description provided for @epShowPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Show my phone number when my contact details are visible'**
+  String get epShowPhone;
+
+  /// No description provided for @epContactForConnections.
+  ///
+  /// In en, this message translates to:
+  /// **'My connections can see my contact details'**
+  String get epContactForConnections;
+
+  /// No description provided for @epAcceptConnections.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept connection requests'**
+  String get epAcceptConnections;
+
+  /// No description provided for @epSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get epSave;
+
+  /// No description provided for @epSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated.'**
+  String get epSaved;
+
+  /// No description provided for @epNameError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the name you want people to see.'**
+  String get epNameError;
+
+  /// No description provided for @ppTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Creative Passport'**
+  String get ppTitle;
+
+  /// No description provided for @ppMemberSince.
+  ///
+  /// In en, this message translates to:
+  /// **'Member since {date}'**
+  String ppMemberSince(String date);
+
+  /// No description provided for @ppGrowth.
+  ///
+  /// In en, this message translates to:
+  /// **'Growth'**
+  String get ppGrowth;
+
+  /// No description provided for @ppStrengthEarly.
+  ///
+  /// In en, this message translates to:
+  /// **'Early'**
+  String get ppStrengthEarly;
+
+  /// No description provided for @ppStrengthGrowing.
+  ///
+  /// In en, this message translates to:
+  /// **'Growing'**
+  String get ppStrengthGrowing;
+
+  /// No description provided for @ppStrengthActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get ppStrengthActive;
+
+  /// No description provided for @ppStrengthStrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Strong'**
+  String get ppStrengthStrong;
+
+  /// No description provided for @ppGrowthIdentity.
+  ///
+  /// In en, this message translates to:
+  /// **'Identity'**
+  String get ppGrowthIdentity;
+
+  /// No description provided for @ppGrowthPortfolio.
+  ///
+  /// In en, this message translates to:
+  /// **'Portfolio'**
+  String get ppGrowthPortfolio;
+
+  /// No description provided for @ppGrowthSkills.
+  ///
+  /// In en, this message translates to:
+  /// **'Skills'**
+  String get ppGrowthSkills;
+
+  /// No description provided for @ppGrowthLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning'**
+  String get ppGrowthLearning;
+
+  /// No description provided for @ppGrowthConnections.
+  ///
+  /// In en, this message translates to:
+  /// **'Connections'**
+  String get ppGrowthConnections;
+
+  /// No description provided for @ppGrowthProfessionalisation.
+  ///
+  /// In en, this message translates to:
+  /// **'Professionalisation'**
+  String get ppGrowthProfessionalisation;
+
+  /// No description provided for @ppSections.
+  ///
+  /// In en, this message translates to:
+  /// **'Sections & visibility'**
+  String get ppSections;
+
+  /// No description provided for @ppSectionsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose who can see each part of your profile. Changes apply straight away.'**
+  String get ppSectionsBody;
+
+  /// No description provided for @ppCopyLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy link'**
+  String get ppCopyLink;
+
+  /// No description provided for @ppLinkCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Link copied.'**
+  String get ppLinkCopied;
+
+  /// No description provided for @ppCreateCv.
+  ///
+  /// In en, this message translates to:
+  /// **'Create CV / EPK'**
+  String get ppCreateCv;
+
+  /// No description provided for @ppVisibilityFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t change that. Try again.'**
+  String get ppVisibilityFailed;
+
+  /// No description provided for @ppChooseAudience.
+  ///
+  /// In en, this message translates to:
+  /// **'Who can see {section}?'**
+  String ppChooseAudience(String section);
+
+  /// No description provided for @vsPublic.
+  ///
+  /// In en, this message translates to:
+  /// **'Public'**
+  String get vsPublic;
+
+  /// No description provided for @vsMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'Members only'**
+  String get vsMembers;
+
+  /// No description provided for @vsPrivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Only me'**
+  String get vsPrivate;
+
+  /// No description provided for @vsPublicNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone, including people outside Atarah.'**
+  String get vsPublicNote;
+
+  /// No description provided for @vsMembersNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed-in Atarah members.'**
+  String get vsMembersNote;
+
+  /// No description provided for @vsPrivateNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Only you (and connections, for contact details, if you allow it).'**
+  String get vsPrivateNote;
+
+  /// No description provided for @secBio.
+  ///
+  /// In en, this message translates to:
+  /// **'Bio'**
+  String get secBio;
+
+  /// No description provided for @secLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get secLocation;
+
+  /// No description provided for @secPortfolio.
+  ///
+  /// In en, this message translates to:
+  /// **'Portfolio'**
+  String get secPortfolio;
+
+  /// No description provided for @secSkills.
+  ///
+  /// In en, this message translates to:
+  /// **'Skills'**
+  String get secSkills;
+
+  /// No description provided for @secExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Experience'**
+  String get secExperience;
+
+  /// No description provided for @secServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get secServices;
+
+  /// No description provided for @secLinks.
+  ///
+  /// In en, this message translates to:
+  /// **'Links'**
+  String get secLinks;
+
+  /// No description provided for @secContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact details'**
+  String get secContact;
+
+  /// No description provided for @cpAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get cpAbout;
+
+  /// No description provided for @cpPortfolio.
+  ///
+  /// In en, this message translates to:
+  /// **'Portfolio'**
+  String get cpPortfolio;
+
+  /// No description provided for @cpServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get cpServices;
+
+  /// No description provided for @cpShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share profile'**
+  String get cpShare;
+
+  /// No description provided for @cpShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} on Atarah'**
+  String cpShareText(String name);
+
+  /// No description provided for @cpOpenToCommissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Open to commissions'**
+  String get cpOpenToCommissions;
+
+  /// No description provided for @cpConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect'**
+  String get cpConnect;
+
+  /// No description provided for @cpMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get cpMessage;
+
+  /// No description provided for @cpRequestSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Request sent'**
+  String get cpRequestSent;
+
+  /// No description provided for @cpCancelRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel request'**
+  String get cpCancelRequest;
+
+  /// No description provided for @cpAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get cpAccept;
+
+  /// No description provided for @cpDecline.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline'**
+  String get cpDecline;
+
+  /// No description provided for @cpConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected'**
+  String get cpConnected;
+
+  /// No description provided for @cpRemoveConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove connection'**
+  String get cpRemoveConnection;
+
+  /// No description provided for @cpRemoveConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove this connection?'**
+  String get cpRemoveConfirmTitle;
+
+  /// No description provided for @cpRemoveConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll stop being connected. You can send a new request later.'**
+  String get cpRemoveConfirmBody;
+
+  /// No description provided for @cpNotAccepting.
+  ///
+  /// In en, this message translates to:
+  /// **'Not accepting requests'**
+  String get cpNotAccepting;
+
+  /// No description provided for @cpAskLater.
+  ///
+  /// In en, this message translates to:
+  /// **'You can ask again later'**
+  String get cpAskLater;
+
+  /// No description provided for @cpConnectionsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} connections'**
+  String cpConnectionsCount(int count);
+
+  /// No description provided for @cpPreviewBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'This is how your profile looks to others.'**
+  String get cpPreviewBanner;
+
+  /// No description provided for @cpPreviewPublic.
+  ///
+  /// In en, this message translates to:
+  /// **'Public'**
+  String get cpPreviewPublic;
+
+  /// No description provided for @cpPreviewMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get cpPreviewMembers;
+
+  /// No description provided for @cpBioLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'The bio is not shared with you.'**
+  String get cpBioLocked;
+
+  /// No description provided for @cpHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'{section} is hidden.'**
+  String cpHidden(String section);
+
+  /// No description provided for @cpSkillsHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Skills'**
+  String get cpSkillsHeading;
+
+  /// No description provided for @cpSpecialisationsHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Specialisations'**
+  String get cpSpecialisationsHeading;
+
+  /// No description provided for @cpLinksHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Links'**
+  String get cpLinksHeading;
+
+  /// No description provided for @cpContactHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get cpContactHeading;
+
+  /// No description provided for @cpNoBio.
+  ///
+  /// In en, this message translates to:
+  /// **'No bio yet.'**
+  String get cpNoBio;
+
+  /// No description provided for @cpNoPortfolio.
+  ///
+  /// In en, this message translates to:
+  /// **'No projects yet.'**
+  String get cpNoPortfolio;
+
+  /// No description provided for @cpNoServices.
+  ///
+  /// In en, this message translates to:
+  /// **'No services yet.'**
+  String get cpNoServices;
+
+  /// No description provided for @cpNotFoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t find that creative'**
+  String get cpNotFoundTitle;
+
+  /// No description provided for @cpActionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'That didn\'t work. Try again.'**
+  String get cpActionFailed;
+
+  /// No description provided for @cpMemberSince.
+  ///
+  /// In en, this message translates to:
+  /// **'Member since {date}'**
+  String cpMemberSince(String date);
+
+  /// No description provided for @leavingOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t open that link.'**
+  String get leavingOpenFailed;
 }
 
 class _AppLocalizationsDelegate

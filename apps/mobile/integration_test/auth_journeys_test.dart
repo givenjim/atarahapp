@@ -113,12 +113,21 @@ void main() {
     await settle(t);
   }
 
+  /// These members never finish profile setup, so signing in resumes it. Back on its first step goes Home.
+  Future<void> leaveSetup(WidgetTester t) async {
+    if (find.text("Let's set up your creative identity").evaluate().isEmpty) {
+      return;
+    }
+    await t.tap(find.bySemanticsLabel('Back'));
+    await settle(t);
+  }
+
   Future<void> enterCode(WidgetTester t, String code) async {
     await t.enterText(find.byType(TextField).first, code);
     await t.pump();
   }
 
-  testWidgets('1. register, verify by email code, land on onboarding entry', (
+  testWidgets('1. register, verify by email code, land on profile setup', (
     t,
   ) async {
     await SecureTokenStore().clear();
@@ -155,10 +164,10 @@ void main() {
     await enterCode(t, await mailedCode(before));
     await tapLabel(t, 'Verify', wait: 5);
 
-    // New member: onboarding entry (built in P1-M2), then Home.
-    expect(find.text('Creative profile setup'), findsOneWidget);
-    expect(find.text('Soon · P1'), findsOneWidget);
-    await tapLabel(t, 'Go back');
+    // New member: profile setup opens on its intro (P1-M2); backing out of the first step goes Home.
+    expect(find.text("Let's set up your creative identity"), findsOneWidget);
+    await t.tap(find.bySemanticsLabel('Back'));
+    await settle(t);
     expect(find.byType(AtTabBar), findsOneWidget);
     await t.tap(
       find.descendant(
@@ -168,7 +177,6 @@ void main() {
     );
     await settle(t);
     expect(find.text(name), findsOneWidget);
-    expect(find.text(email), findsOneWidget);
     await t.ensureVisible(find.text('Sign out'));
     await t.tap(find.text('Sign out'));
     await settle(t);
@@ -187,6 +195,7 @@ void main() {
 
     await t.enterText(find.byType(TextField).at(1), _password);
     await tapLabel(t, 'Sign in', wait: 5);
+    await leaveSetup(t);
     expect(find.byType(AtTabBar), findsOneWidget);
 
     await t.tap(
@@ -219,6 +228,7 @@ void main() {
     await t.enterText(find.byType(TextField).at(1), _newPassword);
     await t.enterText(find.byType(TextField).at(2), _newPassword);
     await tapLabel(t, 'Reset password', wait: 3);
+    await leaveSetup(t);
 
     expect(find.byType(AtTabBar), findsOneWidget);
     expect(
@@ -244,6 +254,7 @@ void main() {
     expect(find.text(_wrongPasswordBanner), findsOneWidget);
     await t.enterText(find.byType(TextField).at(1), _newPassword);
     await tapLabel(t, 'Sign in', wait: 5);
+    await leaveSetup(t);
     expect(find.byType(AtTabBar), findsOneWidget);
   });
 }

@@ -491,7 +491,7 @@ export class CreativeProfileService {
     return result;
   }
 
-  private async facts(profileId: string): Promise<ProfileFacts> {
+  async facts(profileId: string): Promise<ProfileFacts> {
     const p = await this.prisma.creativeProfile.findUniqueOrThrow({
       where: { id: profileId },
       select: {
@@ -501,7 +501,7 @@ export class CreativeProfileService {
         primaryDisciplineId: true,
         countyId: true,
         user: { select: { emailVerifiedAt: true, phoneVerifiedAt: true } },
-        _count: { select: { specialisations: true, skills: true } },
+        _count: { select: { specialisations: true, skills: true, experiences: true } },
       },
     });
     return {
@@ -512,8 +512,10 @@ export class CreativeProfileService {
       specialisationCount: p._count.specialisations,
       skillCount: p._count.skills,
       hasLocation: p.countyId !== null,
-      projectCount: 0, // Project and Experience tables arrive in P1-M4
-      experienceCount: 0,
+      projectCount: await this.prisma.project.count({
+        where: { profileId, status: 'PUBLISHED', deletedAt: null, hiddenAt: null },
+      }),
+      experienceCount: p._count.experiences,
       contactVerified: p.user.emailVerifiedAt !== null || p.user.phoneVerifiedAt !== null,
     };
   }

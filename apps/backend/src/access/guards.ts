@@ -11,6 +11,7 @@ import {
   ALLOW_PENDING,
   ENTITLEMENT,
   IS_PUBLIC,
+  OPTIONAL_AUTH,
   PERMISSIONS,
   RECENT_AUTH_MINUTES,
 } from './decorators';
@@ -42,7 +43,10 @@ export class JwtAuthGuard implements CanActivate {
 
     const req = ctx.switchToHttp().getRequest<Request>();
     const header = req.headers.authorization;
-    if (!header?.startsWith('Bearer ')) throw ApiException.unauthenticated();
+    if (!header?.startsWith('Bearer ')) {
+      if (this.reflector.getAllAndOverride<boolean>(OPTIONAL_AUTH, targets)) return true;
+      throw ApiException.unauthenticated();
+    }
     const claims = this.tokens.verifyAccess(header.slice(7).trim());
 
     const adminRoute = isAdminPath(req);

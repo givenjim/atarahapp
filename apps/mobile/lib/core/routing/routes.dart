@@ -9,6 +9,7 @@ abstract final class Routes {
   static const reset = '/reset';
   static const legal = '/legal/:type';
   static const onboarding = '/onboarding';
+  static const passport = '/passport';
   static const devGallery = '/dev/gallery';
 
   // The five tab roots (the bottom bar).
@@ -50,6 +51,10 @@ abstract final class Routes {
   };
 
   static String legalPath(String type) => '/legal/$type';
+
+  /// A creative's profile. [preview] is the owner's "Public view" of their own page.
+  static String creativePath(String handle, {bool preview = false}) =>
+      '/creatives/${Uri.encodeComponent(handle)}${preview ? '?preview=1' : ''}';
 
   /// Paths a signed-out member may open.
   static bool isPublic(String path, {required bool devTools}) {

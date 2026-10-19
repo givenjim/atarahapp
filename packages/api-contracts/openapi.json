@@ -2698,6 +2698,542 @@
           "Admin Taxonomy"
         ]
       }
+    },
+    "/api/v1/me/profile": {
+      "get": {
+        "operationId": "myProfile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/OwnProfileDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Profile"
+        ]
+      },
+      "patch": {
+        "operationId": "updateProfile",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/OwnProfileDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Profile"
+        ]
+      }
+    },
+    "/api/v1/me/passport": {
+      "get": {
+        "operationId": "myPassport",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PassportDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Profile"
+        ]
+      }
+    },
+    "/api/v1/me/passport/visibility": {
+      "patch": {
+        "operationId": "setVisibility",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetSectionVisibilityDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SectionVisibilityDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Profile"
+        ]
+      }
+    },
+    "/api/v1/me/growth": {
+      "get": {
+        "operationId": "myGrowth",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/GrowthDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Profile"
+        ]
+      }
+    },
+    "/api/v1/creatives/{handle}": {
+      "get": {
+        "operationId": "creative",
+        "parameters": [
+          {
+            "name": "handle",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "previewAs",
+            "required": false,
+            "in": "query",
+            "description": "Owner only: see the profile as the public or as other members do.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PUBLIC",
+                "MEMBERS"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PublicProfileDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Profile"
+        ]
+      }
+    },
+    "/api/v1/creatives/{handle}/connect": {
+      "post": {
+        "operationId": "connect",
+        "parameters": [
+          {
+            "name": "handle",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ConnectionStateDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Profile"
+        ]
+      }
+    },
+    "/api/v1/connections/{id}/accept": {
+      "post": {
+        "operationId": "accept",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ConnectionStateDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Profile"
+        ]
+      }
+    },
+    "/api/v1/connections/{id}/decline": {
+      "post": {
+        "operationId": "decline",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ConnectionStateDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Profile"
+        ]
+      }
+    },
+    "/api/v1/connections/{id}": {
+      "delete": {
+        "operationId": "removeConnection",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ConnectionStateDto"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Profile"
+        ]
+      }
+    },
+    "/api/v1/me/connections": {
+      "get": {
+        "operationId": "myConnections",
+        "parameters": [
+          {
+            "name": "listState",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "CONNECTED",
+              "type": "string",
+              "enum": [
+                "CONNECTED",
+                "PENDING_RECEIVED",
+                "PENDING_SENT"
+              ]
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ConnectionListItemDto"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "tags": [
+          "Profile"
+        ]
+      }
     }
   },
   "info": {
@@ -4670,6 +5206,761 @@
             "maxLength": 300
           }
         }
+      },
+      "LocationDto": {
+        "type": "object",
+        "properties": {
+          "countryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "countyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "town": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "countryName",
+          "countyName",
+          "town"
+        ]
+      },
+      "OwnContactDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "showEmail": {
+            "type": "boolean"
+          },
+          "showPhone": {
+            "type": "boolean"
+          },
+          "forConnections": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "email",
+          "phone",
+          "showEmail",
+          "showPhone",
+          "forConnections"
+        ]
+      },
+      "ProfileLinkDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "label": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "url"
+        ]
+      },
+      "SectionVisibilityDto": {
+        "type": "object",
+        "properties": {
+          "section": {
+            "type": "string",
+            "enum": [
+              "BIO",
+              "LOCATION",
+              "PORTFOLIO",
+              "SKILLS",
+              "EXPERIENCE",
+              "SERVICES",
+              "LINKS",
+              "CONTACT"
+            ]
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "PUBLIC",
+              "MEMBERS",
+              "PRIVATE"
+            ]
+          }
+        },
+        "required": [
+          "section",
+          "visibility"
+        ]
+      },
+      "PassportSummaryDto": {
+        "type": "object",
+        "properties": {
+          "passportNumber": {
+            "type": "string",
+            "example": "ATR-NBI-0042"
+          },
+          "issuedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "passportNumber",
+          "issuedAt"
+        ]
+      },
+      "OwnCountsDto": {
+        "type": "object",
+        "properties": {
+          "skills": {
+            "type": "number"
+          },
+          "connections": {
+            "type": "number",
+            "description": "Accepted connections."
+          },
+          "pendingRequests": {
+            "type": "number",
+            "description": "Requests waiting for the member to answer."
+          }
+        },
+        "required": [
+          "skills",
+          "connections",
+          "pendingRequests"
+        ]
+      },
+      "OwnProfileDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "handle": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "headline": {
+            "type": "string",
+            "nullable": true
+          },
+          "bio": {
+            "type": "string",
+            "nullable": true
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "discipline": {
+            "nullable": true,
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DisciplineLite"
+              }
+            ]
+          },
+          "specialisations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaxonomyItemDto"
+            }
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaxonomyItemDto"
+            }
+          },
+          "location": {
+            "$ref": "#/components/schemas/LocationDto"
+          },
+          "openToCommissions": {
+            "type": "boolean"
+          },
+          "acceptConnections": {
+            "type": "boolean"
+          },
+          "contact": {
+            "$ref": "#/components/schemas/OwnContactDto"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfileLinkDto"
+            }
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SectionVisibilityDto"
+            }
+          },
+          "completion": {
+            "$ref": "#/components/schemas/CompletionDto"
+          },
+          "passport": {
+            "nullable": true,
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PassportSummaryDto"
+              }
+            ]
+          },
+          "onboardingCompleted": {
+            "type": "boolean"
+          },
+          "memberSince": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "counts": {
+            "$ref": "#/components/schemas/OwnCountsDto"
+          },
+          "shareUrl": {
+            "type": "string",
+            "nullable": true,
+            "description": "https://atarah.app/{handle}"
+          }
+        },
+        "required": [
+          "id",
+          "handle",
+          "displayName",
+          "headline",
+          "bio",
+          "avatarUrl",
+          "discipline",
+          "specialisations",
+          "skills",
+          "location",
+          "openToCommissions",
+          "acceptConnections",
+          "contact",
+          "links",
+          "sections",
+          "completion",
+          "passport",
+          "onboardingCompleted",
+          "memberSince",
+          "counts",
+          "shareUrl"
+        ]
+      },
+      "ProfileLinkInputDto": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "example": "Instagram",
+            "maxLength": 30
+          },
+          "url": {
+            "type": "string",
+            "example": "https://instagram.com/nia",
+            "description": "An https address."
+          }
+        },
+        "required": [
+          "label",
+          "url"
+        ]
+      },
+      "UpdateProfileDto": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 60
+          },
+          "headline": {
+            "type": "string",
+            "maxLength": 80,
+            "description": "Send an empty string to clear it."
+          },
+          "bio": {
+            "type": "string",
+            "maxLength": 160,
+            "description": "Send an empty string to clear it."
+          },
+          "links": {
+            "description": "Replaces all links. At most 8.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfileLinkInputDto"
+            }
+          },
+          "openToCommissions": {
+            "type": "boolean"
+          },
+          "contactShowEmail": {
+            "type": "boolean",
+            "description": "Show the email when the contact section is visible."
+          },
+          "contactShowPhone": {
+            "type": "boolean",
+            "description": "Show the phone number when the contact section is visible."
+          },
+          "contactForConnections": {
+            "type": "boolean",
+            "description": "Accepted connections see contact details even when the section is private."
+          },
+          "acceptConnections": {
+            "type": "boolean",
+            "description": "When false nobody can send a connection request."
+          }
+        }
+      },
+      "GrowthBarDto": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "percent": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          }
+        },
+        "required": [
+          "key",
+          "label",
+          "percent"
+        ]
+      },
+      "GrowthDto": {
+        "type": "object",
+        "properties": {
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "strength": {
+            "type": "string",
+            "enum": [
+              "EARLY",
+              "GROWING",
+              "ACTIVE",
+              "STRONG"
+            ]
+          },
+          "bars": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GrowthBarDto"
+            }
+          }
+        },
+        "required": [
+          "score",
+          "strength",
+          "bars"
+        ]
+      },
+      "PassportDto": {
+        "type": "object",
+        "properties": {
+          "passportNumber": {
+            "type": "string",
+            "example": "ATR-NBI-0042"
+          },
+          "issuedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "handle": {
+            "type": "string"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "discipline": {
+            "type": "string",
+            "nullable": true
+          },
+          "specialisation": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "$ref": "#/components/schemas/LocationDto"
+          },
+          "memberSince": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "trust": {
+            "description": "Trust pills. Empty until real verification exists.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "growth": {
+            "$ref": "#/components/schemas/GrowthDto"
+          },
+          "completion": {
+            "$ref": "#/components/schemas/CompletionDto"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SectionVisibilityDto"
+            }
+          },
+          "shareUrl": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "passportNumber",
+          "issuedAt",
+          "displayName",
+          "handle",
+          "avatarUrl",
+          "discipline",
+          "specialisation",
+          "location",
+          "memberSince",
+          "trust",
+          "growth",
+          "completion",
+          "sections",
+          "shareUrl"
+        ]
+      },
+      "SetSectionVisibilityDto": {
+        "type": "object",
+        "properties": {
+          "section": {
+            "type": "string",
+            "enum": [
+              "BIO",
+              "LOCATION",
+              "PORTFOLIO",
+              "SKILLS",
+              "EXPERIENCE",
+              "SERVICES",
+              "LINKS",
+              "CONTACT"
+            ]
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "PUBLIC",
+              "MEMBERS",
+              "PRIVATE"
+            ]
+          }
+        },
+        "required": [
+          "section",
+          "visibility"
+        ]
+      },
+      "ConnectionStateDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "format": "uuid"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "NONE",
+              "PENDING_SENT",
+              "PENDING_RECEIVED",
+              "CONNECTED"
+            ]
+          },
+          "canConnect": {
+            "type": "boolean",
+            "description": "Whether a request can be sent right now."
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true,
+            "description": "Why a request cannot be sent."
+          }
+        },
+        "required": [
+          "id",
+          "state",
+          "canConnect"
+        ]
+      },
+      "ContactDetailsDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "email",
+          "phone"
+        ]
+      },
+      "PublicProfileDto": {
+        "type": "object",
+        "properties": {
+          "handle": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "headline": {
+            "type": "string",
+            "nullable": true
+          },
+          "discipline": {
+            "nullable": true,
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DisciplineLite"
+              }
+            ]
+          },
+          "specialisations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaxonomyItemDto"
+            }
+          },
+          "openToCommissions": {
+            "type": "boolean"
+          },
+          "memberSince": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "relation": {
+            "type": "string",
+            "enum": [
+              "OWNER",
+              "CONNECTION",
+              "MEMBER",
+              "ANONYMOUS"
+            ],
+            "description": "How the caller relates to this profile (or the preview they asked for)."
+          },
+          "connection": {
+            "nullable": true,
+            "description": "Null for the owner, in a preview and when signed out.",
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConnectionStateDto"
+              }
+            ]
+          },
+          "bio": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "nullable": true,
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LocationDto"
+              }
+            ]
+          },
+          "skills": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaxonomyItemDto"
+            }
+          },
+          "links": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfileLinkDto"
+            }
+          },
+          "contact": {
+            "nullable": true,
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ContactDetailsDto"
+              }
+            ]
+          },
+          "visibleSections": {
+            "type": "array",
+            "description": "Sections the caller may see (some have no content yet).",
+            "items": {
+              "type": "string",
+              "enum": [
+                "BIO",
+                "LOCATION",
+                "PORTFOLIO",
+                "SKILLS",
+                "EXPERIENCE",
+                "SERVICES",
+                "LINKS",
+                "CONTACT"
+              ]
+            }
+          },
+          "lockedSections": {
+            "type": "array",
+            "description": "Sections hidden from the caller.",
+            "items": {
+              "type": "string",
+              "enum": [
+                "BIO",
+                "LOCATION",
+                "PORTFOLIO",
+                "SKILLS",
+                "EXPERIENCE",
+                "SERVICES",
+                "LINKS",
+                "CONTACT"
+              ]
+            }
+          },
+          "connectionCount": {
+            "type": "number",
+            "nullable": true,
+            "description": "Accepted connections; members only."
+          },
+          "shareUrl": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "handle",
+          "displayName",
+          "avatarUrl",
+          "headline",
+          "discipline",
+          "specialisations",
+          "openToCommissions",
+          "memberSince",
+          "relation",
+          "connection",
+          "bio",
+          "location",
+          "skills",
+          "links",
+          "contact",
+          "visibleSections",
+          "lockedSections",
+          "connectionCount",
+          "shareUrl"
+        ]
+      },
+      "ConnectionPersonDto": {
+        "type": "object",
+        "properties": {
+          "handle": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "headline": {
+            "type": "string",
+            "nullable": true
+          },
+          "discipline": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "handle",
+          "displayName",
+          "avatarUrl",
+          "headline",
+          "discipline"
+        ]
+      },
+      "ConnectionListItemDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "NONE",
+              "PENDING_SENT",
+              "PENDING_RECEIVED",
+              "CONNECTED"
+            ]
+          },
+          "person": {
+            "$ref": "#/components/schemas/ConnectionPersonDto"
+          },
+          "since": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "state",
+          "person",
+          "since"
+        ]
       }
     }
   }

@@ -899,4 +899,371 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get obHandleSuggestionsLabel => 'Available alternatives';
+
+  @override
+  String get pfPublicView => 'Public view';
+
+  @override
+  String get pfEditProfile => 'Edit profile';
+
+  @override
+  String get pfImproveBio => 'Improve my bio';
+
+  @override
+  String get pfAddHeadline => 'Add a headline';
+
+  @override
+  String get pfLocationNotSet => 'Location not set';
+
+  @override
+  String get pfLoadFailed => 'We couldn\'t load your profile';
+
+  @override
+  String get pfPassportCardTitle => 'Creative Passport';
+
+  @override
+  String get pfNextBestAction => 'Next best step';
+
+  @override
+  String pfCompletionPercent(int percent) {
+    return '$percent% complete';
+  }
+
+  @override
+  String get pfAllDone => 'Your profile is complete. Nice work.';
+
+  @override
+  String get pfYourTools => 'Your tools';
+
+  @override
+  String get pfMentorTools => 'Mentor tools';
+
+  @override
+  String get pfSellerTools => 'Seller tools';
+
+  @override
+  String get pfMyIdentity => 'My creative identity';
+
+  @override
+  String get pfPortfolio => 'Portfolio';
+
+  @override
+  String get pfSkills => 'Skills';
+
+  @override
+  String get pfExperience => 'Experience';
+
+  @override
+  String get pfAchievements => 'Achievements';
+
+  @override
+  String get pfServices => 'Services';
+
+  @override
+  String get pfConnections => 'Connections';
+
+  @override
+  String get pfSaved => 'Saved';
+
+  @override
+  String pfCount(int count) {
+    return '$count';
+  }
+
+  @override
+  String pfPendingRequests(int count) {
+    return '$count waiting';
+  }
+
+  @override
+  String get epTitle => 'Edit profile';
+
+  @override
+  String get epDisplayName => 'Display name';
+
+  @override
+  String get epHeadline => 'Headline';
+
+  @override
+  String get epHeadlineHint => 'For example: Character animator in Nairobi';
+
+  @override
+  String get epBio => 'Short bio';
+
+  @override
+  String get epLinks => 'Links';
+
+  @override
+  String get epLinkLabel => 'Label';
+
+  @override
+  String get epLinkUrl => 'Address (https://)';
+
+  @override
+  String get epAddLink => 'Add a link';
+
+  @override
+  String get epRemoveLink => 'Remove link';
+
+  @override
+  String epLinksLimit(int max) {
+    return 'You can add up to $max links.';
+  }
+
+  @override
+  String get epLinkInvalid => 'Enter a web address that starts with https://';
+
+  @override
+  String get epLinkLabelMissing => 'Give the link a label.';
+
+  @override
+  String get epContactPrefs => 'Contact and availability';
+
+  @override
+  String get epOpenToCommissions => 'Open to commissions';
+
+  @override
+  String get epShowEmail => 'Show my email when my contact details are visible';
+
+  @override
+  String get epShowPhone =>
+      'Show my phone number when my contact details are visible';
+
+  @override
+  String get epContactForConnections =>
+      'My connections can see my contact details';
+
+  @override
+  String get epAcceptConnections => 'Accept connection requests';
+
+  @override
+  String get epSave => 'Save changes';
+
+  @override
+  String get epSaved => 'Profile updated.';
+
+  @override
+  String get epNameError => 'Enter the name you want people to see.';
+
+  @override
+  String get ppTitle => 'Creative Passport';
+
+  @override
+  String ppMemberSince(String date) {
+    return 'Member since $date';
+  }
+
+  @override
+  String get ppGrowth => 'Growth';
+
+  @override
+  String get ppStrengthEarly => 'Early';
+
+  @override
+  String get ppStrengthGrowing => 'Growing';
+
+  @override
+  String get ppStrengthActive => 'Active';
+
+  @override
+  String get ppStrengthStrong => 'Strong';
+
+  @override
+  String get ppGrowthIdentity => 'Identity';
+
+  @override
+  String get ppGrowthPortfolio => 'Portfolio';
+
+  @override
+  String get ppGrowthSkills => 'Skills';
+
+  @override
+  String get ppGrowthLearning => 'Learning';
+
+  @override
+  String get ppGrowthConnections => 'Connections';
+
+  @override
+  String get ppGrowthProfessionalisation => 'Professionalisation';
+
+  @override
+  String get ppSections => 'Sections & visibility';
+
+  @override
+  String get ppSectionsBody =>
+      'Choose who can see each part of your profile. Changes apply straight away.';
+
+  @override
+  String get ppCopyLink => 'Copy link';
+
+  @override
+  String get ppLinkCopied => 'Link copied.';
+
+  @override
+  String get ppCreateCv => 'Create CV / EPK';
+
+  @override
+  String get ppVisibilityFailed => 'We couldn\'t change that. Try again.';
+
+  @override
+  String ppChooseAudience(String section) {
+    return 'Who can see $section?';
+  }
+
+  @override
+  String get vsPublic => 'Public';
+
+  @override
+  String get vsMembers => 'Members only';
+
+  @override
+  String get vsPrivate => 'Only me';
+
+  @override
+  String get vsPublicNote => 'Anyone, including people outside Atarah.';
+
+  @override
+  String get vsMembersNote => 'Signed-in Atarah members.';
+
+  @override
+  String get vsPrivateNote =>
+      'Only you (and connections, for contact details, if you allow it).';
+
+  @override
+  String get secBio => 'Bio';
+
+  @override
+  String get secLocation => 'Location';
+
+  @override
+  String get secPortfolio => 'Portfolio';
+
+  @override
+  String get secSkills => 'Skills';
+
+  @override
+  String get secExperience => 'Experience';
+
+  @override
+  String get secServices => 'Services';
+
+  @override
+  String get secLinks => 'Links';
+
+  @override
+  String get secContact => 'Contact details';
+
+  @override
+  String get cpAbout => 'About';
+
+  @override
+  String get cpPortfolio => 'Portfolio';
+
+  @override
+  String get cpServices => 'Services';
+
+  @override
+  String get cpShare => 'Share profile';
+
+  @override
+  String cpShareText(String name) {
+    return '$name on Atarah';
+  }
+
+  @override
+  String get cpOpenToCommissions => 'Open to commissions';
+
+  @override
+  String get cpConnect => 'Connect';
+
+  @override
+  String get cpMessage => 'Message';
+
+  @override
+  String get cpRequestSent => 'Request sent';
+
+  @override
+  String get cpCancelRequest => 'Cancel request';
+
+  @override
+  String get cpAccept => 'Accept';
+
+  @override
+  String get cpDecline => 'Decline';
+
+  @override
+  String get cpConnected => 'Connected';
+
+  @override
+  String get cpRemoveConnection => 'Remove connection';
+
+  @override
+  String get cpRemoveConfirmTitle => 'Remove this connection?';
+
+  @override
+  String get cpRemoveConfirmBody =>
+      'You\'ll stop being connected. You can send a new request later.';
+
+  @override
+  String get cpNotAccepting => 'Not accepting requests';
+
+  @override
+  String get cpAskLater => 'You can ask again later';
+
+  @override
+  String cpConnectionsCount(int count) {
+    return '$count connections';
+  }
+
+  @override
+  String get cpPreviewBanner => 'This is how your profile looks to others.';
+
+  @override
+  String get cpPreviewPublic => 'Public';
+
+  @override
+  String get cpPreviewMembers => 'Members';
+
+  @override
+  String get cpBioLocked => 'The bio is not shared with you.';
+
+  @override
+  String cpHidden(String section) {
+    return '$section is hidden.';
+  }
+
+  @override
+  String get cpSkillsHeading => 'Skills';
+
+  @override
+  String get cpSpecialisationsHeading => 'Specialisations';
+
+  @override
+  String get cpLinksHeading => 'Links';
+
+  @override
+  String get cpContactHeading => 'Contact';
+
+  @override
+  String get cpNoBio => 'No bio yet.';
+
+  @override
+  String get cpNoPortfolio => 'No projects yet.';
+
+  @override
+  String get cpNoServices => 'No services yet.';
+
+  @override
+  String get cpNotFoundTitle => 'We couldn\'t find that creative';
+
+  @override
+  String get cpActionFailed => 'That didn\'t work. Try again.';
+
+  @override
+  String cpMemberSince(String date) {
+    return 'Member since $date';
+  }
+
+  @override
+  String get leavingOpenFailed => 'We couldn\'t open that link.';
 }

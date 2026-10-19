@@ -12,7 +12,7 @@ export interface ProfileFacts {
   specialisationCount: number;
   skillCount: number;
   hasLocation: boolean;
-  /** Projects and experience arrive in P1-M4. Until then the counts are 0 and those items stay open. */
+  /** Published projects that a moderator has not hidden, and experience entries. */
   projectCount: number;
   experienceCount: number;
   contactVerified: boolean;
@@ -110,4 +110,22 @@ export function computeCompletion(facts: ProfileFacts): CompletionResult {
     .sort((a, b) => b.weight - a.weight)
     .slice(0, 3);
   return { percent, items, next };
+}
+
+const IDENTITY_KEYS: readonly CompletionKey[] = [
+  'avatar',
+  'bio',
+  'headline',
+  'discipline',
+  'specialisation',
+  'location',
+  'contact',
+];
+
+/** Share (0-100) of the identity items done, weighted. Feeds the Identity growth bar. */
+export function identityPercent(facts: ProfileFacts): number {
+  const rules = COMPLETION_RULES.filter((r) => IDENTITY_KEYS.includes(r.key));
+  const total = rules.reduce((s, r) => s + r.weight, 0);
+  const done = rules.reduce((s, r) => s + (r.done(facts) ? r.weight : 0), 0);
+  return Math.round((done * 100) / total);
 }

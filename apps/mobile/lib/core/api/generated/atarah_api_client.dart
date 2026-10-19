@@ -15,6 +15,7 @@ import 'taxonomy/taxonomy_client.dart';
 import 'locations/locations_client.dart';
 import 'onboarding/onboarding_client.dart';
 import 'admin_taxonomy/admin_taxonomy_client.dart';
+import 'profile/profile_client.dart';
 
 /// Atarah API `v1.0`.
 ///
@@ -38,6 +39,7 @@ class AtarahApiClient {
   LocationsClient? _locations;
   OnboardingClient? _onboarding;
   AdminTaxonomyClient? _adminTaxonomy;
+  ProfileClient? _profile;
 
   AuthClient get auth => _auth ??= AuthClient(_dio, baseUrl: _baseUrl);
 
@@ -66,4 +68,7 @@ class AtarahApiClient {
 
   AdminTaxonomyClient get adminTaxonomy =>
       _adminTaxonomy ??= AdminTaxonomyClient(_dio, baseUrl: _baseUrl);
+
+  ProfileClient get profile =>
+      _profile ??= ProfileClient(_dio, baseUrl: _baseUrl);
 }

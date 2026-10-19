@@ -170,6 +170,19 @@ export class MediaService {
     return this.storage.signedDownloadUrl(bucketKind(asset.bucket), key, ttl);
   }
 
+  /**
+   * Views of several assets for rendering inside content the caller has already decided the viewer may see
+   * (a project's files). Does no ownership check; assets that are deleted are left out.
+   */
+  async viewMany(ids: string[]): Promise<Map<string, MediaView>> {
+    if (ids.length === 0) return new Map();
+    const assets = await this.prisma.mediaAsset.findMany({
+      where: { id: { in: ids }, deletedAt: null },
+    });
+    const views = await Promise.all(assets.map((a) => this.view(a)));
+    return new Map(views.map((v) => [v.id, v]));
+  }
+
   async remove(ownerId: string, id: string): Promise<void> {
     const asset = await this.owned(ownerId, id);
     await this.prisma.mediaAsset.update({

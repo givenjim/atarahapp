@@ -67,6 +67,7 @@ model Discipline {
   primaryOf       CreativeProfile[]          @relation("PrimaryDiscipline")
   creatives       CreativeDiscipline[]
   suggestions     SpecialisationSuggestion[]
+  projectsOf      Project[]
 
   @@map("disciplines")
 }
@@ -100,8 +101,9 @@ model Skill {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  discipline Discipline?     @relation(fields: [disciplineId], references: [id], onDelete: SetNull)
-  creatives  CreativeSkill[]
+  discipline    Discipline?     @relation(fields: [disciplineId], references: [id], onDelete: SetNull)
+  creatives     CreativeSkill[]
+  projectSkills ProjectSkill[]
 
   @@index([disciplineId])
   @@map("skills")

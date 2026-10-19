@@ -13,6 +13,19 @@ enum OnboardingStep {
   DONE
 }
 
+/// Parts of a profile whose audience the member controls. Name, photo, discipline and handle are always shown
+/// on a profile that exists; everything else here has its own visibility.
+enum ProfileSection {
+  BIO
+  LOCATION
+  PORTFOLIO
+  SKILLS
+  EXPERIENCE
+  SERVICES
+  LINKS
+  CONTACT
+}
+
 enum SuggestionStatus {
   PENDING
   APPROVED
@@ -41,20 +54,35 @@ model CreativeProfile {
   onboardingCompletedAt DateTime?
   /// Cached result of the profile completion engine (0-100). Recomputed on every profile write.
   completionPercent     Int            @default(0)
+  /// "Open to commissions" shown on the public profile.
+  openToCommissions     Boolean        @default(false)
+  /// Contact preferences: which details appear when the CONTACT section is visible to a viewer.
+  contactShowEmail      Boolean        @default(true)
+  contactShowPhone      Boolean        @default(false)
+  /// Accepted connections may see contact details even while the CONTACT section is private.
+  contactForConnections Boolean        @default(false)
+  /// When false nobody can send this member a connection request.
+  acceptConnections     Boolean        @default(true)
   createdAt             DateTime       @default(now())
   updatedAt             DateTime       @updatedAt
 
-  user              User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  primaryDiscipline Discipline?               @relation("PrimaryDiscipline", fields: [primaryDisciplineId], references: [id], onDelete: SetNull)
-  country           Country?                  @relation(fields: [countryId], references: [id], onDelete: SetNull)
-  county            County?                   @relation(fields: [countyId], references: [id], onDelete: SetNull)
-  avatarMedia       MediaAsset?               @relation(fields: [avatarMediaId], references: [id], onDelete: SetNull)
-  disciplines       CreativeDiscipline[]
-  specialisations   CreativeSpecialisation[]
-  skills            CreativeSkill[]
-  interests         CreativeInterest[]
-  developmentAreas  CreativeDevelopmentArea[]
-  passport          CreativePassport?
+  user                       User                       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  primaryDiscipline          Discipline?                @relation("PrimaryDiscipline", fields: [primaryDisciplineId], references: [id], onDelete: SetNull)
+  country                    Country?                   @relation(fields: [countryId], references: [id], onDelete: SetNull)
+  county                     County?                    @relation(fields: [countyId], references: [id], onDelete: SetNull)
+  avatarMedia                MediaAsset?                @relation(fields: [avatarMediaId], references: [id], onDelete: SetNull)
+  disciplines                CreativeDiscipline[]
+  specialisations            CreativeSpecialisation[]
+  skills                     CreativeSkill[]
+  interests                  CreativeInterest[]
+  developmentAreas           CreativeDevelopmentArea[]
+  passport                   CreativePassport?
+  profileSectionVisibilities ProfileSectionVisibility[]
+  profileLinks               ProfileLink[]
+  projects                   Project[]
+  experiences                Experience[]
+  achievements               Achievement[]
+  profileServices            ProfileService[]
 
   @@index([primaryDisciplineId])
   @@index([countyId])
@@ -180,4 +208,54 @@ model PassportCounter {
   updatedAt  DateTime @updatedAt
 
   @@map("passport_counters")
+}
+
+/// Audience of one profile section. No row means the default (Master Prompt 6.2): bio, portfolio, skills,
+/// services and links PUBLIC; experience MEMBERS; contact PRIVATE. LOCATION lives on the profile itself
+/// (`locationVisibility`, chosen during onboarding) and is not stored here.
+model ProfileSectionVisibility {
+  profileId  String         @db.Uuid
+  section    ProfileSection
+  visibility Visibility
+  updatedAt  DateTime       @updatedAt
+
+  profile CreativeProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@id([profileId, section])
+  @@map("profile_section_visibility")
+}
+
+/// A social or web link shown on the profile.
+model ProfileLink {
+  id        String   @id @default(uuid()) @db.Uuid
+  profileId String   @db.Uuid
+  label     String
+  url       String
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  profile CreativeProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId, sortOrder])
+  @@map("profile_links")
+}
+
+/// One row per pair of members (a unique index on the unordered pair is added in the migration). Declining,
+/// removing and asking again reuse the row, so a pair never has two connections.
+model Connection {
+  id          String           @id @default(uuid()) @db.Uuid
+  requesterId String           @db.Uuid
+  addresseeId String           @db.Uuid
+  status      ConnectionStatus @default(PENDING)
+  respondedAt DateTime?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  requester User @relation("ConnectionRequester", fields: [requesterId], references: [id], onDelete: Cascade)
+  addressee User @relation("ConnectionAddressee", fields: [addresseeId], references: [id], onDelete: Cascade)
+
+  @@index([addresseeId, status])
+  @@index([requesterId, status])
+  @@map("connections")
 }

@@ -417,5 +417,189 @@
   "obCompletion": "Profile completion",
   "obGoHome": "Go to Home",
   "obLoadFailedTitle": "We couldn't load your setup",
-  "obHandleSuggestionsLabel": "Available alternatives"
+  "obHandleSuggestionsLabel": "Available alternatives",
+  "pfPublicView": "Public view",
+  "pfEditProfile": "Edit profile",
+  "pfImproveBio": "Improve my bio",
+  "pfAddHeadline": "Add a headline",
+  "pfLocationNotSet": "Location not set",
+  "pfLoadFailed": "We couldn't load your profile",
+  "pfPassportCardTitle": "Creative Passport",
+  "pfNextBestAction": "Next best step",
+  "pfCompletionPercent": "{percent}% complete",
+  "@pfCompletionPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "pfAllDone": "Your profile is complete. Nice work.",
+  "pfYourTools": "Your tools",
+  "pfMentorTools": "Mentor tools",
+  "pfSellerTools": "Seller tools",
+  "pfMyIdentity": "My creative identity",
+  "pfPortfolio": "Portfolio",
+  "pfSkills": "Skills",
+  "pfExperience": "Experience",
+  "pfAchievements": "Achievements",
+  "pfServices": "Services",
+  "pfConnections": "Connections",
+  "pfSaved": "Saved",
+  "pfCount": "{count}",
+  "@pfCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pfPendingRequests": "{count} waiting",
+  "@pfPendingRequests": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "epTitle": "Edit profile",
+  "epDisplayName": "Display name",
+  "epHeadline": "Headline",
+  "epHeadlineHint": "For example: Character animator in Nairobi",
+  "epBio": "Short bio",
+  "epLinks": "Links",
+  "epLinkLabel": "Label",
+  "epLinkUrl": "Address (https://)",
+  "epAddLink": "Add a link",
+  "epRemoveLink": "Remove link",
+  "epLinksLimit": "You can add up to {max} links.",
+  "@epLinksLimit": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "epLinkInvalid": "Enter a web address that starts with https://",
+  "epLinkLabelMissing": "Give the link a label.",
+  "epContactPrefs": "Contact and availability",
+  "epOpenToCommissions": "Open to commissions",
+  "epShowEmail": "Show my email when my contact details are visible",
+  "epShowPhone": "Show my phone number when my contact details are visible",
+  "epContactForConnections": "My connections can see my contact details",
+  "epAcceptConnections": "Accept connection requests",
+  "epSave": "Save changes",
+  "epSaved": "Profile updated.",
+  "epNameError": "Enter the name you want people to see.",
+  "ppTitle": "Creative Passport",
+  "ppMemberSince": "Member since {date}",
+  "@ppMemberSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "ppGrowth": "Growth",
+  "ppStrengthEarly": "Early",
+  "ppStrengthGrowing": "Growing",
+  "ppStrengthActive": "Active",
+  "ppStrengthStrong": "Strong",
+  "ppGrowthIdentity": "Identity",
+  "ppGrowthPortfolio": "Portfolio",
+  "ppGrowthSkills": "Skills",
+  "ppGrowthLearning": "Learning",
+  "ppGrowthConnections": "Connections",
+  "ppGrowthProfessionalisation": "Professionalisation",
+  "ppSections": "Sections & visibility",
+  "ppSectionsBody": "Choose who can see each part of your profile. Changes apply straight away.",
+  "ppCopyLink": "Copy link",
+  "ppLinkCopied": "Link copied.",
+  "ppCreateCv": "Create CV / EPK",
+  "ppVisibilityFailed": "We couldn't change that. Try again.",
+  "ppChooseAudience": "Who can see {section}?",
+  "@ppChooseAudience": {
+    "placeholders": {
+      "section": {
+        "type": "String"
+      }
+    }
+  },
+  "vsPublic": "Public",
+  "vsMembers": "Members only",
+  "vsPrivate": "Only me",
+  "vsPublicNote": "Anyone, including people outside Atarah.",
+  "vsMembersNote": "Signed-in Atarah members.",
+  "vsPrivateNote": "Only you (and connections, for contact details, if you allow it).",
+  "secBio": "Bio",
+  "secLocation": "Location",
+  "secPortfolio": "Portfolio",
+  "secSkills": "Skills",
+  "secExperience": "Experience",
+  "secServices": "Services",
+  "secLinks": "Links",
+  "secContact": "Contact details",
+  "cpAbout": "About",
+  "cpPortfolio": "Portfolio",
+  "cpServices": "Services",
+  "cpShare": "Share profile",
+  "cpShareText": "{name} on Atarah",
+  "@cpShareText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "cpOpenToCommissions": "Open to commissions",
+  "cpConnect": "Connect",
+  "cpMessage": "Message",
+  "cpRequestSent": "Request sent",
+  "cpCancelRequest": "Cancel request",
+  "cpAccept": "Accept",
+  "cpDecline": "Decline",
+  "cpConnected": "Connected",
+  "cpRemoveConnection": "Remove connection",
+  "cpRemoveConfirmTitle": "Remove this connection?",
+  "cpRemoveConfirmBody": "You'll stop being connected. You can send a new request later.",
+  "cpNotAccepting": "Not accepting requests",
+  "cpAskLater": "You can ask again later",
+  "cpConnectionsCount": "{count} connections",
+  "@cpConnectionsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cpPreviewBanner": "This is how your profile looks to others.",
+  "cpPreviewPublic": "Public",
+  "cpPreviewMembers": "Members",
+  "cpBioLocked": "The bio is not shared with you.",
+  "cpHidden": "{section} is hidden.",
+  "@cpHidden": {
+    "placeholders": {
+      "section": {
+        "type": "String"
+      }
+    }
+  },
+  "cpSkillsHeading": "Skills",
+  "cpSpecialisationsHeading": "Specialisations",
+  "cpLinksHeading": "Links",
+  "cpContactHeading": "Contact",
+  "cpNoBio": "No bio yet.",
+  "cpNoPortfolio": "No projects yet.",
+  "cpNoServices": "No services yet.",
+  "cpNotFoundTitle": "We couldn't find that creative",
+  "cpActionFailed": "That didn't work. Try again.",
+  "cpMemberSince": "Member since {date}",
+  "@cpMemberSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "leavingOpenFailed": "We couldn't open that link."
 }

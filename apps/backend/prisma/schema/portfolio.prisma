@@ -1,0 +1,191 @@
+// Portfolio, experience, achievements and profile services (P1-M4). Owner module: creative.
+
+enum ProjectCategory {
+  PROJECT
+  MEDIA
+  PUBLICATION
+  PERFORMANCE
+}
+
+enum CollaboratorStatus {
+  /// A tagged member who has not answered yet. Not shown on the public project.
+  PENDING
+  ACCEPTED
+  /// The tagged member removed themselves, or the owner removed them.
+  REMOVED
+}
+
+enum AchievementType {
+  AWARD
+  CERTIFICATE
+  FEATURE
+  SELECTION
+  NOMINATION
+}
+
+enum AchievementSource {
+  MANUAL
+  /// Added by Atarah, for example a Skill Labs certificate (P1-M8).
+  SYSTEM
+}
+
+/// A piece of work. A project is shown to a viewer only when both the PORTFOLIO section and the project's own
+/// `visibility` allow it. Drafts are visible to the owner only.
+model Project {
+  id           String            @id @default(uuid()) @db.Uuid
+  profileId    String            @db.Uuid
+  title        String
+  role         String?
+  client       String?
+  /// When the work was done (month precision is enough; stored as a date).
+  projectDate  DateTime?         @db.Date
+  category     ProjectCategory   @default(PROJECT)
+  disciplineId String?           @db.Uuid
+  description  String?
+  outcome      String?
+  featured     Boolean           @default(false)
+  status       PublicationStatus @default(DRAFT)
+  visibility   Visibility        @default(PUBLIC)
+  publishedAt  DateTime?
+  /// Moderation: a hidden project is invisible to everyone except its owner, who is told why.
+  hiddenAt     DateTime?
+  hiddenReason String?
+  hiddenById   String?           @db.Uuid
+  deletedAt    DateTime?
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  profile       CreativeProfile       @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  discipline    Discipline?           @relation(fields: [disciplineId], references: [id], onDelete: SetNull)
+  media         ProjectMedia[]
+  skills        ProjectSkill[]
+  collaborators ProjectCollaborator[]
+  links         ProjectLink[]
+
+  @@index([profileId, status, deletedAt])
+  @@index([profileId, featured])
+  @@map("projects")
+}
+
+model ProjectMedia {
+  projectId String   @db.Uuid
+  mediaId   String   @db.Uuid
+  sortOrder Int      @default(0)
+  caption   String?
+  createdAt DateTime @default(now())
+
+  project Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  media   MediaAsset @relation(fields: [mediaId], references: [id], onDelete: Restrict)
+
+  @@id([projectId, mediaId])
+  @@index([projectId, sortOrder])
+  @@index([mediaId])
+  @@map("project_media")
+}
+
+model ProjectSkill {
+  projectId String @db.Uuid
+  skillId   String @db.Uuid
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  skill   Skill   @relation(fields: [skillId], references: [id], onDelete: Restrict)
+
+  @@id([projectId, skillId])
+  @@index([skillId])
+  @@map("project_skills")
+}
+
+/// An external link on a project (website, video, publication). YouTube and Vimeo links play through the embed.
+model ProjectLink {
+  id        String   @id @default(uuid()) @db.Uuid
+  projectId String   @db.Uuid
+  label     String
+  url       String
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, sortOrder])
+  @@map("project_links")
+}
+
+/// Either a member (`userId`, who must accept) or a person named in free text (`name`, accepted at once).
+model ProjectCollaborator {
+  id        String             @id @default(uuid()) @db.Uuid
+  projectId String             @db.Uuid
+  userId    String?            @db.Uuid
+  name      String?
+  role      String?
+  status    CollaboratorStatus @default(PENDING)
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User?   @relation("ProjectCollaborations", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([userId, status])
+  @@map("project_collaborators")
+}
+
+model Experience {
+  id           String    @id @default(uuid()) @db.Uuid
+  profileId    String    @db.Uuid
+  title        String
+  organisation String
+  location     String?
+  startDate    DateTime  @db.Date
+  /// Null while `current` is true.
+  endDate      DateTime? @db.Date
+  current      Boolean   @default(false)
+  description  String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  profile CreativeProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId, startDate])
+  @@map("experiences")
+}
+
+model Achievement {
+  id          String            @id @default(uuid()) @db.Uuid
+  profileId   String            @db.Uuid
+  type        AchievementType
+  title       String
+  issuer      String?
+  achievedOn  DateTime?         @db.Date
+  description String?
+  url         String?
+  source      AchievementSource @default(MANUAL)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  profile CreativeProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId, achievedOn])
+  @@map("achievements")
+}
+
+/// A service offered on the member's profile. Becomes a marketplace listing in P2-M3 (`ON_MARKETPLACE`).
+model ProfileService {
+  id          String               @id @default(uuid()) @db.Uuid
+  profileId   String               @db.Uuid
+  title       String
+  description String?
+  priceType   PricingType          @default(ON_REQUEST)
+  /// Minor units (cents) of `currency`. `priceMax` is used for RANGE only.
+  priceMin    Int?
+  priceMax    Int?
+  currency    String               @default("KES") @db.Char(3)
+  status      ProfileServiceStatus @default(PROFILE_ONLY)
+  sortOrder   Int                  @default(0)
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+
+  profile CreativeProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId, sortOrder])
+  @@map("profile_services")
+}

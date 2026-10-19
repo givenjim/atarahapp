@@ -13,6 +13,8 @@ import '../../features/auth/verify_screen.dart';
 import '../../features/auth/welcome_screen.dart';
 import '../../features/onboarding/onboarding_providers.dart';
 import '../../features/onboarding/onboarding_screen.dart';
+import '../../features/profile/creative_profile_screen.dart';
+import '../../features/profile/passport_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/shell/app_shell.dart';
 import '../../features/shell/future_route_screen.dart';
@@ -36,7 +38,6 @@ final List<
   ({String path, String phase, String Function(AppLocalizations) name})
 >
 _detailRoutes = [
-  (path: Routes.creative, phase: 'p1', name: (l) => l.featureCreativeProfile),
   (path: Routes.project, phase: 'p1', name: (l) => l.featureProject),
   (path: Routes.opportunity, phase: 'p1', name: (l) => l.featureOpportunities),
   (path: Routes.course, phase: 'p1', name: (l) => l.featureCourse),
@@ -120,6 +121,14 @@ GoRouter appRouter(Ref ref) {
       GoRoute(
         path: Routes.onboarding,
         builder: (_, _) => const OnboardingScreen(),
+      ),
+      GoRoute(path: Routes.passport, builder: (_, _) => const PassportScreen()),
+      GoRoute(
+        path: Routes.creative,
+        builder: (_, state) => CreativeProfileScreen(
+          handle: state.pathParameters['handle'] ?? '',
+          preview: state.uri.queryParameters['preview'] == '1',
+        ),
       ),
       if (devTools)
         GoRoute(

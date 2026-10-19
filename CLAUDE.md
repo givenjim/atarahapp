@@ -2,7 +2,7 @@
 
 Atarah is a Luxaion Creatives product: a Creative Operating Layer for Kenyan creatives.
 
-**The contract is `docs/MASTER_PROMPT.md`.** Read the section for the active milestone before starting it. The register of record is `docs/PROJECT_PROGRESS.md`; decisions go in `docs/DECISIONS.md`.
+**The contract is `docs/MASTER_PROMPT.md`.** Read the section for the active milestone before starting it. The register of record is `docs/PROGRESS.md`; decisions go in `docs/DECISIONS.md`.
 
 ## Hard rules (summary — the Master Prompt §1 wins)
 
@@ -23,3 +23,7 @@ Atarah is a Luxaion Creatives product: a Creative Operating Layer for Kenyan cre
 ## Commands
 
 `just --list` (or the `pnpm` scripts). Details in `docs/DEVELOPMENT.md`.
+
+## Milestone reporting (owner, 2026-10-19; DEC-047)
+
+No per-milestone report files. After every milestone: update `docs/PROGRESS.md` and `docs/DECISIONS.md`, then give a short summary in chat (what was built, test evidence, not verified, decisions to confirm, changed areas, manual check) and stop for the owner.

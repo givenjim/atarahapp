@@ -11,12 +11,14 @@ import 'package:atarah/core/providers.dart';
 import 'package:atarah/core/routing/app_router.dart';
 import 'package:atarah/core/storage/token_store.dart';
 import 'package:atarah/features/onboarding/onboarding_providers.dart';
+import 'package:atarah/features/profile/profile_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 
 import 'fake_onboarding.dart';
+import 'fake_profile.dart';
 import 'fakes.dart';
 
 /// A 1x1 transparent PNG, so avatar images decode in tests without a network.
@@ -128,6 +130,7 @@ class Harness {
     FakeOnboardingRepository? onboarding,
     FakeLocationLookup? location,
     FakePhotoPicker? picker,
+    FakeProfileRepository? profile,
     Flavor flavor = Flavor.dev,
   }) : auth = auth ?? FakeAuthRepository(),
        content = content ?? FakeContentRepository(),
@@ -140,6 +143,7 @@ class Harness {
            ),
        location = location ?? FakeLocationLookup(),
        picker = picker ?? FakePhotoPicker(),
+       profile = profile ?? FakeProfileRepository(),
        analytics = RecordingAnalytics() {
     container = ProviderContainer(
       retry: noAutomaticRetry,
@@ -152,6 +156,12 @@ class Harness {
         onboardingRepositoryProvider.overrideWithValue(this.onboarding),
         locationLookupProvider.overrideWithValue(this.location),
         photoPickerProvider.overrideWithValue(this.picker),
+        profileRepositoryProvider.overrideWithValue(this.profile),
+        shareTextProvider.overrideWithValue((text) async => shared.add(text)),
+        openLinkProvider.overrideWithValue((uri) async {
+          opened.add(uri);
+          return true;
+        }),
         photoCropperProvider.overrideWithValue(fakeCropper),
         avatarImageProvider.overrideWithValue((_) => MemoryImage(_pixel)),
         analyticsProvider.overrideWithValue(analytics),
@@ -166,6 +176,11 @@ class Harness {
   final FakeOnboardingRepository onboarding;
   final FakeLocationLookup location;
   final FakePhotoPicker picker;
+  final FakeProfileRepository profile;
+
+  /// Text handed to the share sheet and addresses opened in the browser.
+  final List<String> shared = [];
+  final List<Uri> opened = [];
   final RecordingAnalytics analytics;
   late final ProviderContainer container;
 

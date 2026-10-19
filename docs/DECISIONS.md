@@ -295,3 +295,58 @@ Dated, numbered entries (Master Prompt §9.2). Format: decision, context, option
 - Taxonomy admin: create, rename, archive and restore, reorder, with usage counts. Slugs never change. Archived entries leave new selections but stay on profiles that already have them. Nothing is deleted. Permission `taxonomy.manage` (CONTENT_ADMIN, PLATFORM_ADMIN, SUPER_ADMIN). The admin e2e signs in as the existing PLATFORM_ADMIN fixture, so a CONTENT_ADMIN-only login is covered by the backend integration tests but not by Playwright.
 - **API naming:** controller method names become OpenAPI operation ids, which must be unique or the generated clients break. `list` and `complete` collided, so the admin list is `listTaxonomy` and onboarding completion is `completeOnboarding`.
 - Swagger tag names must be plain ASCII ("Admin Taxonomy"): a "·" in a tag produced a directory name that broke the Dart generator.
+
+## DEC-040 — Profile visibility model (P1-M3)
+
+- **Date:** 2026-10-18
+- **Always shown** on a profile that can be seen: name, photo, headline, discipline and specialisations, handle, "open to commissions", member-since. A member cannot hide their identity card (that is what makes them findable and connectable).
+- **Sections with their own audience** (`ProfileSection`): bio, location, portfolio, skills, experience, services, links, contact. Defaults follow Master Prompt 6.2 (bio, portfolio, skills, services, links public; experience and location members; contact private). One row per changed section (`profile_section_visibility`); no row means the default. **Location keeps living on the profile** (`locationVisibility`, chosen in onboarding) so there is a single source of truth; the Passport reads and writes that column for the LOCATION row.
+- **Viewer relations:** owner, connection, member, anonymous. The three visibility levels give connections the same view as members, with one real difference: **contact details**. A member can tick "My connections can see my contact details", which shows email and phone (as chosen by the show-email and show-phone preferences) to accepted connections even while the section is private. Nobody else ever sees a private section.
+- **A profile that cannot be seen does not exist:** unknown handle, setup unfinished, suspended or deleted account all answer 404 (the owner still sees their own). Blocking arrives with the community milestone and will hide profiles the same way.
+- **The connection count** is shown to signed-in members, not to anonymous visitors.
+- **Owner preview** (`previewAs=PUBLIC|MEMBERS`) lets the owner see exactly what the server would send to the public or to other members. Only the owner may use it (403 otherwise).
+- **Passport and "Public view" share the same server filter**, so what the owner previews is what others get; there is no second code path in the app.
+- Links must be `https://`, at most 8, duplicates collapse. The handle cannot be changed here.
+
+## DEC-041 — Connections
+
+- **Date:** 2026-10-18
+- One `connections` row per pair of members (unique index on the unordered pair, CHECK against self). Status PENDING, ACCEPTED, DECLINED, REMOVED; declining, removing and asking again reuse the row, so a pair never has two.
+- Asking someone who already asked you accepts their request. Two members pressing Connect at the same moment end up connected (the unique index decides, the loser answers the winner's request).
+- **Declined requests cool down for 30 days** for the requester (anti-harassment; constant `DECLINE_COOLDOWN_DAYS`, easy to move to settings). Removing a connection has no cooldown. A member can switch off "Accept connection requests" (`acceptConnections`), which disables Connect for everyone.
+- Notifications (COMMUNITY): request received, request accepted. A notification failure never undoes the connection.
+- Only accepted connections between active members who finished setup count and are listed. The list and incoming-requests endpoints exist now (`GET /me/connections?listState=`); the screens arrive with P1-M6.
+- **Message opens "Soon · Later":** member-to-member messaging is out of scope (Master Prompt decision 14); enquiry threads come with the marketplace in P2-M3.
+
+## DEC-042 — Growth is computed live
+
+- **Date:** 2026-10-18
+- The six growth bars (formulas in `docs/DOMAIN.md`) are computed from real data on every request. The optional `GrowthSnapshot` cache was not built: the inputs are a handful of indexed counts, so there is nothing to cache yet. Revisit if the Passport becomes slow.
+- Inputs that belong to later milestones (projects, experience, achievements, services, courses, verification) are 0 until those features exist. The bars stay low rather than being hidden or invented.
+
+## DEC-043 — Optional authentication on public reads
+
+- **Date:** 2026-10-18
+- `@OptionalAuth()` marks a route that works signed out and signed in. No token means anonymous; a token is verified exactly as everywhere else, and a bad or expired token is a **401** (so the app can refresh it) rather than silently downgrading the caller to anonymous. `@Viewer()` reads the caller. `GET /creatives/{handle}` is the first user. The anonymous web profile page is not built in this milestone.
+
+## DEC-044 — Sharing and external links
+
+- **Date:** 2026-10-18
+- The share link is `ATARAH_APP_LINK_BASE_URL` (default `https://atarah.app`) plus the handle, pending the domain decision (DEC-007). The app shares text and link through the system share sheet (`share_plus`) and copies the link from the Passport.
+- Links on a profile open through the existing "You're leaving Atarah" modal, then the browser (`url_launcher`). **The modal's body copy says Atarah "doesn't receive or process this application"**, which is written for opportunity applications and reads oddly for a profile link. Owner: please supply copy for the general case.
+- Every profile has a public share link. There is no profile-level "private profile" switch in Phase 1; sections are the control.
+
+## DEC-045 — Query parameter names that generate safe Dart enums
+
+- **Date:** 2026-10-18
+- The Dart generator names an enum after the query parameter. `state` and `preview` produced types called `State` and `Preview`, which clash with Flutter's `State`. The parameters are `listState` and `previewAs`, and the same rule applies to future endpoints (avoid `state`, `status`, `connectionState`, `key`, `size` and other Flutter names).
+
+## DEC-046 — Profile tab next steps
+
+- **Date:** 2026-10-18
+- The profile tab's "next best step" comes from the completion engine. Bio and headline open the edit sheet; contact opens the Passport; everything else (photo, discipline, specialisation, skills, location, project, experience) opens its labelled "Soon" screen, because editing those arrives with P1-M4. The edit sheet covers exactly what the Master Prompt lists: name, headline, bio, links and contact preferences, plus "open to commissions" and "accept connection requests".
+
+## DEC-047 — Progress file and chat summaries replace milestone reports
+
+- **Date:** 2026-10-19
+- **Decision (owner):** no `MILESTONE_REPORT_*.md` files. `docs/PROGRESS.md` (phase and milestone tracker, with a "Where we are" block, evidence, suggested commit message and notes per milestone) replaces `docs/PROJECT_PROGRESS.md`. After every milestone it is updated and a summary is given in chat. This supersedes the report and register wording in Master Prompt §9.1 and §9.3. `GATE_REPORT_P0.md` stays as the phase gate record.

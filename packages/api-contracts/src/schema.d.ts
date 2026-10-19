@@ -836,6 +836,166 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/me/profile": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["myProfile"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["updateProfile"];
+        trace?: never;
+    };
+    "/api/v1/me/passport": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["myPassport"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/passport/visibility": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["setVisibility"];
+        trace?: never;
+    };
+    "/api/v1/me/growth": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["myGrowth"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/creatives/{handle}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["creative"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/creatives/{handle}/connect": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["connect"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/connections/{id}/accept": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["accept"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/connections/{id}/decline": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["decline"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/connections/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["removeConnection"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/connections": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["myConnections"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -1432,6 +1592,193 @@ export interface components {
         };
         RejectSuggestionDto: {
             note?: string;
+        };
+        LocationDto: {
+            countryName: string | null;
+            countyName: string | null;
+            town: string | null;
+        };
+        OwnContactDto: {
+            email: string | null;
+            phone: string | null;
+            showEmail: boolean;
+            showPhone: boolean;
+            forConnections: boolean;
+        };
+        ProfileLinkDto: {
+            /** Format: uuid */
+            id: string;
+            label: string;
+            url: string;
+        };
+        SectionVisibilityDto: {
+            /** @enum {string} */
+            section: "BIO" | "LOCATION" | "PORTFOLIO" | "SKILLS" | "EXPERIENCE" | "SERVICES" | "LINKS" | "CONTACT";
+            /** @enum {string} */
+            visibility: "PUBLIC" | "MEMBERS" | "PRIVATE";
+        };
+        PassportSummaryDto: {
+            /** @example ATR-NBI-0042 */
+            passportNumber: string;
+            /** Format: date-time */
+            issuedAt: string;
+        };
+        OwnCountsDto: {
+            skills: number;
+            /** @description Accepted connections. */
+            connections: number;
+            /** @description Requests waiting for the member to answer. */
+            pendingRequests: number;
+        };
+        OwnProfileDto: {
+            /** Format: uuid */
+            id: string;
+            handle: string | null;
+            displayName: string;
+            headline: string | null;
+            bio: string | null;
+            avatarUrl: string | null;
+            discipline: components["schemas"]["DisciplineLite"] | null;
+            specialisations: components["schemas"]["TaxonomyItemDto"][];
+            skills: components["schemas"]["TaxonomyItemDto"][];
+            location: components["schemas"]["LocationDto"];
+            openToCommissions: boolean;
+            acceptConnections: boolean;
+            contact: components["schemas"]["OwnContactDto"];
+            links: components["schemas"]["ProfileLinkDto"][];
+            sections: components["schemas"]["SectionVisibilityDto"][];
+            completion: components["schemas"]["CompletionDto"];
+            passport: components["schemas"]["PassportSummaryDto"] | null;
+            onboardingCompleted: boolean;
+            /** Format: date-time */
+            memberSince: string;
+            counts: components["schemas"]["OwnCountsDto"];
+            /** @description https://atarah.app/{handle} */
+            shareUrl: string | null;
+        };
+        ProfileLinkInputDto: {
+            /** @example Instagram */
+            label: string;
+            /**
+             * @description An https address.
+             * @example https://instagram.com/nia
+             */
+            url: string;
+        };
+        UpdateProfileDto: {
+            displayName?: string;
+            /** @description Send an empty string to clear it. */
+            headline?: string;
+            /** @description Send an empty string to clear it. */
+            bio?: string;
+            /** @description Replaces all links. At most 8. */
+            links?: components["schemas"]["ProfileLinkInputDto"][];
+            openToCommissions?: boolean;
+            /** @description Show the email when the contact section is visible. */
+            contactShowEmail?: boolean;
+            /** @description Show the phone number when the contact section is visible. */
+            contactShowPhone?: boolean;
+            /** @description Accepted connections see contact details even when the section is private. */
+            contactForConnections?: boolean;
+            /** @description When false nobody can send a connection request. */
+            acceptConnections?: boolean;
+        };
+        GrowthBarDto: {
+            key: string;
+            label: string;
+            percent: number;
+        };
+        GrowthDto: {
+            score: number;
+            /** @enum {string} */
+            strength: "EARLY" | "GROWING" | "ACTIVE" | "STRONG";
+            bars: components["schemas"]["GrowthBarDto"][];
+        };
+        PassportDto: {
+            /** @example ATR-NBI-0042 */
+            passportNumber: string;
+            /** Format: date-time */
+            issuedAt: string;
+            displayName: string;
+            handle: string;
+            avatarUrl: string | null;
+            discipline: string | null;
+            specialisation: string | null;
+            location: components["schemas"]["LocationDto"];
+            /** Format: date-time */
+            memberSince: string;
+            /** @description Trust pills. Empty until real verification exists. */
+            trust: string[];
+            growth: components["schemas"]["GrowthDto"];
+            completion: components["schemas"]["CompletionDto"];
+            sections: components["schemas"]["SectionVisibilityDto"][];
+            shareUrl: string;
+        };
+        SetSectionVisibilityDto: {
+            /** @enum {string} */
+            section: "BIO" | "LOCATION" | "PORTFOLIO" | "SKILLS" | "EXPERIENCE" | "SERVICES" | "LINKS" | "CONTACT";
+            /** @enum {string} */
+            visibility: "PUBLIC" | "MEMBERS" | "PRIVATE";
+        };
+        ConnectionStateDto: {
+            /** Format: uuid */
+            id: string | null;
+            /** @enum {string} */
+            state: "NONE" | "PENDING_SENT" | "PENDING_RECEIVED" | "CONNECTED";
+            /** @description Whether a request can be sent right now. */
+            canConnect: boolean;
+            /** @description Why a request cannot be sent. */
+            reason?: string | null;
+        };
+        ContactDetailsDto: {
+            email: string | null;
+            phone: string | null;
+        };
+        PublicProfileDto: {
+            handle: string;
+            displayName: string;
+            avatarUrl: string | null;
+            headline: string | null;
+            discipline: components["schemas"]["DisciplineLite"] | null;
+            specialisations: components["schemas"]["TaxonomyItemDto"][];
+            openToCommissions: boolean;
+            /** Format: date-time */
+            memberSince: string;
+            /**
+             * @description How the caller relates to this profile (or the preview they asked for).
+             * @enum {string}
+             */
+            relation: "OWNER" | "CONNECTION" | "MEMBER" | "ANONYMOUS";
+            /** @description Null for the owner, in a preview and when signed out. */
+            connection: components["schemas"]["ConnectionStateDto"] | null;
+            bio: string | null;
+            location: components["schemas"]["LocationDto"] | null;
+            skills: components["schemas"]["TaxonomyItemDto"][] | null;
+            links: components["schemas"]["ProfileLinkDto"][] | null;
+            contact: components["schemas"]["ContactDetailsDto"] | null;
+            /** @description Sections the caller may see (some have no content yet). */
+            visibleSections: ("BIO" | "LOCATION" | "PORTFOLIO" | "SKILLS" | "EXPERIENCE" | "SERVICES" | "LINKS" | "CONTACT")[];
+            /** @description Sections hidden from the caller. */
+            lockedSections: ("BIO" | "LOCATION" | "PORTFOLIO" | "SKILLS" | "EXPERIENCE" | "SERVICES" | "LINKS" | "CONTACT")[];
+            /** @description Accepted connections; members only. */
+            connectionCount: number | null;
+            shareUrl: string;
+        };
+        ConnectionPersonDto: {
+            handle: string;
+            displayName: string;
+            avatarUrl: string | null;
+            headline: string | null;
+            discipline: string | null;
+        };
+        ConnectionListItemDto: {
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            state: "NONE" | "PENDING_SENT" | "PENDING_RECEIVED" | "CONNECTED";
+            person: components["schemas"]["ConnectionPersonDto"];
+            /** Format: date-time */
+            since: string;
         };
     };
     responses: never;
@@ -2960,6 +3307,295 @@ export interface operations {
                 content: {
                     "application/json": {
                         data: components["schemas"]["AdminSuggestionDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    myProfile: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["OwnProfileDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    updateProfile: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateProfileDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["OwnProfileDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    myPassport: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["PassportDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    setVisibility: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SetSectionVisibilityDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["SectionVisibilityDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    myGrowth: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["GrowthDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    creative: {
+        parameters: {
+            query?: {
+                /** @description Owner only: see the profile as the public or as other members do. */
+                previewAs?: "PUBLIC" | "MEMBERS";
+            };
+            header?: never;
+            path: {
+                handle: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["PublicProfileDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    connect: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                handle: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ConnectionStateDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    accept: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ConnectionStateDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    decline: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ConnectionStateDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    removeConnection: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ConnectionStateDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    myConnections: {
+        parameters: {
+            query?: {
+                listState?: "CONNECTED" | "PENDING_RECEIVED" | "PENDING_SENT";
+                page?: number;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ConnectionListItemDto"][];
                         meta?: {
                             [key: string]: unknown;
                         };

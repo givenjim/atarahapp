@@ -49,8 +49,9 @@ model MediaAsset {
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
 
-  owner    User?             @relation(fields: [ownerId], references: [id], onDelete: SetNull)
-  avatarOf CreativeProfile[]
+  owner        User?             @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  avatarOf     CreativeProfile[]
+  projectMedia ProjectMedia[]
 
   @@unique([bucket, objectKey])
   @@index([ownerId, status])

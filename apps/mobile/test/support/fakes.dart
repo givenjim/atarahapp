@@ -7,6 +7,7 @@ MeDto fakeUser({
   String name = 'Test Member',
   String email = 'member@test.atarah.local',
   bool pro = false,
+  List<MeDtoRoles> roles = const [],
 }) => MeDto(
   id: '00000000-0000-4000-8000-000000000001',
   fullName: name,
@@ -17,7 +18,7 @@ MeDto fakeUser({
   status: MeDtoStatus.active,
   timeZone: 'Africa/Nairobi',
   locale: 'en',
-  roles: const [],
+  roles: roles,
   entitlements: const [],
   membership: MembershipSummaryDto(
     plan: pro ? MembershipSummaryDtoPlan.pro : MembershipSummaryDtoPlan.free,
