@@ -4,6 +4,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+import 'admin_me_dto_appearance.dart';
 import 'admin_me_dto_roles.dart';
 import 'admin_me_dto_status.dart';
 import 'membership_summary_dto.dart';
@@ -22,10 +23,13 @@ class AdminMeDto {
     required this.status,
     required this.timeZone,
     required this.locale,
+    required this.appearance,
+    required this.marketingOptIn,
     required this.roles,
     required this.entitlements,
     required this.membership,
     required this.createdAt,
+    required this.deletionScheduledFor,
     required this.permissions,
   });
 
@@ -43,12 +47,17 @@ class AdminMeDto {
   final AdminMeDtoStatus status;
   final String timeZone;
   final String locale;
+  final AdminMeDtoAppearance appearance;
+  final bool marketingOptIn;
   final List<AdminMeDtoRoles> roles;
 
   /// Hints for showing or hiding controls. The server decides every action.
   final List<String> entitlements;
   final MembershipSummaryDto membership;
   final DateTime createdAt;
+
+  /// Set while the account is scheduled for deletion: the date the data is purged. Sign-in then offers Restore account.
+  final DateTime? deletionScheduledFor;
 
   /// Effective permissions, for the console sidebar.
   final List<String> permissions;

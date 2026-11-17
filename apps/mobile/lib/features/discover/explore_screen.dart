@@ -49,7 +49,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
     const pad = EdgeInsets.symmetric(horizontal: AtSpacing.gutter);
 
     return Scaffold(
-      backgroundColor: AtColors.white,
+      backgroundColor: context.at.background,
       body: SafeArea(
         bottom: false,
         child: RefreshIndicator(
@@ -77,7 +77,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                       child: Text(
                         l10n.dcExploreTitle,
                         style: AtTextStyles.tabTitle.copyWith(
-                          color: AtColors.ink,
+                          color: context.at.ink,
                           fontSize: 28,
                         ),
                       ),
@@ -85,7 +85,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                     const SizedBox(height: 4),
                     Text(
                       l10n.dcExploreBody,
-                      style: AtTextStyles.body.copyWith(color: AtColors.body),
+                      style: AtTextStyles.body.copyWith(color: context.at.body),
                     ),
                     const SizedBox(height: 16),
                     Row(
@@ -217,10 +217,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                   semanticLabel: l10n.dcDiscoveredTitle,
                   child: Row(
                     children: [
-                      const Icon(
-                        LucideIcons.badgeCheck,
-                        color: AtColors.primary,
-                      ),
+                      Icon(LucideIcons.badgeCheck, color: context.at.primary),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Column(
@@ -229,14 +226,14 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                             Text(
                               l10n.dcDiscoveredTitle,
                               style: AtTextStyles.cardTitle.copyWith(
-                                color: AtColors.ink,
+                                color: context.at.ink,
                               ),
                             ),
                             const SizedBox(height: 2),
                             Text(
                               l10n.dcDiscoveredBody,
                               style: AtTextStyles.bodySm.copyWith(
-                                color: AtColors.body,
+                                color: context.at.body,
                               ),
                             ),
                           ],
@@ -273,20 +270,20 @@ class _SearchBar extends StatelessWidget {
           height: 52,
           padding: const EdgeInsets.symmetric(horizontal: 14),
           decoration: BoxDecoration(
-            color: AtColors.inputFill,
+            color: context.at.inputFill,
             borderRadius: AtRadii.input,
-            border: Border.all(color: AtColors.inputBorder),
+            border: Border.all(color: context.at.inputBorder),
           ),
           child: Row(
             children: [
-              const Icon(LucideIcons.search, size: 18, color: AtColors.muted),
+              Icon(LucideIcons.search, size: 18, color: context.at.muted),
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
                   l10n.dcSearchHint,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: AtTextStyles.body.copyWith(color: AtColors.faint),
+                  style: AtTextStyles.body.copyWith(color: context.at.faint),
                 ),
               ),
             ],
@@ -323,7 +320,7 @@ class _Results extends ConsumerWidget {
       children: [
         Text(
           l10n.dcCreativesCount(page.total),
-          style: AtTextStyles.chip.copyWith(color: AtColors.muted),
+          style: AtTextStyles.chip.copyWith(color: context.at.muted),
         ),
         const SizedBox(height: 10),
         for (final c in page.items) ...[
@@ -361,7 +358,7 @@ class _MoreToExplore extends StatelessWidget {
         LucideIcons.graduationCap,
         l10n.dcSkillLabs,
         l10n.dcSkillLabsBody,
-        () => context.push(Routes.soonPath('p1', name: l10n.dcSkillLabs)),
+        () => context.push(Routes.learning),
       ),
       (
         LucideIcons.briefcase,
@@ -406,7 +403,7 @@ class _MoreToExplore extends StatelessWidget {
             semanticLabel: '$title. $body',
             child: Row(
               children: [
-                Icon(icon, color: AtColors.primary),
+                Icon(icon, color: context.at.primary),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -415,22 +412,22 @@ class _MoreToExplore extends StatelessWidget {
                       Text(
                         title,
                         style: AtTextStyles.cardTitle.copyWith(
-                          color: AtColors.ink,
+                          color: context.at.ink,
                         ),
                       ),
                       Text(
                         body,
                         style: AtTextStyles.metaSm.copyWith(
-                          color: AtColors.muted,
+                          color: context.at.muted,
                         ),
                       ),
                     ],
                   ),
                 ),
-                const Icon(
+                Icon(
                   LucideIcons.chevronRight,
                   size: 18,
-                  color: AtColors.faint,
+                  color: context.at.faint,
                 ),
               ],
             ),

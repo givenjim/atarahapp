@@ -6,8 +6,20 @@ import 'package:json_annotation/json_annotation.dart';
 
 @JsonEnum()
 enum Type {
-  @JsonValue('ARTICLE')
-  article('ARTICLE'),
+  @JsonValue('creatives')
+  creatives('creatives'),
+  @JsonValue('articles')
+  articles('articles'),
+  @JsonValue('posts')
+  posts('posts'),
+  @JsonValue('opportunities')
+  opportunities('opportunities'),
+  @JsonValue('learning')
+  learning('learning'),
+  @JsonValue('marketplace')
+  marketplace('marketplace'),
+  @JsonValue('mentors')
+  mentors('mentors'),
 
   /// Default value for all unparsed values, allows backward compatibility when adding new values on the backend.
   $unknown(null);

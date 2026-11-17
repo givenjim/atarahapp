@@ -6,9 +6,9 @@ import 'package:atarah/core/design_system/design_system.dart';
 import 'package:atarah/core/networking/failures.dart';
 import 'package:atarah/core/providers.dart';
 import 'package:atarah/core/routing/app_router.dart';
-import 'package:atarah/core/storage/token_store.dart';
 import 'package:atarah/features/discover/discover_providers.dart';
 import 'package:atarah/features/onboarding/onboarding_providers.dart';
+import 'package:atarah/features/opportunities/opportunities_providers.dart';
 import 'package:atarah/features/profile/profile_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,7 +17,9 @@ import 'package:go_router/go_router.dart';
 
 import '../support/fake_discover.dart';
 import '../support/fake_onboarding.dart';
+import '../support/fake_opportunities.dart';
 import '../support/fake_profile.dart';
+import '../support/fake_realtime.dart';
 import '../support/fakes.dart';
 
 ProviderContainer? _container;
@@ -46,7 +48,14 @@ Widget app(
         ),
       ),
       discoverRepositoryProvider.overrideWithValue(FakeDiscoverRepository()),
-      tokenStoreProvider.overrideWithValue(MemoryTokenStore()),
+      opportunitiesRepositoryProvider.overrideWithValue(
+        FakeOpportunitiesRepository(
+          opportunities: [oppDto(id: '42', title: 'Deep link grant')],
+        ),
+      ),
+      notificationsRealtimeProvider.overrideWithValue(
+        FakeNotificationsRealtime(),
+      ),
       isOnlineProvider.overrideWith((ref) => online ?? Stream.value(true)),
     ],
   );
@@ -197,7 +206,7 @@ void main() {
       await t.tap(find.text('Sign in').last);
       await t.pumpAndSettle();
       expect(router().state.uri.path, '/opportunities/42');
-      expect(find.text('Opportunities'), findsWidgets);
+      expect(find.text('Deep link grant'), findsOneWidget);
       expect(
         find.byType(AtTabBar),
         findsNothing,
@@ -207,50 +216,38 @@ void main() {
   });
 
   group('tab shell', () {
-    testWidgets(
-      'five tabs in order; Home and Explore are real, the unbuilt ones are labelled Phase 1 placeholders',
-      (t) async {
-        await pumpApp(t, FakeAuthRepository(restored: fakeUser()));
-        Future<void> openTab(String label) async {
-          await t.tap(
-            find.descendant(
-              of: find.byType(AtTabBar),
-              matching: find.text(label),
-            ),
-          );
-          await t.pumpAndSettle();
-        }
-
-        await openTab('Explore');
-        expect(find.text('Explore creatives'), findsOneWidget);
-        await openTab('Home');
-        expect(find.text('Welcome, Nia'), findsOneWidget);
-        final labels = ['Community', 'Opportunities'];
-        for (final label in labels) {
-          await t.tap(
-            find.descendant(
-              of: find.byType(AtTabBar),
-              matching: find.text(label),
-            ),
-          );
-          await t.pumpAndSettle();
-          expect(find.text('Soon · P1'), findsOneWidget, reason: label);
-          expect(
-            find.text('Go back'),
-            findsNothing,
-            reason: 'tab roots have no back button',
-          );
-        }
+    testWidgets('five tabs in order; every one is a real screen', (t) async {
+      await pumpApp(t, FakeAuthRepository(restored: fakeUser()));
+      Future<void> openTab(String label) async {
         await t.tap(
           find.descendant(
             of: find.byType(AtTabBar),
-            matching: find.text('Profile'),
+            matching: find.text(label),
           ),
         );
         await t.pumpAndSettle();
-        expect(find.text('Test Member'), findsOneWidget);
-      },
-    );
+      }
+
+      await openTab('Explore');
+      expect(find.text('Explore creatives'), findsOneWidget);
+      await openTab('Home');
+      expect(find.text('Welcome, Nia'), findsOneWidget);
+      await openTab('Opportunities');
+      expect(find.text('Search grants, gigs, jobs…'), findsOneWidget);
+      expect(
+        find.text('Go back'),
+        findsNothing,
+        reason: 'tab roots have no back button',
+      );
+      await t.tap(
+        find.descendant(
+          of: find.byType(AtTabBar),
+          matching: find.text('Profile'),
+        ),
+      );
+      await t.pumpAndSettle();
+      expect(find.text('Test Member'), findsOneWidget);
+    });
 
     testWidgets(
       'every profile entry point opens a real screen or a labelled placeholder',
@@ -258,21 +255,16 @@ void main() {
         await pumpApp(t, FakeAuthRepository(restored: fakeUser()));
         await t.tap(find.text('Profile'));
         await t.pumpAndSettle();
-        for (final (entry, phase) in [
-          ('Activity', 'Soon · P1'),
-          ('Membership', 'Soon · P2'),
-          ('Settings', 'Soon · P1'),
+        // Activity and Membership are real screens now (see account_test); no entry point is a bare placeholder.
+        for (final (entry, path) in [
+          ('Activity', '/activity'),
+          ('Membership', '/settings/membership'),
         ]) {
           await t.ensureVisible(find.text(entry));
           await t.tap(find.text(entry));
           await t.pumpAndSettle();
-          expect(find.text(phase), findsOneWidget, reason: entry);
-          expect(
-            find.byType(AtTabBar),
-            findsNothing,
-            reason: 'placeholder screens hide the tab bar',
-          );
-          await t.tap(find.text('Go back'));
+          expect(router().state.uri.path, path, reason: entry);
+          router().go('/profile');
           await t.pumpAndSettle();
           expect(find.byType(AtTabBar), findsOneWidget);
         }
@@ -297,14 +289,8 @@ void main() {
 
   group('deep links', () {
     const links = {
-      '/opportunities/42': 'Soon · P1',
-      '/learning/courses/3': 'Soon · P1',
-      '/learning/lessons/3': 'Soon · P1',
       '/marketplace/listings/5': 'Soon · P2',
       '/mentors/7': 'Soon · P2',
-      '/groups/12': 'Soon · P1',
-      '/posts/77': 'Soon · P1',
-      '/notifications': 'Soon · P1',
       '/soon/p3?name=Contextual%20AI': 'Soon · P3',
       '/soon/later?name=Wellness%20Zone': 'Soon · Later',
     };

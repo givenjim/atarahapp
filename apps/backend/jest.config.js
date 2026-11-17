@@ -7,8 +7,10 @@ const base = {
 };
 
 module.exports = {
-  // Integration suites share one PostgreSQL/Redis pair, so run suites one at a time.
+  // Integration suites share the local Supabase stack and one Redis, so run suites one at a time.
   maxWorkers: 1,
+  // Real Supabase Auth, Postgres and Storage: allow for the first-run reference seed and network round trips.
+  testTimeout: 60000,
   projects: [
     { ...base, displayName: 'unit', rootDir: '.', testMatch: ['<rootDir>/src/**/*.spec.ts'] },
     {
@@ -17,7 +19,6 @@ module.exports = {
       rootDir: '.',
       testMatch: ['<rootDir>/test/**/*.int-spec.ts'],
       globalSetup: '<rootDir>/test/global-setup.ts',
-      globalTeardown: '<rootDir>/test/global-teardown.ts',
       testTimeout: 60000,
     },
   ],

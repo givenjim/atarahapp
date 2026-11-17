@@ -1,0 +1,34 @@
+// Analytics (P1-M12): a privacy-safe event log and its nightly daily roll-up. Owner module: analytics.
+// `analytics_events` is partitioned by month (RANGE on `occurredAt`; a DEFAULT partition catches strays and a job
+// creates next months' partitions and drops partitions past retention). Both tables are deny-all for the Supabase
+// client roles (RLS on, no policies, no grants).
+
+/// One thing that happened, with no personal data: `actorHash` is a keyed hash of the member id (null for events that
+/// need no actor), and `props` holds only the allow-listed fields of that event (ids of content, enum values and
+/// buckets; never free text, names, contact details or search words). Written by the AnalyticsService, never by
+/// clients. The primary key includes `occurredAt` because the table is partitioned on it.
+model AnalyticsEvent {
+  id         String   @default(uuid()) @db.Uuid
+  occurredAt DateTime @default(now())
+  name       String
+  actorHash  String?
+  props      Json     @default("{}")
+
+  @@id([id, occurredAt])
+  @@index([name, occurredAt(sort: Desc)])
+  @@index([occurredAt(sort: Desc)])
+  @@map("analytics_events")
+}
+
+/// One row per event name and day (Nairobi calendar date), built by the nightly aggregation job. `actors` counts
+/// distinct hashed members that day.
+model AnalyticsDailyCount {
+  date      DateTime @db.Date
+  name      String
+  events    Int      @default(0)
+  actors    Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@id([date, name])
+  @@map("analytics_daily_counts")
+}

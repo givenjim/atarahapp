@@ -130,8 +130,10 @@ class DiscoverRepository {
     () async => (await _api.discover.find(
       q: q,
       type: switch (kind) {
-        SearchKind.creatives => Type2.creatives,
-        SearchKind.articles => Type2.articles,
+        SearchKind.creatives => Type.creatives,
+        SearchKind.articles => Type.articles,
+        SearchKind.opportunities => Type.opportunities,
+        SearchKind.learning => Type.learning,
         null => null,
       },
       page: page,
@@ -161,12 +163,14 @@ class DiscoverRepository {
   Future<ArticleDto> article(String slug) =>
       _guard(() async => (await _api.articles.detail(slug: slug)).data);
 
-  Future<void> saveArticle(String id) =>
-      _guard(() => _api.articles.save(type: Type.article, id: id));
+  Future<void> saveArticle(String id) => _guard(
+    () =>
+        _api.saved.save(type: Type2.article, id: id, body: const SaveBodyDto()),
+  );
 
   Future<void> unsaveArticle(String id) =>
-      _guard(() => _api.articles.unsave(type: Type.article, id: id));
+      _guard(() => _api.saved.unsave(type: Type2.article, id: id));
 }
 
 /// The kinds of result search can narrow to today.
-enum SearchKind { creatives, articles }
+enum SearchKind { creatives, articles, opportunities, learning }

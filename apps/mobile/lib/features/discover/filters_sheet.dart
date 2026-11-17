@@ -55,7 +55,7 @@ class _FiltersSheetState extends ConsumerState<FiltersSheet> {
           header: true,
           child: Text(
             title,
-            style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+            style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
           ),
         ),
         const SizedBox(height: 10),
@@ -205,12 +205,12 @@ class _ToggleRow extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: AtTextStyles.body.copyWith(color: AtColors.ink),
+                style: AtTextStyles.body.copyWith(color: context.at.ink),
               ),
               if (body != null)
                 Text(
                   body!,
-                  style: AtTextStyles.metaSm.copyWith(color: AtColors.muted),
+                  style: AtTextStyles.metaSm.copyWith(color: context.at.muted),
                 ),
             ],
           ),
@@ -237,7 +237,7 @@ class _CountyList extends StatelessWidget {
             title: c.name,
             showChevron: false,
             trailing: c.id == selected
-                ? const Icon(LucideIcons.check, color: AtColors.primary)
+                ? Icon(LucideIcons.check, color: context.at.primary)
                 : null,
             onTap: () => Navigator.of(context).pop(c),
           ),

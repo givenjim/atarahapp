@@ -2,7 +2,7 @@
 
 Atarah is a Luxaion Creatives product: a Creative Operating Layer for Kenyan creatives.
 
-**The contract is `docs/MASTER_PROMPT.md`.** Read the section for the active milestone before starting it. The register of record is `docs/PROGRESS.md`; decisions go in `docs/DECISIONS.md`.
+**The contract is `docs/MASTER_PROMPT.md` (v2.3).** Read the section for the active milestone before starting it. The register of record is `docs/PROGRESS.md`; decisions go in `docs/DECISIONS.md`.
 
 ## Hard rules (summary — the Master Prompt §1 wins)
 
@@ -13,7 +13,7 @@ Atarah is a Luxaion Creatives product: a Creative Operating Layer for Kenyan cre
 - **No dead UI.** Unbuilt features open `AtFutureScreen` ("Soon · P#" / "Soon · Later"). No hard-coded sample data in UI code.
 - Ask only when blocked or when two important sources conflict on money, security, privacy, legal or permissions. Otherwise decide and record it.
 - No deploys, store publishing or production changes without written authorisation.
-- Locked stack: Flutter + Riverpod + go_router + dio; Next.js (web, admin); NestJS modular monolith; PostgreSQL 16 + Prisma; Redis + BullMQ; S3-compatible storage.
+- Locked stack: Flutter + Riverpod + go_router + dio; Next.js (web, admin); NestJS modular monolith on **Supabase** (PostgreSQL, Auth, Storage, Realtime; v2.3 §5.7) + Prisma; Redis + BullMQ.
 - Authorisation is never a single `user.role`: account status + roles + entitlements + verification + ownership + visibility + flags, enforced on the backend.
 
 ## Layout

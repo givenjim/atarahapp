@@ -1,56 +1,34 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:atarah/core/config/app_config.dart';
 import 'package:atarah/core/networking/dio_factory.dart';
 import 'package:atarah/core/networking/failures.dart';
-import 'package:atarah/core/networking/session_refresher.dart';
-import 'package:atarah/core/storage/token_store.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-/// Scriptable HTTP layer: each request is answered by [handler].
-class FakeAdapter implements HttpClientAdapter {
-  FakeAdapter(this.handler);
+import '../support/fake_http.dart';
 
-  final Future<ResponseBody> Function(RequestOptions options) handler;
-  final List<RequestOptions> requests = [];
+/// The Supabase session as the interceptor sees it: a current token, and a refresh that can succeed, fail
+/// (session over) or throw (offline).
+class FakeTokens implements AccessTokenSource {
+  FakeTokens({this.current = 'tok-old'});
 
   @override
-  Future<ResponseBody> fetch(
-    RequestOptions options,
-    Stream<Uint8List>? requestStream,
-    Future<void>? cancelFuture,
-  ) {
-    requests.add(options);
-    return handler(options);
+  String? current;
+  int refreshCount = 0;
+  bool sessionOver = false;
+  bool offline = false;
+  final Completer<void> gate = Completer<void>()..complete();
+
+  @override
+  Future<String?> refresh() async {
+    refreshCount++;
+    await gate.future;
+    if (offline) throw StateError('offline');
+    if (sessionOver) return null;
+    return current = 'tok-new';
   }
-
-  @override
-  void close({bool force = false}) {}
 }
-
-ResponseBody json(int status, Object body) => ResponseBody.fromString(
-  jsonEncode(body),
-  status,
-  headers: {
-    Headers.contentTypeHeader: [Headers.jsonContentType],
-  },
-);
-
-Map<String, Object?> errorBody(
-  String code,
-  int status, {
-  Map<String, Object?> details = const {},
-}) => {
-  'error': {
-    'code': code,
-    'message': 'msg $code',
-    'details': details,
-    'requestId': 'rid-1',
-  },
-};
 
 const config = AppConfig(flavor: Flavor.dev, apiBaseUrl: 'http://test.local');
 
@@ -71,7 +49,7 @@ void main() {
                   {
                     'field': 'password',
                     'messages': [
-                      'Use at least 8 characters, including a number.',
+                      'Use at least 8 characters, including a letter and a number.',
                     ],
                   },
                 ],
@@ -125,107 +103,22 @@ void main() {
     });
   });
 
-  group('SessionRefresher (single flight)', () {
-    test('many simultaneous 401s trigger exactly one refresh call', () async {
-      final store = MemoryTokenStore(
-        const StoredTokens(accessToken: 'old', refreshToken: 'r1'),
-      );
-      var calls = 0;
-      final gate = Completer<void>();
-      final refresher = SessionRefresher(
-        store: store,
-        refreshCall: (rt) async {
-          calls++;
-          await gate.future;
-          return const StoredTokens(accessToken: 'new', refreshToken: 'r2');
-        },
-      );
-      final futures = List.generate(8, (_) => refresher.refresh('old'));
-      gate.complete();
-      final results = await Future.wait(futures);
-      expect(calls, 1);
-      expect(results.every((t) => t?.accessToken == 'new'), isTrue);
-      expect((await store.read())!.refreshToken, 'r2');
-    });
-
-    test(
-      'a request that already used the newest token does not refresh again',
-      () async {
-        final store = MemoryTokenStore(
-          const StoredTokens(accessToken: 'new', refreshToken: 'r2'),
-        );
-        var calls = 0;
-        final refresher = SessionRefresher(
-          store: store,
-          refreshCall: (_) async {
-            calls++;
-            return const StoredTokens(accessToken: 'x', refreshToken: 'y');
-          },
-        );
-        final t = await refresher.refresh('old'); // sent with a stale token
-        expect(calls, 0);
-        expect(t!.accessToken, 'new');
-      },
-    );
-
-    test(
-      'a failed refresh yields null and leaves the stored tokens alone',
-      () async {
-        final store = MemoryTokenStore(
-          const StoredTokens(accessToken: 'a', refreshToken: 'r'),
-        );
-        final refresher = SessionRefresher(
-          store: store,
-          refreshCall: (_) async => throw StateError('nope'),
-        );
-        expect(await refresher.refresh('a'), isNull);
-        expect((await store.read())!.refreshToken, 'r');
-      },
-    );
-
-    test('no stored session means nothing to refresh', () async {
-      final refresher = SessionRefresher(
-        store: MemoryTokenStore(),
-        refreshCall: (_) async => throw StateError('should not be called'),
-      );
-      expect(await refresher.refresh(null), isNull);
-    });
-  });
-
   group('API Dio', () {
-    late MemoryTokenStore store;
     late int expired;
-    late SessionRefresher refresher;
+    late FakeTokens tokens;
     late FakeAdapter adapter;
     late Dio dio;
 
     Dio build(
       Future<ResponseBody> Function(RequestOptions o) handler, {
-      int refreshFails = 0,
+      FakeTokens? withTokens,
     }) {
-      store = MemoryTokenStore(
-        const StoredTokens(accessToken: 'tok-old', refreshToken: 'ref-1'),
-      );
+      tokens = withTokens ?? FakeTokens();
       expired = 0;
-      var failures = refreshFails;
-      refresher = SessionRefresher(
-        store: store,
-        refreshCall: (rt) async {
-          if (failures > 0) {
-            failures--;
-            throw StateError('refresh rejected');
-          }
-          return const StoredTokens(
-            accessToken: 'tok-new',
-            refreshToken: 'ref-2',
-          );
-        },
-      );
       adapter = FakeAdapter(handler);
       final d = buildApiDio(
         config: config,
-        store: store,
-        refresher: refresher,
+        tokens: tokens,
         onSessionExpired: () => expired++,
         retryDelay: Duration.zero,
       );
@@ -244,21 +137,34 @@ void main() {
       },
     );
 
-    test('public auth endpoints never carry a token', () async {
+    test('public content endpoints never carry a token', () async {
       dio = build((o) async => json(200, {'data': 1}));
-      for (final p in [
-        '/api/v1/auth/login',
-        '/api/v1/auth/register',
-        '/api/v1/auth/password/forgot',
-        '/api/v1/auth/refresh',
-      ]) {
-        await dio.post<dynamic>(p, data: {});
-      }
+      await dio.get<dynamic>('/api/v1/config/public');
+      await dio.get<dynamic>('/api/v1/legal/TERMS');
       expect(
         adapter.requests.every((r) => !r.headers.containsKey('Authorization')),
         isTrue,
       );
     });
+
+    test(
+      'a request with no session carries no token and is not refreshed',
+      () async {
+        dio = build(
+          (o) async => json(401, errorBody('AUTHENTICATION_REQUIRED', 401)),
+          withTokens: FakeTokens(current: null),
+        );
+        await expectLater(
+          dio.get<dynamic>('/api/v1/users/me'),
+          throwsA(isA<DioException>()),
+        );
+        expect(tokens.refreshCount, 0);
+        expect(
+          adapter.requests.single.headers.containsKey('Authorization'),
+          isFalse,
+        );
+      },
+    );
 
     test('a 401 refreshes once and retries with the new token', () async {
       dio = build((o) async {
@@ -273,7 +179,7 @@ void main() {
         'Bearer tok-old',
         'Bearer tok-new',
       ]);
-      expect(refresher.refreshCount, 1);
+      expect(tokens.refreshCount, 1);
       expect(expired, 0);
     });
 
@@ -291,62 +197,52 @@ void main() {
             dio.get<Map<String, dynamic>>('/api/v1/res/$i'),
         ]);
         expect(results.map((r) => r.data!['data']).toSet().length, 6);
-        expect(refresher.refreshCount, 1);
+        expect(tokens.refreshCount, 1);
         expect(expired, 0);
       },
     );
 
-    test('if the refresh itself is rejected the session is expired and the failure surfaces', () async {
+    test('if the session cannot be refreshed the session is expired and the failure surfaces', () async {
       dio = build(
         (o) async => json(401, errorBody('AUTHENTICATION_REQUIRED', 401)),
-        refreshFails: 1,
+        withTokens: FakeTokens()..sessionOver = true,
       );
       await expectLater(
         dio.get<dynamic>('/api/v1/users/me'),
         throwsA(isA<DioException>()),
       );
-      expect(expired, 1);
-    });
-
-    test('a replayed refresh token (TOKEN_REUSED) ends the session without trying to refresh', () async {
-      dio = build(
-        (o) async => json(
-          401,
-          errorBody(
-            'AUTHENTICATION_REQUIRED',
-            401,
-            details: {'reason': 'TOKEN_REUSED'},
-          ),
-        ),
-      );
-      await expectLater(
-        dio.get<dynamic>('/api/v1/users/me'),
-        throwsA(isA<DioException>()),
-      );
-      expect(refresher.refreshCount, 0);
       expect(expired, 1);
     });
 
     test(
-      'an admin idle timeout (SESSION_IDLE) also ends the session',
+      'a refresh that fails because the device is offline keeps the session',
       () async {
         dio = build(
-          (o) async => json(
-            401,
-            errorBody(
-              'AUTHENTICATION_REQUIRED',
-              401,
-              details: {'reason': 'SESSION_IDLE'},
-            ),
-          ),
+          (o) async => json(401, errorBody('AUTHENTICATION_REQUIRED', 401)),
+          withTokens: FakeTokens()..offline = true,
         );
         await expectLater(
           dio.get<dynamic>('/api/v1/users/me'),
           throwsA(isA<DioException>()),
         );
-        expect(expired, 1);
+        expect(expired, 0);
       },
     );
+
+    test('a request sent with a stale token retries with the newer SDK token, no refresh', () async {
+      final t = FakeTokens();
+      dio = build((o) async {
+        if (o.headers['Authorization'] == 'Bearer tok-old') {
+          // Another path (the SDK's own timer) rotated the token while this request was in flight.
+          t.current = 'tok-sdk';
+          return json(401, errorBody('AUTHENTICATION_REQUIRED', 401));
+        }
+        return json(200, {'data': 'ok'});
+      }, withTokens: t);
+      await dio.get<dynamic>('/api/v1/users/me');
+      expect(t.refreshCount, 0);
+      expect(adapter.requests.last.headers['Authorization'], 'Bearer tok-sdk');
+    });
 
     test(
       'a retried request is not retried a second time (no refresh loop)',
@@ -359,7 +255,7 @@ void main() {
           throwsA(isA<DioException>()),
         );
         expect(adapter.requests.length, 2);
-        expect(refresher.refreshCount, 1);
+        expect(tokens.refreshCount, 1);
       },
     );
 
@@ -371,7 +267,7 @@ void main() {
           dio.get<dynamic>('/api/v1/mentors'),
           throwsA(isA<DioException>()),
         );
-        expect(refresher.refreshCount, 0);
+        expect(tokens.refreshCount, 0);
         expect(expired, 0);
         expect(adapter.requests.length, 1);
       },

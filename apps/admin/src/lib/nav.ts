@@ -20,7 +20,7 @@ export const NAV: readonly NavSection[] = [
     label: 'Dashboard',
     href: '/',
     permission: 'admin.access',
-    phase: 'P1',
+    phase: 'live',
     summary: 'Attention queues and key counts for running the platform.',
   },
   {
@@ -30,6 +30,14 @@ export const NAV: readonly NavSection[] = [
     permission: 'user.view',
     phase: 'live',
     summary: 'Search members, view accounts, suspend and reactivate.',
+  },
+  {
+    slug: 'privacy-requests',
+    label: 'Privacy requests',
+    href: '/privacy-requests',
+    permission: 'user.view',
+    phase: 'live',
+    summary: 'Data exports and account deletions members asked for.',
   },
   {
     slug: 'memberships',
@@ -44,7 +52,7 @@ export const NAV: readonly NavSection[] = [
     label: 'Roles & Permissions',
     href: '/roles',
     permission: 'role.manage',
-    phase: 'P1',
+    phase: 'live',
     summary: 'Assign roles and review what each role can do.',
   },
   {
@@ -59,9 +67,9 @@ export const NAV: readonly NavSection[] = [
     slug: 'content',
     label: 'Content',
     href: '/content',
-    permission: 'article.manage',
-    phase: 'P1',
-    summary: 'Help articles and legal documents.',
+    permission: 'help.manage',
+    phase: 'live',
+    summary: 'Help articles, the FAQ and versioned legal documents.',
   },
   {
     slug: 'articles',
@@ -92,16 +100,17 @@ export const NAV: readonly NavSection[] = [
     label: 'Learning',
     href: '/learning',
     permission: 'learning.manage',
-    phase: 'P1',
-    summary: 'Skill Labs courses, lessons and enrolments.',
+    phase: 'live',
+    summary:
+      'Skill Labs: categories, courses and lessons, publishing, progress overrides and analytics.',
   },
   {
     slug: 'opportunities',
     label: 'Opportunities',
     href: '/opportunities',
     permission: 'opportunity.manage',
-    phase: 'P1',
-    summary: 'Opportunity moderation, providers and trust badges.',
+    phase: 'live',
+    summary: 'Listings, review queue, providers, trust badges, link health and CSV import.',
   },
   {
     slug: 'mentorship',
@@ -124,8 +133,24 @@ export const NAV: readonly NavSection[] = [
     label: 'Community & Reports',
     href: '/community',
     permission: 'report.view',
-    phase: 'P1',
-    summary: 'Reports queue, moderation actions and appeals.',
+    phase: 'live',
+    summary: 'Reports queue, case review and moderation decisions.',
+  },
+  {
+    slug: 'groups',
+    label: 'Groups',
+    href: '/groups',
+    permission: 'community.group.manage',
+    phase: 'live',
+    summary: 'Official groups, moderators and pinned posts.',
+  },
+  {
+    slug: 'announcements',
+    label: 'Announcements',
+    href: '/announcements',
+    permission: 'community.announce',
+    phase: 'live',
+    summary: 'Staff announcements to every member or one group.',
   },
   {
     slug: 'portfolio',
@@ -156,8 +181,8 @@ export const NAV: readonly NavSection[] = [
     label: 'Notifications',
     href: '/notifications',
     permission: 'notification.broadcast',
-    phase: 'P1',
-    summary: 'Platform announcements and delivery health.',
+    phase: 'live',
+    summary: 'Broadcast announcements to members: audience, schedule and history.',
   },
   {
     slug: 'ai',
@@ -172,8 +197,9 @@ export const NAV: readonly NavSection[] = [
     label: 'Analytics',
     href: '/analytics',
     permission: 'analytics.view',
-    phase: 'P1',
-    summary: 'Platform analytics.',
+    phase: 'live',
+    summary:
+      'Daily event counts for registrations, onboarding, opportunities, learning and search.',
   },
   {
     slug: 'audit-logs',
@@ -188,8 +214,8 @@ export const NAV: readonly NavSection[] = [
     label: 'Settings',
     href: '/settings',
     permission: 'settings.manage',
-    phase: 'P1',
-    summary: 'Platform settings and feature flags.',
+    phase: 'live',
+    summary: 'Feature flags, tunable values and failed background jobs.',
   },
 ];
 

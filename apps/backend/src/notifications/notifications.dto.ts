@@ -1,5 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
+import { PageQueryDto } from '../common/pagination';
 import {
   ArrayMaxSize,
   ArrayMinSize,
@@ -71,4 +72,73 @@ export class RegisterDeviceDto {
 
 export class DeviceDto {
   @ApiProperty({ format: 'uuid' }) id!: string;
+}
+
+// ---- the notification centre (P1-M11) ----
+
+export class NotificationsQueryDto extends PageQueryDto {
+  @ApiPropertyOptional({ enum: CATEGORIES, enumName: 'NotificationCategory' })
+  @IsOptional()
+  @IsEnum(CATEGORIES)
+  category?: (typeof CATEGORIES)[number];
+
+  @ApiPropertyOptional({ description: 'Only the ones not read yet.' })
+  @IsOptional()
+  @Transform(({ value }) => value === true || value === 'true' || value === '1')
+  @IsBoolean()
+  unreadOnly?: boolean;
+}
+
+export class NotificationItemDto {
+  @ApiProperty({ format: 'uuid' }) id!: string;
+  @ApiProperty({ enum: CATEGORIES, enumName: 'NotificationCategory' }) category!: string;
+  @ApiPropertyOptional({
+    type: String,
+    nullable: true,
+    description: 'Dotted key, e.g. opportunity.reminder.',
+  })
+  type!: string | null;
+  @ApiProperty() title!: string;
+  @ApiProperty() body!: string;
+  @ApiPropertyOptional({
+    type: String,
+    nullable: true,
+    description: 'An in-app path the notification opens.',
+  })
+  deepLink!: string | null;
+  @ApiPropertyOptional({ type: 'object', additionalProperties: true, nullable: true })
+  data!: Record<string, string | number | boolean | null> | null;
+  @ApiProperty() read!: boolean;
+  @ApiProperty({ type: String, format: 'date-time' }) createdAt!: Date;
+  @ApiProperty({ enum: ['TODAY', 'EARLIER'], description: 'By the Nairobi calendar day.' })
+  group!: 'TODAY' | 'EARLIER';
+}
+
+export class UnreadCountDto {
+  @ApiProperty() unread!: number;
+  @ApiProperty({
+    type: 'object',
+    additionalProperties: { type: 'number' },
+    description: 'Unread per category.',
+  })
+  byCategory!: Record<string, number>;
+}
+
+export class UnreadDto {
+  @ApiProperty() unread!: number;
+}
+
+export class MarkAllReadDto {
+  @ApiPropertyOptional({
+    enum: CATEGORIES,
+    enumName: 'NotificationCategory',
+    description: 'Only this category.',
+  })
+  @IsOptional()
+  @IsEnum(CATEGORIES)
+  category?: (typeof CATEGORIES)[number];
+}
+
+export class MarkedReadDto extends UnreadDto {
+  @ApiProperty() marked!: number;
 }

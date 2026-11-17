@@ -29,7 +29,7 @@ class _SaveButton extends StatelessWidget {
     child: Icon(
       saved ? LucideIcons.bookmarkCheck : LucideIcons.bookmark,
       size: 20,
-      color: saved ? AtColors.primary : AtColors.muted,
+      color: saved ? context.at.primary : context.at.muted,
     ),
   );
 }
@@ -82,7 +82,7 @@ class CreativeCard extends StatelessWidget {
                 : AtButtonVariant.primary,
             onPressed: onAction,
           );
-    final details = _details();
+    final details = _details(context);
     return AtCard(
       onTap: onTap,
       semanticLabel: '$name, $roleLine',
@@ -101,7 +101,7 @@ class CreativeCard extends StatelessWidget {
     );
   }
 
-  Widget _details() {
+  Widget _details(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -124,7 +124,7 @@ class CreativeCard extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: AtTextStyles.cardTitle.copyWith(
-                        color: AtColors.ink,
+                        color: context.at.ink,
                       ),
                     ),
                   ),
@@ -137,17 +137,17 @@ class CreativeCard extends StatelessWidget {
               const SizedBox(height: 2),
               Text(
                 roleLine,
-                style: AtTextStyles.meta.copyWith(color: AtColors.body),
+                style: AtTextStyles.meta.copyWith(color: context.at.body),
               ),
               if (location != null)
                 Padding(
                   padding: const EdgeInsets.only(top: 2),
                   child: Row(
                     children: [
-                      const Icon(
+                      Icon(
                         LucideIcons.mapPin,
                         size: 12,
-                        color: AtColors.muted,
+                        color: context.at.muted,
                       ),
                       const SizedBox(width: 4),
                       Flexible(
@@ -156,7 +156,7 @@ class CreativeCard extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: AtTextStyles.meta.copyWith(
-                            color: AtColors.muted,
+                            color: context.at.muted,
                           ),
                         ),
                       ),
@@ -169,7 +169,7 @@ class CreativeCard extends StatelessWidget {
                   child: Text(
                     reason!,
                     style: AtTextStyles.metaSm.copyWith(
-                      color: AtColors.primary,
+                      color: context.at.primary,
                     ),
                   ),
                 ),
@@ -227,10 +227,14 @@ class OpportunityCard extends StatelessWidget {
     this.onSave,
     this.onTap,
     this.trackingLabel,
+    this.providerLogoUrl,
   });
 
   final String title;
   final String providerName;
+
+  /// The provider's logo, shown small before its name when it has one.
+  final String? providerLogoUrl;
   final String typeLabel;
   final OpportunityTrustLevel trust;
   final String deadlineLabel;
@@ -255,8 +259,8 @@ class OpportunityCard extends StatelessWidget {
       ),
       OpportunityTrustLevel.sourceConfirmed => (
         l10n.sourceConfirmed,
-        AtTone.info,
-        LucideIcons.circleCheck,
+        AtTone.primary,
+        LucideIcons.shieldCheck,
       ),
       OpportunityTrustLevel.externalSource => (
         l10n.externalSource,
@@ -265,7 +269,7 @@ class OpportunityCard extends StatelessWidget {
       ),
     };
     final urgent = switch (urgency) {
-      DeadlineUrgency.closing => AtTone.pink,
+      DeadlineUrgency.closing => AtTone.coral,
       DeadlineUrgency.soon => AtTone.warning,
       DeadlineUrgency.none => AtTone.neutral,
     };
@@ -283,7 +287,7 @@ class OpportunityCard extends StatelessWidget {
                   spacing: 6,
                   runSpacing: 6,
                   children: [
-                    AtTag(label: typeLabel, tone: AtTone.purple),
+                    AtTag(label: typeLabel, tone: AtTone.violet),
                     AtTag(label: trustLabel, tone: trustTone, icon: trustIcon),
                   ],
                 ),
@@ -295,14 +299,34 @@ class OpportunityCard extends StatelessWidget {
           Text(
             title,
             style: AtTextStyles.cardTitle.copyWith(
-              color: AtColors.ink,
+              color: context.at.ink,
               fontSize: 16,
             ),
           ),
           const SizedBox(height: 2),
-          Text(
-            providerName,
-            style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+          Row(
+            children: [
+              if (providerLogoUrl != null) ...[
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(5),
+                  child: Image.network(
+                    providerLogoUrl!,
+                    width: 20,
+                    height: 20,
+                    fit: BoxFit.cover,
+                    excludeFromSemantics: true,
+                    errorBuilder: (_, _, _) => const SizedBox.shrink(),
+                  ),
+                ),
+                const SizedBox(width: 6),
+              ],
+              Flexible(
+                child: Text(
+                  providerName,
+                  style: AtTextStyles.meta.copyWith(color: context.at.muted),
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 12),
           Row(
@@ -332,17 +356,17 @@ class OpportunityCard extends StatelessWidget {
                   Expanded(
                     child: Row(
                       children: [
-                        const Icon(
+                        Icon(
                           LucideIcons.mapPin,
                           size: 12,
-                          color: AtColors.muted,
+                          color: context.at.muted,
                         ),
                         const SizedBox(width: 4),
                         Flexible(
                           child: Text(
                             locationLabel!,
                             style: AtTextStyles.meta.copyWith(
-                              color: AtColors.muted,
+                              color: context.at.muted,
                             ),
                           ),
                         ),
@@ -369,7 +393,7 @@ class _Fact extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = tone.colors;
+    final c = tone.colorsOf(context);
     return Container(
       margin: const EdgeInsets.only(right: 8),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
@@ -434,7 +458,7 @@ class LearningCard extends StatelessWidget {
               gradient: AtGradients.ctaSquare,
               borderRadius: AtRadii.tileLg,
             ),
-            child: Icon(icon, color: AtColors.white, size: 24),
+            child: Icon(icon, color: context.at.white, size: 24),
           ),
           const SizedBox(width: 14),
           Expanded(
@@ -452,12 +476,12 @@ class LearningCard extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   title,
-                  style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+                  style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   meta,
-                  style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+                  style: AtTextStyles.meta.copyWith(color: context.at.muted),
                 ),
                 if (progress != null) ...[
                   const SizedBox(height: 10),
@@ -515,12 +539,12 @@ class ListingCard extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: 1.35,
                   child: imageUrl == null
-                      ? const ColoredBox(
-                          color: AtColors.softTile,
+                      ? ColoredBox(
+                          color: context.at.softTile,
                           child: Center(
                             child: Icon(
                               LucideIcons.image,
-                              color: AtColors.faint,
+                              color: context.at.faint,
                             ),
                           ),
                         )
@@ -531,8 +555,8 @@ class ListingCard extends StatelessWidget {
                 top: 4,
                 right: 4,
                 child: Container(
-                  decoration: const BoxDecoration(
-                    color: AtColors.white,
+                  decoration: BoxDecoration(
+                    color: context.at.white,
                     shape: BoxShape.circle,
                   ),
                   child: _SaveButton(saved: saved, onTap: onSave, title: title),
@@ -553,12 +577,12 @@ class ListingCard extends StatelessWidget {
                   title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+                  style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   sellerName,
-                  style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+                  style: AtTextStyles.meta.copyWith(color: context.at.muted),
                 ),
                 const SizedBox(height: 8),
                 Row(
@@ -567,21 +591,17 @@ class ListingCard extends StatelessWidget {
                       child: Text(
                         priceLabel,
                         style: AtTextStyles.cardTitle.copyWith(
-                          color: AtColors.primary,
+                          color: context.at.primary,
                         ),
                       ),
                     ),
                     if (rating != null) ...[
-                      const Icon(
-                        LucideIcons.star,
-                        size: 14,
-                        color: AtColors.star,
-                      ),
+                      Icon(LucideIcons.star, size: 14, color: context.at.star),
                       const SizedBox(width: 3),
                       Text(
                         rating!.toStringAsFixed(1),
                         style: AtTextStyles.metaSm.copyWith(
-                          color: AtColors.ink,
+                          color: context.at.ink,
                         ),
                       ),
                     ],
@@ -653,7 +673,7 @@ class MentorCard extends StatelessWidget {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: AtTextStyles.cardTitle.copyWith(
-                              color: AtColors.ink,
+                              color: context.at.ink,
                             ),
                           ),
                         ),
@@ -666,17 +686,17 @@ class MentorCard extends StatelessWidget {
                     const SizedBox(height: 2),
                     Text(
                       headline,
-                      style: AtTextStyles.meta.copyWith(color: AtColors.body),
+                      style: AtTextStyles.meta.copyWith(color: context.at.body),
                     ),
                     if (rating != null)
                       Padding(
                         padding: const EdgeInsets.only(top: 6),
                         child: Row(
                           children: [
-                            const Icon(
+                            Icon(
                               LucideIcons.star,
                               size: 14,
-                              color: AtColors.star,
+                              color: context.at.star,
                             ),
                             const SizedBox(width: 3),
                             Text(
@@ -684,7 +704,7 @@ class MentorCard extends StatelessWidget {
                                   ? rating!.toStringAsFixed(1)
                                   : '${rating!.toStringAsFixed(1)} ($reviewCount)',
                               style: AtTextStyles.metaSm.copyWith(
-                                color: AtColors.ink,
+                                color: context.at.ink,
                               ),
                             ),
                           ],
@@ -717,17 +737,17 @@ class MentorCard extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(
+                    Icon(
                       LucideIcons.calendarClock,
                       size: 14,
-                      color: AtColors.successFg,
+                      color: context.at.successIcon,
                     ),
                     const SizedBox(width: 6),
                     Flexible(
                       child: Text(
                         nextAvailability!,
                         style: AtTextStyles.metaSm.copyWith(
-                          color: AtColors.successStrong,
+                          color: context.at.successStrong,
                         ),
                       ),
                     ),
@@ -735,7 +755,9 @@ class MentorCard extends StatelessWidget {
                 ),
               Text(
                 priceLabel,
-                style: AtTextStyles.cardTitle.copyWith(color: AtColors.primary),
+                style: AtTextStyles.cardTitle.copyWith(
+                  color: context.at.primary,
+                ),
               ),
             ],
           ),
@@ -761,6 +783,9 @@ class PostCard extends StatelessWidget {
     this.liked = false,
     this.saved = false,
     this.authorVerified = false,
+    this.authorSystem = false,
+    this.mediaSlot,
+    this.bodyMaxLines,
     this.onLike,
     this.onReply,
     this.onShare,
@@ -781,6 +806,15 @@ class PostCard extends StatelessWidget {
   final bool liked;
   final bool saved;
   final bool authorVerified;
+
+  /// A system author ("Atarah Team"): the colour symbol on a Mist circle instead of a portrait.
+  final bool authorSystem;
+
+  /// Media or a link preview drawn under the body (the caller owns the images); shown before [imageUrl].
+  final Widget? mediaSlot;
+
+  /// Cuts the body short in a list; the full text on a detail screen.
+  final int? bodyMaxLines;
   final VoidCallback? onLike;
   final VoidCallback? onReply;
   final VoidCallback? onShare;
@@ -801,11 +835,13 @@ class PostCard extends StatelessWidget {
             padding: const EdgeInsets.only(right: 8),
             child: Row(
               children: [
-                AtAvatar(
-                  name: authorName,
-                  image: _img(authorImageUrl),
-                  size: 40,
-                ),
+                authorSystem
+                    ? const AtAvatar.system(size: 40)
+                    : AtAvatar(
+                        name: authorName,
+                        image: _img(authorImageUrl),
+                        size: 40,
+                      ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
@@ -819,7 +855,7 @@ class PostCard extends StatelessWidget {
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: AtTextStyles.cardTitle.copyWith(
-                                color: AtColors.ink,
+                                color: context.at.ink,
                                 fontSize: 14,
                               ),
                             ),
@@ -833,7 +869,7 @@ class PostCard extends StatelessWidget {
                       Text(
                         metaLine,
                         style: AtTextStyles.meta.copyWith(
-                          color: AtColors.muted,
+                          color: context.at.muted,
                         ),
                       ),
                     ],
@@ -848,9 +884,15 @@ class PostCard extends StatelessWidget {
             padding: const EdgeInsets.only(right: 8),
             child: Text(
               body,
-              style: AtTextStyles.body.copyWith(color: AtColors.longForm),
+              maxLines: bodyMaxLines,
+              overflow: bodyMaxLines == null ? null : TextOverflow.ellipsis,
+              style: AtTextStyles.body.copyWith(color: context.at.longForm),
             ),
           ),
+          if (mediaSlot != null) ...[
+            const SizedBox(height: 10),
+            Padding(padding: const EdgeInsets.only(right: 8), child: mediaSlot),
+          ],
           if (imageUrl != null) ...[
             const SizedBox(height: 10),
             Padding(
@@ -873,7 +915,7 @@ class PostCard extends StatelessWidget {
                 semantic: liked
                     ? l10n.unlikeAction(likeCount)
                     : l10n.likeAction(likeCount),
-                color: liked ? AtColors.pinkFg : AtColors.muted,
+                color: liked ? context.at.coral : context.at.muted,
                 onTap: onLike,
               ),
               _Action(
@@ -891,7 +933,7 @@ class PostCard extends StatelessWidget {
               _Action(
                 icon: saved ? LucideIcons.bookmarkCheck : LucideIcons.bookmark,
                 semantic: saved ? l10n.unsavePost : l10n.savePost,
-                color: saved ? AtColors.primary : AtColors.muted,
+                color: saved ? context.at.primary : context.at.muted,
                 onTap: onSave,
               ),
               _Action(
@@ -912,14 +954,14 @@ class _Action extends StatelessWidget {
     required this.icon,
     required this.semantic,
     this.label,
-    this.color = AtColors.muted,
+    this.color,
     this.onTap,
   });
 
   final IconData icon;
   final String? label;
   final String semantic;
-  final Color color;
+  final Color? color;
   final VoidCallback? onTap;
 
   @override
@@ -932,10 +974,15 @@ class _Action extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 19, color: color),
+          Icon(icon, size: 19, color: color ?? context.at.muted),
           if (label != null) ...[
             const SizedBox(width: 5),
-            Text(label!, style: AtTextStyles.metaSm.copyWith(color: color)),
+            Text(
+              label!,
+              style: AtTextStyles.metaSm.copyWith(
+                color: color ?? context.at.muted,
+              ),
+            ),
           ],
         ],
       ),
@@ -978,12 +1025,12 @@ class ProjectCard extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: featured ? 1.7 : 1.2,
                   child: imageUrl == null
-                      ? const ColoredBox(
-                          color: AtColors.softTile,
+                      ? ColoredBox(
+                          color: context.at.softTile,
                           child: Center(
                             child: Icon(
                               LucideIcons.image,
-                              color: AtColors.faint,
+                              color: context.at.faint,
                             ),
                           ),
                         )
@@ -1011,12 +1058,12 @@ class ProjectCard extends StatelessWidget {
                   title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+                  style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   subtitle,
-                  style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+                  style: AtTextStyles.meta.copyWith(color: context.at.muted),
                 ),
               ],
             ),
@@ -1057,114 +1104,132 @@ class PassportCard extends StatelessWidget {
       container: true,
       label: '${l10n.creativePassport}: $passportNumber, $name',
       child: DecoratedBox(
-        decoration: const BoxDecoration(
-          gradient: AtGradients.darkCard,
+        decoration: BoxDecoration(
+          gradient: context.at.darkCardGradient,
           borderRadius: AtRadii.passport,
-          boxShadow: AtShadows.darkCard,
+          boxShadow: context.at.shadowDarkCard,
         ),
-        child: Material(
-          type: MaterialType.transparency,
-          child: InkWell(
-            onTap: onTap,
-            borderRadius: AtRadii.passport,
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          l10n.creativePassport,
-                          style: AtTextStyles.label.copyWith(
-                            color: AtColors.violet3,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        passportNumber,
-                        style: AtTextStyles.metaSm.copyWith(
-                          color: AtColors.white,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      AtAvatar(
-                        name: name,
-                        image: _img(imageUrl),
-                        size: 72,
-                        shape: AtAvatarShape.rounded,
-                      ),
-                      const SizedBox(width: 14),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ClipRRect(
+          borderRadius: AtRadii.passport,
+          child: Stack(
+            children: [
+              const AtBrandRing(),
+              Material(
+                type: MaterialType.transparency,
+                child: InkWell(
+                  onTap: onTap,
+                  borderRadius: AtRadii.passport,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
                           children: [
-                            Text(
-                              name,
-                              style: AtTextStyles.sectionTitle.copyWith(
-                                color: AtColors.white,
-                                fontWeight: FontWeight.w800,
-                              ),
+                            const AtLogo.symbol(
+                              width: 20,
+                              style: AtLogoStyle.monoWhite,
                             ),
-                            const SizedBox(height: 2),
-                            Text(
-                              disciplineLine,
-                              style: AtTextStyles.bodySm.copyWith(
-                                color: const Color.fromRGBO(
-                                  255,
-                                  255,
-                                  255,
-                                  0.85,
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                l10n.creativePassport,
+                                style: AtTextStyles.label.copyWith(
+                                  color: context.at.violetTint2,
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 2),
                             Text(
-                              '$locationLine · $memberSince',
-                              style: AtTextStyles.meta.copyWith(
-                                color: const Color.fromRGBO(255, 255, 255, 0.7),
+                              passportNumber,
+                              style: AtTextStyles.metaSm.copyWith(
+                                color: context.at.white,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                  if (trustLabels.isNotEmpty) ...[
-                    const SizedBox(height: 14),
-                    Wrap(
-                      spacing: 6,
-                      runSpacing: 6,
-                      children: [
-                        for (final t in trustLabels)
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 4,
+                        const SizedBox(height: 16),
+                        Row(
+                          children: [
+                            AtAvatar(
+                              name: name,
+                              image: _img(imageUrl),
+                              size: 72,
+                              shape: AtAvatarShape.rounded,
                             ),
-                            decoration: const BoxDecoration(
-                              color: Color.fromRGBO(255, 255, 255, 0.14),
-                              borderRadius: AtRadii.pill,
-                            ),
-                            child: Text(
-                              t,
-                              style: AtTextStyles.chipSm.copyWith(
-                                color: AtColors.white,
+                            const SizedBox(width: 14),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    name,
+                                    style: AtTextStyles.sectionTitle.copyWith(
+                                      color: context.at.white,
+                                      fontWeight: FontWeight.w800,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    disciplineLine,
+                                    style: AtTextStyles.bodySm.copyWith(
+                                      color: const Color.fromRGBO(
+                                        255,
+                                        255,
+                                        255,
+                                        0.85,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    '$locationLine · $memberSince',
+                                    style: AtTextStyles.meta.copyWith(
+                                      color: const Color.fromRGBO(
+                                        255,
+                                        255,
+                                        255,
+                                        0.7,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
+                          ],
+                        ),
+                        if (trustLabels.isNotEmpty) ...[
+                          const SizedBox(height: 14),
+                          Wrap(
+                            spacing: 6,
+                            runSpacing: 6,
+                            children: [
+                              for (final t in trustLabels)
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 4,
+                                  ),
+                                  decoration: const BoxDecoration(
+                                    color: Color.fromRGBO(255, 255, 255, 0.14),
+                                    borderRadius: AtRadii.pill,
+                                  ),
+                                  child: Text(
+                                    t,
+                                    style: AtTextStyles.chipSm.copyWith(
+                                      color: context.at.white,
+                                    ),
+                                  ),
+                                ),
+                            ],
                           ),
+                        ],
                       ],
                     ),
-                  ],
-                ],
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),
@@ -1207,7 +1272,7 @@ class SkillCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   name,
-                  style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+                  style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
                 ),
               ),
               AtVerificationBadge(status: verification),
@@ -1226,8 +1291,8 @@ class SkillCard extends StatelessWidget {
                       height: 6,
                       decoration: BoxDecoration(
                         color: i <= level
-                            ? AtColors.primary
-                            : AtColors.progressTrack,
+                            ? context.at.primary
+                            : context.at.progressTrack,
                         borderRadius: AtRadii.pill,
                       ),
                     ),
@@ -1236,7 +1301,7 @@ class SkillCard extends StatelessWidget {
                 const SizedBox(width: 10),
                 Text(
                   levelLabel,
-                  style: AtTextStyles.metaSm.copyWith(color: AtColors.muted),
+                  style: AtTextStyles.metaSm.copyWith(color: context.at.muted),
                 ),
               ],
             ),
@@ -1310,7 +1375,7 @@ class GroupCard extends StatelessWidget {
       semanticLabel: '$name, $memberCountLabel',
       child: Row(
         children: [
-          AtIconTile(icon: icon, size: 48, tone: AtTone.pink),
+          AtIconTile(icon: icon, size: 48, tone: AtTone.coral),
           const SizedBox(width: 14),
           Expanded(
             child: Column(
@@ -1318,12 +1383,12 @@ class GroupCard extends StatelessWidget {
               children: [
                 Text(
                   name,
-                  style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+                  style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   '$typeLabel · $memberCountLabel',
-                  style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+                  style: AtTextStyles.meta.copyWith(color: context.at.muted),
                 ),
               ],
             ),
@@ -1375,7 +1440,7 @@ class NotificationTile extends StatelessWidget {
       excludeSemantics: true,
       onTap: onTap,
       child: Material(
-        color: unread ? AtColors.tint3 : AtColors.white,
+        color: unread ? context.at.primaryTintFaint : context.at.surface,
         borderRadius: AtRadii.cardLg,
         child: InkWell(
           onTap: onTap,
@@ -1394,7 +1459,7 @@ class NotificationTile extends StatelessWidget {
                       Text(
                         title,
                         style: AtTextStyles.cardTitle.copyWith(
-                          color: AtColors.ink,
+                          color: context.at.ink,
                           fontWeight: unread
                               ? FontWeight.w700
                               : FontWeight.w600,
@@ -1404,14 +1469,14 @@ class NotificationTile extends StatelessWidget {
                       Text(
                         body,
                         style: AtTextStyles.bodySm.copyWith(
-                          color: AtColors.body,
+                          color: context.at.body,
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         timeLabel,
                         style: AtTextStyles.meta.copyWith(
-                          color: AtColors.muted,
+                          color: context.at.muted,
                         ),
                       ),
                     ],
@@ -1422,8 +1487,8 @@ class NotificationTile extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 6, left: 8),
                     width: 9,
                     height: 9,
-                    decoration: const BoxDecoration(
-                      color: AtColors.primary,
+                    decoration: BoxDecoration(
+                      color: context.at.primary,
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -1473,18 +1538,20 @@ class SavedItemRow extends StatelessWidget {
               children: [
                 Text(
                   typeLabel.toUpperCase(),
-                  style: AtTextStyles.label.copyWith(color: tone.colors.strong),
+                  style: AtTextStyles.label.copyWith(
+                    color: tone.colorsOf(context).strong,
+                  ),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+                  style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
                 ),
                 Text(
                   meta,
-                  style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+                  style: AtTextStyles.meta.copyWith(color: context.at.muted),
                 ),
               ],
             ),
@@ -1492,10 +1559,10 @@ class SavedItemRow extends StatelessWidget {
           AtTapTarget(
             onTap: onUnsave,
             semanticLabel: AppLocalizations.of(context).unsaveItem(title),
-            child: const Icon(
+            child: Icon(
               LucideIcons.bookmarkCheck,
               size: 20,
-              color: AtColors.primary,
+              color: context.at.primary,
             ),
           ),
         ],

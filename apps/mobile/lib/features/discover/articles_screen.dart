@@ -41,7 +41,7 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
     final l10n = AppLocalizations.of(context);
     final async = ref.watch(articleListProvider);
     return Scaffold(
-      backgroundColor: AtColors.white,
+      backgroundColor: context.at.background,
       body: SafeArea(
         child: Column(
           children: [
@@ -53,7 +53,7 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
             ),
             Expanded(
               child: async.when(
-                loading: () => const Center(child: CircularProgressIndicator()),
+                loading: () => const AtLoadingBody(),
                 error: (e, _) => loadFailure(
                   e,
                   () => ref.invalidate(articleListProvider),

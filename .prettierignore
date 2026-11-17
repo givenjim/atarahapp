@@ -5,6 +5,7 @@ build
 coverage
 design/prototype
 docs/MASTER_PROMPT.md
+docs/ATARAH_MASTER_PROMPT_v2.3.md
 pnpm-lock.yaml
 apps/mobile
 packages/api-contracts/generated

@@ -96,11 +96,7 @@ class _PassportScreenState extends ConsumerState<PassportScreen> {
             ),
             Expanded(
               child: passport.when(
-                loading: () => Semantics(
-                  label: l10n.loading,
-                  liveRegion: true,
-                  child: const Center(child: CircularProgressIndicator()),
-                ),
+                loading: () => const AtLoadingBody(),
                 error: (e, _) => Padding(
                   padding: const EdgeInsets.all(AtSpacing.gutter),
                   child: AtErrorState(
@@ -150,7 +146,7 @@ class _PassportScreenState extends ConsumerState<PassportScreen> {
                         child: Text(
                           p.shareUrl,
                           style: AtTextStyles.meta.copyWith(
-                            color: AtColors.muted,
+                            color: context.at.muted,
                           ),
                         ),
                       ),
@@ -181,6 +177,67 @@ class _PassportCard extends ConsumerWidget {
 
   final PassportDto passport;
 
+  /// Header row: 20 px white symbol, "CREATIVE PASSPORT" and the number (Master Prompt 8.4).
+  Widget _header(
+    BuildContext context,
+    AppLocalizations l10n,
+    PassportDto passport,
+  ) {
+    final style = AtTextStyles.metaSm.copyWith(
+      color: context.at.white,
+      fontWeight: FontWeight.w700,
+      letterSpacing: 1.5,
+    );
+    return Wrap(
+      alignment: WrapAlignment.spaceBetween,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      spacing: 8,
+      runSpacing: 4,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const AtLogo.symbol(width: 20, style: AtLogoStyle.monoWhite),
+            const SizedBox(width: 8),
+            Opacity(
+              opacity: 0.8,
+              child: Text(l10n.pfPassportCardTitle.toUpperCase(), style: style),
+            ),
+          ],
+        ),
+        Opacity(
+          opacity: 0.75,
+          child: Text(
+            passport.passportNumber.replaceAll('-', ' · '),
+            style: style,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _trustPill(BuildContext context, String label) => Container(
+    constraints: const BoxConstraints(minHeight: 24),
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+    decoration: BoxDecoration(
+      color: context.at.white.withValues(alpha: 0.16),
+      borderRadius: AtRadii.pill,
+    ),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(LucideIcons.shieldCheck, size: 12, color: context.at.white),
+        const SizedBox(width: 4),
+        Flexible(
+          child: Text(
+            label,
+            style: AtTextStyles.chipSm.copyWith(color: context.at.white),
+          ),
+        ),
+      ],
+    ),
+  );
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
@@ -195,133 +252,135 @@ class _PassportCard extends ConsumerWidget {
       container: true,
       label: '${l10n.pfPassportCardTitle} ${passport.passportNumber}',
       child: Container(
-        padding: const EdgeInsets.all(18),
-        decoration: const BoxDecoration(
-          color: AtColors.white,
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          gradient: context.at.darkCardGradient,
           borderRadius: AtRadii.passport,
-          boxShadow: AtShadows.card,
+          boxShadow: context.at.shadowDarkCard,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            Wrap(
-              alignment: WrapAlignment.spaceBetween,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              spacing: 8,
-              runSpacing: 4,
-              children: [
-                Text(
-                  l10n.pfPassportCardTitle.toUpperCase(),
-                  style: AtTextStyles.metaSm.copyWith(
-                    color: AtColors.muted,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 1.1,
-                  ),
-                ),
-                Text(
-                  passport.passportNumber.replaceAll('-', ' · '),
-                  style: AtTextStyles.metaSm.copyWith(
-                    color: AtColors.muted,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 1.1,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 14),
-            Row(
-              children: [
-                AtAvatar(
-                  name: passport.displayName,
-                  size: 64,
-                  shape: AtAvatarShape.rounded,
-                  image: url == null
-                      ? null
-                      : ref.watch(avatarImageProvider)(url),
-                ),
-                const SizedBox(width: 14),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            const AtBrandRing(),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _header(context, l10n, passport),
+                  const SizedBox(height: 16),
+                  Row(
                     children: [
-                      Text(
-                        passport.displayName,
-                        style: AtTextStyles.sectionTitle.copyWith(
-                          color: AtColors.ink,
-                        ),
-                      ),
-                      if (line.isNotEmpty)
-                        Text(
-                          line,
-                          style: AtTextStyles.bodySm.copyWith(
-                            color: AtColors.body,
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: context.at.white.withValues(alpha: 0.4),
+                            width: 2,
                           ),
                         ),
-                      if (place != null)
-                        Row(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(18),
+                          child: AtAvatar(
+                            name: passport.displayName,
+                            size: 68,
+                            shape: AtAvatarShape.rounded,
+                            image: url == null
+                                ? null
+                                : ref.watch(avatarImageProvider)(url),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Icon(
-                              LucideIcons.mapPin,
-                              size: 12,
-                              color: AtColors.muted,
+                            Text(
+                              passport.displayName,
+                              style: AtTextStyles.sectionTitle.copyWith(
+                                color: context.at.white,
+                                fontWeight: FontWeight.w800,
+                              ),
                             ),
-                            const SizedBox(width: 4),
-                            Flexible(
-                              child: Text(
-                                place,
-                                style: AtTextStyles.meta.copyWith(
-                                  color: AtColors.muted,
+                            if (line.isNotEmpty)
+                              Text(
+                                line,
+                                style: AtTextStyles.bodySm.copyWith(
+                                  color: context.at.white.withValues(
+                                    alpha: 0.85,
+                                  ),
                                 ),
+                              ),
+                            if (place != null)
+                              Padding(
+                                padding: const EdgeInsets.only(top: 2),
+                                child: Text(
+                                  place,
+                                  style: AtTextStyles.meta.copyWith(
+                                    color: context.at.white.withValues(
+                                      alpha: 0.7,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            Text(
+                              l10n.ppMemberSince(
+                                _memberSince(context, passport.memberSince),
+                              ),
+                              style: AtTextStyles.meta.copyWith(
+                                color: context.at.white.withValues(alpha: 0.7),
                               ),
                             ),
                           ],
                         ),
+                      ),
                     ],
                   ),
-                ),
-              ],
-            ),
-            if (passport.trust.isNotEmpty) ...[
-              const SizedBox(height: 12),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  for (final t in passport.trust)
-                    AtTag(label: t, tone: AtTone.success),
+                  if (passport.trust.isNotEmpty) ...[
+                    const SizedBox(height: 14),
+                    Wrap(
+                      spacing: 6,
+                      runSpacing: 6,
+                      children: [
+                        for (final t in passport.trust) _trustPill(context, t),
+                      ],
+                    ),
+                  ],
+                  const SizedBox(height: 14),
+                  Wrap(
+                    alignment: WrapAlignment.spaceBetween,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 8,
+                    runSpacing: 4,
+                    children: [
+                      Text(
+                        l10n.obCompletion,
+                        style: AtTextStyles.meta.copyWith(
+                          color: context.at.white.withValues(alpha: 0.85),
+                        ),
+                      ),
+                      Text(
+                        '$percent%',
+                        style: AtTextStyles.meta.copyWith(
+                          color: context.at.white,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 6),
+                  ClipRRect(
+                    borderRadius: AtRadii.pill,
+                    child: LinearProgressIndicator(
+                      value: percent / 100,
+                      minHeight: 8,
+                      semanticsLabel: l10n.obCompletion,
+                      backgroundColor: context.at.white.withValues(alpha: 0.16),
+                      valueColor: AlwaysStoppedAnimation(context.at.white),
+                    ),
+                  ),
                 ],
               ),
-            ],
-            const SizedBox(height: 12),
-            Text(
-              l10n.ppMemberSince(_memberSince(context, passport.memberSince)),
-              style: AtTextStyles.meta.copyWith(color: AtColors.muted),
-            ),
-            const SizedBox(height: 14),
-            Wrap(
-              alignment: WrapAlignment.spaceBetween,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              spacing: 8,
-              runSpacing: 4,
-              children: [
-                Text(
-                  l10n.obCompletion,
-                  style: AtTextStyles.meta.copyWith(color: AtColors.body),
-                ),
-                Text(
-                  '$percent%',
-                  style: AtTextStyles.meta.copyWith(
-                    color: AtColors.ink,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 6),
-            AtProgressBar(
-              value: percent / 100,
-              height: 8,
-              semanticLabel: l10n.obCompletion,
             ),
           ],
         ),
@@ -352,7 +411,7 @@ class _Growth extends StatelessWidget {
               child: Text(
                 l10n.ppGrowth,
                 style: AtTextStyles.sectionTitleSm.copyWith(
-                  color: AtColors.ink,
+                  color: context.at.ink,
                 ),
               ),
             ),
@@ -381,11 +440,15 @@ class _Growth extends StatelessWidget {
                   children: [
                     Text(
                       growthLabel(l10n, b.key),
-                      style: AtTextStyles.bodySm.copyWith(color: AtColors.ink),
+                      style: AtTextStyles.bodySm.copyWith(
+                        color: context.at.ink,
+                      ),
                     ),
                     Text(
                       '${b.percent.round()}%',
-                      style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+                      style: AtTextStyles.meta.copyWith(
+                        color: context.at.muted,
+                      ),
                     ),
                   ],
                 ),
@@ -419,13 +482,13 @@ class _Sections extends StatelessWidget {
           header: true,
           child: Text(
             l10n.ppSections,
-            style: AtTextStyles.sectionTitleSm.copyWith(color: AtColors.ink),
+            style: AtTextStyles.sectionTitleSm.copyWith(color: context.at.ink),
           ),
         ),
         const SizedBox(height: 4),
         Text(
           l10n.ppSectionsBody,
-          style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+          style: AtTextStyles.meta.copyWith(color: context.at.muted),
         ),
         const SizedBox(height: 10),
         AtCard(

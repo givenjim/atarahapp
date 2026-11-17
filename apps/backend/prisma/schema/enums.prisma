@@ -24,6 +24,12 @@ enum RoleKey {
   SUPER_ADMIN
 }
 
+/// Member appearance preference (P1-M7).
+enum Appearance {
+  LIGHT
+  DARK
+}
+
 enum MembershipPlanKey {
   FREE
   PRO

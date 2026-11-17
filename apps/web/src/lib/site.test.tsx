@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { JoinCta } from '@/components/join-cta';
-import { Wordmark } from '@/components/wordmark';
+import { Logo } from '@/components/logo';
 import { storeLinks } from './site';
 
 describe('storeLinks', () => {
@@ -39,9 +39,12 @@ describe('JoinCta', () => {
   });
 });
 
-describe('Wordmark', () => {
+describe('Logo', () => {
   it('is exposed as a single labelled image', () => {
-    render(<Wordmark />);
-    expect(screen.getByRole('img', { name: 'Atarah' })).toBeInTheDocument();
+    render(<Logo />);
+    expect(screen.getByRole('img', { name: 'Atarah' })).toHaveAttribute(
+      'src',
+      '/brand/atarah-logo-notagline-color.svg',
+    );
   });
 });

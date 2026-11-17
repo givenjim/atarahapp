@@ -38,3 +38,7 @@ Each screen file has markup plus a `<script type="text/x-dc">` block whose sampl
 - **`_ds/modernist-…/`** — an unused design-system bundle (red, square corners, Archivo font). It contradicts the real design. The real tokens are the inline styles in the screen files and are captured in Master Prompt §8 (and, from P0-M6, `packages/design-tokens/tokens.json`).
 - `support.js` (prototype runtime) and `icons.js` (Lucide renderer) are not app code.
 - Sample people (Nia Wairimu, Amani Otieno, Zuri Mwangi, Kiptoo Langat, Wanjiku Njeri) are illustrative; they may appear only in clearly labelled `dev` demo seed data.
+
+## Updated 2026-10-22 (Master Prompt v2.3)
+
+The prototype now carries the new brand (logo, six-colour palette) and a **dark appearance**. `theme-dark.js` is a mock-up colour remap: use its colour map as reference only, never port it (Master Prompt §8.3). The logo pack and the _Logo & Brand Identity Guidelines_ PDF are in `uploads/Atarah_Logo_Pack/`; production assets are copied from there into `docs/brand/` in P1-M7. `assets/ribbon.png` is gone from the design and must not be used.

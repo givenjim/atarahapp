@@ -3,254 +3,176 @@ import {
   Controller,
   Delete,
   Get,
+  Headers,
   HttpCode,
   Param,
+  Patch,
   ParseUUIDPipe,
   Post,
+  Put,
+  Req,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiExcludeEndpoint, ApiTags } from '@nestjs/swagger';
 import { Throttle } from '@nestjs/throttler';
-import { AllowPending, ClientIp, CurrentAuth, Public, UserAgent } from '../access/decorators';
-import { ApiEnvelope } from '../common/api-envelope';
+import type { Request } from 'express';
 import { type AuthContext } from '../access/access.types';
-import { AdminAuthService } from './admin-auth.service';
-import { AuthService } from './auth.service';
+import { AccessService } from '../access/access.service';
 import {
-  AdminLoginDto,
-  AdminReauthDto,
-  AdminTotpVerifyDto,
-  ChallengeDto,
-  GoogleSignInDto,
-  IdentifierDto,
-  LoginDto,
-  RefreshDto,
-  RegisterDto,
-  ResetPasswordDto,
-  VerifyDto,
-} from './identity.dto';
+  AllowDeactivated,
+  AllowPending,
+  AllowTwoStepPending,
+  CurrentAuth,
+  Public,
+} from '../access/decorators';
+import { ApiEnvelope } from '../common/api-envelope';
+import { RegisterSessionDeviceDto } from './identity.dto';
+import { UpdateAccountPreferencesDto } from './preferences.dto';
+import { PreferencesService } from './preferences.service';
 import {
-  AdminAuthSessionDto,
-  AdminLoginStepDto,
   AdminMeDto,
-  AuthSessionDto,
-  LoggedOutDto,
+  DeviceRegisteredDto,
   MeDto,
-  ReauthDto,
-  RegisterResultDto,
-  ResendResultDto,
-  ResetDto,
+  AccountPreferencesDto,
   RevokedDto,
-  SentDto,
+  SecurityDto,
   SessionViewDto,
   SessionsRevokedDto,
-  TotpSetupDto,
 } from './identity.responses';
+import { SecurityService } from './security.service';
 import { SessionService } from './session.service';
+import { SmsHookService, type SendSmsPayload } from './sms-hook.service';
 import { UserViewService } from './user-view.service';
 
 const perMinute = (limit: number) => Throttle({ default: { limit, ttl: 60_000 } });
 
+/**
+ * Sign-up, code verification, sign-in, token refresh, recovery and MFA go straight from the apps to Supabase
+ * Auth (section 5.5). The backend owns only what Supabase cannot: the sessions list, the SMS hook and security.
+ */
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(
-    private readonly auth: AuthService,
     private readonly sessions: SessionService,
+    private readonly smsHook: SmsHookService,
   ) {}
 
-  @Public()
-  @perMinute(5)
-  @ApiEnvelope(RegisterResultDto, { status: 201 })
-  @Post('register')
-  register(@Body() dto: RegisterDto) {
-    return this.auth.register(dto);
-  }
-
-  @Public()
-  @perMinute(10)
-  @HttpCode(200)
-  @ApiEnvelope(AuthSessionDto)
-  @Post('verify')
-  verify(@Body() dto: VerifyDto, @ClientIp() ip?: string, @UserAgent() userAgent?: string) {
-    return this.auth.verify(dto, { ip, userAgent });
-  }
-
-  @Public()
-  @perMinute(3)
-  @HttpCode(200)
-  @ApiEnvelope(ResendResultDto)
-  @Post('resend-code')
-  resend(@Body() dto: IdentifierDto) {
-    return this.auth.resendVerification(dto.identifier);
-  }
-
-  @Public()
-  @perMinute(10)
-  @HttpCode(200)
-  @ApiEnvelope(AuthSessionDto)
-  @Post('login')
-  login(@Body() dto: LoginDto, @ClientIp() ip?: string, @UserAgent() userAgent?: string) {
-    return this.auth.login(dto, { ip, userAgent });
-  }
-
-  @Public()
-  @perMinute(30)
-  @HttpCode(200)
-  @ApiEnvelope(AuthSessionDto)
-  @Post('refresh')
-  refresh(@Body() dto: RefreshDto) {
-    return this.auth.refresh(dto.refreshToken);
-  }
-
   @ApiBearerAuth('access-token')
-  @HttpCode(200)
-  @ApiEnvelope(LoggedOutDto)
-  @Post('logout')
-  async logout(@CurrentAuth() auth: AuthContext) {
-    await this.auth.logout(auth.familyId);
-    return { loggedOut: true };
-  }
-
-  @ApiBearerAuth('access-token')
-  @HttpCode(200)
-  @ApiEnvelope(SessionsRevokedDto)
-  @Post('logout-all')
-  async logoutAll(@CurrentAuth() auth: AuthContext) {
-    return { sessionsRevoked: await this.auth.logoutAll(auth.userId) };
-  }
-
-  @Public()
-  @perMinute(3)
-  @HttpCode(200)
-  @ApiEnvelope(SentDto)
-  @Post('password/forgot')
-  forgot(@Body() dto: IdentifierDto) {
-    return this.auth.forgotPassword(dto.identifier);
-  }
-
-  @Public()
-  @perMinute(5)
-  @HttpCode(200)
-  @ApiEnvelope(ResetDto)
-  @Post('password/reset')
-  reset(@Body() dto: ResetPasswordDto) {
-    return this.auth.resetPassword(dto);
-  }
-
-  @Public()
-  @perMinute(10)
-  @HttpCode(200)
-  @ApiEnvelope(AuthSessionDto)
-  @Post('google')
-  google(@Body() dto: GoogleSignInDto, @ClientIp() ip?: string, @UserAgent() userAgent?: string) {
-    return this.auth.googleSignIn(dto.idToken, dto.client, { ip, userAgent });
-  }
-
-  @ApiBearerAuth('access-token')
+  @AllowTwoStepPending()
   @ApiEnvelope(SessionViewDto, { isArray: true })
   @Get('sessions')
   list(@CurrentAuth() auth: AuthContext) {
-    return this.sessions.list(auth.userId, auth.familyId);
+    return this.sessions.list(auth.userId, auth.sessionId);
   }
 
   @ApiBearerAuth('access-token')
+  @AllowTwoStepPending()
   @HttpCode(200)
   @ApiEnvelope(RevokedDto)
+  @perMinute(30)
   @Delete('sessions/:id')
   async revoke(@CurrentAuth() auth: AuthContext, @Param('id', ParseUUIDPipe) id: string) {
     await this.sessions.revokeOwn(auth.userId, id);
     return { revoked: true };
   }
+
+  @ApiBearerAuth('access-token')
+  @HttpCode(200)
+  @ApiEnvelope(SessionsRevokedDto)
+  @perMinute(10)
+  @Post('sessions/revoke-others')
+  async revokeOthers(@CurrentAuth() auth: AuthContext) {
+    return { sessionsRevoked: await this.sessions.revokeAllForUser(auth.userId, auth.sessionId) };
+  }
+
+  /** Called by Supabase Auth, not by apps. Authenticated by the Standard Webhooks signature. */
+  @Public()
+  @ApiExcludeEndpoint()
+  @perMinute(600)
+  @HttpCode(200)
+  @Post('hooks/send-sms')
+  async sendSmsHook(
+    @Req() req: Request & { rawBody?: Buffer },
+    @Body() body: SendSmsPayload,
+    @Headers('webhook-id') id?: string,
+    @Headers('webhook-timestamp') timestamp?: string,
+    @Headers('webhook-signature') signature?: string,
+  ) {
+    this.smsHook.verifySignature(req.rawBody, { id, timestamp, signature });
+    await this.smsHook.send(body);
+    return {};
+  }
 }
 
 @ApiTags('Users')
-@Controller('users')
+@Controller()
 export class UsersController {
-  constructor(private readonly views: UserViewService) {}
+  constructor(
+    private readonly views: UserViewService,
+    private readonly security: SecurityService,
+    private readonly preferences: PreferencesService,
+  ) {}
 
   @ApiBearerAuth('access-token')
   @AllowPending()
+  @AllowDeactivated()
+  @AllowTwoStepPending()
   @ApiEnvelope(MeDto)
-  @Get('me')
+  @Get('users/me')
   currentUser(@CurrentAuth() auth: AuthContext) {
     return this.views.me(auth.userId);
+  }
+
+  @ApiBearerAuth('access-token')
+  @ApiEnvelope(AccountPreferencesDto)
+  @Get('me/preferences')
+  getPreferences(@CurrentAuth() auth: AuthContext) {
+    return this.preferences.get(auth.userId);
+  }
+
+  /** Appearance, language, time zone and marketing consent. Only ever the caller's own row. */
+  @ApiBearerAuth('access-token')
+  @ApiEnvelope(AccountPreferencesDto)
+  @Patch('me/preferences')
+  updatePreferences(@CurrentAuth() auth: AuthContext, @Body() dto: UpdateAccountPreferencesDto) {
+    return this.preferences.update(auth.userId, dto);
+  }
+
+  @ApiBearerAuth('access-token')
+  @AllowTwoStepPending()
+  @ApiEnvelope(SecurityDto)
+  @Get('me/security')
+  securityOverview(@CurrentAuth() auth: AuthContext) {
+    return this.security.overview(auth.userId);
+  }
+
+  /** The app calls this after every sign-in so the account knows its devices (new-device detection). */
+  @ApiBearerAuth('access-token')
+  @AllowTwoStepPending()
+  @perMinute(30)
+  @HttpCode(200)
+  @ApiEnvelope(DeviceRegisteredDto)
+  @Put('me/device')
+  registerDevice(@CurrentAuth() auth: AuthContext, @Body() dto: RegisterSessionDeviceDto) {
+    return this.security.registerDevice(auth.userId, auth.sessionId, dto, auth.aal);
   }
 }
 
 @ApiTags('Admin auth')
 @Controller('admin/auth')
 export class AdminAuthController {
-  constructor(private readonly admin: AdminAuthService) {}
+  constructor(
+    private readonly views: UserViewService,
+    private readonly access: AccessService,
+  ) {}
 
-  @Public()
-  @perMinute(10)
-  @HttpCode(200)
-  @ApiEnvelope(AdminLoginStepDto)
-  @Post('login')
-  adminLogin(@Body() dto: AdminLoginDto, @ClientIp() ip?: string, @UserAgent() userAgent?: string) {
-    return this.admin.login(dto.email, dto.password, { ip, userAgent });
-  }
-
-  @Public()
-  @perMinute(10)
-  @HttpCode(200)
-  @ApiEnvelope(TotpSetupDto)
-  @Post('totp/setup')
-  totpSetup(@Body() dto: ChallengeDto) {
-    return this.admin.totpSetup(dto.challengeToken);
-  }
-
-  @Public()
-  @perMinute(10)
-  @HttpCode(200)
-  @ApiEnvelope(AdminAuthSessionDto)
-  @Post('totp/verify')
-  totpVerify(
-    @Body() dto: AdminTotpVerifyDto,
-    @ClientIp() ip?: string,
-    @UserAgent() userAgent?: string,
-  ) {
-    return this.admin.totpVerify(
-      dto.challengeToken,
-      { code: dto.code, recoveryCode: dto.recoveryCode },
-      { ip, userAgent },
-    );
-  }
-
-  @Public()
-  @perMinute(30)
-  @HttpCode(200)
-  @ApiEnvelope(AuthSessionDto)
-  @Post('refresh')
-  adminRefresh(@Body() dto: RefreshDto) {
-    return this.admin.refresh(dto.refreshToken);
-  }
-
-  @ApiBearerAuth('access-token')
-  @HttpCode(200)
-  @ApiEnvelope(ReauthDto)
-  @Post('reauth')
-  adminReauth(
-    @CurrentAuth() auth: AuthContext,
-    @Body() dto: AdminReauthDto,
-    @ClientIp() ip?: string,
-  ) {
-    return this.admin.reauth(auth.userId, auth.familyId, dto, { ip });
-  }
-
-  @ApiBearerAuth('access-token')
-  @HttpCode(200)
-  @ApiEnvelope(LoggedOutDto)
-  @Post('logout')
-  async adminLogout(@CurrentAuth() auth: AuthContext) {
-    await this.admin.logout(auth.familyId);
-    return { loggedOut: true };
-  }
-
+  /** The signed-in staff member and their effective permissions. The token must be AAL2 (checked by the guard). */
   @ApiBearerAuth('access-token')
   @ApiEnvelope(AdminMeDto)
   @Get('me')
-  adminMe(@CurrentAuth() auth: AuthContext) {
-    return this.admin.profile(auth.userId);
+  async adminMe(@CurrentAuth() auth: AuthContext) {
+    const me = await this.views.me(auth.userId);
+    const access = await this.access.effectiveAccess(auth.userId, auth.status);
+    return { ...me, permissions: [...access.permissions].sort() };
   }
 }

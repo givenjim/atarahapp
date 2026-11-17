@@ -171,7 +171,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     final l10n = AppLocalizations.of(context);
     final searching = _query.length >= _minChars;
     return Scaffold(
-      backgroundColor: AtColors.white,
+      backgroundColor: context.at.background,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -210,10 +210,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                 button: true,
                                 label: l10n.dcClearSearch,
                                 excludeSemantics: true,
-                                child: const Icon(
+                                child: Icon(
                                   LucideIcons.x,
                                   size: 18,
-                                  color: AtColors.muted,
+                                  color: context.at.muted,
                                 ),
                               ),
                             ),
@@ -238,7 +238,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     if (_error != null) return loadFailure(_error!, _run, l10n);
     final groups = _groups;
     if (groups == null || (_loading && groups.isEmpty)) {
-      return const Center(child: CircularProgressIndicator());
+      return const AtLoadingBody();
     }
     final total = groups.fold<int>(0, (n, g) => n + g.count.toInt());
     if (total == 0) {
@@ -286,12 +286,16 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
 String _groupTitle(AppLocalizations l10n, SearchGroupDtoType t) => switch (t) {
   SearchGroupDtoType.articles => l10n.dcArticles,
+  SearchGroupDtoType.opportunities => l10n.featureOpportunities,
+  SearchGroupDtoType.learning => l10n.dcSkillLabs,
   _ => l10n.dcCreatives,
 };
 
 SearchKind? _kindOf(SearchGroupDtoType t) => switch (t) {
   SearchGroupDtoType.creatives => SearchKind.creatives,
   SearchGroupDtoType.articles => SearchKind.articles,
+  SearchGroupDtoType.opportunities => SearchKind.opportunities,
+  SearchGroupDtoType.learning => SearchKind.learning,
   _ => null,
 };
 
@@ -328,6 +332,18 @@ class _Tabs extends StatelessWidget {
             label: l10n.dcArticlesTab(counts['articles'] ?? 0),
             selected: kind == SearchKind.articles,
             onTap: () => onPick(SearchKind.articles),
+          ),
+          const SizedBox(width: 8),
+          AtChip(
+            label: l10n.opSearchTab(counts['opportunities'] ?? 0),
+            selected: kind == SearchKind.opportunities,
+            onTap: () => onPick(SearchKind.opportunities),
+          ),
+          const SizedBox(width: 8),
+          AtChip(
+            label: l10n.lnSearchTab(counts['learning'] ?? 0),
+            selected: kind == SearchKind.learning,
+            onTap: () => onPick(SearchKind.learning),
           ),
         ],
       ),
@@ -378,7 +394,7 @@ class _HitRow extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: AtTextStyles.chip.copyWith(
-                            color: AtColors.ink,
+                            color: context.at.ink,
                           ),
                         ),
                       ),
@@ -394,7 +410,7 @@ class _HitRow extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: AtTextStyles.metaSm.copyWith(
-                        color: AtColors.muted,
+                        color: context.at.muted,
                       ),
                     ),
                 ],
@@ -441,7 +457,7 @@ class _Recent extends ConsumerWidget {
             padding: const EdgeInsets.only(bottom: 12),
             child: Text(
               l10n.dcSearchTooShort,
-              style: AtTextStyles.bodySm.copyWith(color: AtColors.muted),
+              style: AtTextStyles.bodySm.copyWith(color: context.at.muted),
             ),
           ),
         if (recent.isNotEmpty) ...[
@@ -500,10 +516,10 @@ class _RecentRow extends StatelessWidget {
                 constraints: const BoxConstraints(minHeight: 48),
                 child: Row(
                   children: [
-                    const Icon(
+                    Icon(
                       LucideIcons.history,
                       size: 18,
-                      color: AtColors.muted,
+                      color: context.at.muted,
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -511,7 +527,9 @@ class _RecentRow extends StatelessWidget {
                         query,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: AtTextStyles.body.copyWith(color: AtColors.ink),
+                        style: AtTextStyles.body.copyWith(
+                          color: context.at.ink,
+                        ),
                       ),
                     ),
                   ],

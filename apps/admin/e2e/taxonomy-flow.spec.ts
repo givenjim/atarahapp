@@ -1,6 +1,12 @@
 import { randomBytes } from 'node:crypto';
 import { expect, test, type Page } from '@playwright/test';
-import { cleanupTaxonomy, freshFixtures, signInWithEnrolment, type Fixtures } from './helpers';
+import {
+  cleanupTaxonomy,
+  freshFixtures,
+  memberAccessToken,
+  signInWithEnrolment,
+  type Fixtures,
+} from './helpers';
 
 const API = process.env.ATARAH_API_BASE_URL ?? 'http://localhost:3000';
 
@@ -27,16 +33,6 @@ test.beforeAll(() => {
 test.afterAll(() => {
   cleanupTaxonomy(PREFIX);
 });
-
-async function memberToken(f: Fixtures): Promise<string> {
-  const res = await fetch(`${API}/api/v1/auth/login`, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ identifier: f.memberEmail, password: f.password, client: 'WEB' }),
-  });
-  expect(res.ok, `member sign-in: ${res.status}`).toBe(true);
-  return ((await res.json()) as { data: { accessToken: string } }).data.accessToken;
-}
 
 const memberGet = async (token: string, path: string) =>
   (
@@ -143,7 +139,7 @@ test('content admin manages the taxonomy and decides specialisation suggestions'
   await expect(dataRows.first()).toContainText(SPEC_A_RENAMED);
 
   // ---- Suggestions: a member suggests three names; approve, merge, reject ----
-  const token = await memberToken(accounts);
+  const token = await memberAccessToken(accounts);
   const disciplineId = (await memberGet(token, '/api/v1/taxonomy/disciplines')).find(
     (d) => d.name === DISCIPLINE,
   )?.id;

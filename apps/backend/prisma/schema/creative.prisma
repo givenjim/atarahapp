@@ -35,36 +35,38 @@ enum SuggestionStatus {
 
 /// One per member. Created the first time onboarding or the profile is opened. Fields a member skipped stay null.
 model CreativeProfile {
-  id                    String         @id @default(uuid()) @db.Uuid
-  userId                String         @unique @db.Uuid
+  id                    String                   @id @default(uuid()) @db.Uuid
+  userId                String                   @unique @db.Uuid
   /// Lower-case public handle (atarah.app/{handle}). Unique across all members; null until chosen.
-  handle                String?        @unique @db.Citext
+  handle                String?                  @unique @db.Citext
   displayName           String
   headline              String?
   bio                   String?
-  primaryDisciplineId   String?        @db.Uuid
-  countryId             String?        @db.Uuid
-  countyId              String?        @db.Uuid
+  primaryDisciplineId   String?                  @db.Uuid
+  countryId             String?                  @db.Uuid
+  countyId              String?                  @db.Uuid
   /// Free text town or neighbourhood (optional).
   town                  String?
   /// Who can see the county. Default MEMBERS (Master Prompt 6.2).
-  locationVisibility    Visibility     @default(MEMBERS)
-  avatarMediaId         String?        @db.Uuid
-  onboardingStep        OnboardingStep @default(INTRO)
+  locationVisibility    Visibility               @default(MEMBERS)
+  avatarMediaId         String?                  @db.Uuid
+  onboardingStep        OnboardingStep           @default(INTRO)
   onboardingCompletedAt DateTime?
   /// Cached result of the profile completion engine (0-100). Recomputed on every profile write.
-  completionPercent     Int            @default(0)
+  completionPercent     Int                      @default(0)
   /// "Open to commissions" shown on the public profile.
-  openToCommissions     Boolean        @default(false)
+  openToCommissions     Boolean                  @default(false)
+  /// Generated full-text vector (name, handle, headline). Read-only: the database maintains it.
+  searchVector          Unsupported("tsvector")?
   /// Contact preferences: which details appear when the CONTACT section is visible to a viewer.
-  contactShowEmail      Boolean        @default(true)
-  contactShowPhone      Boolean        @default(false)
+  contactShowEmail      Boolean                  @default(true)
+  contactShowPhone      Boolean                  @default(false)
   /// Accepted connections may see contact details even while the CONTACT section is private.
-  contactForConnections Boolean        @default(false)
+  contactForConnections Boolean                  @default(false)
   /// When false nobody can send this member a connection request.
-  acceptConnections     Boolean        @default(true)
-  createdAt             DateTime       @default(now())
-  updatedAt             DateTime       @updatedAt
+  acceptConnections     Boolean                  @default(true)
+  createdAt             DateTime                 @default(now())
+  updatedAt             DateTime                 @updatedAt
 
   user                       User                       @relation(fields: [userId], references: [id], onDelete: Cascade)
   primaryDiscipline          Discipline?                @relation("PrimaryDiscipline", fields: [primaryDisciplineId], references: [id], onDelete: SetNull)
@@ -87,6 +89,7 @@ model CreativeProfile {
 
   @@index([primaryDisciplineId])
   @@index([countyId])
+  @@index([searchVector], type: Gin, map: "creative_profiles_search_vector_idx")
   @@index([displayName(ops: raw("gin_trgm_ops"))], type: Gin, map: "creative_profiles_display_name_trgm")
   @@index([headline(ops: raw("gin_trgm_ops"))], type: Gin, map: "creative_profiles_headline_trgm")
   @@map("creative_profiles")

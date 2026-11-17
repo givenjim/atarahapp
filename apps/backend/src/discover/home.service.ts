@@ -1,4 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { notBlockedWhere } from '../community-core/blocks';
 import { type Article } from '@prisma/client';
 import { ArticlesService, livePublished } from '../content/articles.service';
 import { CreativeProfileService } from '../creative/creative-profile.service';
@@ -173,7 +174,7 @@ export class HomeService {
         onboardingCompletedAt: { not: null },
         handle: { not: null },
         userId: { not: userId },
-        user: { status: 'ACTIVE', deletedAt: null },
+        user: { status: 'ACTIVE', deletedAt: null, ...notBlockedWhere(userId) },
         NOT: {
           user: {
             OR: [

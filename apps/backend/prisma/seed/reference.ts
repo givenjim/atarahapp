@@ -2,6 +2,7 @@ import { type PrismaClient } from '@prisma/client';
 import { FLAG_REGISTRY } from '../../src/feature-flags/flags.registry';
 import { ENTITLEMENTS, PERMISSIONS, PLANS, ROLES } from './data/access';
 import { KENYA, KENYA_COUNTIES } from './data/kenya';
+import { seedHelp } from './help';
 import {
   DEVELOPMENT_AREAS,
   DISCIPLINES,
@@ -257,6 +258,8 @@ export async function runReferenceSeed(prisma: PrismaClient): Promise<Record<str
       })
     ).count,
   );
+
+  add('helpContent', await seedHelp(prisma));
 
   return created;
 }

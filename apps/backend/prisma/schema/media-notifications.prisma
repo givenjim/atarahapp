@@ -49,10 +49,16 @@ model MediaAsset {
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
 
-  owner         User?             @relation(fields: [ownerId], references: [id], onDelete: SetNull)
-  avatarOf      CreativeProfile[]
-  projectMedia  ProjectMedia[]
-  articleHeroes Article[]         @relation("ArticleHero")
+  owner          User?                 @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  avatarOf       CreativeProfile[]
+  projectMedia   ProjectMedia[]
+  articleHeroes  Article[]             @relation("ArticleHero")
+  postMedia      PostMedia[]           @relation("PostMediaAsset")
+  groupCovers    Group[]               @relation("GroupCover")
+  providerLogos  OpportunityProvider[] @relation("ProviderLogo")
+  learningCovers LearningContent[]     @relation("LearningCover")
+  lessonVideos   Lesson[]              @relation("LessonVideo")
+  dataExports    DataExportRequest[]   @relation("DataExportFile")
 
   @@unique([bucket, objectKey])
   @@index([ownerId, status])
@@ -65,6 +71,8 @@ model Notification {
   category  NotificationCategory
   title     String
   body      String
+  /// What happened, a dotted key such as `opportunity.reminder` (the app picks the icon and group from it).
+  type      String?
   /// In-app route the notification opens, e.g. /opportunities/{id}.
   deepLink  String?
   data      Json?
@@ -75,8 +83,9 @@ model Notification {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, createdAt(sort: Desc)])
-  @@index([userId, readAt])
+  @@index([userId, readAt, createdAt(sort: Desc)])
   @@index([userId, category, createdAt(sort: Desc)])
+  @@index([createdAt])
   @@map("notifications")
 }
 
@@ -111,4 +120,19 @@ model DeviceToken {
 
   @@index([userId, revokedAt])
   @@map("device_tokens")
+}
+
+/// One row per notification delivery attempt key. The unique `dedupeKey` makes reminders and fan-out idempotent:
+/// the dispatcher inserts first and skips the send when the key already exists.
+model NotificationDispatch {
+  id        String   @id @default(uuid()) @db.Uuid
+  dedupeKey String   @unique
+  userId    String?  @db.Uuid
+  channel   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([createdAt])
+  @@map("notification_dispatches")
 }

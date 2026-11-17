@@ -102,7 +102,7 @@ class _VerifyScreenState extends ConsumerState<VerifyScreen> {
       children: [
         Text(
           widget.identifier,
-          style: AtTextStyles.sectionTitle.copyWith(color: AtColors.ink),
+          style: AtTextStyles.sectionTitle.copyWith(color: context.at.ink),
         ),
         const SizedBox(height: 20),
         Semantics(
@@ -173,18 +173,18 @@ class _InfoRow extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, size: 18, color: AtColors.primary),
+        Icon(icon, size: 18, color: context.at.primary),
         const SizedBox(width: 12),
         Expanded(
           child: Text.rich(
             TextSpan(
-              style: AtTextStyles.bodySm.copyWith(color: AtColors.body),
+              style: AtTextStyles.bodySm.copyWith(color: context.at.body),
               children: [
                 TextSpan(
                   text: lead,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    color: AtColors.ink,
+                    color: context.at.ink,
                   ),
                 ),
                 TextSpan(text: body),

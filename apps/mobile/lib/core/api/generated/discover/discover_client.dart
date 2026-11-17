@@ -12,7 +12,7 @@ import '../models/get_api_v1_search_response.dart';
 import '../models/post_api_v1_me_recent_searches_response.dart';
 import '../models/record_search_dto.dart';
 import '../models/sort.dart';
-import '../models/type2.dart';
+import '../models/type.dart';
 
 part 'discover_client.g.dart';
 
@@ -47,7 +47,7 @@ abstract class DiscoverClient {
   @GET('/api/v1/search')
   Future<GetApiV1SearchResponse> find({
     @Query('q') required String q,
-    @Query('type') Type2? type,
+    @Query('type') Type? type,
     @Query('page') num? page = 1,
     @Query('limit') num? limit = 20,
   });

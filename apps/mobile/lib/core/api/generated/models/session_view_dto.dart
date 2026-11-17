@@ -22,7 +22,7 @@ class SessionViewDto {
   factory SessionViewDto.fromJson(Map<String, Object?> json) =>
       _$SessionViewDtoFromJson(json);
 
-  /// Session family id; stable across refresh rotations.
+  /// Supabase Auth session id; stable across token refreshes.
   final String id;
   final SessionViewDtoClient client;
   final String? deviceName;

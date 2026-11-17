@@ -102,6 +102,23 @@ export class AllExceptionsFilter implements ExceptionFilter {
       const message = FRIENDLY[code] ?? 'Request failed.';
       return { status, code, message, details: {} };
     }
+    // Errors from the body parser (an oversized or malformed JSON body) are the client's, not ours: they carry their
+    // own 4xx status and a `type`, and must not be reported as a server error.
+    const parser = exception as { type?: unknown; status?: unknown };
+    if (
+      typeof parser?.type === 'string' &&
+      typeof parser.status === 'number' &&
+      parser.status >= 400 &&
+      parser.status < 500
+    ) {
+      const tooLarge = parser.type === 'entity.too.large';
+      return {
+        status: parser.status,
+        code: ErrorCode.VALIDATION_ERROR,
+        message: tooLarge ? 'That request is too large.' : FRIENDLY[ErrorCode.VALIDATION_ERROR]!,
+        details: { reason: parser.type },
+      };
+    }
     return {
       status: HttpStatus.INTERNAL_SERVER_ERROR,
       code: ErrorCode.INTERNAL_ERROR,

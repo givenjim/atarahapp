@@ -1,81 +1,42 @@
+import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
-
-const ACCESS_COOKIE = 'atarah_admin_at';
-const REFRESH_COOKIE = 'atarah_admin_rt';
-const PUBLIC_PREFIXES = ['/login'];
-
-const apiBase = () => process.env.ATARAH_API_BASE_URL ?? 'http://localhost:3000';
-const secure = () => process.env.NODE_ENV === 'production';
-
-interface RefreshBody {
-  data?: {
-    accessToken: string;
-    accessTokenExpiresAt: string;
-    refreshToken: string;
-    refreshTokenExpiresAt: string;
-  };
-}
-
-function toLogin(request: NextRequest): NextResponse {
-  const res = NextResponse.redirect(new URL('/login', request.url));
-  res.cookies.delete(ACCESS_COOKIE);
-  res.cookies.delete(REFRESH_COOKIE);
-  return res;
-}
+import { gateRequest, type AssuranceLevel } from '@/lib/gate';
+import { hardenCookie, supabaseConfig } from '@/lib/supabase/config';
 
 /**
- * Keeps the session alive. The access token is short-lived, so when its cookie has expired but the
- * refresh cookie is present this rotates both and forwards the new values to the page being rendered.
- * Anything without a session is sent to the sign-in page.
+ * Keeps the Supabase session fresh (rotating its httpOnly cookies) and gates every route: no session goes to
+ * sign-in, and a session that has not passed the authenticator step (AAL1) can only reach the code page.
  */
 export async function proxy(request: NextRequest): Promise<NextResponse> {
-  const { pathname } = request.nextUrl;
-  if (PUBLIC_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`))) {
-    return NextResponse.next();
-  }
-
-  const access = request.cookies.get(ACCESS_COOKIE)?.value;
-  if (access) return NextResponse.next();
-
-  const refresh = request.cookies.get(REFRESH_COOKIE)?.value;
-  if (!refresh) return toLogin(request);
-
-  let body: RefreshBody;
-  try {
-    const res = await fetch(`${apiBase()}/api/v1/admin/auth/refresh`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ refreshToken: refresh }),
-      cache: 'no-store',
-    });
-    if (!res.ok) return toLogin(request);
-    body = (await res.json()) as RefreshBody;
-  } catch {
-    return toLogin(request);
-  }
-  const t = body.data;
-  if (!t) return toLogin(request);
-
-  // Make the new tokens visible to the Server Components rendering this very request, and persist them.
-  const headers = new Headers(request.headers);
-  const jar = request.cookies
-    .getAll()
-    .filter((c) => c.name !== ACCESS_COOKIE && c.name !== REFRESH_COOKIE)
-    .map((c) => `${c.name}=${c.value}`);
-  jar.push(`${ACCESS_COOKIE}=${t.accessToken}`, `${REFRESH_COOKIE}=${t.refreshToken}`);
-  headers.set('cookie', jar.join('; '));
-
-  const res = NextResponse.next({ request: { headers } });
-  const base = { httpOnly: true, sameSite: 'lax' as const, secure: secure(), path: '/' };
-  res.cookies.set(ACCESS_COOKIE, t.accessToken, {
-    ...base,
-    expires: new Date(t.accessTokenExpiresAt),
+  let response = NextResponse.next({ request });
+  const { url, publishableKey } = supabaseConfig();
+  const supabase = createServerClient(url, publishableKey, {
+    cookies: {
+      getAll: () => request.cookies.getAll(),
+      setAll: (list) => {
+        for (const { name, value } of list) request.cookies.set(name, value);
+        response = NextResponse.next({ request });
+        for (const { name, value, options } of list) {
+          response.cookies.set(name, value, hardenCookie(options));
+        }
+      },
+    },
   });
-  res.cookies.set(REFRESH_COOKIE, t.refreshToken, {
-    ...base,
-    expires: new Date(t.refreshTokenExpiresAt),
-  });
-  return res;
+
+  // getClaims verifies the token's signature and refreshes it when it has expired.
+  const { data } = await supabase.auth.getClaims();
+  const claims = data?.claims;
+  const gate = gateRequest(
+    request.nextUrl.pathname,
+    claims?.aal as AssuranceLevel,
+    Boolean(claims?.sub),
+  );
+  if (gate.action === 'allow') return response;
+
+  const redirect = NextResponse.redirect(new URL(gate.to, request.url));
+  // Carry over any cookies the refresh just wrote.
+  for (const cookie of response.cookies.getAll()) redirect.cookies.set(cookie);
+  return redirect;
 }
 
 export const config = {

@@ -29,7 +29,10 @@ PhotoCropper photoCropper(Ref ref) => openCropScreen;
 typedef AvatarImageBuilder = ImageProvider Function(String url);
 
 @Riverpod(keepAlive: true)
-AvatarImageBuilder avatarImage(Ref ref) => NetworkImage.new;
+AvatarImageBuilder avatarImage(Ref ref) =>
+    // Decoded no wider than 1024 px (a full-width cover on a 3x phone is about 1170): a 12 MP upload would
+    // otherwise be decoded at full size into the image cache for a 44 dp avatar.
+    (url) => ResizeImage(NetworkImage(url), width: 1024, allowUpscaling: false);
 
 /// Where the router should send a signed-in member.
 enum OnboardingGate {

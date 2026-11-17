@@ -54,46 +54,186 @@ final class AppConfigProvider
 
 String _$appConfigHash() => r'549adbd5e67e18e10b0abf9ad110abfa319b72a0';
 
-@ProviderFor(tokenStore)
-final tokenStoreProvider = TokenStoreProvider._();
+/// Secrets and per-install values (the Supabase session, the device id) live in the platform keystore.
 
-final class TokenStoreProvider
-    extends $FunctionalProvider<TokenStore, TokenStore, TokenStore>
-    with $Provider<TokenStore> {
-  TokenStoreProvider._()
+@ProviderFor(keyValueStore)
+final keyValueStoreProvider = KeyValueStoreProvider._();
+
+/// Secrets and per-install values (the Supabase session, the device id) live in the platform keystore.
+
+final class KeyValueStoreProvider
+    extends $FunctionalProvider<KeyValueStore, KeyValueStore, KeyValueStore>
+    with $Provider<KeyValueStore> {
+  /// Secrets and per-install values (the Supabase session, the device id) live in the platform keystore.
+  KeyValueStoreProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'tokenStoreProvider',
+        name: r'keyValueStoreProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$tokenStoreHash();
+  String debugGetCreateSourceHash() => _$keyValueStoreHash();
 
   @$internal
   @override
-  $ProviderElement<TokenStore> $createElement($ProviderPointer pointer) =>
+  $ProviderElement<KeyValueStore> $createElement($ProviderPointer pointer) =>
       $ProviderElement(pointer);
 
   @override
-  TokenStore create(Ref ref) {
-    return tokenStore(ref);
+  KeyValueStore create(Ref ref) {
+    return keyValueStore(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(TokenStore value) {
+  Override overrideWithValue(KeyValueStore value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<TokenStore>(value),
+      providerOverride: $SyncValueProvider<KeyValueStore>(value),
     );
   }
 }
 
-String _$tokenStoreHash() => r'e1af499041ec8e3fd653ab4576cba8185f657d98';
+String _$keyValueStoreHash() => r'9ffd3436760b8d239a333602675030b0359a34b2';
+
+/// Overridden in `bootstrap` once the Supabase SDK is initialised. Used for Auth and the one Realtime channel.
+
+@ProviderFor(supabaseClient)
+final supabaseClientProvider = SupabaseClientProvider._();
+
+/// Overridden in `bootstrap` once the Supabase SDK is initialised. Used for Auth and the one Realtime channel.
+
+final class SupabaseClientProvider
+    extends $FunctionalProvider<SupabaseClient, SupabaseClient, SupabaseClient>
+    with $Provider<SupabaseClient> {
+  /// Overridden in `bootstrap` once the Supabase SDK is initialised. Used for Auth and the one Realtime channel.
+  SupabaseClientProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'supabaseClientProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$supabaseClientHash();
+
+  @$internal
+  @override
+  $ProviderElement<SupabaseClient> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  SupabaseClient create(Ref ref) {
+    return supabaseClient(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SupabaseClient value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SupabaseClient>(value),
+    );
+  }
+}
+
+String _$supabaseClientHash() => r'be9b73ceb39b5b9b384e9bf0fe9fff2f23bae70f';
+
+@ProviderFor(authGateway)
+final authGatewayProvider = AuthGatewayProvider._();
+
+final class AuthGatewayProvider
+    extends $FunctionalProvider<AuthGateway, AuthGateway, AuthGateway>
+    with $Provider<AuthGateway> {
+  AuthGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'authGatewayProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$authGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<AuthGateway> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AuthGateway create(Ref ref) {
+    return authGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AuthGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AuthGateway>(value),
+    );
+  }
+}
+
+String _$authGatewayHash() => r'f74d34af51a18ca06a472060210819cfc7e4815b';
+
+@ProviderFor(notificationsRealtime)
+final notificationsRealtimeProvider = NotificationsRealtimeProvider._();
+
+final class NotificationsRealtimeProvider
+    extends
+        $FunctionalProvider<
+          NotificationsRealtime,
+          NotificationsRealtime,
+          NotificationsRealtime
+        >
+    with $Provider<NotificationsRealtime> {
+  NotificationsRealtimeProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'notificationsRealtimeProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$notificationsRealtimeHash();
+
+  @$internal
+  @override
+  $ProviderElement<NotificationsRealtime> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  NotificationsRealtime create(Ref ref) {
+    return notificationsRealtime(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(NotificationsRealtime value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<NotificationsRealtime>(value),
+    );
+  }
+}
+
+String _$notificationsRealtimeHash() =>
+    r'099292a11f2c1f007c6adb3a4f02b5e3ff70d792';
 
 @ProviderFor(analytics)
 final analyticsProvider = AnalyticsProvider._();
@@ -176,52 +316,6 @@ final class PlainDioProvider extends $FunctionalProvider<Dio, Dio, Dio>
 
 String _$plainDioHash() => r'd5adcb05ae1aed85b07aa50e36373681f56877a0';
 
-@ProviderFor(sessionRefresher)
-final sessionRefresherProvider = SessionRefresherProvider._();
-
-final class SessionRefresherProvider
-    extends
-        $FunctionalProvider<
-          SessionRefresher,
-          SessionRefresher,
-          SessionRefresher
-        >
-    with $Provider<SessionRefresher> {
-  SessionRefresherProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'sessionRefresherProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$sessionRefresherHash();
-
-  @$internal
-  @override
-  $ProviderElement<SessionRefresher> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  SessionRefresher create(Ref ref) {
-    return sessionRefresher(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(SessionRefresher value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<SessionRefresher>(value),
-    );
-  }
-}
-
-String _$sessionRefresherHash() => r'f893527676ebddf76c13438c6859751bfacff8c1';
-
 @ProviderFor(apiDio)
 final apiDioProvider = ApiDioProvider._();
 
@@ -260,7 +354,7 @@ final class ApiDioProvider extends $FunctionalProvider<Dio, Dio, Dio>
   }
 }
 
-String _$apiDioHash() => r'879a5e560dba5b93795eb81ec046553bcb653b67';
+String _$apiDioHash() => r'54c731fd999a52be5368c34d5f867dc50790f155';
 
 @ProviderFor(apiClient)
 final apiClientProvider = ApiClientProvider._();
@@ -304,6 +398,48 @@ final class ApiClientProvider
 
 String _$apiClientHash() => r'08355ec0d4f3847a150baafa6d7874618a3a9fa7';
 
+@ProviderFor(deviceRegistrar)
+final deviceRegistrarProvider = DeviceRegistrarProvider._();
+
+final class DeviceRegistrarProvider
+    extends
+        $FunctionalProvider<DeviceRegistrar, DeviceRegistrar, DeviceRegistrar>
+    with $Provider<DeviceRegistrar> {
+  DeviceRegistrarProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'deviceRegistrarProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$deviceRegistrarHash();
+
+  @$internal
+  @override
+  $ProviderElement<DeviceRegistrar> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  DeviceRegistrar create(Ref ref) {
+    return deviceRegistrar(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(DeviceRegistrar value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<DeviceRegistrar>(value),
+    );
+  }
+}
+
+String _$deviceRegistrarHash() => r'53d013db315a4cc372c5282fd0721980e65d986d';
+
 @ProviderFor(authRepository)
 final authRepositoryProvider = AuthRepositoryProvider._();
 
@@ -343,7 +479,7 @@ final class AuthRepositoryProvider
   }
 }
 
-String _$authRepositoryHash() => r'3a5bdbb08fce4b4f75058238d8b0d4fead2b08f1';
+String _$authRepositoryHash() => r'e5a65b644f8af5e43cb51caa6720a6bae507327b';
 
 @ProviderFor(contentRepository)
 final contentRepositoryProvider = ContentRepositoryProvider._();

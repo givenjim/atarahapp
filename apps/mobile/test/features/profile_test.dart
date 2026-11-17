@@ -141,22 +141,26 @@ void main() {
         final repo = FakeProfileRepository(
           me: ownProfile(skills: 3, connections: 2, pending: 1),
         );
-        await openApp(t, profile: repo);
+        final h = await openApp(t, profile: repo);
         expect(find.text('My creative identity'), findsOneWidget);
         expect(find.text('3'), findsOneWidget);
         expect(find.text('2'), findsOneWidget);
         expect(find.text('1 waiting'), findsOneWidget);
         // Portfolio, skills, experience, achievements and services are real screens now (see portfolio_test).
-        for (final (label, phase) in [
-          ('Connections', 'Soon · P1'),
-          ('Activity', 'Soon · P1'),
-          ('Saved', 'Soon · P1'),
-          ('Membership', 'Soon · P2'),
-          ('Settings', 'Soon · P1'),
+        // Activity, Saved, Membership and Settings are real screens now (see account_test and settings_test).
+        await tapText(t, 'Connections');
+        expect(find.text('Soon · P1'), findsOneWidget, reason: 'Connections');
+        await tapText(t, 'Go back');
+        expect(find.byType(AtTabBar), findsOneWidget);
+        for (final (label, path) in [
+          ('Activity', '/activity'),
+          ('Saved', '/saved'),
+          ('Membership', '/settings/membership'),
         ]) {
           await tapText(t, label);
-          expect(find.text(phase), findsOneWidget, reason: label);
-          await tapText(t, 'Go back');
+          expect(h.router.state.uri.path, path, reason: label);
+          h.router.go('/profile');
+          await t.pumpAndSettle();
           expect(find.byType(AtTabBar), findsOneWidget, reason: label);
         }
       },

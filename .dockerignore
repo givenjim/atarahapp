@@ -1,0 +1,14 @@
+**/node_modules
+**/.next
+**/dist
+**/build
+.git
+apps/mobile
+apps/backend/.env
+apps/backend/.env.*
+!apps/backend/.env.example
+apps/*/.env.local
+design
+docs
+*.log
+Atarah*.zip

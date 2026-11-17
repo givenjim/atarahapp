@@ -1,5 +1,14 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsEnum, IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
+import {
+  IsEnum,
+  IsInt,
+  IsOptional,
+  IsString,
+  Max,
+  MaxLength,
+  Min,
+  MinLength,
+} from 'class-validator';
 import { PageQueryDto } from '../common/pagination';
 
 const STATUSES = ['PENDING_VERIFICATION', 'ACTIVE', 'SUSPENDED', 'DEACTIVATED', 'DELETED'] as const;
@@ -49,6 +58,18 @@ export class SuspendUserDto {
   @MinLength(5)
   @MaxLength(500)
   reason!: string;
+
+  @ApiPropertyOptional({
+    minimum: 1,
+    maximum: 365,
+    description:
+      'Suspend for this many days; the account is reactivated automatically. Omit for until staff lift it.',
+  })
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  @Max(365)
+  durationDays?: number;
 }
 
 export class ReactivateUserDto {

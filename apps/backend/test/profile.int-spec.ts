@@ -2,7 +2,7 @@ import { type INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { StorageService } from '../src/storage/storage.service';
-import { bearer, createTestApp, loginMember, makeUser, uniq } from './helpers';
+import { bearer, createTestApp, loginMember, makeUser, uniq, deleteUsers } from './helpers';
 
 // Each test signs up and sets up several members (password hashing, onboarding), so allow more than 5 s.
 jest.setTimeout(90_000);
@@ -23,7 +23,7 @@ describe('My profile, Passport, public profile and connections (integration)', (
   });
   afterAll(async () => {
     await prisma.notification.deleteMany({ where: { userId: { in: users } } });
-    await prisma.user.deleteMany({ where: { id: { in: users } } });
+    await deleteUsers(app, users);
     await app.close();
   });
 

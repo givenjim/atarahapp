@@ -96,7 +96,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               header: true,
               child: Text(
                 l10n.tabProfile,
-                style: AtTextStyles.tabTitle.copyWith(color: AtColors.ink),
+                style: AtTextStyles.tabTitle.copyWith(color: context.at.ink),
               ),
             ),
             const SizedBox(height: 16),
@@ -181,14 +181,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   AtListRow(
                     title: l10n.pfServices,
                     icon: LucideIcons.handshake,
-                    tone: AtTone.pink,
+                    tone: AtTone.coral,
                     showDivider: true,
                     onTap: () => context.push(Routes.services),
                   ),
                   AtListRow(
                     title: l10n.pfConnections,
                     icon: LucideIcons.users,
-                    tone: AtTone.info,
+                    tone: AtTone.indigo,
                     trailing: _Count(
                       profile.value?.counts.connections,
                       waiting: profile.value?.counts.pendingRequests,
@@ -209,14 +209,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     icon: LucideIcons.activity,
                     tone: AtTone.warning,
                     showDivider: true,
-                    onTap: () => _soon('p1', l10n.profileActivity),
+                    onTap: () => context.push(Routes.activity),
                   ),
                   AtListRow(
                     title: l10n.pfSaved,
                     icon: LucideIcons.bookmark,
-                    tone: AtTone.purple,
+                    tone: AtTone.violet,
                     showDivider: true,
-                    onTap: () => _soon('p1', l10n.pfSaved),
+                    onTap: () => context.push(Routes.saved),
                   ),
                   AtListRow(
                     title: l10n.profileMembership,
@@ -229,14 +229,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       tone: isPro ? AtTone.amber : AtTone.neutral,
                     ),
                     showDivider: true,
-                    // Membership upgrade is a Phase 2 feature.
-                    onTap: () => _soon('p2', l10n.profileMembership),
+                    // Read-only in Phase 1; the upgrade button inside opens its Soon screen.
+                    onTap: () => context.push(Routes.membership),
                   ),
                   AtListRow(
                     title: l10n.profileSettings,
                     icon: LucideIcons.settings,
-                    tone: AtTone.purple,
-                    onTap: () => _soon('p1', l10n.profileSettings),
+                    tone: AtTone.violet,
+                    onTap: () => context.push(Routes.settings),
                   ),
                 ],
               ),
@@ -266,7 +266,7 @@ class _SectionTitle extends StatelessWidget {
     header: true,
     child: Text(
       text,
-      style: AtTextStyles.sectionTitleSm.copyWith(color: AtColors.ink),
+      style: AtTextStyles.sectionTitleSm.copyWith(color: context.at.ink),
     ),
   );
 }
@@ -287,13 +287,13 @@ class _Count extends StatelessWidget {
         if ((waiting ?? 0) > 0) ...[
           AtTag(
             label: l10n.pfPendingRequests(waiting!.round()),
-            tone: AtTone.pink,
+            tone: AtTone.coral,
           ),
           const SizedBox(width: 8),
         ],
         Text(
           l10n.pfCount(count!.round()),
-          style: AtTextStyles.bodySm.copyWith(color: AtColors.muted),
+          style: AtTextStyles.bodySm.copyWith(color: context.at.muted),
         ),
       ],
     );
@@ -348,14 +348,14 @@ class _LoadError extends StatelessWidget {
           if (fallbackName != null)
             Text(
               fallbackName!,
-              style: AtTextStyles.sectionTitle.copyWith(color: AtColors.ink),
+              style: AtTextStyles.sectionTitle.copyWith(color: context.at.ink),
             ),
           const SizedBox(height: 8),
           Semantics(
             header: true,
             child: Text(
               l10n.pfLoadFailed,
-              style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+              style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
             ),
           ),
           const SizedBox(height: 8),
@@ -423,7 +423,7 @@ class _Loaded extends StatelessWidget {
                         Text(
                           profile.displayName,
                           style: AtTextStyles.sectionTitle.copyWith(
-                            color: AtColors.ink,
+                            color: context.at.ink,
                           ),
                         ),
                         const SizedBox(height: 2),
@@ -431,7 +431,7 @@ class _Loaded extends StatelessWidget {
                           Text(
                             profile.headline!,
                             style: AtTextStyles.bodySm.copyWith(
-                              color: AtColors.body,
+                              color: context.at.body,
                             ),
                           )
                         else
@@ -440,7 +440,7 @@ class _Loaded extends StatelessWidget {
                             child: Text(
                               l10n.pfAddHeadline,
                               style: AtTextStyles.bodySm.copyWith(
-                                color: AtColors.primary,
+                                color: context.at.primary,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -448,17 +448,17 @@ class _Loaded extends StatelessWidget {
                         const SizedBox(height: 4),
                         Row(
                           children: [
-                            const Icon(
+                            Icon(
                               LucideIcons.mapPin,
                               size: 12,
-                              color: AtColors.muted,
+                              color: context.at.muted,
                             ),
                             const SizedBox(width: 4),
                             Flexible(
                               child: Text(
                                 place ?? l10n.pfLocationNotSet,
                                 style: AtTextStyles.meta.copyWith(
-                                  color: AtColors.muted,
+                                  color: context.at.muted,
                                 ),
                               ),
                             ),
@@ -528,7 +528,7 @@ class _Loaded extends StatelessWidget {
                   Text(
                     l10n.pfPassportCardTitle.toUpperCase(),
                     style: AtTextStyles.metaSm.copyWith(
-                      color: AtColors.violet3,
+                      color: context.at.violetTint2,
                       fontWeight: FontWeight.w700,
                       letterSpacing: 1.1,
                     ),
@@ -537,7 +537,7 @@ class _Loaded extends StatelessWidget {
                     profile.passport?.passportNumber.replaceAll('-', ' · ') ??
                         '',
                     style: AtTextStyles.metaSm.copyWith(
-                      color: AtColors.violet3,
+                      color: context.at.violetTint2,
                       fontWeight: FontWeight.w700,
                       letterSpacing: 1.1,
                     ),
@@ -554,20 +554,20 @@ class _Loaded extends StatelessWidget {
                   Text(
                     l10n.pfCompletionPercent(percent),
                     style: AtTextStyles.sectionTitle.copyWith(
-                      color: AtColors.white,
+                      color: context.at.white,
                     ),
                   ),
-                  const Icon(
+                  Icon(
                     LucideIcons.chevronRight,
                     size: 20,
-                    color: AtColors.violet3,
+                    color: context.at.violetTint2,
                   ),
                 ],
               ),
               const SizedBox(height: 8),
               AtProgressBar(
                 value: percent / 100,
-                color: AtColors.white,
+                color: context.at.white,
                 semanticLabel: l10n.pfCompletionPercent(percent),
               ),
               const SizedBox(height: 14),
@@ -583,7 +583,7 @@ class _Loaded extends StatelessWidget {
               else
                 Text(
                   l10n.pfAllDone,
-                  style: AtTextStyles.bodySm.copyWith(color: AtColors.white),
+                  style: AtTextStyles.bodySm.copyWith(color: context.at.white),
                 ),
             ],
           ),

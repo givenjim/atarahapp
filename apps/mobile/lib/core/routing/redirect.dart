@@ -33,6 +33,8 @@ String? computeRedirect({
   required Uri uri,
   required bool devTools,
   OnboardingGate onboarding = OnboardingGate.complete,
+  bool pendingDeletion = false,
+  bool twoStepRequired = false,
 }) {
   final path = uri.path;
   final from = uri.queryParameters['from'];
@@ -54,6 +56,15 @@ String? computeRedirect({
       return _withFrom(Routes.welcome, uri);
 
     case SessionStatus.signedIn:
+      // An account scheduled for deletion is offered "Restore account" before anything else (P1-M11).
+      if (pendingDeletion) {
+        return path == Routes.restore ? null : Routes.restore;
+      }
+      // This device still owes the second step of sign-in.
+      if (twoStepRequired) {
+        return path == Routes.twoStep ? null : Routes.twoStep;
+      }
+      if (path == Routes.restore || path == Routes.twoStep) return Routes.home;
       if (Routes.authScreens.contains(path)) {
         switch (onboarding) {
           case OnboardingGate.pending:

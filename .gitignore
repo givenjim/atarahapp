@@ -56,3 +56,6 @@ test-results/
 playwright-report/
 apps/admin/e2e/.fixtures/
 *.tsbuildinfo
+
+# Local database dumps (scripts/db-backup.sh)
+backups/

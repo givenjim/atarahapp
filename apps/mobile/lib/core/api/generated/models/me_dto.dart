@@ -4,6 +4,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+import 'me_dto_appearance.dart';
 import 'me_dto_roles.dart';
 import 'me_dto_status.dart';
 import 'membership_summary_dto.dart';
@@ -22,10 +23,13 @@ class MeDto {
     required this.status,
     required this.timeZone,
     required this.locale,
+    required this.appearance,
+    required this.marketingOptIn,
     required this.roles,
     required this.entitlements,
     required this.membership,
     required this.createdAt,
+    required this.deletionScheduledFor,
   });
 
   factory MeDto.fromJson(Map<String, Object?> json) => _$MeDtoFromJson(json);
@@ -41,12 +45,17 @@ class MeDto {
   final MeDtoStatus status;
   final String timeZone;
   final String locale;
+  final MeDtoAppearance appearance;
+  final bool marketingOptIn;
   final List<MeDtoRoles> roles;
 
   /// Hints for showing or hiding controls. The server decides every action.
   final List<String> entitlements;
   final MembershipSummaryDto membership;
   final DateTime createdAt;
+
+  /// Set while the account is scheduled for deletion: the date the data is purged. Sign-in then offers Restore account.
+  final DateTime? deletionScheduledFor;
 
   Map<String, Object?> toJson() => _$MeDtoToJson(this);
 }

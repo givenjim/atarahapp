@@ -18,6 +18,7 @@ export const CREATIVE_SORTS = ['relevance', 'recent'] as const;
 export const SEARCH_TYPES = [
   'creatives',
   'articles',
+  'posts',
   'opportunities',
   'learning',
   'marketplace',
@@ -25,7 +26,13 @@ export const SEARCH_TYPES = [
 ] as const;
 export type SearchType = (typeof SEARCH_TYPES)[number];
 /** The types that exist today. */
-export const BUILT_SEARCH_TYPES: readonly SearchType[] = ['creatives', 'articles'];
+export const BUILT_SEARCH_TYPES: readonly SearchType[] = [
+  'creatives',
+  'articles',
+  'posts',
+  'opportunities',
+  'learning',
+];
 
 export const MAX_QUERY = 80;
 export const MIN_QUERY = 2;

@@ -36,7 +36,7 @@ export class DevOutbox {
   }
 }
 
-/** Email over SMTP. Locally this is Mailpit (http://localhost:58025); production uses a real provider. */
+/** Email over SMTP. Locally this is the Supabase mail catcher (http://127.0.0.1:55324); production uses a real provider. */
 @Injectable()
 export class SmtpEmailProvider implements EmailProvider {
   private readonly transport: Transporter;

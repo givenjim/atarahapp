@@ -44,6 +44,170 @@ class AppLocalizationsEn extends AppLocalizations {
   String get back => 'Back';
 
   @override
+  String get grpYourGroups => 'Your groups';
+
+  @override
+  String get grpYourGroupsEmpty =>
+      'You haven\'t joined a group yet. Find one below.';
+
+  @override
+  String get grpDiscover => 'Discover groups';
+
+  @override
+  String get grpSearchHint => 'Search groups';
+
+  @override
+  String get grpSearchClear => 'Clear search';
+
+  @override
+  String get grpFilterAll => 'All';
+
+  @override
+  String get grpTypeDiscipline => 'Discipline';
+
+  @override
+  String get grpTypeLocation => 'Location';
+
+  @override
+  String get grpTypeInterest => 'Interest';
+
+  @override
+  String get grpTypeProgramme => 'Programme';
+
+  @override
+  String grpMembers(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count members',
+      one: '1 member',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get grpDiscoverEmpty => 'No groups to show';
+
+  @override
+  String get grpDiscoverEmptyBody =>
+      'Try another type or search, or check back soon.';
+
+  @override
+  String get grpLoadMore => 'Show more groups';
+
+  @override
+  String grpLeaveTitle(String name) {
+    return 'Leave $name?';
+  }
+
+  @override
+  String get grpLeaveBody =>
+      'You\'ll stop seeing its discussions. You can join again any time.';
+
+  @override
+  String get grpLeaveConfirm => 'Leave group';
+
+  @override
+  String get grpStay => 'Stay';
+
+  @override
+  String grpJoinedToast(String name) {
+    return 'You joined $name';
+  }
+
+  @override
+  String grpLeftToast(String name) {
+    return 'You left $name';
+  }
+
+  @override
+  String get grpOwnerCantLeave =>
+      'You own this group, so you can\'t leave it. Ask the Atarah team to hand it over first.';
+
+  @override
+  String get grpErrRestricted =>
+      'Your account is restricted right now, so you can\'t join or post in groups.';
+
+  @override
+  String get grpErrVerify =>
+      'Verify your email or phone number to join groups and post in them.';
+
+  @override
+  String get grpErrRate =>
+      'You\'re doing that a lot. Give it a moment and try again.';
+
+  @override
+  String get grpErrPrivate =>
+      'This group is private. Members are added by invitation.';
+
+  @override
+  String get grpJoinGroup => 'Join group';
+
+  @override
+  String get grpShare => 'Share group';
+
+  @override
+  String grpShareText(String name) {
+    return 'Join $name on Atarah';
+  }
+
+  @override
+  String get grpTypePrivate => 'Private';
+
+  @override
+  String get grpOfficial => 'Official';
+
+  @override
+  String get grpPinned => 'Pinned announcement';
+
+  @override
+  String get grpRecent => 'Recent discussions';
+
+  @override
+  String get grpNoDiscussions => 'No discussions yet';
+
+  @override
+  String get grpNoDiscussionsBody => 'Be the first to start one.';
+
+  @override
+  String get grpStartDiscussion => 'Start a discussion';
+
+  @override
+  String get grpJoinToPost => 'Join this group to post';
+
+  @override
+  String get grpPrivateNote =>
+      'Private group. Members are added by invitation.';
+
+  @override
+  String get grpGone => 'This group isn\'t available';
+
+  @override
+  String get grpGoneBody => 'It may be private, archived or no longer exist.';
+
+  @override
+  String get grpPostsFailed => 'We couldn\'t load the discussions';
+
+  @override
+  String get grpMoreDiscussions => 'Show more discussions';
+
+  @override
+  String grpReplies(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count replies',
+      one: '1 reply',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String grpMeta(String type, String members) {
+    return '$type · $members';
+  }
+
+  @override
   String get close => 'Close';
 
   @override
@@ -255,6 +419,424 @@ class AppLocalizationsEn extends AppLocalizations {
   String get moreOptions => 'More options';
 
   @override
+  String get cfdTitle => 'Community';
+
+  @override
+  String get cfdSubtitle => 'Ask, share and build with Kenya\'s creatives.';
+
+  @override
+  String get cfdNewPost => 'New post';
+
+  @override
+  String get cfdTabFeed => 'Feed';
+
+  @override
+  String get cfdTabDiscussions => 'Discussions';
+
+  @override
+  String get cfdTabGroups => 'Groups';
+
+  @override
+  String get cfdTabPeople => 'People';
+
+  @override
+  String get cfdComposerPrompt => 'Share an update or ask a question…';
+
+  @override
+  String get cfdFeedEmpty => 'Nothing here yet';
+
+  @override
+  String get cfdFeedEmptyBody =>
+      'Be the first to share an update or ask a question.';
+
+  @override
+  String get cfdDiscussionsEmpty => 'No discussions yet';
+
+  @override
+  String get cfdDiscussionsEmptyBody =>
+      'Start one and ask the community what they think.';
+
+  @override
+  String get cfdWritePost => 'Write a post';
+
+  @override
+  String get cfdFeedFailed => 'We couldn\'t load the feed';
+
+  @override
+  String get cfdOfflineTitle => 'You\'re offline';
+
+  @override
+  String get cfdOfflineBody => 'Reconnect to see the latest posts.';
+
+  @override
+  String get cfdLoadMoreFailed => 'We couldn\'t load more posts.';
+
+  @override
+  String get cfdTypeUpdate => 'Creative update';
+
+  @override
+  String get cfdTypeQuestion => 'Question';
+
+  @override
+  String get cfdTypeDiscussion => 'Discussion';
+
+  @override
+  String get cfdTypeCollaboration => 'Collaboration';
+
+  @override
+  String get cfdTypeAnnouncement => 'Announcement';
+
+  @override
+  String get cfdChipUpdate => 'Update';
+
+  @override
+  String get cfdAuthorTeam => 'Atarah Team';
+
+  @override
+  String get cfdNow => 'now';
+
+  @override
+  String cfdMinutes(int n) {
+    return '${n}m';
+  }
+
+  @override
+  String cfdHours(int n) {
+    return '${n}h';
+  }
+
+  @override
+  String cfdDays(int n) {
+    return '${n}d';
+  }
+
+  @override
+  String get cfdEdited => 'edited';
+
+  @override
+  String cfdShareText(String name, String excerpt, String url) {
+    return '$name on Atarah: $excerpt\n$url';
+  }
+
+  @override
+  String cfdOpenLink(String title) {
+    return 'Open link: $title';
+  }
+
+  @override
+  String get cfdVideo => 'Video';
+
+  @override
+  String cfdPhotoOf(String name) {
+    return 'Photo by $name';
+  }
+
+  @override
+  String get cfdSavedPost => 'Saved to your saved items.';
+
+  @override
+  String get cfdUnsavedPost => 'Removed from your saved items.';
+
+  @override
+  String cfdReplyCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count replies',
+      one: '1 reply',
+      zero: 'No replies yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get cfdReplyHint => 'Write a reply…';
+
+  @override
+  String cfdReplyingTo(String name) {
+    return 'Replying to $name';
+  }
+
+  @override
+  String get cfdCancelReply => 'Cancel reply';
+
+  @override
+  String get cfdSendReply => 'Send reply';
+
+  @override
+  String get cfdReply => 'Reply';
+
+  @override
+  String get cfdNoReplies => 'No replies yet';
+
+  @override
+  String get cfdNoRepliesBody => 'Be the first to reply.';
+
+  @override
+  String get cfdMoreReplies => 'Show more replies';
+
+  @override
+  String get cfdMenuSave => 'Save discussion';
+
+  @override
+  String get cfdMenuUnsave => 'Remove from saved';
+
+  @override
+  String get cfdMenuMute => 'Mute thread';
+
+  @override
+  String get cfdMenuUnmute => 'Unmute thread';
+
+  @override
+  String get cfdMenuBlock => 'Block author';
+
+  @override
+  String get cfdMenuReport => 'Report';
+
+  @override
+  String get cfdMenuEdit => 'Edit';
+
+  @override
+  String get cfdMenuDelete => 'Delete';
+
+  @override
+  String get cfdMuted => 'Thread muted. You won\'t be notified about it.';
+
+  @override
+  String get cfdUnmuted => 'Thread unmuted.';
+
+  @override
+  String get cfdEditPostTitle => 'Edit post';
+
+  @override
+  String get cfdEditReplyTitle => 'Edit reply';
+
+  @override
+  String get cfdSaveChanges => 'Save changes';
+
+  @override
+  String get cfdCancel => 'Cancel';
+
+  @override
+  String get cfdDone => 'Done';
+
+  @override
+  String get cfdDeletePostTitle => 'Delete this post?';
+
+  @override
+  String get cfdDeletePostBody =>
+      'It will be removed for everyone, including the replies. This can\'t be undone.';
+
+  @override
+  String get cfdDeleteReplyTitle => 'Delete this reply?';
+
+  @override
+  String get cfdDeleteReplyBody =>
+      'It will be removed for everyone. This can\'t be undone.';
+
+  @override
+  String get cfdDelete => 'Delete';
+
+  @override
+  String get cfdPostGone => 'This post isn\'t available';
+
+  @override
+  String get cfdPostGoneBody =>
+      'It may have been removed, or you can no longer see it.';
+
+  @override
+  String get cfdReportTitle => 'Report';
+
+  @override
+  String get cfdReportIntro =>
+      'Why are you reporting this? The person won\'t be told it was you.';
+
+  @override
+  String get cfdReasonInappropriate => 'Inappropriate or offensive';
+
+  @override
+  String get cfdReasonHarassment => 'Harassment or bullying';
+
+  @override
+  String get cfdReasonScam => 'Scam or spam';
+
+  @override
+  String get cfdReasonMisleading => 'Misleading or false';
+
+  @override
+  String get cfdReasonImpersonation => 'Pretending to be someone else';
+
+  @override
+  String get cfdReasonIp => 'Copied or stolen work';
+
+  @override
+  String get cfdReasonOther => 'Something else';
+
+  @override
+  String get cfdReportNoteLabel => 'Add a note (optional)';
+
+  @override
+  String get cfdReportNoteHint => 'Tell us what we should look at';
+
+  @override
+  String get cfdReportSubmit => 'Send report';
+
+  @override
+  String get cfdReportDoneTitle => 'Thanks for telling us';
+
+  @override
+  String get cfdReportDoneBody =>
+      'Our team will review this report. When a decision is made you\'ll get a notification with the outcome. We don\'t share details about other members, and the person won\'t know it was you.';
+
+  @override
+  String cfdBlockTitle(String name) {
+    return 'Block $name?';
+  }
+
+  @override
+  String get cfdBlockBody =>
+      'You won\'t see each other\'s posts, replies or profiles, and neither of you can connect with or reply to the other. They won\'t be told.';
+
+  @override
+  String get cfdBlockConfirm => 'Block';
+
+  @override
+  String cfdBlockedTitle(String name) {
+    return '$name is blocked';
+  }
+
+  @override
+  String get cfdBlockedBody =>
+      'Their posts and replies are now hidden from you.';
+
+  @override
+  String get cfdUndoBlock => 'Undo block';
+
+  @override
+  String cfdUnblocked(String name) {
+    return '$name is unblocked.';
+  }
+
+  @override
+  String get cfdComposeTitle => 'New post';
+
+  @override
+  String get cfdPost => 'Post';
+
+  @override
+  String get cfdBodyHint => 'What would you like to share?';
+
+  @override
+  String cfdCharCount(int count, int max) {
+    return '$count/$max';
+  }
+
+  @override
+  String get cfdDraftSaved => 'Draft saved automatically';
+
+  @override
+  String get cfdAttachPhoto => 'Photo';
+
+  @override
+  String get cfdAttachVideo => 'Video';
+
+  @override
+  String get cfdAttachLink => 'Link';
+
+  @override
+  String get cfdAttachOpportunity => 'Opportunity';
+
+  @override
+  String get cfdAudience => 'Audience';
+
+  @override
+  String get cfdAudMembers => 'Atarah members';
+
+  @override
+  String get cfdAudMembersBody => 'Everyone signed in to Atarah';
+
+  @override
+  String get cfdAudPublic => 'Public';
+
+  @override
+  String get cfdAudPublicBody => 'Anyone, including people outside Atarah';
+
+  @override
+  String get cfdAudConnections => 'Connections';
+
+  @override
+  String get cfdAudConnectionsBody => 'Only people you\'re connected with';
+
+  @override
+  String get cfdAudGroups => 'Your groups';
+
+  @override
+  String get cfdAudGroupBody => 'Members of this group';
+
+  @override
+  String get cfdAudGroupsFailed => 'We couldn\'t load your groups.';
+
+  @override
+  String get cfdLinkTitle => 'Add a link';
+
+  @override
+  String get cfdLinkHint => 'https://';
+
+  @override
+  String get cfdLinkInvalid =>
+      'Enter a full web address that starts with http:// or https://';
+
+  @override
+  String get cfdLinkNote =>
+      'A preview appears on the post a moment after you share it.';
+
+  @override
+  String get cfdLinkAdd => 'Add link';
+
+  @override
+  String get cfdLinkRemove => 'Remove link';
+
+  @override
+  String get cfdMediaFull => 'A post can have up to 10 photos or videos.';
+
+  @override
+  String get cfdPickFailed => 'We couldn\'t open your files. Try again.';
+
+  @override
+  String get cfdNeedsContent =>
+      'Write something, or add a photo, video or link.';
+
+  @override
+  String cfdTooLong(int max) {
+    return 'Posts can be up to $max characters.';
+  }
+
+  @override
+  String get cfdUploadsPending =>
+      'Wait for your files to finish uploading, or remove them.';
+
+  @override
+  String get cfdPostedToast => 'Posted.';
+
+  @override
+  String get cfdErrVerification =>
+      'Verify your email or phone number first, then try again.';
+
+  @override
+  String get cfdErrRestricted =>
+      'Your account is restricted right now, so you can\'t do this. If you think that\'s a mistake, contact support.';
+
+  @override
+  String get cfdErrNotMember => 'Join this group first, then try again.';
+
+  @override
+  String get cfdErrNotFound => 'This isn\'t available any more.';
+
+  @override
+  String get cfdErrRateLimited =>
+      'You\'re going a little fast. Please wait a while and try again.';
+
+  @override
   String get improveSkill => 'Improve this skill';
 
   @override
@@ -427,7 +1009,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get passwordRuleError =>
-      'Use at least 8 characters, including a number.';
+      'Use at least 8 characters, including a letter and a number.';
 
   @override
   String get consentPrefix => 'I agree to the ';
@@ -524,7 +1106,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Enter the email or phone on your account and we\'ll send a recovery code.';
 
   @override
-  String get forgotSent => 'Code sent. It expires in 15 minutes.';
+  String get forgotSent => 'Code sent. It expires in 10 minutes.';
 
   @override
   String get forgotAction => 'Send code';
@@ -2164,4 +2746,1689 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dcNoArticlesBody => 'New stories and advice will appear here.';
+
+  @override
+  String get proPillLabel => 'Pro';
+
+  @override
+  String get appearanceLabel => 'Appearance';
+
+  @override
+  String get appearanceLight => 'Light';
+
+  @override
+  String get appearanceDark => 'Dark';
+
+  @override
+  String get settingsGroupAccount => 'Account';
+
+  @override
+  String get settingsGroupSupport => 'Support';
+
+  @override
+  String get settingsAccount => 'Account';
+
+  @override
+  String get settingsPrivacy => 'Privacy & visibility';
+
+  @override
+  String get settingsNotifications => 'Notifications';
+
+  @override
+  String get settingsSecurity => 'Security';
+
+  @override
+  String get settingsHelp => 'Help';
+
+  @override
+  String get settingsLegal => 'Legal';
+
+  @override
+  String get peopleTitle => 'People to meet';
+
+  @override
+  String get peopleBody =>
+      'Creatives who work like you, near you or in what you do.';
+
+  @override
+  String get peopleOpenToWork => 'Open to work';
+
+  @override
+  String get peopleAnyDiscipline => 'All disciplines';
+
+  @override
+  String get peopleAnyCounty => 'All counties';
+
+  @override
+  String peopleCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count people',
+      one: '1 person',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get peopleRequested => 'Requested';
+
+  @override
+  String peopleConnectWith(String name) {
+    return 'Connect with $name';
+  }
+
+  @override
+  String get peopleRespond => 'Respond';
+
+  @override
+  String get peopleSave => 'Save';
+
+  @override
+  String peopleSaveLabel(String name) {
+    return 'Save $name';
+  }
+
+  @override
+  String get peopleSaveFeature => 'Saving people';
+
+  @override
+  String get peopleConnections => 'Connections';
+
+  @override
+  String get peopleRequests => 'Requests';
+
+  @override
+  String peopleRequestsWaiting(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count requests waiting',
+      one: '1 request waiting',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get peopleConnectionsBody =>
+      'The people you are connected with and the requests going back and forth.';
+
+  @override
+  String get peopleListConnected => 'Connected';
+
+  @override
+  String get peopleListReceived => 'Received';
+
+  @override
+  String get peopleListSent => 'Sent';
+
+  @override
+  String get peopleMore => 'More options';
+
+  @override
+  String get peopleBlocked => 'Blocked people';
+
+  @override
+  String get peopleBlockedBody =>
+      'Blocking hides posts both ways and stops requests, comments and mentions.';
+
+  @override
+  String get peopleBlockedEmptyTitle => 'You have not blocked anyone';
+
+  @override
+  String get peopleBlockedEmptyBody =>
+      'People you block will be listed here, and you can unblock them at any time.';
+
+  @override
+  String get peopleUnblock => 'Unblock';
+
+  @override
+  String peopleUnblockLabel(String name) {
+    return 'Unblock $name';
+  }
+
+  @override
+  String peopleBlockedSince(String date) {
+    return 'Blocked $date';
+  }
+
+  @override
+  String get peopleEmptyTitle => 'No one to suggest yet';
+
+  @override
+  String get peopleEmptyBody =>
+      'As more creatives join and your profile fills in, people you may want to meet will appear here.';
+
+  @override
+  String get peopleEmptyFilteredTitle => 'No one matches those filters';
+
+  @override
+  String get peopleEmptyFilteredBody =>
+      'Try fewer filters or a different county.';
+
+  @override
+  String get peopleClearFilters => 'Clear filters';
+
+  @override
+  String get peopleConnectedEmptyTitle => 'No connections yet';
+
+  @override
+  String get peopleConnectedEmptyBody =>
+      'Connect with people you meet on Atarah and they will be listed here.';
+
+  @override
+  String get peopleReceivedEmptyTitle => 'No requests waiting';
+
+  @override
+  String get peopleReceivedEmptyBody =>
+      'When someone asks to connect, you can accept or decline here.';
+
+  @override
+  String get peopleSentEmptyTitle => 'No pending requests';
+
+  @override
+  String get peopleSentEmptyBody =>
+      'Requests you have sent that have not been answered yet are listed here.';
+
+  @override
+  String peopleSince(String date) {
+    return 'Since $date';
+  }
+
+  @override
+  String peopleRequestedOn(String date) {
+    return 'Requested $date';
+  }
+
+  @override
+  String peopleSentCancelLabel(String name) {
+    return 'Withdraw request to $name';
+  }
+
+  @override
+  String peopleAcceptLabel(String name) {
+    return 'Accept $name';
+  }
+
+  @override
+  String peopleDeclineLabel(String name) {
+    return 'Decline $name';
+  }
+
+  @override
+  String get peopleErrVerification =>
+      'Verify your email or phone first and you can connect with people. It only takes a minute.';
+
+  @override
+  String get peopleErrRestricted =>
+      'Your account is restricted for now, so you cannot do this. We will let you know if that changes.';
+
+  @override
+  String get peopleErrRateLimited =>
+      'You have done a lot in a short time. Take a breather and try again a little later.';
+
+  @override
+  String get peopleErrNotFound => 'That person is not available any more.';
+
+  @override
+  String get opSubtitle =>
+      'Funding, gigs and open calls matched to your craft.';
+
+  @override
+  String get opSaved => 'Saved';
+
+  @override
+  String opSavedCount(int count) {
+    return 'Saved, $count items';
+  }
+
+  @override
+  String get opSearchHint => 'Search grants, gigs, jobs…';
+
+  @override
+  String get opCatAll => 'All';
+
+  @override
+  String get opCatFunding => 'Funding';
+
+  @override
+  String get opCatGrants => 'Grants';
+
+  @override
+  String get opCatJobs => 'Jobs';
+
+  @override
+  String get opCatInternships => 'Internships';
+
+  @override
+  String get opCatGigs => 'Gigs';
+
+  @override
+  String get opCatCompetitions => 'Competitions';
+
+  @override
+  String get opCatFestivals => 'Festivals';
+
+  @override
+  String get opCatPartnerships => 'Partnerships';
+
+  @override
+  String get opCatFellowships => 'Fellowships';
+
+  @override
+  String get opCatResidencies => 'Residencies';
+
+  @override
+  String get opCatProgrammes => 'Programmes';
+
+  @override
+  String get opTypeGrant => 'Grant';
+
+  @override
+  String get opTypeFunding => 'Funding';
+
+  @override
+  String get opTypeJob => 'Job';
+
+  @override
+  String get opTypeInternship => 'Internship';
+
+  @override
+  String get opTypeGig => 'Gig';
+
+  @override
+  String get opTypeCompetition => 'Competition';
+
+  @override
+  String get opTypeFestival => 'Festival';
+
+  @override
+  String get opTypePartnership => 'Partnership';
+
+  @override
+  String get opTypeFellowship => 'Fellowship';
+
+  @override
+  String get opTypeResidency => 'Residency';
+
+  @override
+  String get opTypeProgramme => 'Programme';
+
+  @override
+  String get opFeatured => 'Featured';
+
+  @override
+  String get opClosingSoon => 'Closing soon';
+
+  @override
+  String get opRecent => 'Recently added';
+
+  @override
+  String opOpenCount(int count, String kind) {
+    return '$count open $kind';
+  }
+
+  @override
+  String get opKindAll => 'opportunities';
+
+  @override
+  String get opSortDeadline => 'Deadline: soonest';
+
+  @override
+  String get opSortRecent => 'Recently added';
+
+  @override
+  String get opSortRelevance => 'Most relevant';
+
+  @override
+  String get opSortBy => 'Sort by';
+
+  @override
+  String get opFilterDeadline => 'Closing within';
+
+  @override
+  String get opFilterAnyTime => 'Any time';
+
+  @override
+  String opFilterDays(int days) {
+    return '$days days';
+  }
+
+  @override
+  String get opFilterRemote => 'Remote only';
+
+  @override
+  String get opFilterRemoteBody => 'Work you can do from anywhere';
+
+  @override
+  String get opFilterTrust => 'Trust';
+
+  @override
+  String get opFilterTrustAny => 'Any';
+
+  @override
+  String get opFilterApply => 'Apply filters';
+
+  @override
+  String get opNoResults => 'No opportunities match';
+
+  @override
+  String get opNoResultsBody => 'Try clearing a filter, or check back soon.';
+
+  @override
+  String get opNothingOpen => 'Nothing open right now';
+
+  @override
+  String get opNothingOpenBody =>
+      'New opportunities are added often. Check back soon.';
+
+  @override
+  String opDaysLeft(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days left',
+      one: '1 day left',
+      zero: 'Closes today',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get opRolling => 'Rolling deadline';
+
+  @override
+  String get opClosed => 'Closed';
+
+  @override
+  String get opStatusSaved => 'Saved';
+
+  @override
+  String get opStatusInProgress => 'In progress';
+
+  @override
+  String get opStatusApplied => 'Applied';
+
+  @override
+  String get opStatusCompleted => 'Completed';
+
+  @override
+  String opStatusSavedLeft(String when) {
+    return 'Saved · $when';
+  }
+
+  @override
+  String opStatusClosingIn(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days',
+      one: '1 day',
+      zero: 'less than a day',
+    );
+    return 'Closing in $_temp0';
+  }
+
+  @override
+  String opStatusAppliedOn(String date) {
+    return 'Applied externally · $date';
+  }
+
+  @override
+  String opStatusCompletedOutcome(String outcome) {
+    return 'Completed · $outcome';
+  }
+
+  @override
+  String get opApplyWebsite => 'Apply on external website';
+
+  @override
+  String get opApplyEmail => 'Apply by email';
+
+  @override
+  String get opClosedNotice =>
+      'This opportunity has closed. It stays in your list so you keep your record.';
+
+  @override
+  String get opAbout => 'About';
+
+  @override
+  String get opRequirements => 'Requirements';
+
+  @override
+  String get opBenefits => 'Benefits';
+
+  @override
+  String get opFactDeadline => 'Deadline';
+
+  @override
+  String get opFactValue => 'Value';
+
+  @override
+  String get opFactLocation => 'Location';
+
+  @override
+  String get opFactApplication => 'Application';
+
+  @override
+  String get opApplicationExternal => 'External website';
+
+  @override
+  String get opApplicationEmail => 'Email';
+
+  @override
+  String get opNotStated => 'Not stated';
+
+  @override
+  String get opHelpTitle => 'Help me understand this';
+
+  @override
+  String get opHelpBody => 'AI summary of eligibility and what to prepare';
+
+  @override
+  String get opShare => 'Share';
+
+  @override
+  String get opSave => 'Save opportunity';
+
+  @override
+  String get opUnsave => 'Remove from saved';
+
+  @override
+  String opGapMissing(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Your profile is missing $count requirements',
+      one: 'Your profile is missing 1 requirement',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get opGapMissingBody => 'Add them before you apply';
+
+  @override
+  String get opGapReady => 'You meet the requirements Atarah can check';
+
+  @override
+  String get opGapReadyBody =>
+      'Read the listing for anything else the provider asks for.';
+
+  @override
+  String get opGapUnchecked => 'Atarah can\'t check these requirements';
+
+  @override
+  String get opGapUncheckedBody =>
+      'The provider will confirm them. Read each one carefully.';
+
+  @override
+  String get opGapNoRules => 'No special requirements listed';
+
+  @override
+  String get opGapNoRulesBody =>
+      'Read the listing and apply when you\'re ready.';
+
+  @override
+  String get opGapAdd => 'Add';
+
+  @override
+  String get opGapCannotCheck => 'We can\'t check this';
+
+  @override
+  String opGapProgress(int met, int total) {
+    return '$met of $total met';
+  }
+
+  @override
+  String get opMineTitle => 'My opportunities';
+
+  @override
+  String get opSavedTitle => 'Saved opportunities';
+
+  @override
+  String get opTabAll => 'All';
+
+  @override
+  String get opTabClosing => 'Closing soon';
+
+  @override
+  String get opTabApplied => 'Applied';
+
+  @override
+  String get opTabCompleted => 'Completed';
+
+  @override
+  String get opEmptyAll => 'Nothing tracked yet';
+
+  @override
+  String get opEmptyAllBody =>
+      'Save an opportunity or apply for one to follow it here.';
+
+  @override
+  String get opEmptyClosing => 'Nothing closing soon';
+
+  @override
+  String get opEmptyClosingBody =>
+      'Saved opportunities with a deadline in the next 14 days show up here.';
+
+  @override
+  String get opEmptyApplied => 'No applications yet';
+
+  @override
+  String get opEmptyAppliedBody =>
+      'Opportunities you apply for are listed here.';
+
+  @override
+  String get opEmptyCompleted => 'Nothing completed yet';
+
+  @override
+  String get opEmptyCompletedBody =>
+      'Opportunities you finish will be kept here for your Creative Passport.';
+
+  @override
+  String get opEmptySaved => 'Nothing saved yet';
+
+  @override
+  String get opEmptySavedBody =>
+      'Tap the bookmark on an opportunity to keep it here.';
+
+  @override
+  String get opExplore => 'Explore opportunities';
+
+  @override
+  String get opMarkCompleted => 'Mark as completed';
+
+  @override
+  String get opOutcomeTitle => 'How did it go?';
+
+  @override
+  String get opOutcomeAwarded => 'Awarded';
+
+  @override
+  String get opOutcomeNotSelected => 'Not selected';
+
+  @override
+  String get opOutcomeWithdrawn => 'Withdrawn';
+
+  @override
+  String get opOutcomeUnknown => 'Not sure yet';
+
+  @override
+  String get opOutcomeSave => 'Save outcome';
+
+  @override
+  String get opAwardedTitle => 'Congratulations!';
+
+  @override
+  String get opAwardedBody =>
+      'Add this win to your achievements so it shows on your Creative Passport.';
+
+  @override
+  String get opAddAchievement => 'Add this to your achievements';
+
+  @override
+  String get opNotNow => 'Not now';
+
+  @override
+  String get opOpenFailed => 'We couldn\'t open that. Try again.';
+
+  @override
+  String get opNotAvailable => 'That opportunity is not available any more.';
+
+  @override
+  String opMineSummary(int saved, int applied, int completed) {
+    return '$saved saved · $applied applied · $completed completed';
+  }
+
+  @override
+  String opSearchTab(int count) {
+    return 'Opportunities ($count)';
+  }
+
+  @override
+  String get lnHubTitle => 'Skill Labs';
+
+  @override
+  String get lnHubSubtitle =>
+      'Build the skills that move your creative career forward.';
+
+  @override
+  String get lnMyLearning => 'My learning';
+
+  @override
+  String get lnContinueLearning => 'Continue learning';
+
+  @override
+  String get lnContinueLabel => 'CONTINUE LEARNING';
+
+  @override
+  String lnContinueMeta(int n, int total, String title) {
+    return 'Lesson $n of $total · $title';
+  }
+
+  @override
+  String lnContinueMetaNoTitle(int done, int total) {
+    return '$done of $total lessons done';
+  }
+
+  @override
+  String get lnFeatured => 'Featured Labs';
+
+  @override
+  String get lnCategories => 'Categories';
+
+  @override
+  String get lnGroupCreative => 'Creative';
+
+  @override
+  String get lnGroupBusiness => 'Business';
+
+  @override
+  String get lnGroupProfessional => 'Professional';
+
+  @override
+  String lnResourcesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count resources',
+      one: '1 resource',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get lnRecommended => 'Recommended for you';
+
+  @override
+  String get lnHubEmptyTitle => 'No Skill Labs yet';
+
+  @override
+  String get lnHubEmptyBody =>
+      'Courses and resources will appear here as soon as they are published.';
+
+  @override
+  String get lnOpenHub => 'Open Skill Labs';
+
+  @override
+  String get lnTypeAll => 'All';
+
+  @override
+  String get lnTypeCourse => 'Course';
+
+  @override
+  String get lnTypeTutorial => 'Tutorial';
+
+  @override
+  String get lnTypeToolkit => 'Toolkit';
+
+  @override
+  String get lnTypeWebinar => 'Webinar';
+
+  @override
+  String get lnTypeMasterclass => 'Masterclass';
+
+  @override
+  String get lnTypeArticle => 'Article';
+
+  @override
+  String get lnPluralCourse => 'courses';
+
+  @override
+  String get lnPluralTutorial => 'tutorials';
+
+  @override
+  String get lnPluralToolkit => 'toolkits';
+
+  @override
+  String get lnPluralWebinar => 'webinars';
+
+  @override
+  String get lnPluralMasterclass => 'masterclasses';
+
+  @override
+  String get lnPluralArticle => 'articles';
+
+  @override
+  String get lnPluralAll => 'resources';
+
+  @override
+  String get lnSourceAtarahCourse => '✓ Atarah Course';
+
+  @override
+  String get lnSourceAtarahEditorial => '✓ Atarah Editorial';
+
+  @override
+  String get lnSourcePartner => 'Partner content';
+
+  @override
+  String get lnSourceExternal => 'External resource';
+
+  @override
+  String get lnDeliveryNative => 'In-app lessons';
+
+  @override
+  String get lnDeliveryEmbedded => 'Embedded';
+
+  @override
+  String get lnDeliveryExternal => 'Opens outside Atarah';
+
+  @override
+  String get lnLevelBeginner => 'Beginner';
+
+  @override
+  String get lnLevelIntermediate => 'Intermediate';
+
+  @override
+  String get lnLevelAdvanced => 'Advanced';
+
+  @override
+  String get lnLevelExpert => 'Expert';
+
+  @override
+  String lnLessonCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count lessons',
+      one: '1 lesson',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String lnDurationHm(int hours, int minutes) {
+    return '${hours}h ${minutes}m';
+  }
+
+  @override
+  String lnDurationH(int hours) {
+    return '${hours}h';
+  }
+
+  @override
+  String lnDurationM(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String get lnPremiumBadge => 'Pro';
+
+  @override
+  String lnCategoryEmptyTitle(String category) {
+    return 'Nothing in $category yet';
+  }
+
+  @override
+  String get lnCategoryEmptyBody =>
+      'New Skill Labs are added all the time. Check back soon.';
+
+  @override
+  String lnTypeEmptyTitle(String types, String category) {
+    return 'No $types in $category yet';
+  }
+
+  @override
+  String get lnTypeEmptyCta => 'Explore all types';
+
+  @override
+  String get lnLoadMoreFailed => 'We couldn\'t load more. Tap to try again.';
+
+  @override
+  String get lnYourProgress => 'Your progress';
+
+  @override
+  String lnProgressOf(int done, int total) {
+    return '$done / $total';
+  }
+
+  @override
+  String lnPercentComplete(int percent) {
+    return '$percent% complete';
+  }
+
+  @override
+  String get lnWhatYoullLearn => 'What you\'ll learn';
+
+  @override
+  String get lnWhoItsFor => 'Who it\'s for';
+
+  @override
+  String get lnLessons => 'Lessons';
+
+  @override
+  String get lnTaughtBy => 'Taught by';
+
+  @override
+  String get lnFrom => 'From';
+
+  @override
+  String get lnStartLearning => 'Start learning';
+
+  @override
+  String get lnReviewCourse => 'Review course';
+
+  @override
+  String get lnLessonDone => 'Done';
+
+  @override
+  String get lnLessonCurrent => 'Current';
+
+  @override
+  String get lnLessonLocked => 'Locked';
+
+  @override
+  String lnLessonRow(int n, String title, int minutes, String state) {
+    return 'Lesson $n: $title, $minutes minutes, $state';
+  }
+
+  @override
+  String lnLessonMinutes(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String get lnSaveLab => 'Save to my learning';
+
+  @override
+  String get lnUnsaveLab => 'Remove from saved';
+
+  @override
+  String get lnShareLab => 'Share this Skill Lab';
+
+  @override
+  String get lnCertificateEarned => 'Certificate earned';
+
+  @override
+  String lnCertificateNumber(String number) {
+    return 'No. $number';
+  }
+
+  @override
+  String lnCertificateIssued(String date) {
+    return 'Issued $date';
+  }
+
+  @override
+  String get lnViewOnPassport => 'See it in your achievements';
+
+  @override
+  String get lnPremiumFeature => 'Premium Skill Labs';
+
+  @override
+  String get lnPremiumWhat =>
+      'Courses and masterclasses from Atarah and our partners, with certificates.';
+
+  @override
+  String get lnPremiumWhy =>
+      'Structured learning is the quickest way to move a skill from good to hireable.';
+
+  @override
+  String get lnPremiumHow => 'Upgrade to Atarah Pro to open every Skill Lab.';
+
+  @override
+  String get lnOpenResource => 'Open resource';
+
+  @override
+  String lnLeavingBody(String domain) {
+    return 'You\'re going to $domain. It\'s a resource from outside Atarah, so what you do there stays there.';
+  }
+
+  @override
+  String get lnMarkComplete => 'Mark as complete';
+
+  @override
+  String get lnCompletedItem => 'Completed';
+
+  @override
+  String get lnStartedItem => 'In progress';
+
+  @override
+  String get lnFindSimilar => 'Find similar';
+
+  @override
+  String get lnWatchEmbedded => 'Watch';
+
+  @override
+  String get lnEnrolFailed => 'We couldn\'t start that course. Try again.';
+
+  @override
+  String get lnNeedsConnection => 'Connect to the internet to continue.';
+
+  @override
+  String get lnSavedCopyBanner =>
+      'Showing your saved copy. Connect to the internet to keep learning.';
+
+  @override
+  String lnLessonOf(int n, int total) {
+    return 'Lesson $n of $total';
+  }
+
+  @override
+  String get lnPractice => 'Practice';
+
+  @override
+  String get lnAddToPortfolio => 'Add to portfolio';
+
+  @override
+  String get lnLearnNext => 'What should I learn next?';
+
+  @override
+  String get lnAllLessons => 'All lessons';
+
+  @override
+  String get lnMarkCompleteNext => 'Mark complete & next';
+
+  @override
+  String get lnMarkCompleteFinish => 'Mark complete & finish';
+
+  @override
+  String lnLessonProgressBar(int done, int total) {
+    return 'Lesson progress: $done of $total lessons complete';
+  }
+
+  @override
+  String get lnVideoLoadFailed => 'We couldn\'t load this video.';
+
+  @override
+  String get lnVideoPreparing =>
+      'The video is still being prepared. Try again in a moment.';
+
+  @override
+  String lnEmbedFailedTitle(String service) {
+    return '$service isn\'t responding';
+  }
+
+  @override
+  String get lnBackToCourse => 'Go back to course';
+
+  @override
+  String lnVideoResuming(String time) {
+    return 'Resuming from $time';
+  }
+
+  @override
+  String get lnLessonLockedMessage =>
+      'Finish the earlier lessons to unlock this one.';
+
+  @override
+  String get lnSaveProgressFailed =>
+      'We couldn\'t save your progress. It will retry.';
+
+  @override
+  String get lnVideoSemantic => 'Lesson video';
+
+  @override
+  String get lnCompleteTitle => 'Course complete!';
+
+  @override
+  String lnCompleteBody(String course) {
+    return 'You finished $course. Your certificate is added to your achievements.';
+  }
+
+  @override
+  String get lnCompleteShare => 'Share';
+
+  @override
+  String lnCompleteShareText(String course) {
+    return 'I just completed $course on Atarah Skill Labs.';
+  }
+
+  @override
+  String get lnBackToLabs => 'Back to Skill Labs';
+
+  @override
+  String get lnStatInProgress => 'In progress';
+
+  @override
+  String get lnStatCompleted => 'Completed';
+
+  @override
+  String get lnStatHours => 'Hours this month';
+
+  @override
+  String get lnTabActive => 'Active';
+
+  @override
+  String get lnTabCompleted => 'Completed';
+
+  @override
+  String get lnTabSaved => 'Saved';
+
+  @override
+  String get lnSavedTitle => 'Saved Skill Labs';
+
+  @override
+  String get lnEmptyActiveTitle => 'Nothing in progress';
+
+  @override
+  String get lnEmptyActiveBody =>
+      'Start a Skill Lab and pick up where you left off, any time.';
+
+  @override
+  String get lnEmptyActiveCta => 'Browse Skill Labs';
+
+  @override
+  String get lnEmptyCompletedTitle => 'Nothing completed yet';
+
+  @override
+  String get lnEmptyCompletedBody =>
+      'Finish a course to earn a certificate for your Passport.';
+
+  @override
+  String get lnEmptySavedTitle => 'No saved Skill Labs';
+
+  @override
+  String get lnEmptySavedBody =>
+      'Tap the bookmark on a Skill Lab to keep it here.';
+
+  @override
+  String lnCompletedOn(String date) {
+    return 'Completed $date';
+  }
+
+  @override
+  String lnLastActive(String date) {
+    return 'Last active $date';
+  }
+
+  @override
+  String lnSearchTab(int count) {
+    return 'Skill Labs ($count)';
+  }
+
+  @override
+  String get premiumSeeProPlain => 'See Pro';
+
+  @override
+  String get loadingLabel => 'Loading';
+
+  @override
+  String get ayActivityTitle => 'Activity';
+
+  @override
+  String get ayPickUp => 'Pick up where you left off';
+
+  @override
+  String get ayNothingToResume =>
+      'Nothing to pick up right now. Start a Skill Lab, save an opportunity or add a project.';
+
+  @override
+  String get ayResumeLesson => 'Continue lesson';
+
+  @override
+  String get ayResumeOpportunity => 'Finish your application';
+
+  @override
+  String get ayResumeProject => 'Finish your project';
+
+  @override
+  String get ayTileSaved => 'Saved';
+
+  @override
+  String get ayTileApplications => 'Applications';
+
+  @override
+  String get ayTileLearning => 'My learning';
+
+  @override
+  String get ayTilePortfolio => 'Portfolio';
+
+  @override
+  String get ayTileConnections => 'Connections';
+
+  @override
+  String get ayTileNotifications => 'Notifications';
+
+  @override
+  String get ayTileMentorship => 'Mentorship';
+
+  @override
+  String get ayTileMarketplace => 'Marketplace';
+
+  @override
+  String get aySoonP2 => 'Soon · P2';
+
+  @override
+  String ayCount(int count) {
+    return '$count saved';
+  }
+
+  @override
+  String ayInProgressCount(int count) {
+    return '$count in progress';
+  }
+
+  @override
+  String ayPendingCount(int count) {
+    return '$count waiting';
+  }
+
+  @override
+  String ayUnreadCount(int count) {
+    return '$count unread';
+  }
+
+  @override
+  String get ayApplicationsTitle => 'Applications';
+
+  @override
+  String get ayApplicationsEmptyTitle => 'No applications yet';
+
+  @override
+  String get ayApplicationsEmptyBody =>
+      'When you start or finish an application it is tracked here.';
+
+  @override
+  String get ayFindOpportunities => 'Find opportunities';
+
+  @override
+  String get ayApplied => 'Applied';
+
+  @override
+  String get ayCompleted => 'Completed';
+
+  @override
+  String get ayInProgress => 'In progress';
+
+  @override
+  String get ntTitle => 'Notifications';
+
+  @override
+  String get ntSettings => 'Notification settings';
+
+  @override
+  String get ntAll => 'All';
+
+  @override
+  String get ntCatOpportunities => 'Opportunities';
+
+  @override
+  String get ntCatMentorship => 'Mentorship';
+
+  @override
+  String get ntCatCommunity => 'Community';
+
+  @override
+  String get ntCatLearning => 'Learning';
+
+  @override
+  String get ntCatProfile => 'Profile';
+
+  @override
+  String get ntCatMarketplace => 'Marketplace';
+
+  @override
+  String get ntCatSystem => 'Updates';
+
+  @override
+  String get ntToday => 'Today';
+
+  @override
+  String get ntEarlier => 'Earlier';
+
+  @override
+  String get ntMarkAllRead => 'Mark all read';
+
+  @override
+  String get ntEmptyTitle => 'You\'re all caught up';
+
+  @override
+  String get ntEmptyBody =>
+      'New connection requests, reminders and replies show up here.';
+
+  @override
+  String ntEmptyCategoryTitle(String category) {
+    return 'No $category notifications';
+  }
+
+  @override
+  String get sdTitle => 'Saved';
+
+  @override
+  String get sdAll => 'All';
+
+  @override
+  String get sdTypeOpportunity => 'Opportunities';
+
+  @override
+  String get sdTypeLearning => 'Skill Labs';
+
+  @override
+  String get sdTypeCreative => 'Creatives';
+
+  @override
+  String get sdTypeArticle => 'Articles';
+
+  @override
+  String get sdTypePost => 'Posts';
+
+  @override
+  String get sdTypeListing => 'Listings';
+
+  @override
+  String get sdTypeMentor => 'Mentors';
+
+  @override
+  String get sdEmptyTitle => 'Nothing saved yet';
+
+  @override
+  String get sdEmptyBody =>
+      'Tap the bookmark on an opportunity, Skill Lab, article or post to keep it here.';
+
+  @override
+  String sdEmptyTypeTitle(String type) {
+    return 'No saved $type';
+  }
+
+  @override
+  String get sdExplore => 'Explore';
+
+  @override
+  String get sdUnsaveFailed =>
+      'That could not be removed from your saved list.';
+
+  @override
+  String get stSaved => 'Saved';
+
+  @override
+  String get stSaveChanges => 'Save changes';
+
+  @override
+  String get stFullName => 'Full name';
+
+  @override
+  String get stUsername => 'Username';
+
+  @override
+  String get stUsernameHelp => 'Your public address: atarah.app/username';
+
+  @override
+  String get stEmail => 'Email';
+
+  @override
+  String get stPhone => 'Phone';
+
+  @override
+  String get stNotSet => 'Not added';
+
+  @override
+  String get stChange => 'Change';
+
+  @override
+  String get stChangeEmail => 'Change email';
+
+  @override
+  String get stChangePhone => 'Change phone number';
+
+  @override
+  String get stChangeEmailBody =>
+      'We will send a link to the new address. Your email changes when you open it. We also tell your current address.';
+
+  @override
+  String get stChangePhoneBody =>
+      'We will send a code to the new number. Your number changes when you enter it.';
+
+  @override
+  String get stNewEmail => 'New email';
+
+  @override
+  String get stNewPhone => 'New phone number';
+
+  @override
+  String get stSendLink => 'Send link';
+
+  @override
+  String get stSendCode => 'Send code';
+
+  @override
+  String get stVerify => 'Verify';
+
+  @override
+  String get stDone => 'Done';
+
+  @override
+  String get stOk => 'OK';
+
+  @override
+  String stPendingChange(String value) {
+    return 'Waiting for you to confirm $value';
+  }
+
+  @override
+  String stEmailLinkSent(String address) {
+    return 'We sent a link to $address. Open it to finish the change.';
+  }
+
+  @override
+  String stPhoneCodeSent(String number) {
+    return 'We sent a code to $number. Enter it below.';
+  }
+
+  @override
+  String get stPrivacyIntro =>
+      'Choose who sees each part of your profile. Private details still power your recommendations.';
+
+  @override
+  String get stPrivContact => 'Contact details';
+
+  @override
+  String get stPrivLocation => 'Location';
+
+  @override
+  String get stPrivPortfolio => 'Portfolio';
+
+  @override
+  String get stPrivExperience => 'Experience';
+
+  @override
+  String get stPrivActivity => 'Activity';
+
+  @override
+  String get stPrivNotSaved => 'That change was not saved.';
+
+  @override
+  String get stVisPublic => 'Public';
+
+  @override
+  String get stVisMembers => 'Members';
+
+  @override
+  String get stVisPrivate => 'Only me';
+
+  @override
+  String get stYourData => 'Your data';
+
+  @override
+  String get stExportTitle => 'Export my data';
+
+  @override
+  String get stExportBody =>
+      'We prepare a file with your profile, projects and activity, and send you a link that works for 7 days. One export a day.';
+
+  @override
+  String get stExportRequest => 'Request my data';
+
+  @override
+  String get stExportRequested =>
+      'We are preparing your file. You will be notified when it is ready.';
+
+  @override
+  String get stExportPreparing => 'Preparing';
+
+  @override
+  String get stExportReady => 'Ready';
+
+  @override
+  String get stExportFailed => 'Failed';
+
+  @override
+  String get stExportExpired => 'Expired';
+
+  @override
+  String get stExportDownload => 'Download my data';
+
+  @override
+  String stExportNext(String date) {
+    return 'You can ask again on $date.';
+  }
+
+  @override
+  String get stNotifCategory => 'Category';
+
+  @override
+  String get stNotifPush => 'Push';
+
+  @override
+  String get stNotifEmail => 'Email';
+
+  @override
+  String stNotifPushFor(String category) {
+    return 'Push notifications for $category';
+  }
+
+  @override
+  String stNotifEmailFor(String category) {
+    return 'Email notifications for $category';
+  }
+
+  @override
+  String get stNotifOpportunitiesDesc => 'Deadlines and new matches';
+
+  @override
+  String get stNotifCommunityDesc => 'Replies, mentions and requests';
+
+  @override
+  String get stNotifLearningDesc => 'Certificates and recommendations';
+
+  @override
+  String get stNotifMentorshipDesc => 'Booking updates';
+
+  @override
+  String get stNotifProfileDesc => 'Profile tips and reminders';
+
+  @override
+  String get stNotifMarketplaceDesc => 'Orders and messages';
+
+  @override
+  String get stNotifSystemDesc => 'Account and safety updates';
+
+  @override
+  String get stNotifSecurityNote =>
+      'Security notices, such as a new sign-in or a password change, are always sent.';
+
+  @override
+  String get stPassword => 'Password';
+
+  @override
+  String get stChangePassword => 'Change password';
+
+  @override
+  String get stCurrentPassword => 'Current password';
+
+  @override
+  String get stNewPassword => 'New password';
+
+  @override
+  String get stPasswordChanged =>
+      'Password changed. Other devices were signed out.';
+
+  @override
+  String get stTwoStep => 'Two-step verification';
+
+  @override
+  String get stTwoStepBody => 'A code when you sign in on a new device';
+
+  @override
+  String get stTwoStepNeedsPhone =>
+      'Add a verified phone number to your account first.';
+
+  @override
+  String get stTwoStepOn => 'Two-step verification is on.';
+
+  @override
+  String get stTwoStepOff => 'Two-step verification is off.';
+
+  @override
+  String get stActiveSessions => 'Active sessions';
+
+  @override
+  String get stThisDevice => 'This device';
+
+  @override
+  String get stUnknownDevice => 'Unknown device';
+
+  @override
+  String get stSignOutSession => 'Sign out';
+
+  @override
+  String get stTwoStepTitle => 'Confirm it is you';
+
+  @override
+  String get stTwoStepSms =>
+      'Enter the code we sent to your phone to sign in on this device.';
+
+  @override
+  String get stTwoStepApp =>
+      'Enter the code from your authenticator app to sign in on this device.';
+
+  @override
+  String get stTwoStepNoFactor =>
+      'We can\'t find a second step on your account. Sign out and sign in again, or contact support.';
+
+  @override
+  String get stTwoStepWrongCode =>
+      'That code didn\'t work. Check it and try again.';
+
+  @override
+  String get stHelpSearch => 'Search help articles';
+
+  @override
+  String get stSafetyCentre => 'Safety centre';
+
+  @override
+  String get stSafetyCentreBody => 'Report, block, mute';
+
+  @override
+  String get stHelpArticles => 'Articles';
+
+  @override
+  String get stFaq => 'Frequently asked';
+
+  @override
+  String get stHelpNoResults => 'Nothing matches that';
+
+  @override
+  String get stHelpNoResultsBody =>
+      'Try fewer words, or ask us directly below.';
+
+  @override
+  String get stStillNeedHelp => 'Still need help?';
+
+  @override
+  String get stChatWithUs => 'Chat with us';
+
+  @override
+  String get stLegalEmpty => 'No documents yet';
+
+  @override
+  String get stLegalEmptyBody => 'Our legal documents will appear here.';
+
+  @override
+  String stVersion(String version) {
+    return 'Version $version';
+  }
+
+  @override
+  String get stDraft => 'Draft';
+
+  @override
+  String get stDraftPending => 'DRAFT — pending legal review';
+
+  @override
+  String get stCurrentPlan => 'CURRENT PLAN';
+
+  @override
+  String get stPlanFreeBody =>
+      'Everything you need to build your creative identity.';
+
+  @override
+  String get stPlanProBody => 'Thank you for supporting Atarah.';
+
+  @override
+  String stPlanRenews(String date) {
+    return 'Renews $date';
+  }
+
+  @override
+  String get stWhatsIncluded => 'What\'s included';
+
+  @override
+  String get stFeature => 'Feature';
+
+  @override
+  String get stIncluded => 'Included';
+
+  @override
+  String get stNotIncluded => 'Not included';
+
+  @override
+  String stUpgrade(String price) {
+    return 'Upgrade to Pro · $price';
+  }
+
+  @override
+  String get stUpgradePlain => 'Upgrade to Pro';
+
+  @override
+  String get stCancelAnytime => 'Cancel anytime. No hidden fees.';
+
+  @override
+  String get stDeleteAccount => 'Delete account';
+
+  @override
+  String get stDeleteTitle => 'Delete your account?';
+
+  @override
+  String get stDeleteIntro =>
+      'This can\'t be undone. You will permanently lose:';
+
+  @override
+  String get stDeleteLossProfile => 'Your profile and Creative Passport';
+
+  @override
+  String get stDeleteLossPortfolio =>
+      'Your portfolio, services and achievements';
+
+  @override
+  String get stDeleteLossConnections => 'Your connections and saved items';
+
+  @override
+  String get stDeleteLossProgress => 'Your learning progress and certificates';
+
+  @override
+  String get stDeleteGrace =>
+      'Your account is hidden and you are signed out right away. Your data is deleted after 30 days. Sign in before then to restore it. Your posts and comments stay and show as \"Deleted member\".';
+
+  @override
+  String get stTypeDelete => 'Type DELETE to confirm';
+
+  @override
+  String get stPasswordToConfirm => 'Your password';
+
+  @override
+  String get stPasswordToConfirmHelp =>
+      'Needed if you signed in more than 5 minutes ago.';
+
+  @override
+  String get stDeletePermanently => 'Delete account permanently';
+
+  @override
+  String get stKeepAccount => 'Keep my account';
+
+  @override
+  String get stDeletedTitle => 'Your account is scheduled for deletion';
+
+  @override
+  String get stDeletedBody =>
+      'It is hidden now and your data is deleted after 30 days. Sign in before then if you change your mind.';
+
+  @override
+  String get stRestoreTitle => 'Restore your account?';
+
+  @override
+  String stRestoreBody(String date) {
+    return 'Your account is scheduled for deletion on $date. Restore it to keep everything.';
+  }
+
+  @override
+  String get stRestoreBodyNoDate =>
+      'Your account is scheduled for deletion. Restore it to keep everything.';
+
+  @override
+  String get stRestoreAccount => 'Restore account';
+
+  @override
+  String get stOfflineNeedsConnection => 'Needs a connection';
 }

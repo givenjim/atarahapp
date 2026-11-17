@@ -129,6 +129,15 @@ SearchHitDto articleHit(String slug, String title) => SearchHitDto(
   path: '/articles/$slug',
 );
 
+SearchHitDto opportunityHit(String id, String title) => SearchHitDto(
+  type: SearchHitDtoType.opportunities,
+  id: id,
+  title: title,
+  subtitle: 'Grant',
+  verified: false,
+  path: '/opportunities/$id',
+);
+
 /// In-memory stand-in for [DiscoverRepository]. Lists are filtered the way the server would for the cases
 /// the tests care about (discipline, county, availability, verified); everything is recorded.
 class FakeDiscoverRepository implements DiscoverRepository {
@@ -139,6 +148,7 @@ class FakeDiscoverRepository implements DiscoverRepository {
     Map<String, ArticleDto>? articleDetails,
     List<SearchHitDto>? creativeHits,
     List<SearchHitDto>? articleHits,
+    List<SearchHitDto>? opportunityHits,
     List<String>? recents,
   }) : homeData = home ?? homeDto(),
        creativeList = creatives ?? [],
@@ -146,6 +156,7 @@ class FakeDiscoverRepository implements DiscoverRepository {
        details = articleDetails ?? {},
        creativeHitList = creativeHits ?? [],
        articleHitList = articleHits ?? [],
+       opportunityHitList = opportunityHits ?? [],
        recentList = [
          for (final (i, q) in (recents ?? const <String>[]).indexed)
            RecentSearchDto(id: 'r-$i', query: q),
@@ -157,6 +168,7 @@ class FakeDiscoverRepository implements DiscoverRepository {
   final Map<String, ArticleDto> details;
   final List<SearchHitDto> creativeHitList;
   final List<SearchHitDto> articleHitList;
+  final List<SearchHitDto> opportunityHitList;
   final List<RecentSearchDto> recentList;
 
   /// Make the next call to that method throw this.
@@ -223,6 +235,7 @@ class FakeDiscoverRepository implements DiscoverRepository {
     ];
     final people = hits(creativeHitList);
     final pieces = hits(articleHitList);
+    final chances = hits(opportunityHitList);
     SearchGroupDto group(
       SearchGroupDtoType t,
       List<SearchHitDto> all, {
@@ -245,9 +258,15 @@ class FakeDiscoverRepository implements DiscoverRepository {
       SearchKind.articles => [
         group(SearchGroupDtoType.articles, pieces, preview: false),
       ],
+      SearchKind.opportunities => [
+        group(SearchGroupDtoType.opportunities, chances, preview: false),
+      ],
+      SearchKind.learning => [],
       null => [
         group(SearchGroupDtoType.creatives, people, preview: true),
         group(SearchGroupDtoType.articles, pieces, preview: true),
+        if (chances.isNotEmpty)
+          group(SearchGroupDtoType.opportunities, chances, preview: true),
       ],
     };
   }

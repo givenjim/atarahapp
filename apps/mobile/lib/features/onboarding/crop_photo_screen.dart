@@ -48,6 +48,9 @@ class CropPhotoScreen extends StatefulWidget {
 }
 
 class _CropPhotoScreenState extends State<CropPhotoScreen> {
+  /// The crop stage is a dark editing surface in both appearances.
+  static const _stage = AtColors.light;
+
   final _controller = CropController();
   bool _cropping = false;
   bool _failed = false;
@@ -56,10 +59,10 @@ class _CropPhotoScreenState extends State<CropPhotoScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
-      backgroundColor: AtColors.ink,
+      backgroundColor: _stage.ink,
       appBar: AppBar(
-        backgroundColor: AtColors.ink,
-        foregroundColor: AtColors.white,
+        backgroundColor: _stage.ink,
+        foregroundColor: _stage.white,
         title: Text(l10n.obCropTitle),
         leading: IconButton(
           tooltip: l10n.obCropCancel,
@@ -76,8 +79,8 @@ class _CropPhotoScreenState extends State<CropPhotoScreen> {
                 controller: _controller,
                 withCircleUi: true,
                 interactive: true,
-                baseColor: AtColors.ink,
-                maskColor: const Color.fromRGBO(21, 19, 61, 0.7),
+                baseColor: _stage.ink,
+                maskColor: _stage.ink.withValues(alpha: 0.7),
                 progressIndicator: const CircularProgressIndicator(),
                 onCropped: (result) {
                   switch (result) {

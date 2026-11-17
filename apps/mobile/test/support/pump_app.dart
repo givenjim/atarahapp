@@ -9,10 +9,15 @@ Widget atApp(
   double textScale = 1.0,
   bool scaffold = true,
   bool disableAnimations = false,
+  AtAppearance appearance = AtAppearance.light,
 }) {
   return MaterialApp(
     debugShowCheckedModeBanner: false,
-    theme: AtTheme.light(),
+    theme: AtTheme.light,
+    darkTheme: AtTheme.dark,
+    themeMode: appearance == AtAppearance.dark
+        ? ThemeMode.dark
+        : ThemeMode.light,
     localizationsDelegates: AppLocalizations.localizationsDelegates,
     supportedLocales: AppLocalizations.supportedLocales,
     home: MediaQuery(
@@ -41,12 +46,20 @@ extension PumpAtApp on WidgetTester {
     double textScale = 1.0,
     bool scaffold = true,
     Size size = const Size(390, 844),
+    AtAppearance appearance = AtAppearance.light,
   }) async {
     view.physicalSize = size * 1.0;
     view.devicePixelRatio = 1.0;
     addTearDown(view.resetPhysicalSize);
     addTearDown(view.resetDevicePixelRatio);
-    await pumpWidget(atApp(child, textScale: textScale, scaffold: scaffold));
+    await pumpWidget(
+      atApp(
+        child,
+        textScale: textScale,
+        scaffold: scaffold,
+        appearance: appearance,
+      ),
+    );
     // One frame; animated widgets (skeleton) never settle.
     await pump();
   }

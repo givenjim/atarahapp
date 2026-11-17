@@ -79,10 +79,10 @@ class _AtSkeletonState extends State<AtSkeleton>
               gradient: LinearGradient(
                 begin: Alignment(-1.0 + 2 * t - 0.5, 0),
                 end: Alignment(-1.0 + 2 * t + 0.5, 0),
-                colors: const [
-                  AtColors.progressTrack,
-                  AtColors.softTile,
-                  AtColors.progressTrack,
+                colors: [
+                  context.at.progressTrack,
+                  context.at.softTile,
+                  context.at.progressTrack,
                 ],
               ),
             ),
@@ -114,7 +114,7 @@ class AtEmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = tone.colors;
+    final c = tone.colorsOf(context);
     return Center(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 24),
@@ -127,7 +127,7 @@ class AtEmptyState extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
-                  colors: [c.bg, AtColors.white],
+                  colors: [c.bg, context.at.background],
                   stops: const [0, 0.7],
                 ),
               ),
@@ -151,7 +151,7 @@ class AtEmptyState extends StatelessWidget {
                 style: AtTextStyles.sectionTitle.copyWith(
                   fontSize: 22,
                   fontWeight: FontWeight.w800,
-                  color: AtColors.ink,
+                  color: context.at.ink,
                 ),
               ),
             ),
@@ -160,7 +160,7 @@ class AtEmptyState extends StatelessWidget {
               Text(
                 body!,
                 textAlign: TextAlign.center,
-                style: AtTextStyles.bodySm.copyWith(color: AtColors.body),
+                style: AtTextStyles.bodySm.copyWith(color: context.at.body),
               ),
             ],
             if (ctaLabel != null) ...[
@@ -231,14 +231,14 @@ class AtErrorState extends StatelessWidget {
       ),
       AtErrorVariant.invalidLink => (
         LucideIcons.link2Off,
-        AtTone.pink,
+        AtTone.coral,
         l10n.errorInvalidLinkTitle,
         l10n.errorInvalidLinkBody,
         LucideIcons.search,
         l10n.back,
       ),
     };
-    final c = tone.colors;
+    final c = tone.colorsOf(context);
     return Center(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 24),
@@ -264,7 +264,7 @@ class AtErrorState extends StatelessWidget {
                 style: AtTextStyles.sectionTitle.copyWith(
                   fontSize: 22,
                   fontWeight: FontWeight.w800,
-                  color: AtColors.ink,
+                  color: context.at.ink,
                 ),
               ),
             ),
@@ -272,7 +272,7 @@ class AtErrorState extends StatelessWidget {
             Text(
               body ?? defaultBody,
               textAlign: TextAlign.center,
-              style: AtTextStyles.bodySm.copyWith(color: AtColors.body),
+              style: AtTextStyles.bodySm.copyWith(color: context.at.body),
             ),
             if (onCta != null) ...[
               const SizedBox(height: 22),
@@ -316,18 +316,18 @@ class AtOfflineBanner extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.fromLTRB(12, 0, 12, 6),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
-        decoration: const BoxDecoration(
-          color: AtColors.ink,
+        decoration: BoxDecoration(
+          color: context.at.ink,
           borderRadius: AtRadii.tileLg,
         ),
         child: Row(
           children: [
-            const Icon(LucideIcons.wifiOff, size: 15, color: AtColors.white),
+            Icon(LucideIcons.wifiOff, size: 15, color: context.at.white),
             const SizedBox(width: 8),
             Expanded(
               child: Text(
                 l10n.offlineBanner,
-                style: AtTextStyles.metaSm.copyWith(color: AtColors.white),
+                style: AtTextStyles.metaSm.copyWith(color: context.at.white),
               ),
             ),
           ],
@@ -356,7 +356,8 @@ class AtPremiumGate extends StatelessWidget {
   final String whyItMatters;
   final String howToGet;
 
-  /// Formatted price from settings, e.g. "KES 1,200/month". Never hard-coded in widgets.
+  /// Formatted price from settings, e.g. "KES 1,200/month". Never hard-coded in widgets. Empty while no price is
+  /// known: the button then just says "See Pro".
   final String priceLabel;
   final VoidCallback onSeePro;
   final VoidCallback? onCheckScholarship;
@@ -377,11 +378,7 @@ class AtPremiumGate extends StatelessWidget {
                 gradient: AtGradients.pro,
                 borderRadius: BorderRadius.circular(28),
               ),
-              child: const Icon(
-                LucideIcons.crown,
-                size: 38,
-                color: AtColors.proText,
-              ),
+              child: Icon(LucideIcons.crown, size: 38, color: context.at.white),
             ),
           ),
           const SizedBox(height: 18),
@@ -390,7 +387,7 @@ class AtPremiumGate extends StatelessWidget {
             child: Text(
               l10n.premiumGateTitle(feature),
               textAlign: TextAlign.center,
-              style: AtTextStyles.detailTitle.copyWith(color: AtColors.ink),
+              style: AtTextStyles.detailTitle.copyWith(color: context.at.ink),
             ),
           ),
           const SizedBox(height: 18),
@@ -412,7 +409,12 @@ class AtPremiumGate extends StatelessWidget {
             icon: LucideIcons.keyRound,
           ),
           const SizedBox(height: 20),
-          AtButton(label: l10n.premiumSeePro(priceLabel), onPressed: onSeePro),
+          AtButton(
+            label: priceLabel.isEmpty
+                ? l10n.premiumSeeProPlain
+                : l10n.premiumSeePro(priceLabel),
+            onPressed: onSeePro,
+          ),
           if (onCheckScholarship != null)
             AtButton(
               label: l10n.premiumScholarship,
@@ -448,12 +450,12 @@ class _Block extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+                  style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   body,
-                  style: AtTextStyles.bodySm.copyWith(color: AtColors.body),
+                  style: AtTextStyles.bodySm.copyWith(color: context.at.body),
                 ),
               ],
             ),
@@ -499,7 +501,7 @@ class AtFutureScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
-      backgroundColor: AtColors.white,
+      backgroundColor: context.at.background,
       body: SafeArea(
         child: Column(
           children: [
@@ -522,10 +524,10 @@ class AtFutureScreen extends StatelessWidget {
                           gradient: AtGradients.ai,
                           borderRadius: BorderRadius.circular(32),
                         ),
-                        child: const Icon(
+                        child: Icon(
                           LucideIcons.hourglass,
                           size: 40,
-                          color: AtColors.white,
+                          color: context.at.white,
                         ),
                       ),
                       const SizedBox(height: 22),
@@ -541,7 +543,7 @@ class AtFutureScreen extends StatelessWidget {
                           featureName ?? l10n.futureTitle,
                           textAlign: TextAlign.center,
                           style: AtTextStyles.subTitle.copyWith(
-                            color: AtColors.ink,
+                            color: context.at.ink,
                           ),
                         ),
                       ),
@@ -549,7 +551,9 @@ class AtFutureScreen extends StatelessWidget {
                       Text(
                         l10n.futureBody,
                         textAlign: TextAlign.center,
-                        style: AtTextStyles.body.copyWith(color: AtColors.body),
+                        style: AtTextStyles.body.copyWith(
+                          color: context.at.body,
+                        ),
                       ),
                       if (showBack) ...[
                         const SizedBox(height: 24),
@@ -572,4 +576,71 @@ class AtFutureScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+/// A column of skeleton rows (an avatar tile and two lines each): what a list shows while its first page loads.
+/// Replaces a full-screen spinner so the page keeps its shape.
+class AtSkeletonList extends StatelessWidget {
+  const AtSkeletonList({super.key, this.itemCount = 5, this.padding});
+
+  final int itemCount;
+  final EdgeInsetsGeometry? padding;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Semantics(
+      label: l10n.loadingLabel,
+      liveRegion: true,
+      container: true,
+      excludeSemantics: true,
+      child: ListView.separated(
+        physics: const NeverScrollableScrollPhysics(),
+        padding:
+            padding ??
+            const EdgeInsets.fromLTRB(
+              AtSpacing.gutter,
+              16,
+              AtSpacing.gutter,
+              24,
+            ),
+        itemCount: itemCount,
+        separatorBuilder: (_, _) => const SizedBox(height: AtSpacing.listGap),
+        itemBuilder: (_, _) => const _SkeletonRow(),
+      ),
+    );
+  }
+}
+
+class _SkeletonRow extends StatelessWidget {
+  const _SkeletonRow();
+
+  @override
+  Widget build(BuildContext context) => const AtCard(
+    padding: EdgeInsets.all(14),
+    child: Row(
+      children: [
+        AtSkeleton(width: 44, height: 44, radius: 14),
+        SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AtSkeleton(width: 160, height: 14),
+              SizedBox(height: 8),
+              AtSkeleton(height: 12),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+/// The standard "first load" body for a screen: skeleton rows, announced to a screen reader.
+class AtLoadingBody extends StatelessWidget {
+  const AtLoadingBody({super.key});
+
+  @override
+  Widget build(BuildContext context) => const AtSkeletonList();
 }

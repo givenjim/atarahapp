@@ -62,3 +62,14 @@ bool atReduceMotion(BuildContext context) =>
 /// Animation duration that collapses to zero under "reduce motion".
 Duration atDuration(BuildContext context, Duration d) =>
     atReduceMotion(context) ? Duration.zero : d;
+
+/// A fixed extent (a grid tile or a carousel row) that grows with the platform text size, so text at 200% fits.
+/// [textShare] is the part of [base] that is text; it grows with the scale, the rest (pictures, padding) does not.
+double atScaledExtent(
+  BuildContext context,
+  double base, {
+  double textShare = 0.35,
+}) {
+  final scale = MediaQuery.textScalerOf(context).scale(1.0);
+  return base * (1 + (scale < 1 ? 0 : scale - 1) * textShare);
+}

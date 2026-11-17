@@ -83,7 +83,7 @@ class _CreativeProfileScreenState extends ConsumerState<CreativeProfileScreen> {
           children: [
             Text(
               l10n.cpRemoveConfirmBody,
-              style: AtTextStyles.bodySm.copyWith(color: AtColors.body),
+              style: AtTextStyles.bodySm.copyWith(color: context.at.body),
             ),
             const SizedBox(height: 16),
             AtButton(
@@ -153,11 +153,7 @@ class _CreativeProfileScreenState extends ConsumerState<CreativeProfileScreen> {
             ),
             Expanded(
               child: async.when(
-                loading: () => Semantics(
-                  label: l10n.loading,
-                  liveRegion: true,
-                  child: const Center(child: CircularProgressIndicator()),
-                ),
+                loading: () => const AtLoadingBody(),
                 error: (e, _) => Padding(
                   padding: const EdgeInsets.all(AtSpacing.gutter),
                   child: AtErrorState(
@@ -223,10 +219,10 @@ class _CreativeProfileScreenState extends ConsumerState<CreativeProfileScreen> {
                   left: AtSpacing.gutter + 16,
                   bottom: -40,
                   child: Container(
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       boxShadow: [
-                        BoxShadow(color: AtColors.white, spreadRadius: 4),
+                        BoxShadow(color: context.at.surface, spreadRadius: 4),
                       ],
                     ),
                     child: AtAvatar(
@@ -268,7 +264,7 @@ class _CreativeProfileScreenState extends ConsumerState<CreativeProfileScreen> {
                   child: Text(
                     p.displayName,
                     style: AtTextStyles.detailTitle.copyWith(
-                      color: AtColors.ink,
+                      color: context.at.ink,
                     ),
                   ),
                 ),
@@ -276,14 +272,16 @@ class _CreativeProfileScreenState extends ConsumerState<CreativeProfileScreen> {
                   const SizedBox(height: 2),
                   Text(
                     p.headline!,
-                    style: AtTextStyles.body.copyWith(color: AtColors.body),
+                    style: AtTextStyles.body.copyWith(color: context.at.body),
                   ),
                 ],
                 if (line.isNotEmpty) ...[
                   const SizedBox(height: 2),
                   Text(
                     line,
-                    style: AtTextStyles.bodySm.copyWith(color: AtColors.muted),
+                    style: AtTextStyles.bodySm.copyWith(
+                      color: context.at.muted,
+                    ),
                   ),
                 ],
                 const SizedBox(height: 8),
@@ -296,16 +294,16 @@ class _CreativeProfileScreenState extends ConsumerState<CreativeProfileScreen> {
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Icon(
+                          Icon(
                             LucideIcons.mapPin,
                             size: 12,
-                            color: AtColors.muted,
+                            color: context.at.muted,
                           ),
                           const SizedBox(width: 4),
                           Text(
                             place,
                             style: AtTextStyles.meta.copyWith(
-                              color: AtColors.muted,
+                              color: context.at.muted,
                             ),
                           ),
                         ],
@@ -320,7 +318,7 @@ class _CreativeProfileScreenState extends ConsumerState<CreativeProfileScreen> {
                       Text(
                         l10n.cpConnectionsCount(p.connectionCount!.round()),
                         style: AtTextStyles.meta.copyWith(
-                          color: AtColors.muted,
+                          color: context.at.muted,
                         ),
                       ),
                   ],
@@ -527,7 +525,7 @@ class _Actions extends StatelessWidget {
                   c.reason == 'COOLDOWN'
                       ? l10n.cpAskLater
                       : l10n.cpNotAccepting,
-                  style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+                  style: AtTextStyles.meta.copyWith(color: context.at.muted),
                 ),
               ),
           ],
@@ -557,7 +555,7 @@ class _About extends StatelessWidget {
         header: true,
         child: Text(
           t,
-          style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+          style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
         ),
       ),
     );
@@ -573,14 +571,14 @@ class _About extends StatelessWidget {
         if (p.bio != null)
           Text(
             p.bio!,
-            style: AtTextStyles.body.copyWith(color: AtColors.longForm),
+            style: AtTextStyles.body.copyWith(color: context.at.longForm),
           )
         else if (p.visibleSections.contains(
           PublicProfileDtoVisibleSections.bio,
         ))
           Text(
             l10n.cpNoBio,
-            style: AtTextStyles.bodySm.copyWith(color: AtColors.muted),
+            style: AtTextStyles.bodySm.copyWith(color: context.at.muted),
           ),
         if (p.specialisations.isNotEmpty) ...[
           const SizedBox(height: 20),
@@ -655,12 +653,12 @@ class _About extends StatelessWidget {
           const SizedBox(height: 14),
           Row(
             children: [
-              const Icon(LucideIcons.lock, size: 14, color: AtColors.muted),
+              Icon(LucideIcons.lock, size: 14, color: context.at.muted),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   l10n.cpHidden(publicSectionLabel(l10n, s)),
-                  style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+                  style: AtTextStyles.meta.copyWith(color: context.at.muted),
                 ),
               ),
             ],
@@ -672,7 +670,7 @@ class _About extends StatelessWidget {
             DateFormat.yMMMM(Localizations.localeOf(context).toString())
                 .format(p.memberSince.toLocal()),
           ),
-          style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+          style: AtTextStyles.meta.copyWith(color: context.at.muted),
         ),
       ],
     );

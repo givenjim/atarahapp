@@ -128,12 +128,14 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
           onPressed: _busy ? null : _submit,
         ),
         const SizedBox(height: 16),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        // A Wrap, so the sentence and the button stack at large text sizes instead of overflowing.
+        Wrap(
+          alignment: WrapAlignment.center,
+          crossAxisAlignment: WrapCrossAlignment.center,
           children: [
             Text(
               l10n.newToAtarah,
-              style: AtTextStyles.bodySm.copyWith(color: AtColors.body),
+              style: AtTextStyles.bodySm.copyWith(color: context.at.body),
             ),
             AtButton(
               label: l10n.createAnAccount,

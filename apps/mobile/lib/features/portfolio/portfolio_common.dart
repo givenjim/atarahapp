@@ -142,7 +142,7 @@ class DateField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: AtTextStyles.label.copyWith(color: AtColors.ink)),
+        Text(label, style: AtTextStyles.label.copyWith(color: context.at.ink)),
         const SizedBox(height: 6),
         AtTapTarget(
           semanticLabel: '$label ${text ?? l10n.pjDateNotSet}',
@@ -151,27 +151,23 @@ class DateField extends StatelessWidget {
             constraints: const BoxConstraints(minHeight: 48),
             padding: const EdgeInsets.symmetric(horizontal: 14),
             decoration: BoxDecoration(
-              color: AtColors.white,
+              color: context.at.inputFill,
               borderRadius: AtRadii.input,
               border: Border.all(
                 color: errorText == null
-                    ? AtColors.inputBorder
-                    : AtColors.pinkStrong,
+                    ? context.at.inputBorder
+                    : context.at.coralStrong,
               ),
             ),
             child: Row(
               children: [
-                const Icon(
-                  LucideIcons.calendar,
-                  size: 18,
-                  color: AtColors.muted,
-                ),
+                Icon(LucideIcons.calendar, size: 18, color: context.at.muted),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
                     text ?? l10n.pjDateNotSet,
                     style: AtTextStyles.body.copyWith(
-                      color: text == null ? AtColors.muted : AtColors.ink,
+                      color: text == null ? context.at.muted : context.at.ink,
                     ),
                   ),
                 ),
@@ -179,12 +175,12 @@ class DateField extends StatelessWidget {
                   AtTapTarget(
                     semanticLabel: l10n.pjDateClear,
                     onTap: () => onChanged(null),
-                    child: const Padding(
-                      padding: EdgeInsets.all(8),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
                       child: Icon(
                         LucideIcons.x,
                         size: 16,
-                        color: AtColors.muted,
+                        color: context.at.muted,
                       ),
                     ),
                   ),
@@ -196,7 +192,7 @@ class DateField extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             errorText!,
-            style: AtTextStyles.meta.copyWith(color: AtColors.pinkStrong),
+            style: AtTextStyles.meta.copyWith(color: context.at.coralStrong),
           ),
         ],
       ],
@@ -268,7 +264,7 @@ Future<bool> confirmSheet(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(body, style: AtTextStyles.bodySm.copyWith(color: AtColors.body)),
+          Text(body, style: AtTextStyles.bodySm.copyWith(color: ctx.at.body)),
           const SizedBox(height: 16),
           AtButton(
             label: actionLabel,
@@ -351,7 +347,7 @@ class LevelBar extends StatelessWidget {
               child: Container(
                 height: 6,
                 decoration: BoxDecoration(
-                  color: i <= rank ? AtColors.primary : AtColors.softTile,
+                  color: i <= rank ? context.at.primary : context.at.softTile,
                   borderRadius: AtRadii.pill,
                 ),
               ),
@@ -394,7 +390,7 @@ class ToggleRow extends StatelessWidget {
               Expanded(
                 child: Text(
                   label,
-                  style: AtTextStyles.body.copyWith(color: AtColors.ink),
+                  style: AtTextStyles.body.copyWith(color: context.at.ink),
                 ),
               ),
               ExcludeSemantics(

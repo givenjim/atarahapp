@@ -159,7 +159,7 @@ class _NetworkMediaPlayerState extends State<NetworkMediaPlayer> {
       return _PlayerFrame(
         child: Text(
           l10n.pjMediaFailed,
-          style: AtTextStyles.bodySm.copyWith(color: AtColors.white),
+          style: AtTextStyles.bodySm.copyWith(color: context.at.white),
         ),
       );
     }
@@ -170,8 +170,8 @@ class _NetworkMediaPlayerState extends State<NetworkMediaPlayer> {
     final total = v.duration.inMilliseconds;
     final position = v.position.inMilliseconds.clamp(0, total > 0 ? total : 1);
     return DecoratedBox(
-      decoration: const BoxDecoration(
-        color: AtColors.ink,
+      decoration: BoxDecoration(
+        color: context.at.ink,
         borderRadius: AtRadii.card,
       ),
       child: ClipRRect(
@@ -204,7 +204,7 @@ class _NetworkMediaPlayerState extends State<NetworkMediaPlayer> {
                   ),
                   Text(
                     _clock(v.position),
-                    style: AtTextStyles.meta.copyWith(color: AtColors.white),
+                    style: AtTextStyles.meta.copyWith(color: context.at.white),
                   ),
                 ],
               ),
@@ -225,8 +225,8 @@ class _PlayerFrame extends StatelessWidget {
   Widget build(BuildContext context) => AspectRatio(
     aspectRatio: 16 / 9,
     child: DecoratedBox(
-      decoration: const BoxDecoration(
-        color: AtColors.ink,
+      decoration: BoxDecoration(
+        color: context.at.ink,
         borderRadius: AtRadii.card,
       ),
       child: Center(child: child),

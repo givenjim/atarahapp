@@ -2,6 +2,7 @@ import 'dart:ui' show ImageFilter;
 
 import 'package:flutter/material.dart';
 
+import '../theme.dart';
 import '../tokens.g.dart';
 import 'at_tap_target.dart';
 
@@ -51,7 +52,7 @@ class AtButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final disabled = onPressed == null;
-    final (Color fg, BoxDecoration deco) = _style(disabled);
+    final (Color fg, BoxDecoration deco) = _style(context, disabled);
 
     final iconSize = size == AtButtonSize.sm ? 16.0 : 18.0;
     final Widget content = loading
@@ -127,42 +128,45 @@ class AtButton extends StatelessWidget {
     );
   }
 
-  (Color, BoxDecoration) _style(bool disabled) {
+  (Color, BoxDecoration) _style(BuildContext context, bool disabled) {
     if (disabled) {
       return (
-        AtColors.disabledText,
+        context.at.disabledText,
         BoxDecoration(
           color: variant == AtButtonVariant.tertiary
               ? null
-              : AtColors.disabledFill,
+              : context.at.disabledFill,
           borderRadius: AtRadii.pill,
         ),
       );
     }
     return switch (variant) {
       AtButtonVariant.primary => (
-        AtColors.white,
-        const BoxDecoration(
+        context.at.white,
+        BoxDecoration(
           gradient: AtGradients.cta,
           borderRadius: AtRadii.pill,
-          boxShadow: AtShadows.cta,
+          boxShadow: context.at.shadowCta,
         ),
       ),
       AtButtonVariant.secondary => (
-        AtColors.primary,
+        context.at.primary,
         BoxDecoration(
-          color: AtColors.white,
+          color: context.at.surface,
           borderRadius: AtRadii.pill,
-          border: Border.all(color: AtColors.secondaryBorder, width: 1.5),
+          border: Border.all(color: context.at.secondaryBorder, width: 1.5),
         ),
       ),
       AtButtonVariant.tertiary => (
-        AtColors.primary,
+        context.at.primary,
         const BoxDecoration(borderRadius: AtRadii.pill),
       ),
       AtButtonVariant.destructive => (
-        AtColors.pinkStrong,
-        const BoxDecoration(color: AtColors.pinkBg, borderRadius: AtRadii.pill),
+        context.at.coralStrong,
+        BoxDecoration(
+          color: context.at.coralSurface,
+          borderRadius: AtRadii.pill,
+        ),
       ),
     };
   }
@@ -218,25 +222,25 @@ class AtIconButton extends StatelessWidget {
         width: size,
         height: size,
         decoration: BoxDecoration(
-          color: AtColors.white,
+          color: context.at.surface,
           borderRadius: AtRadii.backButton,
-          border: Border.all(color: AtColors.cardBorder),
+          border: Border.all(color: context.at.cardBorder),
         ),
         child: Icon(
           icon,
           size: 20,
-          color: disabled ? AtColors.faint : AtColors.ink,
+          color: disabled ? context.at.faint : context.at.ink,
         ),
       ),
       AtIconButtonVariant.floating => Container(
         width: size,
         height: size,
-        decoration: const BoxDecoration(
-          color: AtColors.white,
+        decoration: BoxDecoration(
+          color: context.at.surface,
           shape: BoxShape.circle,
-          boxShadow: AtShadows.floating,
+          boxShadow: context.at.shadowFloating,
         ),
-        child: Icon(icon, size: 20, color: AtColors.ink),
+        child: Icon(icon, size: 20, color: context.at.ink),
       ),
       AtIconButtonVariant.glass => ClipOval(
         child: BackdropFilter(
@@ -244,20 +248,20 @@ class AtIconButton extends StatelessWidget {
           child: Container(
             width: size,
             height: size,
-            color: const Color.fromRGBO(255, 255, 255, 0.28),
-            child: Icon(icon, size: 20, color: AtColors.white),
+            color: context.at.white.withValues(alpha: 0.28),
+            child: Icon(icon, size: 20, color: context.at.white),
           ),
         ),
       ),
       AtIconButtonVariant.gradient => Container(
         width: size,
         height: size,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: AtGradients.ctaSquare,
           borderRadius: AtRadii.input,
-          boxShadow: AtShadows.cta,
+          boxShadow: context.at.shadowCta,
         ),
-        child: Icon(icon, size: 20, color: AtColors.white),
+        child: Icon(icon, size: 20, color: context.at.white),
       ),
     };
 
@@ -277,15 +281,18 @@ class AtIconButton extends StatelessWidget {
                     ),
                     padding: const EdgeInsets.symmetric(horizontal: 4),
                     decoration: BoxDecoration(
-                      color: AtColors.pinkFg,
+                      color: context.at.coral,
                       borderRadius: AtRadii.pill,
-                      border: Border.all(color: AtColors.white, width: 2),
+                      border: Border.all(
+                        color: context.at.background,
+                        width: 2,
+                      ),
                     ),
                     alignment: Alignment.center,
                     child: Text(
                       badge! > 99 ? '99+' : '$badge',
                       style: AtTextStyles.chipSm.copyWith(
-                        color: AtColors.white,
+                        color: context.at.white,
                         fontSize: 10,
                       ),
                     ),
@@ -294,9 +301,12 @@ class AtIconButton extends StatelessWidget {
                     width: 10,
                     height: 10,
                     decoration: BoxDecoration(
-                      color: AtColors.pinkFg,
+                      color: context.at.coral,
                       shape: BoxShape.circle,
-                      border: Border.all(color: AtColors.white, width: 2),
+                      border: Border.all(
+                        color: context.at.background,
+                        width: 2,
+                      ),
                     ),
                   ),
           ),

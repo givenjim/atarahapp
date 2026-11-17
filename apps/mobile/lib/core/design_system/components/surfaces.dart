@@ -4,6 +4,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import '../../l10n/app_localizations.dart';
 import '../theme.dart';
 import '../tokens.g.dart';
+import 'brand.dart';
 import 'buttons.dart';
 
 /// White card with the standard border and soft shadow. Tappable when [onTap] is set.
@@ -14,29 +15,42 @@ class AtCard extends StatelessWidget {
     this.onTap,
     this.padding = const EdgeInsets.all(AtSpacing.cardPadding),
     this.radius = AtRadii.cardLg,
-    this.color = AtColors.white,
+    this.color,
     this.border = true,
     this.shadow = true,
     this.semanticLabel,
+    this.labelReplacesContent = false,
   });
 
   final Widget child;
   final VoidCallback? onTap;
   final EdgeInsetsGeometry padding;
   final BorderRadius radius;
-  final Color color;
+
+  /// Defaults to the theme surface colour.
+  final Color? color;
   final bool border;
   final bool shadow;
   final String? semanticLabel;
 
+  /// With a [semanticLabel]: hide the card's own text and controls from screen readers (a leaf card).
+  final bool labelReplacesContent;
+
   @override
   Widget build(BuildContext context) {
-    final body = Padding(padding: padding, child: child);
+    final padded = Padding(padding: padding, child: child);
+    // A tappable card is always a 48 dp target, however little it holds.
+    final body = onTap == null
+        ? padded
+        : ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: AtSizes.touchTarget),
+            child: Center(widthFactor: 1, child: padded),
+          );
     final deco = BoxDecoration(
-      color: color,
+      color: color ?? context.at.surface,
       borderRadius: radius,
-      border: border ? Border.all(color: AtColors.cardBorder) : null,
-      boxShadow: shadow ? AtShadows.card : null,
+      border: border ? Border.all(color: context.at.cardBorder) : null,
+      boxShadow: shadow ? context.at.shadowCard : null,
     );
     final card = DecoratedBox(
       decoration: deco,
@@ -52,6 +66,10 @@ class AtCard extends StatelessWidget {
       button: true,
       label: semanticLabel,
       container: true,
+      // For a leaf card, the explicit label replaces the card's own text so a screen reader does not read it
+      // twice. A card that holds its own controls (a bookmark) keeps them reachable, so this stays off there.
+      excludeSemantics: semanticLabel != null && labelReplacesContent,
+      onTap: semanticLabel != null && labelReplacesContent ? onTap : null,
       child: card,
     );
   }
@@ -65,6 +83,7 @@ class AtDarkCard extends StatelessWidget {
     this.onTap,
     this.padding = const EdgeInsets.all(18),
     this.radius = AtRadii.panelLg,
+    this.ring = false,
   });
 
   final Widget child;
@@ -72,21 +91,30 @@ class AtDarkCard extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final BorderRadius radius;
 
+  /// Draws the [AtBrandRing] motif behind the content, off the top-right corner.
+  final bool ring;
+
   @override
   Widget build(BuildContext context) {
     final body = Padding(padding: padding, child: child);
+    final content = onTap == null
+        ? body
+        : Material(
+            type: MaterialType.transparency,
+            child: InkWell(onTap: onTap, borderRadius: radius, child: body),
+          );
     return DecoratedBox(
       decoration: BoxDecoration(
-        gradient: AtGradients.darkCard,
+        gradient: context.at.darkCardGradient,
         borderRadius: radius,
-        boxShadow: AtShadows.darkCard,
+        boxShadow: context.at.shadowDarkCard,
       ),
-      child: onTap == null
-          ? body
-          : Material(
-              type: MaterialType.transparency,
-              child: InkWell(onTap: onTap, borderRadius: radius, child: body),
-            ),
+      child: ring
+          ? ClipRRect(
+              borderRadius: radius,
+              child: Stack(children: [const AtBrandRing(), content]),
+            )
+          : content,
     );
   }
 }
@@ -127,7 +155,7 @@ class AtSectionHeader extends StatelessWidget {
                   (compact
                           ? AtTextStyles.sectionTitleSm
                           : AtTextStyles.sectionTitle)
-                      .copyWith(color: AtColors.ink),
+                      .copyWith(color: context.at.ink),
             ),
           ),
         ),
@@ -194,7 +222,7 @@ class AtTopBar extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: AtTextStyles.sectionTitleSm.copyWith(
-                        color: AtColors.ink,
+                        color: context.at.ink,
                       ),
                     ),
                   ),
@@ -226,7 +254,7 @@ class AtIconTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = tone.colors;
+    final c = tone.colorsOf(context);
     return Container(
       width: size,
       height: size,
@@ -263,7 +291,7 @@ class AtListRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleColor = destructive ? AtColors.pinkStrong : AtColors.ink;
+    final titleColor = destructive ? context.at.coralStrong : context.at.ink;
     final row = ConstrainedBox(
       constraints: const BoxConstraints(minHeight: 60),
       child: Padding(
@@ -273,7 +301,7 @@ class AtListRow extends StatelessWidget {
             if (icon != null) ...[
               AtIconTile(
                 icon: icon!,
-                tone: destructive ? AtTone.pink : tone,
+                tone: destructive ? AtTone.coral : tone,
                 size: 40,
               ),
               const SizedBox(width: 14),
@@ -293,7 +321,9 @@ class AtListRow extends StatelessWidget {
                     const SizedBox(height: 2),
                     Text(
                       subtitle!,
-                      style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+                      style: AtTextStyles.meta.copyWith(
+                        color: context.at.muted,
+                      ),
                     ),
                   ],
                 ],
@@ -302,11 +332,7 @@ class AtListRow extends StatelessWidget {
             if (trailing != null) ...[const SizedBox(width: 8), trailing!],
             if (trailing == null && showChevron && onTap != null) ...[
               const SizedBox(width: 8),
-              const Icon(
-                LucideIcons.chevronRight,
-                size: 18,
-                color: AtColors.faint,
-              ),
+              Icon(LucideIcons.chevronRight, size: 18, color: context.at.faint),
             ],
           ],
         ),
@@ -329,7 +355,7 @@ class AtListRow extends StatelessWidget {
                   child: row,
                 ),
               ),
-        if (showDivider) const Divider(height: 1, color: AtColors.divider),
+        if (showDivider) Divider(height: 1, color: context.at.divider),
       ],
     );
     return Material(type: MaterialType.transparency, child: content);
@@ -353,15 +379,15 @@ class AtStatTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = tone.colors;
+    final c = tone.colorsOf(context);
     return Semantics(
       container: true,
       label: '$value $label',
       excludeSemantics: true,
       child: Container(
         padding: const EdgeInsets.all(14),
-        decoration: const BoxDecoration(
-          color: AtColors.softTile,
+        decoration: BoxDecoration(
+          color: context.at.softTile,
           borderRadius: AtRadii.card,
         ),
         child: Column(
@@ -373,12 +399,12 @@ class AtStatTile extends StatelessWidget {
             ],
             Text(
               value,
-              style: AtTextStyles.subTitle.copyWith(color: AtColors.ink),
+              style: AtTextStyles.subTitle.copyWith(color: context.at.ink),
             ),
             const SizedBox(height: 2),
             Text(
               label,
-              style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+              style: AtTextStyles.meta.copyWith(color: context.at.muted),
             ),
           ],
         ),
@@ -420,15 +446,15 @@ class AtTimeline extends StatelessWidget {
                   width: 28,
                   child: Column(
                     children: [
-                      _dot(items[i].state),
+                      _dot(context, items[i].state),
                       if (i < items.length - 1)
                         Expanded(
                           child: Container(
                             width: 2,
                             margin: const EdgeInsets.symmetric(vertical: 2),
                             color: items[i].state == AtTimelineState.done
-                                ? AtColors.primaryLight
-                                : AtColors.progressTrack,
+                                ? context.at.primaryLight
+                                : context.at.progressTrack,
                           ),
                         ),
                     ],
@@ -445,8 +471,8 @@ class AtTimeline extends StatelessWidget {
                           items[i].title,
                           style: AtTextStyles.cardTitle.copyWith(
                             color: items[i].state == AtTimelineState.upcoming
-                                ? AtColors.muted
-                                : AtColors.ink,
+                                ? context.at.muted
+                                : context.at.ink,
                           ),
                         ),
                         if (items[i].subtitle != null) ...[
@@ -454,7 +480,7 @@ class AtTimeline extends StatelessWidget {
                           Text(
                             items[i].subtitle!,
                             style: AtTextStyles.meta.copyWith(
-                              color: AtColors.muted,
+                              color: context.at.muted,
                             ),
                           ),
                         ],
@@ -469,32 +495,32 @@ class AtTimeline extends StatelessWidget {
     );
   }
 
-  Widget _dot(AtTimelineState s) => switch (s) {
+  Widget _dot(BuildContext context, AtTimelineState s) => switch (s) {
     AtTimelineState.done => Container(
       width: 24,
       height: 24,
-      decoration: const BoxDecoration(
-        color: AtColors.successBg,
+      decoration: BoxDecoration(
+        color: context.at.successSurface,
         shape: BoxShape.circle,
       ),
-      child: const Icon(LucideIcons.check, size: 14, color: AtColors.successFg),
+      child: Icon(LucideIcons.check, size: 14, color: context.at.successIcon),
     ),
     AtTimelineState.current => Container(
       width: 24,
       height: 24,
-      decoration: const BoxDecoration(
-        color: AtColors.primary,
+      decoration: BoxDecoration(
+        color: context.at.primaryFill,
         shape: BoxShape.circle,
       ),
-      child: const Icon(LucideIcons.play, size: 11, color: AtColors.white),
+      child: Icon(LucideIcons.play, size: 11, color: context.at.white),
     ),
     AtTimelineState.upcoming => Container(
       width: 24,
       height: 24,
       decoration: BoxDecoration(
-        color: AtColors.white,
+        color: context.at.surface,
         shape: BoxShape.circle,
-        border: Border.all(color: AtColors.secondaryBorder, width: 1.5),
+        border: Border.all(color: context.at.secondaryBorder, width: 1.5),
       ),
     ),
   };

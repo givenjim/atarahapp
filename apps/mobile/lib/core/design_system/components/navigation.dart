@@ -23,7 +23,7 @@ class AtPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const Positioned.fill(child: ColoredBox(color: AtColors.white)),
+        Positioned.fill(child: ColoredBox(color: context.at.background)),
         Positioned(
           top: -120,
           right: -120,
@@ -34,7 +34,10 @@ class AtPage extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
-                  colors: [wash.color, wash.color.withValues(alpha: 0)],
+                  colors: [
+                    wash.colorOf(context),
+                    wash.colorOf(context).withValues(alpha: 0),
+                  ],
                 ),
               ),
             ),
@@ -82,9 +85,9 @@ class AtTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final duration = atDuration(context, AtMotion.base);
     return DecoratedBox(
-      decoration: const BoxDecoration(
-        color: AtColors.white,
-        border: Border(top: BorderSide(color: AtColors.divider)),
+      decoration: BoxDecoration(
+        color: context.at.surface,
+        border: Border(top: BorderSide(color: context.at.divider)),
       ),
       child: SafeArea(
         top: false,
@@ -112,7 +115,7 @@ class AtTabBar extends StatelessWidget {
                             height: 30,
                             decoration: BoxDecoration(
                               color: i == selectedIndex
-                                  ? AtColors.tint1
+                                  ? context.at.primaryTint
                                   : Colors.transparent,
                               borderRadius: AtRadii.pill,
                             ),
@@ -120,8 +123,8 @@ class AtTabBar extends StatelessWidget {
                               items[i].icon,
                               size: 21,
                               color: i == selectedIndex
-                                  ? AtColors.primary
-                                  : AtColors.muted,
+                                  ? context.at.primary
+                                  : context.at.muted,
                             ),
                           ),
                           const SizedBox(height: 3),
@@ -132,8 +135,8 @@ class AtTabBar extends StatelessWidget {
                             style: AtTextStyles.chipSm.copyWith(
                               fontSize: 10.5,
                               color: i == selectedIndex
-                                  ? AtColors.primary
-                                  : AtColors.muted,
+                                  ? context.at.primary
+                                  : context.at.muted,
                               fontWeight: i == selectedIndex
                                   ? FontWeight.w700
                                   : FontWeight.w600,
@@ -177,7 +180,7 @@ class AtTabShell extends StatelessWidget {
   Widget build(BuildContext context) {
     final tabs = items ?? atDefaultTabs(AppLocalizations.of(context));
     return Scaffold(
-      backgroundColor: AtColors.white,
+      backgroundColor: context.at.background,
       body: Column(
         children: [
           if (banner != null) SafeArea(bottom: false, child: banner!),

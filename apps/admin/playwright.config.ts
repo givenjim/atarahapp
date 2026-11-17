@@ -1,4 +1,8 @@
+import { loadEnvConfig } from '@next/env';
 import { defineConfig, devices } from '@playwright/test';
+
+// NEXT_PUBLIC_SUPABASE_* come from .env.local (the same file the console reads).
+loadEnvConfig(__dirname);
 
 const PORT = 3200;
 

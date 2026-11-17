@@ -224,6 +224,7 @@ describe('Backend core (real PostgreSQL + Redis)', () => {
       expect(await flags().isEnabled('google-sign-in')).toBe(true);
       const audit = await prisma.auditLog.findFirstOrThrow({
         where: { action: 'feature_flag.set', entityId: 'google-sign-in' },
+        orderBy: { createdAt: 'desc' },
       });
       expect(audit.before).toEqual({ enabled: false });
       expect(audit.after).toEqual({ enabled: true });

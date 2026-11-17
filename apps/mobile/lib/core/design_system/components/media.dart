@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../l10n/app_localizations.dart';
+import '../theme.dart';
 import '../tokens.g.dart';
 import 'at_tap_target.dart';
 import 'avatars_progress.dart';
@@ -33,7 +34,7 @@ class AtUploadZone extends StatelessWidget {
       onTap: onTap,
       child: CustomPaint(
         painter: _DashedBorderPainter(
-          color: AtColors.dashedBorder,
+          color: context.at.dashedBorder,
           radius: AtRadii.cardLgValue,
         ),
         child: Material(
@@ -52,7 +53,7 @@ class AtUploadZone extends StatelessWidget {
                     Text(
                       label,
                       style: AtTextStyles.chip.copyWith(
-                        color: AtColors.primary,
+                        color: context.at.primary,
                       ),
                     ),
                     if (hint != null) ...[
@@ -60,7 +61,7 @@ class AtUploadZone extends StatelessWidget {
                       Text(
                         hint!,
                         style: AtTextStyles.meta.copyWith(
-                          color: AtColors.muted,
+                          color: context.at.muted,
                         ),
                       ),
                     ],
@@ -151,7 +152,7 @@ class AtMediaTile extends StatelessWidget {
             child: ClipRRect(
               borderRadius: AtRadii.card,
               child: Container(
-                color: AtColors.softTile,
+                color: context.at.softTile,
                 child: image != null
                     ? Image(
                         image: image!,
@@ -161,7 +162,7 @@ class AtMediaTile extends StatelessWidget {
                     : Icon(
                         icon ?? LucideIcons.file,
                         size: 28,
-                        color: AtColors.muted,
+                        color: context.at.muted,
                       ),
               ),
             ),
@@ -171,7 +172,7 @@ class AtMediaTile extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: AtRadii.card,
                 child: ColoredBox(
-                  color: const Color.fromRGBO(21, 19, 61, 0.45),
+                  color: context.at.scrimSheet,
                   child: Center(
                     child: Semantics(
                       label: l10n.uploading(((progress ?? 0) * 100).round()),
@@ -195,15 +196,15 @@ class AtMediaTile extends StatelessWidget {
                 onTap: onRetry,
                 child: GestureDetector(
                   onTap: onRetry,
-                  child: const ClipRRect(
+                  child: ClipRRect(
                     borderRadius: AtRadii.card,
                     child: ColoredBox(
-                      color: Color.fromRGBO(198, 47, 99, 0.82),
+                      color: context.at.coralStrong.withValues(alpha: 0.82),
                       child: Center(
                         child: Icon(
                           LucideIcons.refreshCw,
                           size: 24,
-                          color: AtColors.white,
+                          color: context.at.white,
                         ),
                       ),
                     ),
@@ -223,15 +224,11 @@ class AtMediaTile extends StatelessWidget {
                   width: 24,
                   height: 24,
                   decoration: BoxDecoration(
-                    color: AtColors.ink,
+                    color: context.at.ink,
                     shape: BoxShape.circle,
-                    border: Border.all(color: AtColors.white, width: 2),
+                    border: Border.all(color: context.at.background, width: 2),
                   ),
-                  child: const Icon(
-                    LucideIcons.x,
-                    size: 12,
-                    color: AtColors.white,
-                  ),
+                  child: Icon(LucideIcons.x, size: 12, color: context.at.white),
                 ),
               ),
             ),

@@ -2,7 +2,15 @@ import { type INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { StorageService } from '../src/storage/storage.service';
-import { adminSignIn, bearer, createTestApp, loginMember, makeUser, uniq } from './helpers';
+import {
+  adminSignIn,
+  bearer,
+  createTestApp,
+  loginMember,
+  makeUser,
+  uniq,
+  deleteUsers,
+} from './helpers';
 
 // Each test signs up and sets up several members (password hashing, onboarding), so allow more than 5 s.
 jest.setTimeout(120_000);
@@ -164,7 +172,7 @@ describe('Home, finding creatives, search and articles (integration)', () => {
     await prisma.homeConfig.deleteMany();
     await prisma.article.deleteMany({ where: { createdById: editor.id } });
     await prisma.notification.deleteMany({ where: { userId: { in: users } } });
-    await prisma.user.deleteMany({ where: { id: { in: users } } });
+    await deleteUsers(app, users);
     await prisma.mediaAsset.deleteMany({ where: { objectKey: { startsWith: keyPrefix } } });
     await app.close();
   });
@@ -370,7 +378,13 @@ describe('Home, finding creatives, search and articles (integration)', () => {
       const art = await article({ title: 'Qwertyuiop on pricing for illustrators' });
 
       const exact = (await as(viewer.token).get('/search?q=Qwertyuiop').expect(200)).body.data;
-      expect(exact.groups.map((g: { type: string }) => g.type)).toEqual(['creatives', 'articles']);
+      expect(exact.groups.map((g: { type: string }) => g.type)).toEqual([
+        'creatives',
+        'articles',
+        'posts',
+        'opportunities',
+        'learning',
+      ]);
       const people = exact.groups[0];
       const pieces = exact.groups[1];
       expect(people.count).toBe(1);
@@ -424,8 +438,7 @@ describe('Home, finding creatives, search and articles (integration)', () => {
     it('returns no group for kinds that are not built yet, and refuses a query that is too short', async () => {
       const viewer = await member();
       expect(
-        (await as(viewer.token).get('/search?q=Qwerty&type=opportunities').expect(200)).body.data
-          .groups,
+        (await as(viewer.token).get('/search?q=Qwerty&type=mentors').expect(200)).body.data.groups,
       ).toEqual([]);
       expect(
         (await as(viewer.token).get('/search?q=Qwerty&type=marketplace').expect(200)).body.data
@@ -666,7 +679,9 @@ describe('Home, finding creatives, search and articles (integration)', () => {
       await as(me.token).put(`/me/saved/ARTICLE/${a.id}`).expect(204);
       await as(me.token).put(`/me/saved/ARTICLE/${a.id}`).expect(204); // again is fine
       await as(me.token).put(`/me/saved/ARTICLE/${draft.id}`).expect(404);
-      await as(me.token).put(`/me/saved/POST/${a.id}`).expect(400);
+      // Posts and every other kind are saved through the same routes now; an article id is not a post.
+      await as(me.token).put(`/me/saved/POST/${a.id}`).expect(404);
+      await as(me.token).put(`/me/saved/LISTING/${a.id}`).expect(400); // reserved for Phase 2
       expect((await as(me.token).get(`/articles/${a.slug}`).expect(200)).body.data.saved).toBe(
         true,
       );

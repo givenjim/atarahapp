@@ -4,6 +4,7 @@ import { AuditService } from '../audit/audit.service';
 import { ApiException } from '../common/api.exception';
 import { pageMeta, toSkipTake } from '../common/pagination';
 import { SessionService } from '../identity/session.service';
+import { SupabaseAdminService } from '../supabase/supabase-admin.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { type AdminAuditQueryDto, type AdminUsersQueryDto } from './admin.dto';
 
@@ -48,6 +49,7 @@ export class AdminService {
     private readonly prisma: PrismaService,
     private readonly audit: AuditService,
     private readonly sessions: SessionService,
+    private readonly supabase: SupabaseAdminService,
   ) {}
 
   async listUsers(q: AdminUsersQueryDto) {
@@ -86,8 +88,8 @@ export class AdminService {
     return toView(u);
   }
 
-  suspend(actor: Actor, targetId: string, reason: string) {
-    return this.changeStatus(actor, targetId, 'SUSPENDED', reason);
+  suspend(actor: Actor, targetId: string, reason: string, durationDays?: number) {
+    return this.changeStatus(actor, targetId, 'SUSPENDED', reason, durationDays);
   }
 
   reactivate(actor: Actor, targetId: string, reason?: string) {
@@ -99,6 +101,7 @@ export class AdminService {
     targetId: string,
     next: Extract<AccountStatus, 'SUSPENDED' | 'ACTIVE'>,
     reason?: string,
+    durationDays?: number,
   ) {
     if (targetId === actor.userId) {
       throw ApiException.forbidden('You cannot change the status of your own account.');
@@ -131,6 +134,10 @@ export class AdminService {
           status: next,
           statusReason: next === 'SUSPENDED' ? (reason ?? null) : null,
           statusChangedAt: new Date(),
+          suspendedUntil:
+            next === 'SUSPENDED' && durationDays
+              ? new Date(Date.now() + durationDays * 86_400_000)
+              : null,
         },
       });
       await this.audit.record(
@@ -141,15 +148,26 @@ export class AdminService {
           entityType: 'user',
           entityId: targetId,
           before: { status: target.status },
-          after: { status: next, reason: reason ?? null },
+          after: {
+            status: next,
+            reason: reason ?? null,
+            ...(durationDays ? { durationDays } : {}),
+          },
           ip: actor.ip,
           requestId: actor.requestId,
         },
         tx,
       );
     });
-    // Takes effect immediately: every live session of a suspended account is ended.
-    if (next === 'SUSPENDED') await this.sessions.revokeAllForUser(targetId, 'account_suspended');
+    // Takes effect immediately: a suspended account is also banned in Supabase Auth (no sign-in, no refresh)
+    // and every live session ends. Reactivation lifts the ban.
+    const ban = await this.supabase.auth.updateUserById(targetId, {
+      ban_duration:
+        next === 'SUSPENDED' ? (durationDays ? `${durationDays * 24}h` : '876000h') : 'none',
+    });
+    if (ban.error)
+      throw ApiException.external('Could not update the sign-in block for this account.');
+    if (next === 'SUSPENDED') await this.sessions.revokeAllForUser(targetId);
     return this.getUser(targetId);
   }
 

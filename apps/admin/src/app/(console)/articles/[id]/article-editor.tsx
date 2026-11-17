@@ -310,7 +310,8 @@ export function ArticleEditor({ article }: { article: EditableArticle }) {
   );
 }
 
-function BlockFields({
+/** One block of the structured editor. Also used by the Skill Labs lesson editor. */
+export function BlockFields({
   block,
   index,
   last,

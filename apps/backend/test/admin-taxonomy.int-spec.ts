@@ -1,7 +1,15 @@
 import { type INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { PrismaService } from '../src/prisma/prisma.service';
-import { adminSignIn, bearer, createTestApp, loginMember, makeUser, uniq } from './helpers';
+import {
+  adminSignIn,
+  bearer,
+  createTestApp,
+  loginMember,
+  makeUser,
+  uniq,
+  deleteUsers,
+} from './helpers';
 
 describe('Admin taxonomy and suggestion queue (integration)', () => {
   let app: INestApplication;
@@ -21,7 +29,7 @@ describe('Admin taxonomy and suggestion queue (integration)', () => {
   afterAll(async () => {
     await prisma.specialisationSuggestion.deleteMany({ where: { userId: { in: users } } });
     await prisma.notification.deleteMany({ where: { userId: { in: users } } });
-    await prisma.user.deleteMany({ where: { id: { in: users } } });
+    await deleteUsers(app, users);
     await prisma.skill.deleteMany({ where: { slug: { startsWith: 'zz-test-' } } });
     await prisma.specialisation.deleteMany({ where: { disciplineId: { in: disciplines } } });
     await prisma.discipline.deleteMany({ where: { id: { in: disciplines } } });

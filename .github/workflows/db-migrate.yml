@@ -1,0 +1,49 @@
+name: Database migrate (dev / staging)
+
+# Applies the Prisma migrations to a cloud Supabase project and sets the backend role password.
+# Manual only (workflow_dispatch): it never runs on a push, and production is NOT a choice here. Production
+# changes need the owner's written authorisation and a separate, reviewed pipeline (Master Prompt section 1).
+#
+# Needs the repository environments "dev" and "staging" with these secrets, created by the owner once the
+# Supabase projects exist (owner decision 18). Until then this workflow is unused and the cloud checks are BLOCKED.
+#   ATARAH_DIRECT_URL            direct connection (port 5432) as the project's postgres user
+#   ATARAH_BACKEND_DB_PASSWORD   password for the atarah_backend role (also stored in the backend's secret store)
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Target environment
+        type: choice
+        options: [dev, staging]
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  migrate:
+    name: Migrate ${{ inputs.environment }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    timeout-minutes: 15
+    env:
+      ATARAH_DIRECT_URL: ${{ secrets.ATARAH_DIRECT_URL }}
+      # Prisma reads both URLs; migrations use the direct one.
+      ATARAH_DATABASE_URL: ${{ secrets.ATARAH_DIRECT_URL }}
+      ATARAH_BACKEND_DB_PASSWORD: ${{ secrets.ATARAH_BACKEND_DB_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @atarah/backend db:generate
+      - name: Apply migrations
+        run: pnpm --filter @atarah/backend db:migrate:deploy
+      - name: Set the backend role password
+        run: pnpm --filter @atarah/backend db:provision
+      - name: Row Level Security check
+        run: node scripts/check-rls.mjs

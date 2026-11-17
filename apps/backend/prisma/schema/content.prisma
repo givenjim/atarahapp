@@ -11,34 +11,44 @@ enum ArticleStatus {
 /// What a member can save. Later milestones add their own values (opportunities, courses, listings, mentors).
 enum SavedItemType {
   ARTICLE
+  POST
+  LEARNING
+  CREATIVE
+  OPPORTUNITY
+  /// Reserved for Phase 2.
+  LISTING
+  /// Reserved for Phase 2.
+  MENTOR
 }
 
 /// An editorial article. `body` is a list of structured blocks (paragraph, heading, callout, image, quote), never
 /// HTML. A PUBLISHED article with a future `publishedAt` is scheduled: members see it once that time has passed.
 model Article {
-  id          String        @id @default(uuid()) @db.Uuid
+  id           String                   @id @default(uuid()) @db.Uuid
   /// Chosen when the draft is created and never changed, so shared links keep working.
-  slug        String        @unique
-  title       String
-  summary     String
-  body        Json          @default("[]")
-  heroMediaId String?       @db.Uuid
+  slug         String                   @unique
+  title        String
+  summary      String
+  body         Json                     @default("[]")
+  heroMediaId  String?                  @db.Uuid
   /// The byline shown under the title.
-  authorName  String
-  source      ContentSource @default(ATARAH)
+  authorName   String
+  source       ContentSource            @default(ATARAH)
   /// Required for PARTNER and EXTERNAL content: who it came from ("Creative Economy Kenya").
-  sourceLabel String?
-  readMinutes Int           @default(1)
-  status      ArticleStatus @default(DRAFT)
-  publishedAt DateTime?
+  sourceLabel  String?
+  readMinutes  Int                      @default(1)
+  status       ArticleStatus            @default(DRAFT)
+  publishedAt  DateTime?
   /// Lower-case slugs. Recommendations match them against a member's disciplines, specialisations, skills and interests.
-  tags        String[]      @default([])
-  createdById String        @db.Uuid
-  updatedById String?       @db.Uuid
+  tags         String[]                 @default([])
+  /// Generated full-text vector (title, summary, byline). Read-only: the database maintains it.
+  searchVector Unsupported("tsvector")?
+  createdById  String                   @db.Uuid
+  updatedById  String?                  @db.Uuid
   /// Development seed content. Never present in production.
-  isDemo      Boolean       @default(false)
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  isDemo       Boolean                  @default(false)
+  createdAt    DateTime                 @default(now())
+  updatedAt    DateTime                 @updatedAt
 
   heroMedia MediaAsset?  @relation("ArticleHero", fields: [heroMediaId], references: [id], onDelete: SetNull)
   createdBy User         @relation("ArticleCreator", fields: [createdById], references: [id], onDelete: Restrict)
@@ -46,6 +56,7 @@ model Article {
   pinnedOn  HomeConfig[]
 
   @@index([status, publishedAt(sort: Desc)])
+  @@index([searchVector], type: Gin, map: "articles_search_vector_idx")
   @@index([title(ops: raw("gin_trgm_ops"))], type: Gin, map: "articles_title_trgm")
   @@map("articles")
 }
@@ -53,11 +64,13 @@ model Article {
 /// One row per member and saved thing. `targetId` points at the table named by `type`; there is no foreign
 /// key because the target differs per type, so readers drop rows whose target is gone or no longer visible.
 model SavedItem {
-  id        String        @id @default(uuid()) @db.Uuid
-  userId    String        @db.Uuid
-  type      SavedItemType
-  targetId  String        @db.Uuid
-  createdAt DateTime      @default(now())
+  id         String        @id @default(uuid()) @db.Uuid
+  userId     String        @db.Uuid
+  type       SavedItemType
+  targetId   String        @db.Uuid
+  /// An optional folder name the member files it under.
+  collection String?
+  createdAt  DateTime      @default(now())
 
   user User @relation("SavedBy", fields: [userId], references: [id], onDelete: Cascade)
 

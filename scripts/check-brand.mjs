@@ -23,6 +23,7 @@ const ALLOWED_PREFIXES = ['design/prototype/uploads/'];
 const ALLOWED_FILES = new Set([
   'docs/DECISIONS.md',
   'docs/MASTER_PROMPT.md',
+  'docs/ATARAH_MASTER_PROMPT_v2.3.md',
   'docs/REPO_ASSESSMENT.md',
   'docs/PROJECT_PROGRESS.md',
   'scripts/check-brand.mjs',

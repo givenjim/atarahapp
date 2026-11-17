@@ -164,6 +164,8 @@ model Achievement {
 
   profile CreativeProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
+  certificates Certificate[]
+
   @@index([profileId, achievedOn])
   @@map("achievements")
 }

@@ -1,5 +1,5 @@
 import { JoinCta } from '@/components/join-cta';
-import { Wordmark } from '@/components/wordmark';
+import { Logo } from '@/components/logo';
 import { storeLinks } from '@/lib/site';
 
 export const dynamic = 'force-dynamic';
@@ -8,7 +8,7 @@ export default function HoldingPage() {
   return (
     <div className="page">
       <header className="header">
-        <Wordmark size={26} />
+        <Logo width={130} />
       </header>
       <main className="main">
         <h1 className="hero-title">One creative identity. Many connected possibilities.</h1>

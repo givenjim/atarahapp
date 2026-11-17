@@ -1,12 +1,14 @@
 import 'dotenv/config';
 import { randomBytes } from 'node:crypto';
-import { PrismaClient } from '@prisma/client';
-import * as argon2 from 'argon2';
+import { PrismaClient, type RoleKey } from '@prisma/client';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
 /**
  * Creates a throwaway administrator and a throwaway member for the Playwright flow, and prints them as JSON.
- * Development only: it refuses to run unless ATARAH_ENV is `dev`. Every record is flagged `isDemo`, and the
- * administrator has no TOTP yet, so the test enrols one through the real UI.
+ * Development only: it refuses to run unless ATARAH_ENV is `dev`. Accounts are created through the Supabase
+ * Auth admin API (the service-role key is read from this app's .env and never leaves this process); the
+ * database trigger creates the `users` row, and roles are then assigned with Prisma. The administrator has
+ * no TOTP factor yet, so the test enrols one through the real UI.
  */
 async function main(): Promise<void> {
   if ((process.env.ATARAH_ENV ?? 'dev') !== 'dev') {
@@ -20,30 +22,19 @@ async function main(): Promise<void> {
     }
     const run = randomBytes(4).toString('hex');
     const password = `E2e-${randomBytes(6).toString('hex')}-1`;
-    const passwordHash = await argon2.hash(password, { type: argon2.argon2id });
-    const role = await prisma.role.findUniqueOrThrow({ where: { key: 'PLATFORM_ADMIN' } });
-    const now = new Date();
+    const supabase = adminClient();
 
-    const admin = await prisma.user.create({
-      data: {
-        fullName: `E2E Admin ${run}`,
-        email: `e2e.admin.${run}@demo.atarah.test`,
-        emailVerifiedAt: now,
-        status: 'ACTIVE',
-        isDemo: true,
-        credential: { create: { passwordHash } },
-        roles: { create: { roleId: role.id } },
-      },
+    const admin = await createAccount(supabase, prisma, {
+      email: `e2e.admin.${run}@demo.atarah.test`,
+      fullName: `E2E Admin ${run}`,
+      password,
+      // `E2E_ADMIN_ROLE` picks another role (for example CONTENT_ADMIN for Skill Labs, which a platform admin cannot manage).
+      roleKey: (process.env.E2E_ADMIN_ROLE as RoleKey | undefined) ?? 'PLATFORM_ADMIN',
     });
-    const member = await prisma.user.create({
-      data: {
-        fullName: `E2E Member ${run}`,
-        email: `e2e.member.${run}@demo.atarah.test`,
-        emailVerifiedAt: now,
-        status: 'ACTIVE',
-        isDemo: true,
-        credential: { create: { passwordHash } },
-      },
+    const member = await createAccount(supabase, prisma, {
+      email: `e2e.member.${run}@demo.atarah.test`,
+      fullName: `E2E Member ${run}`,
+      password,
     });
     process.stdout.write(
       JSON.stringify({
@@ -58,6 +49,46 @@ async function main(): Promise<void> {
   } finally {
     await prisma.$disconnect();
   }
+}
+
+function adminClient(): SupabaseClient {
+  const url = process.env.ATARAH_SUPABASE_URL;
+  const key = process.env.ATARAH_SUPABASE_SECRET_KEY;
+  if (!url || !key) {
+    throw new Error(
+      'ATARAH_SUPABASE_URL and ATARAH_SUPABASE_SECRET_KEY must be set in apps/backend/.env.',
+    );
+  }
+  return createClient(url, key, { auth: { autoRefreshToken: false, persistSession: false } });
+}
+
+async function createAccount(
+  supabase: SupabaseClient,
+  prisma: PrismaClient,
+  a: { email: string; fullName: string; password: string; roleKey?: RoleKey },
+): Promise<{ id: string; email: string; fullName: string }> {
+  // Resolve the role first so a missing seed fails before an auth user is created.
+  const role = a.roleKey
+    ? await prisma.role.findUniqueOrThrow({ where: { key: a.roleKey } })
+    : null;
+  const created = await supabase.auth.admin.createUser({
+    email: a.email,
+    password: a.password,
+    email_confirm: true,
+    user_metadata: { full_name: a.fullName },
+  });
+  if (created.error || !created.data.user) {
+    throw new Error(`createUser ${a.email}: ${created.error?.message}`);
+  }
+  const id = created.data.user.id;
+  const user = await prisma.user.update({
+    where: { id },
+    data: { status: 'ACTIVE', statusChangedAt: new Date(), isDemo: true },
+  });
+  if (role) {
+    await prisma.userRole.create({ data: { userId: user.id, roleId: role.id } });
+  }
+  return { id: user.id, email: a.email, fullName: user.fullName };
 }
 
 /**

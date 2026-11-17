@@ -37,6 +37,7 @@ export class MediaController {
 
   @HttpCode(200)
   @ApiEnvelope(MediaAssetDto)
+  @Throttle({ default: { limit: 60, ttl: 60_000 } })
   @Post(':id/complete')
   complete(@CurrentAuth() auth: AuthContext, @Param('id', ParseUUIDPipe) id: string) {
     return this.media.complete(auth.userId, id);

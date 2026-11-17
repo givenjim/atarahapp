@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { AppearanceToggle } from '@/components/appearance-toggle';
 import { Sidebar } from '@/components/sidebar';
 import { currentAdmin } from '@/lib/admin';
 import { visibleNav } from '@/lib/nav';
@@ -14,6 +15,7 @@ export default async function ConsoleLayout({ children }: { children: ReactNode 
           <span>
             {me.fullName} · <span className="muted">{me.roles.join(', ')}</span>
           </span>
+          <AppearanceToggle />
           <form action={logoutAction}>
             <button className="button secondary" type="submit">
               Sign out

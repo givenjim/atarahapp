@@ -1,15 +1,24 @@
 import { execSync } from 'node:child_process';
 import { PrismaClient } from '@prisma/client';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { KENYA_COUNTIES } from '../prisma/seed/data/kenya';
 import { runDemoSeed } from '../prisma/seed/demo';
 import { runReferenceSeed } from '../prisma/seed/reference';
 
-/** Real PostgreSQL 16 (Testcontainers) with every migration applied from an empty database. */
+/** The local Supabase Postgres with every migration applied (the global setup resets it first). */
 describe('Database baseline', () => {
   let prisma: PrismaClient;
+  let supabase: SupabaseClient;
 
   beforeAll(async () => {
     prisma = new PrismaClient({ datasourceUrl: process.env.ATARAH_DATABASE_URL });
+    supabase = createClient(
+      process.env.ATARAH_SUPABASE_URL!,
+      process.env.ATARAH_SUPABASE_SECRET_KEY!,
+      {
+        auth: { autoRefreshToken: false, persistSession: false },
+      },
+    );
     await runReferenceSeed(prisma);
   });
 
@@ -352,31 +361,58 @@ describe('Database baseline', () => {
 
   describe('constraints', () => {
     const uniq = () => `${Date.now()}${Math.floor(Math.random() * 1e6)}`;
+    /** `users.id` is `auth.users.id`: every account starts in Supabase Auth and the trigger creates the row. */
+    const authUser = async (email = `u${uniq()}@example.com`) => {
+      const { data, error } = await supabase.auth.admin.createUser({ email, email_confirm: true });
+      if (error) throw error;
+      return prisma.user.findUniqueOrThrow({ where: { id: data.user.id } });
+    };
+
+    it('creates the users row from the auth.users insert trigger', async () => {
+      const user = await authUser();
+      expect(user.status).toBe('ACTIVE');
+      expect(user.emailVerifiedAt).not.toBeNull();
+    });
+
+    it('refuses a users row that has no auth.users parent', async () => {
+      await expect(
+        prisma.user.create({
+          data: {
+            id: '00000000-0000-4000-8000-00000000dead',
+            fullName: 'Orphan',
+            email: `o${uniq()}@example.com`,
+          },
+        }),
+      ).rejects.toThrow(/users_id_auth_users_fkey|Foreign key/);
+    });
 
     it('rejects an account with neither email nor phone', async () => {
-      await expect(prisma.user.create({ data: { fullName: 'No Contact' } })).rejects.toThrow(
-        /users_identifier_present/,
-      );
+      const user = await authUser();
+      await expect(
+        prisma.user.update({ where: { id: user.id }, data: { email: null, phone: null } }),
+      ).rejects.toThrow(/users_identifier_present/);
     });
 
     it('rejects a phone number that is not E.164', async () => {
+      const user = await authUser();
       await expect(
-        prisma.user.create({ data: { fullName: 'Bad Phone', phone: '0712345678' } }),
+        prisma.user.update({ where: { id: user.id }, data: { phone: '0712345678' } }),
       ).rejects.toThrow(/users_phone_e164/);
     });
 
     it('treats email as case-insensitive and unique', async () => {
-      const email = `Case${uniq()}@Example.com`;
-      await prisma.user.create({ data: { fullName: 'First', email } });
+      const first = await authUser(`case${uniq()}@example.com`);
+      const second = await authUser();
       await expect(
-        prisma.user.create({ data: { fullName: 'Second', email: email.toLowerCase() } }),
+        prisma.user.update({
+          where: { id: second.id },
+          data: { email: first.email!.toUpperCase() },
+        }),
       ).rejects.toThrow(/Unique constraint/);
     });
 
     it('allows only one live membership per user, but history after expiry', async () => {
-      const user = await prisma.user.create({
-        data: { fullName: 'Member', email: `m${uniq()}@example.com` },
-      });
+      const user = await authUser();
       const pro = await prisma.membershipPlan.findUniqueOrThrow({ where: { key: 'PRO' } });
       const first = await prisma.membership.create({
         data: { userId: user.id, planId: pro.id, source: 'PAID', status: 'ACTIVE' },
@@ -406,43 +442,34 @@ describe('Database baseline', () => {
       ).rejects.toThrow(/Unique constraint/);
     });
 
-    it('enforces foreign keys and cascades a user delete to its credentials and sessions', async () => {
+    it('enforces foreign keys, and deleting the auth user cascades to every dependent row', async () => {
       await expect(
-        prisma.session.create({
+        prisma.userDevice.create({
           data: {
             userId: '00000000-0000-4000-8000-00000000dead',
-            familyId: '00000000-0000-4000-8000-00000000beef',
-            refreshTokenHash: `h${uniq()}`,
-            client: 'ANDROID',
-            expiresAt: new Date(Date.now() + 1000),
+            deviceHash: `h${uniq()}-padding`,
+            name: 'Ghost',
+            platform: 'ANDROID',
           },
         }),
       ).rejects.toThrow(/Foreign key/);
 
-      const user = await prisma.user.create({
+      const user = await authUser();
+      await prisma.userDevice.create({
         data: {
-          fullName: 'Cascade',
-          email: `c${uniq()}@example.com`,
-          credential: { create: { passwordHash: 'x' } },
-          sessions: {
-            create: {
-              familyId: '00000000-0000-4000-8000-00000000beef',
-              refreshTokenHash: `h${uniq()}`,
-              client: 'WEB',
-              expiresAt: new Date(Date.now() + 1000),
-            },
-          },
+          userId: user.id,
+          deviceHash: `h${uniq()}-padding`,
+          name: 'Pixel',
+          platform: 'ANDROID',
         },
       });
-      await prisma.user.delete({ where: { id: user.id } });
-      expect(await prisma.credential.count({ where: { userId: user.id } })).toBe(0);
-      expect(await prisma.session.count({ where: { userId: user.id } })).toBe(0);
+      await supabase.auth.admin.deleteUser(user.id);
+      expect(await prisma.user.count({ where: { id: user.id } })).toBe(0);
+      expect(await prisma.userDevice.count({ where: { userId: user.id } })).toBe(0);
     });
 
     it('does not let a role be deleted while users hold it', async () => {
-      const user = await prisma.user.create({
-        data: { fullName: 'Holder', email: `h${uniq()}@example.com` },
-      });
+      const user = await authUser();
       const role = await prisma.role.findUniqueOrThrow({ where: { key: 'MENTOR' } });
       await prisma.userRole.create({ data: { userId: user.id, roleId: role.id } });
       await expect(prisma.role.delete({ where: { id: role.id } })).rejects.toThrow(/Foreign key/);
@@ -451,11 +478,11 @@ describe('Database baseline', () => {
 
   describe('demo seed', () => {
     it('creates only flagged demo records and is idempotent', async () => {
-      const first = await runDemoSeed(prisma);
+      const first = await runDemoSeed(prisma, supabase);
       expect(
         first.users + (await prisma.user.count({ where: { isDemo: true } })),
       ).toBeGreaterThanOrEqual(5);
-      expect((await runDemoSeed(prisma)).users).toBe(0);
+      expect((await runDemoSeed(prisma, supabase)).users).toBe(0);
       const demo = await prisma.user.findMany({
         where: { isDemo: true },
         include: { memberships: true, roles: true },
@@ -465,7 +492,14 @@ describe('Database baseline', () => {
     });
 
     it('is skipped outside dev: the seed command run as production creates no demo users', async () => {
-      await prisma.user.deleteMany({ where: { isDemo: true } });
+      await prisma.article.deleteMany({ where: { isDemo: true } });
+      await prisma.group.deleteMany({ where: { isDemo: true } });
+      for (const u of await prisma.user.findMany({
+        where: { isDemo: true },
+        select: { id: true },
+      })) {
+        await supabase.auth.admin.deleteUser(u.id);
+      }
       const out = execSync('npx ts-node --transpile-only prisma/seed/index.ts', {
         encoding: 'utf8',
         env: { ...process.env, ATARAH_ENV: 'production' },

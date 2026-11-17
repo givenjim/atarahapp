@@ -213,8 +213,9 @@ export class ProfileService {
       publishedProjects: facts.projectCount,
       skills: p.skills.length,
       verifiedSkills: p.skills.filter((s) => s.source === 'VERIFIED').length,
-      completedCourses: 0, // Skill Labs arrives in P1-M8
-      enrolledCourses: 0,
+      // Courses from Skill Labs (P1-M10): enrolled counts every enrolment, completed those with a certificate.
+      completedCourses: await this.prisma.enrolment.count({ where: { userId: p.userId, completedAt: { not: null } } }),
+      enrolledCourses: await this.prisma.enrolment.count({ where: { userId: p.userId } }),
       acceptedConnections: await this.connections.countAccepted(p.userId),
       services: await this.prisma.profileService.count({ where: { profileId: p.id } }),
       experiences: facts.experienceCount,

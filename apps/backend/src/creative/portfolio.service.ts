@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { type AuthContext } from '../access/access.types';
 import { ApiException } from '../common/api.exception';
+import { DomainEventBus } from '../community-core/domain-events';
 import { MediaService, type MediaView } from '../media/media.service';
 import { NotificationsService } from '../notifications/notifications.service';
 import { PrismaService } from '../prisma/prisma.service';
@@ -96,6 +97,7 @@ export class PortfolioService {
     private readonly profiles: CreativeProfileService,
     private readonly profile: ProfileService,
     private readonly notifications: NotificationsService,
+    private readonly events: DomainEventBus,
   ) {}
 
   // ---- shared ----------------------------------------------------------------------------------------------
@@ -146,6 +148,7 @@ export class PortfolioService {
       data: { profileId, title: (cleanText(dto.title) ?? '').slice(0, 120) },
       include: PROJECT_INCLUDE,
     });
+    await this.events.emit({ type: 'ProjectCreated', userId, projectId: row.id });
     return this.detail(row, true);
   }
 

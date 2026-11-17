@@ -95,7 +95,7 @@ class SkillsScreen extends ConsumerWidget {
                               child: Text(
                                 s.name,
                                 style: AtTextStyles.cardTitle.copyWith(
-                                  color: AtColors.ink,
+                                  color: context.at.ink,
                                 ),
                               ),
                             ),
@@ -123,7 +123,7 @@ class SkillsScreen extends ConsumerWidget {
                         Text(
                           '${levelLabel(l10n, s.level?.json)} · ${l10n.skUsedIn(s.projectCount.round())}',
                           style: AtTextStyles.meta.copyWith(
-                            color: AtColors.muted,
+                            color: context.at.muted,
                           ),
                         ),
                         const SizedBox(height: 10),
@@ -183,11 +183,11 @@ class _Action extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 15, color: AtColors.primary),
+          Icon(icon, size: 15, color: context.at.primary),
           const SizedBox(width: 6),
           Text(
             label,
-            style: AtTextStyles.chip.copyWith(color: AtColors.primary),
+            style: AtTextStyles.chip.copyWith(color: context.at.primary),
           ),
         ],
       ),
@@ -299,7 +299,7 @@ class _SkillSheetState extends ConsumerState<_SkillSheet> {
               padding: const EdgeInsets.all(12),
               child: Text(
                 l10n.skNoMatches,
-                style: AtTextStyles.bodySm.copyWith(color: AtColors.muted),
+                style: AtTextStyles.bodySm.copyWith(color: context.at.muted),
               ),
             )
           else
@@ -320,12 +320,12 @@ class _SkillSheetState extends ConsumerState<_SkillSheet> {
         ] else ...[
           Text(
             existing?.name ?? _picked!.name,
-            style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+            style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
           ),
           const SizedBox(height: 12),
           Text(
             l10n.skLevelLabel,
-            style: AtTextStyles.label.copyWith(color: AtColors.ink),
+            style: AtTextStyles.label.copyWith(color: context.at.ink),
           ),
           const SizedBox(height: 8),
           Wrap(

@@ -13,6 +13,7 @@ model Country {
 
   counties         County[]
   creativeProfiles CreativeProfile[]
+  opportunities    Opportunity[]     @relation("OpportunityCountry")
 
   @@map("countries")
 }
@@ -31,6 +32,8 @@ model County {
   country          Country           @relation(fields: [countryId], references: [id], onDelete: Restrict)
   towns            Town[]
   creativeProfiles CreativeProfile[]
+  groups           Group[]
+  opportunities    Opportunity[]     @relation("OpportunityCounty")
 
   @@unique([countryId, code])
   @@unique([countryId, name])
@@ -64,10 +67,13 @@ model Discipline {
 
   specialisations Specialisation[]
   skills          Skill[]
-  primaryOf       CreativeProfile[]          @relation("PrimaryDiscipline")
+  primaryOf       CreativeProfile[]           @relation("PrimaryDiscipline")
   creatives       CreativeDiscipline[]
   suggestions     SpecialisationSuggestion[]
   projectsOf      Project[]
+  groups          Group[]
+  opportunities   OpportunityDiscipline[]     @relation("OpportunityDisciplines")
+  learning        LearningContentDiscipline[] @relation("LearningDisciplines")
 
   @@map("disciplines")
 }
@@ -101,8 +107,10 @@ model Skill {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  discipline    Discipline?     @relation(fields: [disciplineId], references: [id], onDelete: SetNull)
+  discipline    Discipline?            @relation(fields: [disciplineId], references: [id], onDelete: SetNull)
   creatives     CreativeSkill[]
+  learningFor   LearningContentSkill[] @relation("LearningSkills")
+  practiceFor   Lesson[]               @relation("LessonPracticeSkill")
   projectSkills ProjectSkill[]
 
   @@index([disciplineId])
@@ -139,7 +147,7 @@ model DevelopmentArea {
   @@map("development_areas")
 }
 
-/// Skill Labs categories. Content and course tables join these in P1-M8.
+/// Skill Labs categories. Content joins them in P1-M10.
 model LearningCategory {
   id        String                @id @default(uuid()) @db.Uuid
   slug      String                @unique
@@ -149,6 +157,8 @@ model LearningCategory {
   isActive  Boolean               @default(true)
   createdAt DateTime              @default(now())
   updatedAt DateTime              @updatedAt
+
+  contents LearningContent[]
 
   @@index([group, sortOrder])
   @@map("learning_categories")

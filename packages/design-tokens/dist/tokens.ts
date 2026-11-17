@@ -11,96 +11,148 @@ export const tokens = {
     ],
     "mono": "ui-monospace, SFMono-Regular, Menlo, monospace"
   },
+  "brand": {
+    "midnight": "#17153F",
+    "indigo": "#5145D8",
+    "violet": "#7968FF",
+    "coral": "#F04478",
+    "tangerine": "#FF8A32",
+    "mist": "#F6F5FC"
+  },
   "color": {
-    "white": "#ffffff",
-    "ink": "#15133d",
-    "body": "#4a4868",
-    "longForm": "#2c2a50",
-    "muted": "#6f6d85",
-    "faint": "#a3a1b8",
-    "primary": "#5b45f0",
-    "primaryPressed": "#4330d6",
-    "primaryLight": "#7b6cf6",
-    "violet1": "#8b7bff",
-    "violet2": "#a78bfa",
-    "violet3": "#b9adff",
-    "tint1": "#f1eeff",
-    "tint2": "#ece8ff",
-    "tint3": "#f6f4ff",
-    "tint4": "#f8f6ff",
-    "cardBorder": "#ecebf4",
-    "inputBorder": "#e4e2ef",
-    "inputFill": "#fafafe",
-    "softTile": "#f7f6fd",
-    "segmentedTrack": "#f5f4fb",
-    "divider": "#f0eff6",
-    "divider2": "#f2f1f8",
-    "secondaryBorder": "#dcd8f5",
-    "dashedBorder": "#cfc8fb",
-    "toggleOff": "#dcdbe6",
-    "progressTrack": "#efedf7",
-    "focusRing": "#efecff",
-    "disabledFill": "#e4e2ef",
-    "disabledText": "#a3a1b8",
-    "star": "#f5a524",
-    "proText": "#805400",
-    "success": {
-      "bg": "#e9f8ee",
-      "fg": "#1f9d55",
-      "strong": "#16784a"
+    "light": {
+      "background": "#FFFFFF",
+      "surface": "#FFFFFF",
+      "raised": "#FFFFFF",
+      "mist": "#F6F5FC",
+      "white": "#FFFFFF",
+      "ink": "#17153F",
+      "longForm": "#2C2A50",
+      "body": "#4A4868",
+      "muted": "#77758F",
+      "faint": "#A3A1B8",
+      "primary": "#5145D8",
+      "primaryPressed": "#3F34B8",
+      "primaryFill": "#5145D8",
+      "primaryLight": "#7968FF",
+      "violetTint1": "#9A8DFF",
+      "violetTint2": "#B8AFFF",
+      "primaryTint": "#EFEDFF",
+      "primaryTintStrong": "#E7E4FF",
+      "primaryTintFaint": "#F8F7FF",
+      "violetSurface": "#F2F0FF",
+      "indigoSurface": "#EEEDFB",
+      "coral": "#F04478",
+      "coralSurface": "#FDE8EF",
+      "coralStrong": "#C4245A",
+      "tangerine": "#FF8A32",
+      "tangerineSurface": "#FFF1E5",
+      "tangerineStrong": "#B5530C",
+      "amberSurface": "#FFF6EC",
+      "amberStrong": "#B5530C",
+      "successSurface": "#E9F8EE",
+      "successStrong": "#16784A",
+      "successIcon": "#1F9D55",
+      "neutralSurface": "#F2F1F6",
+      "neutralText": "#4A4868",
+      "cardBorder": "#ECEBF4",
+      "inputBorder": "#E4E2EF",
+      "divider": "#F0EFF6",
+      "divider2": "#F2F1F8",
+      "toggleOff": "#DCDBE6",
+      "radioRing": "#CFCCDF",
+      "inputFill": "#F6F5FC",
+      "softTile": "#F6F5FC",
+      "segmentedTrack": "#F6F5FC",
+      "progressTrack": "#EFEDFF",
+      "secondaryBorder": "#E7E4FF",
+      "dashedBorder": "#B8AFFF",
+      "focusRing": "#EFEDFF",
+      "disabledFill": "#E4E2EF",
+      "disabledText": "#A3A1B8",
+      "star": "#FF8A32",
+      "skeleton": "#F6F5FC",
+      "skeletonShimmer": "#EFEDFF",
+      "washDefault": "#E7E4FF",
+      "washOpportunities": "#FFE8D6",
+      "washLearning": "#E7E4FF",
+      "washCommunity": "#FDE3EC",
+      "washSettings": "#EFEDFF"
     },
-    "warning": {
-      "bg": "#fff1e5",
-      "fg": "#f08a24",
-      "strong": "#a95a0e"
-    },
-    "pink": {
-      "bg": "#fdecf2",
-      "fg": "#e8457a",
-      "strong": "#c62f63"
-    },
-    "info": {
-      "bg": "#eaf3ff",
-      "fg": "#2f6fe0",
-      "strong": "#2d69d5"
-    },
-    "purple": {
-      "bg": "#f6f0ff",
-      "fg": "#8b5cf6",
-      "strong": "#7c52db"
-    },
-    "amber": {
-      "bg": "#fff8ec",
-      "fg": "#c78a10",
-      "strong": "#97690c"
-    },
-    "neutral": {
-      "bg": "#f2f1f6",
-      "fg": "#4a4868",
-      "strong": "#4a4868"
-    },
-    "wash": {
-      "default": "#e4dcff",
-      "opportunities": "#ffe6d1",
-      "learning": "#d8f5e3",
-      "community": "#fde0ea",
-      "settings": "#ece6ff"
-    },
-    "scrim": {
-      "sheet": "rgba(21,19,61,0.45)",
-      "modal": "rgba(21,19,61,0.5)"
+    "dark": {
+      "background": "#0F0D2B",
+      "surface": "#17153F",
+      "raised": "#1F1C55",
+      "mist": "#1C1A4A",
+      "white": "#FFFFFF",
+      "ink": "#F6F5FC",
+      "longForm": "#DCD9F2",
+      "body": "#B9B6D6",
+      "muted": "#9592B8",
+      "faint": "#75729A",
+      "primary": "#9A8DFF",
+      "primaryPressed": "#B8AFFF",
+      "primaryFill": "#5145D8",
+      "primaryLight": "#9A8DFF",
+      "violetTint1": "#9A8DFF",
+      "violetTint2": "#B8AFFF",
+      "primaryTint": "#25215E",
+      "primaryTintStrong": "#2C2870",
+      "primaryTintFaint": "#1C1A4A",
+      "violetSurface": "#231F5A",
+      "indigoSurface": "#221F55",
+      "coral": "#F04478",
+      "coralSurface": "#3A1838",
+      "coralStrong": "#F04478",
+      "tangerine": "#FF8A32",
+      "tangerineSurface": "#3A2420",
+      "tangerineStrong": "#FF8A32",
+      "amberSurface": "#33221F",
+      "amberStrong": "#FF8A32",
+      "successSurface": "#0F3A2A",
+      "successStrong": "#5FD39A",
+      "successIcon": "#3CC17A",
+      "neutralSurface": "#24223F",
+      "neutralText": "#B9B6D6",
+      "cardBorder": "#2A2766",
+      "inputBorder": "#322F6E",
+      "divider": "#221F4D",
+      "divider2": "#221F4D",
+      "toggleOff": "#34325A",
+      "radioRing": "#4A4870",
+      "inputFill": "#1C1A4A",
+      "softTile": "#1C1A4A",
+      "segmentedTrack": "#1C1A4A",
+      "progressTrack": "#25215E",
+      "secondaryBorder": "#2C2870",
+      "dashedBorder": "#4A4870",
+      "focusRing": "#25215E",
+      "disabledFill": "#322F6E",
+      "disabledText": "#75729A",
+      "star": "#FF8A32",
+      "skeleton": "#1C1A4A",
+      "skeletonShimmer": "#25225E",
+      "washDefault": "#2C2870",
+      "washOpportunities": "#2E1E22",
+      "washLearning": "#2C2870",
+      "washCommunity": "#2E1533",
+      "washSettings": "#25215E"
     }
+  },
+  "static": {
+    "scrimSheet": "rgba(23,21,63,0.45)",
+    "scrimModal": "rgba(23,21,63,0.5)"
   },
   "gradient": {
     "cta": {
       "angle": 90,
       "stops": [
         [
-          "#7b6cf6",
+          "#7968FF",
           0
         ],
         [
-          "#5a46ee",
+          "#5145D8",
           1
         ]
       ]
@@ -109,28 +161,11 @@ export const tokens = {
       "angle": 135,
       "stops": [
         [
-          "#7b6cf6",
+          "#7968FF",
           0
         ],
         [
-          "#5a46ee",
-          1
-        ]
-      ]
-    },
-    "darkCard": {
-      "angle": 135,
-      "stops": [
-        [
-          "#1c1a4a",
-          0
-        ],
-        [
-          "#25206a",
-          0.55
-        ],
-        [
-          "#2f2783",
+          "#5145D8",
           1
         ]
       ]
@@ -139,11 +174,11 @@ export const tokens = {
       "angle": 135,
       "stops": [
         [
-          "#4a36e0",
+          "#17153F",
           0
         ],
         [
-          "#3b2bc4",
+          "#0F0D2B",
           1
         ]
       ]
@@ -152,11 +187,11 @@ export const tokens = {
       "angle": 135,
       "stops": [
         [
-          "#a78bfa",
+          "#7968FF",
           0
         ],
         [
-          "#5a46ee",
+          "#5145D8",
           1
         ]
       ]
@@ -165,14 +200,65 @@ export const tokens = {
       "angle": 90,
       "stops": [
         [
-          "#fde7c4",
+          "#F04478",
           0
         ],
         [
-          "#fbd38d",
+          "#FF8A32",
           1
         ]
       ]
+    },
+    "brandRing": {
+      "angle": 135,
+      "stops": [
+        [
+          "#F04478",
+          0
+        ],
+        [
+          "#FF8A32",
+          1
+        ]
+      ]
+    }
+  },
+  "gradientThemed": {
+    "darkCard": {
+      "light": {
+        "angle": 135,
+        "stops": [
+          [
+            "#17153F",
+            0
+          ],
+          [
+            "#1F1C55",
+            0.5
+          ],
+          [
+            "#2A2478",
+            1
+          ]
+        ]
+      },
+      "dark": {
+        "angle": 135,
+        "stops": [
+          [
+            "#1F1C55",
+            0
+          ],
+          [
+            "#2A2478",
+            0.5
+          ],
+          [
+            "#3828C3",
+            1
+          ]
+        ]
+      }
     }
   },
   "shadow": {
@@ -192,32 +278,36 @@ export const tokens = {
       "x": 0,
       "y": 10,
       "blur": 22,
-      "color": "rgba(91,69,240,0.28)"
+      "color": "rgba(81,69,216,0.28)"
     },
     "selectedTile": {
       "x": 0,
       "y": 8,
       "blur": 18,
-      "color": "rgba(91,69,240,0.30)"
+      "color": "rgba(81,69,216,0.30)"
     },
     "darkCard": {
       "x": 0,
       "y": 14,
       "blur": 30,
-      "color": "rgba(28,26,74,0.25)"
+      "color": "rgba(23,21,63,0.25)"
     },
     "sheet": {
       "x": 0,
       "y": -10,
       "blur": 40,
-      "color": "rgba(21,19,61,0.20)"
+      "color": "rgba(23,21,63,0.20)"
     },
     "modal": {
       "x": 0,
       "y": 30,
       "blur": 60,
-      "color": "rgba(21,19,61,0.30)"
+      "color": "rgba(23,21,63,0.30)"
     }
+  },
+  "shadowDark": {
+    "role": "cardBorder",
+    "spread": 1
   },
   "radius": {
     "pill": 999,

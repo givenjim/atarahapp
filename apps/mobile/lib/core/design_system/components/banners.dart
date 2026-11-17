@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
+import '../theme.dart';
 import '../tokens.g.dart';
 
 enum AtBannerTone { error, success, info }
@@ -25,18 +26,18 @@ class AtInlineBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     final (bg, fg, icon) = switch (tone) {
       AtBannerTone.error => (
-        AtColors.pinkBg,
-        AtColors.pinkStrong,
+        context.at.coralSurface,
+        context.at.coralStrong,
         LucideIcons.circleAlert,
       ),
       AtBannerTone.success => (
-        AtColors.successBg,
-        AtColors.successStrong,
+        context.at.successSurface,
+        context.at.successStrong,
         LucideIcons.circleCheck,
       ),
       AtBannerTone.info => (
-        AtColors.tint1,
-        AtColors.primaryPressed,
+        context.at.primaryTint,
+        context.at.primaryPressed,
         LucideIcons.info,
       ),
     };

@@ -4,11 +4,16 @@
  */
 export interface SettingDef {
   key: string;
-  value: string | number | boolean;
+  value: string | number | boolean | string[];
   description: string;
 }
 
 export const SETTINGS: readonly SettingDef[] = [
+  {
+    key: 'learning.embed_hosts',
+    value: ['www.youtube.com', 'www.youtube-nocookie.com', 'player.vimeo.com'],
+    description: 'Hosts a Skill Labs lesson may embed (https only). Staff can change the list.',
+  },
   {
     key: 'membership.pro.price_minor',
     value: 120000,
@@ -118,6 +123,12 @@ export const SETTINGS: readonly SettingDef[] = [
     description: 'Document upload limit (10 MB).',
   },
 
+  {
+    key: 'auth.two_step_enforced',
+    value: true,
+    description:
+      'Two-step sign-in on new devices is enforced for members who turned it on (P1-M11). Switch off in an emergency.',
+  },
   {
     key: 'support.email',
     value: 'support@atarah.app',

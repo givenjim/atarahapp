@@ -1,32 +1,15 @@
 import { type AccountStatus } from '@prisma/client';
 
-/** Claims inside a short-lived access token. */
-export interface AccessClaims {
-  sub: string;
-  /** Session family id. Identifies the device session across refresh-token rotations. */
-  fam: string;
-  /** True only for tokens issued by the admin sign-in flow. */
-  adm: boolean;
-  /** True once TOTP was verified. Admin tokens are never issued without it. */
-  mfa: boolean;
-  typ: 'access';
-}
-
-/** Short-lived token between the admin password step and the TOTP step. Grants no API access. */
-export interface AdminChallengeClaims {
-  sub: string;
-  typ: 'admin-challenge';
-  /** True when the account has not confirmed TOTP yet and must enrol. */
-  enrol: boolean;
-}
-
-/** Attached to the request by JwtAuthGuard. */
+/** Attached to the request by SupabaseAuthGuard. Built from the verified Supabase JWT and `public.users`. */
 export interface AuthContext {
   userId: string;
-  familyId: string;
+  /** Supabase Auth session id (`auth.sessions.id`): one per device sign-in, stable across token refreshes. */
+  sessionId: string;
   status: AccountStatus;
   isAdminSession: boolean;
-  /** Last password+TOTP re-authentication on this session. */
+  /** `aal2` once an MFA factor was verified for this session. Admin routes require it. */
+  aal: 'aal1' | 'aal2';
+  /** Last time an MFA factor was verified on this session (admin sensitive actions). */
   reauthAt: Date | null;
 }
 

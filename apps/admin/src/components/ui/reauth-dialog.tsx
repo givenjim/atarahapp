@@ -3,8 +3,8 @@
 import { useEffect, useId, useRef, type FormEvent } from 'react';
 
 /**
- * Sensitive actions need a fresh password and authenticator code (Master Prompt §7.4). The dialog only
- * collects them; the server action verifies and the API records the re-authentication in the audit log.
+ * Sensitive actions need a fresh authenticator code (Master Prompt §7.4, Supabase MFA). The dialog only
+ * collects it; the server action verifies it with Supabase and the API checks the verification time.
  */
 export function ReauthDialog({
   open,
@@ -16,12 +16,11 @@ export function ReauthDialog({
   open: boolean;
   pending?: boolean;
   error?: string | null;
-  onSubmit: (credentials: { password: string; code: string }) => void;
+  onSubmit: (credentials: { code: string }) => void;
   onCancel: () => void;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   const titleId = useId();
-  const passwordId = useId();
   const codeId = useId();
 
   useEffect(() => {
@@ -34,10 +33,7 @@ export function ReauthDialog({
   function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    onSubmit({
-      password: String(f.get('password') ?? ''),
-      code: String(f.get('code') ?? '').trim(),
-    });
+    onSubmit({ code: String(f.get('code') ?? '').trim() });
   }
 
   return (
@@ -50,19 +46,8 @@ export function ReauthDialog({
       <form onSubmit={submit}>
         <h2 id={titleId}>Confirm it&apos;s you</h2>
         <p className="muted" style={{ margin: 0 }}>
-          This action needs your password and a current code from your authenticator app.
+          This action needs a current code from your authenticator app.
         </p>
-        <label className="field" htmlFor={passwordId}>
-          Password
-          <input
-            id={passwordId}
-            name="password"
-            type="password"
-            className="input"
-            autoComplete="current-password"
-            required
-          />
-        </label>
         <label className="field" htmlFor={codeId}>
           Authenticator code
           <input

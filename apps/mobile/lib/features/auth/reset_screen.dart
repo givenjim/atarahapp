@@ -11,6 +11,7 @@ import '../../core/routing/routes.dart';
 import 'auth_widgets.dart';
 
 final _hasDigit = RegExp(r'\d');
+final _hasLetter = RegExp(r'[A-Za-z]');
 
 /// Step two of recovery: the emailed or texted code plus the new password. On success the member is signed in,
 /// and told that their other devices were signed out.
@@ -19,7 +20,7 @@ class ResetScreen extends ConsumerStatefulWidget {
 
   final String identifier;
 
-  /// Show "Code sent. It expires in 15 minutes." (the member just asked for a code).
+  /// Show "Code sent. It expires in 10 minutes." (the member just asked for a code).
   final bool? codeJustSent;
 
   @override
@@ -48,7 +49,8 @@ class _ResetScreenState extends ConsumerState<ResetScreen> {
     final l10n = AppLocalizations.of(context);
     final codeOk = _code.text.length == 6;
     final pw = _password.text;
-    final pwOk = pw.length >= 8 && _hasDigit.hasMatch(pw);
+    final pwOk =
+        pw.length >= 8 && _hasDigit.hasMatch(pw) && _hasLetter.hasMatch(pw);
     final matches = pw == _confirm.text;
     setState(() {
       _codeError = codeOk ? null : l10n.codeIncomplete;
@@ -73,9 +75,12 @@ class _ResetScreenState extends ConsumerState<ResetScreen> {
       notice.show(message);
     } on ApiFailure catch (e) {
       if (!mounted) return;
+      final l10n = AppLocalizations.of(context);
       setState(() {
         _codeError = e.fieldError('code');
-        _passwordError = e.fieldError('newPassword');
+        _passwordError = e.reason == 'WEAK_PASSWORD'
+            ? l10n.passwordRuleError
+            : e.fieldError('newPassword');
         _error = _codeError == null && _passwordError == null
             ? e.message
             : null;
@@ -102,7 +107,7 @@ class _ResetScreenState extends ConsumerState<ResetScreen> {
         ],
         Text(
           l10n.recoveryCodeLabel,
-          style: AtTextStyles.chip.copyWith(color: AtColors.ink),
+          style: AtTextStyles.chip.copyWith(color: context.at.ink),
         ),
         const SizedBox(height: 8),
         AtCodeInput(
@@ -115,7 +120,7 @@ class _ResetScreenState extends ConsumerState<ResetScreen> {
           const SizedBox(height: 6),
           Text(
             _codeError!,
-            style: AtTextStyles.meta.copyWith(color: AtColors.pinkStrong),
+            style: AtTextStyles.meta.copyWith(color: context.at.coralStrong),
           ),
         ],
         const SizedBox(height: 18),

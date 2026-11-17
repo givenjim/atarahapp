@@ -2,16 +2,18 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:atarah/core/app/app.dart';
+import 'package:atarah/core/auth/supabase_auth_gateway.dart';
 import 'package:atarah/core/config/app_config.dart';
 import 'package:atarah/core/design_system/design_system.dart';
 import 'package:atarah/core/providers.dart';
-import 'package:atarah/core/storage/token_store.dart';
+import 'package:atarah/core/storage/secure_storage.dart';
 import 'package:atarah/features/onboarding/device_services.dart';
 import 'package:atarah/features/onboarding/onboarding_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' show SupabaseClient;
 
 /// P1-M2 journeys on a real Android emulator against the real backend: a new member registers, verifies,
 /// completes profile setup (saved on the server), is killed mid-way and resumes, and receives a Passport.
@@ -20,10 +22,10 @@ import 'package:integration_test/integration_test.dart';
 /// file is written and analysed but has not been executed on a device.
 ///
 ///   flutter test integration_test/onboarding_journey_test.dart --flavor dev -d emulator-5554 \
-///     --dart-define=ATARAH_API_BASE_URL=http://10.0.2.2:3000
+///     --dart-define-from-file=env.dev.json   (see apps/mobile/README.md; run `adb reverse tcp:55321 tcp:55321` first)
 const _mailpit = String.fromEnvironment(
   'ATARAH_MAILPIT_URL',
-  defaultValue: 'http://10.0.2.2:58025',
+  defaultValue: 'http://10.0.2.2:55324',
 );
 const _password = 'Journey-pass-1';
 
@@ -37,6 +39,17 @@ class _ScriptedLocation implements LocationLookup {
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
+  // Real Supabase Auth (the local stack), session in the real keystore, exactly as in the app.
+  late final SupabaseClient supabase;
+  setUpAll(() async {
+    final config = AppConfig.forFlavor(Flavor.dev);
+    supabase = await initialiseSupabase(
+      url: config.supabaseUrl,
+      publishableKey: config.supabasePublishableKey,
+      store: SecureKeyValueStore(),
+    );
+  });
+
   final stamp = DateTime.now().millisecondsSinceEpoch;
   final email = 'setup.$stamp@demo.atarah.test';
 
@@ -44,6 +57,7 @@ void main() {
     retry: noAutomaticRetry,
     overrides: [
       appConfigProvider.overrideWithValue(AppConfig.forFlavor(Flavor.dev)),
+      supabaseClientProvider.overrideWithValue(supabase),
       locationLookupProvider.overrideWithValue(_ScriptedLocation()),
     ],
     child: const AtarahApp(),
@@ -102,7 +116,7 @@ void main() {
   testWidgets(
     'register, set up the profile, restart mid-way, finish with a Passport',
     (t) async {
-      await SecureTokenStore().clear();
+      await supabase.auth.signOut();
       await t.pumpWidget(app());
       await settle(t);
 

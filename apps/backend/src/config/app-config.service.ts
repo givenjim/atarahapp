@@ -35,26 +35,32 @@ export class AppConfigService {
   get skipConnect(): boolean {
     return this.env.ATARAH_SKIP_CONNECT;
   }
-  get jwt() {
-    return { accessSecret: this.env.ATARAH_JWT_ACCESS_SECRET };
+  get directUrl(): string | undefined {
+    return this.env.ATARAH_DIRECT_URL;
   }
-  get peppers() {
+  get supabase() {
+    const url = this.env.ATARAH_SUPABASE_URL.replace(/\/$/, '');
     return {
-      refresh: this.env.ATARAH_REFRESH_TOKEN_PEPPER,
-      code: this.env.ATARAH_CODE_PEPPER,
-      dataKey: this.env.ATARAH_DATA_ENCRYPTION_KEY,
+      url,
+      publicUrl: (this.env.ATARAH_SUPABASE_PUBLIC_URL ?? this.env.ATARAH_SUPABASE_URL).replace(
+        /\/$/,
+        '',
+      ),
+      secretKey: this.env.ATARAH_SUPABASE_SECRET_KEY,
+      publishableKey: this.env.ATARAH_SUPABASE_PUBLISHABLE_KEY,
+      jwtSecret: this.env.ATARAH_SUPABASE_JWT_SECRET,
+      jwksUrl: `${url}/auth/v1/.well-known/jwks.json`,
+      issuer: `${url}/auth/v1`,
+      audience: 'authenticated',
+      smsHookSecret: this.env.ATARAH_SEND_SMS_HOOK_SECRET,
     };
   }
-  get s3() {
+  get storage() {
     return {
-      endpoint: this.env.ATARAH_S3_ENDPOINT,
-      region: this.env.ATARAH_S3_REGION,
-      accessKey: this.env.ATARAH_S3_ACCESS_KEY,
-      secretKey: this.env.ATARAH_S3_SECRET_KEY,
       buckets: {
-        public: this.env.ATARAH_S3_BUCKET_PUBLIC,
-        private: this.env.ATARAH_S3_BUCKET_PRIVATE,
-        evidence: this.env.ATARAH_S3_BUCKET_EVIDENCE,
+        public: this.env.ATARAH_STORAGE_BUCKET_PUBLIC,
+        private: this.env.ATARAH_STORAGE_BUCKET_PRIVATE,
+        evidence: this.env.ATARAH_STORAGE_BUCKET_EVIDENCE,
       },
     };
   }
@@ -74,6 +80,9 @@ export class AppConfigService {
   /** Firebase service-account JSON for push. Empty means push is not configured. */
   get fcmServiceAccountJson(): string {
     return this.env.ATARAH_FCM_SERVICE_ACCOUNT_JSON;
+  }
+  get metricsToken(): string {
+    return this.env.ATARAH_METRICS_TOKEN;
   }
   get sentryDsn(): string {
     return this.env.ATARAH_SENTRY_DSN;

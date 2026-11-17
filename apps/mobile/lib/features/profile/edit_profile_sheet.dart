@@ -199,7 +199,7 @@ class _EditProfileSheetState extends ConsumerState<EditProfileSheet> {
                     child: Text(
                       l10n.epLinks,
                       style: AtTextStyles.cardTitle.copyWith(
-                        color: AtColors.ink,
+                        color: context.at.ink,
                       ),
                     ),
                   ),
@@ -236,7 +236,9 @@ class _EditProfileSheetState extends ConsumerState<EditProfileSheet> {
                   else
                     Text(
                       l10n.epLinksLimit(_maxLinks),
-                      style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+                      style: AtTextStyles.meta.copyWith(
+                        color: context.at.muted,
+                      ),
                     ),
                   const SizedBox(height: 22),
                   Semantics(
@@ -244,7 +246,7 @@ class _EditProfileSheetState extends ConsumerState<EditProfileSheet> {
                     child: Text(
                       l10n.epContactPrefs,
                       style: AtTextStyles.cardTitle.copyWith(
-                        color: AtColors.ink,
+                        color: context.at.ink,
                       ),
                     ),
                   ),
@@ -329,7 +331,7 @@ class _ToggleRow extends StatelessWidget {
               Expanded(
                 child: Text(
                   label,
-                  style: AtTextStyles.bodySm.copyWith(color: AtColors.ink),
+                  style: AtTextStyles.bodySm.copyWith(color: context.at.ink),
                 ),
               ),
               const SizedBox(width: 12),

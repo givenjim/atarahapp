@@ -2,7 +2,15 @@ import { type INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { StorageService } from '../src/storage/storage.service';
-import { bearer, createTestApp, emailFor, loginMember, makeUser, uniq } from './helpers';
+import {
+  bearer,
+  createTestApp,
+  emailFor,
+  loginMember,
+  makeUser,
+  uniq,
+  deleteUsers,
+} from './helpers';
 
 describe('Onboarding and creative profile (integration)', () => {
   let app: INestApplication;
@@ -21,7 +29,7 @@ describe('Onboarding and creative profile (integration)', () => {
   });
   afterAll(async () => {
     // Deleting the user cascades to the profile, its selections, Passport and suggestions.
-    await prisma.user.deleteMany({ where: { id: { in: createdUsers } } });
+    await deleteUsers(app, createdUsers);
     await app.close();
   });
 

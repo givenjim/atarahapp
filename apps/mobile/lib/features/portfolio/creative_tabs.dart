@@ -34,12 +34,12 @@ class _Note extends StatelessWidget {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon, size: 16, color: AtColors.muted),
+        Icon(icon, size: 16, color: context.at.muted),
         const SizedBox(width: 8),
         Flexible(
           child: Text(
             text,
-            style: AtTextStyles.bodySm.copyWith(color: AtColors.muted),
+            style: AtTextStyles.bodySm.copyWith(color: context.at.muted),
           ),
         ),
       ],
@@ -195,14 +195,14 @@ class CreativeServicesTab extends ConsumerWidget {
                         Text(
                           s.title,
                           style: AtTextStyles.cardTitle.copyWith(
-                            color: AtColors.ink,
+                            color: context.at.ink,
                           ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           priceText(l10n, s),
                           style: AtTextStyles.chip.copyWith(
-                            color: AtColors.primary,
+                            color: context.at.primary,
                           ),
                         ),
                         if (s.description != null) ...[
@@ -210,7 +210,7 @@ class CreativeServicesTab extends ConsumerWidget {
                           Text(
                             s.description!,
                             style: AtTextStyles.bodySm.copyWith(
-                              color: AtColors.body,
+                              color: context.at.body,
                             ),
                           ),
                         ],
@@ -257,7 +257,7 @@ class CreativeExperienceSection extends ConsumerWidget {
         header: true,
         child: Text(
           t,
-          style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+          style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
         ),
       ),
     );

@@ -1,17 +1,7 @@
 import { type INestApplication } from '@nestjs/common';
-import { generateSync } from 'otplib';
 import request from 'supertest';
 import { PrismaService } from '../src/prisma/prisma.service';
-import {
-  adminSignIn,
-  bearer,
-  createTestApp,
-  emailFor,
-  loginMember,
-  makeUser,
-  PASSWORD,
-  rewindTotpReplay,
-} from './helpers';
+import { adminSignIn, bearer, createTestApp, emailFor, loginMember, makeUser } from './helpers';
 
 describe('Admin users and audit log (integration)', () => {
   let app: INestApplication;
@@ -26,15 +16,10 @@ describe('Admin users and audit log (integration)', () => {
     await app.close();
   });
 
+  /** A staff member at AAL2 whose authenticator code was verified just now (so sensitive actions are allowed). */
   async function adminWithReauth(roles: Array<'PLATFORM_ADMIN' | 'SUPER_ADMIN' | 'MODERATOR'>) {
     const { email, user } = await makeUser(app, { roles });
-    const { session, secret } = await adminSignIn(app, email);
-    await rewindTotpReplay(app, user.id);
-    await http()
-      .post('/api/v1/admin/auth/reauth')
-      .set(...bearer(session.accessToken))
-      .send({ password: PASSWORD, code: generateSync({ secret: secret! }) })
-      .expect(200);
+    const { session } = await adminSignIn(app, email);
     return { token: session.accessToken, user };
   }
 
@@ -82,10 +67,8 @@ describe('Admin users and audit log (integration)', () => {
       .get('/api/v1/users/me')
       .set(...bearer(memberSession.accessToken))
       .expect(401);
-    await http()
-      .post('/api/v1/auth/login')
-      .send({ identifier: email, password: PASSWORD, client: 'ANDROID' })
-      .expect((r) => expect(r.status).toBeGreaterThanOrEqual(400));
+    // Supabase Auth refuses the sign-in itself: the account is banned there too.
+    await expect(loginMember(app, email)).rejects.toThrow(/banned|signIn/i);
 
     const entry = await prisma.auditLog.findFirstOrThrow({
       where: { action: 'user.suspend', entityId: member.id },
@@ -151,11 +134,15 @@ describe('Admin users and audit log (integration)', () => {
     const { email, user } = await makeUser(app, { roles: ['PLATFORM_ADMIN'] });
     const { session } = await adminSignIn(app, email);
     const { user: member } = await makeUser(app);
+    // The authenticator code was verified just now; six minutes later it is too old for a sensitive action.
+    const realNow = Date.now;
+    jest.spyOn(Date, 'now').mockImplementation(() => realNow() + 6 * 60_000);
     const res = await http()
       .post(`/api/v1/admin/users/${member.id}/suspend`)
       .set(...bearer(session.accessToken))
       .send({ reason: 'No recent re-authentication' })
       .expect(401);
+    jest.restoreAllMocks();
     expect(res.body.error.details).toMatchObject({ reason: 'REAUTH_REQUIRED' });
     expect(user.id).toBeDefined();
 

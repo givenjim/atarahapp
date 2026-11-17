@@ -55,14 +55,16 @@ class _AppShellState extends ConsumerState<AppShell> {
       ..hideCurrentMaterialBanner()
       ..showMaterialBanner(
         MaterialBanner(
-          backgroundColor: AtColors.successBg,
-          leading: const Icon(
+          backgroundColor: context.at.successSurface,
+          leading: Icon(
             LucideIcons.circleCheck,
-            color: AtColors.successStrong,
+            color: context.at.successStrong,
           ),
           content: Text(
             message,
-            style: AtTextStyles.bodySm.copyWith(color: AtColors.successStrong),
+            style: AtTextStyles.bodySm.copyWith(
+              color: context.at.successStrong,
+            ),
           ),
           actions: [
             TextButton(

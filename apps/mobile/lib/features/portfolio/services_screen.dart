@@ -54,7 +54,7 @@ class ServicesScreen extends ConsumerWidget {
                 icon: LucideIcons.handshake,
                 title: l10n.svEmptyTitle,
                 body: l10n.svEmptyBody,
-                tone: AtTone.pink,
+                tone: AtTone.coral,
                 ctaLabel: l10n.svAddTitle,
                 onCta: () => _edit(context, ref),
               )
@@ -80,7 +80,7 @@ class ServicesScreen extends ConsumerWidget {
                               child: Text(
                                 s.title,
                                 style: AtTextStyles.cardTitle.copyWith(
-                                  color: AtColors.ink,
+                                  color: context.at.ink,
                                 ),
                               ),
                             ),
@@ -96,7 +96,7 @@ class ServicesScreen extends ConsumerWidget {
                         Text(
                           priceText(l10n, s),
                           style: AtTextStyles.chip.copyWith(
-                            color: AtColors.primary,
+                            color: context.at.primary,
                           ),
                         ),
                         if (s.description != null) ...[
@@ -104,7 +104,7 @@ class ServicesScreen extends ConsumerWidget {
                           Text(
                             s.description!,
                             style: AtTextStyles.bodySm.copyWith(
-                              color: AtColors.body,
+                              color: context.at.body,
                             ),
                           ),
                         ],
@@ -160,11 +160,11 @@ class _Action extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 15, color: AtColors.primary),
+          Icon(icon, size: 15, color: context.at.primary),
           const SizedBox(width: 6),
           Text(
             label,
-            style: AtTextStyles.chip.copyWith(color: AtColors.primary),
+            style: AtTextStyles.chip.copyWith(color: context.at.primary),
           ),
         ],
       ),
@@ -334,7 +334,7 @@ class _ServiceSheetState extends ConsumerState<_ServiceSheet> {
         const SizedBox(height: 12),
         Text(
           l10n.svPriceTypeLabel,
-          style: AtTextStyles.label.copyWith(color: AtColors.ink),
+          style: AtTextStyles.label.copyWith(color: context.at.ink),
         ),
         const SizedBox(height: 8),
         AtSegmented(

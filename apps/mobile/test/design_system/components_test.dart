@@ -125,7 +125,7 @@ void main() {
       expect(deco('P').gradient, AtGradients.cta);
       expect(deco('S').border, isNotNull);
       expect(deco('T').color, isNull);
-      expect(deco('D').color, AtColors.pinkBg);
+      expect(deco('D').color, AtColors.light.coralSurface);
     });
   });
 
@@ -353,7 +353,7 @@ void main() {
       );
       expect(
         t.widget<Text>(find.text('Delete account')).style!.color,
-        AtColors.pinkStrong,
+        AtColors.light.coralStrong,
       );
     });
 

@@ -237,7 +237,7 @@ class _AchievementSheetState extends ConsumerState<_AchievementSheet> {
         ],
         Text(
           l10n.acTypeLabel,
-          style: AtTextStyles.label.copyWith(color: AtColors.ink),
+          style: AtTextStyles.label.copyWith(color: context.at.ink),
         ),
         const SizedBox(height: 8),
         Wrap(

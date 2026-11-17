@@ -105,7 +105,9 @@ void main() {
         findsOneWidget,
       );
       expect(
-        find.text('Use at least 8 characters, including a number.'),
+        find.text(
+          'Use at least 8 characters, including a letter and a number.',
+        ),
         findsOneWidget,
       );
       expect(
@@ -440,7 +442,7 @@ void main() {
       await tapText(t, 'Send code');
       expect(h.auth.calls, contains('forgot:nia@example.com'));
       expect(find.text('Set a new password'), findsOneWidget);
-      expect(find.text('Code sent. It expires in 15 minutes.'), findsOneWidget);
+      expect(find.text('Code sent. It expires in 10 minutes.'), findsOneWidget);
       expect(
         find.text("You'll be signed out of other devices."),
         findsOneWidget,
@@ -473,7 +475,9 @@ void main() {
       await tapText(t, 'Reset password');
       expect(find.text('Enter all 6 digits.'), findsOneWidget);
       expect(
-        find.text('Use at least 8 characters, including a number.'),
+        find.text(
+          'Use at least 8 characters, including a letter and a number.',
+        ),
         findsOneWidget,
       );
       await typeInto(t, 0, '123456');
@@ -511,13 +515,10 @@ void main() {
       await typeInto(t, 2, 'Passw0rd-2');
       await tapText(t, 'Reset password');
       await t.pumpAndSettle();
-      expect(
-        h.auth.calls,
-        containsAllInOrder([
-          'reset:nia@example.com:123456',
-          'signIn:nia@example.com',
-        ]),
-      );
+      expect(h.auth.calls, contains('reset:nia@example.com:123456'));
+      // The recovery code already signed this device in; there is no second password sign-in.
+      expect(h.auth.calls.where((c) => c.startsWith('signIn')), isEmpty);
+      expect(h.auth.deviceRegistrations, 1);
       expect(find.byType(AtTabBar), findsOneWidget);
       expect(
         find.text(

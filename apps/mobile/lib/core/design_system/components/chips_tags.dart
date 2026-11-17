@@ -33,8 +33,8 @@ class AtChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final on = selected || kind == AtChipKind.removable;
-    final bg = on ? AtColors.primary : AtColors.white;
-    final fg = on ? AtColors.white : AtColors.ink;
+    final bg = on ? context.at.primaryFill : context.at.surface;
+    final fg = on ? context.at.white : context.at.ink;
 
     final chip = AnimatedContainer(
       duration: atDuration(context, AtMotion.fast),
@@ -43,7 +43,9 @@ class AtChip extends StatelessWidget {
       decoration: BoxDecoration(
         color: bg,
         borderRadius: AtRadii.pill,
-        border: Border.all(color: on ? AtColors.primary : AtColors.inputBorder),
+        border: Border.all(
+          color: on ? context.at.primaryFill : context.at.inputBorder,
+        ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -119,9 +121,9 @@ class AtTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = tone.colors;
-    final bg = solid ? AtColors.primary : c.bg;
-    final fg = solid ? AtColors.white : c.strong;
+    final c = tone.colorsOf(context);
+    final bg = solid ? context.at.primaryFill : c.bg;
+    final fg = solid ? context.at.white : c.strong;
     return Container(
       constraints: const BoxConstraints(minHeight: 24),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
@@ -162,7 +164,7 @@ class AtStatusPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = tone.colors;
+    final c = tone.colorsOf(context);
     return Container(
       constraints: const BoxConstraints(minHeight: 26),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -205,14 +207,14 @@ class AtVerifiedTick extends StatelessWidget {
       child: Container(
         width: size,
         height: size,
-        decoration: const BoxDecoration(
-          color: AtColors.primary,
+        decoration: BoxDecoration(
+          color: context.at.primaryFill,
           shape: BoxShape.circle,
         ),
         child: Icon(
           LucideIcons.check,
           size: size * 0.62,
-          color: AtColors.white,
+          color: context.at.white,
         ),
       ),
     );
@@ -252,7 +254,7 @@ class AtVerificationBadge extends StatelessWidget {
       AtVerification.selfDeclared => (l10n.selfDeclared, AtTone.neutral, null),
       AtVerification.rejected => (
         l10n.verificationRejected,
-        AtTone.pink,
+        AtTone.coral,
         LucideIcons.circleX,
       ),
       AtVerification.expired => (
@@ -262,7 +264,7 @@ class AtVerificationBadge extends StatelessWidget {
       ),
       AtVerification.revoked => (
         l10n.verificationRevoked,
-        AtTone.pink,
+        AtTone.coral,
         LucideIcons.ban,
       ),
     };

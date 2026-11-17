@@ -1,0 +1,230 @@
+// Skill Labs (P1-M10): learning content, courses and lessons, enrolments, progress and certificates.
+// Owner module: learning. `LearningCategory` lives in taxonomy.prisma. Every table is deny-all for the Supabase client
+// roles (RLS on, no policies, no grants). "Locked" lessons are computed from progress, never stored.
+
+enum LearningAccess {
+  FREE
+  /// Needs the PREMIUM_CONTENT entitlement (a live Pro membership).
+  PREMIUM_CONTENT
+}
+
+/// One thing a member can learn from. A COURSE has a matching `courses` row and lessons; the other types (tutorial,
+/// toolkit, webinar, masterclass, article) are single items that open in the app, embedded, or on another site.
+model LearningContent {
+  id               String                   @id @default(uuid()) @db.Uuid
+  slug             String                   @unique
+  type             LearningContentType
+  title            String
+  summary          String
+  categoryId       String                   @db.Uuid
+  level            SkillLevel               @default(BEGINNER)
+  durationMinutes  Int                      @default(0)
+  source           ContentSource            @default(ATARAH)
+  delivery         ContentDelivery          @default(NATIVE)
+  /// Who made it, shown on the provider row ("Atarah Studio", "Creative Economy Kenya").
+  providerName     String?
+  instructorUserId String?                  @db.Uuid
+  /// EXTERNAL_LINK content: the https page it opens. Also the link the weekly check probes.
+  externalUrl      String?
+  /// EMBEDDED content and single-item embeds: the host must be on the `learning.embed_hosts` allow-list.
+  embedUrl         String?
+  coverMediaId     String?                  @db.Uuid
+  access           LearningAccess           @default(FREE)
+  status           PublicationStatus        @default(DRAFT)
+  publishedAt      DateTime?
+  featured         Boolean                  @default(false)
+  /// Lists of short strings.
+  whatYouLearn     Json                     @default("[]")
+  whoItsFor        String?
+  linkStatus       LinkStatus               @default(UNKNOWN)
+  lastCheckedAt    DateTime?
+  /// Generated full-text vector (title, summary). Read-only: the database maintains it.
+  searchVector     Unsupported("tsvector")?
+  createdById      String?                  @db.Uuid
+  isDemo           Boolean                  @default(false)
+  createdAt        DateTime                 @default(now())
+  updatedAt        DateTime                 @updatedAt
+
+  category    LearningCategory            @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  instructor  User?                       @relation("LearningInstructor", fields: [instructorUserId], references: [id], onDelete: SetNull)
+  coverMedia  MediaAsset?                 @relation("LearningCover", fields: [coverMediaId], references: [id], onDelete: SetNull)
+  createdBy   User?                       @relation("LearningCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  disciplines LearningContentDiscipline[]
+  skills      LearningContentSkill[]
+  course      Course?
+  progress    ContentProgress[]
+
+  @@index([categoryId, status, type])
+  @@index([status, featured])
+  @@index([searchVector], type: Gin, map: "learning_contents_search_vector_idx")
+  @@index([title(ops: raw("gin_trgm_ops"))], type: Gin, map: "learning_contents_title_trgm")
+  @@map("learning_contents")
+}
+
+model LearningContentDiscipline {
+  contentId    String   @db.Uuid
+  disciplineId String   @db.Uuid
+  createdAt    DateTime @default(now())
+
+  content    LearningContent @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  discipline Discipline      @relation("LearningDisciplines", fields: [disciplineId], references: [id], onDelete: Restrict)
+
+  @@id([contentId, disciplineId])
+  @@index([disciplineId])
+  @@map("learning_content_disciplines")
+}
+
+/// The skills a piece of content teaches. Completing a course moves these on the member's profile to source LEARNING.
+model LearningContentSkill {
+  contentId String   @db.Uuid
+  skillId   String   @db.Uuid
+  createdAt DateTime @default(now())
+
+  content LearningContent @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  skill   Skill           @relation("LearningSkills", fields: [skillId], references: [id], onDelete: Restrict)
+
+  @@id([contentId, skillId])
+  @@index([skillId])
+  @@map("learning_content_skills")
+}
+
+/// Course facts. Shares its primary key with the `learning_contents` row. `lessonCount` and `totalMinutes` are kept in
+/// step with the lessons by the service that writes them.
+model Course {
+  contentId    String  @id @db.Uuid
+  lessonCount  Int     @default(0)
+  totalMinutes Int     @default(0)
+  /// Lessons unlock one after another (computed from progress).
+  sequential   Boolean @default(true)
+
+  content      LearningContent @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  lessons      Lesson[]
+  enrolments   Enrolment[]
+  certificates Certificate[]
+
+  @@map("courses")
+}
+
+model Lesson {
+  id              String   @id @default(uuid()) @db.Uuid
+  courseId        String   @db.Uuid
+  /// 1-based and unique per course. Reordering rewrites them in one transaction.
+  sequence        Int
+  title           String
+  durationMinutes Int      @default(0)
+  /// An uploaded video (`VIDEO` media asset, transcoded by the worker) or an embedded player. At most one.
+  videoMediaId    String?  @db.Uuid
+  embedUrl        String?
+  /// Structured blocks (paragraph, heading, callout, quote), never HTML.
+  body            Json     @default("[]")
+  practicePrompt  String?
+  /// The skill the practice box adds a portfolio project for.
+  practiceSkillId String?  @db.Uuid
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  course        Course           @relation(fields: [courseId], references: [contentId], onDelete: Cascade)
+  videoMedia    MediaAsset?      @relation("LessonVideo", fields: [videoMediaId], references: [id], onDelete: SetNull)
+  practiceSkill Skill?           @relation("LessonPracticeSkill", fields: [practiceSkillId], references: [id], onDelete: SetNull)
+  progress      LessonProgress[]
+
+  @@unique([courseId, sequence])
+  @@map("lessons")
+}
+
+model Enrolment {
+  id          String    @id @default(uuid()) @db.Uuid
+  userId      String    @db.Uuid
+  courseId    String    @db.Uuid
+  enrolledAt  DateTime  @default(now())
+  completedAt DateTime?
+
+  user   User   @relation("LearnerEnrolments", fields: [userId], references: [id], onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [contentId], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+  @@index([userId, completedAt])
+  @@map("enrolments")
+}
+
+/// Position only moves forward unless the lesson is restarted; `completedAt` is set once.
+model LessonProgress {
+  id                  String               @id @default(uuid()) @db.Uuid
+  userId              String               @db.Uuid
+  lessonId            String               @db.Uuid
+  status              LessonProgressStatus @default(NOT_STARTED)
+  lastPositionSeconds Int                  @default(0)
+  completedAt         DateTime?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+
+  user   User   @relation("LearnerLessonProgress", fields: [userId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+  @@index([userId, updatedAt(sort: Desc)])
+  @@map("lesson_progress")
+}
+
+/// Progress on a single item that is not a course (started, completed).
+model ContentProgress {
+  id          String               @id @default(uuid()) @db.Uuid
+  userId      String               @db.Uuid
+  contentId   String               @db.Uuid
+  status      LessonProgressStatus @default(IN_PROGRESS)
+  startedAt   DateTime             @default(now())
+  completedAt DateTime?
+  updatedAt   DateTime             @updatedAt
+
+  user    User            @relation("LearnerContentProgress", fields: [userId], references: [id], onDelete: Cascade)
+  content LearningContent @relation(fields: [contentId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, contentId])
+  @@index([userId, updatedAt(sort: Desc)])
+  @@map("content_progress")
+}
+
+/// Minutes a member spent learning on a day (Nairobi calendar date), for "hours this month".
+model LearningActivityDaily {
+  userId  String   @db.Uuid
+  date    DateTime @db.Date
+  minutes Int      @default(0)
+
+  user User @relation("LearnerActivity", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, date])
+  @@map("learning_activity_daily")
+}
+
+/// Issued once when a course is completed, together with an Achievement (`achievementId`).
+model Certificate {
+  id                String   @id @default(uuid()) @db.Uuid
+  userId            String   @db.Uuid
+  courseId          String   @db.Uuid
+  /// ATC-{year}-{sequence}, unique.
+  certificateNumber String   @unique
+  issuedAt          DateTime @default(now())
+  achievementId     String?  @db.Uuid
+
+  user        User         @relation("LearnerCertificates", fields: [userId], references: [id], onDelete: Cascade)
+  course      Course       @relation(fields: [courseId], references: [contentId], onDelete: Cascade)
+  achievement Achievement? @relation(fields: [achievementId], references: [id], onDelete: SetNull)
+
+  @@unique([userId, courseId])
+  @@map("certificates")
+}
+
+/// Explicit, reasoned progress corrections by staff. Every override is also an audit entry.
+model LearningProgressOverride {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @db.Uuid
+  courseId  String   @db.Uuid
+  lessonId  String?  @db.Uuid
+  action    String
+  reason    String
+  actorId   String?  @db.Uuid
+  createdAt DateTime @default(now())
+
+  @@index([userId, courseId])
+  @@map("learning_progress_overrides")
+}

@@ -55,7 +55,7 @@ class AuthFormPage extends StatelessWidget {
                       child: Text(
                         title,
                         style: AtTextStyles.tabTitle.copyWith(
-                          color: AtColors.ink,
+                          color: context.at.ink,
                         ),
                       ),
                     ),
@@ -63,7 +63,9 @@ class AuthFormPage extends StatelessWidget {
                       const SizedBox(height: 8),
                       Text(
                         subtitle!,
-                        style: AtTextStyles.body.copyWith(color: AtColors.body),
+                        style: AtTextStyles.body.copyWith(
+                          color: context.at.body,
+                        ),
                       ),
                     ],
                     const SizedBox(height: 24),
@@ -149,7 +151,7 @@ class _ResendCountdownState extends State<ResendCountdown> {
       children: [
         Text(
           l10n.verifyDidntGet,
-          style: AtTextStyles.bodySm.copyWith(color: AtColors.body),
+          style: AtTextStyles.bodySm.copyWith(color: context.at.body),
         ),
         const SizedBox(width: 8),
         if (_remaining > 0)
@@ -157,7 +159,7 @@ class _ResendCountdownState extends State<ResendCountdown> {
             liveRegion: false,
             child: Text(
               l10n.verifyResendIn(formatCountdown(_remaining)),
-              style: AtTextStyles.chip.copyWith(color: AtColors.muted),
+              style: AtTextStyles.chip.copyWith(color: context.at.muted),
             ),
           )
         else

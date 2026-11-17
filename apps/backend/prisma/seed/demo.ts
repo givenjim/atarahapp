@@ -1,12 +1,29 @@
 import { type PrismaClient } from '@prisma/client';
-import * as argon2 from 'argon2';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { seedDemoCommunity } from './demo-community';
+import { seedDemoLearning } from './demo-learning';
+import { seedDemoMedia } from './demo-media';
+import { seedDemoOpportunities } from './demo-opportunities';
 
 /**
  * Demo seed: development only, every record flagged `isDemo = true`. The names are illustrative people
  * from the design prototype; they must never appear in production or be hard-coded in UI.
- * All demo accounts share the dev-only password below. Staff demo accounts still enrol their own
- * authenticator on first admin sign-in (no TOTP secret is seeded).
+ * Accounts are created in Supabase Auth through the admin API (the database trigger then creates the
+ * `users` row), all with the dev-only password below. Staff demo accounts still enrol their own
+ * authenticator on first admin sign-in (no TOTP factor is seeded).
  */
+
+/** Service-role client for seeding. Reads the same environment variables as the backend. */
+export function seedSupabaseClient(): SupabaseClient {
+  const url = process.env.ATARAH_SUPABASE_URL;
+  const key = process.env.ATARAH_SUPABASE_SECRET_KEY;
+  if (!url || !key)
+    throw new Error(
+      'ATARAH_SUPABASE_URL and ATARAH_SUPABASE_SECRET_KEY are required to seed demo users',
+    );
+  return createClient(url, key, { auth: { autoRefreshToken: false, persistSession: false } });
+}
+
 export const DEMO_PASSWORD = 'Atarah-demo-1';
 
 const DEMO_USERS = [
@@ -68,27 +85,31 @@ const DEMO_USERS = [
   },
 ] as const;
 
-export async function runDemoSeed(prisma: PrismaClient): Promise<{ users: number }> {
-  const passwordHash = await argon2.hash(DEMO_PASSWORD, { type: argon2.argon2id });
+export async function runDemoSeed(
+  prisma: PrismaClient,
+  supabase: SupabaseClient = seedSupabaseClient(),
+): Promise<{ users: number }> {
   const plans = new Map((await prisma.membershipPlan.findMany()).map((p) => [p.key, p.id]));
   const roles = new Map((await prisma.role.findMany()).map((r) => [r.key, r.id]));
   let users = 0;
 
   for (const u of DEMO_USERS) {
     if (await prisma.user.findUnique({ where: { email: u.email } })) continue;
+    const created = await supabase.auth.admin.createUser({
+      email: u.email,
+      password: DEMO_PASSWORD,
+      email_confirm: true,
+      ...(u.phone ? { phone: u.phone, phone_confirm: true } : {}),
+      user_metadata: { full_name: u.name },
+    });
+    if (created.error || !created.data.user)
+      throw new Error(`Could not create demo user ${u.email}: ${created.error?.message}`);
+    // The auth.users trigger created the `users` row; flag it as demo data.
     await prisma.$transaction(async (tx) => {
       const now = new Date();
-      const user = await tx.user.create({
-        data: {
-          fullName: u.name,
-          email: u.email,
-          phone: u.phone,
-          emailVerifiedAt: now,
-          phoneVerifiedAt: u.phone ? now : null,
-          status: 'ACTIVE',
-          isDemo: true,
-          credential: { create: { passwordHash } },
-        },
+      const user = await tx.user.update({
+        where: { id: created.data.user!.id },
+        data: { isDemo: true, fullName: u.name },
       });
       if (u.plan === 'PRO') {
         await tx.membership.create({
@@ -109,6 +130,11 @@ export async function runDemoSeed(prisma: PrismaClient): Promise<{ users: number
     users += 1;
   }
   await seedDemoArticles(prisma);
+  await seedDemoCommunity(prisma);
+  await seedDemoOpportunities(prisma);
+  await seedDemoLearning(prisma);
+  // Placeholder pictures for every picture slot of the demo records (DEC-088). Fills empty slots only.
+  await seedDemoMedia(prisma, supabase);
   return { users };
 }
 

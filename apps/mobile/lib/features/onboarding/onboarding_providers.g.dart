@@ -225,7 +225,7 @@ final class AvatarImageProvider
   }
 }
 
-String _$avatarImageHash() => r'3aedd838a34d697a3b65f9a5725439b8d976177b';
+String _$avatarImageHash() => r'fa85c076f16a16115411600a49e4cd8e7c8a3394';
 
 /// The signed-in member's onboarding state, fetched from the server. Null while signed out. Every step is
 /// saved on the server, so this is also what resumes setup after the app is closed.

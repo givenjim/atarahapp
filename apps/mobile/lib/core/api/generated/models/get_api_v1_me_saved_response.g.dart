@@ -10,7 +10,7 @@ GetApiV1MeSavedResponse _$GetApiV1MeSavedResponseFromJson(
   Map<String, dynamic> json,
 ) => GetApiV1MeSavedResponse(
   data: (json['data'] as List<dynamic>)
-      .map((e) => SavedArticleDto.fromJson(e as Map<String, dynamic>))
+      .map((e) => SavedItemDto.fromJson(e as Map<String, dynamic>))
       .toList(),
   meta: json['meta'],
 );

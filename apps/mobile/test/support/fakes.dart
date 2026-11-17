@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:atarah/core/api/generated/export.dart';
 import 'package:atarah/core/auth/auth_repository.dart';
 import 'package:atarah/core/networking/failures.dart';
@@ -8,6 +10,9 @@ MeDto fakeUser({
   String email = 'member@test.atarah.local',
   bool pro = false,
   List<MeDtoRoles> roles = const [],
+  MeDtoAppearance appearance = MeDtoAppearance.light,
+  MeDtoStatus status = MeDtoStatus.active,
+  DateTime? deletionScheduledFor,
 }) => MeDto(
   id: '00000000-0000-4000-8000-000000000001',
   fullName: name,
@@ -15,15 +20,18 @@ MeDto fakeUser({
   phone: null,
   emailVerified: true,
   phoneVerified: false,
-  status: MeDtoStatus.active,
+  status: status,
   timeZone: 'Africa/Nairobi',
   locale: 'en',
+  appearance: appearance,
+  marketingOptIn: false,
   roles: roles,
   entitlements: const [],
   membership: MembershipSummaryDto(
     plan: pro ? MembershipSummaryDtoPlan.pro : MembershipSummaryDtoPlan.free,
   ),
   createdAt: DateTime.utc(2026, 1, 1),
+  deletionScheduledFor: deletionScheduledFor,
 );
 
 /// In-memory stand-in for [AuthRepository]. Records calls and can be scripted to fail.
@@ -43,6 +51,16 @@ class FakeAuthRepository implements AuthRepository {
   AppFailure? restoreFailure;
   AppFailure? signInFailure;
   final List<String> calls = [];
+
+  /// Times the device was registered with the API (kept apart from [calls]).
+  int deviceRegistrations = 0;
+
+  /// Push the provider-ended-the-session and Google-returned events into the app.
+  // ignore: close_sinks
+  final sessionEndedController = StreamController<void>.broadcast();
+  // ignore: close_sinks
+  final externalSignedInController = StreamController<void>.broadcast();
+  MeDto? externalResult;
   MeDto signInResult = fakeUser();
 
   @override
@@ -119,7 +137,7 @@ class FakeAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<void> resetPassword({
+  Future<MeDto> resetPassword({
     required String identifier,
     required String code,
     required String newPassword,
@@ -127,7 +145,24 @@ class FakeAuthRepository implements AuthRepository {
     calls.add('reset:$identifier:$code');
     final f = resetFailure;
     if (f != null) throw f;
+    return signInResult;
   }
+
+  @override
+  Stream<void> get sessionEnded => sessionEndedController.stream;
+
+  @override
+  Stream<void> get externalSignedIn => externalSignedInController.stream;
+
+  @override
+  Future<void> startGoogleSignIn() async => calls.add('google');
+
+  @override
+  Future<MeDto> enterWithExistingSession() async =>
+      externalResult ?? signInResult;
+
+  @override
+  Future<void> registerDevice() async => deviceRegistrations++;
 
   @override
   Future<void> signOut() async => calls.add('signOut');

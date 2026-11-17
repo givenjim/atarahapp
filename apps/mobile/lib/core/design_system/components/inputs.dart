@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart' show CustomSemanticsAction;
 import 'package:flutter/services.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../l10n/app_localizations.dart';
+import '../theme.dart';
 import '../tokens.g.dart';
 import 'at_tap_target.dart';
 
-/// 52-high text field with the Atarah focus ring (`#7b6cf6` plus a 4px `#efecff` halo) and an error state.
+/// 52-high text field with the Atarah focus ring (Violet plus a 4px primaryTint halo) and an error state.
 /// Supports a leading prefix such as "+254", "KES" or "atarah.app/".
 class AtTextField extends StatefulWidget {
   const AtTextField({
@@ -98,10 +100,10 @@ class _AtTextFieldState extends State<AtTextField> {
     final hasError = widget.errorText != null;
     final multiline = widget.maxLines > 1;
     final borderColor = hasError
-        ? AtColors.pinkFg
+        ? context.at.coral
         : _focused
-        ? AtColors.primaryLight
-        : AtColors.inputBorder;
+        ? context.at.primaryLight
+        : context.at.inputBorder;
 
     final field = AnimatedContainer(
       duration: atDuration(context, AtMotion.fast),
@@ -115,7 +117,7 @@ class _AtTextFieldState extends State<AtTextField> {
         vertical: multiline ? 14 : 0,
       ),
       decoration: BoxDecoration(
-        color: widget.enabled ? AtColors.inputFill : AtColors.softTile,
+        color: widget.enabled ? context.at.inputFill : context.at.softTile,
         borderRadius: AtRadii.input,
         border: Border.all(
           color: borderColor,
@@ -124,7 +126,9 @@ class _AtTextFieldState extends State<AtTextField> {
         boxShadow: _focused
             ? [
                 BoxShadow(
-                  color: hasError ? AtColors.pinkBg : AtColors.focusRing,
+                  color: hasError
+                      ? context.at.coralSurface
+                      : context.at.focusRing,
                   spreadRadius: 4,
                   blurRadius: 0,
                 ),
@@ -137,7 +141,7 @@ class _AtTextFieldState extends State<AtTextField> {
             : CrossAxisAlignment.center,
         children: [
           if (widget.prefixIcon != null) ...[
-            Icon(widget.prefixIcon, size: 18, color: AtColors.muted),
+            Icon(widget.prefixIcon, size: 18, color: context.at.muted),
             const SizedBox(width: 10),
           ],
           if (widget.prefixText != null) ...[
@@ -149,7 +153,7 @@ class _AtTextFieldState extends State<AtTextField> {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: AtTextStyles.body.copyWith(
-                  color: AtColors.muted,
+                  color: context.at.muted,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -172,9 +176,9 @@ class _AtTextFieldState extends State<AtTextField> {
               autofillHints: widget.autofillHints,
               onChanged: widget.onChanged,
               onSubmitted: widget.onSubmitted,
-              cursorColor: AtColors.primary,
+              cursorColor: context.at.primary,
               textAlignVertical: TextAlignVertical.center,
-              style: AtTextStyles.body.copyWith(color: AtColors.ink),
+              style: AtTextStyles.body.copyWith(color: context.at.ink),
               decoration: InputDecoration(
                 isCollapsed: true,
                 border: InputBorder.none,
@@ -184,13 +188,20 @@ class _AtTextFieldState extends State<AtTextField> {
                 errorBorder: InputBorder.none,
                 counterText: '',
                 hintText: widget.hint,
-                hintStyle: AtTextStyles.body.copyWith(color: AtColors.muted),
+                hintStyle: AtTextStyles.body.copyWith(color: context.at.muted),
                 // The editable node itself is the full field height, so it is a proper tap target.
                 constraints: BoxConstraints(
-                  minHeight: multiline ? AtSizes.input - 28 : AtSizes.input - 2,
+                  // A multi-line field's editable is at least 48 tall (two lines of body text are 46.4), so it is a tap target.
+                  minHeight: multiline
+                      ? AtSizes.touchTarget
+                      : AtSizes.input - 2,
                   maxHeight: multiline ? double.infinity : AtSizes.input - 2,
                 ),
-                contentPadding: EdgeInsets.zero,
+                // A single line is centred by padding: the collapsed decoration pins the text to the top of
+                // its tall editable box otherwise.
+                contentPadding: multiline
+                    ? EdgeInsets.zero
+                    : const EdgeInsets.symmetric(vertical: 14),
               ),
             ),
           ),
@@ -208,19 +219,21 @@ class _AtTextFieldState extends State<AtTextField> {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 2),
+            Padding(
+              padding: const EdgeInsets.only(top: 2),
               child: Icon(
                 LucideIcons.circleAlert,
                 size: 14,
-                color: AtColors.pinkStrong,
+                color: context.at.coralStrong,
               ),
             ),
             const SizedBox(width: 6),
             Expanded(
               child: Text(
                 widget.errorText!,
-                style: AtTextStyles.meta.copyWith(color: AtColors.pinkStrong),
+                style: AtTextStyles.meta.copyWith(
+                  color: context.at.coralStrong,
+                ),
               ),
             ),
           ],
@@ -230,7 +243,7 @@ class _AtTextFieldState extends State<AtTextField> {
       below.add(
         Text(
           widget.helperText!,
-          style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+          style: AtTextStyles.meta.copyWith(color: context.at.muted),
         ),
       );
     }
@@ -240,7 +253,7 @@ class _AtTextFieldState extends State<AtTextField> {
           alignment: Alignment.centerRight,
           child: Text(
             '${_controller.text.characters.length} / ${widget.maxLength}',
-            style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+            style: AtTextStyles.meta.copyWith(color: context.at.muted),
           ),
         ),
       );
@@ -257,7 +270,7 @@ class _AtTextFieldState extends State<AtTextField> {
           if (widget.label != null) ...[
             Text(
               widget.label!,
-              style: AtTextStyles.chip.copyWith(color: AtColors.ink),
+              style: AtTextStyles.chip.copyWith(color: context.at.ink),
             ),
             const SizedBox(height: 8),
           ],
@@ -305,9 +318,9 @@ class AtPasswordStrengthMeter extends StatelessWidget {
     final e = evaluatePassword(password);
     if (e.level == AtPasswordStrength.empty) return const SizedBox.shrink();
     final color = switch (e.level) {
-      AtPasswordStrength.weak => AtColors.pinkFg,
-      AtPasswordStrength.ok => AtColors.warningFg,
-      _ => AtColors.successFg,
+      AtPasswordStrength.weak => context.at.coral,
+      AtPasswordStrength.ok => context.at.tangerine,
+      _ => context.at.successIcon,
     };
     final text = switch (e.level) {
       AtPasswordStrength.weak => l10n.passwordStrengthWeak,
@@ -315,9 +328,9 @@ class AtPasswordStrengthMeter extends StatelessWidget {
       _ => l10n.passwordStrengthStrong,
     };
     final textColor = switch (e.level) {
-      AtPasswordStrength.weak => AtColors.pinkStrong,
-      AtPasswordStrength.ok => AtColors.warningStrong,
-      _ => AtColors.successStrong,
+      AtPasswordStrength.weak => context.at.coralStrong,
+      AtPasswordStrength.ok => context.at.tangerineStrong,
+      _ => context.at.successStrong,
     };
     return Semantics(
       liveRegion: true,
@@ -334,7 +347,7 @@ class AtPasswordStrengthMeter extends StatelessWidget {
                   child: Container(
                     height: 4,
                     decoration: BoxDecoration(
-                      color: i < e.score ? color : AtColors.progressTrack,
+                      color: i < e.score ? color : context.at.progressTrack,
                       borderRadius: AtRadii.pill,
                     ),
                   ),
@@ -415,7 +428,7 @@ class _AtPasswordFieldState extends State<AtPasswordField> {
             child: Icon(
               _visible ? LucideIcons.eyeOff : LucideIcons.eye,
               size: 18,
-              color: AtColors.muted,
+              color: context.at.muted,
             ),
           ),
         ),
@@ -527,30 +540,30 @@ class _AtCodeInputState extends State<AtCodeInput> {
     final active =
         _focus.hasFocus && i == text.length.clamp(0, widget.length - 1);
     final color = widget.hasError
-        ? AtColors.pinkFg
+        ? context.at.coral
         : active
-        ? AtColors.primaryLight
+        ? context.at.primaryLight
         : filled
-        ? AtColors.secondaryBorder
-        : AtColors.inputBorder;
+        ? context.at.secondaryBorder
+        : context.at.inputBorder;
     return AspectRatio(
       aspectRatio: 0.82,
       child: Container(
         decoration: BoxDecoration(
-          color: filled ? AtColors.tint3 : AtColors.inputFill,
+          color: filled ? context.at.primaryTintFaint : context.at.inputFill,
           borderRadius: AtRadii.input,
           border: Border.all(
             color: color,
             width: active || widget.hasError ? 1.5 : 1,
           ),
           boxShadow: active
-              ? const [BoxShadow(color: AtColors.focusRing, spreadRadius: 3)]
+              ? [BoxShadow(color: context.at.focusRing, spreadRadius: 3)]
               : null,
         ),
         alignment: Alignment.center,
         child: Text(
           filled ? text[i] : '',
-          style: AtTextStyles.sectionTitle.copyWith(color: AtColors.ink),
+          style: AtTextStyles.sectionTitle.copyWith(color: context.at.ink),
         ),
       ),
     );
@@ -566,6 +579,7 @@ class AtCheckbox extends StatelessWidget {
     this.label,
     this.labelWidget,
     this.semanticLabel,
+    this.customActions,
   });
 
   final bool value;
@@ -574,6 +588,9 @@ class AtCheckbox extends StatelessWidget {
   final Widget? labelWidget;
   final String? semanticLabel;
 
+  /// Extra screen-reader actions, for a [labelWidget] that holds links (the label itself is read as one piece).
+  final Map<CustomSemanticsAction, VoidCallback>? customActions;
+
   @override
   Widget build(BuildContext context) {
     final box = AnimatedContainer(
@@ -581,15 +598,15 @@ class AtCheckbox extends StatelessWidget {
       width: 22,
       height: 22,
       decoration: BoxDecoration(
-        color: value ? AtColors.primary : AtColors.white,
+        color: value ? context.at.primaryFill : context.at.surface,
         borderRadius: BorderRadius.circular(7),
         border: Border.all(
-          color: value ? AtColors.primary : AtColors.secondaryBorder,
+          color: value ? context.at.primaryFill : context.at.secondaryBorder,
           width: 1.5,
         ),
       ),
       child: value
-          ? const Icon(LucideIcons.check, size: 14, color: AtColors.white)
+          ? Icon(LucideIcons.check, size: 14, color: context.at.white)
           : null,
     );
     return Semantics(
@@ -597,6 +614,7 @@ class AtCheckbox extends StatelessWidget {
       enabled: onChanged != null,
       label: semanticLabel ?? label,
       excludeSemantics: true,
+      customSemanticsActions: customActions,
       onTap: onChanged == null ? null : () => onChanged!(!value),
       child: InkWell(
         borderRadius: AtRadii.input,
@@ -618,7 +636,7 @@ class AtCheckbox extends StatelessWidget {
                       Text(
                         label!,
                         style: AtTextStyles.bodySm.copyWith(
-                          color: AtColors.body,
+                          color: context.at.body,
                         ),
                       ),
                 ),
@@ -670,21 +688,21 @@ class AtToggle extends StatelessWidget {
               height: AtSizes.toggleHeight,
               padding: const EdgeInsets.all(3),
               decoration: BoxDecoration(
-                color: value ? AtColors.primary : AtColors.toggleOff,
+                color: value ? context.at.primaryFill : context.at.toggleOff,
                 borderRadius: AtRadii.pill,
               ),
               alignment: value ? Alignment.centerRight : Alignment.centerLeft,
               child: Container(
                 width: 22,
                 height: 22,
-                decoration: const BoxDecoration(
-                  color: AtColors.white,
+                decoration: BoxDecoration(
+                  color: context.at.white,
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: Color.fromRGBO(21, 19, 61, 0.2),
+                      color: AtBrand.midnight.withValues(alpha: 0.2),
                       blurRadius: 4,
-                      offset: Offset(0, 1),
+                      offset: const Offset(0, 1),
                     ),
                   ],
                 ),
@@ -728,10 +746,10 @@ class AtRadioCard extends StatelessWidget {
       child: AnimatedContainer(
         duration: atDuration(context, AtMotion.fast),
         decoration: BoxDecoration(
-          color: selected ? AtColors.tint3 : AtColors.white,
+          color: selected ? context.at.primaryTintFaint : context.at.surface,
           borderRadius: AtRadii.cardLg,
           border: Border.all(
-            color: selected ? AtColors.primaryLight : AtColors.cardBorder,
+            color: selected ? context.at.primaryLight : context.at.cardBorder,
             width: selected ? 1.5 : 1,
           ),
         ),
@@ -757,7 +775,7 @@ class AtRadioCard extends StatelessWidget {
                           Text(
                             title,
                             style: AtTextStyles.cardTitle.copyWith(
-                              color: AtColors.ink,
+                              color: context.at.ink,
                             ),
                           ),
                           if (subtitle != null) ...[
@@ -765,7 +783,7 @@ class AtRadioCard extends StatelessWidget {
                             Text(
                               subtitle!,
                               style: AtTextStyles.meta.copyWith(
-                                color: AtColors.muted,
+                                color: context.at.muted,
                               ),
                             ),
                           ],
@@ -799,9 +817,9 @@ class _RadioDot extends StatelessWidget {
     height: 22,
     decoration: BoxDecoration(
       shape: BoxShape.circle,
-      color: AtColors.white,
+      color: context.at.surface,
       border: Border.all(
-        color: selected ? AtColors.primary : AtColors.secondaryBorder,
+        color: selected ? context.at.primary : context.at.secondaryBorder,
         width: selected ? 6.5 : 1.5,
       ),
     ),
@@ -825,8 +843,8 @@ class AtSegmented extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: AtColors.segmentedTrack,
+      decoration: BoxDecoration(
+        color: context.at.segmentedTrack,
         borderRadius: AtRadii.pill,
       ),
       child: Row(
@@ -855,10 +873,12 @@ class AtSegmented extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 6),
                         decoration: BoxDecoration(
                           color: i == selectedIndex
-                              ? AtColors.white
+                              ? context.at.surface
                               : Colors.transparent,
                           borderRadius: AtRadii.pill,
-                          boxShadow: i == selectedIndex ? AtShadows.card : null,
+                          boxShadow: i == selectedIndex
+                              ? context.at.shadowCard
+                              : null,
                         ),
                         child: Text(
                           labels[i],
@@ -866,8 +886,8 @@ class AtSegmented extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: AtTextStyles.chip.copyWith(
                             color: i == selectedIndex
-                                ? AtColors.primary
-                                : AtColors.muted,
+                                ? context.at.primary
+                                : context.at.muted,
                           ),
                         ),
                       ),

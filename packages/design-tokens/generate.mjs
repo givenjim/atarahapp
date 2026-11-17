@@ -1,6 +1,7 @@
 // Generates platform token files from tokens.json (single source of truth):
-//   apps/mobile/lib/core/design_system/tokens.g.dart   Flutter
-//   packages/design-tokens/dist/tokens.css             CSS custom properties for web and admin
+//   apps/mobile/lib/core/design_system/tokens.g.dart   Flutter (AtColors light + dark, radii, type ...)
+//   packages/design-tokens/dist/tokens.css             CSS custom properties for web and admin: light in :root,
+//                                                      dark under prefers-color-scheme and [data-theme="dark"]
 //   packages/design-tokens/dist/tokens.ts              typed constants for TypeScript
 // Run: pnpm gen:tokens
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -16,7 +17,6 @@ const HEADER =
 
 // ---- helpers --------------------------------------------------------------------------------
 
-const isLeafColor = (v) => typeof v === 'string';
 const kebab = (s) => s.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 const upperFirst = (s) => s[0].toUpperCase() + s.slice(1);
 
@@ -45,65 +45,116 @@ function dartColor(value) {
 
 const dartNum = (n) => (Number.isInteger(n) ? `${n}.0` : `${n}`);
 
-/** Flatten nested colour groups: { success: {bg} } -> success + 'Bg'. */
-function flattenColors(obj, prefix = '') {
-  const out = [];
-  for (const [k, v] of Object.entries(obj)) {
-    if (k.startsWith('$')) continue;
-    const name = prefix ? prefix + upperFirst(k) : k;
-    if (isLeafColor(v)) out.push([name, v]);
-    else out.push(...flattenColors(v, name));
-  }
-  return out;
-}
-
 const ALIGN = {
   90: ['Alignment.centerLeft', 'Alignment.centerRight'],
   135: ['Alignment.topLeft', 'Alignment.bottomRight'],
   180: ['Alignment.topCenter', 'Alignment.bottomCenter'],
 };
 
+const light = tokens.color.light;
+const dark = tokens.color.dark;
+const roles = Object.keys(light);
+const statics = Object.entries(tokens.static);
+const themedGradients = Object.keys(tokens.gradientThemed);
+const shadowNames = Object.keys(tokens.shadow);
+for (const r of roles)
+  if (!(r in dark)) throw new Error(`Colour role "${r}" is missing from the dark set`);
+
+const shadowField = (n) => `shadow${upperFirst(n)}`;
+const gradField = (n) => `${n}Gradient`;
+const cssGradient = (g) =>
+  `linear-gradient(${g.angle}deg, ${g.stops.map(([c, p]) => `${c} ${Math.round(p * 100)}%`).join(', ')})`;
+
 // ---- Dart -----------------------------------------------------------------------------------
 
+function gradLiteral(g) {
+  const [begin, end] = ALIGN[g.angle];
+  return `LinearGradient(begin: ${begin}, end: ${end}, colors: <Color>[${g.stops.map(([c]) => dartColor(c)).join(', ')}], stops: <double>[${g.stops.map(([, p]) => dartNum(p)).join(', ')}])`;
+}
+
+function shadowLiteral(appearance, name) {
+  if (appearance === 'dark') {
+    const c = dartColor(dark[tokens.shadowDark.role]);
+    return `<BoxShadow>[BoxShadow(color: ${c}, spreadRadius: ${dartNum(tokens.shadowDark.spread)})]`;
+  }
+  const s = tokens.shadow[name];
+  return `<BoxShadow>[BoxShadow(color: ${dartColor(s.color)}, offset: Offset(${dartNum(s.x)}, ${dartNum(s.y)}), blurRadius: ${dartNum(s.blur)})]`;
+}
+
 function genDart() {
-  const colors = flattenColors(tokens.color);
   const lines = [];
   lines.push(`// ${HEADER}`);
   lines.push('// ignore_for_file: public_member_api_docs, constant_identifier_names');
+  lines.push("import 'package:flutter/material.dart' show ThemeExtension;");
   lines.push("import 'package:flutter/painting.dart';");
   lines.push('');
 
-  lines.push('/// Colour tokens.');
-  lines.push('abstract final class AtColors {');
-  for (const [name, v] of colors) lines.push(`  static const Color ${name} = ${dartColor(v)};`);
+  lines.push('/// The six brand colours (Master Prompt 8.1). Identical in both appearances.');
+  lines.push('abstract final class AtBrand {');
+  for (const [name, v] of Object.entries(tokens.brand))
+    lines.push(`  static const Color ${name} = ${dartColor(v)};`);
   lines.push('}');
   lines.push('');
 
-  lines.push('/// Gradient tokens.');
-  lines.push('abstract final class AtGradients {');
-  for (const [name, g] of Object.entries(tokens.gradient)) {
-    const [begin, end] = ALIGN[g.angle];
-    lines.push(`  static const LinearGradient ${name} = LinearGradient(`);
-    lines.push(`    begin: ${begin},`);
-    lines.push(`    end: ${end},`);
-    lines.push(`    colors: <Color>[${g.stops.map(([c]) => dartColor(c)).join(', ')}],`);
-    lines.push(`    stops: <double>[${g.stops.map(([, s]) => dartNum(s)).join(', ')}],`);
-    lines.push('  );');
-  }
-  lines.push('}');
-  lines.push('');
+  const all = [
+    ...roles.map((r) => [r, 'Color']),
+    ...statics.map(([n]) => [n, 'Color']),
+    ...themedGradients.map((g) => [gradField(g), 'LinearGradient']),
+    ...shadowNames.map((n) => [shadowField(n), 'List<BoxShadow>']),
+  ];
 
   lines.push(
-    '/// Shadow tokens (each is a list so it can be passed straight to BoxDecoration.boxShadow).',
+    '/// Every colour role, gradient and shadow that depends on the appearance, as a [ThemeExtension].',
   );
-  lines.push('abstract final class AtShadows {');
-  for (const [name, s] of Object.entries(tokens.shadow)) {
-    lines.push(`  static const List<BoxShadow> ${name} = <BoxShadow>[`);
-    lines.push(
-      `    BoxShadow(color: ${dartColor(s.color)}, offset: Offset(${dartNum(s.x)}, ${dartNum(s.y)}), blurRadius: ${dartNum(s.blur)}),`,
-    );
-    lines.push('  ];');
+  lines.push(
+    '/// Read it with `context.at` (theme.dart). [light] and [dark] are the two const sets.',
+  );
+  lines.push('class AtColors extends ThemeExtension<AtColors> {');
+  lines.push('  const AtColors({');
+  for (const [n] of all) lines.push(`    required this.${n},`);
+  lines.push('  });');
+  lines.push('');
+  for (const [n, ty] of all) lines.push(`  final ${ty} ${n};`);
+  lines.push('');
+  for (const app of ['light', 'dark']) {
+    const set = app === 'light' ? light : dark;
+    lines.push(`  static const AtColors ${app} = AtColors(`);
+    for (const r of roles) lines.push(`    ${r}: ${dartColor(set[r])},`);
+    for (const [n, v] of statics) lines.push(`    ${n}: ${dartColor(v)},`);
+    for (const g of themedGradients)
+      lines.push(`    ${gradField(g)}: ${gradLiteral(tokens.gradientThemed[g][app])},`);
+    for (const n of shadowNames) lines.push(`    ${shadowField(n)}: ${shadowLiteral(app, n)},`);
+    lines.push('  );');
+    lines.push('');
   }
+  lines.push('  @override');
+  lines.push('  AtColors copyWith({');
+  for (const [n, ty] of all) lines.push(`    ${ty}? ${n},`);
+  lines.push('  }) {');
+  lines.push('    return AtColors(');
+  for (const [n] of all) lines.push(`      ${n}: ${n} ?? this.${n},`);
+  lines.push('    );');
+  lines.push('  }');
+  lines.push('');
+  lines.push('  @override');
+  lines.push('  AtColors lerp(covariant ThemeExtension<AtColors>? other, double t) {');
+  lines.push('    if (other is! AtColors) return this;');
+  lines.push('    return AtColors(');
+  for (const [n, ty] of all) {
+    if (ty === 'Color') lines.push(`      ${n}: Color.lerp(${n}, other.${n}, t)!,`);
+    else if (ty === 'LinearGradient')
+      lines.push(`      ${n}: LinearGradient.lerp(${n}, other.${n}, t)!,`);
+    else lines.push(`      ${n}: BoxShadow.lerpList(${n}, other.${n}, t)!,`);
+  }
+  lines.push('    );');
+  lines.push('  }');
+  lines.push('}');
+  lines.push('');
+
+  lines.push('/// Gradients that look the same in both appearances.');
+  lines.push('abstract final class AtGradients {');
+  for (const [name, g] of Object.entries(tokens.gradient))
+    lines.push(`  static const LinearGradient ${name} = ${gradLiteral(g)};`);
   lines.push('}');
   lines.push('');
 
@@ -164,16 +215,38 @@ function genDart() {
 // ---- CSS ------------------------------------------------------------------------------------
 
 function genCss() {
-  const out = [`/* ${HEADER} */`, ':root {'];
+  const colorVars = (set, indent) => {
+    const out = [];
+    for (const r of roles) out.push(`${indent}--at-color-${kebab(r)}: ${set[r]};`);
+    return out;
+  };
+  const themedVars = (app, indent) => {
+    const out = [];
+    for (const g of themedGradients)
+      out.push(
+        `${indent}--at-gradient-${kebab(g)}: ${cssGradient(tokens.gradientThemed[g][app])};`,
+      );
+    for (const n of shadowNames) {
+      if (app === 'dark')
+        out.push(
+          `${indent}--at-shadow-${kebab(n)}: 0 0 0 ${tokens.shadowDark.spread}px ${dark[tokens.shadowDark.role]};`,
+        );
+      else {
+        const s = tokens.shadow[n];
+        out.push(`${indent}--at-shadow-${kebab(n)}: ${s.x}px ${s.y}px ${s.blur}px ${s.color};`);
+      }
+    }
+    return out;
+  };
+
+  const out = [`/* ${HEADER} */`, ':root {', '  color-scheme: light;'];
   out.push(`  --at-font-family: '${tokens.font.family}', system-ui, sans-serif;`);
-  for (const [name, v] of flattenColors(tokens.color))
-    out.push(`  --at-color-${kebab(name)}: ${v};`);
-  for (const [name, g] of Object.entries(tokens.gradient)) {
-    const stops = g.stops.map(([c, p]) => `${c} ${Math.round(p * 100)}%`).join(', ');
-    out.push(`  --at-gradient-${kebab(name)}: linear-gradient(${g.angle}deg, ${stops});`);
-  }
-  for (const [name, s] of Object.entries(tokens.shadow))
-    out.push(`  --at-shadow-${kebab(name)}: ${s.x}px ${s.y}px ${s.blur}px ${s.color};`);
+  for (const [name, v] of Object.entries(tokens.brand)) out.push(`  --at-brand-${name}: ${v};`);
+  out.push(...colorVars(light, '  '));
+  for (const [name, v] of statics) out.push(`  --at-color-${kebab(name)}: ${v};`);
+  for (const [name, g] of Object.entries(tokens.gradient))
+    out.push(`  --at-gradient-${kebab(name)}: ${cssGradient(g)};`);
+  out.push(...themedVars('light', '  '));
   for (const [name, r] of Object.entries(tokens.radius))
     out.push(`  --at-radius-${kebab(name)}: ${r}px;`);
   for (const [name, n] of Object.entries(tokens.spacing))
@@ -189,6 +262,18 @@ function genCss() {
   for (const [name, ms] of Object.entries(tokens.motion))
     out.push(`  --at-motion-${name}: ${ms}ms;`);
   out.push('}', '');
+
+  const darkBody = (indent) => [
+    `${indent}color-scheme: dark;`,
+    ...colorVars(dark, indent),
+    ...themedVars('dark', indent),
+  ];
+  out.push('/* Dark appearance: follows the system unless the page pins data-theme="light". */');
+  out.push('@media (prefers-color-scheme: dark) {');
+  out.push('  :root:not([data-theme="light"]) {', ...darkBody('    '), '  }');
+  out.push('}', '');
+  out.push('/* Manual override. */');
+  out.push(':root[data-theme="dark"] {', ...darkBody('  '), '}', '');
   return out.join('\n');
 }
 

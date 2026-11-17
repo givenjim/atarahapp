@@ -26,7 +26,7 @@ export default async function HomeCurationPage() {
         <h1>Home curation</h1>
         <p>
           Choose the article pinned at the top of the Home screen. Only published articles can be
-          pinned. The featured-opportunity pin arrives with Opportunities.
+          pinned. Featured opportunities are chosen on each listing in Opportunities.
         </p>
       </div>
       {!config.data ? (

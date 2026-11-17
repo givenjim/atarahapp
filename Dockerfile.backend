@@ -1,0 +1,21 @@
+# Atarah backend (API and worker) image. Build from the repository root:
+#   docker build -f Dockerfile.backend -t atarah-backend .
+# The same image runs both processes: ATARAH_PROCESS=main (default) starts the API, worker the worker, and both runs the worker beside the API in one
+# container (for hosts that limit the number of services; one worker only). All configuration comes from ATARAH_* environment
+# variables at runtime (see apps/backend/.env.example); nothing secret is baked in.
+FROM node:22-slim
+RUN apt-get update && apt-get install -y --no-install-recommends openssl ca-certificates ffmpeg && rm -rf /var/lib/apt/lists/*
+RUN corepack enable
+WORKDIR /repo
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY apps/backend/package.json apps/backend/package.json
+COPY apps/web/package.json apps/web/package.json
+COPY apps/admin/package.json apps/admin/package.json
+COPY packages packages
+RUN pnpm install --frozen-lockfile --filter @atarah/backend...
+COPY apps/backend apps/backend
+RUN pnpm --filter @atarah/backend db:generate && pnpm --filter @atarah/backend build
+ENV NODE_ENV=production
+EXPOSE 3000
+WORKDIR /repo/apps/backend
+CMD ["sh", "-c", "if [ \"$ATARAH_PROCESS\" = both ]; then node dist/worker.js & exec node dist/main.js; else exec node dist/${ATARAH_PROCESS:-main}.js; fi"]

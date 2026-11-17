@@ -2,78 +2,42 @@
 
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-import { anonymousApi, api, errorOf, needsReauth } from '@/lib/api';
-import {
-  clearSessionCookies,
-  readChallenge,
-  setChallengeCookie,
-  setSessionCookies,
-  accessToken,
-  clearRecoveryCookie,
-  setRecoveryCookie,
-} from '@/lib/session';
+import { api, errorOf, needsReauth, sessionRedirectFor } from '@/lib/api';
+import { mfaStep, reauthenticate, signInWithPassword, verifyCode } from '@/lib/mfa';
+import { supabaseServer } from '@/lib/supabase/server';
 
 export interface FormState {
   error?: string;
 }
 
-const PASSWORD_STEP_FAILED = 'That email and password do not match an administrator account.';
-
 export async function loginAction(_: FormState, formData: FormData): Promise<FormState> {
   const email = String(formData.get('email') ?? '').trim();
   const password = String(formData.get('password') ?? '');
-  if (!email || !password) return { error: 'Enter your email and password.' };
 
-  const { data, error, response } = await anonymousApi().POST('/api/v1/admin/auth/login', {
-    body: { email, password },
-  });
-  if (!data) {
-    const e = errorOf(error, response);
-    return {
-      error: e.status === 429 ? e.message : e.status === 401 ? PASSWORD_STEP_FAILED : e.message,
-    };
-  }
-  await setChallengeCookie(data.data.challengeToken, data.data.step);
+  const supabase = await supabaseServer();
+  const result = await signInWithPassword(supabase, email, password);
+  if (!result.ok) return { error: result.error };
+  // The code page decides between "enter your code" and "set up your authenticator".
   redirect('/login/totp');
 }
 
+/** Verifies the code for sign-in or for the authenticator just enrolled. Success is an AAL2 session. */
 export async function totpAction(_: FormState, formData: FormData): Promise<FormState> {
-  const challenge = await readChallenge();
-  if (!challenge) redirect('/login');
-  const code = String(formData.get('code') ?? '').trim();
-  const recovery = String(formData.get('recoveryCode') ?? '')
-    .trim()
-    .toUpperCase();
-  if (!code && !recovery) return { error: 'Enter the 6-digit code from your authenticator app.' };
+  const factorId = String(formData.get('factorId') ?? '');
+  const supabase = await supabaseServer();
+  const step = await mfaStep(supabase);
+  if (step.step === 'login') redirect('/login?reason=expired');
+  if (step.step === 'done') redirect('/');
+  if (!factorId) redirect('/login/totp');
 
-  const { data, error, response } = await anonymousApi().POST('/api/v1/admin/auth/totp/verify', {
-    body: {
-      challengeToken: challenge.token,
-      ...(code ? { code } : { recoveryCode: recovery }),
-    },
-  });
-  if (!data) {
-    const e = errorOf(error, response);
-    // An expired challenge cannot be retried: start again from the password step.
-    if (e.status === 401 && e.code === 'AUTHENTICATION_REQUIRED') redirect('/login');
-    return { error: e.message };
-  }
-  await setSessionCookies(data.data);
-  if (data.data.recoveryCodes?.length) {
-    await setRecoveryCookie(data.data.recoveryCodes);
-    redirect('/login/recovery');
-  }
-  redirect('/');
-}
-
-export async function recoveryAcknowledgedAction(): Promise<void> {
-  await clearRecoveryCookie();
+  const result = await verifyCode(supabase, factorId, String(formData.get('code') ?? ''));
+  if (!result.ok) return { error: result.error };
   redirect('/');
 }
 
 export async function logoutAction(): Promise<void> {
-  if (await accessToken()) await api().POST('/api/v1/admin/auth/logout');
-  await clearSessionCookies();
+  const supabase = await supabaseServer();
+  await supabase.auth.signOut();
   redirect('/login');
 }
 
@@ -82,13 +46,14 @@ export type ActionResult =
   | { ok: false; reauth: true; error: string }
   | { ok: false; reauth?: false; error: string };
 
-export async function reauthAction(input: {
-  password: string;
-  code: string;
-}): Promise<ActionResult> {
-  const { error, response } = await api().POST('/api/v1/admin/auth/reauth', { body: input });
-  if (response.ok) return { ok: true };
-  return { ok: false, error: errorOf(error, response).message };
+/**
+ * Re-authentication: verify the user's authenticator again. The refreshed session cookies carry the new
+ * access token, which the retried request sends.
+ */
+export async function reauthAction(input: { code: string }): Promise<ActionResult> {
+  const supabase = await supabaseServer();
+  const result = await reauthenticate(supabase, input.code);
+  return result.ok ? { ok: true } : { ok: false, error: result.error };
 }
 
 async function changeStatus(
@@ -110,6 +75,8 @@ async function changeStatus(
   }
   const e = errorOf(error, response);
   if (needsReauth(e)) return { ok: false, reauth: true, error: e.message };
+  const gone = sessionRedirectFor(e);
+  if (gone) redirect(gone);
   return { ok: false, error: e.message };
 }
 

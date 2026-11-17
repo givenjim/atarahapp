@@ -171,6 +171,31 @@ export class MediaService {
   }
 
   /**
+   * Short-lived signed addresses to play a READY video (the 720p rendition when the worker made one, otherwise the
+   * original MP4) and its poster frame. The caller has already decided the viewer may watch it (enrolment, premium).
+   */
+  async playback(id: string): Promise<{
+    url: string;
+    posterUrl: string | null;
+    expiresAt: Date;
+    durationSeconds: number | null;
+  } | null> {
+    const asset = await this.prisma.mediaAsset.findFirst({
+      where: { id, status: 'READY', kind: 'VIDEO', deletedAt: null },
+    });
+    if (!asset) return null;
+    const bucket = bucketKind(asset.bucket);
+    const ttl = PRIVATE_DOWNLOAD_TTL_SECONDS;
+    const variants = (asset.variants as Record<string, string> | null) ?? {};
+    return {
+      url: await this.storage.signedDownloadUrl(bucket, variants.mp4 ?? asset.objectKey, ttl),
+      posterUrl: variants.poster ? await this.storage.signedDownloadUrl(bucket, variants.poster, ttl) : null,
+      expiresAt: new Date(Date.now() + ttl * 1000),
+      durationSeconds: asset.durationSeconds,
+    };
+  }
+
+  /**
    * Views of several assets for rendering inside content the caller has already decided the viewer may see
    * (a project's files). Does no ownership check; assets that are deleted are left out.
    */
@@ -227,6 +252,10 @@ export class MediaService {
         where: { id: assetId },
         data: { status: 'READY', mimeType: sniffed },
       });
+      // Lesson videos get a 720p rendition and a poster frame (a separate job; the original plays meanwhile).
+      if (asset.kind === 'VIDEO') {
+        await this.queue.add('transcode', { assetId }, { jobId: `transcode-${assetId}` });
+      }
       return;
     }
     await this.processImage(asset, sniffed);

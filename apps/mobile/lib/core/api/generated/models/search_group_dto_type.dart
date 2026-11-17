@@ -10,6 +10,8 @@ enum SearchGroupDtoType {
   creatives('creatives'),
   @JsonValue('articles')
   articles('articles'),
+  @JsonValue('posts')
+  posts('posts'),
   @JsonValue('opportunities')
   opportunities('opportunities'),
   @JsonValue('learning')

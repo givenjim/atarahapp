@@ -152,7 +152,7 @@ class _ProjectScreenState extends ConsumerState<ProjectScreen> {
         header: true,
         child: Text(
           t,
-          style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+          style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
         ),
       ),
     );
@@ -210,21 +210,21 @@ class _ProjectScreenState extends ConsumerState<ProjectScreen> {
           header: true,
           child: Text(
             p.title.isEmpty ? l10n.pjUntitled : p.title,
-            style: AtTextStyles.detailTitle.copyWith(color: AtColors.ink),
+            style: AtTextStyles.detailTitle.copyWith(color: context.at.ink),
           ),
         ),
         if (subtitle.isNotEmpty) ...[
           const SizedBox(height: 4),
           Text(
             subtitle,
-            style: AtTextStyles.bodySm.copyWith(color: AtColors.muted),
+            style: AtTextStyles.bodySm.copyWith(color: context.at.muted),
           ),
         ],
         if (p.description != null) ...[
           const SizedBox(height: 16),
           Text(
             p.description!,
-            style: AtTextStyles.body.copyWith(color: AtColors.longForm),
+            style: AtTextStyles.body.copyWith(color: context.at.longForm),
           ),
         ],
         if (p.skills.isNotEmpty) ...[
@@ -267,23 +267,19 @@ class _ProjectScreenState extends ConsumerState<ProjectScreen> {
           heading(l10n.pjOutcome),
           Container(
             padding: const EdgeInsets.all(16),
-            decoration: const BoxDecoration(
-              color: AtColors.softTile,
+            decoration: BoxDecoration(
+              color: context.at.softTile,
               borderRadius: AtRadii.card,
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(
-                  LucideIcons.trophy,
-                  size: 18,
-                  color: AtColors.primary,
-                ),
+                Icon(LucideIcons.trophy, size: 18, color: context.at.primary),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
                     p.outcome!,
-                    style: AtTextStyles.body.copyWith(color: AtColors.ink),
+                    style: AtTextStyles.body.copyWith(color: context.at.ink),
                   ),
                 ),
               ],
@@ -334,14 +330,14 @@ class _MediaItem extends StatelessWidget {
       return AspectRatio(
         aspectRatio: 16 / 9,
         child: DecoratedBox(
-          decoration: const BoxDecoration(
-            color: AtColors.softTile,
+          decoration: BoxDecoration(
+            color: context.at.softTile,
             borderRadius: AtRadii.card,
           ),
           child: Center(
             child: Text(
               l10n.pjMediaProcessing,
-              style: AtTextStyles.bodySm.copyWith(color: AtColors.muted),
+              style: AtTextStyles.bodySm.copyWith(color: context.at.muted),
             ),
           ),
         ),

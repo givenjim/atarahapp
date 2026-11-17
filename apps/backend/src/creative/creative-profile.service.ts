@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { ApiException } from '../common/api.exception';
+import { DomainEventBus } from '../community-core/domain-events';
 import { MediaService } from '../media/media.service';
 import { PrismaService, type TxClient } from '../prisma/prisma.service';
 import { type CompletionResult, computeCompletion, type ProfileFacts } from './completion';
@@ -50,6 +51,7 @@ export class CreativeProfileService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly media: MediaService,
+    private readonly events: DomainEventBus,
   ) {}
 
   /** The member's profile row, created on first use with their sign-up name. */
@@ -400,6 +402,7 @@ export class CreativeProfileService {
     if (!profile.onboardingCompletedAt || !profile.passport) {
       await this.finish(id);
       profile = await this.load(id);
+      await this.events.emit({ type: 'OnboardingCompleted', userId });
     }
     const state = await this.view(profile);
     return {
@@ -484,10 +487,18 @@ export class CreativeProfileService {
   /** Recompute and store the completion percentage. Call after every write to a profile. */
   async refreshCompletion(profileId: string): Promise<CompletionResult> {
     const result = computeCompletion(await this.facts(profileId));
+    const before = await this.prisma.creativeProfile.findUnique({
+      where: { id: profileId },
+      select: { completionPercent: true, userId: true },
+    });
     await this.prisma.creativeProfile.update({
       where: { id: profileId },
       data: { completionPercent: result.percent },
     });
+    // Fires once: when the profile first reaches 100%.
+    if (before && before.completionPercent < 100 && result.percent === 100) {
+      await this.events.emit({ type: 'ProfileCompleted', userId: before.userId });
+    }
     return result;
   }
 

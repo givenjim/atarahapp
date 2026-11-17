@@ -148,17 +148,16 @@ describe('ConfirmDialog', () => {
 });
 
 describe('ReauthDialog', () => {
-  it('collects a password and a 6-digit code', async () => {
+  it('collects a 6-digit authenticator code and no password', async () => {
     const user = userEvent.setup();
     const onSubmit = vi.fn();
     render(<ReauthDialog open onSubmit={onSubmit} onCancel={() => undefined} />);
     const code = screen.getByLabelText('Authenticator code');
     expect(code).toHaveAttribute('autocomplete', 'one-time-code');
-    expect(screen.getByLabelText('Password')).toHaveAttribute('type', 'password');
-    await user.type(screen.getByLabelText('Password'), 'Passw0rd-test-1');
+    expect(screen.queryByLabelText('Password')).toBeNull();
     await user.type(code, '123456');
     await user.click(screen.getByRole('button', { name: 'Confirm' }));
-    expect(onSubmit).toHaveBeenCalledWith({ password: 'Passw0rd-test-1', code: '123456' });
+    expect(onSubmit).toHaveBeenCalledWith({ code: '123456' });
   });
 });
 
@@ -167,6 +166,7 @@ describe('navigation and Soon panels', () => {
     expect(NAV.map((s) => s.label)).toEqual([
       'Dashboard',
       'Users',
+      'Privacy requests',
       'Memberships',
       'Roles & Permissions',
       'Verification',
@@ -179,6 +179,8 @@ describe('navigation and Soon panels', () => {
       'Mentorship',
       'Marketplace',
       'Community & Reports',
+      'Groups',
+      'Announcements',
       'Portfolio',
       'Creative Economy',
       'Payments',
@@ -200,9 +202,22 @@ describe('navigation and Soon panels', () => {
     expect(visibleNav([])).toEqual([]);
     expect(visibleNav(['admin.access', 'article.manage']).map((s) => s.slug)).toEqual([
       'dashboard',
-      'content',
       'articles',
       'home-curation',
+    ]);
+    // Help articles, the FAQ and legal documents have their own permissions (P1-M11).
+    expect(visibleNav(['admin.access', 'help.manage']).map((s) => s.slug)).toEqual([
+      'dashboard',
+      'content',
+    ]);
+    expect(visibleNav(['admin.access', 'notification.broadcast']).map((s) => s.slug)).toEqual([
+      'dashboard',
+      'notifications',
+    ]);
+    expect(visibleNav(['admin.access', 'user.view']).map((s) => s.slug)).toEqual([
+      'dashboard',
+      'users',
+      'privacy-requests',
     ]);
     expect(visibleNav(['admin.access', 'moderation.act']).map((s) => s.slug)).not.toContain(
       'articles',
@@ -211,16 +226,51 @@ describe('navigation and Soon panels', () => {
       'dashboard',
       'taxonomy',
     ]);
+    expect(visibleNav(['admin.access', 'opportunity.manage']).map((s) => s.slug)).toEqual([
+      'dashboard',
+      'opportunities',
+    ]);
+    expect(sectionBySlug('opportunities')?.phase).toBe('live');
+    expect(visibleNav(['admin.access', 'learning.manage']).map((s) => s.slug)).toEqual([
+      'dashboard',
+      'learning',
+    ]);
+    expect(sectionBySlug('learning')?.phase).toBe('live');
+    // Operations (P1-M12): analytics, settings and roles each have their own permission.
+    expect(visibleNav(['admin.access', 'analytics.view']).map((s) => s.slug)).toEqual([
+      'dashboard',
+      'analytics',
+    ]);
+    expect(visibleNav(['admin.access', 'settings.manage']).map((s) => s.slug)).toEqual([
+      'dashboard',
+      'settings',
+    ]);
+    expect(visibleNav(['admin.access', 'role.manage']).map((s) => s.slug)).toEqual([
+      'dashboard',
+      'roles',
+    ]);
   });
 
   it('only the built sections are live; everything else names its phase', () => {
     expect(NAV.filter((s) => s.phase === 'live').map((s) => s.slug)).toEqual([
+      'dashboard',
       'users',
+      'privacy-requests',
+      'roles',
+      'content',
       'articles',
       'home-curation',
       'taxonomy',
+      'learning',
+      'opportunities',
+      'community',
+      'groups',
+      'announcements',
       'portfolio',
+      'notifications',
+      'analytics',
       'audit-logs',
+      'settings',
     ]);
     render(<SoonPanel section={sectionBySlug('payments')!} />);
     expect(screen.getByText('Soon · P2')).toBeInTheDocument();

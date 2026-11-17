@@ -4,13 +4,9 @@ const valid = {
   ATARAH_PUBLIC_URL: 'http://localhost:3000',
   ATARAH_DATABASE_URL: 'postgresql://u:p@localhost:5432/db',
   ATARAH_REDIS_URL: 'redis://localhost:6379',
-  ATARAH_JWT_ACCESS_SECRET: 'a'.repeat(32),
-  ATARAH_REFRESH_TOKEN_PEPPER: 'b'.repeat(32),
-  ATARAH_CODE_PEPPER: 'c'.repeat(32),
-  ATARAH_DATA_ENCRYPTION_KEY: 'd'.repeat(32),
-  ATARAH_S3_ENDPOINT: 'http://localhost:9000',
-  ATARAH_S3_ACCESS_KEY: 'k',
-  ATARAH_S3_SECRET_KEY: 's',
+  ATARAH_SUPABASE_URL: 'http://127.0.0.1:55321',
+  ATARAH_SUPABASE_SECRET_KEY: 's'.repeat(24),
+  ATARAH_SEND_SMS_HOOK_SECRET: `v1,whsec_${'d'.repeat(32)}`,
 };
 
 describe('parseEnv', () => {
@@ -27,7 +23,7 @@ describe('parseEnv', () => {
   });
 
   it('rejects short secrets and malformed URLs', () => {
-    expect(() => parseEnv({ ...valid, ATARAH_JWT_ACCESS_SECRET: 'short' })).toThrow(
+    expect(() => parseEnv({ ...valid, ATARAH_SEND_SMS_HOOK_SECRET: 'short' })).toThrow(
       /32 characters/,
     );
     expect(() => parseEnv({ ...valid, ATARAH_DATABASE_URL: 'not a url' })).toThrow(
@@ -38,13 +34,13 @@ describe('parseEnv', () => {
   it('rejects placeholder secrets and SKIP_CONNECT outside dev/test', () => {
     const placeholder = 'change-me-' + 'x'.repeat(30);
     expect(() =>
-      parseEnv({ ...valid, ATARAH_ENV: 'production', ATARAH_JWT_ACCESS_SECRET: placeholder }),
+      parseEnv({ ...valid, ATARAH_ENV: 'production', ATARAH_SEND_SMS_HOOK_SECRET: placeholder }),
     ).toThrow(/placeholder secret/);
     expect(() => parseEnv({ ...valid, ATARAH_ENV: 'staging', ATARAH_SKIP_CONNECT: '1' })).toThrow(
       /must not be set/,
     );
     expect(
-      parseEnv({ ...valid, ATARAH_ENV: 'dev', ATARAH_JWT_ACCESS_SECRET: placeholder }),
+      parseEnv({ ...valid, ATARAH_ENV: 'dev', ATARAH_SEND_SMS_HOOK_SECRET: placeholder }),
     ).toBeTruthy();
   });
 });

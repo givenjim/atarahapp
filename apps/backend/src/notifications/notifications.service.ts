@@ -1,9 +1,11 @@
 import { InjectQueue } from '@nestjs/bullmq';
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { type DevicePlatform, type NotificationCategory } from '@prisma/client';
 import { type Queue } from 'bullmq';
+import { type Redis } from 'ioredis';
 import { ApiException } from '../common/api.exception';
 import { PrismaService } from '../prisma/prisma.service';
+import { REDIS } from '../redis/redis.module';
 
 export const NOTIFICATION_CATEGORIES: readonly NotificationCategory[] = [
   'OPPORTUNITIES',
@@ -20,6 +22,8 @@ export type Channel = 'in_app' | 'push' | 'email' | 'sms';
 export interface NotifyInput {
   userId: string;
   category: NotificationCategory;
+  /** What happened, a dotted key such as `opportunity.reminder`. The app picks the icon from it. */
+  type?: string;
   title: string;
   body: string;
   /** In-app route the notification opens, e.g. `/opportunities/{id}`. Must start with a single `/`. */
@@ -50,6 +54,7 @@ export class NotificationsService {
   constructor(
     private readonly prisma: PrismaService,
     @InjectQueue('notifications') private readonly queue: Queue,
+    @Inject(REDIS) private readonly redis: Redis,
   ) {}
 
   /**
@@ -70,6 +75,7 @@ export class NotificationsService {
       data: {
         userId: user.id,
         category: input.category,
+        type: input.type ?? null,
         title: input.title,
         body: input.body,
         deepLink: input.deepLink ?? null,
@@ -77,6 +83,8 @@ export class NotificationsService {
       },
       select: { id: true },
     });
+
+    await this.invalidateUnread(user.id);
 
     const pref = await this.prisma.notificationPreference.findUnique({
       where: { userId_category: { userId: user.id, category: input.category } },
@@ -137,6 +145,111 @@ export class NotificationsService {
       ),
     );
     return this.preferences(userId);
+  }
+
+  // ---- the notification centre ----
+
+  private unreadKey = (userId: string) => `notif:unread:${userId}`;
+
+  async invalidateUnread(userId: string): Promise<void> {
+    await this.redis.del(this.unreadKey(userId)).catch(() => undefined);
+  }
+
+  /** Unread total and per category. Cached in Redis (invalidated on every write); the database is the fallback. */
+  async unreadCount(
+    userId: string,
+  ): Promise<{ unread: number; byCategory: Record<string, number> }> {
+    const hit = await this.redis.get(this.unreadKey(userId)).catch(() => null);
+    if (hit) {
+      try {
+        return JSON.parse(hit) as { unread: number; byCategory: Record<string, number> };
+      } catch {
+        // A damaged entry is recomputed.
+      }
+    }
+    const groups = await this.prisma.notification.groupBy({
+      by: ['category'],
+      where: { userId, readAt: null },
+      _count: { _all: true },
+    });
+    const byCategory = Object.fromEntries(groups.map((g) => [g.category, g._count._all]));
+    const out = { unread: groups.reduce((n, g) => n + g._count._all, 0), byCategory };
+    await this.redis
+      .set(this.unreadKey(userId), JSON.stringify(out), 'EX', 300)
+      .catch(() => undefined);
+    return out;
+  }
+
+  /** Newest first. `group` is TODAY or EARLIER by the Nairobi calendar day, so the app can draw the two headings. */
+  async list(
+    userId: string,
+    q: { category?: NotificationCategory; unreadOnly?: boolean; page: number; limit: number },
+    now = new Date(),
+  ) {
+    const where = {
+      userId,
+      ...(q.category ? { category: q.category } : {}),
+      ...(q.unreadOnly ? { readAt: null } : {}),
+    };
+    const [total, rows, unread] = await Promise.all([
+      this.prisma.notification.count({ where }),
+      this.prisma.notification.findMany({
+        where,
+        orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],
+        skip: (q.page - 1) * q.limit,
+        take: q.limit,
+      }),
+      this.unreadCount(userId),
+    ]);
+    const day = (d: Date) => Math.floor((d.getTime() + 3 * 3_600_000) / 86_400_000);
+    return {
+      items: rows.map((n) => ({
+        id: n.id,
+        category: n.category,
+        type: n.type,
+        title: n.title,
+        body: n.body,
+        deepLink: n.deepLink,
+        data: (n.data ?? null) as Record<string, string | number | boolean | null> | null,
+        read: n.readAt !== null,
+        createdAt: n.createdAt,
+        group: day(n.createdAt) === day(now) ? ('TODAY' as const) : ('EARLIER' as const),
+      })),
+      meta: { page: q.page, limit: q.limit, total, unread: unread.unread },
+    };
+  }
+
+  async markRead(userId: string, id: string): Promise<{ unread: number }> {
+    const res = await this.prisma.notification.updateMany({
+      where: { id, userId, readAt: null },
+      data: { readAt: new Date() },
+    });
+    if (res.count === 0) {
+      const exists = await this.prisma.notification.count({ where: { id, userId } });
+      if (!exists) throw ApiException.notFound('We could not find that notification.');
+    }
+    await this.invalidateUnread(userId);
+    return { unread: (await this.unreadCount(userId)).unread };
+  }
+
+  async markAllRead(
+    userId: string,
+    category?: NotificationCategory,
+  ): Promise<{ unread: number; marked: number }> {
+    const res = await this.prisma.notification.updateMany({
+      where: { userId, readAt: null, ...(category ? { category } : {}) },
+      data: { readAt: new Date() },
+    });
+    await this.invalidateUnread(userId);
+    return { unread: (await this.unreadCount(userId)).unread, marked: res.count };
+  }
+
+  /** Daily: notifications older than 180 days are deleted (retention). */
+  async purgeOld(now = new Date(), days = 180): Promise<number> {
+    const res = await this.prisma.notification.deleteMany({
+      where: { createdAt: { lt: new Date(now.getTime() - days * 86_400_000) } },
+    });
+    return res.count;
   }
 
   // ---- devices ----

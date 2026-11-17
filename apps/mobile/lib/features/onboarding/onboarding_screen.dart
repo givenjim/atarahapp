@@ -309,7 +309,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                             child: Text(
                               last ? l10n.obPhotoSkip : l10n.obSkip,
                               style: AtTextStyles.bodySm.copyWith(
-                                color: AtColors.muted,
+                                color: context.at.muted,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -327,7 +327,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                               ? l10n.obGettingStarted
                               : l10n.obStepOf(_index, 6),
                           style: AtTextStyles.meta.copyWith(
-                            color: AtColors.primary,
+                            color: context.at.primary,
                             fontWeight: FontWeight.w600,
                           ),
                         ),

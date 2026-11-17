@@ -10,6 +10,8 @@ export const PERMISSIONS = 'access:permissions';
 export const ENTITLEMENT = 'access:entitlement';
 export const RECENT_AUTH_MINUTES = 'access:recent-auth';
 export const OPTIONAL_AUTH = 'access:optional-auth';
+export const ALLOW_DEACTIVATED = 'access:allow-deactivated';
+export const ALLOW_TWO_STEP_PENDING = 'access:allow-two-step-pending';
 
 /** No authentication required. Everything else is authenticated by default. */
 export const Public = () => SetMetadata(IS_PUBLIC, true);
@@ -23,6 +25,18 @@ export const OptionalAuth = () => SetMetadata(OPTIONAL_AUTH, true);
 
 /** Permit accounts still in PENDING_VERIFICATION (e.g. resending the code, reading /users/me). */
 export const AllowPending = () => SetMetadata(ALLOW_PENDING, true);
+
+/**
+ * Permit an account that is DEACTIVATED because its owner asked to delete it and is still inside the 30-day grace
+ * period (reading /users/me and restoring the account). Any other deactivated account is still refused.
+ */
+export const AllowDeactivated = () => SetMetadata(ALLOW_DEACTIVATED, true);
+
+/**
+ * Permit a session that has not passed two-step sign-in yet (a new device for a member with two-step on): the app needs
+ * these routes to register the device and run the second-factor challenge.
+ */
+export const AllowTwoStepPending = () => SetMetadata(ALLOW_TWO_STEP_PENDING, true);
 
 /** All listed permissions are required (`resource.action`). Evaluated by the backend on every request. */
 export const RequiresPermission = (...keys: string[]) => SetMetadata(PERMISSIONS, keys);
@@ -62,6 +76,16 @@ export const RequestIdParam = createParamDecorator(
     return typeof v === 'string' ? v : undefined;
   },
 );
+
+/**
+ * The caller's own bearer token. Only for the few calls that act through the member's own Supabase session (changing
+ * the email or phone). Never log it or store it.
+ */
+export const BearerToken = createParamDecorator((_: unknown, ctx: ExecutionContext): string => {
+  const h = ctx.switchToHttp().getRequest<Request>().headers.authorization;
+  if (typeof h !== 'string' || !h.startsWith('Bearer ')) throw ApiException.unauthenticated();
+  return h.slice(7).trim();
+});
 
 /** Raw User-Agent header. A param decorator (not @Headers) so it does not appear as an API parameter. */
 export const UserAgent = createParamDecorator(

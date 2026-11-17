@@ -42,11 +42,13 @@ export function LoginForm() {
   );
 }
 
-export function TotpForm({ enrolment }: { enrolment: boolean }) {
+/** The code step. `factorId` is the authenticator to check (the one just enrolled, or the existing one). */
+export function TotpForm({ factorId, enrolment }: { factorId: string; enrolment: boolean }) {
   const [state, action, pending] = useActionState(totpAction, initial);
 
   return (
     <form action={action} noValidate>
+      <input type="hidden" name="factorId" value={factorId} />
       <label className="field">
         {enrolment ? 'Code from your authenticator app' : 'Authenticator code'}
         <input
@@ -58,22 +60,6 @@ export function TotpForm({ enrolment }: { enrolment: boolean }) {
           autoFocus
         />
       </label>
-      {!enrolment ? (
-        <details>
-          <summary className="muted" style={{ cursor: 'pointer' }}>
-            Use a recovery code instead
-          </summary>
-          <label className="field" style={{ marginTop: 10 }}>
-            Recovery code
-            <input
-              className="input"
-              name="recoveryCode"
-              placeholder="XXXX-XXXX-XXXX"
-              maxLength={14}
-            />
-          </label>
-        </details>
-      ) : null}
       {state.error ? (
         <p className="alert" role="alert">
           {state.error}

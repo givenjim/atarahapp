@@ -3,26 +3,13 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 
 import '../config/app_config.dart';
-import '../storage/token_store.dart';
 import 'failures.dart';
 import 'request_id.dart';
-import 'session_refresher.dart';
 
-/// Paths that must never carry (or refresh) a bearer token.
-const _publicPaths = <String>[
-  '/api/v1/auth/register',
-  '/api/v1/auth/verify',
-  '/api/v1/auth/resend-code',
-  '/api/v1/auth/login',
-  '/api/v1/auth/refresh',
-  '/api/v1/auth/password/',
-  '/api/v1/auth/google',
-];
+/// Paths that never carry a bearer token (public content). A stale token must not be able to fail them.
+const _publicPaths = <String>['/api/v1/config/public', '/api/v1/legal/'];
 
 bool _isPublic(String path) => _publicPaths.any(path.startsWith);
-
-/// `details.reason` values that mean "the session is over" rather than "try refreshing".
-const _terminalReasons = {'TOKEN_REUSED', 'SESSION_IDLE'};
 
 BaseOptions _baseOptions(AppConfig config) => BaseOptions(
   baseUrl: config.apiBaseUrl,
@@ -34,19 +21,19 @@ BaseOptions _baseOptions(AppConfig config) => BaseOptions(
   headers: {'Accept': 'application/json'},
 );
 
-/// A Dio with no auth handling, used for the refresh call itself (avoids refresh loops).
+/// A Dio with no auth handling: for requests that must not carry the API token (uploads to signed URLs).
 Dio buildPlainDio(AppConfig config) {
   final dio = Dio(_baseOptions(config));
   dio.interceptors.add(_RequestIdInterceptor());
   return dio;
 }
 
-/// The app's Dio: request ids, bearer tokens, single-flight refresh on 401, retry for safe GETs.
+/// The app's Dio: request ids, the Supabase bearer token, one refresh-and-retry on 401, retry for safe GETs.
 Dio buildApiDio({
   required AppConfig config,
-  required TokenStore store,
-  required SessionRefresher refresher,
+  required AccessTokenSource tokens,
   required void Function() onSessionExpired,
+  void Function()? onTwoStepRequired,
   Duration retryDelay = const Duration(milliseconds: 300),
 }) {
   final dio = Dio(_baseOptions(config));
@@ -55,13 +42,35 @@ Dio buildApiDio({
     _OmitNullFieldsInterceptor(),
     AuthInterceptor(
       dio: dio,
-      store: store,
-      refresher: refresher,
+      tokens: tokens,
       onSessionExpired: onSessionExpired,
     ),
+    if (onTwoStepRequired != null) _TwoStepInterceptor(onTwoStepRequired),
     RetryInterceptor(dio: dio, delay: retryDelay),
   ]);
   return dio;
+}
+
+/// A `403` whose reason is `TWO_STEP_REQUIRED` means this device must complete the second step of sign-in before the
+/// API accepts requests (Master Prompt P1-M11). The request still fails; the app is told so it can show the challenge.
+class _TwoStepInterceptor extends Interceptor {
+  _TwoStepInterceptor(this.onRequired);
+
+  final void Function() onRequired;
+
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    final body = err.response?.data;
+    if (err.response?.statusCode == 403 &&
+        body is Map &&
+        body['error'] is Map &&
+        (body['error'] as Map)['details'] is Map &&
+        ((body['error'] as Map)['details'] as Map)['reason'] ==
+            'TWO_STEP_REQUIRED') {
+      onRequired();
+    }
+    handler.next(err);
+  }
 }
 
 /// The generated models write every unset field as `null`. For a partial update that would read as "set it to
@@ -88,36 +97,51 @@ class _RequestIdInterceptor extends Interceptor {
   }
 }
 
+/// The current Supabase access token, and a way to get a fresh one. The Supabase SDK refreshes tokens on its
+/// own schedule; [refresh] is only used when the API has just rejected a token.
+abstract interface class AccessTokenSource {
+  String? get current;
+
+  /// A fresh token, or null when the session is over. Throws when the provider cannot be reached.
+  Future<String?> refresh();
+}
+
 /// Adds the bearer token and, on a 401, refreshes once (shared across requests) and retries the call.
+/// When the session cannot be refreshed the member is signed out.
 class AuthInterceptor extends Interceptor {
   AuthInterceptor({
     required this.dio,
-    required this.store,
-    required this.refresher,
+    required this.tokens,
     required this.onSessionExpired,
   });
 
   final Dio dio;
-  final TokenStore store;
-  final SessionRefresher refresher;
+  final AccessTokenSource tokens;
   final void Function() onSessionExpired;
 
   static const _retriedKey = 'atarah.auth_retried';
   static const _tokenKey = 'atarah.auth_token_used';
 
+  Future<String?>? _inFlight;
+
   @override
-  Future<void> onRequest(
-    RequestOptions options,
-    RequestInterceptorHandler handler,
-  ) async {
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (!_isPublic(options.path)) {
-      final tokens = await store.read();
-      if (tokens != null) {
-        options.headers['Authorization'] = 'Bearer ${tokens.accessToken}';
-        options.extra[_tokenKey] = tokens.accessToken;
+      final token = tokens.current;
+      if (token != null) {
+        options.headers['Authorization'] = 'Bearer $token';
+        options.extra[_tokenKey] = token;
       }
     }
     handler.next(options);
+  }
+
+  /// Many requests can hit 401 together when the token expires; they share one refresh. If the SDK already
+  /// holds a newer token than the one the request used, no refresh is needed.
+  Future<String?> _fresh(String used) {
+    final current = tokens.current;
+    if (current != null && current != used) return Future.value(current);
+    return _inFlight ??= tokens.refresh().whenComplete(() => _inFlight = null);
   }
 
   @override
@@ -126,41 +150,31 @@ class AuthInterceptor extends Interceptor {
     ErrorInterceptorHandler handler,
   ) async {
     final req = err.requestOptions;
-    final failure = mapError(err);
     final canRefresh =
         err.response?.statusCode == 401 &&
         !_isPublic(req.path) &&
         req.extra[_retriedKey] != true &&
         req.extra[_tokenKey] != null &&
-        failure is ApiFailure;
+        mapError(err) is ApiFailure;
 
     if (!canRefresh) return handler.next(err);
 
-    final reason = failure.reason;
-    if (_terminalReasons.contains(reason)) {
-      onSessionExpired();
+    final String? token;
+    try {
+      token = await _fresh(req.extra[_tokenKey] as String);
+    } on Object {
+      // Offline: keep the session, report the original failure.
       return handler.next(err);
     }
-
-    final tokens = await refresher.refresh(req.extra[_tokenKey] as String?);
-    if (tokens == null) {
+    if (token == null) {
       onSessionExpired();
       return handler.next(err);
     }
 
     try {
-      final retry =
-          req.copyWith(
-              headers: {
-                ...req.headers,
-                'Authorization': 'Bearer ${tokens.accessToken}',
-              },
-            )
-            ..extra = {
-              ...req.extra,
-              _retriedKey: true,
-              _tokenKey: tokens.accessToken,
-            };
+      final retry = req.copyWith(
+        headers: {...req.headers, 'Authorization': 'Bearer $token'},
+      )..extra = {...req.extra, _retriedKey: true, _tokenKey: token};
       handler.resolve(await dio.fetch<dynamic>(retry));
     } on DioException catch (e) {
       handler.next(e);

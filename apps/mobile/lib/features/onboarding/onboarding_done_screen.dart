@@ -35,13 +35,7 @@ class OnboardingDoneScreen extends ConsumerWidget {
 
     return Scaffold(
       body: DecoratedBox(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFF4A36E0), Color(0xFF3B2BC4)],
-          ),
-        ),
+        decoration: const BoxDecoration(gradient: AtGradients.splash),
         child: SafeArea(
           child: Column(
             children: [
@@ -54,14 +48,14 @@ class OnboardingDoneScreen extends ConsumerWidget {
                       Container(
                         width: 64,
                         height: 64,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Color.fromRGBO(255, 255, 255, 0.18),
+                          color: context.at.white.withValues(alpha: 0.18),
                         ),
-                        child: const Icon(
+                        child: Icon(
                           LucideIcons.partyPopper,
                           size: 30,
-                          color: AtColors.white,
+                          color: context.at.white,
                         ),
                       ),
                       const SizedBox(height: 22),
@@ -70,7 +64,7 @@ class OnboardingDoneScreen extends ConsumerWidget {
                         child: Text(
                           l10n.obDoneTitle,
                           style: AtTextStyles.tabTitle.copyWith(
-                            color: AtColors.white,
+                            color: context.at.white,
                             fontSize: 36,
                             height: 1.1,
                           ),
@@ -80,7 +74,7 @@ class OnboardingDoneScreen extends ConsumerWidget {
                       Text(
                         l10n.obDoneBody,
                         style: AtTextStyles.body.copyWith(
-                          color: const Color.fromRGBO(255, 255, 255, 0.88),
+                          color: context.at.white.withValues(alpha: 0.88),
                         ),
                       ),
                       const SizedBox(height: 26),
@@ -90,16 +84,10 @@ class OnboardingDoneScreen extends ConsumerWidget {
                             '${l10n.obPassportLabel} ${result.passport.passportNumber}',
                         child: Container(
                           padding: const EdgeInsets.all(18),
-                          decoration: const BoxDecoration(
-                            color: AtColors.white,
+                          decoration: BoxDecoration(
+                            color: context.at.surface,
                             borderRadius: AtRadii.passport,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color.fromRGBO(20, 10, 80, 0.3),
-                                blurRadius: 40,
-                                offset: Offset(0, 20),
-                              ),
-                            ],
+                            boxShadow: context.at.shadowModal,
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,18 +96,25 @@ class OnboardingDoneScreen extends ConsumerWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    l10n.obPassportLabel,
-                                    style: AtTextStyles.metaSm.copyWith(
-                                      color: AtColors.muted,
-                                      fontWeight: FontWeight.w700,
-                                      letterSpacing: 1.1,
-                                    ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const AtLogo.symbol(width: 20),
+                                      const SizedBox(width: 8),
+                                      Text(
+                                        l10n.obPassportLabel,
+                                        style: AtTextStyles.metaSm.copyWith(
+                                          color: context.at.muted,
+                                          fontWeight: FontWeight.w700,
+                                          letterSpacing: 1.1,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   Text(
                                     number,
                                     style: AtTextStyles.metaSm.copyWith(
-                                      color: AtColors.muted,
+                                      color: context.at.muted,
                                       fontWeight: FontWeight.w700,
                                       letterSpacing: 1.1,
                                     ),
@@ -146,22 +141,22 @@ class OnboardingDoneScreen extends ConsumerWidget {
                                         Text(
                                           profile.displayName,
                                           style: AtTextStyles.sectionTitle
-                                              .copyWith(color: AtColors.ink),
+                                              .copyWith(color: context.at.ink),
                                         ),
                                         const SizedBox(height: 2),
                                         Text(
                                           line,
                                           style: AtTextStyles.bodySm.copyWith(
-                                            color: AtColors.body,
+                                            color: context.at.body,
                                           ),
                                         ),
                                         const SizedBox(height: 2),
                                         Row(
                                           children: [
-                                            const Icon(
+                                            Icon(
                                               LucideIcons.mapPin,
                                               size: 12,
-                                              color: AtColors.muted,
+                                              color: context.at.muted,
                                             ),
                                             const SizedBox(width: 4),
                                             Flexible(
@@ -169,7 +164,7 @@ class OnboardingDoneScreen extends ConsumerWidget {
                                                 where,
                                                 style: AtTextStyles.meta
                                                     .copyWith(
-                                                      color: AtColors.muted,
+                                                      color: context.at.muted,
                                                     ),
                                               ),
                                             ),
@@ -188,13 +183,13 @@ class OnboardingDoneScreen extends ConsumerWidget {
                                   Text(
                                     l10n.obCompletion,
                                     style: AtTextStyles.meta.copyWith(
-                                      color: AtColors.body,
+                                      color: context.at.body,
                                     ),
                                   ),
                                   Text(
                                     '$percent%',
                                     style: AtTextStyles.meta.copyWith(
-                                      color: AtColors.ink,
+                                      color: context.at.ink,
                                       fontWeight: FontWeight.w800,
                                     ),
                                   ),
@@ -221,8 +216,8 @@ class OnboardingDoneScreen extends ConsumerWidget {
                   height: AtSizes.buttonLg,
                   child: FilledButton(
                     style: FilledButton.styleFrom(
-                      backgroundColor: AtColors.white,
-                      foregroundColor: const Color(0xFF4A36E0),
+                      backgroundColor: context.at.white,
+                      foregroundColor: context.at.primaryFill,
                       shape: const StadiumBorder(),
                       textStyle: AtTextStyles.button,
                     ),

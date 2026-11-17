@@ -22,13 +22,21 @@ export const metadata: Metadata = {
   description:
     'Atarah is the creative operating layer for Kenyan creatives: one identity, many connected possibilities.',
   openGraph: { siteName: 'Atarah', type: 'website', locale: 'en_KE' },
+  icons: {
+    icon: [
+      { url: '/brand/favicon-16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/brand/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/brand/favicon-64.png', sizes: '64x64', type: 'image/png' },
+    ],
+  },
 };
 
-export const viewport: Viewport = { themeColor: '#5b45f0', width: 'device-width', initialScale: 1 };
+export const viewport: Viewport = { themeColor: '#FFFFFF', width: 'device-width', initialScale: 1 };
 
+/** The public holding page always uses the light appearance (data-theme="light" pins it). */
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={plusJakarta.variable}>
+    <html lang="en" data-theme="light" className={plusJakarta.variable}>
       <body style={{ fontFamily: `var(--font-plus-jakarta), var(--at-font-family)` }}>
         {children}
       </body>

@@ -53,7 +53,12 @@ export class AdminController {
     @ClientIp() ip?: string,
     @RequestIdParam() requestId?: string,
   ) {
-    return this.admin.suspend({ userId: auth.userId, ip, requestId }, id, dto.reason);
+    return this.admin.suspend(
+      { userId: auth.userId, ip, requestId },
+      id,
+      dto.reason,
+      dto.durationDays,
+    );
   }
 
   @RequiresPermission('admin.access', 'user.suspend')

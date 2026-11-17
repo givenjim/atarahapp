@@ -2,7 +2,15 @@ import { type INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { StorageService } from '../src/storage/storage.service';
-import { adminSignIn, bearer, createTestApp, loginMember, makeUser, uniq } from './helpers';
+import {
+  adminSignIn,
+  bearer,
+  createTestApp,
+  loginMember,
+  makeUser,
+  uniq,
+  deleteUsers,
+} from './helpers';
 
 // Each test signs up and sets up several members (password hashing, onboarding), so allow more than 5 s.
 jest.setTimeout(120_000);
@@ -24,7 +32,7 @@ describe('Portfolio, skills, experience, achievements, services and moderation (
   });
   afterAll(async () => {
     await prisma.notification.deleteMany({ where: { userId: { in: users } } });
-    await prisma.user.deleteMany({ where: { id: { in: users } } });
+    await deleteUsers(app, users);
     await prisma.mediaAsset.deleteMany({ where: { objectKey: { startsWith: keyPrefix } } });
     await app.close();
   });

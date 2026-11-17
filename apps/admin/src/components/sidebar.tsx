@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { phaseLabel, type NavSection } from '@/lib/nav';
-import { Wordmark } from './wordmark';
+import { Logo } from './logo';
 
 const isActive = (pathname: string, href: string) =>
   href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
@@ -13,7 +13,7 @@ export function Sidebar({ sections }: { sections: NavSection[] }) {
   const pathname = usePathname();
   return (
     <aside className="sidebar">
-      <Wordmark size={22} />
+      <Logo width={130} />
       <nav aria-label="Admin sections">
         <ul>
           {sections.map((s) => (

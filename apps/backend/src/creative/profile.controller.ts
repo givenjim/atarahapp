@@ -92,7 +92,8 @@ export class ProfileController {
   // ---- connections ----
 
   @RequiresPermission('profile.view')
-  @Throttle({ default: { limit: 30, ttl: 3_600_000 } })
+  // Connection requests: 50 per day (Master Prompt P1-M8).
+  @Throttle({ default: { limit: 50, ttl: 86_400_000 } })
   @HttpCode(200)
   @ApiEnvelope(ConnectionStateDto)
   @Post('creatives/:handle/connect')

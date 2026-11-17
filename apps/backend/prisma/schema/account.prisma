@@ -1,0 +1,187 @@
+// Account, privacy, help and broadcast tables (P1-M11). Owner modules: identity (account, privacy, two-step, export and
+// deletion), help, notifications (broadcasts). Every table is deny-all for the Supabase client roles (RLS on, no
+// policies, no grants).
+
+/// The per-field controls on the Privacy screen. CONTACT, LOCATION, PORTFOLIO and EXPERIENCE are stored as the profile
+/// sections of the same name (`profile_section_visibility`, one source of truth); ACTIVITY has no section, so it lives
+/// in `profile_field_visibility`.
+enum ProfileField {
+  CONTACT
+  LOCATION
+  PORTFOLIO
+  EXPERIENCE
+  ACTIVITY
+}
+
+enum PrivacyRequestStatus {
+  QUEUED
+  PROCESSING
+  READY
+  FAILED
+  EXPIRED
+}
+
+enum DeletionRequestStatus {
+  PENDING
+  CANCELLED
+  PURGED
+}
+
+enum ContactChangeKind {
+  EMAIL
+  PHONE
+}
+
+enum BroadcastTarget {
+  ALL
+  ROLE
+  DISCIPLINE
+  COUNTY
+}
+
+enum BroadcastStatus {
+  SCHEDULED
+  SENDING
+  SENT
+  CANCELLED
+}
+
+/// A per-field visibility that has no profile section (today: ACTIVITY). Absence means the default (PRIVATE).
+model ProfileFieldVisibility {
+  userId     String       @db.Uuid
+  field      ProfileField
+  visibility Visibility
+  updatedAt  DateTime     @updatedAt
+
+  user User @relation("FieldVisibilityOwner", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, field])
+  @@map("profile_field_visibility")
+}
+
+/// Whether the member asked for two-step sign-in on new devices. The second factor itself is a Supabase MFA factor.
+model TwoStepSetting {
+  userId    String    @id @db.Uuid
+  enabled   Boolean   @default(false)
+  enabledAt DateTime?
+  updatedAt DateTime  @updatedAt
+
+  user User @relation("TwoStepOwner", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("two_step_settings")
+}
+
+/// A pending change of email or phone. Completed when the confirmed value appears on the account.
+model ContactChangeRequest {
+  id          String            @id @default(uuid()) @db.Uuid
+  userId      String            @db.Uuid
+  kind        ContactChangeKind
+  oldValue    String?
+  newValue    String
+  requestedAt DateTime          @default(now())
+  completedAt DateTime?
+
+  user User @relation("ContactChangeOwner", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, completedAt])
+  @@index([completedAt, requestedAt])
+  @@map("contact_change_requests")
+}
+
+model DataExportRequest {
+  id          String               @id @default(uuid()) @db.Uuid
+  userId      String               @db.Uuid
+  status      PrivacyRequestStatus @default(QUEUED)
+  /// The private ZIP (a media asset owned by the member), set when READY.
+  fileMediaId String?              @db.Uuid
+  requestedAt DateTime             @default(now())
+  readyAt     DateTime?
+  /// The download link stops working then (7 days after the file was built).
+  expiresAt   DateTime?
+  error       String?
+
+  user      User        @relation("DataExportOwner", fields: [userId], references: [id], onDelete: Cascade)
+  fileMedia MediaAsset? @relation("DataExportFile", fields: [fileMediaId], references: [id], onDelete: SetNull)
+
+  @@index([userId, requestedAt(sort: Desc)])
+  @@index([status, requestedAt])
+  @@map("data_export_requests")
+}
+
+/// No foreign key on purpose: the row outlives the account (the log keeps only this non-personal id).
+model AccountDeletionRequest {
+  id          String                @id @default(uuid()) @db.Uuid
+  userId      String                @db.Uuid
+  status      DeletionRequestStatus @default(PENDING)
+  requestedAt DateTime              @default(now())
+  /// requestedAt + 30 days. The purge job deletes personal data after this.
+  purgeAfter  DateTime
+  cancelledAt DateTime?
+  purgedAt    DateTime?
+
+  @@index([userId, status])
+  @@index([status, purgeAfter])
+  @@map("account_deletion_requests")
+}
+
+model HelpArticle {
+  id           String                   @id @default(uuid()) @db.Uuid
+  slug         String                   @unique
+  title        String
+  summary      String                   @default("")
+  /// Structured blocks (paragraph, heading, callout, quote), never HTML.
+  body         Json                     @default("[]")
+  sortOrder    Int                      @default(0)
+  published    Boolean                  @default(false)
+  isDemo       Boolean                  @default(false)
+  /// Generated full-text vector (title, summary). Read-only: the database maintains it.
+  searchVector Unsupported("tsvector")?
+  createdAt    DateTime                 @default(now())
+  updatedAt    DateTime                 @updatedAt
+
+  @@index([published, sortOrder])
+  @@index([searchVector], type: Gin, map: "help_articles_search_vector_idx")
+  @@map("help_articles")
+}
+
+model FaqEntry {
+  id           String                   @id @default(uuid()) @db.Uuid
+  question     String
+  answer       String
+  sortOrder    Int                      @default(0)
+  published    Boolean                  @default(false)
+  isDemo       Boolean                  @default(false)
+  searchVector Unsupported("tsvector")?
+  createdAt    DateTime                 @default(now())
+  updatedAt    DateTime                 @updatedAt
+
+  @@index([published, sortOrder])
+  @@index([searchVector], type: Gin, map: "faq_entries_search_vector_idx")
+  @@map("faq_entries")
+}
+
+/// A message sent to many members at once by staff (all members, a role, a discipline or a county).
+model NotificationBroadcast {
+  id             String               @id @default(uuid()) @db.Uuid
+  title          String
+  body           String
+  /// In-app route the notification opens (a single leading slash).
+  deepLink       String?
+  category       NotificationCategory @default(SYSTEM)
+  target         BroadcastTarget      @default(ALL)
+  /// Role key, discipline id or county id, by `target`.
+  targetValue    String?
+  /// Null sends as soon as the next scheduler run sees it.
+  scheduledAt    DateTime?
+  status         BroadcastStatus      @default(SCHEDULED)
+  recipientCount Int                  @default(0)
+  sentAt         DateTime?
+  createdById    String?              @db.Uuid
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+
+  createdBy User? @relation("BroadcastCreator", fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([status, scheduledAt])
+  @@map("notification_broadcasts")
+}

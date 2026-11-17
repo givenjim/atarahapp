@@ -12,30 +12,31 @@
 <script src="_ds/modernist-92942278-38b0-45eb-ae33-378b336c3544/_ds_bundle.js"></script>
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 <script src="icons.js"></script>
+<script src="theme-dark.js"></script>
+<link rel="icon" href="assets/logo/favicon-32.png">
 <style>
 :root{--f:'Plus Jakarta Sans',system-ui,sans-serif}
 *{box-sizing:border-box}
 html,body{margin:0}
-body{font-family:var(--f);color:#15133d;-webkit-font-smoothing:antialiased;background:#f4f2fc}
+body{font-family:var(--f);color:#17153F;-webkit-font-smoothing:antialiased;background:#F6F5FC}
 button,input,textarea,select{font-family:inherit}
-:focus{outline:none}:focus-visible{outline:2px solid #5b45f0;outline-offset:2px}
-a{color:#5b45f0;text-decoration:none}a:hover{color:#4330d6}
+:focus{outline:none}:focus-visible{outline:2px solid #5145D8;outline-offset:2px}
+a{color:#5145D8;text-decoration:none}a:hover{color:#3F34B8}
 ::-webkit-scrollbar{width:0;height:0}
 </style>
 </helmet>
-<div style="min-height:100vh;display:flex;flex-wrap:wrap;gap:32px;padding:32px 24px;justify-content:center;align-items:flex-start;background:radial-gradient(circle at 15% 0%,#ece7ff 0,transparent 40%),radial-gradient(circle at 90% 30%,#f5e9ff 0,transparent 40%),#f6f5fc;color:#15133d">
+<div style="min-height:100vh;display:flex;flex-wrap:wrap;gap:32px;padding:32px 24px;justify-content:center;align-items:flex-start;background:radial-gradient(circle at 15% 0%,#EFEDFF 0,transparent 40%),radial-gradient(circle at 90% 30%,#F2F0FF 0,transparent 40%),#f6f5fc;color:#17153F">
   <sc-if value="{{ showMap }}" hint-placeholder-val="{{ true }}">
     <aside style="width:268px;flex:none;height:866px;display:flex;flex-direction:column;background:#fff;border-radius:24px;border:1px solid #ecebf4;box-shadow:0 10px 30px rgba(60,40,160,.06);overflow:hidden">
       <div style="padding:20px 20px 14px;border-bottom:1px solid #ecebf4">
-        <div style="font-weight:800;font-size:22px;letter-spacing:-.01em">ATARA<span style="color:#5b45f0">H</span></div>
-        <div style="font-size:11px;letter-spacing:.14em;color:#77758f;margin-top:2px">CREATE · CONNECT · GROW</div>
+        <img src="assets/logo/atarah-logo-notagline-color.svg" alt="Atarah" style="display:block;width:130px;height:auto">
         <div style="font-size:12px;color:#77758f;margin-top:10px">{{ total }} screens · tap any to jump</div>
       </div>
       <div style="flex:1;overflow-y:auto;padding:4px 10px 16px">
         <sc-for list="{{ groups }}" as="g" hint-placeholder-count="6">
           <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#77758f;padding:16px 10px 6px"><span>{{ g.label }}</span><span>{{ g.count }}</span></div>
           <sc-for list="{{ g.items }}" as="it">
-            <button onClick="{{ it.go }}" style="display:flex;gap:10px;width:100%;text-align:left;padding:8px 10px;border:0;border-radius:10px;background:{{ it.bg }};color:{{ it.fg }};font-size:13px;font-weight:{{ it.fw }};line-height:1.3;cursor:pointer" style-hover="background:#f4f2ff">
+            <button onClick="{{ it.go }}" style="display:flex;gap:10px;width:100%;text-align:left;padding:8px 10px;border:0;border-radius:10px;background:{{ it.bg }};color:{{ it.fg }};font-size:13px;font-weight:{{ it.fw }};line-height:1.3;cursor:pointer" style-hover="background:#F8F7FF">
               <span style="font-variant-numeric:tabular-nums;opacity:.55;width:20px;flex:none">{{ it.num }}</span><span>{{ it.label }}</span>
             </button>
           </sc-for>
@@ -45,14 +46,14 @@ a{color:#5b45f0;text-decoration:none}a:hover{color:#4330d6}
   </sc-if>
 
   <div style="width:404px;height:866px;flex:none;border-radius:54px;background:#0f0f14;padding:7px;box-shadow:0 30px 70px rgba(60,40,160,.2),inset 0 0 0 2px #2a2a33">
-    <div style="width:100%;height:100%;border-radius:47px;overflow:hidden;position:relative;background:#fff;display:flex;flex-direction:column">
+    <div data-atarah-screen="1" style="width:100%;height:100%;border-radius:47px;overflow:hidden;position:relative;background:#fff;display:flex;flex-direction:column">
       <div style="flex:none;height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font-size:14px;font-weight:600;background:{{ sbBg }};color:{{ sbFg }};position:relative;z-index:3">
         <span style="display:flex;gap:8px;align-items:center">9:48<lc-i name="shield" size="13"></lc-i><lc-i name="smartphone" size="13"></lc-i></span>
         <span style="position:absolute;left:50%;top:10px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#0f0f14"></span>
         <span style="display:flex;gap:5px;align-items:center"><lc-i name="wifi" size="15" stroke="2.5"></lc-i><lc-i name="signal" size="15" stroke="2.5"></lc-i><lc-i name="battery-full" size="17"></lc-i></span>
       </div>
       <sc-if value="{{ ctx.offline }}" hint-placeholder-val="{{ false }}">
-        <div style="flex:none;display:flex;align-items:center;gap:8px;margin:0 12px 6px;padding:9px 14px;border-radius:12px;background:#15133d;color:#fff;font-size:12px;z-index:3"><lc-i name="wifi-off" size="15"></lc-i><span>You're offline. Saved content is still available.</span></div>
+        <div style="flex:none;display:flex;align-items:center;gap:8px;margin:0 12px 6px;padding:9px 14px;border-radius:12px;background:#17153F;color:#fff;font-size:12px;z-index:3"><lc-i name="wifi-off" size="15"></lc-i><span>You're offline. Saved content is still available.</span></div>
       </sc-if>
       <div style="flex:1;position:relative;min-height:0">
         <sc-if value="{{ f.AtarahEntry }}" hint-placeholder-val="{{ false }}"><dc-import name="AtarahEntry" screen="{{ screen }}" nav="{{ nav }}" ctx="{{ ctx }}" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import></sc-if>
@@ -74,29 +75,30 @@ a{color:#5b45f0;text-decoration:none}a:hover{color:#4330d6}
           </sc-for>
         </nav>
       </sc-if>
-      <div style="flex:none;height:22px;display:grid;place-items:center;background:{{ gbBg }};z-index:3"><div style="width:132px;height:4px;border-radius:4px;background:{{ gbFg }}"></div></div>
+      <div style="flex:none;height:22px;display:grid;place-items:center;background:{{ gbBg }};z-index:3"><div data-nodark="1" style="width:132px;height:4px;border-radius:4px;background:{{ gbFg }}"></div></div>
     </div>
   </div>
 
   <div style="width:288px;flex:none;background:#fff;border-radius:24px;border:1px solid #ecebf4;box-shadow:0 10px 30px rgba(60,40,160,.06);padding:22px">
-    <div style="display:flex;justify-content:space-between;align-items:center"><span style="display:inline-flex;height:26px;align-items:center;padding:0 12px;border-radius:999px;background:#f1eeff;color:#5b45f0;font-size:12px;font-weight:600">{{ cur.group }}</span><span style="font-size:12px;color:#77758f;font-variant-numeric:tabular-nums">{{ cur.num }} / {{ total }}</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center"><span style="display:inline-flex;height:26px;align-items:center;padding:0 12px;border-radius:999px;background:#EFEDFF;color:#5145D8;font-size:12px;font-weight:600">{{ cur.group }}</span><span style="font-size:12px;color:#77758f;font-variant-numeric:tabular-nums">{{ cur.num }} / {{ total }}</span></div>
     <div style="font-weight:800;font-size:28px;line-height:1.1;letter-spacing:-.02em;padding:16px 0 10px">{{ cur.label }}</div>
     <p style="font-size:14px;line-height:1.6;color:#4a4868;margin:0 0 20px;text-wrap:pretty">{{ cur.note }}</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-      <button onClick="{{ prev }}" style="height:46px;display:flex;align-items:center;justify-content:center;gap:6px;border:1.5px solid #dcd8f5;border-radius:999px;background:#fff;cursor:pointer;font-size:13px;font-weight:700;color:#5b45f0" style-hover="background:#f6f4ff"><lc-i name="chevron-left" size="16"></lc-i>Previous</button>
-      <button onClick="{{ next }}" style="height:46px;display:flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:999px;background:linear-gradient(90deg,#7b6cf6,#5a46ee);cursor:pointer;font-size:13px;font-weight:700;color:#fff" style-hover="filter:brightness(1.06)">Next<lc-i name="chevron-right" size="16"></lc-i></button>
+      <button onClick="{{ prev }}" style="height:46px;display:flex;align-items:center;justify-content:center;gap:6px;border:1.5px solid #E7E4FF;border-radius:999px;background:#fff;cursor:pointer;font-size:13px;font-weight:700;color:#5145D8" style-hover="background:#F6F5FC"><lc-i name="chevron-left" size="16"></lc-i>Previous</button>
+      <button onClick="{{ next }}" style="height:46px;display:flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:999px;background:linear-gradient(90deg,#7968FF,#5145D8);cursor:pointer;font-size:13px;font-weight:700;color:#fff" style-hover="filter:brightness(1.06)">Next<lc-i name="chevron-right" size="16"></lc-i></button>
     </div>
     <div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#77758f;padding:24px 0 8px">Viewing as</div>
     <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
-      <div style="display:flex;justify-content:space-between;padding:10px 14px;border-radius:12px;background:#f7f6fd"><span style="color:#77758f">Membership</span><span style="font-weight:700">{{ view.plan }}</span></div>
-      <div style="display:flex;justify-content:space-between;padding:10px 14px;border-radius:12px;background:#f7f6fd"><span style="color:#77758f">Roles</span><span style="font-weight:700">{{ view.role }}</span></div>
-      <div style="display:flex;justify-content:space-between;padding:10px 14px;border-radius:12px;background:#f7f6fd"><span style="color:#77758f">Connection</span><span style="font-weight:700">{{ view.conn }}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:10px 14px;border-radius:12px;background:#F6F5FC"><span style="color:#77758f">Membership</span><span style="font-weight:700">{{ view.plan }}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:10px 14px;border-radius:12px;background:#F6F5FC"><span style="color:#77758f">Roles</span><span style="font-weight:700">{{ view.role }}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:10px 14px;border-radius:12px;background:#F6F5FC"><span style="color:#77758f">Connection</span><span style="font-weight:700">{{ view.conn }}</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 6px 6px 14px;border-radius:12px;background:#F6F5FC"><span style="color:#77758f">Appearance</span><span style="display:flex;gap:2px;padding:3px;border-radius:999px;background:#fff;border:1px solid #ecebf4"><sc-for list="{{ themeOpts }}" as="t" hint-placeholder-count="2"><button onClick="{{ t.pick }}" style="height:28px;display:flex;align-items:center;gap:5px;padding:0 10px;border:0;border-radius:999px;background:{{ t.bg }};color:{{ t.fg }};font-size:12px;font-weight:700;cursor:pointer"><lc-i name="{{ t.icon }}" size="13"></lc-i>{{ t.label }}</button></sc-for></span></div>
     </div>
-    <p style="font-size:12px;line-height:1.5;color:#77758f;margin:12px 0 0">Switch membership, roles and connectivity in Tweaks — premium gates, role tools and offline behaviour update across screens.</p>
+    <p style="font-size:12px;line-height:1.5;color:#77758f;margin:12px 0 0">Switch appearance here or in Settings. Switch membership, roles and connectivity in Tweaks — premium gates, role tools and offline behaviour update across screens.</p>
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;membership&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;free&quot;,&quot;premium&quot;],&quot;default&quot;:&quot;free&quot;,&quot;tsType&quot;:&quot;'free'|'premium'&quot;,&quot;section&quot;:&quot;Viewer&quot;},&quot;role&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;creative&quot;,&quot;mentor&quot;,&quot;seller&quot;,&quot;mentor + seller&quot;],&quot;default&quot;:&quot;creative&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Viewer&quot;},&quot;offline&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Viewer&quot;},&quot;showMap&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light'|'dark'&quot;,&quot;section&quot;:&quot;Viewer&quot;},&quot;membership&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;free&quot;,&quot;premium&quot;],&quot;default&quot;:&quot;free&quot;,&quot;tsType&quot;:&quot;'free'|'premium'&quot;,&quot;section&quot;:&quot;Viewer&quot;},&quot;role&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;creative&quot;,&quot;mentor&quot;,&quot;seller&quot;,&quot;mentor + seller&quot;],&quot;default&quot;:&quot;creative&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Viewer&quot;},&quot;offline&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Viewer&quot;},&quot;showMap&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
 const GROUPS = [
  {label:'Entry', file:'AtarahEntry', items:[
   ['splash','Splash','Brand moment while the app checks session and onboarding state, then routes to Welcome, Onboarding or Home. Tap to continue.'],
@@ -210,25 +212,32 @@ function tabOf(s){
   return 'profile';
 }
 class Component extends DCLogic {
-  state = { screen: (() => { try { const v = localStorage.getItem('atarah.screen'); return INDEX[v] ? v : 'splash'; } catch(e) { return 'splash'; } })(), hist: [] };
+  state = { theme: (() => { try { return localStorage.getItem('atarah.theme') || this.props.theme || 'light'; } catch(e) { return this.props.theme || 'light'; } })(), screen: (() => { try { const v = localStorage.getItem('atarah.screen'); return INDEX[v] ? v : 'splash'; } catch(e) { return 'splash'; } })(), hist: [] };
   nav = (() => { const n = { back: () => this.back() }; FLAT.forEach(x => { n[x.id] = () => this.go(x.id); }); return n; })();
-  go(id){ if (!INDEX[id] || id===this.state.screen) return; this.setState(s => ({ screen:id, hist:[...s.hist, s.screen].slice(-50) })); }
-  back(){ this.setState(s => { const h=[...s.hist]; const p=h.pop() || (INDEX[s.screen].file==='AtarahEntry'?'welcome':'home'); return { screen:p, hist:h }; }); }
-  componentDidUpdate(){ try { localStorage.setItem('atarah.screen', this.state.screen); } catch(e){} }
+  go(id){ if (!INDEX[id] || id===this.state.screen) return; this.setState(s => ({ screen:id, hist:[...s.hist, s.screen].slice(-50) })); try { localStorage.setItem('atarah.screen', id); } catch(e){} this.kick(); }
+  back(){ this.setState(s => { const h=[...s.hist]; const p=h.pop() || (INDEX[s.screen].file==='AtarahEntry'?'welcome':'home'); return { screen:p, hist:h }; }); this.kick(); }
+  setTheme(t){ this.setState({ theme:t, blink: t==='light' && this.state.theme==='dark' }, () => { if (this.state.blink) setTimeout(() => this.setState({ blink:false }, () => this.kick()), 30); }); try { localStorage.setItem('atarah.theme', t); } catch(e){} this.kick(); }
+  kick(){ [0, 120, 500].forEach(ms => setTimeout(() => this.applyTheme(), ms)); }
+  applyTheme(){ let n = 0; const go = () => { const el = document.querySelector('[data-atarah-screen]'); if (window.AtarahDark && el) window.AtarahDark.set(el, this.state.theme==='dark'); else if (n++ < 100) setTimeout(go, 60); }; go(); }
+  componentDidMount(){ this._pt = this.props.theme; this._applied = this.state.theme; this.applyTheme(); [300, 900, 2000].forEach(t => setTimeout(() => this.applyTheme(), t)); }
+  componentDidUpdate(){ try { localStorage.setItem('atarah.screen', this.state.screen); } catch(e){} if (this._pt === undefined) this._pt = this.props.theme; if (this.props.theme && this.props.theme !== this._pt) { this._pt = this.props.theme; this.setTheme(this.props.theme); return; } if (this._applied !== this.state.theme || this.state.theme==='dark') { this._applied = this.state.theme; this.applyTheme(); setTimeout(() => this.applyTheme(), 250); } }
   renderVals(){
     const s = this.state.screen, cur = INDEX[s], p = this.props;
+    if (p.theme && this._pt !== undefined && p.theme !== this._pt) { this._pt = p.theme; setTimeout(() => this.setTheme(p.theme), 0); }
     const role = p.role ?? 'creative', premium = (p.membership ?? 'free')==='premium', offline = !!p.offline;
-    const ctx = { premium, offline, mentor: role.includes('mentor'), seller: role.includes('seller') };
+    const dk = this.state.theme==='dark';
+    const ctx = { premium, offline, mentor: role.includes('mentor'), seller: role.includes('seller'), dark: dk, theme: dk?'Dark':'Light', toggleTheme: () => this.setTheme(dk?'light':'dark') };
     const i = FLAT.indexOf(cur), tab = tabOf(s), entry = cur.file==='AtarahEntry', dark = DARK.has(s);
     return {
       screen: s, nav: this.nav, ctx, cur, total: FLAT.length,
-      f: { [cur.file]: true },
+      f: this.state.blink ? {} : { [cur.file]: true },
       showMap: p.showMap ?? true,
       showTabs: !entry && !NO_TABS.has(s),
-      sbBg: dark ? '#4a36e0' : 'transparent', sbFg: dark ? '#fff' : '#15133d',
-      gbBg: dark ? '#3b2bc4' : '#fff', gbFg: dark ? 'rgba(255,255,255,.8)' : '#15133d',
-      groups: GROUPS.map(g => ({ label:g.label, count:g.items.length, items:g.items.map(([id,label]) => ({ label, num:INDEX[id].num, go:this.nav[id], bg:id===s?'#ece8ff':'transparent', fg:id===s?'#4330d6':'#15133d', fw:id===s?'700':'500' })) })),
-      tabs: TABS.map(([id,icon,label]) => { const on = id===tab; return { icon, label, go:this.nav[id], color: on?'#5b45f0':'#4a4868', fw: on?'700':'500', pill: on?'#ece8ff':'transparent', fill: on?'rgba(91,69,240,.18)':'none' }; }),
+      sbBg: dark ? '#5145D8' : 'transparent', sbFg: dark ? '#fff' : '#17153F',
+      gbBg: dark ? '#3828C3' : '#fff', gbFg: (dark||dk) ? 'rgba(255,255,255,.8)' : '#17153F',
+      themeOpts: [['light','sun','Light'],['dark','moon','Dark']].map(([id,icon,label]) => ({ icon, label, pick: () => this.setTheme(id), bg: this.state.theme===id?'#5145D8':'transparent', fg: this.state.theme===id?'#fff':'#4a4868' })),
+      groups: GROUPS.map(g => ({ label:g.label, count:g.items.length, items:g.items.map(([id,label]) => ({ label, num:INDEX[id].num, go:this.nav[id], bg:id===s?'#E7E4FF':'transparent', fg:id===s?'#3F34B8':'#17153F', fw:id===s?'700':'500' })) })),
+      tabs: TABS.map(([id,icon,label]) => { const on = id===tab; return { icon, label, go:this.nav[id], color: on?'#5145D8':'#4a4868', fw: on?'700':'500', pill: on?'#E7E4FF':'transparent', fill: on?'rgba(81,69,216,.18)':'none' }; }),
       prev: () => this.go(FLAT[(i-1+FLAT.length)%FLAT.length].id),
       next: () => this.go(FLAT[(i+1)%FLAT.length].id),
       view: { plan: premium?'Atarah Pro':'Free', role: role==='creative'?'Creative':'Creative + '+role.replace('mentor + seller','mentor, seller'), conn: offline?'Offline':'Online' }

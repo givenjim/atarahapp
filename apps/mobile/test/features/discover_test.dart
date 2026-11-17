@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:atarah/core/api/generated/export.dart';
+import 'package:atarah/core/appearance/appearance_controller.dart';
 import 'package:atarah/core/design_system/design_system.dart';
 import 'package:atarah/core/networking/failures.dart';
 import 'package:flutter/material.dart';
@@ -149,6 +152,36 @@ void main() {
       await t.pumpAndSettle();
       expect(h.path, '/profile');
     });
+
+    for (final appearance in AtAppearance.values) {
+      testWidgets(
+        'the header carries the 126 px logo and the completion card the brand ring (${appearance.name})',
+        (t) async {
+          final h = await openApp(t, discover: FakeDiscoverRepository());
+          // The state changes at once; the storage write behind it is not awaited in a test.
+          unawaited(
+            h.container
+                .read(appearanceControllerProvider.notifier)
+                .set(appearance),
+          );
+          await t.pumpAndSettle();
+          final logo = t.widget<AtLogo>(find.byType(AtLogo));
+          expect(logo.variant, AtLogoVariant.noBrandLine);
+          expect(logo.width, 126);
+          expect(
+            find.descendant(
+              of: find.byType(AtDarkCard),
+              matching: find.byType(AtBrandRing),
+            ),
+            findsOneWidget,
+          );
+          final scaffold = t.widget<Scaffold>(find.byType(Scaffold).first);
+          final at = t.element(find.byType(Scaffold).first).at;
+          expect(scaffold.backgroundColor, at.background);
+          expect(at.isDark, appearance == AtAppearance.dark);
+        },
+      );
+    }
   });
 
   group('Explore', () {
@@ -277,7 +310,7 @@ void main() {
         await check('Marketplace', '/soon/p2');
         await check('Mentorship', '/soon/p2');
         await check('Creative economy', '/soon/p3');
-        await check('Skill Labs', '/soon/p1');
+        await check('Skill Labs', '/learning');
         await check('Articles', '/articles');
       },
     );

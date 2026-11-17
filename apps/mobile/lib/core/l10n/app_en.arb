@@ -17,6 +17,101 @@
   "offlineBanner": "You're offline. Saved content is still available.",
   "needsConnection": "Needs a connection",
   "back": "Back",
+  "grpYourGroups": "Your groups",
+  "grpYourGroupsEmpty": "You haven't joined a group yet. Find one below.",
+  "grpDiscover": "Discover groups",
+  "grpSearchHint": "Search groups",
+  "grpSearchClear": "Clear search",
+  "grpFilterAll": "All",
+  "grpTypeDiscipline": "Discipline",
+  "grpTypeLocation": "Location",
+  "grpTypeInterest": "Interest",
+  "grpTypeProgramme": "Programme",
+  "grpMembers": "{count, plural, =1{1 member} other{{count} members}}",
+  "@grpMembers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "grpDiscoverEmpty": "No groups to show",
+  "grpDiscoverEmptyBody": "Try another type or search, or check back soon.",
+  "grpLoadMore": "Show more groups",
+  "grpLeaveTitle": "Leave {name}?",
+  "@grpLeaveTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "grpLeaveBody": "You'll stop seeing its discussions. You can join again any time.",
+  "grpLeaveConfirm": "Leave group",
+  "grpStay": "Stay",
+  "grpJoinedToast": "You joined {name}",
+  "@grpJoinedToast": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "grpLeftToast": "You left {name}",
+  "@grpLeftToast": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "grpOwnerCantLeave": "You own this group, so you can't leave it. Ask the Atarah team to hand it over first.",
+  "grpErrRestricted": "Your account is restricted right now, so you can't join or post in groups.",
+  "grpErrVerify": "Verify your email or phone number to join groups and post in them.",
+  "grpErrRate": "You're doing that a lot. Give it a moment and try again.",
+  "grpErrPrivate": "This group is private. Members are added by invitation.",
+  "grpJoinGroup": "Join group",
+  "grpShare": "Share group",
+  "grpShareText": "Join {name} on Atarah",
+  "@grpShareText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "grpTypePrivate": "Private",
+  "grpOfficial": "Official",
+  "grpPinned": "Pinned announcement",
+  "grpRecent": "Recent discussions",
+  "grpNoDiscussions": "No discussions yet",
+  "grpNoDiscussionsBody": "Be the first to start one.",
+  "grpStartDiscussion": "Start a discussion",
+  "grpJoinToPost": "Join this group to post",
+  "grpPrivateNote": "Private group. Members are added by invitation.",
+  "grpGone": "This group isn't available",
+  "grpGoneBody": "It may be private, archived or no longer exist.",
+  "grpPostsFailed": "We couldn't load the discussions",
+  "grpMoreDiscussions": "Show more discussions",
+  "grpReplies": "{count, plural, =1{1 reply} other{{count} replies}}",
+  "@grpReplies": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "grpMeta": "{type} · {members}",
+  "@grpMeta": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "members": {
+        "type": "String"
+      }
+    }
+  },
   "close": "Close",
   "seeAll": "See all",
   "retry": "Try again",
@@ -153,6 +248,229 @@
   "savePost": "Save post",
   "unsavePost": "Unsave post",
   "moreOptions": "More options",
+  "cfdTitle": "Community",
+  "cfdSubtitle": "Ask, share and build with Kenya's creatives.",
+  "cfdNewPost": "New post",
+  "cfdTabFeed": "Feed",
+  "cfdTabDiscussions": "Discussions",
+  "cfdTabGroups": "Groups",
+  "cfdTabPeople": "People",
+  "cfdComposerPrompt": "Share an update or ask a question…",
+  "cfdFeedEmpty": "Nothing here yet",
+  "cfdFeedEmptyBody": "Be the first to share an update or ask a question.",
+  "cfdDiscussionsEmpty": "No discussions yet",
+  "cfdDiscussionsEmptyBody": "Start one and ask the community what they think.",
+  "cfdWritePost": "Write a post",
+  "cfdFeedFailed": "We couldn't load the feed",
+  "cfdOfflineTitle": "You're offline",
+  "cfdOfflineBody": "Reconnect to see the latest posts.",
+  "cfdLoadMoreFailed": "We couldn't load more posts.",
+  "cfdTypeUpdate": "Creative update",
+  "cfdTypeQuestion": "Question",
+  "cfdTypeDiscussion": "Discussion",
+  "cfdTypeCollaboration": "Collaboration",
+  "cfdTypeAnnouncement": "Announcement",
+  "cfdChipUpdate": "Update",
+  "cfdAuthorTeam": "Atarah Team",
+  "cfdNow": "now",
+  "cfdMinutes": "{n}m",
+  "@cfdMinutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "cfdHours": "{n}h",
+  "@cfdHours": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "cfdDays": "{n}d",
+  "@cfdDays": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "cfdEdited": "edited",
+  "cfdShareText": "{name} on Atarah: {excerpt}\n{url}",
+  "@cfdShareText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "excerpt": {
+        "type": "String"
+      },
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "cfdOpenLink": "Open link: {title}",
+  "@cfdOpenLink": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "cfdVideo": "Video",
+  "cfdPhotoOf": "Photo by {name}",
+  "@cfdPhotoOf": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "cfdSavedPost": "Saved to your saved items.",
+  "cfdUnsavedPost": "Removed from your saved items.",
+  "cfdReplyCount": "{count, plural, =0{No replies yet} =1{1 reply} other{{count} replies}}",
+  "@cfdReplyCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cfdReplyHint": "Write a reply…",
+  "cfdReplyingTo": "Replying to {name}",
+  "@cfdReplyingTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "cfdCancelReply": "Cancel reply",
+  "cfdSendReply": "Send reply",
+  "cfdReply": "Reply",
+  "cfdNoReplies": "No replies yet",
+  "cfdNoRepliesBody": "Be the first to reply.",
+  "cfdMoreReplies": "Show more replies",
+  "cfdMenuSave": "Save discussion",
+  "cfdMenuUnsave": "Remove from saved",
+  "cfdMenuMute": "Mute thread",
+  "cfdMenuUnmute": "Unmute thread",
+  "cfdMenuBlock": "Block author",
+  "cfdMenuReport": "Report",
+  "cfdMenuEdit": "Edit",
+  "cfdMenuDelete": "Delete",
+  "cfdMuted": "Thread muted. You won't be notified about it.",
+  "cfdUnmuted": "Thread unmuted.",
+  "cfdEditPostTitle": "Edit post",
+  "cfdEditReplyTitle": "Edit reply",
+  "cfdSaveChanges": "Save changes",
+  "cfdCancel": "Cancel",
+  "cfdDone": "Done",
+  "cfdDeletePostTitle": "Delete this post?",
+  "cfdDeletePostBody": "It will be removed for everyone, including the replies. This can't be undone.",
+  "cfdDeleteReplyTitle": "Delete this reply?",
+  "cfdDeleteReplyBody": "It will be removed for everyone. This can't be undone.",
+  "cfdDelete": "Delete",
+  "cfdPostGone": "This post isn't available",
+  "cfdPostGoneBody": "It may have been removed, or you can no longer see it.",
+  "cfdReportTitle": "Report",
+  "cfdReportIntro": "Why are you reporting this? The person won't be told it was you.",
+  "cfdReasonInappropriate": "Inappropriate or offensive",
+  "cfdReasonHarassment": "Harassment or bullying",
+  "cfdReasonScam": "Scam or spam",
+  "cfdReasonMisleading": "Misleading or false",
+  "cfdReasonImpersonation": "Pretending to be someone else",
+  "cfdReasonIp": "Copied or stolen work",
+  "cfdReasonOther": "Something else",
+  "cfdReportNoteLabel": "Add a note (optional)",
+  "cfdReportNoteHint": "Tell us what we should look at",
+  "cfdReportSubmit": "Send report",
+  "cfdReportDoneTitle": "Thanks for telling us",
+  "cfdReportDoneBody": "Our team will review this report. When a decision is made you'll get a notification with the outcome. We don't share details about other members, and the person won't know it was you.",
+  "cfdBlockTitle": "Block {name}?",
+  "@cfdBlockTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "cfdBlockBody": "You won't see each other's posts, replies or profiles, and neither of you can connect with or reply to the other. They won't be told.",
+  "cfdBlockConfirm": "Block",
+  "cfdBlockedTitle": "{name} is blocked",
+  "@cfdBlockedTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "cfdBlockedBody": "Their posts and replies are now hidden from you.",
+  "cfdUndoBlock": "Undo block",
+  "cfdUnblocked": "{name} is unblocked.",
+  "@cfdUnblocked": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "cfdComposeTitle": "New post",
+  "cfdPost": "Post",
+  "cfdBodyHint": "What would you like to share?",
+  "cfdCharCount": "{count}/{max}",
+  "@cfdCharCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "cfdDraftSaved": "Draft saved automatically",
+  "cfdAttachPhoto": "Photo",
+  "cfdAttachVideo": "Video",
+  "cfdAttachLink": "Link",
+  "cfdAttachOpportunity": "Opportunity",
+  "cfdAudience": "Audience",
+  "cfdAudMembers": "Atarah members",
+  "cfdAudMembersBody": "Everyone signed in to Atarah",
+  "cfdAudPublic": "Public",
+  "cfdAudPublicBody": "Anyone, including people outside Atarah",
+  "cfdAudConnections": "Connections",
+  "cfdAudConnectionsBody": "Only people you're connected with",
+  "cfdAudGroups": "Your groups",
+  "cfdAudGroupBody": "Members of this group",
+  "cfdAudGroupsFailed": "We couldn't load your groups.",
+  "cfdLinkTitle": "Add a link",
+  "cfdLinkHint": "https://",
+  "cfdLinkInvalid": "Enter a full web address that starts with http:// or https://",
+  "cfdLinkNote": "A preview appears on the post a moment after you share it.",
+  "cfdLinkAdd": "Add link",
+  "cfdLinkRemove": "Remove link",
+  "cfdMediaFull": "A post can have up to 10 photos or videos.",
+  "cfdPickFailed": "We couldn't open your files. Try again.",
+  "cfdNeedsContent": "Write something, or add a photo, video or link.",
+  "cfdTooLong": "Posts can be up to {max} characters.",
+  "@cfdTooLong": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "cfdUploadsPending": "Wait for your files to finish uploading, or remove them.",
+  "cfdPostedToast": "Posted.",
+  "cfdErrVerification": "Verify your email or phone number first, then try again.",
+  "cfdErrRestricted": "Your account is restricted right now, so you can't do this. If you think that's a mistake, contact support.",
+  "cfdErrNotMember": "Join this group first, then try again.",
+  "cfdErrNotFound": "This isn't available any more.",
+  "cfdErrRateLimited": "You're going a little fast. Please wait a while and try again.",
   "improveSkill": "Improve this skill",
   "findOpportunities": "Find opportunities",
   "verifyAction": "Verify",
@@ -208,7 +526,7 @@
   "fullNameError": "Enter your full name.",
   "identifierError": "Enter a valid email address or phone number.",
   "identifierHintPhone": "Phone numbers starting with 0 or 7 are treated as Kenyan (+254).",
-  "passwordRuleError": "Use at least 8 characters, including a number.",
+  "passwordRuleError": "Use at least 8 characters, including a letter and a number.",
   "consentPrefix": "I agree to the ",
   "consentAnd": " and ",
   "consentTermsLink": "Terms of Service",
@@ -245,7 +563,7 @@
   "signInLockedHint": "You can also reset your password to sign in right away.",
   "forgotTitle": "Reset your password",
   "forgotBody": "Enter the email or phone on your account and we'll send a recovery code.",
-  "forgotSent": "Code sent. It expires in 15 minutes.",
+  "forgotSent": "Code sent. It expires in 10 minutes.",
   "forgotAction": "Send code",
   "resetTitle": "Set a new password",
   "resetBody": "You'll be signed out of other devices.",
@@ -1037,5 +1355,982 @@
   "dcArticleGone": "This article is not available",
   "dcArticleGoneBody": "It may have been removed or not published yet.",
   "dcNoArticles": "No articles yet",
-  "dcNoArticlesBody": "New stories and advice will appear here."
+  "dcNoArticlesBody": "New stories and advice will appear here.",
+  "proPillLabel": "Pro",
+  "appearanceLabel": "Appearance",
+  "appearanceLight": "Light",
+  "appearanceDark": "Dark",
+  "settingsGroupAccount": "Account",
+  "settingsGroupSupport": "Support",
+  "settingsAccount": "Account",
+  "settingsPrivacy": "Privacy & visibility",
+  "settingsNotifications": "Notifications",
+  "settingsSecurity": "Security",
+  "settingsHelp": "Help",
+  "settingsLegal": "Legal",
+  "peopleTitle": "People to meet",
+  "peopleBody": "Creatives who work like you, near you or in what you do.",
+  "peopleOpenToWork": "Open to work",
+  "peopleAnyDiscipline": "All disciplines",
+  "peopleAnyCounty": "All counties",
+  "peopleCount": "{count, plural, =1{1 person} other{{count} people}}",
+  "@peopleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "peopleRequested": "Requested",
+  "peopleConnectWith": "Connect with {name}",
+  "@peopleConnectWith": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "peopleRespond": "Respond",
+  "peopleSave": "Save",
+  "peopleSaveLabel": "Save {name}",
+  "@peopleSaveLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "peopleSaveFeature": "Saving people",
+  "peopleConnections": "Connections",
+  "peopleRequests": "Requests",
+  "peopleRequestsWaiting": "{count, plural, =1{1 request waiting} other{{count} requests waiting}}",
+  "@peopleRequestsWaiting": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "peopleConnectionsBody": "The people you are connected with and the requests going back and forth.",
+  "peopleListConnected": "Connected",
+  "peopleListReceived": "Received",
+  "peopleListSent": "Sent",
+  "peopleMore": "More options",
+  "peopleBlocked": "Blocked people",
+  "peopleBlockedBody": "Blocking hides posts both ways and stops requests, comments and mentions.",
+  "peopleBlockedEmptyTitle": "You have not blocked anyone",
+  "peopleBlockedEmptyBody": "People you block will be listed here, and you can unblock them at any time.",
+  "peopleUnblock": "Unblock",
+  "peopleUnblockLabel": "Unblock {name}",
+  "@peopleUnblockLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "peopleBlockedSince": "Blocked {date}",
+  "@peopleBlockedSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "peopleEmptyTitle": "No one to suggest yet",
+  "peopleEmptyBody": "As more creatives join and your profile fills in, people you may want to meet will appear here.",
+  "peopleEmptyFilteredTitle": "No one matches those filters",
+  "peopleEmptyFilteredBody": "Try fewer filters or a different county.",
+  "peopleClearFilters": "Clear filters",
+  "peopleConnectedEmptyTitle": "No connections yet",
+  "peopleConnectedEmptyBody": "Connect with people you meet on Atarah and they will be listed here.",
+  "peopleReceivedEmptyTitle": "No requests waiting",
+  "peopleReceivedEmptyBody": "When someone asks to connect, you can accept or decline here.",
+  "peopleSentEmptyTitle": "No pending requests",
+  "peopleSentEmptyBody": "Requests you have sent that have not been answered yet are listed here.",
+  "peopleSince": "Since {date}",
+  "@peopleSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "peopleRequestedOn": "Requested {date}",
+  "@peopleRequestedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "peopleSentCancelLabel": "Withdraw request to {name}",
+  "@peopleSentCancelLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "peopleAcceptLabel": "Accept {name}",
+  "@peopleAcceptLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "peopleDeclineLabel": "Decline {name}",
+  "@peopleDeclineLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "peopleErrVerification": "Verify your email or phone first and you can connect with people. It only takes a minute.",
+  "peopleErrRestricted": "Your account is restricted for now, so you cannot do this. We will let you know if that changes.",
+  "peopleErrRateLimited": "You have done a lot in a short time. Take a breather and try again a little later.",
+  "peopleErrNotFound": "That person is not available any more.",
+  "opSubtitle": "Funding, gigs and open calls matched to your craft.",
+  "opSaved": "Saved",
+  "opSavedCount": "Saved, {count} items",
+  "@opSavedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "opSearchHint": "Search grants, gigs, jobs…",
+  "opCatAll": "All",
+  "opCatFunding": "Funding",
+  "opCatGrants": "Grants",
+  "opCatJobs": "Jobs",
+  "opCatInternships": "Internships",
+  "opCatGigs": "Gigs",
+  "opCatCompetitions": "Competitions",
+  "opCatFestivals": "Festivals",
+  "opCatPartnerships": "Partnerships",
+  "opCatFellowships": "Fellowships",
+  "opCatResidencies": "Residencies",
+  "opCatProgrammes": "Programmes",
+  "opTypeGrant": "Grant",
+  "opTypeFunding": "Funding",
+  "opTypeJob": "Job",
+  "opTypeInternship": "Internship",
+  "opTypeGig": "Gig",
+  "opTypeCompetition": "Competition",
+  "opTypeFestival": "Festival",
+  "opTypePartnership": "Partnership",
+  "opTypeFellowship": "Fellowship",
+  "opTypeResidency": "Residency",
+  "opTypeProgramme": "Programme",
+  "opFeatured": "Featured",
+  "opClosingSoon": "Closing soon",
+  "opRecent": "Recently added",
+  "opOpenCount": "{count} open {kind}",
+  "@opOpenCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "opKindAll": "opportunities",
+  "opSortDeadline": "Deadline: soonest",
+  "opSortRecent": "Recently added",
+  "opSortRelevance": "Most relevant",
+  "opSortBy": "Sort by",
+  "opFilterDeadline": "Closing within",
+  "opFilterAnyTime": "Any time",
+  "opFilterDays": "{days} days",
+  "@opFilterDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "opFilterRemote": "Remote only",
+  "opFilterRemoteBody": "Work you can do from anywhere",
+  "opFilterTrust": "Trust",
+  "opFilterTrustAny": "Any",
+  "opFilterApply": "Apply filters",
+  "opNoResults": "No opportunities match",
+  "opNoResultsBody": "Try clearing a filter, or check back soon.",
+  "opNothingOpen": "Nothing open right now",
+  "opNothingOpenBody": "New opportunities are added often. Check back soon.",
+  "opDaysLeft": "{count, plural, =0{Closes today} =1{1 day left} other{{count} days left}}",
+  "@opDaysLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "opRolling": "Rolling deadline",
+  "opClosed": "Closed",
+  "opStatusSaved": "Saved",
+  "opStatusInProgress": "In progress",
+  "opStatusApplied": "Applied",
+  "opStatusCompleted": "Completed",
+  "opStatusSavedLeft": "Saved · {when}",
+  "@opStatusSavedLeft": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "opStatusClosingIn": "Closing in {count, plural, =0{less than a day} =1{1 day} other{{count} days}}",
+  "@opStatusClosingIn": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "opStatusAppliedOn": "Applied externally · {date}",
+  "@opStatusAppliedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "opStatusCompletedOutcome": "Completed · {outcome}",
+  "@opStatusCompletedOutcome": {
+    "placeholders": {
+      "outcome": {
+        "type": "String"
+      }
+    }
+  },
+  "opApplyWebsite": "Apply on external website",
+  "opApplyEmail": "Apply by email",
+  "opClosedNotice": "This opportunity has closed. It stays in your list so you keep your record.",
+  "opAbout": "About",
+  "opRequirements": "Requirements",
+  "opBenefits": "Benefits",
+  "opFactDeadline": "Deadline",
+  "opFactValue": "Value",
+  "opFactLocation": "Location",
+  "opFactApplication": "Application",
+  "opApplicationExternal": "External website",
+  "opApplicationEmail": "Email",
+  "opNotStated": "Not stated",
+  "opHelpTitle": "Help me understand this",
+  "opHelpBody": "AI summary of eligibility and what to prepare",
+  "opShare": "Share",
+  "opSave": "Save opportunity",
+  "opUnsave": "Remove from saved",
+  "opGapMissing": "{count, plural, =1{Your profile is missing 1 requirement} other{Your profile is missing {count} requirements}}",
+  "@opGapMissing": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "opGapMissingBody": "Add them before you apply",
+  "opGapReady": "You meet the requirements Atarah can check",
+  "opGapReadyBody": "Read the listing for anything else the provider asks for.",
+  "opGapUnchecked": "Atarah can't check these requirements",
+  "opGapUncheckedBody": "The provider will confirm them. Read each one carefully.",
+  "opGapNoRules": "No special requirements listed",
+  "opGapNoRulesBody": "Read the listing and apply when you're ready.",
+  "opGapAdd": "Add",
+  "opGapCannotCheck": "We can't check this",
+  "opGapProgress": "{met} of {total} met",
+  "@opGapProgress": {
+    "placeholders": {
+      "met": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "opMineTitle": "My opportunities",
+  "opSavedTitle": "Saved opportunities",
+  "opTabAll": "All",
+  "opTabClosing": "Closing soon",
+  "opTabApplied": "Applied",
+  "opTabCompleted": "Completed",
+  "opEmptyAll": "Nothing tracked yet",
+  "opEmptyAllBody": "Save an opportunity or apply for one to follow it here.",
+  "opEmptyClosing": "Nothing closing soon",
+  "opEmptyClosingBody": "Saved opportunities with a deadline in the next 14 days show up here.",
+  "opEmptyApplied": "No applications yet",
+  "opEmptyAppliedBody": "Opportunities you apply for are listed here.",
+  "opEmptyCompleted": "Nothing completed yet",
+  "opEmptyCompletedBody": "Opportunities you finish will be kept here for your Creative Passport.",
+  "opEmptySaved": "Nothing saved yet",
+  "opEmptySavedBody": "Tap the bookmark on an opportunity to keep it here.",
+  "opExplore": "Explore opportunities",
+  "opMarkCompleted": "Mark as completed",
+  "opOutcomeTitle": "How did it go?",
+  "opOutcomeAwarded": "Awarded",
+  "opOutcomeNotSelected": "Not selected",
+  "opOutcomeWithdrawn": "Withdrawn",
+  "opOutcomeUnknown": "Not sure yet",
+  "opOutcomeSave": "Save outcome",
+  "opAwardedTitle": "Congratulations!",
+  "opAwardedBody": "Add this win to your achievements so it shows on your Creative Passport.",
+  "opAddAchievement": "Add this to your achievements",
+  "opNotNow": "Not now",
+  "opOpenFailed": "We couldn't open that. Try again.",
+  "opNotAvailable": "That opportunity is not available any more.",
+  "opMineSummary": "{saved} saved · {applied} applied · {completed} completed",
+  "@opMineSummary": {
+    "placeholders": {
+      "saved": {
+        "type": "int"
+      },
+      "applied": {
+        "type": "int"
+      },
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "opSearchTab": "Opportunities ({count})",
+  "@opSearchTab": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "lnHubTitle": "Skill Labs",
+  "lnHubSubtitle": "Build the skills that move your creative career forward.",
+  "lnMyLearning": "My learning",
+  "lnContinueLearning": "Continue learning",
+  "lnContinueLabel": "CONTINUE LEARNING",
+  "lnContinueMeta": "Lesson {n} of {total} · {title}",
+  "@lnContinueMeta": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "lnContinueMetaNoTitle": "{done} of {total} lessons done",
+  "@lnContinueMetaNoTitle": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "lnFeatured": "Featured Labs",
+  "lnCategories": "Categories",
+  "lnGroupCreative": "Creative",
+  "lnGroupBusiness": "Business",
+  "lnGroupProfessional": "Professional",
+  "lnResourcesCount": "{count, plural, =1{1 resource} other{{count} resources}}",
+  "@lnResourcesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "lnRecommended": "Recommended for you",
+  "lnHubEmptyTitle": "No Skill Labs yet",
+  "lnHubEmptyBody": "Courses and resources will appear here as soon as they are published.",
+  "lnOpenHub": "Open Skill Labs",
+  "lnTypeAll": "All",
+  "lnTypeCourse": "Course",
+  "lnTypeTutorial": "Tutorial",
+  "lnTypeToolkit": "Toolkit",
+  "lnTypeWebinar": "Webinar",
+  "lnTypeMasterclass": "Masterclass",
+  "lnTypeArticle": "Article",
+  "lnPluralCourse": "courses",
+  "lnPluralTutorial": "tutorials",
+  "lnPluralToolkit": "toolkits",
+  "lnPluralWebinar": "webinars",
+  "lnPluralMasterclass": "masterclasses",
+  "lnPluralArticle": "articles",
+  "lnPluralAll": "resources",
+  "lnSourceAtarahCourse": "✓ Atarah Course",
+  "lnSourceAtarahEditorial": "✓ Atarah Editorial",
+  "lnSourcePartner": "Partner content",
+  "lnSourceExternal": "External resource",
+  "lnDeliveryNative": "In-app lessons",
+  "lnDeliveryEmbedded": "Embedded",
+  "lnDeliveryExternal": "Opens outside Atarah",
+  "lnLevelBeginner": "Beginner",
+  "lnLevelIntermediate": "Intermediate",
+  "lnLevelAdvanced": "Advanced",
+  "lnLevelExpert": "Expert",
+  "lnLessonCount": "{count, plural, =1{1 lesson} other{{count} lessons}}",
+  "@lnLessonCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "lnDurationHm": "{hours}h {minutes}m",
+  "@lnDurationHm": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "lnDurationH": "{hours}h",
+  "@lnDurationH": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "lnDurationM": "{minutes} min",
+  "@lnDurationM": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "lnPremiumBadge": "Pro",
+  "lnCategoryEmptyTitle": "Nothing in {category} yet",
+  "@lnCategoryEmptyTitle": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "lnCategoryEmptyBody": "New Skill Labs are added all the time. Check back soon.",
+  "lnTypeEmptyTitle": "No {types} in {category} yet",
+  "@lnTypeEmptyTitle": {
+    "placeholders": {
+      "types": {
+        "type": "String"
+      },
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "lnTypeEmptyCta": "Explore all types",
+  "lnLoadMoreFailed": "We couldn't load more. Tap to try again.",
+  "lnYourProgress": "Your progress",
+  "lnProgressOf": "{done} / {total}",
+  "@lnProgressOf": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "lnPercentComplete": "{percent}% complete",
+  "@lnPercentComplete": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "lnWhatYoullLearn": "What you'll learn",
+  "lnWhoItsFor": "Who it's for",
+  "lnLessons": "Lessons",
+  "lnTaughtBy": "Taught by",
+  "lnFrom": "From",
+  "lnStartLearning": "Start learning",
+  "lnReviewCourse": "Review course",
+  "lnLessonDone": "Done",
+  "lnLessonCurrent": "Current",
+  "lnLessonLocked": "Locked",
+  "lnLessonRow": "Lesson {n}: {title}, {minutes} minutes, {state}",
+  "@lnLessonRow": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "title": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      },
+      "state": {
+        "type": "String"
+      }
+    }
+  },
+  "lnLessonMinutes": "{minutes} min",
+  "@lnLessonMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "lnSaveLab": "Save to my learning",
+  "lnUnsaveLab": "Remove from saved",
+  "lnShareLab": "Share this Skill Lab",
+  "lnCertificateEarned": "Certificate earned",
+  "lnCertificateNumber": "No. {number}",
+  "@lnCertificateNumber": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "lnCertificateIssued": "Issued {date}",
+  "@lnCertificateIssued": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "lnViewOnPassport": "See it in your achievements",
+  "lnPremiumFeature": "Premium Skill Labs",
+  "lnPremiumWhat": "Courses and masterclasses from Atarah and our partners, with certificates.",
+  "lnPremiumWhy": "Structured learning is the quickest way to move a skill from good to hireable.",
+  "lnPremiumHow": "Upgrade to Atarah Pro to open every Skill Lab.",
+  "lnOpenResource": "Open resource",
+  "lnLeavingBody": "You're going to {domain}. It's a resource from outside Atarah, so what you do there stays there.",
+  "@lnLeavingBody": {
+    "placeholders": {
+      "domain": {
+        "type": "String"
+      }
+    }
+  },
+  "lnMarkComplete": "Mark as complete",
+  "lnCompletedItem": "Completed",
+  "lnStartedItem": "In progress",
+  "lnFindSimilar": "Find similar",
+  "lnWatchEmbedded": "Watch",
+  "lnEnrolFailed": "We couldn't start that course. Try again.",
+  "lnNeedsConnection": "Connect to the internet to continue.",
+  "lnSavedCopyBanner": "Showing your saved copy. Connect to the internet to keep learning.",
+  "lnLessonOf": "Lesson {n} of {total}",
+  "@lnLessonOf": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "lnPractice": "Practice",
+  "lnAddToPortfolio": "Add to portfolio",
+  "lnLearnNext": "What should I learn next?",
+  "lnAllLessons": "All lessons",
+  "lnMarkCompleteNext": "Mark complete & next",
+  "lnMarkCompleteFinish": "Mark complete & finish",
+  "lnLessonProgressBar": "Lesson progress: {done} of {total} lessons complete",
+  "@lnLessonProgressBar": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "lnVideoLoadFailed": "We couldn't load this video.",
+  "lnVideoPreparing": "The video is still being prepared. Try again in a moment.",
+  "lnEmbedFailedTitle": "{service} isn't responding",
+  "@lnEmbedFailedTitle": {
+    "placeholders": {
+      "service": {
+        "type": "String"
+      }
+    }
+  },
+  "lnBackToCourse": "Go back to course",
+  "lnVideoResuming": "Resuming from {time}",
+  "@lnVideoResuming": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "lnLessonLockedMessage": "Finish the earlier lessons to unlock this one.",
+  "lnSaveProgressFailed": "We couldn't save your progress. It will retry.",
+  "lnVideoSemantic": "Lesson video",
+  "lnCompleteTitle": "Course complete!",
+  "lnCompleteBody": "You finished {course}. Your certificate is added to your achievements.",
+  "@lnCompleteBody": {
+    "placeholders": {
+      "course": {
+        "type": "String"
+      }
+    }
+  },
+  "lnCompleteShare": "Share",
+  "lnCompleteShareText": "I just completed {course} on Atarah Skill Labs.",
+  "@lnCompleteShareText": {
+    "placeholders": {
+      "course": {
+        "type": "String"
+      }
+    }
+  },
+  "lnBackToLabs": "Back to Skill Labs",
+  "lnStatInProgress": "In progress",
+  "lnStatCompleted": "Completed",
+  "lnStatHours": "Hours this month",
+  "lnTabActive": "Active",
+  "lnTabCompleted": "Completed",
+  "lnTabSaved": "Saved",
+  "lnSavedTitle": "Saved Skill Labs",
+  "lnEmptyActiveTitle": "Nothing in progress",
+  "lnEmptyActiveBody": "Start a Skill Lab and pick up where you left off, any time.",
+  "lnEmptyActiveCta": "Browse Skill Labs",
+  "lnEmptyCompletedTitle": "Nothing completed yet",
+  "lnEmptyCompletedBody": "Finish a course to earn a certificate for your Passport.",
+  "lnEmptySavedTitle": "No saved Skill Labs",
+  "lnEmptySavedBody": "Tap the bookmark on a Skill Lab to keep it here.",
+  "lnCompletedOn": "Completed {date}",
+  "@lnCompletedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "lnLastActive": "Last active {date}",
+  "@lnLastActive": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "lnSearchTab": "Skill Labs ({count})",
+  "@lnSearchTab": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "premiumSeeProPlain": "See Pro",
+  "loadingLabel": "Loading",
+  "ayActivityTitle": "Activity",
+  "ayPickUp": "Pick up where you left off",
+  "ayNothingToResume": "Nothing to pick up right now. Start a Skill Lab, save an opportunity or add a project.",
+  "ayResumeLesson": "Continue lesson",
+  "ayResumeOpportunity": "Finish your application",
+  "ayResumeProject": "Finish your project",
+  "ayTileSaved": "Saved",
+  "ayTileApplications": "Applications",
+  "ayTileLearning": "My learning",
+  "ayTilePortfolio": "Portfolio",
+  "ayTileConnections": "Connections",
+  "ayTileNotifications": "Notifications",
+  "ayTileMentorship": "Mentorship",
+  "ayTileMarketplace": "Marketplace",
+  "aySoonP2": "Soon · P2",
+  "ayCount": "{count} saved",
+  "@ayCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ayInProgressCount": "{count} in progress",
+  "@ayInProgressCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ayPendingCount": "{count} waiting",
+  "@ayPendingCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ayUnreadCount": "{count} unread",
+  "@ayUnreadCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ayApplicationsTitle": "Applications",
+  "ayApplicationsEmptyTitle": "No applications yet",
+  "ayApplicationsEmptyBody": "When you start or finish an application it is tracked here.",
+  "ayFindOpportunities": "Find opportunities",
+  "ayApplied": "Applied",
+  "ayCompleted": "Completed",
+  "ayInProgress": "In progress",
+  "ntTitle": "Notifications",
+  "ntSettings": "Notification settings",
+  "ntAll": "All",
+  "ntCatOpportunities": "Opportunities",
+  "ntCatMentorship": "Mentorship",
+  "ntCatCommunity": "Community",
+  "ntCatLearning": "Learning",
+  "ntCatProfile": "Profile",
+  "ntCatMarketplace": "Marketplace",
+  "ntCatSystem": "Updates",
+  "ntToday": "Today",
+  "ntEarlier": "Earlier",
+  "ntMarkAllRead": "Mark all read",
+  "ntEmptyTitle": "You're all caught up",
+  "ntEmptyBody": "New connection requests, reminders and replies show up here.",
+  "ntEmptyCategoryTitle": "No {category} notifications",
+  "@ntEmptyCategoryTitle": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "sdTitle": "Saved",
+  "sdAll": "All",
+  "sdTypeOpportunity": "Opportunities",
+  "sdTypeLearning": "Skill Labs",
+  "sdTypeCreative": "Creatives",
+  "sdTypeArticle": "Articles",
+  "sdTypePost": "Posts",
+  "sdTypeListing": "Listings",
+  "sdTypeMentor": "Mentors",
+  "sdEmptyTitle": "Nothing saved yet",
+  "sdEmptyBody": "Tap the bookmark on an opportunity, Skill Lab, article or post to keep it here.",
+  "sdEmptyTypeTitle": "No saved {type}",
+  "@sdEmptyTypeTitle": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "sdExplore": "Explore",
+  "sdUnsaveFailed": "That could not be removed from your saved list.",
+  "stSaved": "Saved",
+  "stSaveChanges": "Save changes",
+  "stFullName": "Full name",
+  "stUsername": "Username",
+  "stUsernameHelp": "Your public address: atarah.app/username",
+  "stEmail": "Email",
+  "stPhone": "Phone",
+  "stNotSet": "Not added",
+  "stChange": "Change",
+  "stChangeEmail": "Change email",
+  "stChangePhone": "Change phone number",
+  "stChangeEmailBody": "We will send a link to the new address. Your email changes when you open it. We also tell your current address.",
+  "stChangePhoneBody": "We will send a code to the new number. Your number changes when you enter it.",
+  "stNewEmail": "New email",
+  "stNewPhone": "New phone number",
+  "stSendLink": "Send link",
+  "stSendCode": "Send code",
+  "stVerify": "Verify",
+  "stDone": "Done",
+  "stOk": "OK",
+  "stPendingChange": "Waiting for you to confirm {value}",
+  "@stPendingChange": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "stEmailLinkSent": "We sent a link to {address}. Open it to finish the change.",
+  "@stEmailLinkSent": {
+    "placeholders": {
+      "address": {
+        "type": "String"
+      }
+    }
+  },
+  "stPhoneCodeSent": "We sent a code to {number}. Enter it below.",
+  "@stPhoneCodeSent": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "stPrivacyIntro": "Choose who sees each part of your profile. Private details still power your recommendations.",
+  "stPrivContact": "Contact details",
+  "stPrivLocation": "Location",
+  "stPrivPortfolio": "Portfolio",
+  "stPrivExperience": "Experience",
+  "stPrivActivity": "Activity",
+  "stPrivNotSaved": "That change was not saved.",
+  "stVisPublic": "Public",
+  "stVisMembers": "Members",
+  "stVisPrivate": "Only me",
+  "stYourData": "Your data",
+  "stExportTitle": "Export my data",
+  "stExportBody": "We prepare a file with your profile, projects and activity, and send you a link that works for 7 days. One export a day.",
+  "stExportRequest": "Request my data",
+  "stExportRequested": "We are preparing your file. You will be notified when it is ready.",
+  "stExportPreparing": "Preparing",
+  "stExportReady": "Ready",
+  "stExportFailed": "Failed",
+  "stExportExpired": "Expired",
+  "stExportDownload": "Download my data",
+  "stExportNext": "You can ask again on {date}.",
+  "@stExportNext": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "stNotifCategory": "Category",
+  "stNotifPush": "Push",
+  "stNotifEmail": "Email",
+  "stNotifPushFor": "Push notifications for {category}",
+  "@stNotifPushFor": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "stNotifEmailFor": "Email notifications for {category}",
+  "@stNotifEmailFor": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "stNotifOpportunitiesDesc": "Deadlines and new matches",
+  "stNotifCommunityDesc": "Replies, mentions and requests",
+  "stNotifLearningDesc": "Certificates and recommendations",
+  "stNotifMentorshipDesc": "Booking updates",
+  "stNotifProfileDesc": "Profile tips and reminders",
+  "stNotifMarketplaceDesc": "Orders and messages",
+  "stNotifSystemDesc": "Account and safety updates",
+  "stNotifSecurityNote": "Security notices, such as a new sign-in or a password change, are always sent.",
+  "stPassword": "Password",
+  "stChangePassword": "Change password",
+  "stCurrentPassword": "Current password",
+  "stNewPassword": "New password",
+  "stPasswordChanged": "Password changed. Other devices were signed out.",
+  "stTwoStep": "Two-step verification",
+  "stTwoStepBody": "A code when you sign in on a new device",
+  "stTwoStepNeedsPhone": "Add a verified phone number to your account first.",
+  "stTwoStepOn": "Two-step verification is on.",
+  "stTwoStepOff": "Two-step verification is off.",
+  "stActiveSessions": "Active sessions",
+  "stThisDevice": "This device",
+  "stUnknownDevice": "Unknown device",
+  "stSignOutSession": "Sign out",
+  "stTwoStepTitle": "Confirm it is you",
+  "stTwoStepSms": "Enter the code we sent to your phone to sign in on this device.",
+  "stTwoStepApp": "Enter the code from your authenticator app to sign in on this device.",
+  "stTwoStepNoFactor": "We can't find a second step on your account. Sign out and sign in again, or contact support.",
+  "stTwoStepWrongCode": "That code didn't work. Check it and try again.",
+  "stHelpSearch": "Search help articles",
+  "stSafetyCentre": "Safety centre",
+  "stSafetyCentreBody": "Report, block, mute",
+  "stHelpArticles": "Articles",
+  "stFaq": "Frequently asked",
+  "stHelpNoResults": "Nothing matches that",
+  "stHelpNoResultsBody": "Try fewer words, or ask us directly below.",
+  "stStillNeedHelp": "Still need help?",
+  "stChatWithUs": "Chat with us",
+  "stLegalEmpty": "No documents yet",
+  "stLegalEmptyBody": "Our legal documents will appear here.",
+  "stVersion": "Version {version}",
+  "@stVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "stDraft": "Draft",
+  "stDraftPending": "DRAFT — pending legal review",
+  "stCurrentPlan": "CURRENT PLAN",
+  "stPlanFreeBody": "Everything you need to build your creative identity.",
+  "stPlanProBody": "Thank you for supporting Atarah.",
+  "stPlanRenews": "Renews {date}",
+  "@stPlanRenews": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "stWhatsIncluded": "What's included",
+  "stFeature": "Feature",
+  "stIncluded": "Included",
+  "stNotIncluded": "Not included",
+  "stUpgrade": "Upgrade to Pro · {price}",
+  "@stUpgrade": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "stUpgradePlain": "Upgrade to Pro",
+  "stCancelAnytime": "Cancel anytime. No hidden fees.",
+  "stDeleteAccount": "Delete account",
+  "stDeleteTitle": "Delete your account?",
+  "stDeleteIntro": "This can't be undone. You will permanently lose:",
+  "stDeleteLossProfile": "Your profile and Creative Passport",
+  "stDeleteLossPortfolio": "Your portfolio, services and achievements",
+  "stDeleteLossConnections": "Your connections and saved items",
+  "stDeleteLossProgress": "Your learning progress and certificates",
+  "stDeleteGrace": "Your account is hidden and you are signed out right away. Your data is deleted after 30 days. Sign in before then to restore it. Your posts and comments stay and show as \"Deleted member\".",
+  "stTypeDelete": "Type DELETE to confirm",
+  "stPasswordToConfirm": "Your password",
+  "stPasswordToConfirmHelp": "Needed if you signed in more than 5 minutes ago.",
+  "stDeletePermanently": "Delete account permanently",
+  "stKeepAccount": "Keep my account",
+  "stDeletedTitle": "Your account is scheduled for deletion",
+  "stDeletedBody": "It is hidden now and your data is deleted after 30 days. Sign in before then if you change your mind.",
+  "stRestoreTitle": "Restore your account?",
+  "stRestoreBody": "Your account is scheduled for deletion on {date}. Restore it to keep everything.",
+  "@stRestoreBody": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "stRestoreBodyNoDate": "Your account is scheduled for deletion. Restore it to keep everything.",
+  "stRestoreAccount": "Restore account",
+  "stOfflineNeedsConnection": "Needs a connection"
 }

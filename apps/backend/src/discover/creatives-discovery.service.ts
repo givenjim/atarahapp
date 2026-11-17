@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { pageMeta } from '../common/pagination';
+import { notBlockedSql } from '../community-core/blocks';
 import { MediaService } from '../media/media.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { type CreativeCardDto, type CreativesQueryDto, MIN_QUERY } from './discover.dto';
@@ -62,19 +63,18 @@ export class CreativesDiscoveryService {
 
     const skillsShown = Prisma.sql`NOT EXISTS (SELECT 1 FROM profile_section_visibility v
       WHERE v."profileId" = p.id AND v.section::text = 'SKILLS' AND v.visibility::text = 'PRIVATE')`;
-    const disciplineHit = (): Prisma.Sql => Prisma.sql`EXISTS (SELECT 1 FROM creative_disciplines cd
-      JOIN disciplines d ON d.id = cd."disciplineId"
-      WHERE cd."profileId" = p.id AND (d.name ILIKE ${like} OR similarity(d.name, ${q}) > 0.4))`;
-    const skillHit =
-      (): Prisma.Sql => Prisma.sql`(${skillsShown} AND EXISTS (SELECT 1 FROM creative_skills cs
-      JOIN skills s ON s.id = cs."skillId"
-      WHERE cs."profileId" = p.id AND (s.name ILIKE ${like} OR similarity(s.name, ${q}) > 0.4)))`;
+    // The profiles whose discipline or skill matches are found once (CTEs `dh` and `sh`, built below) and looked up per
+    // row, instead of running a correlated sub-query for every member that is scored.
+    const disciplineHit = (): Prisma.Sql => Prisma.sql`p.id IN (SELECT id FROM dh)`;
+    const skillHit = (): Prisma.Sql => Prisma.sql`(${skillsShown} AND p.id IN (SELECT id FROM sh))`;
 
     const conditions: Prisma.Sql[] = [
       Prisma.sql`p."onboardingCompletedAt" IS NOT NULL`,
       Prisma.sql`p.handle IS NOT NULL`,
       Prisma.sql`u.status::text = 'ACTIVE' AND u."deletedAt" IS NULL`,
       Prisma.sql`p."userId" <> ${viewerId}::uuid`,
+      // Blocked members (either direction) are never found.
+      notBlockedSql(viewerId, Prisma.sql`p."userId"`),
     ];
     if (f.disciplineId) {
       conditions.push(Prisma.sql`EXISTS (SELECT 1 FROM creative_disciplines cd
@@ -98,6 +98,7 @@ export class CreativesDiscoveryService {
       conditions.push(Prisma.sql`(
         p."displayName" ILIKE ${like} OR p.headline ILIKE ${like} OR p.handle::text ILIKE ${prefix}
         OR similarity(p."displayName", ${q}) > 0.3 OR word_similarity(${q}, p."displayName") > 0.5
+        OR p."searchVector" @@ websearch_to_tsquery('simple', ${q})
         OR ${disciplineHit()} OR ${skillHit()})`);
     }
 
@@ -108,6 +109,7 @@ export class CreativesDiscoveryService {
           CASE WHEN p."displayName" ILIKE ${like} THEN 0.9 ELSE 0 END,
           CASE WHEN p.handle::text ILIKE ${prefix} THEN 0.8 ELSE 0 END,
           CASE WHEN p.headline ILIKE ${like} THEN 0.5 ELSE 0 END,
+          ts_rank(p."searchVector", websearch_to_tsquery('simple', ${q})),
           CASE WHEN ${disciplineHit()} THEN 0.4 ELSE 0 END,
           CASE WHEN ${skillHit()} THEN 0.3 ELSE 0 END)`
       : Prisma.sql`0`;
@@ -117,18 +119,50 @@ export class CreativesDiscoveryService {
         ? Prisma.sql`p."onboardingCompletedAt" DESC, p.id`
         : Prisma.sql`score DESC, p."completionPercent" DESC, p."onboardingCompletedAt" DESC, p.id`;
 
-    const rows = await this.prisma.$queryRaw<Array<{ id: string; total: bigint }>>(Prisma.sql`
+    // With a search word, the profiles that could possibly match are first collected through the trigram, full-text
+    // and small-table indexes, and only those are scored. The full conditions still apply to them, so the result is the
+    // same as scoring everyone; it just stops evaluating the OR of conditions for every member. The two thresholds
+    // below are the ones the conditions use (`similarity > 0.3`, `word_similarity > 0.5`), so every row they accept is
+    // a candidate.
+    const candidates = q ? Prisma.sql`AND p.id IN (SELECT id FROM cand)` : Prisma.empty;
+    const withCandidates = q
+      ? Prisma.sql`WITH dh AS MATERIALIZED (
+          SELECT cd."profileId" AS id FROM creative_disciplines cd JOIN disciplines d ON d.id = cd."disciplineId"
+          WHERE d.name ILIKE ${like} OR similarity(d.name, ${q}) > 0.4
+        ), sh AS MATERIALIZED (
+          SELECT cs."profileId" AS id FROM creative_skills cs JOIN skills s ON s.id = cs."skillId"
+          WHERE s.name ILIKE ${like} OR similarity(s.name, ${q}) > 0.4
+        ), cand AS MATERIALIZED (
+          SELECT id FROM creative_profiles WHERE "displayName" ILIKE ${like}
+          UNION SELECT id FROM creative_profiles WHERE headline ILIKE ${like}
+          UNION SELECT id FROM creative_profiles WHERE handle::text ILIKE ${prefix}
+          UNION SELECT id FROM creative_profiles WHERE "displayName" % ${q}
+          UNION SELECT id FROM creative_profiles WHERE ${q} <% "displayName"
+          UNION SELECT id FROM creative_profiles WHERE "searchVector" @@ websearch_to_tsquery('simple', ${q})
+          UNION SELECT id FROM dh
+          UNION SELECT id FROM sh
+        )`
+      : Prisma.empty;
+    const rows = await this.prisma.$transaction(async (tx) => {
+      if (q) {
+        await tx.$executeRaw`SELECT set_config('pg_trgm.similarity_threshold', '0.3', true)`;
+        await tx.$executeRaw`SELECT set_config('pg_trgm.word_similarity_threshold', '0.5', true)`;
+      }
+      return tx.$queryRaw<Array<{ id: string; total: bigint }>>(Prisma.sql`
+      ${withCandidates}
       SELECT p.id, count(*) OVER() AS total, ${score} AS score
       FROM creative_profiles p
       JOIN users u ON u.id = p."userId"
-      WHERE ${Prisma.join(conditions, ' AND ')}
+      WHERE ${Prisma.join(conditions, ' AND ')} ${candidates}
       ORDER BY ${order}
       LIMIT ${page.limit} OFFSET ${(page.page - 1) * page.limit}`);
+    });
 
     if (rows.length > 0) return { ids: rows.map((r) => r.id), total: Number(rows[0]!.total) };
     // An empty page past the end still needs the real total.
     if (page.page === 1) return { ids: [], total: 0 };
     const [counted] = await this.prisma.$queryRaw<Array<{ n: bigint }>>(Prisma.sql`
+      ${withCandidates}
       SELECT count(*) AS n FROM creative_profiles p JOIN users u ON u.id = p."userId"
       WHERE ${Prisma.join(conditions, ' AND ')}`);
     return { ids: [], total: Number(counted?.n ?? 0) };

@@ -98,7 +98,7 @@ class _DiscoverClient implements DiscoverClient {
   @override
   Future<GetApiV1SearchResponse> find({
     required String q,
-    Type2? type,
+    Type? type,
     num? page = 1,
     num? limit = 20,
   }) async {

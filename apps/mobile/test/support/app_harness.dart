@@ -3,26 +3,46 @@ import 'dart:typed_data';
 import 'package:atarah/core/analytics/analytics.dart';
 import 'package:atarah/core/api/generated/export.dart';
 import 'package:atarah/core/app/app.dart';
+import 'package:atarah/core/appearance/appearance_controller.dart';
 import 'package:atarah/core/config/app_config.dart';
 import 'package:atarah/core/connectivity/connectivity_provider.dart';
 import 'package:atarah/core/content/content_repository.dart';
+import 'package:atarah/core/design_system/design_system.dart';
 import 'package:atarah/core/networking/failures.dart';
 import 'package:atarah/core/providers.dart';
 import 'package:atarah/core/routing/app_router.dart';
-import 'package:atarah/core/storage/token_store.dart';
+import 'package:atarah/core/storage/secure_storage.dart';
+import 'package:atarah/features/account/account_providers.dart';
+import 'package:atarah/features/community/community_providers.dart';
+import 'package:atarah/features/community/compose_draft.dart';
+import 'package:atarah/features/community/groups/groups_providers.dart';
+import 'package:atarah/features/community/people/people_providers.dart';
 import 'package:atarah/features/discover/discover_providers.dart';
+import 'package:atarah/features/learning/learning_cache.dart';
+import 'package:atarah/features/learning/learning_providers.dart';
+import 'package:atarah/features/learning/lesson_players.dart';
 import 'package:atarah/features/onboarding/onboarding_providers.dart';
+import 'package:atarah/features/opportunities/opportunities_providers.dart';
 import 'package:atarah/features/portfolio/portfolio_providers.dart';
 import 'package:atarah/features/profile/profile_providers.dart';
+import 'package:atarah/features/settings/two_step_screen.dart'
+    show twoStepVerifierProvider;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 
+import 'fake_account.dart';
+import 'fake_community.dart';
 import 'fake_discover.dart';
+import 'fake_groups.dart';
+import 'fake_learning.dart';
 import 'fake_onboarding.dart';
+import 'fake_opportunities.dart';
+import 'fake_people.dart';
 import 'fake_portfolio.dart';
 import 'fake_profile.dart';
+import 'fake_realtime.dart';
 import 'fakes.dart';
 
 /// A 1x1 transparent PNG, so avatar images decode in tests without a network.
@@ -138,7 +158,20 @@ class Harness {
     FakePortfolioRepository? portfolio,
     FakeDiscoverRepository? discover,
     FakeMediaPicker? media,
+    FakeCommunityRepository? community,
+    FakeOpportunitiesRepository? opportunities,
+    FakeActivityRepository? activity,
+    FakeNotificationsRepository? notifications,
+    FakeSavedRepository? saved,
+    FakeAccountRepository? account,
+    FakeHelpRepository? help,
+    FakeTwoStepVerifier? twoStep,
+    FakeLearningRepository? learning,
+    this.groups,
+    this.people,
     Flavor flavor = Flavor.dev,
+    this.appearance = AtAppearance.light,
+    bool online = true,
   }) : auth = auth ?? FakeAuthRepository(),
        content = content ?? FakeContentRepository(),
        // Most tests are about a member whose profile setup is finished.
@@ -154,10 +187,23 @@ class Harness {
        portfolio = portfolio ?? FakePortfolioRepository(),
        discover = discover ?? FakeDiscoverRepository(),
        media = media ?? FakeMediaPicker(),
-       analytics = RecordingAnalytics() {
+       community = community ?? FakeCommunityRepository(),
+       opportunities = opportunities ?? FakeOpportunitiesRepository(),
+       activity = activity ?? FakeActivityRepository(),
+       notifications = notifications ?? FakeNotificationsRepository(),
+       saved = saved ?? FakeSavedRepository(),
+       account = account ?? FakeAccountRepository(),
+       help = help ?? FakeHelpRepository(),
+       twoStep = twoStep ?? FakeTwoStepVerifier(),
+       learning = learning ?? FakeLearningRepository(),
+       analytics = RecordingAnalytics(),
+       realtime = FakeNotificationsRealtime() {
     container = ProviderContainer(
       retry: noAutomaticRetry,
       overrides: [
+        // Dark runs also need a signed-in user whose account appearance is dark (see fakeUser), or the
+        // session restore adopts the account's value.
+        initialAppearanceProvider.overrideWithValue(appearance),
         appConfigProvider.overrideWithValue(
           AppConfig(flavor: flavor, apiBaseUrl: 'http://test.local'),
         ),
@@ -170,6 +216,26 @@ class Harness {
         portfolioRepositoryProvider.overrideWithValue(this.portfolio),
         discoverRepositoryProvider.overrideWithValue(this.discover),
         mediaPickerProvider.overrideWithValue(this.media),
+        communityRepositoryProvider.overrideWithValue(this.community),
+        opportunitiesRepositoryProvider.overrideWithValue(this.opportunities),
+        activityRepositoryProvider.overrideWithValue(this.activity),
+        notificationsRepositoryProvider.overrideWithValue(this.notifications),
+        savedRepositoryProvider.overrideWithValue(this.saved),
+        accountRepositoryProvider.overrideWithValue(this.account),
+        helpRepositoryProvider.overrideWithValue(this.help),
+        twoStepVerifierProvider.overrideWithValue(this.twoStep),
+        learningRepositoryProvider.overrideWithValue(this.learning),
+        if (groups != null) groupsRepositoryProvider.overrideWithValue(groups!),
+        if (people != null) peopleRepositoryProvider.overrideWithValue(people!),
+        learningCacheProvider.overrideWithValue(LearningCache(learningStorage)),
+        lessonVideoBuilderProvider.overrideWithValue(videos.build),
+        lessonEmbedBuilderProvider.overrideWithValue(embeds.build),
+        composeDraftStoreProvider.overrideWithValue(
+          ComposeDraftStore(draftStorage),
+        ),
+        communityClockProvider.overrideWithValue(
+          () => DateTime.utc(2026, 10, 22, 12),
+        ),
         videoViewProvider.overrideWithValue(fakePlayer),
         audioViewProvider.overrideWithValue(fakePlayer),
         embedViewProvider.overrideWithValue(fakePlayer),
@@ -181,8 +247,8 @@ class Harness {
         photoCropperProvider.overrideWithValue(fakeCropper),
         avatarImageProvider.overrideWithValue((_) => MemoryImage(_pixel)),
         analyticsProvider.overrideWithValue(analytics),
-        tokenStoreProvider.overrideWithValue(MemoryTokenStore()),
-        isOnlineProvider.overrideWith((ref) => Stream.value(true)),
+        notificationsRealtimeProvider.overrideWithValue(realtime),
+        isOnlineProvider.overrideWith((ref) => Stream.value(online)),
       ],
     );
   }
@@ -196,6 +262,31 @@ class Harness {
   final FakePortfolioRepository portfolio;
   final FakeDiscoverRepository discover;
   final FakeMediaPicker media;
+  final FakeNotificationsRealtime realtime;
+  final FakeCommunityRepository community;
+  final FakeOpportunitiesRepository opportunities;
+  final FakeActivityRepository activity;
+  final FakeNotificationsRepository notifications;
+  final FakeSavedRepository saved;
+  final FakeAccountRepository account;
+  final FakeHelpRepository help;
+  final FakeTwoStepVerifier twoStep;
+  final FakeLearningRepository learning;
+
+  /// Optional: when null the real repositories are used (which fail without a network).
+  final FakeGroupsRepository? groups;
+  final FakePeopleRepository? people;
+
+  /// The offline copy of what the member is learning, and the players a lesson asked for.
+  final MemoryKeyValueStore learningStorage = MemoryKeyValueStore();
+  final FakeVideoPlayers videos = FakeVideoPlayers();
+  final FakeEmbeds embeds = FakeEmbeds();
+
+  /// Where the composer keeps its draft.
+  final MemoryKeyValueStore draftStorage = MemoryKeyValueStore();
+
+  /// The theme the app starts in (the same seam `bootstrap` uses). Light unless a test asks for dark.
+  final AtAppearance appearance;
 
   /// Text handed to the share sheet and addresses opened in the browser.
   final List<String> shared = [];

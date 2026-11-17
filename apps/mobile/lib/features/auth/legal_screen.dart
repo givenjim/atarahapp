@@ -39,7 +39,7 @@ class LegalScreen extends ConsumerWidget {
             ),
             Expanded(
               child: doc.when(
-                loading: () => const Center(child: CircularProgressIndicator()),
+                loading: () => const AtLoadingBody(),
                 error: (_, _) => AtErrorState(
                   title: l10n.legalUnavailable,
                   ctaLabel: l10n.retry,
@@ -60,7 +60,7 @@ class LegalScreen extends ConsumerWidget {
                       Text(
                         d.body,
                         style: AtTextStyles.body.copyWith(
-                          color: AtColors.longForm,
+                          color: context.at.longForm,
                         ),
                       ),
                     ],

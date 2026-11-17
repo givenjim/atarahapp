@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { fx, nextStepCode, signInWithEnrolment } from './helpers';
+import { fx, signInWithEnrolment } from './helpers';
 
 test('admin signs in with TOTP, suspends a member, sees the audit entry, and reactivates', async ({
   page,
@@ -16,7 +16,7 @@ test('admin signs in with TOTP, suspends a member, sees the audit entry, and rea
   await page.getByRole('button', { name: 'Continue' }).click();
   await expect(page.getByText('do not match an administrator account')).toBeVisible();
 
-  const secret = await signInWithEnrolment(page, f);
+  await signInWithEnrolment(page, f);
 
   // The sidebar shows only what a platform admin may see; Roles & Permissions needs role.manage.
   const nav = page.getByRole('navigation', { name: 'Admin sections' });
@@ -40,19 +40,8 @@ test('admin signs in with TOTP, suspends a member, sees the audit entry, and rea
   await page.getByLabel('Reason for suspension').fill('E2E: repeated harassment reports');
   await page.getByRole('dialog').getByRole('button', { name: 'Suspend account' }).click();
 
-  // Sensitive action: the API asks for a fresh password and authenticator code first.
-  const reauth = page.getByRole('dialog', { name: "Confirm it's you" });
-  await expect(reauth).toBeVisible();
-  await reauth.getByLabel('Password').fill('Wrong-password-1');
-  await reauth.getByLabel('Authenticator code').fill(nextStepCode(secret));
-  await reauth.getByRole('button', { name: 'Confirm' }).click();
-  await expect(reauth.getByRole('alert')).toBeVisible();
-  await expect(page.getByText('Suspended', { exact: true })).toHaveCount(0);
-
-  await reauth.getByLabel('Password').fill(f.password);
-  await reauth.getByLabel('Authenticator code').fill(nextStepCode(secret));
-  await reauth.getByRole('button', { name: 'Confirm' }).click();
-
+  // Sensitive action: the code entered at sign-in is under 5 minutes old, so the API does not ask again
+  // (the stale case is covered by admin-reauth.spec.ts).
   await expect(page.getByText('Suspended', { exact: true })).toBeVisible();
   await expect(page.getByText('E2E: repeated harassment reports')).toBeVisible();
 
@@ -63,7 +52,7 @@ test('admin signs in with TOTP, suspends a member, sees the audit entry, and rea
   await expect(row).toContainText(f.adminName);
   await expect(row).toContainText('SUSPENDED');
 
-  // Reactivate (the re-authentication still holds for a few minutes, so no second prompt).
+  // Reactivate (the verification still holds, so no prompt).
   await page.getByRole('link', { name: 'Users' }).first().click();
   await page.getByLabel('Search').fill(f.memberName);
   await page.getByRole('button', { name: 'Apply' }).click();

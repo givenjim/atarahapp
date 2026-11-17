@@ -110,7 +110,7 @@ class CreativeCard extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: AtTextStyles.cardTitle.copyWith(
-                            color: AtColors.ink,
+                            color: context.at.ink,
                           ),
                         ),
                       ),
@@ -126,7 +126,9 @@ class CreativeCard extends StatelessWidget {
                       role,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: AtTextStyles.bodySm.copyWith(color: AtColors.body),
+                      style: AtTextStyles.bodySm.copyWith(
+                        color: context.at.body,
+                      ),
                     ),
                   ],
                   if (c.tags.isNotEmpty) ...[
@@ -145,10 +147,10 @@ class CreativeCard extends StatelessWidget {
                     Row(
                       children: [
                         if (c.location != null) ...[
-                          const Icon(
+                          Icon(
                             LucideIcons.mapPin,
                             size: 13,
-                            color: AtColors.muted,
+                            color: context.at.muted,
                           ),
                           const SizedBox(width: 4),
                           Flexible(
@@ -157,7 +159,7 @@ class CreativeCard extends StatelessWidget {
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: AtTextStyles.metaSm.copyWith(
-                                color: AtColors.muted,
+                                color: context.at.muted,
                               ),
                             ),
                           ),
@@ -168,7 +170,7 @@ class CreativeCard extends StatelessWidget {
                           Text(
                             l10n.dcOpenToCommissions,
                             style: AtTextStyles.metaSm.copyWith(
-                              color: AtColors.successStrong,
+                              color: context.at.successStrong,
                             ),
                           ),
                       ],
@@ -226,7 +228,7 @@ class CreativeMiniCard extends StatelessWidget {
                       c.displayName,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: AtTextStyles.chip.copyWith(color: AtColors.ink),
+                      style: AtTextStyles.chip.copyWith(color: context.at.ink),
                     ),
                   ),
                   if (c.verified) ...[
@@ -240,7 +242,7 @@ class CreativeMiniCard extends StatelessWidget {
                 c.discipline?.name ?? c.headline ?? '',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: AtTextStyles.metaSm.copyWith(color: AtColors.body),
+                style: AtTextStyles.metaSm.copyWith(color: context.at.body),
               ),
               if (c.reason != null) ...[
                 const SizedBox(height: 6),
@@ -248,7 +250,9 @@ class CreativeMiniCard extends StatelessWidget {
                   c.reason!,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: AtTextStyles.metaSm.copyWith(color: AtColors.primary),
+                  style: AtTextStyles.metaSm.copyWith(
+                    color: context.at.primary,
+                  ),
                 ),
               ],
             ],
@@ -287,14 +291,14 @@ class ArticleTile extends ConsumerWidget {
         width: large ? double.infinity : 92,
         height: large ? 150 : 92,
         child: ColoredBox(
-          color: AtColors.softTile,
+          color: context.at.softTile,
           child: image != null
               ? Image(
                   image: image,
                   fit: BoxFit.cover,
                   excludeFromSemantics: true,
                 )
-              : const Icon(LucideIcons.bookOpen, color: AtColors.muted),
+              : Icon(LucideIcons.bookOpen, color: context.at.muted),
         ),
       ),
     );
@@ -303,19 +307,19 @@ class ArticleTile extends ConsumerWidget {
       children: [
         Text(
           sourceLabelOf(l10n, a.source.json ?? 'ATARAH', a.sourceLabel),
-          style: AtTextStyles.metaSm.copyWith(color: AtColors.primary),
+          style: AtTextStyles.metaSm.copyWith(color: context.at.primary),
         ),
         const SizedBox(height: 4),
         Text(
           a.title,
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
-          style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+          style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
         ),
         const SizedBox(height: 4),
         Text(
           '${a.authorName} · ${readTime(l10n, a.readMinutes)}',
-          style: AtTextStyles.metaSm.copyWith(color: AtColors.muted),
+          style: AtTextStyles.metaSm.copyWith(color: context.at.muted),
         ),
       ],
     );

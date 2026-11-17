@@ -69,7 +69,7 @@ class _ArticleScreenState extends ConsumerState<ArticleScreen> {
     final l10n = AppLocalizations.of(context);
     final async = ref.watch(articleProvider(widget.slug));
     return Scaffold(
-      backgroundColor: AtColors.white,
+      backgroundColor: context.at.background,
       body: SafeArea(
         child: Column(
           children: [
@@ -106,7 +106,7 @@ class _ArticleScreenState extends ConsumerState<ArticleScreen> {
             ),
             Expanded(
               child: async.when(
-                loading: () => const Center(child: CircularProgressIndicator()),
+                loading: () => const AtLoadingBody(),
                 error: (e, _) => e is ApiFailure && e.statusCode == 404
                     ? AtEmptyState(
                         icon: LucideIcons.fileX,
@@ -167,13 +167,13 @@ class _Body extends ConsumerWidget {
           header: true,
           child: Text(
             a.title,
-            style: AtTextStyles.detailTitle.copyWith(color: AtColors.ink),
+            style: AtTextStyles.detailTitle.copyWith(color: context.at.ink),
           ),
         ),
         const SizedBox(height: 8),
         Text(
           '${a.authorName} · ${readTime(l10n, a.readMinutes)} · ${shortDate(context, a.publishedAt)}',
-          style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+          style: AtTextStyles.meta.copyWith(color: context.at.muted),
         ),
         if (hero != null) ...[
           const SizedBox(height: 16),
@@ -213,7 +213,7 @@ class _Block extends ConsumerWidget {
             header: true,
             child: Text(
               b.text ?? '',
-              style: AtTextStyles.sectionTitle.copyWith(color: AtColors.ink),
+              style: AtTextStyles.sectionTitle.copyWith(color: context.at.ink),
             ),
           ),
         );
@@ -223,21 +223,21 @@ class _Block extends ConsumerWidget {
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: AtColors.tint3,
+              color: context.at.primaryTintFaint,
               borderRadius: AtRadii.card,
-              border: Border.all(color: AtColors.secondaryBorder),
+              border: Border.all(color: context.at.secondaryBorder),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   b.title ?? l10n.dcRuleOfThumb,
-                  style: AtTextStyles.chip.copyWith(color: AtColors.primary),
+                  style: AtTextStyles.chip.copyWith(color: context.at.primary),
                 ),
                 const SizedBox(height: 6),
                 Text(
                   b.text ?? '',
-                  style: AtTextStyles.body.copyWith(color: AtColors.longForm),
+                  style: AtTextStyles.body.copyWith(color: context.at.longForm),
                 ),
               ],
             ),
@@ -248,9 +248,9 @@ class _Block extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Container(
             padding: const EdgeInsets.only(left: 14),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               border: Border(
-                left: BorderSide(color: AtColors.primaryLight, width: 3),
+                left: BorderSide(color: context.at.primaryLight, width: 3),
               ),
             ),
             child: Column(
@@ -259,7 +259,7 @@ class _Block extends ConsumerWidget {
                 Text(
                   b.text ?? '',
                   style: AtTextStyles.bodyLg.copyWith(
-                    color: AtColors.ink,
+                    color: context.at.ink,
                     fontStyle: FontStyle.italic,
                   ),
                 ),
@@ -267,7 +267,9 @@ class _Block extends ConsumerWidget {
                   const SizedBox(height: 4),
                   Text(
                     b.attribution!,
-                    style: AtTextStyles.metaSm.copyWith(color: AtColors.muted),
+                    style: AtTextStyles.metaSm.copyWith(
+                      color: context.at.muted,
+                    ),
                   ),
                 ],
               ],
@@ -296,7 +298,7 @@ class _Block extends ConsumerWidget {
                 const SizedBox(height: 6),
                 Text(
                   b.caption!,
-                  style: AtTextStyles.metaSm.copyWith(color: AtColors.muted),
+                  style: AtTextStyles.metaSm.copyWith(color: context.at.muted),
                 ),
               ],
             ],
@@ -310,7 +312,7 @@ class _Block extends ConsumerWidget {
           child: Text(
             b.text!,
             style: AtTextStyles.bodyLg.copyWith(
-              color: AtColors.longForm,
+              color: context.at.longForm,
               height: 1.6,
             ),
           ),

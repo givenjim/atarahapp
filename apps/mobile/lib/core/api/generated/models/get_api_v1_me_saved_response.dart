@@ -4,7 +4,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-import 'saved_article_dto.dart';
+import 'saved_item_dto.dart';
 
 part 'get_api_v1_me_saved_response.g.dart';
 
@@ -15,7 +15,7 @@ class GetApiV1MeSavedResponse {
   factory GetApiV1MeSavedResponse.fromJson(Map<String, Object?> json) =>
       _$GetApiV1MeSavedResponseFromJson(json);
 
-  final List<SavedArticleDto> data;
+  final List<SavedItemDto> data;
   final dynamic meta;
 
   Map<String, Object?> toJson() => _$GetApiV1MeSavedResponseToJson(this);

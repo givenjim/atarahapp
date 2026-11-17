@@ -1,18 +1,18 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState, useTransition } from 'react';
+import { useState } from 'react';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
+import { FormDialog } from '@/components/ui/form-dialog';
 import { ReauthDialog } from '@/components/ui/reauth-dialog';
-import {
-  reactivateUserAction,
-  reauthAction,
-  suspendUserAction,
-  type ActionResult,
-} from '@/app/actions';
+import { useReauth } from '@/components/ui/use-reauth';
+import { reactivateUserAction } from '@/app/actions';
+import { suspendTimedAction } from '@/app/ops-actions';
+import { SUSPEND_MAX_DAYS, SUSPEND_REASON_MAX, validateSuspend, type SuspendForm } from '@/lib/ops';
 
-type Stage = 'closed' | 'confirm' | 'reauth';
+type Stage = 'closed' | 'suspend' | 'reactivate';
 
+/** Suspend (with a reason and an optional number of days) or reactivate. Both need a fresh authenticator code. */
 export function UserActions({
   userId,
   name,
@@ -26,88 +26,109 @@ export function UserActions({
 }) {
   const router = useRouter();
   const [stage, setStage] = useState<Stage>('closed');
-  const [reason, setReason] = useState('');
-  const [error, setError] = useState<string | null>(null);
-  const [pending, start] = useTransition();
+  const [form, setForm] = useState<SuspendForm>({ reason: '', days: '' });
+  const { attempt, pending, error, setError, reauth } = useReauth();
 
   const suspended = status === 'SUSPENDED';
   const canSuspend = status === 'ACTIVE' || status === 'PENDING_VERIFICATION';
-  const verb = suspended ? 'Reactivate' : 'Suspend';
 
   if (isSelf) return <p className="muted">You cannot change the status of your own account.</p>;
   if (!suspended && !canSuspend) return null;
 
-  const run = (why: string) =>
-    start(async () => {
-      const result: ActionResult = suspended
-        ? await reactivateUserAction(userId, why)
-        : await suspendUserAction(userId, why);
-      if (result.ok) {
-        setStage('closed');
-        setError(null);
-        router.refresh();
-      } else if (result.reauth) {
-        // The API wants a fresh password + code first; keep the reason and ask for them.
-        setError(null);
-        setStage('reauth');
-      } else {
-        setError(result.error);
-      }
-    });
+  const close = () => {
+    setStage('closed');
+    setError(null);
+  };
+  const done = () => {
+    close();
+    setForm({ reason: '', days: '' });
+    router.refresh();
+  };
 
   return (
-    <section className="card" aria-label="Account actions" style={{ padding: 20 }}>
-      <button
-        type="button"
-        className={`button ${suspended ? '' : 'danger'}`}
-        onClick={() => {
-          setError(null);
-          setStage('confirm');
-        }}
-      >
-        {verb} account
-      </button>
+    <section className="card stack" aria-label="Account actions">
+      <div>
+        {suspended ? (
+          <button
+            type="button"
+            className="button"
+            onClick={() => {
+              setError(null);
+              setStage('reactivate');
+            }}
+          >
+            Reactivate account
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="button danger"
+            onClick={() => {
+              setError(null);
+              setStage('suspend');
+            }}
+          >
+            Suspend account
+          </button>
+        )}
+      </div>
 
-      <ConfirmDialog
-        open={stage === 'confirm'}
-        title={`${verb} ${name}?`}
-        confirmLabel={`${verb} account`}
-        tone={suspended ? 'primary' : 'danger'}
-        reasonLabel={suspended ? 'Reason (optional note)' : 'Reason for suspension'}
-        minReasonLength={suspended ? 0 : 5}
+      <FormDialog
+        open={stage === 'suspend'}
+        title={`Suspend ${name}?`}
+        submitLabel="Suspend account"
         pending={pending}
-        error={error}
-        onCancel={() => setStage('closed')}
-        onConfirm={(r) => {
-          setReason(r);
-          run(r);
+        error={stage === 'suspend' ? error : null}
+        onCancel={close}
+        onSubmit={() => {
+          const problem = validateSuspend(form);
+          if (problem) return setError(problem);
+          attempt(() => suspendTimedAction(userId, form), done);
         }}
       >
         <p className="muted" style={{ margin: 0 }}>
-          {suspended
-            ? 'They will be able to sign in again.'
-            : 'They are signed out everywhere immediately and cannot sign in until reactivated.'}{' '}
-          This is recorded in the audit log with your name.
+          They are signed out everywhere immediately and cannot sign in until the suspension ends or
+          staff lift it. This is recorded in the audit log with your name.
+        </p>
+        <label className="field">
+          Reason for suspension
+          <textarea
+            className="textarea"
+            rows={3}
+            maxLength={SUSPEND_REASON_MAX}
+            value={form.reason}
+            onChange={(e) => setForm((p) => ({ ...p, reason: e.target.value }))}
+          />
+        </label>
+        <label className="field">
+          Number of days (optional)
+          <input
+            className="input"
+            inputMode="numeric"
+            placeholder={`1 to ${SUSPEND_MAX_DAYS}; blank until staff lift it`}
+            value={form.days}
+            onChange={(e) => setForm((p) => ({ ...p, days: e.target.value }))}
+          />
+        </label>
+      </FormDialog>
+
+      <ConfirmDialog
+        open={stage === 'reactivate'}
+        title={`Reactivate ${name}?`}
+        confirmLabel="Reactivate account"
+        reasonLabel="Reason (optional note)"
+        minReasonLength={0}
+        pending={pending}
+        error={stage === 'reactivate' ? error : null}
+        onCancel={close}
+        onConfirm={(reason) => attempt(() => reactivateUserAction(userId, reason), done)}
+      >
+        <p className="muted" style={{ margin: 0 }}>
+          They will be able to sign in again. This is recorded in the audit log with your name.
         </p>
       </ConfirmDialog>
 
-      <ReauthDialog
-        open={stage === 'reauth'}
-        pending={pending}
-        error={error}
-        onCancel={() => setStage('closed')}
-        onSubmit={(credentials) =>
-          start(async () => {
-            const res = await reauthAction(credentials);
-            if (!res.ok) {
-              setError(res.error);
-              return;
-            }
-            setError(null);
-            run(reason);
-          })
-        }
-      />
+      <ReauthDialog {...reauth} />
     </section>
   );
 }

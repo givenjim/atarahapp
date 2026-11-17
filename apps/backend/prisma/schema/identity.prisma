@@ -1,25 +1,6 @@
-// Identity: accounts, credentials, sessions, one-time codes, consent. Owner module: identity.
+// Identity: accounts, devices, consent. Owner module: identity. Credentials, sessions, one-time codes and MFA
+// live in Supabase Auth (the managed `auth` schema); `users.id` equals `auth.users.id` (FK created in SQL).
 // Account status, roles, membership, verification and ownership are separate concepts (never one user.role).
-
-enum SessionClient {
-  ANDROID
-  IOS
-  WEB
-  ADMIN
-}
-
-enum CodeChannel {
-  EMAIL
-  SMS
-}
-
-enum CodePurpose {
-  REGISTRATION
-  PASSWORD_RESET
-  TWO_STEP
-  CHANGE_EMAIL
-  CHANGE_PHONE
-}
 
 enum LegalDocumentType {
   TERMS
@@ -42,8 +23,8 @@ model User {
   status          AccountStatus @default(PENDING_VERIFICATION)
   statusReason    String?
   statusChangedAt DateTime?
-  timeZone        String        @default("Africa/Nairobi")
-  locale          String        @default("en")
+  /// A temporary suspension ends here (an hourly job reactivates the account). Null means until staff lift it.
+  suspendedUntil  DateTime?
   lastLoginAt     DateTime?
   /// Demo seed records are flagged and never shown in production.
   isDemo          Boolean       @default(false)
@@ -51,9 +32,6 @@ model User {
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
 
-  credential            Credential?
-  sessions              Session[]
-  verificationCodes     VerificationCode[]
   consents              ConsentRecord[]
   roles                 UserRole[]                 @relation("UserRoles")
   rolesGranted          UserRole[]                 @relation("UserRolesGrantedBy")
@@ -62,7 +40,8 @@ model User {
   notifications         Notification[]
   notificationPrefs     NotificationPreference[]
   deviceTokens          DeviceToken[]
-  adminTotp             AdminTotp?
+  devices               UserDevice[]
+  preferences           MemberPreference?
   creativeProfile       CreativeProfile?
   connectionsSent       Connection[]               @relation("ConnectionRequester")
   connectionsReceived   Connection[]               @relation("ConnectionAddressee")
@@ -74,77 +53,54 @@ model User {
   savedItems            SavedItem[]                @relation("SavedBy")
   recentSearches        RecentSearch[]             @relation("RecentSearcher")
   homeConfigEdits       HomeConfig[]               @relation("HomeConfigEditor")
+  posts                 Post[]                     @relation("PostAuthor")
+  comments              Comment[]                  @relation("CommentAuthor")
+  reactions             Reaction[]                 @relation("ReactionAuthor")
+  groupsCreated         Group[]                    @relation("GroupCreator")
+  groupMemberships      GroupMembership[]          @relation("GroupMember")
+  groupPins             GroupPin[]                 @relation("GroupPinner")
+  blocksMade            Block[]                    @relation("BlocksMade")
+  blocksReceived        Block[]                    @relation("BlocksReceived")
+  mutesMade             Mute[]                     @relation("MutesMade")
+  reportsMade           Report[]                   @relation("ReportsMade")
+  casesAssigned         ModerationCase[]           @relation("CaseAssignee")
+  communityRestrictions CommunityRestriction[]     @relation("CommunityRestrictions")
+  opportunityTrackings  OpportunityTracking[]      @relation("OpportunityTracker")
+  opportunitiesCreated  Opportunity[]              @relation("OpportunityCreator")
+  providersOwned        OpportunityProvider[]      @relation("ProviderOwner")
+  learningTaught        LearningContent[]          @relation("LearningInstructor")
+  learningCreated       LearningContent[]          @relation("LearningCreator")
+  enrolments            Enrolment[]                @relation("LearnerEnrolments")
+  lessonProgress        LessonProgress[]           @relation("LearnerLessonProgress")
+  contentProgress       ContentProgress[]          @relation("LearnerContentProgress")
+  learningActivity      LearningActivityDaily[]    @relation("LearnerActivity")
+  certificates          Certificate[]              @relation("LearnerCertificates")
+  fieldVisibilities     ProfileFieldVisibility[]   @relation("FieldVisibilityOwner")
+  twoStep               TwoStepSetting?            @relation("TwoStepOwner")
+  contactChanges        ContactChangeRequest[]     @relation("ContactChangeOwner")
+  dataExports           DataExportRequest[]        @relation("DataExportOwner")
+  broadcastsCreated     NotificationBroadcast[]    @relation("BroadcastCreator")
 
   @@index([status])
   @@index([createdAt])
   @@map("users")
 }
 
-model Credential {
-  id                String   @id @default(uuid()) @db.Uuid
-  userId            String   @unique @db.Uuid
-  /// Argon2id PHC string.
-  passwordHash      String
-  passwordChangedAt DateTime @default(now())
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+/// Member-level settings, one row per user. The source of truth for locale and time zone (moved off `users`).
+/// The row is created lazily on first read or patch; a user without a row has the defaults.
+model MemberPreference {
+  id             String     @id @default(uuid()) @db.Uuid
+  userId         String     @unique @db.Uuid
+  appearance     Appearance @default(LIGHT)
+  locale         String     @default("en")
+  timeZone       String     @default("Africa/Nairobi")
+  marketingOptIn Boolean    @default(false)
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@map("credentials")
-}
-
-/// One row per refresh-token generation. `familyId` ties a rotation chain together so reuse of a rotated
-/// token can revoke the whole family. Powers Settings > Security > Active sessions.
-model Session {
-  id               String        @id @default(uuid()) @db.Uuid
-  userId           String        @db.Uuid
-  familyId         String        @db.Uuid
-  /// SHA-256 of the opaque refresh token (HMAC with a server pepper). The token itself is never stored.
-  refreshTokenHash String        @unique
-  client           SessionClient
-  deviceName       String?
-  approxLocation   String?
-  ip               String?
-  userAgent        String?
-  lastActiveAt     DateTime      @default(now())
-  /// Last password+TOTP re-authentication on this session (admin sensitive actions).
-  reauthAt         DateTime?
-  expiresAt        DateTime
-  rotatedAt        DateTime?
-  revokedAt        DateTime?
-  revokedReason    String?
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId, revokedAt])
-  @@index([familyId])
-  @@index([expiresAt])
-  @@map("sessions")
-}
-
-/// Six-digit one-time codes. Stored hashed, single-use, rate-limited; issuing a new code invalidates older ones.
-model VerificationCode {
-  id          String      @id @default(uuid()) @db.Uuid
-  userId      String      @db.Uuid
-  channel     CodeChannel
-  purpose     CodePurpose
-  /// Where the code was sent (normalised email/phone). Needed to verify a change-of-contact flow.
-  destination String
-  codeHash    String
-  attempts    Int         @default(0)
-  expiresAt   DateTime
-  consumedAt  DateTime?
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId, purpose, createdAt])
-  @@index([expiresAt])
-  @@map("verification_codes")
+  @@map("member_preferences")
 }
 
 /// Consent captured with version and timestamp (Kenya Data Protection Act, 2019).
@@ -180,4 +136,28 @@ model LegalDocument {
   @@unique([type, version])
   @@index([type, status])
   @@map("legal_documents")
+}
+
+/// A phone, browser or tablet the member has signed in on. Used for "new device" detection (two-step sign-in)
+/// and the Active sessions list. `deviceHash` is a client-generated random id, never a hardware identifier.
+model UserDevice {
+  id            String         @id @default(uuid()) @db.Uuid
+  userId        String         @db.Uuid
+  deviceHash    String
+  name          String
+  platform      DevicePlatform
+  /// Supabase Auth session (`auth.sessions.id`) this device last registered with; joins the Active sessions list.
+  lastSessionId String?        @db.Uuid
+  lastSeenAt    DateTime       @default(now())
+  /// Set once the device has passed two-step sign-in (or was registered on a two-step-verified session).
+  verifiedAt    DateTime?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, deviceHash])
+  @@index([userId, lastSeenAt(sort: Desc)])
+  @@index([lastSessionId])
+  @@map("user_devices")
 }

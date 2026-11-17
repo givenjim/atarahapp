@@ -1,22 +1,17 @@
 import { type INestApplication, Module } from '@nestjs/common';
-import { GenericContainer, type StartedTestContainer, Wait } from 'testcontainers';
 import sharp from 'sharp';
 import request from 'supertest';
 import { MediaModule } from '../src/media/media.module';
 import { MediaProcessor } from '../src/media/media.processor';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { StorageService } from '../src/storage/storage.service';
-import { bearer, createTestApp, emailFor, loginMember, makeUser } from './helpers';
+import { anonClient, bearer, createTestApp, emailFor, loginMember, makeUser } from './helpers';
 
-// Runs the real worker processor against the real queue (Redis) and a real S3-compatible server.
+// Runs the real worker processor against the real queue (Redis) and the local Supabase Storage.
 @Module({ imports: [MediaModule], providers: [MediaProcessor] })
 class MediaWorkerModule {}
 
-const S3_KEY = 'atarah_test_s3';
-const S3_SECRET = 'atarah_test_s3_secret';
-
-describe('Media pipeline (real S3, real queue)', () => {
-  let s3: StartedTestContainer;
+describe('Media pipeline (Supabase Storage, real queue)', () => {
   let app: INestApplication;
   let prisma: PrismaService;
   let storage: StorageService;
@@ -25,33 +20,10 @@ describe('Media pipeline (real S3, real queue)', () => {
   const http = () => request(app.getHttpServer());
 
   beforeAll(async () => {
-    s3 = await new GenericContainer('zenko/cloudserver:latest')
-      .withEnvironment({
-        SCALITY_ACCESS_KEY_ID: S3_KEY,
-        SCALITY_SECRET_ACCESS_KEY: S3_SECRET,
-        S3BACKEND: 'mem',
-        REMOTE_MANAGEMENT_DISABLE: '1',
-      })
-      .withExposedPorts(8000)
-      .withWaitStrategy(Wait.forListeningPorts())
-      .start();
-    process.env.ATARAH_TEST_S3_ENDPOINT = `http://${s3.getHost()}:${s3.getMappedPort(8000)}`;
-    process.env.ATARAH_TEST_S3_ACCESS_KEY = S3_KEY;
-    process.env.ATARAH_TEST_S3_SECRET_KEY = S3_SECRET;
-
     app = await createTestApp([MediaWorkerModule], { realStorage: true });
     prisma = app.get(PrismaService);
     storage = app.get(StorageService);
-    // The server may need a moment after the port opens.
-    for (let i = 0; ; i++) {
-      try {
-        await storage.ensureBuckets();
-        break;
-      } catch (err) {
-        if (i >= 30) throw err;
-        await new Promise((r) => setTimeout(r, 1000));
-      }
-    }
+    await storage.ensureBuckets();
 
     const a = await makeUser(app, { email: emailFor('owner') });
     const b = await makeUser(app, { email: emailFor('other') });
@@ -61,7 +33,6 @@ describe('Media pipeline (real S3, real queue)', () => {
 
   afterAll(async () => {
     await app?.close();
-    await s3?.stop();
   });
 
   /** The full client flow: request ticket, PUT the bytes to storage, confirm. */
@@ -105,7 +76,7 @@ describe('Media pipeline (real S3, real queue)', () => {
   }
 
   const photo = (w = 1600, h = 1000) =>
-    sharp({ create: { width: w, height: h, channels: 3, background: '#5b45f0' } });
+    sharp({ create: { width: w, height: h, channels: 3, background: '#5145D8' } });
 
   it('turns a photo into a READY asset: EXIF stripped, 200/600/1200 variants, signed downloads', async () => {
     const withExif = await photo()
@@ -151,8 +122,20 @@ describe('Media pipeline (real S3, real queue)', () => {
 
     // The object key alone is not a download link: buckets are private, access needs a signature.
     const row = await prisma.mediaAsset.findUniqueOrThrow({ where: { id } });
-    const bare = `${process.env.ATARAH_TEST_S3_ENDPOINT}/${storage.bucketName('public')}/${row.objectKey}`;
-    expect((await fetch(bare)).status).toBeGreaterThanOrEqual(400);
+    // Storage RLS denies direct client access: the anon key cannot list or write in any bucket.
+    const anon = anonClient();
+    expect(
+      (await anon.storage.from(storage.bucketName('public')).list('media')).data ?? [],
+    ).toHaveLength(0);
+    expect(
+      (
+        await anon.storage
+          .from(storage.bucketName('public'))
+          .upload(`media/${row.id}/evil.txt`, Buffer.from('x'))
+      ).error,
+    ).not.toBeNull();
+    const authenticatedPath = `${process.env.ATARAH_SUPABASE_URL}/storage/v1/object/authenticated/${storage.bucketName('public')}/${row.objectKey}`;
+    expect((await fetch(authenticatedPath)).status).toBeGreaterThanOrEqual(400);
     expect(row.checksum).toMatch(/^[0-9a-f]{64}$/);
   });
 
@@ -237,7 +220,7 @@ describe('Media pipeline (real S3, real queue)', () => {
     await http().post('/api/v1/media/uploads').send({}).expect(401);
   });
 
-  it('refuses a storage upload that does not match the announced size or type', async () => {
+  it('rejects, at confirmation, an upload whose size is not what was announced', async () => {
     const bytes = await photo(200, 200).jpeg().toBuffer();
     const ticket = await http()
       .post('/api/v1/media/uploads')
@@ -249,19 +232,19 @@ describe('Media pipeline (real S3, real queue)', () => {
         visibility: 'PUBLIC',
       })
       .expect(201);
-    const { uploadUrl } = ticket.body.data as { uploadUrl: string };
-    const wrongSize = await fetch(uploadUrl, {
+    const { id, uploadUrl } = ticket.body.data as { id: string; uploadUrl: string };
+    // Supabase signed upload URLs do not bind the length, so the check happens when the client confirms.
+    const put = await fetch(uploadUrl, {
       method: 'PUT',
       headers: { 'Content-Type': 'image/jpeg' },
       body: new Uint8Array(Buffer.concat([bytes, Buffer.alloc(50)])),
     });
-    expect(wrongSize.status).toBeGreaterThanOrEqual(400);
-    const wrongType = await fetch(uploadUrl, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'text/html' },
-      body: new Uint8Array(bytes),
-    });
-    expect(wrongType.status).toBeGreaterThanOrEqual(400);
+    expect(put.status).toBe(200);
+    await http()
+      .post(`/api/v1/media/${id}/complete`)
+      .set(...bearer(owner.token))
+      .expect(409);
+    expect((await prisma.mediaAsset.findUniqueOrThrow({ where: { id } })).status).toBe('REJECTED');
   });
 
   it('confirming before uploading is an invalid state, and confirming twice is harmless', async () => {

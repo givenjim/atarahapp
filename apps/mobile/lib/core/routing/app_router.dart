@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../core/design_system/gallery/component_gallery.dart';
+import '../../features/activity/activity_screen.dart';
+import '../../features/activity/applications_screen.dart';
 import '../../features/auth/forgot_screen.dart';
 import '../../features/auth/legal_screen.dart';
 import '../../features/auth/reset_screen.dart';
@@ -11,13 +13,30 @@ import '../../features/auth/signup_screen.dart';
 import '../../features/auth/splash_screen.dart';
 import '../../features/auth/verify_screen.dart';
 import '../../features/auth/welcome_screen.dart';
+import '../../features/community/community_screen.dart';
+import '../../features/community/compose_screen.dart';
+import '../../features/community/groups/group_screen.dart';
+import '../../features/community/people/people_screens.dart';
+import '../../features/community/post_screen.dart';
 import '../../features/discover/article_screen.dart';
 import '../../features/discover/articles_screen.dart';
 import '../../features/discover/explore_screen.dart';
 import '../../features/discover/home_screen.dart';
 import '../../features/discover/search_screen.dart';
+import '../../features/learning/course_screen.dart';
+import '../../features/learning/learning_category_screen.dart';
+import '../../features/learning/learning_hub_screen.dart';
+import '../../features/learning/learning_repository.dart' show MyLearningTab;
+import '../../features/learning/lesson_screen.dart';
+import '../../features/learning/my_learning_screen.dart';
+import '../../features/notifications/notifications_screen.dart';
 import '../../features/onboarding/onboarding_providers.dart';
 import '../../features/onboarding/onboarding_screen.dart';
+import '../../features/opportunities/my_opportunities_screen.dart';
+import '../../features/opportunities/opportunities_list_screen.dart';
+import '../../features/opportunities/opportunities_repository.dart' show MyTab;
+import '../../features/opportunities/opportunities_screen.dart';
+import '../../features/opportunities/opportunity_screen.dart';
 import '../../features/portfolio/achievements_screen.dart';
 import '../../features/portfolio/experience_screen.dart';
 import '../../features/portfolio/portfolio_screen.dart';
@@ -29,9 +48,21 @@ import '../../features/profile/creative_profile_screen.dart';
 import '../../features/profile/passport_screen.dart';
 import '../../features/profile/profile_repository.dart';
 import '../../features/profile/profile_screen.dart';
+import '../../features/saved/saved_screen.dart';
+import '../../features/settings/account_screen.dart';
+import '../../features/settings/delete_screens.dart';
+import '../../features/settings/help_screens.dart';
+import '../../features/settings/membership_screen.dart';
+import '../../features/settings/privacy_screens.dart';
+import '../../features/settings/security_screen.dart';
+import '../../features/settings/settings_screen.dart';
+import '../../features/settings/two_step_screen.dart';
 import '../../features/shell/app_shell.dart';
 import '../../features/shell/future_route_screen.dart';
+import '../api/generated/export.dart'
+    show LearningContentType, OpportunityType, TaxonomyItemDto;
 import '../auth/session_controller.dart';
+import '../auth/two_step.dart';
 import '../l10n/app_localizations.dart';
 import '../providers.dart';
 import 'redirect.dart';
@@ -39,36 +70,13 @@ import 'routes.dart';
 
 part 'app_router.g.dart';
 
-/// One tab root. All four unbuilt tabs show the Phase 1 placeholder until their milestone lands.
-class _TabRoot {
-  const _TabRoot(this.path, this.name);
-  final String path;
-  final String Function(AppLocalizations) name;
-}
-
 /// Detail routes that open the placeholder for now: path, phase, display name.
 final List<
   ({String path, String phase, String Function(AppLocalizations) name})
 >
 _detailRoutes = [
-  (path: Routes.opportunity, phase: 'p1', name: (l) => l.featureOpportunities),
-  (path: Routes.course, phase: 'p1', name: (l) => l.featureCourse),
-  (path: Routes.lesson, phase: 'p1', name: (l) => l.featureLesson),
   (path: Routes.listing, phase: 'p2', name: (l) => l.featureListing),
   (path: Routes.mentor, phase: 'p2', name: (l) => l.featureMentor),
-  (path: Routes.group, phase: 'p1', name: (l) => l.featureGroup),
-  (path: Routes.post, phase: 'p1', name: (l) => l.featurePost),
-  (
-    path: Routes.notifications,
-    phase: 'p1',
-    name: (l) => l.featureNotifications,
-  ),
-];
-
-/// Tabs still waiting for their milestone (Home and Explore are built).
-final _tabRoots = [
-  _TabRoot(Routes.community, (l) => l.featureCommunity),
-  _TabRoot(Routes.opportunities, (l) => l.featureOpportunities),
 ];
 
 /// Navigation graph: splash -> session check -> welcome / home, the five-tab shell, and the deep-link
@@ -79,6 +87,7 @@ GoRouter appRouter(Ref ref) {
   final refresh = ValueNotifier<int>(0);
   ref.listen(sessionStatusProvider, (_, _) => refresh.value++);
   ref.listen(onboardingGateProvider, (_, _) => refresh.value++);
+  ref.listen(twoStepRequiredProvider, (_, _) => refresh.value++);
   ref.onDispose(refresh.dispose);
 
   String phaseOf(GoRouterState s) => s.pathParameters['phase'] ?? 'later';
@@ -92,6 +101,10 @@ GoRouter appRouter(Ref ref) {
       uri: state.uri,
       devTools: devTools,
       onboarding: ref.read(onboardingGateProvider),
+      pendingDeletion:
+          ref.read(sessionControllerProvider).value?.deletionScheduledFor !=
+          null,
+      twoStepRequired: ref.read(twoStepRequiredProvider),
     ),
     routes: [
       GoRoute(path: Routes.splash, builder: (_, _) => const SplashScreen()),
@@ -139,8 +152,18 @@ GoRouter appRouter(Ref ref) {
       ),
       GoRoute(
         path: Routes.projectEdit,
-        builder: (_, state) =>
-            ProjectEditorScreen(projectId: state.pathParameters['id'] ?? 'new'),
+        builder: (_, state) => ProjectEditorScreen(
+          projectId: state.pathParameters['id'] ?? 'new',
+          // The practice box of a Skill Labs lesson starts the project with its skill.
+          prefillSkill: switch (state.uri.queryParameters) {
+            {'skillId': final id, 'skillName': final name} => TaxonomyItemDto(
+              id: id,
+              slug: '',
+              name: name,
+            ),
+            _ => null,
+          },
+        ),
       ),
       GoRoute(
         path: Routes.project,
@@ -164,8 +187,154 @@ GoRouter appRouter(Ref ref) {
         builder: (_, _) => const AchievementsScreen(),
       ),
       GoRoute(path: Routes.services, builder: (_, _) => const ServicesScreen()),
+      GoRoute(path: Routes.settings, builder: (_, _) => const SettingsScreen()),
+      GoRoute(
+        path: Routes.accountSettings,
+        builder: (_, _) => const AccountScreen(),
+      ),
+      GoRoute(
+        path: Routes.privacySettings,
+        builder: (_, _) => const PrivacyScreen(),
+      ),
+      GoRoute(
+        path: Routes.notificationSettings,
+        builder: (_, _) => const NotificationSettingsScreen(),
+      ),
+      GoRoute(path: Routes.security, builder: (_, _) => const SecurityScreen()),
+      GoRoute(path: Routes.help, builder: (_, _) => const HelpScreen()),
+      GoRoute(
+        path: Routes.helpArticle,
+        builder: (_, state) =>
+            HelpArticleScreen(slug: state.pathParameters['slug'] ?? ''),
+      ),
+      GoRoute(
+        path: Routes.legalList,
+        builder: (_, _) => const LegalListScreen(),
+      ),
+      GoRoute(
+        path: Routes.legalDocument,
+        builder: (_, state) =>
+            LegalDocumentScreen(type: state.pathParameters['type'] ?? 'TERMS'),
+      ),
+      GoRoute(
+        path: Routes.membership,
+        builder: (_, _) => const MembershipScreen(),
+      ),
+      GoRoute(
+        path: Routes.deleteAccount,
+        builder: (_, _) => const DeleteAccountScreen(),
+      ),
+      GoRoute(
+        path: Routes.restore,
+        builder: (_, _) => const RestoreAccountScreen(),
+      ),
+      GoRoute(path: Routes.twoStep, builder: (_, _) => const TwoStepScreen()),
+      GoRoute(
+        path: Routes.notifications,
+        builder: (_, _) => const NotificationsScreen(),
+      ),
+      GoRoute(path: Routes.activity, builder: (_, _) => const ActivityScreen()),
+      GoRoute(path: Routes.saved, builder: (_, _) => const SavedScreen()),
+      GoRoute(
+        path: Routes.applications,
+        builder: (_, _) => const ApplicationsScreen(),
+      ),
       GoRoute(path: Routes.search, builder: (_, _) => const SearchScreen()),
       GoRoute(path: Routes.articles, builder: (_, _) => const ArticlesScreen()),
+      GoRoute(
+        path: Routes.creatives,
+        builder: (_, _) => const PeopleToMeetScreen(),
+      ),
+      GoRoute(
+        path: Routes.connections,
+        builder: (_, state) => ConnectionsScreen(
+          initial: ConnectionsView.parse(state.uri.queryParameters['list']),
+        ),
+      ),
+      GoRoute(path: Routes.blocked, builder: (_, _) => const BlockedScreen()),
+      // Fixed paths first: `/opportunities/browse` and `/opportunities/mine` must not be read as an id.
+      GoRoute(
+        path: Routes.opportunitiesList,
+        builder: (_, state) => OpportunitiesListScreen(
+          type: OpportunityType.values
+              .where(
+                (t) =>
+                    t.json != null &&
+                    t.json == state.uri.queryParameters['type'],
+              )
+              .firstOrNull,
+        ),
+      ),
+      GoRoute(
+        path: Routes.myOpportunities,
+        builder: (_, state) => MyOpportunitiesScreen(
+          initial:
+              MyTab.values
+                  .where((t) => t.name == state.uri.queryParameters['tab'])
+                  .firstOrNull ??
+              MyTab.all,
+        ),
+      ),
+      GoRoute(
+        path: Routes.opportunity,
+        builder: (_, state) =>
+            OpportunityScreen(opportunityId: state.pathParameters['id'] ?? ''),
+      ),
+      // Skill Labs. Fixed paths first: `/learning/mine` must not be read as an id.
+      GoRoute(
+        path: Routes.learning,
+        builder: (_, _) => const LearningHubScreen(),
+      ),
+      GoRoute(
+        path: Routes.learningMine,
+        builder: (_, state) => MyLearningScreen(
+          initial:
+              MyLearningTab.values
+                  .where((t) => t.name == state.uri.queryParameters['tab'])
+                  .firstOrNull ??
+              MyLearningTab.active,
+        ),
+      ),
+      GoRoute(
+        path: Routes.learningCategory,
+        builder: (_, state) => LearningCategoryScreen(
+          slug: state.pathParameters['slug'] ?? '',
+          type: LearningContentType.values
+              .where(
+                (t) =>
+                    t.json != null &&
+                    t.json == state.uri.queryParameters['type'],
+              )
+              .firstOrNull,
+        ),
+      ),
+      GoRoute(
+        path: Routes.course,
+        builder: (_, state) =>
+            CourseScreen(courseId: state.pathParameters['id'] ?? ''),
+      ),
+      GoRoute(
+        path: Routes.lesson,
+        builder: (_, state) =>
+            LessonScreen(lessonId: state.pathParameters['id'] ?? ''),
+      ),
+      GoRoute(
+        path: Routes.post,
+        builder: (_, state) =>
+            PostScreen(postId: state.pathParameters['id'] ?? ''),
+      ),
+      GoRoute(
+        path: Routes.compose,
+        builder: (_, state) => ComposeScreen(
+          groupId: state.uri.queryParameters['groupId'],
+          groupName: state.uri.queryParameters['groupName'],
+        ),
+      ),
+      GoRoute(
+        path: Routes.group,
+        builder: (_, state) =>
+            GroupScreen(groupRef: state.pathParameters['id'] ?? ''),
+      ),
       GoRoute(
         path: Routes.article,
         builder: (_, state) =>
@@ -214,19 +383,22 @@ GoRouter appRouter(Ref ref) {
               ),
             ],
           ),
-          for (final tab in _tabRoots)
-            StatefulShellBranch(
-              routes: [
-                GoRoute(
-                  path: tab.path,
-                  builder: (context, _) => FutureRouteScreen(
-                    phase: 'p1',
-                    name: tab.name(AppLocalizations.of(context)),
-                    showBack: false,
-                  ),
-                ),
-              ],
-            ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.community,
+                builder: (_, _) => const CommunityScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.opportunities,
+                builder: (_, _) => const OpportunitiesScreen(),
+              ),
+            ],
+          ),
           StatefulShellBranch(
             routes: [
               GoRoute(

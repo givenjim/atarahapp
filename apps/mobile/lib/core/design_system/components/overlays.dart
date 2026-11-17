@@ -21,7 +21,7 @@ Future<T?> showAtBottomSheet<T>({
     isScrollControlled: isScrollControlled,
     useRootNavigator: useRootNavigator,
     backgroundColor: Colors.transparent,
-    barrierColor: AtColors.scrimSheet,
+    barrierColor: context.at.scrimSheet,
     builder: (ctx) => AtSheetFrame(
       title: title,
       showGrabber: showGrabber,
@@ -51,10 +51,10 @@ class AtSheetFrame extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(bottom: inset),
         child: DecoratedBox(
-          decoration: const BoxDecoration(
-            color: AtColors.white,
+          decoration: BoxDecoration(
+            color: context.at.surface,
             borderRadius: AtRadii.sheetTop,
-            boxShadow: AtShadows.sheet,
+            boxShadow: context.at.shadowSheet,
           ),
           child: ConstrainedBox(
             constraints: BoxConstraints(
@@ -77,8 +77,8 @@ class AtSheetFrame extends StatelessWidget {
                         width: 40,
                         height: 4,
                         margin: const EdgeInsets.only(bottom: 14),
-                        decoration: const BoxDecoration(
-                          color: AtColors.toggleOff,
+                        decoration: BoxDecoration(
+                          color: context.at.toggleOff,
                           borderRadius: AtRadii.pill,
                         ),
                       ),
@@ -89,7 +89,7 @@ class AtSheetFrame extends StatelessWidget {
                       child: Text(
                         title!,
                         style: AtTextStyles.sectionTitle.copyWith(
-                          color: AtColors.ink,
+                          color: context.at.ink,
                         ),
                       ),
                     ),
@@ -115,7 +115,7 @@ Future<T?> showAtModal<T>({
   return showDialog<T>(
     context: context,
     barrierDismissible: barrierDismissible,
-    barrierColor: AtColors.scrimModal,
+    barrierColor: context.at.scrimModal,
     builder: (ctx) => Dialog(
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -138,10 +138,10 @@ class AtModalFrame extends StatelessWidget {
     return Container(
       constraints: const BoxConstraints(maxWidth: 420),
       padding: const EdgeInsets.all(22),
-      decoration: const BoxDecoration(
-        color: AtColors.white,
+      decoration: BoxDecoration(
+        color: context.at.surface,
         borderRadius: AtRadii.modal,
-        boxShadow: AtShadows.modal,
+        boxShadow: context.at.shadowModal,
       ),
       child: SingleChildScrollView(child: child),
     );
@@ -167,11 +167,16 @@ class AtLeavingAtarahModal extends StatefulWidget {
     required this.domain,
     required this.onResult,
     this.showTrackOption = true,
+    this.body,
   });
 
   final String domain;
   final ValueChanged<LeavingAtarahChoice> onResult;
   final bool showTrackOption;
+
+  /// Replaces "Atarah doesn't receive or process this application." for what is not an application
+  /// (a Skill Labs resource).
+  final String? body;
 
   @override
   State<AtLeavingAtarahModal> createState() => _AtLeavingAtarahModalState();
@@ -199,14 +204,14 @@ class _AtLeavingAtarahModalState extends State<AtLeavingAtarahModal> {
           child: Text(
             l10n.leavingTitle,
             textAlign: TextAlign.center,
-            style: AtTextStyles.detailTitle.copyWith(color: AtColors.ink),
+            style: AtTextStyles.detailTitle.copyWith(color: context.at.ink),
           ),
         ),
         const SizedBox(height: 8),
         Text(
-          l10n.leavingBody(widget.domain),
+          widget.body ?? l10n.leavingBody(widget.domain),
           textAlign: TextAlign.center,
-          style: AtTextStyles.body.copyWith(color: AtColors.body),
+          style: AtTextStyles.body.copyWith(color: context.at.body),
         ),
         if (widget.showTrackOption) ...[
           const SizedBox(height: 14),
@@ -245,12 +250,14 @@ Future<LeavingAtarahChoice?> showLeavingAtarahModal(
   BuildContext context, {
   required String domain,
   bool showTrackOption = true,
+  String? body,
 }) {
   return showAtModal<LeavingAtarahChoice>(
     context: context,
     builder: (ctx) => AtLeavingAtarahModal(
       domain: domain,
       showTrackOption: showTrackOption,
+      body: body,
       onResult: (r) => Navigator.of(ctx).pop(r),
     ),
   );
@@ -269,7 +276,7 @@ class AtIconTileLarge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = tone.colors;
+    final c = tone.colorsOf(context);
     return Container(
       width: 64,
       height: 64,
@@ -321,10 +328,10 @@ class AtAiSheet extends StatelessWidget {
                 gradient: AtGradients.ai,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
+              child: Icon(
                 LucideIcons.sparkles,
                 size: 20,
-                color: AtColors.white,
+                color: context.at.white,
               ),
             ),
             const SizedBox(width: 12),
@@ -337,7 +344,7 @@ class AtAiSheet extends StatelessWidget {
                     child: Text(
                       title,
                       style: AtTextStyles.sectionTitleSm.copyWith(
-                        color: AtColors.ink,
+                        color: context.at.ink,
                       ),
                     ),
                   ),
@@ -345,8 +352,8 @@ class AtAiSheet extends StatelessWidget {
                     testMode ? l10n.aiTestMode : l10n.aiAssisted,
                     style: AtTextStyles.meta.copyWith(
                       color: testMode
-                          ? AtColors.warningStrong
-                          : AtColors.primary,
+                          ? context.at.tangerineStrong
+                          : context.at.primary,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -361,15 +368,15 @@ class AtAiSheet extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 2),
-              child: Icon(LucideIcons.info, size: 14, color: AtColors.muted),
+            Padding(
+              padding: const EdgeInsets.only(top: 2),
+              child: Icon(LucideIcons.info, size: 14, color: context.at.muted),
             ),
             const SizedBox(width: 8),
             Expanded(
               child: Text(
                 disclaimer ?? l10n.aiDisclaimer,
-                style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+                style: AtTextStyles.meta.copyWith(color: context.at.muted),
               ),
             ),
           ],

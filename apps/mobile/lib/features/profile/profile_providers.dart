@@ -5,13 +5,19 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../core/api/generated/export.dart';
 import '../../core/auth/session_controller.dart';
 import '../../core/providers.dart';
+import '../../core/storage/offline_cache.dart';
 import 'profile_repository.dart';
 
 part 'profile_providers.g.dart';
 
 @Riverpod(keepAlive: true)
-ProfileRepository profileRepository(Ref ref) =>
-    ProfileRepository(api: ref.watch(apiClientProvider));
+ProfileRepository profileRepository(Ref ref) => ProfileRepository(
+  api: ref.watch(apiClientProvider),
+  cache: OfflineCache(
+    ref.watch(keyValueStoreProvider),
+    ref.watch(sessionControllerProvider).value?.id,
+  ),
+);
 
 /// The signed-in member's own profile. Null while signed out. Reloads when a different member signs in.
 @Riverpod(keepAlive: true)

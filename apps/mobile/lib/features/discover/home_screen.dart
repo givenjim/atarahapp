@@ -10,6 +10,7 @@ import '../../core/routing/routes.dart';
 import '../profile/profile_providers.dart';
 import 'discover_common.dart';
 import 'discover_providers.dart';
+import 'unread_notifications.dart';
 
 /// The Home tab. Everything on it comes from one aggregated request; a section with nothing to show is left out
 /// rather than drawn empty, and a section that failed to load is left out while the rest still works.
@@ -21,14 +22,14 @@ class HomeScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final feed = ref.watch(homeFeedProvider);
     return Scaffold(
-      backgroundColor: AtColors.white,
+      backgroundColor: context.at.background,
       body: SafeArea(
         bottom: false,
         child: feed.when(
           loading: () => const _HomeLoading(),
           error: (e, _) => Column(
             children: [
-              const _HomeHeader(unread: 0),
+              const _HomeHeader(),
               Expanded(
                 child: loadFailure(
                   e,
@@ -58,7 +59,7 @@ class _HomeLoading extends StatelessWidget {
   Widget build(BuildContext context) => const Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      _HomeHeader(unread: 0),
+      _HomeHeader(),
       Padding(
         padding: EdgeInsets.all(AtSpacing.gutter),
         child: Column(
@@ -77,14 +78,13 @@ class _HomeLoading extends StatelessWidget {
 }
 
 class _HomeHeader extends ConsumerWidget {
-  const _HomeHeader({required this.unread});
-
-  final int unread;
+  const _HomeHeader();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final me = ref.watch(myProfileProvider).value;
+    final unread = ref.watch(unreadNotificationsProvider);
     return Padding(
       padding: const EdgeInsets.fromLTRB(
         AtSpacing.gutter,
@@ -94,10 +94,10 @@ class _HomeHeader extends ConsumerWidget {
       ),
       child: Row(
         children: [
-          const Expanded(
+          Expanded(
             child: Align(
               alignment: Alignment.centerLeft,
-              child: FittedBox(fit: BoxFit.scaleDown, child: AtWordmark()),
+              child: AtLogo(width: 126),
             ),
           ),
           AtIconButton(
@@ -110,18 +110,13 @@ class _HomeHeader extends ConsumerWidget {
             onPressed: () => context.push(Routes.notifications),
           ),
           const SizedBox(width: 10),
-          Semantics(
-            button: true,
-            label: l10n.dcYourProfile,
-            excludeSemantics: true,
+          AtTapTarget(
+            semanticLabel: l10n.dcYourProfile,
             onTap: () => context.go(Routes.profile),
-            child: GestureDetector(
-              onTap: () => context.go(Routes.profile),
-              child: Portrait(
-                name: me?.displayName ?? '',
-                url: me?.avatarUrl,
-                size: 44,
-              ),
+            child: Portrait(
+              name: me?.displayName ?? '',
+              url: me?.avatarUrl,
+              size: 44,
             ),
           ),
         ],
@@ -145,7 +140,7 @@ class _HomeBody extends StatelessWidget {
       physics: const AlwaysScrollableScrollPhysics(),
       padding: const EdgeInsets.only(bottom: 32),
       children: [
-        _HomeHeader(unread: home.unreadNotifications.toInt()),
+        const _HomeHeader(),
         Padding(
           padding: pad,
           child: Column(
@@ -156,13 +151,15 @@ class _HomeBody extends StatelessWidget {
                 header: true,
                 child: Text(
                   l10n.dcWelcome(home.firstName),
-                  style: AtTextStyles.detailTitle.copyWith(color: AtColors.ink),
+                  style: AtTextStyles.detailTitle.copyWith(
+                    color: context.at.ink,
+                  ),
                 ),
               ),
               const SizedBox(height: 4),
               Text(
                 l10n.dcWelcomeBody,
-                style: AtTextStyles.body.copyWith(color: AtColors.body),
+                style: AtTextStyles.body.copyWith(color: context.at.body),
               ),
               if (home.completionPercent < 100) ...[
                 gap(18),
@@ -276,6 +273,7 @@ class _CompletionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return AtDarkCard(
+      ring: true,
       onTap: () => context.go(Routes.profile),
       child: Semantics(
         label: l10n.dcCompletionLabel(percent),
@@ -288,13 +286,17 @@ class _CompletionCard extends StatelessWidget {
               children: [
                 Text(
                   '$percent%',
-                  style: AtTextStyles.tabTitle.copyWith(color: AtColors.white),
+                  style: AtTextStyles.tabTitle.copyWith(
+                    color: context.at.white,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 6),
                   child: Text(
                     l10n.dcCompletion,
-                    style: AtTextStyles.chip.copyWith(color: AtColors.violet3),
+                    style: AtTextStyles.chip.copyWith(
+                      color: context.at.violetTint2,
+                    ),
                   ),
                 ),
               ],
@@ -304,7 +306,9 @@ class _CompletionCard extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               l10n.dcCompletionBody,
-              style: AtTextStyles.bodySm.copyWith(color: AtColors.violet3),
+              style: AtTextStyles.bodySm.copyWith(
+                color: context.at.violetTint2,
+              ),
             ),
             const SizedBox(height: 14),
             AtButton(
@@ -333,7 +337,7 @@ class _QuickAccess extends StatelessWidget {
       (
         LucideIcons.graduationCap,
         l10n.dcSkillLabs,
-        () => context.push(Routes.soonPath('p1', name: l10n.dcSkillLabs)),
+        () => context.push(Routes.learning),
       ),
       (
         LucideIcons.briefcase,
@@ -384,7 +388,7 @@ class _QuickAccess extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(icon, size: 24, color: AtColors.primary),
+                      Icon(icon, size: 24, color: context.at.primary),
                       const SizedBox(height: 8),
                       Text(
                         label,
@@ -392,7 +396,7 @@ class _QuickAccess extends StatelessWidget {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: AtTextStyles.chipSm.copyWith(
-                          color: AtColors.ink,
+                          color: context.at.ink,
                         ),
                       ),
                     ],
@@ -422,16 +426,14 @@ class _RecommendationTile extends ConsumerWidget {
           padding: const EdgeInsets.only(bottom: 6, left: 2),
           child: Row(
             children: [
-              const Icon(
-                LucideIcons.sparkles,
-                size: 13,
-                color: AtColors.primary,
-              ),
+              Icon(LucideIcons.sparkles, size: 13, color: context.at.primary),
               const SizedBox(width: 6),
               Flexible(
                 child: Text(
                   item.reason,
-                  style: AtTextStyles.metaSm.copyWith(color: AtColors.primary),
+                  style: AtTextStyles.metaSm.copyWith(
+                    color: context.at.primary,
+                  ),
                 ),
               ),
             ],
@@ -443,7 +445,7 @@ class _RecommendationTile extends ConsumerWidget {
           semanticLabel: '${item.title}. ${item.reason}',
           child: Row(
             children: [
-              const Icon(LucideIcons.bookOpen, color: AtColors.primary),
+              Icon(LucideIcons.bookOpen, color: context.at.primary),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -454,14 +456,14 @@ class _RecommendationTile extends ConsumerWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: AtTextStyles.cardTitle.copyWith(
-                        color: AtColors.ink,
+                        color: context.at.ink,
                       ),
                     ),
                     if (item.subtitle != null)
                       Text(
                         item.subtitle!,
                         style: AtTextStyles.metaSm.copyWith(
-                          color: AtColors.muted,
+                          color: context.at.muted,
                         ),
                       ),
                   ],
@@ -470,7 +472,7 @@ class _RecommendationTile extends ConsumerWidget {
               Icon(
                 LucideIcons.chevronRight,
                 size: 18,
-                color: AtColors.faint,
+                color: context.at.faint,
                 semanticLabel: l10n.dcOpen,
               ),
             ],
@@ -502,14 +504,17 @@ class _SoonTile extends StatelessWidget {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, color: AtColors.primary),
+        Icon(icon, color: context.at.primary),
         const SizedBox(height: 10),
         Text(
           title,
-          style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+          style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
         ),
         const SizedBox(height: 2),
-        Text(body, style: AtTextStyles.metaSm.copyWith(color: AtColors.muted)),
+        Text(
+          body,
+          style: AtTextStyles.metaSm.copyWith(color: context.at.muted),
+        ),
       ],
     ),
   );

@@ -2,23 +2,25 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:atarah/core/app/app.dart';
+import 'package:atarah/core/auth/supabase_auth_gateway.dart';
 import 'package:atarah/core/config/app_config.dart';
 import 'package:atarah/core/design_system/design_system.dart';
 import 'package:atarah/core/providers.dart';
-import 'package:atarah/core/storage/token_store.dart';
+import 'package:atarah/core/storage/secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' show SupabaseClient;
 
 /// P1-M1 journeys on a real Android emulator against the real backend (no fakes). Verification and recovery
 /// codes are read from the local Mailpit inbox, exactly as a person would read their email.
 ///
 ///   flutter test integration_test/auth_journeys_test.dart --flavor dev -d emulator-5554 \
-///     --dart-define=ATARAH_API_BASE_URL=http://10.0.2.2:3000
+///     --dart-define-from-file=env.dev.json   (see apps/mobile/README.md; run `adb reverse tcp:55321 tcp:55321` first)
 const _mailpit = String.fromEnvironment(
   'ATARAH_MAILPIT_URL',
-  defaultValue: 'http://10.0.2.2:58025',
+  defaultValue: 'http://10.0.2.2:55324',
 );
 
 const _password = 'Journey-pass-1';
@@ -29,6 +31,17 @@ const _wrongPasswordBanner =
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
+  // Real Supabase Auth (the local stack), session in the real keystore, exactly as in the app.
+  late final SupabaseClient supabase;
+  setUpAll(() async {
+    final config = AppConfig.forFlavor(Flavor.dev);
+    supabase = await initialiseSupabase(
+      url: config.supabaseUrl,
+      publishableKey: config.supabasePublishableKey,
+      store: SecureKeyValueStore(),
+    );
+  });
+
   final stamp = DateTime.now().millisecondsSinceEpoch;
   final email = 'journey.$stamp@demo.atarah.test';
   const name = 'Journey Tester';
@@ -37,6 +50,7 @@ void main() {
     retry: noAutomaticRetry,
     overrides: [
       appConfigProvider.overrideWithValue(AppConfig.forFlavor(Flavor.dev)),
+      supabaseClientProvider.overrideWithValue(supabase),
     ],
     child: const AtarahApp(),
   );
@@ -130,7 +144,7 @@ void main() {
   testWidgets('1. register, verify by email code, land on profile setup', (
     t,
   ) async {
-    await SecureTokenStore().clear();
+    await supabase.auth.signOut();
     await t.pumpWidget(app());
     await settle(t);
 
@@ -156,7 +170,7 @@ void main() {
     expect(find.text(email), findsOneWidget);
     expect(find.textContaining('Resend in'), findsOneWidget);
 
-    // A wrong code is refused with the server's message.
+    // A wrong code is refused with the same message the form always showed.
     await enterCode(t, '000000');
     await tapLabel(t, 'Verify', wait: 3);
     expect(find.text('That code is not right or has expired.'), findsOneWidget);
@@ -184,7 +198,7 @@ void main() {
   });
 
   testWidgets('2. sign in fails with the banner, then succeeds', (t) async {
-    await SecureTokenStore().clear();
+    await supabase.auth.signOut();
     await fresh(t);
     await tapLabel(t, 'Sign in');
     await t.enterText(find.byType(TextField).at(0), email);
@@ -213,7 +227,7 @@ void main() {
   testWidgets('3. forgot password, reset, and sign in with the new password', (
     t,
   ) async {
-    await SecureTokenStore().clear();
+    await supabase.auth.signOut();
     await fresh(t);
     await tapLabel(t, 'Sign in');
     await tapLabel(t, 'Forgot password?');
@@ -222,7 +236,7 @@ void main() {
     await tapLabel(t, 'Send code', wait: 4);
 
     expect(find.text('Set a new password'), findsOneWidget);
-    expect(find.text('Code sent. It expires in 15 minutes.'), findsOneWidget);
+    expect(find.text('Code sent. It expires in 10 minutes.'), findsOneWidget);
 
     await t.enterText(find.byType(TextField).at(0), await mailedCode(before));
     await t.enterText(find.byType(TextField).at(1), _newPassword);

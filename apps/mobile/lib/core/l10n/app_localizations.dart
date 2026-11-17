@@ -154,6 +154,264 @@ abstract class AppLocalizations {
   /// **'Back'**
   String get back;
 
+  /// No description provided for @grpYourGroups.
+  ///
+  /// In en, this message translates to:
+  /// **'Your groups'**
+  String get grpYourGroups;
+
+  /// No description provided for @grpYourGroupsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t joined a group yet. Find one below.'**
+  String get grpYourGroupsEmpty;
+
+  /// No description provided for @grpDiscover.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover groups'**
+  String get grpDiscover;
+
+  /// No description provided for @grpSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search groups'**
+  String get grpSearchHint;
+
+  /// No description provided for @grpSearchClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear search'**
+  String get grpSearchClear;
+
+  /// No description provided for @grpFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get grpFilterAll;
+
+  /// No description provided for @grpTypeDiscipline.
+  ///
+  /// In en, this message translates to:
+  /// **'Discipline'**
+  String get grpTypeDiscipline;
+
+  /// No description provided for @grpTypeLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get grpTypeLocation;
+
+  /// No description provided for @grpTypeInterest.
+  ///
+  /// In en, this message translates to:
+  /// **'Interest'**
+  String get grpTypeInterest;
+
+  /// No description provided for @grpTypeProgramme.
+  ///
+  /// In en, this message translates to:
+  /// **'Programme'**
+  String get grpTypeProgramme;
+
+  /// No description provided for @grpMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 member} other{{count} members}}'**
+  String grpMembers(int count);
+
+  /// No description provided for @grpDiscoverEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No groups to show'**
+  String get grpDiscoverEmpty;
+
+  /// No description provided for @grpDiscoverEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another type or search, or check back soon.'**
+  String get grpDiscoverEmptyBody;
+
+  /// No description provided for @grpLoadMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Show more groups'**
+  String get grpLoadMore;
+
+  /// No description provided for @grpLeaveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave {name}?'**
+  String grpLeaveTitle(String name);
+
+  /// No description provided for @grpLeaveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll stop seeing its discussions. You can join again any time.'**
+  String get grpLeaveBody;
+
+  /// No description provided for @grpLeaveConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave group'**
+  String get grpLeaveConfirm;
+
+  /// No description provided for @grpStay.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay'**
+  String get grpStay;
+
+  /// No description provided for @grpJoinedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'You joined {name}'**
+  String grpJoinedToast(String name);
+
+  /// No description provided for @grpLeftToast.
+  ///
+  /// In en, this message translates to:
+  /// **'You left {name}'**
+  String grpLeftToast(String name);
+
+  /// No description provided for @grpOwnerCantLeave.
+  ///
+  /// In en, this message translates to:
+  /// **'You own this group, so you can\'t leave it. Ask the Atarah team to hand it over first.'**
+  String get grpOwnerCantLeave;
+
+  /// No description provided for @grpErrRestricted.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is restricted right now, so you can\'t join or post in groups.'**
+  String get grpErrRestricted;
+
+  /// No description provided for @grpErrVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify your email or phone number to join groups and post in them.'**
+  String get grpErrVerify;
+
+  /// No description provided for @grpErrRate.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re doing that a lot. Give it a moment and try again.'**
+  String get grpErrRate;
+
+  /// No description provided for @grpErrPrivate.
+  ///
+  /// In en, this message translates to:
+  /// **'This group is private. Members are added by invitation.'**
+  String get grpErrPrivate;
+
+  /// No description provided for @grpJoinGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Join group'**
+  String get grpJoinGroup;
+
+  /// No description provided for @grpShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share group'**
+  String get grpShare;
+
+  /// No description provided for @grpShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'Join {name} on Atarah'**
+  String grpShareText(String name);
+
+  /// No description provided for @grpTypePrivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Private'**
+  String get grpTypePrivate;
+
+  /// No description provided for @grpOfficial.
+  ///
+  /// In en, this message translates to:
+  /// **'Official'**
+  String get grpOfficial;
+
+  /// No description provided for @grpPinned.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinned announcement'**
+  String get grpPinned;
+
+  /// No description provided for @grpRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent discussions'**
+  String get grpRecent;
+
+  /// No description provided for @grpNoDiscussions.
+  ///
+  /// In en, this message translates to:
+  /// **'No discussions yet'**
+  String get grpNoDiscussions;
+
+  /// No description provided for @grpNoDiscussionsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Be the first to start one.'**
+  String get grpNoDiscussionsBody;
+
+  /// No description provided for @grpStartDiscussion.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a discussion'**
+  String get grpStartDiscussion;
+
+  /// No description provided for @grpJoinToPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Join this group to post'**
+  String get grpJoinToPost;
+
+  /// No description provided for @grpPrivateNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Private group. Members are added by invitation.'**
+  String get grpPrivateNote;
+
+  /// No description provided for @grpGone.
+  ///
+  /// In en, this message translates to:
+  /// **'This group isn\'t available'**
+  String get grpGone;
+
+  /// No description provided for @grpGoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It may be private, archived or no longer exist.'**
+  String get grpGoneBody;
+
+  /// No description provided for @grpPostsFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load the discussions'**
+  String get grpPostsFailed;
+
+  /// No description provided for @grpMoreDiscussions.
+  ///
+  /// In en, this message translates to:
+  /// **'Show more discussions'**
+  String get grpMoreDiscussions;
+
+  /// No description provided for @grpReplies.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 reply} other{{count} replies}}'**
+  String grpReplies(int count);
+
+  /// No description provided for @grpMeta.
+  ///
+  /// In en, this message translates to:
+  /// **'{type} · {members}'**
+  String grpMeta(String type, String members);
+
   /// No description provided for @close.
   ///
   /// In en, this message translates to:
@@ -532,6 +790,744 @@ abstract class AppLocalizations {
   /// **'More options'**
   String get moreOptions;
 
+  /// No description provided for @cfdTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Community'**
+  String get cfdTitle;
+
+  /// No description provided for @cfdSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask, share and build with Kenya\'s creatives.'**
+  String get cfdSubtitle;
+
+  /// No description provided for @cfdNewPost.
+  ///
+  /// In en, this message translates to:
+  /// **'New post'**
+  String get cfdNewPost;
+
+  /// No description provided for @cfdTabFeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Feed'**
+  String get cfdTabFeed;
+
+  /// No description provided for @cfdTabDiscussions.
+  ///
+  /// In en, this message translates to:
+  /// **'Discussions'**
+  String get cfdTabDiscussions;
+
+  /// No description provided for @cfdTabGroups.
+  ///
+  /// In en, this message translates to:
+  /// **'Groups'**
+  String get cfdTabGroups;
+
+  /// No description provided for @cfdTabPeople.
+  ///
+  /// In en, this message translates to:
+  /// **'People'**
+  String get cfdTabPeople;
+
+  /// No description provided for @cfdComposerPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Share an update or ask a question…'**
+  String get cfdComposerPrompt;
+
+  /// No description provided for @cfdFeedEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here yet'**
+  String get cfdFeedEmpty;
+
+  /// No description provided for @cfdFeedEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Be the first to share an update or ask a question.'**
+  String get cfdFeedEmptyBody;
+
+  /// No description provided for @cfdDiscussionsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No discussions yet'**
+  String get cfdDiscussionsEmpty;
+
+  /// No description provided for @cfdDiscussionsEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Start one and ask the community what they think.'**
+  String get cfdDiscussionsEmptyBody;
+
+  /// No description provided for @cfdWritePost.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a post'**
+  String get cfdWritePost;
+
+  /// No description provided for @cfdFeedFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load the feed'**
+  String get cfdFeedFailed;
+
+  /// No description provided for @cfdOfflineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re offline'**
+  String get cfdOfflineTitle;
+
+  /// No description provided for @cfdOfflineBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Reconnect to see the latest posts.'**
+  String get cfdOfflineBody;
+
+  /// No description provided for @cfdLoadMoreFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load more posts.'**
+  String get cfdLoadMoreFailed;
+
+  /// No description provided for @cfdTypeUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'Creative update'**
+  String get cfdTypeUpdate;
+
+  /// No description provided for @cfdTypeQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Question'**
+  String get cfdTypeQuestion;
+
+  /// No description provided for @cfdTypeDiscussion.
+  ///
+  /// In en, this message translates to:
+  /// **'Discussion'**
+  String get cfdTypeDiscussion;
+
+  /// No description provided for @cfdTypeCollaboration.
+  ///
+  /// In en, this message translates to:
+  /// **'Collaboration'**
+  String get cfdTypeCollaboration;
+
+  /// No description provided for @cfdTypeAnnouncement.
+  ///
+  /// In en, this message translates to:
+  /// **'Announcement'**
+  String get cfdTypeAnnouncement;
+
+  /// No description provided for @cfdChipUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get cfdChipUpdate;
+
+  /// No description provided for @cfdAuthorTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Atarah Team'**
+  String get cfdAuthorTeam;
+
+  /// No description provided for @cfdNow.
+  ///
+  /// In en, this message translates to:
+  /// **'now'**
+  String get cfdNow;
+
+  /// No description provided for @cfdMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{n}m'**
+  String cfdMinutes(int n);
+
+  /// No description provided for @cfdHours.
+  ///
+  /// In en, this message translates to:
+  /// **'{n}h'**
+  String cfdHours(int n);
+
+  /// No description provided for @cfdDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{n}d'**
+  String cfdDays(int n);
+
+  /// No description provided for @cfdEdited.
+  ///
+  /// In en, this message translates to:
+  /// **'edited'**
+  String get cfdEdited;
+
+  /// No description provided for @cfdShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} on Atarah: {excerpt}\n{url}'**
+  String cfdShareText(String name, String excerpt, String url);
+
+  /// No description provided for @cfdOpenLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Open link: {title}'**
+  String cfdOpenLink(String title);
+
+  /// No description provided for @cfdVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video'**
+  String get cfdVideo;
+
+  /// No description provided for @cfdPhotoOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo by {name}'**
+  String cfdPhotoOf(String name);
+
+  /// No description provided for @cfdSavedPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved to your saved items.'**
+  String get cfdSavedPost;
+
+  /// No description provided for @cfdUnsavedPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed from your saved items.'**
+  String get cfdUnsavedPost;
+
+  /// No description provided for @cfdReplyCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No replies yet} =1{1 reply} other{{count} replies}}'**
+  String cfdReplyCount(int count);
+
+  /// No description provided for @cfdReplyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a reply…'**
+  String get cfdReplyHint;
+
+  /// No description provided for @cfdReplyingTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Replying to {name}'**
+  String cfdReplyingTo(String name);
+
+  /// No description provided for @cfdCancelReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel reply'**
+  String get cfdCancelReply;
+
+  /// No description provided for @cfdSendReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Send reply'**
+  String get cfdSendReply;
+
+  /// No description provided for @cfdReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply'**
+  String get cfdReply;
+
+  /// No description provided for @cfdNoReplies.
+  ///
+  /// In en, this message translates to:
+  /// **'No replies yet'**
+  String get cfdNoReplies;
+
+  /// No description provided for @cfdNoRepliesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Be the first to reply.'**
+  String get cfdNoRepliesBody;
+
+  /// No description provided for @cfdMoreReplies.
+  ///
+  /// In en, this message translates to:
+  /// **'Show more replies'**
+  String get cfdMoreReplies;
+
+  /// No description provided for @cfdMenuSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save discussion'**
+  String get cfdMenuSave;
+
+  /// No description provided for @cfdMenuUnsave.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from saved'**
+  String get cfdMenuUnsave;
+
+  /// No description provided for @cfdMenuMute.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute thread'**
+  String get cfdMenuMute;
+
+  /// No description provided for @cfdMenuUnmute.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute thread'**
+  String get cfdMenuUnmute;
+
+  /// No description provided for @cfdMenuBlock.
+  ///
+  /// In en, this message translates to:
+  /// **'Block author'**
+  String get cfdMenuBlock;
+
+  /// No description provided for @cfdMenuReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Report'**
+  String get cfdMenuReport;
+
+  /// No description provided for @cfdMenuEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get cfdMenuEdit;
+
+  /// No description provided for @cfdMenuDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get cfdMenuDelete;
+
+  /// No description provided for @cfdMuted.
+  ///
+  /// In en, this message translates to:
+  /// **'Thread muted. You won\'t be notified about it.'**
+  String get cfdMuted;
+
+  /// No description provided for @cfdUnmuted.
+  ///
+  /// In en, this message translates to:
+  /// **'Thread unmuted.'**
+  String get cfdUnmuted;
+
+  /// No description provided for @cfdEditPostTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit post'**
+  String get cfdEditPostTitle;
+
+  /// No description provided for @cfdEditReplyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit reply'**
+  String get cfdEditReplyTitle;
+
+  /// No description provided for @cfdSaveChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get cfdSaveChanges;
+
+  /// No description provided for @cfdCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cfdCancel;
+
+  /// No description provided for @cfdDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get cfdDone;
+
+  /// No description provided for @cfdDeletePostTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this post?'**
+  String get cfdDeletePostTitle;
+
+  /// No description provided for @cfdDeletePostBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It will be removed for everyone, including the replies. This can\'t be undone.'**
+  String get cfdDeletePostBody;
+
+  /// No description provided for @cfdDeleteReplyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this reply?'**
+  String get cfdDeleteReplyTitle;
+
+  /// No description provided for @cfdDeleteReplyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It will be removed for everyone. This can\'t be undone.'**
+  String get cfdDeleteReplyBody;
+
+  /// No description provided for @cfdDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get cfdDelete;
+
+  /// No description provided for @cfdPostGone.
+  ///
+  /// In en, this message translates to:
+  /// **'This post isn\'t available'**
+  String get cfdPostGone;
+
+  /// No description provided for @cfdPostGoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It may have been removed, or you can no longer see it.'**
+  String get cfdPostGoneBody;
+
+  /// No description provided for @cfdReportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Report'**
+  String get cfdReportTitle;
+
+  /// No description provided for @cfdReportIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Why are you reporting this? The person won\'t be told it was you.'**
+  String get cfdReportIntro;
+
+  /// No description provided for @cfdReasonInappropriate.
+  ///
+  /// In en, this message translates to:
+  /// **'Inappropriate or offensive'**
+  String get cfdReasonInappropriate;
+
+  /// No description provided for @cfdReasonHarassment.
+  ///
+  /// In en, this message translates to:
+  /// **'Harassment or bullying'**
+  String get cfdReasonHarassment;
+
+  /// No description provided for @cfdReasonScam.
+  ///
+  /// In en, this message translates to:
+  /// **'Scam or spam'**
+  String get cfdReasonScam;
+
+  /// No description provided for @cfdReasonMisleading.
+  ///
+  /// In en, this message translates to:
+  /// **'Misleading or false'**
+  String get cfdReasonMisleading;
+
+  /// No description provided for @cfdReasonImpersonation.
+  ///
+  /// In en, this message translates to:
+  /// **'Pretending to be someone else'**
+  String get cfdReasonImpersonation;
+
+  /// No description provided for @cfdReasonIp.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied or stolen work'**
+  String get cfdReasonIp;
+
+  /// No description provided for @cfdReasonOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Something else'**
+  String get cfdReasonOther;
+
+  /// No description provided for @cfdReportNoteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a note (optional)'**
+  String get cfdReportNoteLabel;
+
+  /// No description provided for @cfdReportNoteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us what we should look at'**
+  String get cfdReportNoteHint;
+
+  /// No description provided for @cfdReportSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Send report'**
+  String get cfdReportSubmit;
+
+  /// No description provided for @cfdReportDoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for telling us'**
+  String get cfdReportDoneTitle;
+
+  /// No description provided for @cfdReportDoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Our team will review this report. When a decision is made you\'ll get a notification with the outcome. We don\'t share details about other members, and the person won\'t know it was you.'**
+  String get cfdReportDoneBody;
+
+  /// No description provided for @cfdBlockTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Block {name}?'**
+  String cfdBlockTitle(String name);
+
+  /// No description provided for @cfdBlockBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You won\'t see each other\'s posts, replies or profiles, and neither of you can connect with or reply to the other. They won\'t be told.'**
+  String get cfdBlockBody;
+
+  /// No description provided for @cfdBlockConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Block'**
+  String get cfdBlockConfirm;
+
+  /// No description provided for @cfdBlockedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is blocked'**
+  String cfdBlockedTitle(String name);
+
+  /// No description provided for @cfdBlockedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Their posts and replies are now hidden from you.'**
+  String get cfdBlockedBody;
+
+  /// No description provided for @cfdUndoBlock.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo block'**
+  String get cfdUndoBlock;
+
+  /// No description provided for @cfdUnblocked.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is unblocked.'**
+  String cfdUnblocked(String name);
+
+  /// No description provided for @cfdComposeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New post'**
+  String get cfdComposeTitle;
+
+  /// No description provided for @cfdPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Post'**
+  String get cfdPost;
+
+  /// No description provided for @cfdBodyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What would you like to share?'**
+  String get cfdBodyHint;
+
+  /// No description provided for @cfdCharCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}/{max}'**
+  String cfdCharCount(int count, int max);
+
+  /// No description provided for @cfdDraftSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft saved automatically'**
+  String get cfdDraftSaved;
+
+  /// No description provided for @cfdAttachPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo'**
+  String get cfdAttachPhoto;
+
+  /// No description provided for @cfdAttachVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video'**
+  String get cfdAttachVideo;
+
+  /// No description provided for @cfdAttachLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Link'**
+  String get cfdAttachLink;
+
+  /// No description provided for @cfdAttachOpportunity.
+  ///
+  /// In en, this message translates to:
+  /// **'Opportunity'**
+  String get cfdAttachOpportunity;
+
+  /// No description provided for @cfdAudience.
+  ///
+  /// In en, this message translates to:
+  /// **'Audience'**
+  String get cfdAudience;
+
+  /// No description provided for @cfdAudMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'Atarah members'**
+  String get cfdAudMembers;
+
+  /// No description provided for @cfdAudMembersBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone signed in to Atarah'**
+  String get cfdAudMembersBody;
+
+  /// No description provided for @cfdAudPublic.
+  ///
+  /// In en, this message translates to:
+  /// **'Public'**
+  String get cfdAudPublic;
+
+  /// No description provided for @cfdAudPublicBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone, including people outside Atarah'**
+  String get cfdAudPublicBody;
+
+  /// No description provided for @cfdAudConnections.
+  ///
+  /// In en, this message translates to:
+  /// **'Connections'**
+  String get cfdAudConnections;
+
+  /// No description provided for @cfdAudConnectionsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Only people you\'re connected with'**
+  String get cfdAudConnectionsBody;
+
+  /// No description provided for @cfdAudGroups.
+  ///
+  /// In en, this message translates to:
+  /// **'Your groups'**
+  String get cfdAudGroups;
+
+  /// No description provided for @cfdAudGroupBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Members of this group'**
+  String get cfdAudGroupBody;
+
+  /// No description provided for @cfdAudGroupsFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load your groups.'**
+  String get cfdAudGroupsFailed;
+
+  /// No description provided for @cfdLinkTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a link'**
+  String get cfdLinkTitle;
+
+  /// No description provided for @cfdLinkHint.
+  ///
+  /// In en, this message translates to:
+  /// **'https://'**
+  String get cfdLinkHint;
+
+  /// No description provided for @cfdLinkInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a full web address that starts with http:// or https://'**
+  String get cfdLinkInvalid;
+
+  /// No description provided for @cfdLinkNote.
+  ///
+  /// In en, this message translates to:
+  /// **'A preview appears on the post a moment after you share it.'**
+  String get cfdLinkNote;
+
+  /// No description provided for @cfdLinkAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add link'**
+  String get cfdLinkAdd;
+
+  /// No description provided for @cfdLinkRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove link'**
+  String get cfdLinkRemove;
+
+  /// No description provided for @cfdMediaFull.
+  ///
+  /// In en, this message translates to:
+  /// **'A post can have up to 10 photos or videos.'**
+  String get cfdMediaFull;
+
+  /// No description provided for @cfdPickFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t open your files. Try again.'**
+  String get cfdPickFailed;
+
+  /// No description provided for @cfdNeedsContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Write something, or add a photo, video or link.'**
+  String get cfdNeedsContent;
+
+  /// No description provided for @cfdTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Posts can be up to {max} characters.'**
+  String cfdTooLong(int max);
+
+  /// No description provided for @cfdUploadsPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Wait for your files to finish uploading, or remove them.'**
+  String get cfdUploadsPending;
+
+  /// No description provided for @cfdPostedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Posted.'**
+  String get cfdPostedToast;
+
+  /// No description provided for @cfdErrVerification.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify your email or phone number first, then try again.'**
+  String get cfdErrVerification;
+
+  /// No description provided for @cfdErrRestricted.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is restricted right now, so you can\'t do this. If you think that\'s a mistake, contact support.'**
+  String get cfdErrRestricted;
+
+  /// No description provided for @cfdErrNotMember.
+  ///
+  /// In en, this message translates to:
+  /// **'Join this group first, then try again.'**
+  String get cfdErrNotMember;
+
+  /// No description provided for @cfdErrNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'This isn\'t available any more.'**
+  String get cfdErrNotFound;
+
+  /// No description provided for @cfdErrRateLimited.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re going a little fast. Please wait a while and try again.'**
+  String get cfdErrRateLimited;
+
   /// No description provided for @improveSkill.
   ///
   /// In en, this message translates to:
@@ -865,7 +1861,7 @@ abstract class AppLocalizations {
   /// No description provided for @passwordRuleError.
   ///
   /// In en, this message translates to:
-  /// **'Use at least 8 characters, including a number.'**
+  /// **'Use at least 8 characters, including a letter and a number.'**
   String get passwordRuleError;
 
   /// No description provided for @consentPrefix.
@@ -1045,7 +2041,7 @@ abstract class AppLocalizations {
   /// No description provided for @forgotSent.
   ///
   /// In en, this message translates to:
-  /// **'Code sent. It expires in 15 minutes.'**
+  /// **'Code sent. It expires in 10 minutes.'**
   String get forgotSent;
 
   /// No description provided for @forgotAction.
@@ -4023,6 +5019,2910 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'New stories and advice will appear here.'**
   String get dcNoArticlesBody;
+
+  /// No description provided for @proPillLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pro'**
+  String get proPillLabel;
+
+  /// No description provided for @appearanceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get appearanceLabel;
+
+  /// No description provided for @appearanceLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get appearanceLight;
+
+  /// No description provided for @appearanceDark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get appearanceDark;
+
+  /// No description provided for @settingsGroupAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get settingsGroupAccount;
+
+  /// No description provided for @settingsGroupSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Support'**
+  String get settingsGroupSupport;
+
+  /// No description provided for @settingsAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get settingsAccount;
+
+  /// No description provided for @settingsPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy & visibility'**
+  String get settingsPrivacy;
+
+  /// No description provided for @settingsNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get settingsNotifications;
+
+  /// No description provided for @settingsSecurity.
+  ///
+  /// In en, this message translates to:
+  /// **'Security'**
+  String get settingsSecurity;
+
+  /// No description provided for @settingsHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Help'**
+  String get settingsHelp;
+
+  /// No description provided for @settingsLegal.
+  ///
+  /// In en, this message translates to:
+  /// **'Legal'**
+  String get settingsLegal;
+
+  /// No description provided for @peopleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'People to meet'**
+  String get peopleTitle;
+
+  /// No description provided for @peopleBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Creatives who work like you, near you or in what you do.'**
+  String get peopleBody;
+
+  /// No description provided for @peopleOpenToWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Open to work'**
+  String get peopleOpenToWork;
+
+  /// No description provided for @peopleAnyDiscipline.
+  ///
+  /// In en, this message translates to:
+  /// **'All disciplines'**
+  String get peopleAnyDiscipline;
+
+  /// No description provided for @peopleAnyCounty.
+  ///
+  /// In en, this message translates to:
+  /// **'All counties'**
+  String get peopleAnyCounty;
+
+  /// No description provided for @peopleCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 person} other{{count} people}}'**
+  String peopleCount(int count);
+
+  /// No description provided for @peopleRequested.
+  ///
+  /// In en, this message translates to:
+  /// **'Requested'**
+  String get peopleRequested;
+
+  /// No description provided for @peopleConnectWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect with {name}'**
+  String peopleConnectWith(String name);
+
+  /// No description provided for @peopleRespond.
+  ///
+  /// In en, this message translates to:
+  /// **'Respond'**
+  String get peopleRespond;
+
+  /// No description provided for @peopleSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get peopleSave;
+
+  /// No description provided for @peopleSaveLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Save {name}'**
+  String peopleSaveLabel(String name);
+
+  /// No description provided for @peopleSaveFeature.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving people'**
+  String get peopleSaveFeature;
+
+  /// No description provided for @peopleConnections.
+  ///
+  /// In en, this message translates to:
+  /// **'Connections'**
+  String get peopleConnections;
+
+  /// No description provided for @peopleRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Requests'**
+  String get peopleRequests;
+
+  /// No description provided for @peopleRequestsWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 request waiting} other{{count} requests waiting}}'**
+  String peopleRequestsWaiting(int count);
+
+  /// No description provided for @peopleConnectionsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The people you are connected with and the requests going back and forth.'**
+  String get peopleConnectionsBody;
+
+  /// No description provided for @peopleListConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected'**
+  String get peopleListConnected;
+
+  /// No description provided for @peopleListReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Received'**
+  String get peopleListReceived;
+
+  /// No description provided for @peopleListSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent'**
+  String get peopleListSent;
+
+  /// No description provided for @peopleMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More options'**
+  String get peopleMore;
+
+  /// No description provided for @peopleBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked people'**
+  String get peopleBlocked;
+
+  /// No description provided for @peopleBlockedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocking hides posts both ways and stops requests, comments and mentions.'**
+  String get peopleBlockedBody;
+
+  /// No description provided for @peopleBlockedEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You have not blocked anyone'**
+  String get peopleBlockedEmptyTitle;
+
+  /// No description provided for @peopleBlockedEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'People you block will be listed here, and you can unblock them at any time.'**
+  String get peopleBlockedEmptyBody;
+
+  /// No description provided for @peopleUnblock.
+  ///
+  /// In en, this message translates to:
+  /// **'Unblock'**
+  String get peopleUnblock;
+
+  /// No description provided for @peopleUnblockLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Unblock {name}'**
+  String peopleUnblockLabel(String name);
+
+  /// No description provided for @peopleBlockedSince.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked {date}'**
+  String peopleBlockedSince(String date);
+
+  /// No description provided for @peopleEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No one to suggest yet'**
+  String get peopleEmptyTitle;
+
+  /// No description provided for @peopleEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'As more creatives join and your profile fills in, people you may want to meet will appear here.'**
+  String get peopleEmptyBody;
+
+  /// No description provided for @peopleEmptyFilteredTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No one matches those filters'**
+  String get peopleEmptyFilteredTitle;
+
+  /// No description provided for @peopleEmptyFilteredBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try fewer filters or a different county.'**
+  String get peopleEmptyFilteredBody;
+
+  /// No description provided for @peopleClearFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear filters'**
+  String get peopleClearFilters;
+
+  /// No description provided for @peopleConnectedEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No connections yet'**
+  String get peopleConnectedEmptyTitle;
+
+  /// No description provided for @peopleConnectedEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect with people you meet on Atarah and they will be listed here.'**
+  String get peopleConnectedEmptyBody;
+
+  /// No description provided for @peopleReceivedEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No requests waiting'**
+  String get peopleReceivedEmptyTitle;
+
+  /// No description provided for @peopleReceivedEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'When someone asks to connect, you can accept or decline here.'**
+  String get peopleReceivedEmptyBody;
+
+  /// No description provided for @peopleSentEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No pending requests'**
+  String get peopleSentEmptyTitle;
+
+  /// No description provided for @peopleSentEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Requests you have sent that have not been answered yet are listed here.'**
+  String get peopleSentEmptyBody;
+
+  /// No description provided for @peopleSince.
+  ///
+  /// In en, this message translates to:
+  /// **'Since {date}'**
+  String peopleSince(String date);
+
+  /// No description provided for @peopleRequestedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Requested {date}'**
+  String peopleRequestedOn(String date);
+
+  /// No description provided for @peopleSentCancelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdraw request to {name}'**
+  String peopleSentCancelLabel(String name);
+
+  /// No description provided for @peopleAcceptLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept {name}'**
+  String peopleAcceptLabel(String name);
+
+  /// No description provided for @peopleDeclineLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline {name}'**
+  String peopleDeclineLabel(String name);
+
+  /// No description provided for @peopleErrVerification.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify your email or phone first and you can connect with people. It only takes a minute.'**
+  String get peopleErrVerification;
+
+  /// No description provided for @peopleErrRestricted.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is restricted for now, so you cannot do this. We will let you know if that changes.'**
+  String get peopleErrRestricted;
+
+  /// No description provided for @peopleErrRateLimited.
+  ///
+  /// In en, this message translates to:
+  /// **'You have done a lot in a short time. Take a breather and try again a little later.'**
+  String get peopleErrRateLimited;
+
+  /// No description provided for @peopleErrNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'That person is not available any more.'**
+  String get peopleErrNotFound;
+
+  /// No description provided for @opSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Funding, gigs and open calls matched to your craft.'**
+  String get opSubtitle;
+
+  /// No description provided for @opSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get opSaved;
+
+  /// No description provided for @opSavedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved, {count} items'**
+  String opSavedCount(int count);
+
+  /// No description provided for @opSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search grants, gigs, jobs…'**
+  String get opSearchHint;
+
+  /// No description provided for @opCatAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get opCatAll;
+
+  /// No description provided for @opCatFunding.
+  ///
+  /// In en, this message translates to:
+  /// **'Funding'**
+  String get opCatFunding;
+
+  /// No description provided for @opCatGrants.
+  ///
+  /// In en, this message translates to:
+  /// **'Grants'**
+  String get opCatGrants;
+
+  /// No description provided for @opCatJobs.
+  ///
+  /// In en, this message translates to:
+  /// **'Jobs'**
+  String get opCatJobs;
+
+  /// No description provided for @opCatInternships.
+  ///
+  /// In en, this message translates to:
+  /// **'Internships'**
+  String get opCatInternships;
+
+  /// No description provided for @opCatGigs.
+  ///
+  /// In en, this message translates to:
+  /// **'Gigs'**
+  String get opCatGigs;
+
+  /// No description provided for @opCatCompetitions.
+  ///
+  /// In en, this message translates to:
+  /// **'Competitions'**
+  String get opCatCompetitions;
+
+  /// No description provided for @opCatFestivals.
+  ///
+  /// In en, this message translates to:
+  /// **'Festivals'**
+  String get opCatFestivals;
+
+  /// No description provided for @opCatPartnerships.
+  ///
+  /// In en, this message translates to:
+  /// **'Partnerships'**
+  String get opCatPartnerships;
+
+  /// No description provided for @opCatFellowships.
+  ///
+  /// In en, this message translates to:
+  /// **'Fellowships'**
+  String get opCatFellowships;
+
+  /// No description provided for @opCatResidencies.
+  ///
+  /// In en, this message translates to:
+  /// **'Residencies'**
+  String get opCatResidencies;
+
+  /// No description provided for @opCatProgrammes.
+  ///
+  /// In en, this message translates to:
+  /// **'Programmes'**
+  String get opCatProgrammes;
+
+  /// No description provided for @opTypeGrant.
+  ///
+  /// In en, this message translates to:
+  /// **'Grant'**
+  String get opTypeGrant;
+
+  /// No description provided for @opTypeFunding.
+  ///
+  /// In en, this message translates to:
+  /// **'Funding'**
+  String get opTypeFunding;
+
+  /// No description provided for @opTypeJob.
+  ///
+  /// In en, this message translates to:
+  /// **'Job'**
+  String get opTypeJob;
+
+  /// No description provided for @opTypeInternship.
+  ///
+  /// In en, this message translates to:
+  /// **'Internship'**
+  String get opTypeInternship;
+
+  /// No description provided for @opTypeGig.
+  ///
+  /// In en, this message translates to:
+  /// **'Gig'**
+  String get opTypeGig;
+
+  /// No description provided for @opTypeCompetition.
+  ///
+  /// In en, this message translates to:
+  /// **'Competition'**
+  String get opTypeCompetition;
+
+  /// No description provided for @opTypeFestival.
+  ///
+  /// In en, this message translates to:
+  /// **'Festival'**
+  String get opTypeFestival;
+
+  /// No description provided for @opTypePartnership.
+  ///
+  /// In en, this message translates to:
+  /// **'Partnership'**
+  String get opTypePartnership;
+
+  /// No description provided for @opTypeFellowship.
+  ///
+  /// In en, this message translates to:
+  /// **'Fellowship'**
+  String get opTypeFellowship;
+
+  /// No description provided for @opTypeResidency.
+  ///
+  /// In en, this message translates to:
+  /// **'Residency'**
+  String get opTypeResidency;
+
+  /// No description provided for @opTypeProgramme.
+  ///
+  /// In en, this message translates to:
+  /// **'Programme'**
+  String get opTypeProgramme;
+
+  /// No description provided for @opFeatured.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured'**
+  String get opFeatured;
+
+  /// No description provided for @opClosingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Closing soon'**
+  String get opClosingSoon;
+
+  /// No description provided for @opRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently added'**
+  String get opRecent;
+
+  /// No description provided for @opOpenCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} open {kind}'**
+  String opOpenCount(int count, String kind);
+
+  /// No description provided for @opKindAll.
+  ///
+  /// In en, this message translates to:
+  /// **'opportunities'**
+  String get opKindAll;
+
+  /// No description provided for @opSortDeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Deadline: soonest'**
+  String get opSortDeadline;
+
+  /// No description provided for @opSortRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently added'**
+  String get opSortRecent;
+
+  /// No description provided for @opSortRelevance.
+  ///
+  /// In en, this message translates to:
+  /// **'Most relevant'**
+  String get opSortRelevance;
+
+  /// No description provided for @opSortBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by'**
+  String get opSortBy;
+
+  /// No description provided for @opFilterDeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Closing within'**
+  String get opFilterDeadline;
+
+  /// No description provided for @opFilterAnyTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Any time'**
+  String get opFilterAnyTime;
+
+  /// No description provided for @opFilterDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} days'**
+  String opFilterDays(int days);
+
+  /// No description provided for @opFilterRemote.
+  ///
+  /// In en, this message translates to:
+  /// **'Remote only'**
+  String get opFilterRemote;
+
+  /// No description provided for @opFilterRemoteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Work you can do from anywhere'**
+  String get opFilterRemoteBody;
+
+  /// No description provided for @opFilterTrust.
+  ///
+  /// In en, this message translates to:
+  /// **'Trust'**
+  String get opFilterTrust;
+
+  /// No description provided for @opFilterTrustAny.
+  ///
+  /// In en, this message translates to:
+  /// **'Any'**
+  String get opFilterTrustAny;
+
+  /// No description provided for @opFilterApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply filters'**
+  String get opFilterApply;
+
+  /// No description provided for @opNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No opportunities match'**
+  String get opNoResults;
+
+  /// No description provided for @opNoResultsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try clearing a filter, or check back soon.'**
+  String get opNoResultsBody;
+
+  /// No description provided for @opNothingOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing open right now'**
+  String get opNothingOpen;
+
+  /// No description provided for @opNothingOpenBody.
+  ///
+  /// In en, this message translates to:
+  /// **'New opportunities are added often. Check back soon.'**
+  String get opNothingOpenBody;
+
+  /// No description provided for @opDaysLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Closes today} =1{1 day left} other{{count} days left}}'**
+  String opDaysLeft(int count);
+
+  /// No description provided for @opRolling.
+  ///
+  /// In en, this message translates to:
+  /// **'Rolling deadline'**
+  String get opRolling;
+
+  /// No description provided for @opClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get opClosed;
+
+  /// No description provided for @opStatusSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get opStatusSaved;
+
+  /// No description provided for @opStatusInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get opStatusInProgress;
+
+  /// No description provided for @opStatusApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied'**
+  String get opStatusApplied;
+
+  /// No description provided for @opStatusCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get opStatusCompleted;
+
+  /// No description provided for @opStatusSavedLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved · {when}'**
+  String opStatusSavedLeft(String when);
+
+  /// No description provided for @opStatusClosingIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Closing in {count, plural, =0{less than a day} =1{1 day} other{{count} days}}'**
+  String opStatusClosingIn(int count);
+
+  /// No description provided for @opStatusAppliedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied externally · {date}'**
+  String opStatusAppliedOn(String date);
+
+  /// No description provided for @opStatusCompletedOutcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed · {outcome}'**
+  String opStatusCompletedOutcome(String outcome);
+
+  /// No description provided for @opApplyWebsite.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply on external website'**
+  String get opApplyWebsite;
+
+  /// No description provided for @opApplyEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply by email'**
+  String get opApplyEmail;
+
+  /// No description provided for @opClosedNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'This opportunity has closed. It stays in your list so you keep your record.'**
+  String get opClosedNotice;
+
+  /// No description provided for @opAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get opAbout;
+
+  /// No description provided for @opRequirements.
+  ///
+  /// In en, this message translates to:
+  /// **'Requirements'**
+  String get opRequirements;
+
+  /// No description provided for @opBenefits.
+  ///
+  /// In en, this message translates to:
+  /// **'Benefits'**
+  String get opBenefits;
+
+  /// No description provided for @opFactDeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Deadline'**
+  String get opFactDeadline;
+
+  /// No description provided for @opFactValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Value'**
+  String get opFactValue;
+
+  /// No description provided for @opFactLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get opFactLocation;
+
+  /// No description provided for @opFactApplication.
+  ///
+  /// In en, this message translates to:
+  /// **'Application'**
+  String get opFactApplication;
+
+  /// No description provided for @opApplicationExternal.
+  ///
+  /// In en, this message translates to:
+  /// **'External website'**
+  String get opApplicationExternal;
+
+  /// No description provided for @opApplicationEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get opApplicationEmail;
+
+  /// No description provided for @opNotStated.
+  ///
+  /// In en, this message translates to:
+  /// **'Not stated'**
+  String get opNotStated;
+
+  /// No description provided for @opHelpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Help me understand this'**
+  String get opHelpTitle;
+
+  /// No description provided for @opHelpBody.
+  ///
+  /// In en, this message translates to:
+  /// **'AI summary of eligibility and what to prepare'**
+  String get opHelpBody;
+
+  /// No description provided for @opShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get opShare;
+
+  /// No description provided for @opSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save opportunity'**
+  String get opSave;
+
+  /// No description provided for @opUnsave.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from saved'**
+  String get opUnsave;
+
+  /// No description provided for @opGapMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Your profile is missing 1 requirement} other{Your profile is missing {count} requirements}}'**
+  String opGapMissing(int count);
+
+  /// No description provided for @opGapMissingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add them before you apply'**
+  String get opGapMissingBody;
+
+  /// No description provided for @opGapReady.
+  ///
+  /// In en, this message translates to:
+  /// **'You meet the requirements Atarah can check'**
+  String get opGapReady;
+
+  /// No description provided for @opGapReadyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the listing for anything else the provider asks for.'**
+  String get opGapReadyBody;
+
+  /// No description provided for @opGapUnchecked.
+  ///
+  /// In en, this message translates to:
+  /// **'Atarah can\'t check these requirements'**
+  String get opGapUnchecked;
+
+  /// No description provided for @opGapUncheckedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The provider will confirm them. Read each one carefully.'**
+  String get opGapUncheckedBody;
+
+  /// No description provided for @opGapNoRules.
+  ///
+  /// In en, this message translates to:
+  /// **'No special requirements listed'**
+  String get opGapNoRules;
+
+  /// No description provided for @opGapNoRulesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the listing and apply when you\'re ready.'**
+  String get opGapNoRulesBody;
+
+  /// No description provided for @opGapAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get opGapAdd;
+
+  /// No description provided for @opGapCannotCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'We can\'t check this'**
+  String get opGapCannotCheck;
+
+  /// No description provided for @opGapProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{met} of {total} met'**
+  String opGapProgress(int met, int total);
+
+  /// No description provided for @opMineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My opportunities'**
+  String get opMineTitle;
+
+  /// No description provided for @opSavedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved opportunities'**
+  String get opSavedTitle;
+
+  /// No description provided for @opTabAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get opTabAll;
+
+  /// No description provided for @opTabClosing.
+  ///
+  /// In en, this message translates to:
+  /// **'Closing soon'**
+  String get opTabClosing;
+
+  /// No description provided for @opTabApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied'**
+  String get opTabApplied;
+
+  /// No description provided for @opTabCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get opTabCompleted;
+
+  /// No description provided for @opEmptyAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing tracked yet'**
+  String get opEmptyAll;
+
+  /// No description provided for @opEmptyAllBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Save an opportunity or apply for one to follow it here.'**
+  String get opEmptyAllBody;
+
+  /// No description provided for @opEmptyClosing.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing closing soon'**
+  String get opEmptyClosing;
+
+  /// No description provided for @opEmptyClosingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved opportunities with a deadline in the next 14 days show up here.'**
+  String get opEmptyClosingBody;
+
+  /// No description provided for @opEmptyApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'No applications yet'**
+  String get opEmptyApplied;
+
+  /// No description provided for @opEmptyAppliedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Opportunities you apply for are listed here.'**
+  String get opEmptyAppliedBody;
+
+  /// No description provided for @opEmptyCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing completed yet'**
+  String get opEmptyCompleted;
+
+  /// No description provided for @opEmptyCompletedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Opportunities you finish will be kept here for your Creative Passport.'**
+  String get opEmptyCompletedBody;
+
+  /// No description provided for @opEmptySaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing saved yet'**
+  String get opEmptySaved;
+
+  /// No description provided for @opEmptySavedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the bookmark on an opportunity to keep it here.'**
+  String get opEmptySavedBody;
+
+  /// No description provided for @opExplore.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore opportunities'**
+  String get opExplore;
+
+  /// No description provided for @opMarkCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as completed'**
+  String get opMarkCompleted;
+
+  /// No description provided for @opOutcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How did it go?'**
+  String get opOutcomeTitle;
+
+  /// No description provided for @opOutcomeAwarded.
+  ///
+  /// In en, this message translates to:
+  /// **'Awarded'**
+  String get opOutcomeAwarded;
+
+  /// No description provided for @opOutcomeNotSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Not selected'**
+  String get opOutcomeNotSelected;
+
+  /// No description provided for @opOutcomeWithdrawn.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdrawn'**
+  String get opOutcomeWithdrawn;
+
+  /// No description provided for @opOutcomeUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sure yet'**
+  String get opOutcomeUnknown;
+
+  /// No description provided for @opOutcomeSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save outcome'**
+  String get opOutcomeSave;
+
+  /// No description provided for @opAwardedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations!'**
+  String get opAwardedTitle;
+
+  /// No description provided for @opAwardedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add this win to your achievements so it shows on your Creative Passport.'**
+  String get opAwardedBody;
+
+  /// No description provided for @opAddAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'Add this to your achievements'**
+  String get opAddAchievement;
+
+  /// No description provided for @opNotNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get opNotNow;
+
+  /// No description provided for @opOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t open that. Try again.'**
+  String get opOpenFailed;
+
+  /// No description provided for @opNotAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'That opportunity is not available any more.'**
+  String get opNotAvailable;
+
+  /// No description provided for @opMineSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{saved} saved · {applied} applied · {completed} completed'**
+  String opMineSummary(int saved, int applied, int completed);
+
+  /// No description provided for @opSearchTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Opportunities ({count})'**
+  String opSearchTab(int count);
+
+  /// No description provided for @lnHubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Skill Labs'**
+  String get lnHubTitle;
+
+  /// No description provided for @lnHubSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Build the skills that move your creative career forward.'**
+  String get lnHubSubtitle;
+
+  /// No description provided for @lnMyLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'My learning'**
+  String get lnMyLearning;
+
+  /// No description provided for @lnContinueLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue learning'**
+  String get lnContinueLearning;
+
+  /// No description provided for @lnContinueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'CONTINUE LEARNING'**
+  String get lnContinueLabel;
+
+  /// No description provided for @lnContinueMeta.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson {n} of {total} · {title}'**
+  String lnContinueMeta(int n, int total, String title);
+
+  /// No description provided for @lnContinueMetaNoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} lessons done'**
+  String lnContinueMetaNoTitle(int done, int total);
+
+  /// No description provided for @lnFeatured.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured Labs'**
+  String get lnFeatured;
+
+  /// No description provided for @lnCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get lnCategories;
+
+  /// No description provided for @lnGroupCreative.
+  ///
+  /// In en, this message translates to:
+  /// **'Creative'**
+  String get lnGroupCreative;
+
+  /// No description provided for @lnGroupBusiness.
+  ///
+  /// In en, this message translates to:
+  /// **'Business'**
+  String get lnGroupBusiness;
+
+  /// No description provided for @lnGroupProfessional.
+  ///
+  /// In en, this message translates to:
+  /// **'Professional'**
+  String get lnGroupProfessional;
+
+  /// No description provided for @lnResourcesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 resource} other{{count} resources}}'**
+  String lnResourcesCount(int count);
+
+  /// No description provided for @lnRecommended.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended for you'**
+  String get lnRecommended;
+
+  /// No description provided for @lnHubEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No Skill Labs yet'**
+  String get lnHubEmptyTitle;
+
+  /// No description provided for @lnHubEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Courses and resources will appear here as soon as they are published.'**
+  String get lnHubEmptyBody;
+
+  /// No description provided for @lnOpenHub.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Skill Labs'**
+  String get lnOpenHub;
+
+  /// No description provided for @lnTypeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get lnTypeAll;
+
+  /// No description provided for @lnTypeCourse.
+  ///
+  /// In en, this message translates to:
+  /// **'Course'**
+  String get lnTypeCourse;
+
+  /// No description provided for @lnTypeTutorial.
+  ///
+  /// In en, this message translates to:
+  /// **'Tutorial'**
+  String get lnTypeTutorial;
+
+  /// No description provided for @lnTypeToolkit.
+  ///
+  /// In en, this message translates to:
+  /// **'Toolkit'**
+  String get lnTypeToolkit;
+
+  /// No description provided for @lnTypeWebinar.
+  ///
+  /// In en, this message translates to:
+  /// **'Webinar'**
+  String get lnTypeWebinar;
+
+  /// No description provided for @lnTypeMasterclass.
+  ///
+  /// In en, this message translates to:
+  /// **'Masterclass'**
+  String get lnTypeMasterclass;
+
+  /// No description provided for @lnTypeArticle.
+  ///
+  /// In en, this message translates to:
+  /// **'Article'**
+  String get lnTypeArticle;
+
+  /// No description provided for @lnPluralCourse.
+  ///
+  /// In en, this message translates to:
+  /// **'courses'**
+  String get lnPluralCourse;
+
+  /// No description provided for @lnPluralTutorial.
+  ///
+  /// In en, this message translates to:
+  /// **'tutorials'**
+  String get lnPluralTutorial;
+
+  /// No description provided for @lnPluralToolkit.
+  ///
+  /// In en, this message translates to:
+  /// **'toolkits'**
+  String get lnPluralToolkit;
+
+  /// No description provided for @lnPluralWebinar.
+  ///
+  /// In en, this message translates to:
+  /// **'webinars'**
+  String get lnPluralWebinar;
+
+  /// No description provided for @lnPluralMasterclass.
+  ///
+  /// In en, this message translates to:
+  /// **'masterclasses'**
+  String get lnPluralMasterclass;
+
+  /// No description provided for @lnPluralArticle.
+  ///
+  /// In en, this message translates to:
+  /// **'articles'**
+  String get lnPluralArticle;
+
+  /// No description provided for @lnPluralAll.
+  ///
+  /// In en, this message translates to:
+  /// **'resources'**
+  String get lnPluralAll;
+
+  /// No description provided for @lnSourceAtarahCourse.
+  ///
+  /// In en, this message translates to:
+  /// **'✓ Atarah Course'**
+  String get lnSourceAtarahCourse;
+
+  /// No description provided for @lnSourceAtarahEditorial.
+  ///
+  /// In en, this message translates to:
+  /// **'✓ Atarah Editorial'**
+  String get lnSourceAtarahEditorial;
+
+  /// No description provided for @lnSourcePartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner content'**
+  String get lnSourcePartner;
+
+  /// No description provided for @lnSourceExternal.
+  ///
+  /// In en, this message translates to:
+  /// **'External resource'**
+  String get lnSourceExternal;
+
+  /// No description provided for @lnDeliveryNative.
+  ///
+  /// In en, this message translates to:
+  /// **'In-app lessons'**
+  String get lnDeliveryNative;
+
+  /// No description provided for @lnDeliveryEmbedded.
+  ///
+  /// In en, this message translates to:
+  /// **'Embedded'**
+  String get lnDeliveryEmbedded;
+
+  /// No description provided for @lnDeliveryExternal.
+  ///
+  /// In en, this message translates to:
+  /// **'Opens outside Atarah'**
+  String get lnDeliveryExternal;
+
+  /// No description provided for @lnLevelBeginner.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get lnLevelBeginner;
+
+  /// No description provided for @lnLevelIntermediate.
+  ///
+  /// In en, this message translates to:
+  /// **'Intermediate'**
+  String get lnLevelIntermediate;
+
+  /// No description provided for @lnLevelAdvanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get lnLevelAdvanced;
+
+  /// No description provided for @lnLevelExpert.
+  ///
+  /// In en, this message translates to:
+  /// **'Expert'**
+  String get lnLevelExpert;
+
+  /// No description provided for @lnLessonCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 lesson} other{{count} lessons}}'**
+  String lnLessonCount(int count);
+
+  /// No description provided for @lnDurationHm.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours}h {minutes}m'**
+  String lnDurationHm(int hours, int minutes);
+
+  /// No description provided for @lnDurationH.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours}h'**
+  String lnDurationH(int hours);
+
+  /// No description provided for @lnDurationM.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String lnDurationM(int minutes);
+
+  /// No description provided for @lnPremiumBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Pro'**
+  String get lnPremiumBadge;
+
+  /// No description provided for @lnCategoryEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing in {category} yet'**
+  String lnCategoryEmptyTitle(String category);
+
+  /// No description provided for @lnCategoryEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'New Skill Labs are added all the time. Check back soon.'**
+  String get lnCategoryEmptyBody;
+
+  /// No description provided for @lnTypeEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No {types} in {category} yet'**
+  String lnTypeEmptyTitle(String types, String category);
+
+  /// No description provided for @lnTypeEmptyCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore all types'**
+  String get lnTypeEmptyCta;
+
+  /// No description provided for @lnLoadMoreFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load more. Tap to try again.'**
+  String get lnLoadMoreFailed;
+
+  /// No description provided for @lnYourProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Your progress'**
+  String get lnYourProgress;
+
+  /// No description provided for @lnProgressOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} / {total}'**
+  String lnProgressOf(int done, int total);
+
+  /// No description provided for @lnPercentComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% complete'**
+  String lnPercentComplete(int percent);
+
+  /// No description provided for @lnWhatYoullLearn.
+  ///
+  /// In en, this message translates to:
+  /// **'What you\'ll learn'**
+  String get lnWhatYoullLearn;
+
+  /// No description provided for @lnWhoItsFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Who it\'s for'**
+  String get lnWhoItsFor;
+
+  /// No description provided for @lnLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'Lessons'**
+  String get lnLessons;
+
+  /// No description provided for @lnTaughtBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Taught by'**
+  String get lnTaughtBy;
+
+  /// No description provided for @lnFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get lnFrom;
+
+  /// No description provided for @lnStartLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Start learning'**
+  String get lnStartLearning;
+
+  /// No description provided for @lnReviewCourse.
+  ///
+  /// In en, this message translates to:
+  /// **'Review course'**
+  String get lnReviewCourse;
+
+  /// No description provided for @lnLessonDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get lnLessonDone;
+
+  /// No description provided for @lnLessonCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get lnLessonCurrent;
+
+  /// No description provided for @lnLessonLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked'**
+  String get lnLessonLocked;
+
+  /// No description provided for @lnLessonRow.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson {n}: {title}, {minutes} minutes, {state}'**
+  String lnLessonRow(int n, String title, int minutes, String state);
+
+  /// No description provided for @lnLessonMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String lnLessonMinutes(int minutes);
+
+  /// No description provided for @lnSaveLab.
+  ///
+  /// In en, this message translates to:
+  /// **'Save to my learning'**
+  String get lnSaveLab;
+
+  /// No description provided for @lnUnsaveLab.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from saved'**
+  String get lnUnsaveLab;
+
+  /// No description provided for @lnShareLab.
+  ///
+  /// In en, this message translates to:
+  /// **'Share this Skill Lab'**
+  String get lnShareLab;
+
+  /// No description provided for @lnCertificateEarned.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificate earned'**
+  String get lnCertificateEarned;
+
+  /// No description provided for @lnCertificateNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'No. {number}'**
+  String lnCertificateNumber(String number);
+
+  /// No description provided for @lnCertificateIssued.
+  ///
+  /// In en, this message translates to:
+  /// **'Issued {date}'**
+  String lnCertificateIssued(String date);
+
+  /// No description provided for @lnViewOnPassport.
+  ///
+  /// In en, this message translates to:
+  /// **'See it in your achievements'**
+  String get lnViewOnPassport;
+
+  /// No description provided for @lnPremiumFeature.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium Skill Labs'**
+  String get lnPremiumFeature;
+
+  /// No description provided for @lnPremiumWhat.
+  ///
+  /// In en, this message translates to:
+  /// **'Courses and masterclasses from Atarah and our partners, with certificates.'**
+  String get lnPremiumWhat;
+
+  /// No description provided for @lnPremiumWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Structured learning is the quickest way to move a skill from good to hireable.'**
+  String get lnPremiumWhy;
+
+  /// No description provided for @lnPremiumHow.
+  ///
+  /// In en, this message translates to:
+  /// **'Upgrade to Atarah Pro to open every Skill Lab.'**
+  String get lnPremiumHow;
+
+  /// No description provided for @lnOpenResource.
+  ///
+  /// In en, this message translates to:
+  /// **'Open resource'**
+  String get lnOpenResource;
+
+  /// No description provided for @lnLeavingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re going to {domain}. It\'s a resource from outside Atarah, so what you do there stays there.'**
+  String lnLeavingBody(String domain);
+
+  /// No description provided for @lnMarkComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as complete'**
+  String get lnMarkComplete;
+
+  /// No description provided for @lnCompletedItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get lnCompletedItem;
+
+  /// No description provided for @lnStartedItem.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get lnStartedItem;
+
+  /// No description provided for @lnFindSimilar.
+  ///
+  /// In en, this message translates to:
+  /// **'Find similar'**
+  String get lnFindSimilar;
+
+  /// No description provided for @lnWatchEmbedded.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch'**
+  String get lnWatchEmbedded;
+
+  /// No description provided for @lnEnrolFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t start that course. Try again.'**
+  String get lnEnrolFailed;
+
+  /// No description provided for @lnNeedsConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect to the internet to continue.'**
+  String get lnNeedsConnection;
+
+  /// No description provided for @lnSavedCopyBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing your saved copy. Connect to the internet to keep learning.'**
+  String get lnSavedCopyBanner;
+
+  /// No description provided for @lnLessonOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson {n} of {total}'**
+  String lnLessonOf(int n, int total);
+
+  /// No description provided for @lnPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice'**
+  String get lnPractice;
+
+  /// No description provided for @lnAddToPortfolio.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to portfolio'**
+  String get lnAddToPortfolio;
+
+  /// No description provided for @lnLearnNext.
+  ///
+  /// In en, this message translates to:
+  /// **'What should I learn next?'**
+  String get lnLearnNext;
+
+  /// No description provided for @lnAllLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'All lessons'**
+  String get lnAllLessons;
+
+  /// No description provided for @lnMarkCompleteNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark complete & next'**
+  String get lnMarkCompleteNext;
+
+  /// No description provided for @lnMarkCompleteFinish.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark complete & finish'**
+  String get lnMarkCompleteFinish;
+
+  /// No description provided for @lnLessonProgressBar.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson progress: {done} of {total} lessons complete'**
+  String lnLessonProgressBar(int done, int total);
+
+  /// No description provided for @lnVideoLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load this video.'**
+  String get lnVideoLoadFailed;
+
+  /// No description provided for @lnVideoPreparing.
+  ///
+  /// In en, this message translates to:
+  /// **'The video is still being prepared. Try again in a moment.'**
+  String get lnVideoPreparing;
+
+  /// No description provided for @lnEmbedFailedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{service} isn\'t responding'**
+  String lnEmbedFailedTitle(String service);
+
+  /// No description provided for @lnBackToCourse.
+  ///
+  /// In en, this message translates to:
+  /// **'Go back to course'**
+  String get lnBackToCourse;
+
+  /// No description provided for @lnVideoResuming.
+  ///
+  /// In en, this message translates to:
+  /// **'Resuming from {time}'**
+  String lnVideoResuming(String time);
+
+  /// No description provided for @lnLessonLockedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish the earlier lessons to unlock this one.'**
+  String get lnLessonLockedMessage;
+
+  /// No description provided for @lnSaveProgressFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t save your progress. It will retry.'**
+  String get lnSaveProgressFailed;
+
+  /// No description provided for @lnVideoSemantic.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson video'**
+  String get lnVideoSemantic;
+
+  /// No description provided for @lnCompleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Course complete!'**
+  String get lnCompleteTitle;
+
+  /// No description provided for @lnCompleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You finished {course}. Your certificate is added to your achievements.'**
+  String lnCompleteBody(String course);
+
+  /// No description provided for @lnCompleteShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get lnCompleteShare;
+
+  /// No description provided for @lnCompleteShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'I just completed {course} on Atarah Skill Labs.'**
+  String lnCompleteShareText(String course);
+
+  /// No description provided for @lnBackToLabs.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Skill Labs'**
+  String get lnBackToLabs;
+
+  /// No description provided for @lnStatInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get lnStatInProgress;
+
+  /// No description provided for @lnStatCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get lnStatCompleted;
+
+  /// No description provided for @lnStatHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Hours this month'**
+  String get lnStatHours;
+
+  /// No description provided for @lnTabActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get lnTabActive;
+
+  /// No description provided for @lnTabCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get lnTabCompleted;
+
+  /// No description provided for @lnTabSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get lnTabSaved;
+
+  /// No description provided for @lnSavedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved Skill Labs'**
+  String get lnSavedTitle;
+
+  /// No description provided for @lnEmptyActiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing in progress'**
+  String get lnEmptyActiveTitle;
+
+  /// No description provided for @lnEmptyActiveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a Skill Lab and pick up where you left off, any time.'**
+  String get lnEmptyActiveBody;
+
+  /// No description provided for @lnEmptyActiveCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse Skill Labs'**
+  String get lnEmptyActiveCta;
+
+  /// No description provided for @lnEmptyCompletedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing completed yet'**
+  String get lnEmptyCompletedTitle;
+
+  /// No description provided for @lnEmptyCompletedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish a course to earn a certificate for your Passport.'**
+  String get lnEmptyCompletedBody;
+
+  /// No description provided for @lnEmptySavedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved Skill Labs'**
+  String get lnEmptySavedTitle;
+
+  /// No description provided for @lnEmptySavedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the bookmark on a Skill Lab to keep it here.'**
+  String get lnEmptySavedBody;
+
+  /// No description provided for @lnCompletedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed {date}'**
+  String lnCompletedOn(String date);
+
+  /// No description provided for @lnLastActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Last active {date}'**
+  String lnLastActive(String date);
+
+  /// No description provided for @lnSearchTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Skill Labs ({count})'**
+  String lnSearchTab(int count);
+
+  /// No description provided for @premiumSeeProPlain.
+  ///
+  /// In en, this message translates to:
+  /// **'See Pro'**
+  String get premiumSeeProPlain;
+
+  /// No description provided for @loadingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading'**
+  String get loadingLabel;
+
+  /// No description provided for @ayActivityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity'**
+  String get ayActivityTitle;
+
+  /// No description provided for @ayPickUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick up where you left off'**
+  String get ayPickUp;
+
+  /// No description provided for @ayNothingToResume.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing to pick up right now. Start a Skill Lab, save an opportunity or add a project.'**
+  String get ayNothingToResume;
+
+  /// No description provided for @ayResumeLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue lesson'**
+  String get ayResumeLesson;
+
+  /// No description provided for @ayResumeOpportunity.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish your application'**
+  String get ayResumeOpportunity;
+
+  /// No description provided for @ayResumeProject.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish your project'**
+  String get ayResumeProject;
+
+  /// No description provided for @ayTileSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get ayTileSaved;
+
+  /// No description provided for @ayTileApplications.
+  ///
+  /// In en, this message translates to:
+  /// **'Applications'**
+  String get ayTileApplications;
+
+  /// No description provided for @ayTileLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'My learning'**
+  String get ayTileLearning;
+
+  /// No description provided for @ayTilePortfolio.
+  ///
+  /// In en, this message translates to:
+  /// **'Portfolio'**
+  String get ayTilePortfolio;
+
+  /// No description provided for @ayTileConnections.
+  ///
+  /// In en, this message translates to:
+  /// **'Connections'**
+  String get ayTileConnections;
+
+  /// No description provided for @ayTileNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get ayTileNotifications;
+
+  /// No description provided for @ayTileMentorship.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentorship'**
+  String get ayTileMentorship;
+
+  /// No description provided for @ayTileMarketplace.
+  ///
+  /// In en, this message translates to:
+  /// **'Marketplace'**
+  String get ayTileMarketplace;
+
+  /// No description provided for @aySoonP2.
+  ///
+  /// In en, this message translates to:
+  /// **'Soon · P2'**
+  String get aySoonP2;
+
+  /// No description provided for @ayCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} saved'**
+  String ayCount(int count);
+
+  /// No description provided for @ayInProgressCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} in progress'**
+  String ayInProgressCount(int count);
+
+  /// No description provided for @ayPendingCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} waiting'**
+  String ayPendingCount(int count);
+
+  /// No description provided for @ayUnreadCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} unread'**
+  String ayUnreadCount(int count);
+
+  /// No description provided for @ayApplicationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Applications'**
+  String get ayApplicationsTitle;
+
+  /// No description provided for @ayApplicationsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No applications yet'**
+  String get ayApplicationsEmptyTitle;
+
+  /// No description provided for @ayApplicationsEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'When you start or finish an application it is tracked here.'**
+  String get ayApplicationsEmptyBody;
+
+  /// No description provided for @ayFindOpportunities.
+  ///
+  /// In en, this message translates to:
+  /// **'Find opportunities'**
+  String get ayFindOpportunities;
+
+  /// No description provided for @ayApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied'**
+  String get ayApplied;
+
+  /// No description provided for @ayCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get ayCompleted;
+
+  /// No description provided for @ayInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get ayInProgress;
+
+  /// No description provided for @ntTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get ntTitle;
+
+  /// No description provided for @ntSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification settings'**
+  String get ntSettings;
+
+  /// No description provided for @ntAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get ntAll;
+
+  /// No description provided for @ntCatOpportunities.
+  ///
+  /// In en, this message translates to:
+  /// **'Opportunities'**
+  String get ntCatOpportunities;
+
+  /// No description provided for @ntCatMentorship.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentorship'**
+  String get ntCatMentorship;
+
+  /// No description provided for @ntCatCommunity.
+  ///
+  /// In en, this message translates to:
+  /// **'Community'**
+  String get ntCatCommunity;
+
+  /// No description provided for @ntCatLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning'**
+  String get ntCatLearning;
+
+  /// No description provided for @ntCatProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get ntCatProfile;
+
+  /// No description provided for @ntCatMarketplace.
+  ///
+  /// In en, this message translates to:
+  /// **'Marketplace'**
+  String get ntCatMarketplace;
+
+  /// No description provided for @ntCatSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'Updates'**
+  String get ntCatSystem;
+
+  /// No description provided for @ntToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get ntToday;
+
+  /// No description provided for @ntEarlier.
+  ///
+  /// In en, this message translates to:
+  /// **'Earlier'**
+  String get ntEarlier;
+
+  /// No description provided for @ntMarkAllRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark all read'**
+  String get ntMarkAllRead;
+
+  /// No description provided for @ntEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re all caught up'**
+  String get ntEmptyTitle;
+
+  /// No description provided for @ntEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'New connection requests, reminders and replies show up here.'**
+  String get ntEmptyBody;
+
+  /// No description provided for @ntEmptyCategoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No {category} notifications'**
+  String ntEmptyCategoryTitle(String category);
+
+  /// No description provided for @sdTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get sdTitle;
+
+  /// No description provided for @sdAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get sdAll;
+
+  /// No description provided for @sdTypeOpportunity.
+  ///
+  /// In en, this message translates to:
+  /// **'Opportunities'**
+  String get sdTypeOpportunity;
+
+  /// No description provided for @sdTypeLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Skill Labs'**
+  String get sdTypeLearning;
+
+  /// No description provided for @sdTypeCreative.
+  ///
+  /// In en, this message translates to:
+  /// **'Creatives'**
+  String get sdTypeCreative;
+
+  /// No description provided for @sdTypeArticle.
+  ///
+  /// In en, this message translates to:
+  /// **'Articles'**
+  String get sdTypeArticle;
+
+  /// No description provided for @sdTypePost.
+  ///
+  /// In en, this message translates to:
+  /// **'Posts'**
+  String get sdTypePost;
+
+  /// No description provided for @sdTypeListing.
+  ///
+  /// In en, this message translates to:
+  /// **'Listings'**
+  String get sdTypeListing;
+
+  /// No description provided for @sdTypeMentor.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentors'**
+  String get sdTypeMentor;
+
+  /// No description provided for @sdEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing saved yet'**
+  String get sdEmptyTitle;
+
+  /// No description provided for @sdEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the bookmark on an opportunity, Skill Lab, article or post to keep it here.'**
+  String get sdEmptyBody;
+
+  /// No description provided for @sdEmptyTypeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved {type}'**
+  String sdEmptyTypeTitle(String type);
+
+  /// No description provided for @sdExplore.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore'**
+  String get sdExplore;
+
+  /// No description provided for @sdUnsaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'That could not be removed from your saved list.'**
+  String get sdUnsaveFailed;
+
+  /// No description provided for @stSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get stSaved;
+
+  /// No description provided for @stSaveChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get stSaveChanges;
+
+  /// No description provided for @stFullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get stFullName;
+
+  /// No description provided for @stUsername.
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get stUsername;
+
+  /// No description provided for @stUsernameHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Your public address: atarah.app/username'**
+  String get stUsernameHelp;
+
+  /// No description provided for @stEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get stEmail;
+
+  /// No description provided for @stPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get stPhone;
+
+  /// No description provided for @stNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not added'**
+  String get stNotSet;
+
+  /// No description provided for @stChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get stChange;
+
+  /// No description provided for @stChangeEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Change email'**
+  String get stChangeEmail;
+
+  /// No description provided for @stChangePhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Change phone number'**
+  String get stChangePhone;
+
+  /// No description provided for @stChangeEmailBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We will send a link to the new address. Your email changes when you open it. We also tell your current address.'**
+  String get stChangeEmailBody;
+
+  /// No description provided for @stChangePhoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We will send a code to the new number. Your number changes when you enter it.'**
+  String get stChangePhoneBody;
+
+  /// No description provided for @stNewEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'New email'**
+  String get stNewEmail;
+
+  /// No description provided for @stNewPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'New phone number'**
+  String get stNewPhone;
+
+  /// No description provided for @stSendLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Send link'**
+  String get stSendLink;
+
+  /// No description provided for @stSendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Send code'**
+  String get stSendCode;
+
+  /// No description provided for @stVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify'**
+  String get stVerify;
+
+  /// No description provided for @stDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get stDone;
+
+  /// No description provided for @stOk.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get stOk;
+
+  /// No description provided for @stPendingChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for you to confirm {value}'**
+  String stPendingChange(String value);
+
+  /// No description provided for @stEmailLinkSent.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a link to {address}. Open it to finish the change.'**
+  String stEmailLinkSent(String address);
+
+  /// No description provided for @stPhoneCodeSent.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a code to {number}. Enter it below.'**
+  String stPhoneCodeSent(String number);
+
+  /// No description provided for @stPrivacyIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose who sees each part of your profile. Private details still power your recommendations.'**
+  String get stPrivacyIntro;
+
+  /// No description provided for @stPrivContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact details'**
+  String get stPrivContact;
+
+  /// No description provided for @stPrivLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get stPrivLocation;
+
+  /// No description provided for @stPrivPortfolio.
+  ///
+  /// In en, this message translates to:
+  /// **'Portfolio'**
+  String get stPrivPortfolio;
+
+  /// No description provided for @stPrivExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Experience'**
+  String get stPrivExperience;
+
+  /// No description provided for @stPrivActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity'**
+  String get stPrivActivity;
+
+  /// No description provided for @stPrivNotSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'That change was not saved.'**
+  String get stPrivNotSaved;
+
+  /// No description provided for @stVisPublic.
+  ///
+  /// In en, this message translates to:
+  /// **'Public'**
+  String get stVisPublic;
+
+  /// No description provided for @stVisMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get stVisMembers;
+
+  /// No description provided for @stVisPrivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Only me'**
+  String get stVisPrivate;
+
+  /// No description provided for @stYourData.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data'**
+  String get stYourData;
+
+  /// No description provided for @stExportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Export my data'**
+  String get stExportTitle;
+
+  /// No description provided for @stExportBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We prepare a file with your profile, projects and activity, and send you a link that works for 7 days. One export a day.'**
+  String get stExportBody;
+
+  /// No description provided for @stExportRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Request my data'**
+  String get stExportRequest;
+
+  /// No description provided for @stExportRequested.
+  ///
+  /// In en, this message translates to:
+  /// **'We are preparing your file. You will be notified when it is ready.'**
+  String get stExportRequested;
+
+  /// No description provided for @stExportPreparing.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing'**
+  String get stExportPreparing;
+
+  /// No description provided for @stExportReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready'**
+  String get stExportReady;
+
+  /// No description provided for @stExportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get stExportFailed;
+
+  /// No description provided for @stExportExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Expired'**
+  String get stExportExpired;
+
+  /// No description provided for @stExportDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Download my data'**
+  String get stExportDownload;
+
+  /// No description provided for @stExportNext.
+  ///
+  /// In en, this message translates to:
+  /// **'You can ask again on {date}.'**
+  String stExportNext(String date);
+
+  /// No description provided for @stNotifCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get stNotifCategory;
+
+  /// No description provided for @stNotifPush.
+  ///
+  /// In en, this message translates to:
+  /// **'Push'**
+  String get stNotifPush;
+
+  /// No description provided for @stNotifEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get stNotifEmail;
+
+  /// No description provided for @stNotifPushFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Push notifications for {category}'**
+  String stNotifPushFor(String category);
+
+  /// No description provided for @stNotifEmailFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Email notifications for {category}'**
+  String stNotifEmailFor(String category);
+
+  /// No description provided for @stNotifOpportunitiesDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Deadlines and new matches'**
+  String get stNotifOpportunitiesDesc;
+
+  /// No description provided for @stNotifCommunityDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Replies, mentions and requests'**
+  String get stNotifCommunityDesc;
+
+  /// No description provided for @stNotifLearningDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificates and recommendations'**
+  String get stNotifLearningDesc;
+
+  /// No description provided for @stNotifMentorshipDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking updates'**
+  String get stNotifMentorshipDesc;
+
+  /// No description provided for @stNotifProfileDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile tips and reminders'**
+  String get stNotifProfileDesc;
+
+  /// No description provided for @stNotifMarketplaceDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders and messages'**
+  String get stNotifMarketplaceDesc;
+
+  /// No description provided for @stNotifSystemDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Account and safety updates'**
+  String get stNotifSystemDesc;
+
+  /// No description provided for @stNotifSecurityNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Security notices, such as a new sign-in or a password change, are always sent.'**
+  String get stNotifSecurityNote;
+
+  /// No description provided for @stPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get stPassword;
+
+  /// No description provided for @stChangePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Change password'**
+  String get stChangePassword;
+
+  /// No description provided for @stCurrentPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password'**
+  String get stCurrentPassword;
+
+  /// No description provided for @stNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get stNewPassword;
+
+  /// No description provided for @stPasswordChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Password changed. Other devices were signed out.'**
+  String get stPasswordChanged;
+
+  /// No description provided for @stTwoStep.
+  ///
+  /// In en, this message translates to:
+  /// **'Two-step verification'**
+  String get stTwoStep;
+
+  /// No description provided for @stTwoStepBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A code when you sign in on a new device'**
+  String get stTwoStepBody;
+
+  /// No description provided for @stTwoStepNeedsPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a verified phone number to your account first.'**
+  String get stTwoStepNeedsPhone;
+
+  /// No description provided for @stTwoStepOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Two-step verification is on.'**
+  String get stTwoStepOn;
+
+  /// No description provided for @stTwoStepOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Two-step verification is off.'**
+  String get stTwoStepOff;
+
+  /// No description provided for @stActiveSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'Active sessions'**
+  String get stActiveSessions;
+
+  /// No description provided for @stThisDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'This device'**
+  String get stThisDevice;
+
+  /// No description provided for @stUnknownDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown device'**
+  String get stUnknownDevice;
+
+  /// No description provided for @stSignOutSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get stSignOutSession;
+
+  /// No description provided for @stTwoStepTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm it is you'**
+  String get stTwoStepTitle;
+
+  /// No description provided for @stTwoStepSms.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the code we sent to your phone to sign in on this device.'**
+  String get stTwoStepSms;
+
+  /// No description provided for @stTwoStepApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the code from your authenticator app to sign in on this device.'**
+  String get stTwoStepApp;
+
+  /// No description provided for @stTwoStepNoFactor.
+  ///
+  /// In en, this message translates to:
+  /// **'We can\'t find a second step on your account. Sign out and sign in again, or contact support.'**
+  String get stTwoStepNoFactor;
+
+  /// No description provided for @stTwoStepWrongCode.
+  ///
+  /// In en, this message translates to:
+  /// **'That code didn\'t work. Check it and try again.'**
+  String get stTwoStepWrongCode;
+
+  /// No description provided for @stHelpSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search help articles'**
+  String get stHelpSearch;
+
+  /// No description provided for @stSafetyCentre.
+  ///
+  /// In en, this message translates to:
+  /// **'Safety centre'**
+  String get stSafetyCentre;
+
+  /// No description provided for @stSafetyCentreBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Report, block, mute'**
+  String get stSafetyCentreBody;
+
+  /// No description provided for @stHelpArticles.
+  ///
+  /// In en, this message translates to:
+  /// **'Articles'**
+  String get stHelpArticles;
+
+  /// No description provided for @stFaq.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequently asked'**
+  String get stFaq;
+
+  /// No description provided for @stHelpNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing matches that'**
+  String get stHelpNoResults;
+
+  /// No description provided for @stHelpNoResultsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try fewer words, or ask us directly below.'**
+  String get stHelpNoResultsBody;
+
+  /// No description provided for @stStillNeedHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Still need help?'**
+  String get stStillNeedHelp;
+
+  /// No description provided for @stChatWithUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat with us'**
+  String get stChatWithUs;
+
+  /// No description provided for @stLegalEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No documents yet'**
+  String get stLegalEmpty;
+
+  /// No description provided for @stLegalEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Our legal documents will appear here.'**
+  String get stLegalEmptyBody;
+
+  /// No description provided for @stVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version}'**
+  String stVersion(String version);
+
+  /// No description provided for @stDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get stDraft;
+
+  /// No description provided for @stDraftPending.
+  ///
+  /// In en, this message translates to:
+  /// **'DRAFT — pending legal review'**
+  String get stDraftPending;
+
+  /// No description provided for @stCurrentPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'CURRENT PLAN'**
+  String get stCurrentPlan;
+
+  /// No description provided for @stPlanFreeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything you need to build your creative identity.'**
+  String get stPlanFreeBody;
+
+  /// No description provided for @stPlanProBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for supporting Atarah.'**
+  String get stPlanProBody;
+
+  /// No description provided for @stPlanRenews.
+  ///
+  /// In en, this message translates to:
+  /// **'Renews {date}'**
+  String stPlanRenews(String date);
+
+  /// No description provided for @stWhatsIncluded.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s included'**
+  String get stWhatsIncluded;
+
+  /// No description provided for @stFeature.
+  ///
+  /// In en, this message translates to:
+  /// **'Feature'**
+  String get stFeature;
+
+  /// No description provided for @stIncluded.
+  ///
+  /// In en, this message translates to:
+  /// **'Included'**
+  String get stIncluded;
+
+  /// No description provided for @stNotIncluded.
+  ///
+  /// In en, this message translates to:
+  /// **'Not included'**
+  String get stNotIncluded;
+
+  /// No description provided for @stUpgrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Upgrade to Pro · {price}'**
+  String stUpgrade(String price);
+
+  /// No description provided for @stUpgradePlain.
+  ///
+  /// In en, this message translates to:
+  /// **'Upgrade to Pro'**
+  String get stUpgradePlain;
+
+  /// No description provided for @stCancelAnytime.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel anytime. No hidden fees.'**
+  String get stCancelAnytime;
+
+  /// No description provided for @stDeleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get stDeleteAccount;
+
+  /// No description provided for @stDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete your account?'**
+  String get stDeleteTitle;
+
+  /// No description provided for @stDeleteIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'This can\'t be undone. You will permanently lose:'**
+  String get stDeleteIntro;
+
+  /// No description provided for @stDeleteLossProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Your profile and Creative Passport'**
+  String get stDeleteLossProfile;
+
+  /// No description provided for @stDeleteLossPortfolio.
+  ///
+  /// In en, this message translates to:
+  /// **'Your portfolio, services and achievements'**
+  String get stDeleteLossPortfolio;
+
+  /// No description provided for @stDeleteLossConnections.
+  ///
+  /// In en, this message translates to:
+  /// **'Your connections and saved items'**
+  String get stDeleteLossConnections;
+
+  /// No description provided for @stDeleteLossProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Your learning progress and certificates'**
+  String get stDeleteLossProgress;
+
+  /// No description provided for @stDeleteGrace.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is hidden and you are signed out right away. Your data is deleted after 30 days. Sign in before then to restore it. Your posts and comments stay and show as \"Deleted member\".'**
+  String get stDeleteGrace;
+
+  /// No description provided for @stTypeDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Type DELETE to confirm'**
+  String get stTypeDelete;
+
+  /// No description provided for @stPasswordToConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Your password'**
+  String get stPasswordToConfirm;
+
+  /// No description provided for @stPasswordToConfirmHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Needed if you signed in more than 5 minutes ago.'**
+  String get stPasswordToConfirmHelp;
+
+  /// No description provided for @stDeletePermanently.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account permanently'**
+  String get stDeletePermanently;
+
+  /// No description provided for @stKeepAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep my account'**
+  String get stKeepAccount;
+
+  /// No description provided for @stDeletedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is scheduled for deletion'**
+  String get stDeletedTitle;
+
+  /// No description provided for @stDeletedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It is hidden now and your data is deleted after 30 days. Sign in before then if you change your mind.'**
+  String get stDeletedBody;
+
+  /// No description provided for @stRestoreTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore your account?'**
+  String get stRestoreTitle;
+
+  /// No description provided for @stRestoreBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is scheduled for deletion on {date}. Restore it to keep everything.'**
+  String stRestoreBody(String date);
+
+  /// No description provided for @stRestoreBodyNoDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is scheduled for deletion. Restore it to keep everything.'**
+  String get stRestoreBodyNoDate;
+
+  /// No description provided for @stRestoreAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore account'**
+  String get stRestoreAccount;
+
+  /// No description provided for @stOfflineNeedsConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs a connection'**
+  String get stOfflineNeedsConnection;
 }
 
 class _AppLocalizationsDelegate

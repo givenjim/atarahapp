@@ -17,4 +17,11 @@ paths = [
   '''(^|/)\.pub-cache/''',
   '''apps/mobile/android/\.gradle/''',
   '''pnpm-lock\.yaml$''',
+  # Git-ignored local environment files hold the local Supabase keys (public demo values from `supabase status`).
+  # They are never committed; the committed templates are .env.example.
+  '''(^|/)\.env(\.local)?$''',
+]
+regexes = [
+  # Throwaway passwords in on-device test journeys.
+  '''Journey-(pass|new)-\d''',
 ]

@@ -54,7 +54,7 @@ final class ProfileRepositoryProvider
   }
 }
 
-String _$profileRepositoryHash() => r'3d2969a7867fde5331e17bf78049b2ec3d3d10c0';
+String _$profileRepositoryHash() => r'09a47189f61a415365a4bb149cf2ef641458136d';
 
 /// The signed-in member's own profile. Null while signed out. Reloads when a different member signs in.
 

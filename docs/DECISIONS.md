@@ -432,3 +432,209 @@ Dated, numbered entries (Master Prompt §9.2). Format: decision, context, option
 
 - **Date:** 2026-10-19
 - `page` and `limit` (and `cursor` for feeds) are now in the OpenAPI contract, so the generated app and admin clients can send them. Behaviour of existing routes is unchanged.
+
+## DEC-060 — Master Prompt v2.3 adopted
+
+- **Date:** 2026-10-22
+- **Context:** the owner supplied Master Prompt v2.3. It makes Supabase the backend platform (database, Auth, Storage, Realtime) under the existing NestJS API, adds a brand refresh with a dark appearance, and completes the Phase 1 backend scope.
+- **Choice:**
+  - `docs/MASTER_PROMPT.md` is now v2.3 (a copy also sits at `docs/ATARAH_MASTER_PROMPT_v2.3.md`; the owner can delete the duplicate).
+  - Phase 1 has 12 milestones. New: **P1-M6** Supabase platform adoption and **P1-M7** Brand refresh and dark appearance. Old P1-M6 to P1-M10 are now **P1-M8 Community, P1-M9 Opportunities, P1-M10 Skill Labs, P1-M11 Activity/notifications/saved/settings/system states, P1-M12 Admin operations, analytics and hardening**. None of those had started.
+  - **Older entries in this file keep the old numbers.** Read "P1-M6" in DEC-055 to DEC-058 as P1-M8, "P1-M7" as P1-M9, "P1-M8" as P1-M10, and "P1-M9" as P1-M11.
+  - The register stays `docs/PROGRESS.md` (the prompt says `PROJECT_PROGRESS.md`; DEC-047 renamed it).
+  - The prototype in `design/prototype/` was replaced in full by the new design from `Atarah mobile app design.zip` (new logo, palette, `theme-dark.js`, logo pack under `uploads/Atarah_Logo_Pack/`). The old copy remains in git history. The zip itself stays in the repo root as the owner left it.
+  - Platform inspection is in `docs/SUPABASE_ADOPTION.md`: the code is on plain PostgreSQL, NestJS-issued auth and an S3-compatible server, so P1-M6 is a full adoption.
+- **Conflict noted, not reopened:** v2.3 asks for an emulator walkthrough per milestone. The owner's standing rule (DEC-033: emulator only at the end of each phase) stays, because it is the later, explicit instruction from the owner about process. Each milestone report says "emulator not run". **Owner: say if v2.3 should override this.**
+
+## DEC-061 — Supabase becomes the identity, database and storage platform
+
+- **Date:** 2026-10-22
+- **Context:** Master Prompt v2.3 (sections 5.5 and 5.7) moves Atarah onto Supabase under the existing NestJS API. The code was on plain PostgreSQL, NestJS-issued Argon2/JWT auth, an S3-compatible server and Mailpit.
+- **Choice:**
+  - **Auth:** Supabase Auth owns credentials, one-time codes, sessions, MFA and Google OAuth. The apps call it directly (auth only); NestJS verifies the JWT and owns roles, permissions, status and entitlements. The NestJS tables `credentials`, `sessions`, `verification_codes`, `admin_totp` and their enums are dropped (dev and staging only). **There were no production users**, so no production data was touched; confirmed from the register (no deploy has ever happened).
+  - **Users:** `users.id` is `auth.users.id` (FK, cascade). A trigger creates the `users` row and consent records at sign-up and keeps contact details, verification flags and first activation in step. **Free membership is still the absence of a membership row** (as before), not a stored FREE row: a row would collide with the one-live-membership rule on upgrade.
+  - **Database role:** the app connects as `atarah_backend` (BYPASSRLS) through the pooler; migrations use the direct URL as `postgres`. RLS is on for every table; the only policy is the Realtime notifications SELECT. `scripts/check-rls.sql` (run by `scripts/check-rls.mjs`, CI and the tests) enforces it.
+  - **`auth` schema access:** `postgres` cannot grant on `auth` (no grant option), so the backend reads and revokes sessions and lists MFA factors through `SECURITY DEFINER` functions `atarah_auth_*` executable only by `atarah_backend`, not through table grants. This is a deliberate narrowing of the prompt's "service role reads `auth.sessions`".
+  - **Storage:** Supabase Storage adapter behind the same `StorageService` interface; same API shape for clients. Supabase signed upload URLs do not bind content type or length and last two hours (the S3 URLs bound both and lasted 15 minutes), so the size check moved to `complete` and the MIME sniff in the validation job remains the real gate.
+  - **Prisma:** `migrate dev` cannot introspect a database with the cross-schema FK (error P4002), so migrations are written by hand or from `migrate diff --from-schema-datamodel`, and applied with `migrate deploy`.
+  - **Search:** generated `searchVector` columns with GIN on `creative_profiles` (name, handle, headline) and `articles`. The bio is not in the vector because it has its own visibility (DEC-055).
+- **Impact:** `ATARAH_JWT_*`, `*_PEPPER`, `ATARAH_DATA_ENCRYPTION_KEY` and `ATARAH_S3_*` are gone; `ATARAH_SUPABASE_*`, `ATARAH_DIRECT_URL`, `ATARAH_SEND_SMS_HOOK_SECRET`, `ATARAH_STORAGE_BUCKET_*`, `ATARAH_METRICS_TOKEN` are new. Argon2, jsonwebtoken, Testcontainers and the S3 SDK left the backend runtime.
+
+## DEC-062 — Local Supabase ports and test database
+
+- **Date:** 2026-10-22
+- Another project on this host already uses Supabase's default ports (543xx), so Atarah's stack is offset to 553xx: API 55321, database 55322, pooler 55329, Studio 55323, mail catcher 55324 (UI) and 55325 (SMTP). The local Supavisor tenant is `pooler-dev`. Redis stays on 56379. Analytics, edge runtime, vector and imgproxy are disabled locally.
+- **Backend integration tests run against that local stack and reset it** (every Auth user and application table is emptied, Redis database 15 is flushed). The setup refuses any database that is not on this machine. Seed data is re-created with `just db-migrate` and `pnpm db:seed`.
+- The Android emulator reaches the stack with `adb reverse tcp:55321 tcp:55321` (and `tcp:3000`), so signed storage URLs, which carry `127.0.0.1:55321`, work from the device. `ATARAH_SUPABASE_PUBLIC_URL` exists for setups that cannot use `adb reverse`.
+
+## DEC-063 — Code lifetimes: one OTP expiry
+
+- **Date:** 2026-10-22
+- Supabase Auth has a single OTP expiry, set to the Master Prompt's 600 s. The prototype's "Code sent. It expires in 15 minutes." for password recovery would now be untrue, so that one string changed to **10 minutes**. The 60-second resend cooldown and 6-digit length are as specified. **Owner: say if recovery must stay at 15 minutes (it would then mean 15 minutes for sign-up codes too).**
+
+## DEC-064 — Suspension also bans the account in Supabase Auth
+
+- **Date:** 2026-10-22
+- Suspending an account sets a Supabase ban (no sign-in, no token refresh) and deletes its sessions; reactivation lifts the ban. The guard still checks `users.status` on every request. A confirmed-but-pending account becomes ACTIVE on its next Auth update (sign-in), by the same trigger.
+
+## DEC-065 — Dev data migration
+
+- **Date:** 2026-10-22
+- `apps/backend/scripts/migrate-dev-data.ts` moved the local dev database across: 50 users re-created in Supabase Auth with the same ids, every other table copied in foreign-key order, storage objects copied when a source S3 is given. **Supabase Auth did not accept the imported Argon2 hashes**, so every migrated dev account got a one-time temporary password (printed once). Reference data keeps its source ids; run the script on a freshly migrated, unseeded target.
+
+## DEC-066 — Operations: metrics and rate limits
+
+- **Date:** 2026-10-22
+- `GET /metrics` serves Prometheus text (request latency by route pattern including refused requests, queue depth by state, Node process metrics). It is outside `/api/v1` and hidden from OpenAPI; staging and production require `ATARAH_METRICS_TOKEN` as a bearer, and the endpoint refuses to serve in a deployed environment without one.
+- Rate limits: the audit found every mutating route covered by the 120 per minute default and the sensitive ones tightened; a tighter global mutation limit was tried and dropped because draft autosave (one save a second while typing) would hit it. Auth-side limits are Supabase's, documented in `docs/SECURITY.md`; local values are raised so the test suite can sign in repeatedly.
+
+## DEC-067 — Realtime without a column filter
+
+- **Date:** 2026-10-22
+- The app subscribes to INSERTs on `notifications` with its own access token and **no `filter`**: Realtime filters did not match the camelCase `"userId"` column (tested), and the RLS policy already limits delivery to the member's own rows (also tested: another member's insert is not delivered).
+
+## DEC-068 — Mobile authentication on Supabase
+
+- **Date:** 2026-10-22
+- `supabase_flutter` is used for **authentication only** (no `.from()`, no storage, one Realtime channel). The Supabase session and PKCE verifier are stored through `flutter_secure_storage`. `AuthGateway` isolates the SDK; `AuthRepository` maps Supabase errors to the same failures and strings the screens already show; the dio interceptor attaches the SDK's access token and, on a 401, refreshes once and retries, otherwise signs out. After every sign-in or restore the app calls `PUT /me/device` through the generated client with a random per-install id (never a hardware id).
+- Sign-up sends `full_name`, `terms_version` and `privacy_version` as user metadata; the database trigger turns them into the account and its consent records. An existing account is detected by empty `identities`.
+- **Two copy changes** because Supabase's rules are stricter than the old ones: recovery codes last 10 minutes (DEC-063), and the password rule is "8 characters, including a letter and a number" (Supabase's `letters_digits`), so `passwordRuleError` changed and the client checks for a letter. The strength-meter label still reads "Strong — 8+ characters with a number" as in the prototype.
+- The 60-second resend cooldown is a client countdown, with Supabase's 429 shown as the cooldown message. Failure sentences that the server used to send now live as constants in `AuthMessages` (not ARB yet).
+- The dev Supabase URL is `http://127.0.0.1:55321`, reached from the emulator with `adb reverse tcp:55321 tcp:55321` (DEC-062). The publishable key comes from `--dart-define` / `env.dev.json` (git-ignored), never source.
+- Google sign-in uses `signInWithOAuth` with redirect `atarah://auth-callback`, hidden until the flag is on. The Home bell count lives in `unreadNotificationsProvider`, seeded from `GET /home` and incremented by Realtime inserts (DEC-067).
+- **Not verified:** emulator and device runs, phone sign-up through the live SMS hook from the app, Google OAuth, `adb reverse` on a device. The app-side calls were checked with a throwaway Dart script against the real stack.
+- An OpenAPI name clash (two `RegisterDeviceDto` classes, identity and notifications) made the generated client wrong; the identity one is now `RegisterSessionDeviceDto`.
+
+## DEC-069 — Admin console authentication on Supabase
+
+- **Date:** 2026-10-22
+- The admin console signs in with Supabase Auth through `@supabase/ssr` (httpOnly cookies set by the Next server; a proxy refreshes the session). Admin accounts need a verified TOTP factor; the proxy gates every console route on AAL2 and the API enforces it (`MFA_REQUIRED`). Only `NEXT_PUBLIC_SUPABASE_URL` and the **publishable** key reach the browser. `apps/web` has the same configuration plumbing but no sign-in yet.
+- **Supabase TOTP has no recovery codes.** A lost authenticator needs a super admin to remove the factor. The Users page has no "reset authenticator" action yet, so until it exists an operator does it in the Supabase dashboard. **Owner: confirm, or ask for the console action to be built next.**
+- Re-authentication is a TOTP re-verify only (no password); a code entered at sign-in or enrolment counts for 5 minutes, so the first suspend after signing in does not prompt. The real prompt is covered by the opt-in `admin-reauth.spec.ts` (about six minutes, not in CI).
+- `/auth/exit` is a GET that signs out (a cross-site link can sign an admin out; cookies are SameSite=Lax and nothing changes). Playwright fixtures (`apps/backend/scripts/e2e-fixtures.ts`) create their accounts through the Auth admin API.
+- Idle and `ADMIN_ONLY` paths are covered by unit tests only, not end to end.
+
+## DEC-070 — Hosted dev project (atarah-dev) and how it is run
+
+- The hosted Supabase **dev** project `atarah-dev` (ref `jxnbhjsgiqlkhpnhbqnl`, region eu-central-2, Luxaion Group organisation, free plan) is connected. Migrations were applied with `prisma migrate deploy` over the session pooler (the direct host is IPv6-only on the free plan); the `atarah_backend` role has a generated password; reference and demo data are seeded (dev project only); `scripts/check-rls.mjs` passes against it.
+- Secrets live only in `apps/backend/.env.cloud` (git-ignored by `.env.*`): project ref, URL, publishable and secret keys, session and transaction pooler strings, access token, backend role password. Run the API against it with `node --env-file=.env.cloud dist/main.js` (port 3010 here, because port 3000 is used by another project on this machine). `apps/backend/.env` stays the local stack, because the integration tests reset the local database and read its role password.
+- `scripts/push-auth-config.mjs <env file>` applies the Atarah Auth settings (OTP 6 digits / 600 s, password rule, refresh rotation, MFA, redirect URLs) through the Management API. It is the hosted equivalent of `supabase/config.toml`.
+- **Project options:** Data API on, "automatically expose new tables" off, "automatic RLS" on. The automatic-RLS option adds `public.rls_auto_enable()`, executable by anon through the default PUBLIC grant; migration `20261022100000_revoke_rls_auto_enable` revokes it (no-op where the function is absent). `check-rls` caught this.
+- **Limits, stated plainly (BLOCKED):** on the free plan with Supabase's built-in mailer, custom email templates cannot be applied, so hosted emails carry the default link, not our 6-digit code, and are rate-limited to a few per hour: real email sign-up needs custom SMTP (decision 2). Phone sign-in and the Send SMS hook are off until the API has a public URL and an SMS provider exists (decision 19). Staging and production projects do not exist yet.
+- The access token, secret key and database password were shared in chat; **rotate all three** once the setup is stable.
+
+## DEC-071 — Theming API: `AtColors` is a ThemeExtension, read with `context.at`
+
+- Colours are never static in screens. `AtColors` is a `ThemeExtension` instance (`AtColors.light` / `AtColors.dark`) built from the light and dark token sets, read with `context.at.x`; shadows with `context.at.shadowX`; tones with `tone.colorsOf(context)`. Static values that never change (brand ring colours, CTA/splash/AI/pro gradients, scrims, radii, spacing, text styles) stay static. `scripts/migrate-at-colors.mjs` did the mechanical rename.
+- Extra roles beyond section 8, all from spec values: `primaryFill` (Indigo in both appearances, for fills carrying white text, because dark `primary` is #9A8DFF), `background`, `surface`, `raised`, `mist`, skeleton roles, and legacy-named roles remapped to spec colours. Tone names `pink`/`info`/`purple` became `coral`/`indigo`/`violet`.
+- `scripts/check-colors.mjs` (CI) rejects the pre-v2.3 palette; `#1c1a4a` is exempt only in the token files because it is the new dark Mist.
+
+## DEC-072 — Appearance preference
+
+- `member_preferences` (RLS on, no policies) is the single source of truth for `appearance`, `locale`, `timeZone` and `marketingOptIn`; `users.locale` and `users.time_zone` were copied into it and dropped. Rows are created lazily by upsert on `GET`/`PATCH /me/preferences`; `GET /users/me` is read-only and falls back to the defaults (LIGHT).
+- Mobile: the choice is stored locally and read before the first frame (no wrong-theme flash); on sign-in the account value wins unless this device has an unsent choice, which is sent instead; a toggle applies at once and syncs in the background, retrying on launch, sign-in and reconnect. Settings is a minimal screen (Account group with the Appearance row; other rows open Soon screens) until P1-M11.
+- Admin follows the system setting with a manual System/Light/Dark override stored in localStorage and applied before first paint; the public web page stays light.
+
+## DEC-073 — Design calls in the retrofit
+
+- The Passport card is a dark card in both appearances (prototype). The crop-photo stage stays dark in both appearances. The logo is never redrawn: `AtWordmark` and the text wordmark components were deleted in favour of the pack SVGs (C2PA metadata stripped from the mobile copies only).
+- Home keeps its 3-column quick-access grid (the prototype has 4): the milestone is visual identity only, no flows or layout changes. The splash and `ob_done` use the plain gradient (the prototype adds radial highlights with no token).
+- Source-confirmed pill is `AtTone.primary` with `shield-check` (section 8.2). `PostCard.authorSystem` exists for P1-M8 system authors.
+
+## DEC-074 — Contrast gaps kept as specified (owner to confirm)
+
+- Light `muted` #77758F is 4.44:1 on white (about 4.2:1 on Mist) and dark `coralStrong` #F04478 on `coralSurface` #3A1838 is about 4.1:1: both slightly under 4.5:1 for small text. They are kept exactly as the Master Prompt gives them and the contrast test records them with a 4.0 floor. Darkening `muted` slightly would fix the first; owner to decide.
+
+## DEC-075 — Community feed ranking and visibility
+
+- Feed ordering is `(rankAt, id)` descending, where `rankAt` is `createdAt` plus a boost in minutes (group 360, connection 120, same discipline 180, same county 90, announcement 720); the cursor is opaque and strictly monotonic. Audience, group membership, blocks (both directions), mutes and `status = VISIBLE` are applied in SQL.
+- OPEN groups are readable and joinable by any member but only reach the feed of joined members; PRIVATE groups are invisible and not joinable (admins add members); archived groups are hidden. Anything invisible, blocked or not yours answers 404.
+
+## DEC-076 — Moderation model
+
+- Moderators never edit content: every action is one transaction (effect, append-only log row, case and report status, audit). A new report on a closed case reopens it. Reporters are told only "took action" or "did not find a breach"; the reported author is told what happened to their content, never who reported it. Suspension goes through `AdminService.suspend` (Supabase ban and session revocation) and needs `user.suspend` and a fresh authenticator check.
+- `community_restrictions` (not in the master table list) makes `RESTRICT_ACCOUNT` real: it blocks posting, commenting and connection requests until lifted or expired. Announcements need `community.announce` and, from the console, a fresh authenticator check.
+
+## DEC-077 — Community scope calls
+
+- Connection endpoints from P1-M3 are reused (`listState` covers incoming and outgoing requests); no new connection endpoints. Rate limits use the existing per-IP throttler (posts 10/h, comments 60/h, reactions 300/h, reports 20/day, connection requests 50/day); a per-user tracker is a later change. Events run on the in-process event bus (no outbox exists); jobs run on the existing `maintenance` queue.
+- Mobile: People cards are full-width rows (the reason line needs room); saving a person opens a Soon screen because the backend only saves articles and posts; drafts are kept in the key-value store (media is not kept); the Announcement chip stays hidden until `/users/me` exposes staff permissions; Collaboration uses the success pill pair because section 8.2 has none.
+
+## DEC-078 — Known gaps carried forward
+
+- No mention feature (so "prevent mentions" has nothing to act on); no analytics consumer; `post_attachments` has no endpoint until P1-M9; push for the new events goes through the existing dispatcher but only in-app notifications were asserted; admin restriction state, moderator and pin pickers and appeals are not built.
+
+## DEC-079 — Opportunities: visibility, saving and tracking
+
+- A listing is visible to members while `PUBLISHED` and before its deadline; a rolling listing has no deadline. An expired or closed listing stays reachable (as closed) only for members who track it, so an application in Activity never turns into a 404. Drafts, pending, archived and removed listings answer 404. Starting to track needs an open listing; moving an existing record forward does not.
+- Saving is the tracking row (`SAVED`), not a `saved_items` row: one source of truth for Saved, Applied and Completed. "Saved" on a card means `SAVED` or `IN_PROGRESS` (a shortlist); un-saving is allowed only from `SAVED` (as the Master Prompt says), so an `IN_PROGRESS` item answers 409 with "mark it applied or completed instead". P1-M11's Saved screen unions articles, posts and opportunities.
+- The state machine is forward only and a member may skip ahead (leaving to apply straight from a card records `APPLIED`); `COMPLETED` is reachable only from `APPLIED`; an outcome belongs to `COMPLETED` (also a CHECK in the database) and defaults to `UNKNOWN`.
+- `Closing soon` is computed from the deadline and the member's own status (14 days; 7 or fewer is Coral, 8 to 14 Tangerine). "Remote" filter means `REMOTE` only; a county filter also includes remote and no-county listings; a listing with no discipline is open to every discipline filter.
+
+## DEC-080 — Profile-gap rule engine
+
+- Rules are evaluated on the server against the signed-in member's own profile only and return `MET`, `MISSING` or `UNKNOWN` plus an in-app fix path. Age cannot be checked (Atarah collects no date of birth), `DOCUMENT` cannot be checked until Phase 2 documents exist and `CUSTOM_TEXT` is advice: all three are `UNKNOWN`, never guessed, and are not counted as missing. Counted projects are published, not deleted and not hidden. `SKILL_IN` has `any` (default) and `all`; `DISCIPLINE_IN` is any discipline of the member.
+- The 5 minute per-member cache is in Redis and best effort. A member who just fixed something asks for `?refresh=true` (the app sends it when returning from a fix screen and on pull to refresh). Fix paths used: `/profile`, `/skills`, `/portfolio/new/edit`, `/soon/p2?name=…`.
+- The verdict is `READY`, `MISSING`, `UNCHECKED` or `NO_RULES`; the card headline counts missing blocking rules.
+
+## DEC-081 — Trust, review and provider boundaries
+
+- `trust` is never accepted from a request body. A new listing starts `EXTERNAL_SOURCE`. `SOURCE_CONFIRMED` or `EXTERNAL_SOURCE` is set with `opportunity.manage` (`set-trust`, audited); `VERIFIED` only through `POST …/verify`, which needs `opportunity.verify` and a fresh authenticator check, and `set-trust` refuses `VERIFIED` outright. Removing a listing also needs a fresh authenticator check.
+- Provider endpoints exist (`/provider/*`, permissions `opportunity.submit` and `opportunity.manage.own`) with no screen yet. A provider sees only organisations and listings they own, submissions land in `PENDING_REVIEW`, a published listing can only be edited by staff, and no provider route can publish or badge. Staff can send a submission back (`reject`, with a reason) and the provider is told; publishing a provider's submission tells them too.
+- CSV import is stateless: preview parses, validates and resolves counties, disciplines and providers without writing; commit re-validates and creates only valid rows as `DRAFT`, with new providers unverified, and skips duplicates (same title and provider). An import never publishes or badges.
+
+## DEC-082 — Jobs, events and scope calls (P1-M9)
+
+- Jobs share the `maintenance` queue through the existing processor (two processors on one queue would hand each other's jobs to the wrong worker): hourly expiry at :05, 08:00 EAT reminders, Monday 03:00 EAT link health, nightly counts. Reminders count Nairobi calendar days (7 and 1), skip a member who switched both push and email off for Opportunities, and are de-duplicated by `notification_dispatches` (`opp-reminder:{user}:{opportunity}:{days}`); a failed send frees the key so the next run retries.
+- Link health sends HEAD, falls back to GET, follows redirects through the same SSRF checks as link previews, and only flags: it never unpublishes. 401, 403 and 429 are not a verdict (robot-blocking), so they are recorded as OK; 404 and above, timeouts and unsafe addresses are flagged `BROKEN`.
+- Events (`OpportunityPublished`, `Saved`, `Applied`, `Completed`, `Rejected`) go on the in-process bus. The only notifications are the provider ones above and the deadline reminders: members are not broadcast every new listing. The "add an achievement" offer on `AWARDED` is made by the app through the existing achievements endpoint; nothing is created automatically. No analytics consumer yet.
+- Search gains an `opportunities` group (title, summary and provider, trigram and full text). Attaching an opportunity to a community post stays out of scope: the foreign key now exists but no endpoint or UI uses it (carried forward from DEC-078).
+- Demo opportunities (development only) are invented organisations, flagged `isDemo`, with deadlines relative to the seed day.
+
+## DEC-083 — Opportunities UI calls (mobile and console)
+
+- Mobile: `MyTab` replaces the generated `Tab` enum (it clashes with Flutter's widget). Saved is `/opportunities/mine?tab=saved` (SAVED and IN_PROGRESS), tab counts are a summary line under the segments, the detail hero is a gradient with the type icon, and the "Leaving Atarah" sheet opens the browser first and records APPLIED only if the box is ticked and the launch succeeded (mailto for email listings). The profile check re-fetches with `refresh: true` after any "Add" link and on pull-to-refresh. AWARDED offers the achievements list without prefill (gap).
+- Console: Remove, Verify and provider verification ask for a fresh authenticator code; Verify buttons are hidden without `opportunity.verify`. Anyone with `opportunity.manage` can lower a Verified listing to a lower source level (owner to confirm). Deadlines are entered in Nairobi time; an empty deadline is rolling. Featuring is `featuredUntil` per listing (no separate Home pin).
+- The showcase tester account is created by a script that reads credentials from the environment; nothing is committed. Applying migrations or data to the hosted dev project is not done without the owner's go-ahead.
+
+## DEC-084 — Hosted dev API on Railway (owner-authorised, 2026-10-26)
+
+- The dev API runs on Railway (existing project `sparkling-insight`, services `api` and `Redis`; the free plan blocks a new project and a third service) from `Dockerfile.backend`, against the hosted dev Supabase project. `ATARAH_PROCESS=both` runs the worker beside the API in one container because no third service fits; split them when the plan allows. Environment values are set on the service from the git-ignored `apps/backend/.env.cloud`; nothing secret is committed. This is a dev environment with demo data, not staging or production.
+- The tester APK (prod flavour, debug-signed, sideload only) is built against this URL with a git-ignored `apps/mobile/env.prod.json`. The showcase account lives in the hosted dev Supabase project.
+
+## DEC-085 — Skill Labs rules (P1-M10)
+
+- A course lists its lessons as Done, Current, Locked or Available, computed from progress and never stored. In a sequential course the first unfinished lesson is Current and later ones are Locked; a lesson a staff override completed out of order does not re-lock earlier ones. A locked lesson answers 409 (`details.reason` LOCKED) on read and on progress writes. A member must be enrolled to open lessons.
+- Progress writes are idempotent and monotonic: the position only moves forward, a late earlier write is ignored, completion is set once, and only an explicit `restart` rewinds (it also clears completion). The row is locked (`FOR UPDATE`) so two writes cannot interleave. Time spent counts whole minutes of forward movement (at most 15 per write) and a lesson's length once when it is completed; a single item counts its duration when marked complete. A scheduled "rollup" job was not needed: the daily table is written as it happens.
+- Finishing the last lesson completes the course in one transaction (certificate, achievement, skill source, enrolment) and raises `CourseCompleted`; repeating it issues nothing new. Certificates are `ATC-{year}-{sequence}`. A skill the member did not have is added as source `LEARNING` while they hold fewer than 20; a `VERIFIED` skill stays verified. An override that resets a course leaves an issued certificate in place (record of what was earned).
+- Premium: `access = PREMIUM_CONTENT` answers `PREMIUM_REQUIRED` for enrolling, reading lessons, the video address and progress writes unless the member holds the `PREMIUM_CONTENT` entitlement (a live Pro membership); cards and detail carry `premiumLocked` so the app shows `AtPremiumGate`, and addresses are withheld. No premium content ships in the dev seed except one demo course.
+- Embedded players: https only, host on the `learning.embed_hosts` allow-list (default YouTube, YouTube no-cookie, Vimeo player), checked when staff save and watch links converted to embed addresses. A lesson plays an uploaded video or an embed, never both. Archived courses stay open to members already learning them; a course with learners is archived, not unpublished.
+- Video: re-encoding to 720p needs ffmpeg, which the container image installs; where it is missing the original uploaded MP4 plays through a signed address (not re-encoded). Not exercised locally because ffmpeg is not installed on this machine (command construction is unit-tested).
+- Scope calls: instructor self-service routes (`learning.content.manage.own`) are not built (staff assign an instructor); "New Skill Lab recommended" notifications are not broadcast (the hub recommends instead); the only learning notification is the certificate. Saving learning content is a `saved_items` row, shown on the My learning Saved tab; the unified Saved screen is P1-M11.
+
+## DEC-086 — P1-M11 and P1-M12 calls (owner to confirm)
+
+- **Notifications and links:** deep links are whitelisted by first path segment; the offline cache is per member and fails silently; the two-step verifier sits behind an interface (phone MFA not exercised locally); pending-deletion and two-step gates live in the router redirect. Saving a person from mobile waits on the API accepting a handle; activity-visibility is stored but not enforced yet.
+- **Admin console:** Notifications, Content (help, FAQ, legal), Privacy requests, Dashboard, Analytics, Roles, Settings and Failed jobs are live. Content tabs check their own permission (`help.manage`, `legal.manage`). Failed jobs and settings share `/settings`. Charts are one single-token-colour small multiple per event, with a table fallback. Times are entered and shown in Nairobi time.
+- **Analytics:** monthly-partitioned `analytics_events`, daily roll-up, strict props allow-list, keyed-hash actor, 400-day retention; registration is written by a database trigger.
+- **Hardening:** writes default to 60 per minute, reads to 120; oversized bodies return 4xx; feed ranks a recent-post window (same result, proved by test) and pins the generic plan only for cursor pages; post search disables nested loops inside its transaction (not tested on a much larger members table).
+- **Accessibility:** tappable cards and multi-line fields are at least 48 dp; sign-up terms links are screen-reader actions; token-pair contrast is asserted every run, per-screen contrast sampling is opt-in; `muted` stays at 4.44:1 (known spec value).
+- **Deferred:** eager feed lists and image disk cache; final perf re-run; backup/restore test; emulator journeys (written, never run).
+- **To confirm:** four endpoints built under other paths than Appendix A (`PUT /learning/{id}/progress` vs lessons path, `/learning/lessons/{id}/playback` vs `/video`, `GET /help/articles`, `GET /admin/courses/*`).
+
+## DEC-087 — Ascent logo replaces the ribbon logo (2026-11-16)
+
+- The owner supplied the new "Ascent" logo as a single image with no asset files. The symbol, wordmark and brand line were redrawn as vectors from that image (colours sampled from it; wordmark and brand line matched to Plus Jakarta Sans 800/700 and outlined). File names are unchanged, so `AtLogo`, web, admin and the prototype pick up the new art without code changes.
+- `primary` is now the stacked lockup as supplied (aspect 600:560); `notagline` is a new horizontal lockup (symbol left of the wordmark, aspect 897.6:233.7). The web holding page now uses `notagline` (the stacked logo is too small at 130 px).
+- Mono variants use real geometry gaps instead of SVG masks (flutter_svg support).
+- The native splash and the Flutter splash gradient move from Indigo to Midnight (`#17153F` to `#0F0D2B`) so the colour symbol, whose left leg is indigo, stays visible. Adaptive icon background is white.
+- Launcher, adaptive icon, native splash and iOS images were generated directly at the existing sizes because Flutter is not installed on the machine used; re-running `flutter_launcher_icons` and `flutter_native_splash:create` produces the same set from `assets/launcher/`. Splash goldens need `flutter test --update-goldens`.
+- Old pack and guidelines PDF archived in `docs/brand/archive/2026-ribbon/`. The app colour tokens are unchanged (the logo palette is not applied to the UI).
+
+## DEC-088 — Placeholder pictures in development data (2026-11-16)
+
+- Every picture slot in development data now has a placeholder: profile photos, portfolio projects (three published projects with two pictures each for every demo creative), article heroes and one inline article image, group covers, Skill Labs covers, opportunity provider logos, community post photos and the link-preview image.
+- Real stock photos could not be downloaded (stock-photo hosts are not on this workspace's network allow-list), so the pictures were generated offline: Open Peeps portraits (CC0, via DiceBear) and abstract artwork in the Atarah palette with Lucide (ISC) motifs. Files and licences: `apps/backend/prisma/seed/media/README.md`.
+- `seedDemoMedia` (`prisma/seed/demo-media.ts`) stores each picture as a normal READY `media_assets` row in the public bucket with the same 200/600/1200 px WebP renditions the media worker makes, one row per use, owned by the member it belongs to (so removing a photo in the app behaves as for a real upload). It only fills empty slots and is safe to repeat. `pnpm db:seed` runs it for demo records; `prisma/seed/media-cli.ts` (`pnpm db:seed:media`) also fills empty slots on non-demo records of a dev database (every profile without a photo, articles, groups, Skill Labs, providers) and refuses unless `ATARAH_ENV=dev`. Portfolios and posts are only invented for demo members.
+- The mobile app now shows the provider logo the API already returned: small before the provider name on opportunity cards and in place of the initials tile on the opportunity screen (initials remain the fallback).
+

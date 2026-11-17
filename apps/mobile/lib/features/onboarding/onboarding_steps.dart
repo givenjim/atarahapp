@@ -35,19 +35,19 @@ class StepHeading extends StatelessWidget {
           header: true,
           child: Text(
             title,
-            style: AtTextStyles.tabTitle.copyWith(color: AtColors.ink),
+            style: AtTextStyles.tabTitle.copyWith(color: context.at.ink),
           ),
         ),
         const SizedBox(height: 8),
         if (bodySpan != null)
           Text.rich(
             bodySpan!,
-            style: AtTextStyles.bodySm.copyWith(color: AtColors.body),
+            style: AtTextStyles.bodySm.copyWith(color: context.at.body),
           )
         else if (body != null)
           Text(
             body!,
-            style: AtTextStyles.bodySm.copyWith(color: AtColors.body),
+            style: AtTextStyles.bodySm.copyWith(color: context.at.body),
           ),
       ],
     );
@@ -95,7 +95,7 @@ class _FieldError extends StatelessWidget {
       liveRegion: true,
       child: Text(
         message,
-        style: AtTextStyles.meta.copyWith(color: AtColors.pinkStrong),
+        style: AtTextStyles.meta.copyWith(color: context.at.coralStrong),
       ),
     ),
   );
@@ -124,7 +124,7 @@ class IntroStep extends StatelessWidget {
       ),
       (
         LucideIcons.mapPin,
-        AtTone.pink,
+        AtTone.coral,
         l10n.obIntroLocationTitle,
         l10n.obIntroLocationBody,
       ),
@@ -143,7 +143,7 @@ class IntroStep extends StatelessWidget {
           child: Text(
             l10n.obIntroTitle,
             style: AtTextStyles.tabTitle.copyWith(
-              color: AtColors.ink,
+              color: context.at.ink,
               fontSize: 30,
               height: 1.15,
             ),
@@ -152,7 +152,7 @@ class IntroStep extends StatelessWidget {
         const SizedBox(height: 10),
         Text(
           l10n.obIntroBody,
-          style: AtTextStyles.body.copyWith(color: AtColors.body),
+          style: AtTextStyles.body.copyWith(color: context.at.body),
         ),
         const SizedBox(height: 22),
         for (final (icon, tone, title, body) in rows) ...[
@@ -170,14 +170,14 @@ class IntroStep extends StatelessWidget {
                       Text(
                         title,
                         style: AtTextStyles.cardTitle.copyWith(
-                          color: AtColors.ink,
+                          color: context.at.ink,
                         ),
                       ),
                       const SizedBox(height: 2),
                       Text(
                         body,
                         style: AtTextStyles.meta.copyWith(
-                          color: AtColors.muted,
+                          color: context.at.muted,
                         ),
                       ),
                     ],
@@ -275,7 +275,7 @@ class _DisciplineTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fg = selected ? AtColors.white : AtColors.ink;
+    final fg = selected ? context.at.white : context.at.ink;
     return Semantics(
       button: true,
       selected: selected,
@@ -289,20 +289,12 @@ class _DisciplineTile extends StatelessWidget {
           duration: atDuration(context, AtMotion.fast),
           padding: const EdgeInsets.symmetric(horizontal: 6),
           decoration: BoxDecoration(
-            color: selected ? AtColors.primary : AtColors.white,
+            color: selected ? context.at.primaryFill : context.at.surface,
             borderRadius: AtRadii.tileLg,
             border: Border.all(
-              color: selected ? AtColors.primary : AtColors.cardBorder,
+              color: selected ? context.at.primaryFill : context.at.cardBorder,
             ),
-            boxShadow: selected
-                ? const [
-                    BoxShadow(
-                      color: Color.fromRGBO(91, 69, 240, 0.3),
-                      blurRadius: 18,
-                      offset: Offset(0, 8),
-                    ),
-                  ]
-                : null,
+            boxShadow: selected ? context.at.shadowSelectedTile : null,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -364,8 +356,8 @@ class SpecialisationStep extends ConsumerWidget {
                   TextSpan(text: l10n.obSpecBodyPrefix),
                   TextSpan(
                     text: draft.disciplineName ?? '',
-                    style: const TextStyle(
-                      color: AtColors.primary,
+                    style: TextStyle(
+                      color: context.at.primary,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -444,10 +436,10 @@ class _SpecRow extends StatelessWidget {
           constraints: const BoxConstraints(minHeight: 58),
           padding: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
-            color: selected ? AtColors.tint3 : AtColors.white,
+            color: selected ? context.at.primaryTintFaint : context.at.surface,
             borderRadius: AtRadii.tileLg,
             border: Border.all(
-              color: selected ? AtColors.primaryLight : AtColors.cardBorder,
+              color: selected ? context.at.primaryLight : context.at.cardBorder,
               width: 1.5,
             ),
           ),
@@ -457,7 +449,7 @@ class _SpecRow extends StatelessWidget {
                 child: Text(
                   label,
                   style: AtTextStyles.bodyLg.copyWith(
-                    color: AtColors.ink,
+                    color: context.at.ink,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -467,18 +459,16 @@ class _SpecRow extends StatelessWidget {
                 height: 24,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: selected ? AtColors.primary : AtColors.white,
+                  color: selected ? context.at.primaryFill : context.at.surface,
                   border: Border.all(
-                    color: selected ? AtColors.primary : AtColors.dashedBorder,
+                    color: selected
+                        ? context.at.primary
+                        : context.at.dashedBorder,
                     width: 1.5,
                   ),
                 ),
                 child: selected
-                    ? const Icon(
-                        LucideIcons.check,
-                        size: 14,
-                        color: AtColors.white,
-                      )
+                    ? Icon(LucideIcons.check, size: 14, color: context.at.white)
                     : null,
               ),
             ],
@@ -506,20 +496,20 @@ class _SuggestRow extends StatelessWidget {
         behavior: HitTestBehavior.opaque,
         onTap: onTap,
         child: CustomPaint(
-          painter: const DashedRRectPainter(color: AtColors.dashedBorder),
+          painter: DashedRRectPainter(color: context.at.dashedBorder),
           child: Container(
             constraints: const BoxConstraints(minHeight: 52),
             padding: const EdgeInsets.symmetric(horizontal: 16),
             alignment: Alignment.centerLeft,
             child: Row(
               children: [
-                const Icon(LucideIcons.plus, size: 18, color: AtColors.primary),
+                Icon(LucideIcons.plus, size: 18, color: context.at.primary),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     l10n.obSuggest,
                     style: AtTextStyles.bodySm.copyWith(
-                      color: AtColors.primary,
+                      color: context.at.primary,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -652,14 +642,14 @@ class _SuggestSheetState extends ConsumerState<SuggestSheet> {
                   child: Text(
                     l10n.obSuggestThanksTitle,
                     style: AtTextStyles.sectionTitle.copyWith(
-                      color: AtColors.ink,
+                      color: context.at.ink,
                     ),
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   l10n.obSuggestThanksBody(_sentName),
-                  style: AtTextStyles.bodySm.copyWith(color: AtColors.body),
+                  style: AtTextStyles.bodySm.copyWith(color: context.at.body),
                 ),
                 const SizedBox(height: 20),
                 AtButton(
@@ -674,7 +664,7 @@ class _SuggestSheetState extends ConsumerState<SuggestSheet> {
               children: [
                 Text(
                   l10n.obSuggestBody(widget.disciplineName),
-                  style: AtTextStyles.bodySm.copyWith(color: AtColors.body),
+                  style: AtTextStyles.bodySm.copyWith(color: context.at.body),
                 ),
                 const SizedBox(height: 16),
                 AtTextField(
@@ -794,7 +784,7 @@ class _ChipGroup extends StatelessWidget {
                 header: true,
                 child: Text(
                   label,
-                  style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+                  style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
                 ),
               ),
             ),
@@ -803,7 +793,7 @@ class _ChipGroup extends StatelessWidget {
               liveRegion: true,
               child: Text(
                 l10n.obSelectedCount(selected.length),
-                style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+                style: AtTextStyles.meta.copyWith(color: context.at.muted),
               ),
             ),
           ],
@@ -833,7 +823,7 @@ class _ChipGroup extends StatelessWidget {
             padding: const EdgeInsets.only(top: 8),
             child: Text(
               l10n.obLimitReached(max),
-              style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+              style: AtTextStyles.meta.copyWith(color: context.at.muted),
             ),
           ),
       ],
@@ -1052,8 +1042,8 @@ class _LocationStepState extends ConsumerState<LocationStep> {
             const SizedBox(height: 22),
             Container(
               padding: const EdgeInsets.all(16),
-              decoration: const BoxDecoration(
-                color: AtColors.tint3,
+              decoration: BoxDecoration(
+                color: context.at.primaryTintFaint,
                 borderRadius: AtRadii.cardLg,
               ),
               child: Column(
@@ -1062,7 +1052,7 @@ class _LocationStepState extends ConsumerState<LocationStep> {
                   Text(
                     l10n.obWhoSees,
                     style: AtTextStyles.bodySm.copyWith(
-                      color: AtColors.ink,
+                      color: context.at.ink,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -1085,7 +1075,7 @@ class _LocationStepState extends ConsumerState<LocationStep> {
                   const SizedBox(height: 10),
                   Text(
                     note,
-                    style: AtTextStyles.meta.copyWith(color: AtColors.body),
+                    style: AtTextStyles.meta.copyWith(color: context.at.body),
                   ),
                 ],
               ),
@@ -1408,12 +1398,15 @@ class _PhotoStepState extends ConsumerState<PhotoStep> {
                     clipBehavior: Clip.none,
                     children: [
                       Container(
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           boxShadow: [
-                            BoxShadow(color: AtColors.white, spreadRadius: 6),
                             BoxShadow(
-                              color: AtColors.dashedBorder,
+                              color: context.at.background,
+                              spreadRadius: 6,
+                            ),
+                            BoxShadow(
+                              color: context.at.dashedBorder,
                               spreadRadius: 8,
                             ),
                           ],
@@ -1427,13 +1420,17 @@ class _PhotoStepState extends ConsumerState<PhotoStep> {
                         ),
                       ),
                       if (draft.uploadingPhoto)
-                        const Positioned.fill(
+                        Positioned.fill(
                           child: DecoratedBox(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Color.fromRGBO(255, 255, 255, 0.6),
+                              color: context.at.background.withValues(
+                                alpha: 0.6,
+                              ),
                             ),
-                            child: Center(child: CircularProgressIndicator()),
+                            child: const Center(
+                              child: CircularProgressIndicator(),
+                            ),
                           ),
                         ),
                       Positioned(
@@ -1442,17 +1439,20 @@ class _PhotoStepState extends ConsumerState<PhotoStep> {
                         child: Container(
                           width: 44,
                           height: 44,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             gradient: AtGradients.cta,
                             boxShadow: [
-                              BoxShadow(color: AtColors.white, spreadRadius: 4),
+                              BoxShadow(
+                                color: context.at.background,
+                                spreadRadius: 4,
+                              ),
                             ],
                           ),
-                          child: const Icon(
+                          child: Icon(
                             LucideIcons.camera,
                             size: 20,
-                            color: AtColors.white,
+                            color: context.at.white,
                           ),
                         ),
                       ),
@@ -1493,7 +1493,7 @@ class _PhotoStepState extends ConsumerState<PhotoStep> {
                 liveRegion: true,
                 child: Text(
                   l10n.obPhotoUploading,
-                  style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+                  style: AtTextStyles.meta.copyWith(color: context.at.muted),
                 ),
               ),
             ] else if (url != null) ...[

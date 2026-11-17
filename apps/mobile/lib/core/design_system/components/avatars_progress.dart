@@ -2,8 +2,11 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
+import '../theme.dart';
 import '../tokens.g.dart';
 import 'at_tap_target.dart';
+import 'brand.dart';
 
 enum AtAvatarShape { circle, rounded }
 
@@ -18,8 +21,18 @@ class AtAvatar extends StatelessWidget {
     this.shape = AtAvatarShape.circle,
     this.progress,
     this.semanticLabel,
-  });
+  }) : system = false;
 
+  /// System author ("Atarah Team" posts and other system authors): the colour symbol
+  /// (26 px) on a Mist circle.
+  const AtAvatar.system({super.key, this.size = 44, this.semanticLabel})
+    : name = '',
+      image = null,
+      shape = AtAvatarShape.circle,
+      progress = null,
+      system = true;
+
+  final bool system;
   final String name;
   final ImageProvider? image;
   final double size;
@@ -53,6 +66,23 @@ class AtAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (system) {
+      return Semantics(
+        image: true,
+        label: semanticLabel ?? AppLocalizations.of(context).appName,
+        excludeSemantics: true,
+        child: Container(
+          width: size,
+          height: size,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: context.at.mist,
+            shape: BoxShape.circle,
+          ),
+          child: const ExcludeSemantics(child: AtLogo.symbol(width: 26)),
+        ),
+      );
+    }
     final ringWidth = progress != null ? 3.0 : 0.0;
     final inner = size - (progress != null ? 12 : 0);
 
@@ -73,7 +103,7 @@ class AtAvatar extends StatelessWidget {
           ? Text(
               _initials,
               style: AtTextStyles.cardTitle.copyWith(
-                color: AtColors.white,
+                color: context.at.white,
                 fontSize: inner * 0.36,
               ),
             )
@@ -94,8 +124,8 @@ class AtAvatar extends StatelessWidget {
               painter: _RingPainter(
                 progress: progress!.clamp(0, 1),
                 strokeWidth: ringWidth + 1,
-                track: AtColors.progressTrack,
-                color: AtColors.primary,
+                track: context.at.progressTrack,
+                color: context.at.primary,
                 rounded: shape == AtAvatarShape.rounded,
               ),
             ),
@@ -105,14 +135,14 @@ class AtAvatar extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                 decoration: BoxDecoration(
-                  color: AtColors.primary,
+                  color: context.at.primaryFill,
                   borderRadius: AtRadii.pill,
-                  border: Border.all(color: AtColors.white, width: 2),
+                  border: Border.all(color: context.at.background, width: 2),
                 ),
                 child: Text(
                   '$pct%',
                   style: AtTextStyles.chipSm.copyWith(
-                    color: AtColors.white,
+                    color: context.at.white,
                     fontSize: 10,
                   ),
                 ),
@@ -227,8 +257,8 @@ class AtProgressBar extends StatelessWidget {
           height: height,
           child: Stack(
             children: [
-              const Positioned.fill(
-                child: ColoredBox(color: AtColors.progressTrack),
+              Positioned.fill(
+                child: ColoredBox(color: context.at.progressTrack),
               ),
               FractionallySizedBox(
                 widthFactor: v,
@@ -236,7 +266,7 @@ class AtProgressBar extends StatelessWidget {
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     color: gradient == null
-                        ? (color ?? AtColors.primary)
+                        ? (color ?? context.at.primaryFill)
                         : null,
                     gradient:
                         gradient ?? (color == null ? AtGradients.cta : null),
@@ -292,16 +322,16 @@ class AtProgressRing extends StatelessWidget {
                 progress: v,
                 strokeWidth: strokeWidth,
                 track: onDark
-                    ? const Color.fromRGBO(255, 255, 255, 0.2)
-                    : AtColors.progressTrack,
-                color: onDark ? AtColors.white : AtColors.primary,
+                    ? context.at.white.withValues(alpha: 0.2)
+                    : context.at.progressTrack,
+                color: onDark ? context.at.white : context.at.primary,
                 rounded: false,
               ),
             ),
             Text(
               label ?? '${(v * 100).round()}%',
               style: AtTextStyles.chip.copyWith(
-                color: onDark ? AtColors.white : AtColors.ink,
+                color: onDark ? context.at.white : context.at.ink,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -342,7 +372,7 @@ class AtStepper extends StatelessWidget {
                 height: 5,
                 decoration: BoxDecoration(
                   gradient: i <= current ? AtGradients.cta : null,
-                  color: i <= current ? null : AtColors.progressTrack,
+                  color: i <= current ? null : context.at.progressTrack,
                   borderRadius: AtRadii.pill,
                 ),
               ),

@@ -1,6 +1,7 @@
 /// Atarah design system: tokens, theme and the `At*` components.
 library;
 
+export 'components/appearance_toggle.dart';
 export 'components/at_tap_target.dart';
 export 'components/avatars_progress.dart';
 export 'components/banners.dart';

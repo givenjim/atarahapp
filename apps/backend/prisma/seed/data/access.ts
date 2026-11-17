@@ -115,6 +115,11 @@ export const PERMISSIONS: readonly PermissionDef[] = [
     description: 'Hide or remove content and restrict accounts per policy.',
   },
   { key: 'community.moderate', description: 'Moderate posts, comments and groups.' },
+  { key: 'community.announce', description: 'Publish staff announcements to members and groups.' },
+  {
+    key: 'community.group.manage',
+    description: 'Create and edit groups, assign group moderators and pin posts.',
+  },
 
   // ---- CONTENT_ADMIN ----
   { key: 'article.manage', description: 'Create, review, publish and archive articles.' },
@@ -135,6 +140,10 @@ export const PERMISSIONS: readonly PermissionDef[] = [
   // ---- PLATFORM_ADMIN ----
   { key: 'user.view', description: 'View users and their status history.' },
   { key: 'user.suspend', description: 'Suspend and reactivate accounts.' },
+  {
+    key: 'role.assign',
+    description: 'Assign and revoke member-level roles (staff roles also need admin.manage).',
+  },
   {
     key: 'membership.manage',
     description: 'View, grant, revoke and extend memberships and scholarships.',
@@ -189,6 +198,7 @@ const PLATFORM_ADMIN_PERMISSIONS = [
   'admin.access',
   'user.view',
   'user.suspend',
+  'role.assign',
   'membership.manage',
   'opportunity.manage',
   'opportunity.verify',
@@ -207,6 +217,8 @@ const PLATFORM_ADMIN_PERMISSIONS = [
   'report.resolve',
   'moderation.act',
   'community.moderate',
+  'community.announce',
+  'community.group.manage',
   'taxonomy.manage',
 ] as const;
 

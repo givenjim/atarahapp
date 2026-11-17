@@ -3,7 +3,8 @@ import { type Connection, Prisma } from '@prisma/client';
 import { ApiException } from '../common/api.exception';
 import { pageMeta, toSkipTake } from '../common/pagination';
 import { MediaService } from '../media/media.service';
-import { NotificationsService } from '../notifications/notifications.service';
+import { DomainEventBus } from '../community-core/domain-events';
+import { ParticipationService } from '../community-core/participation.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { type ConnectionsQueryDto } from './profile.dto';
 
@@ -34,8 +35,9 @@ const CONNECTABLE_USER = {
 export class ConnectionsService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly notifications: NotificationsService,
     private readonly media: MediaService,
+    private readonly participation: ParticipationService,
+    private readonly events: DomainEventBus,
   ) {}
 
   private pair(a: string, b: string): Prisma.ConnectionWhereInput {
@@ -90,17 +92,23 @@ export class ConnectionsService {
   }
 
   async connect(viewerId: string, handle: string): Promise<ConnectionView> {
+    // Sending requests needs an active account with a verified email or phone, and no community restriction.
+    await this.participation.assertCanParticipate(viewerId);
     const target = await this.prisma.creativeProfile.findFirst({
       where: { handle: handle.toLowerCase(), user: CONNECTABLE_USER },
       include: { user: { select: { id: true } } },
     });
     if (!target) throw ApiException.notFound('We could not find that creative.');
+    // A block in either direction looks exactly like a member who does not exist.
+    if (await this.participation.isBlockedEitherWay(viewerId, target.userId)) {
+      throw ApiException.notFound('We could not find that creative.');
+    }
     if (target.userId === viewerId) {
       throw ApiException.invalidState('You cannot connect with yourself.');
     }
     const me = await this.prisma.creativeProfile.findUnique({
       where: { userId: viewerId },
-      select: { handle: true, displayName: true, onboardingCompletedAt: true },
+      select: { onboardingCompletedAt: true },
     });
     if (!me?.onboardingCompletedAt) {
       throw ApiException.invalidState('Finish setting up your profile to connect with people.');
@@ -148,10 +156,11 @@ export class ConnectionsService {
       }
       return this.viewOf(viewerId, raced, target);
     }
-    await this.tell(target.userId, {
-      title: 'New connection request',
-      body: `${me.displayName} wants to connect with you.`,
-      deepLink: me.handle ? `/creatives/${me.handle}` : undefined,
+    await this.events.emit({
+      type: 'ConnectionRequested',
+      connectionId: row.id,
+      requesterId: viewerId,
+      addresseeId: target.userId,
     });
     return this.viewOf(viewerId, row, target);
   }
@@ -172,14 +181,11 @@ export class ConnectionsService {
     if (count !== 1) throw ApiException.invalidState('That request has already been answered.');
     const updated = await this.prisma.connection.findUniqueOrThrow({ where: { id } });
     if (action === 'accept') {
-      const me = await this.prisma.creativeProfile.findUnique({
-        where: { userId },
-        select: { handle: true, displayName: true },
-      });
-      await this.tell(row.requesterId, {
-        title: 'Connection accepted',
-        body: `${me?.displayName ?? 'A creative'} accepted your request.`,
-        deepLink: me?.handle ? `/creatives/${me.handle}` : undefined,
+      await this.events.emit({
+        type: 'ConnectionAccepted',
+        connectionId: id,
+        requesterId: row.requesterId,
+        addresseeId: userId,
       });
     }
     return this.viewOf(userId, updated, { acceptConnections: true });
@@ -272,15 +278,5 @@ export class ConnectionsService {
     return this.prisma.connection.count({
       where: { addresseeId: userId, status: 'PENDING', requester: CONNECTABLE_USER },
     });
-  }
-
-  private async tell(
-    userId: string,
-    n: { title: string; body: string; deepLink?: string },
-  ): Promise<void> {
-    // A notification problem must never undo the connection.
-    await this.notifications
-      .notify({ userId, category: 'COMMUNITY', title: n.title, body: n.body, deepLink: n.deepLink })
-      .catch(() => undefined);
   }
 }

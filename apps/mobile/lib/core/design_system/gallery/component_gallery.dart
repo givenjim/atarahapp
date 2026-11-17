@@ -28,23 +28,36 @@ Widget _stack(List<Widget> children, {double gap = 14}) => Column(
   ],
 );
 
-Widget _label(String s) => Padding(
-  padding: const EdgeInsets.only(bottom: 4),
-  child: Text(
-    s.toUpperCase(),
-    style: AtTextStyles.label.copyWith(color: AtColors.muted),
-  ),
-);
+class _Labelled extends StatelessWidget {
+  const _Labelled(this.label, this.child);
 
-Widget _labelled(String label, Widget child) => Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [_label(label), child],
-);
+  final String label;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(bottom: 4),
+        child: Text(
+          label.toUpperCase(),
+          style: AtTextStyles.label.copyWith(color: context.at.muted),
+        ),
+      ),
+      child,
+    ],
+  );
+}
+
+Widget _labelled(String label, Widget child) => _Labelled(label, child);
 
 void _noop() {}
 
+void _ignore(AtAppearance _) {}
+
 final List<GalleryEntry> galleryEntries = [
-  GalleryEntry('buttons', 'AtButton', (_) {
+  GalleryEntry('buttons', 'AtButton', (context) {
     return _stack([
       _labelled(
         'Primary · large',
@@ -112,7 +125,7 @@ final List<GalleryEntry> galleryEntries = [
       ),
     ]);
   }),
-  GalleryEntry('icon-buttons', 'AtIconButton', (_) {
+  GalleryEntry('icon-buttons', 'AtIconButton', (context) {
     return Wrap(
       spacing: 16,
       runSpacing: 16,
@@ -129,7 +142,7 @@ final List<GalleryEntry> galleryEntries = [
           variant: AtIconButtonVariant.floating,
         ),
         Container(
-          color: AtColors.ink,
+          color: context.at.ink,
           padding: const EdgeInsets.all(8),
           child: const AtIconButton(
             icon: LucideIcons.share2,
@@ -166,7 +179,7 @@ final List<GalleryEntry> galleryEntries = [
       ],
     );
   }),
-  GalleryEntry('text-fields', 'AtTextField', (_) {
+  GalleryEntry('text-fields', 'AtTextField', (context) {
     return _stack([
       const AtTextField(label: 'Full name', hint: 'Your name'),
       AtTextField(
@@ -208,7 +221,7 @@ final List<GalleryEntry> galleryEntries = [
       ),
     ]);
   }),
-  GalleryEntry('code-input', 'AtCodeInput', (_) {
+  GalleryEntry('code-input', 'AtCodeInput', (context) {
     return _stack([
       _labelled('Empty', const AtCodeInput()),
       _labelled(
@@ -228,7 +241,7 @@ final List<GalleryEntry> galleryEntries = [
       ),
     ]);
   }),
-  GalleryEntry('password', 'AtPasswordField', (_) {
+  GalleryEntry('password', 'AtPasswordField', (context) {
     return _stack([
       const AtPasswordField(label: 'Password', hint: 'At least 8 characters'),
       _labelled('Weak', const AtPasswordStrengthMeter(password: 'abc')),
@@ -240,7 +253,7 @@ final List<GalleryEntry> galleryEntries = [
       ),
     ]);
   }),
-  GalleryEntry('selection', 'Checkbox · Toggle · Radio · Segmented', (_) {
+  GalleryEntry('selection', 'Checkbox · Toggle · Radio · Segmented', (context) {
     return StatefulBuilder(
       builder: (context, set) {
         return _stack([
@@ -290,7 +303,7 @@ final List<GalleryEntry> galleryEntries = [
       },
     );
   }),
-  GalleryEntry('chips', 'AtChip', (_) {
+  GalleryEntry('chips', 'AtChip', (context) {
     return const Wrap(
       spacing: 8,
       runSpacing: 0,
@@ -303,7 +316,7 @@ final List<GalleryEntry> galleryEntries = [
       ],
     );
   }),
-  GalleryEntry('tags', 'Tags · Status pills · Verification', (_) {
+  GalleryEntry('tags', 'Tags · Status pills · Verification', (context) {
     return _stack([
       Wrap(
         spacing: 6,
@@ -336,7 +349,9 @@ final List<GalleryEntry> galleryEntries = [
       ),
     ]);
   }),
-  GalleryEntry('surfaces', 'Cards · Section header · Top bar · List rows', (_) {
+  GalleryEntry('surfaces', 'Cards · Section header · Top bar · List rows', (
+    context,
+  ) {
     return _stack([
       const AtTopBar(
         title: 'Settings',
@@ -355,7 +370,14 @@ final List<GalleryEntry> galleryEntries = [
       AtDarkCard(
         child: Text(
           'Dark hero card',
-          style: AtTextStyles.sectionTitle.copyWith(color: AtColors.white),
+          style: AtTextStyles.sectionTitle.copyWith(color: context.at.white),
+        ),
+      ),
+      AtDarkCard(
+        ring: true,
+        child: Text(
+          'Dark hero card · brand ring',
+          style: AtTextStyles.sectionTitle.copyWith(color: context.at.white),
         ),
       ),
       const AtCard(
@@ -372,7 +394,7 @@ final List<GalleryEntry> galleryEntries = [
             AtListRow(
               title: 'Privacy & visibility',
               icon: LucideIcons.eye,
-              tone: AtTone.purple,
+              tone: AtTone.violet,
               onTap: _noop,
               showDivider: true,
             ),
@@ -422,13 +444,14 @@ final List<GalleryEntry> galleryEntries = [
       ),
     ], gap: 16);
   }),
-  GalleryEntry('avatars-progress', 'Avatar · Progress', (_) {
+  GalleryEntry('avatars-progress', 'Avatar · Progress', (context) {
     return _stack([
       const Wrap(
         spacing: 12,
         runSpacing: 12,
         crossAxisAlignment: WrapCrossAlignment.center,
         children: [
+          AtAvatar.system(),
           AtAvatar(name: 'Sample Creative', size: AtAvatar.xs),
           AtAvatar(name: 'Sample Creative', size: AtAvatar.sm),
           AtAvatar(name: 'Sample Creative', size: AtAvatar.md),
@@ -449,14 +472,14 @@ final List<GalleryEntry> galleryEntries = [
       _labelled('Bar · 35%', const AtProgressBar(value: 0.35)),
       _labelled(
         'Bar · green',
-        const AtProgressBar(value: 0.8, color: AtColors.successFg),
+        AtProgressBar(value: 0.8, color: context.at.successIcon),
       ),
       Row(
         children: [
           const AtProgressRing(value: 0.64),
           const SizedBox(width: 16),
           Container(
-            color: AtColors.ink,
+            color: context.at.ink,
             padding: const EdgeInsets.all(8),
             child: const AtProgressRing(value: 0.3, onDark: true),
           ),
@@ -465,7 +488,9 @@ final List<GalleryEntry> galleryEntries = [
       _labelled('Stepper · 3 of 6', const AtStepper(steps: 6, current: 3)),
     ]);
   }),
-  GalleryEntry('sheets-modals', 'Sheet · Modal · Leaving Atarah · AI', (_) {
+  GalleryEntry('sheets-modals', 'Sheet · Modal · Leaving Atarah · AI', (
+    context,
+  ) {
     return _stack([
       AtSheetFrame(
         title: 'Filters',
@@ -497,7 +522,7 @@ final List<GalleryEntry> galleryEntries = [
       ),
     ], gap: 24);
   }),
-  GalleryEntry('states', 'Skeleton · Empty · Error · Offline', (_) {
+  GalleryEntry('states', 'Skeleton · Empty · Error · Offline', (context) {
     return _stack([
       const AtOfflineBanner(),
       const Row(
@@ -541,7 +566,7 @@ final List<GalleryEntry> galleryEntries = [
       ),
     ], gap: 8);
   }),
-  GalleryEntry('premium-future', 'Premium gate · Future screen', (_) {
+  GalleryEntry('premium-future', 'Premium gate · Future screen', (context) {
     return _stack([
       const SizedBox(
         height: 560,
@@ -567,6 +592,90 @@ final List<GalleryEntry> galleryEntries = [
       ),
     ], gap: 16);
   }),
+  GalleryEntry(
+    'brand',
+    'AtLogo · AtBrandRing · AtProPill · AtAppearanceToggle',
+    (context) {
+      return _stack([
+        _labelled(
+          'Primary · 300',
+          AtLogo(variant: AtLogoVariant.primary, width: 300),
+        ),
+        _labelled('No brand line · 140', AtLogo(width: 140)),
+        _labelled(
+          'Symbol · 20 and 26',
+          const Row(
+            children: [
+              AtLogo.symbol(width: 20),
+              SizedBox(width: 12),
+              AtLogo.symbol(width: 26),
+              SizedBox(width: 12),
+              AtLogo.symbol(width: 26, style: AtLogoStyle.monoDark),
+            ],
+          ),
+        ),
+        _labelled(
+          'Reversed on Indigo gradient',
+          Container(
+            height: 140,
+            decoration: const BoxDecoration(
+              gradient: AtGradients.splash,
+              borderRadius: AtRadii.card,
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                const AtBrandRing(),
+                AtLogo(
+                  variant: AtLogoVariant.primary,
+                  width: 300,
+                  style: AtLogoStyle.reversed,
+                ),
+              ],
+            ),
+          ),
+        ),
+        _labelled(
+          'White symbol on dark card',
+          AtDarkCard(
+            ring: true,
+            child: Row(
+              children: [
+                const AtLogo.symbol(width: 20, style: AtLogoStyle.monoWhite),
+                const SizedBox(width: 8),
+                Flexible(
+                  child: Text(
+                    'CREATIVE PASSPORT',
+                    style: AtTextStyles.label.copyWith(color: context.at.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        _labelled(
+          'Pro pill',
+          const Row(
+            children: [
+              AtProPill(),
+              SizedBox(width: 12),
+              AtProPill(compact: true),
+            ],
+          ),
+        ),
+        _labelled(
+          'Appearance toggle',
+          const Column(
+            children: [
+              AtAppearanceToggle(value: AtAppearance.light, onChanged: _ignore),
+              AtAppearanceToggle(value: AtAppearance.dark, onChanged: _ignore),
+            ],
+          ),
+        ),
+      ]);
+    },
+  ),
   GalleryEntry('navigation', 'Tab bar · Page wash', (context) {
     final items = atDefaultTabs(AppLocalizations.of(context));
     return _stack([
@@ -587,7 +696,7 @@ final List<GalleryEntry> galleryEntries = [
       ),
     ]);
   }),
-  GalleryEntry('media', 'Upload zone · Media tile', (_) {
+  GalleryEntry('media', 'Upload zone · Media tile', (context) {
     return _stack([
       const AtUploadZone(
         label: 'Add project',
@@ -613,7 +722,7 @@ final List<GalleryEntry> galleryEntries = [
       ),
     ]);
   }),
-  GalleryEntry('domain-cards', 'Domain widgets', (_) {
+  GalleryEntry('domain-cards', 'Domain widgets', (context) {
     return _stack([
       const CreativeCard(
         name: 'Sample Creative',
@@ -673,7 +782,7 @@ final List<GalleryEntry> galleryEntries = [
         authorName: 'Sample Creative',
         metaLine: 'Nairobi · 2h',
         typeLabel: 'Question',
-        typeTone: AtTone.info,
+        typeTone: AtTone.indigo,
         body: 'Sample post text for the gallery.',
         likeCount: 12,
         replyCount: 3,
@@ -726,18 +835,49 @@ final List<GalleryEntry> galleryEntries = [
   }),
 ];
 
-/// The gallery screen: a scrollable list of entries. Registered in the dev flavour only.
+/// One appearance of the gallery: a page-coloured panel under the matching theme.
+/// The golden tests render each entry in a [GalleryPanel] for both appearances.
+class GalleryPanel extends StatelessWidget {
+  const GalleryPanel({
+    super.key,
+    required this.appearance,
+    required this.child,
+  });
+
+  final AtAppearance appearance;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = appearance == AtAppearance.dark
+        ? AtTheme.dark
+        : AtTheme.light;
+    return Theme(
+      data: theme,
+      child: Builder(
+        builder: (context) => ColoredBox(
+          color: context.at.background,
+          child: Padding(
+            padding: const EdgeInsets.all(AtSpacing.gutter),
+            child: child,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// The gallery screen: every entry shown in light and in dark. Registered in the dev flavour only.
 class ComponentGalleryScreen extends StatelessWidget {
   const ComponentGalleryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AtColors.white,
       appBar: AppBar(
         title: Text(
           'Component gallery',
-          style: AtTextStyles.sectionTitleSm.copyWith(color: AtColors.ink),
+          style: AtTextStyles.sectionTitleSm.copyWith(color: context.at.ink),
         ),
       ),
       body: ListView.separated(
@@ -751,10 +891,21 @@ class ComponentGalleryScreen extends StatelessWidget {
             children: [
               Text(
                 e.title,
-                style: AtTextStyles.sectionTitle.copyWith(color: AtColors.ink),
+                style: AtTextStyles.sectionTitle.copyWith(
+                  color: context.at.ink,
+                ),
               ),
               const SizedBox(height: 12),
-              e.builder(context),
+              for (final a in AtAppearance.values) ...[
+                ClipRRect(
+                  borderRadius: AtRadii.card,
+                  child: GalleryPanel(
+                    appearance: a,
+                    child: Builder(builder: e.builder),
+                  ),
+                ),
+                const SizedBox(height: 12),
+              ],
             ],
           );
         },

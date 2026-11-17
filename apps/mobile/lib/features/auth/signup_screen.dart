@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart' show CustomSemanticsAction;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,6 +14,7 @@ import 'auth_widgets.dart';
 import 'verify_screen.dart';
 
 final _hasDigit = RegExp(r'\d');
+final _hasLetter = RegExp(r'[A-Za-z]');
 
 class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({super.key});
@@ -47,7 +49,8 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
     final nameOk = _name.text.trim().length >= 2;
     final idOk = parseIdentifier(_identifier.text).isValid;
     final pw = _password.text;
-    final pwOk = pw.length >= 8 && _hasDigit.hasMatch(pw);
+    final pwOk =
+        pw.length >= 8 && _hasDigit.hasMatch(pw) && _hasLetter.hasMatch(pw);
     setState(() {
       _nameError = nameOk ? null : l10n.fullNameError;
       _identifierError = idOk ? null : l10n.identifierError;
@@ -81,10 +84,13 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
       );
     } on ApiFailure catch (e) {
       if (!mounted) return;
+      final l10n = AppLocalizations.of(context);
       setState(() {
         _nameError = e.fieldError('fullName');
         _identifierError = e.fieldError('identifier');
-        _passwordError = e.fieldError('password');
+        _passwordError = e.reason == 'WEAK_PASSWORD'
+            ? l10n.passwordRuleError
+            : e.fieldError('password');
         _consentError = e.fieldError('consent');
         _accountExists = e.reason == 'ACCOUNT_EXISTS';
         if (_accountExists) _identifierError = e.message;
@@ -92,6 +98,20 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
             _nameError ?? _identifierError ?? _passwordError ?? _consentError;
         _bannerError = mapped == null ? e.message : null;
       });
+    } on AppFailure catch (e) {
+      if (mounted) setState(() => _bannerError = e.message);
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  Future<void> _google() async {
+    setState(() {
+      _busy = true;
+      _bannerError = null;
+    });
+    try {
+      await ref.read(sessionControllerProvider.notifier).signInWithGoogle();
     } on AppFailure catch (e) {
       if (mounted) setState(() => _bannerError = e.message);
     } finally {
@@ -160,9 +180,18 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
             _consent = v;
             _consentError = null;
           }),
+          semanticLabel:
+              '${l10n.consentPrefix}${l10n.consentTermsLink}${l10n.consentAnd}${l10n.consentPrivacyLink}',
+          // The links sit inside one labelled control, so a screen reader reaches them as actions.
+          customActions: {
+            CustomSemanticsAction(label: l10n.consentTermsLink): () =>
+                context.push(Routes.legalPath('TERMS')),
+            CustomSemanticsAction(label: l10n.consentPrivacyLink): () =>
+                context.push(Routes.legalPath('PRIVACY')),
+          },
           labelWidget: Text.rich(
             TextSpan(
-              style: AtTextStyles.bodySm.copyWith(color: AtColors.body),
+              style: AtTextStyles.bodySm.copyWith(color: context.at.body),
               children: [
                 TextSpan(text: l10n.consentPrefix),
                 _link(
@@ -182,7 +211,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
           const SizedBox(height: 6),
           Text(
             _consentError!,
-            style: AtTextStyles.meta.copyWith(color: AtColors.pinkStrong),
+            style: AtTextStyles.meta.copyWith(color: context.at.coralStrong),
           ),
         ],
         if (_bannerError != null) ...[
@@ -200,20 +229,19 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
           AtButton(
             label: l10n.googleContinue,
             variant: AtButtonVariant.secondary,
-            // The Google SDK and OAuth credentials are an owner decision (Master Prompt section 12). With the
-            // flag on but no SDK wired, the button says so instead of doing nothing.
-            onPressed: () => context.push(
-              Routes.soonPath('later', name: l10n.googleContinue),
-            ),
+            // Supabase OAuth in the browser; the session returns through the `atarah://auth-callback` link.
+            onPressed: _busy ? null : _google,
           ),
         ],
         const SizedBox(height: 16),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        // A Wrap, so the sentence and the button stack at large text sizes instead of overflowing.
+        Wrap(
+          alignment: WrapAlignment.center,
+          crossAxisAlignment: WrapCrossAlignment.center,
           children: [
             Text(
               l10n.alreadyMember,
-              style: AtTextStyles.bodySm.copyWith(color: AtColors.body),
+              style: AtTextStyles.bodySm.copyWith(color: context.at.body),
             ),
             AtButton(
               label: l10n.welcomeSignIn,
@@ -243,7 +271,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
       child: Text(
         text,
         style: AtTextStyles.bodySm.copyWith(
-          color: AtColors.primary,
+          color: context.at.primary,
           fontWeight: FontWeight.w700,
         ),
       ),

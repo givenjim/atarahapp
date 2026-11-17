@@ -20,24 +20,29 @@ class WelcomeScreen extends StatelessWidget {
         : '$path?from=${Uri.encodeQueryComponent(intended)}';
 
     final pillars = [
-      (LucideIcons.user, l10n.pillarIdentity, AtColors.tint1, AtColors.primary),
+      (
+        LucideIcons.user,
+        l10n.pillarIdentity,
+        context.at.primaryTint,
+        context.at.primary,
+      ),
       (
         LucideIcons.graduationCap,
         l10n.pillarLearn,
-        AtColors.successBg,
-        AtColors.successStrong,
+        context.at.successSurface,
+        context.at.successStrong,
       ),
       (
         LucideIcons.users,
         l10n.pillarConnect,
-        AtColors.pinkBg,
-        AtColors.pinkStrong,
+        context.at.coralSurface,
+        context.at.coralStrong,
       ),
       (
         LucideIcons.briefcase,
         l10n.pillarEarn,
-        AtColors.warningBg,
-        AtColors.warningStrong,
+        context.at.tangerineSurface,
+        context.at.tangerineStrong,
       ),
     ];
 
@@ -56,7 +61,7 @@ class WelcomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const AtWordmark(size: 28),
+                    AtLogo(width: 140),
                     const SizedBox(height: 26),
                     // Placeholder artwork from the design prototype; swap for licensed imagery when supplied.
                     SizedBox(
@@ -84,18 +89,18 @@ class WelcomeScreen extends StatelessWidget {
                                 const SizedBox(height: 10),
                                 Expanded(
                                   child: Container(
-                                    decoration: const BoxDecoration(
-                                      gradient: AtGradients.darkCard,
+                                    decoration: BoxDecoration(
+                                      gradient: context.at.darkCardGradient,
                                       borderRadius: AtRadii.card,
                                     ),
                                     alignment: Alignment.center,
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        const Icon(
+                                        Icon(
                                           LucideIcons.sparkles,
                                           size: 18,
-                                          color: AtColors.white,
+                                          color: context.at.white,
                                         ),
                                         const SizedBox(width: 8),
                                         Flexible(
@@ -103,7 +108,7 @@ class WelcomeScreen extends StatelessWidget {
                                             l10n.tagline,
                                             maxLines: 2,
                                             style: AtTextStyles.metaSm.copyWith(
-                                              color: AtColors.white,
+                                              color: context.at.white,
                                               letterSpacing: 0.8,
                                             ),
                                           ),
@@ -124,7 +129,7 @@ class WelcomeScreen extends StatelessWidget {
                       child: Text(
                         l10n.welcomeHeadline,
                         style: AtTextStyles.tabTitle.copyWith(
-                          color: AtColors.ink,
+                          color: context.at.ink,
                           fontSize: 30,
                         ),
                       ),
@@ -132,7 +137,7 @@ class WelcomeScreen extends StatelessWidget {
                     const SizedBox(height: 12),
                     Text(
                       l10n.welcomeSubhead,
-                      style: AtTextStyles.body.copyWith(color: AtColors.body),
+                      style: AtTextStyles.body.copyWith(color: context.at.body),
                     ),
                     const SizedBox(height: 22),
                     Row(
@@ -259,7 +264,7 @@ class _Pillar extends StatelessWidget {
           Text(
             label,
             style: AtTextStyles.metaSm.copyWith(
-              color: AtColors.ink,
+              color: context.at.ink,
               fontWeight: FontWeight.w600,
             ),
           ),

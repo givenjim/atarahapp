@@ -31,6 +31,8 @@ jobs:
           node-version: 22
       - name: Brand check
         run: node scripts/check-brand.mjs
+      - name: Colour check (no pre-v2.3 palette)
+        run: node scripts/check-colors.mjs
       - name: Secret scan (gitleaks, working tree)
         run: |
           curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz | tar -xz gitleaks
@@ -39,18 +41,20 @@ jobs:
   node:
     name: Lint, typecheck, test and build (backend, web, admin)
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
+    services:
+      redis:
+        image: redis:7-alpine
+        ports: ['56379:6379']
+        options: >-
+          --health-cmd "redis-cli ping" --health-interval 5s --health-timeout 3s --health-retries 20
     env:
       # Placeholders so the OpenAPI export can load the app configuration. Nothing connects to them.
-      ATARAH_DATABASE_URL: postgresql://atarah:unused@localhost:5432/atarah
-      ATARAH_REDIS_URL: redis://localhost:6379
-      ATARAH_S3_ENDPOINT: http://localhost:9000
-      ATARAH_S3_ACCESS_KEY: unused
-      ATARAH_S3_SECRET_KEY: unused
-      ATARAH_JWT_ACCESS_SECRET: ci-access-secret-ci-access-secret-0000000
-      ATARAH_REFRESH_TOKEN_PEPPER: ci-refresh-pepper-ci-refresh-pepper-0000
-      ATARAH_CODE_PEPPER: ci-code-pepper-ci-code-pepper-000000000
-      ATARAH_DATA_ENCRYPTION_KEY: ci-data-key-ci-data-key-ci-0000000000
+      ATARAH_DATABASE_URL: postgresql://atarah_backend:unused@localhost:55322/postgres
+      ATARAH_REDIS_URL: redis://localhost:56379
+      ATARAH_SUPABASE_URL: http://127.0.0.1:55321
+      ATARAH_SUPABASE_SECRET_KEY: ci-placeholder-secret-key-not-used
+      ATARAH_SEND_SMS_HOOK_SECRET: v1,whsec_Y2ktcGxhY2Vob2xkZXItaG9vay1zZWNyZXQtMDAwMDAwMDA=
       ATARAH_PUBLIC_URL: http://localhost:3000
       ATARAH_CORS_ORIGINS: http://localhost:3200
     steps:
@@ -61,6 +65,15 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.121.0
+      - name: Start the local Supabase stack (Auth, Postgres, Storage, Realtime, mail catcher)
+        run: |
+          cp supabase/.env.example supabase/.env
+          SECRET="v1,whsec_$(node -e "console.log(require('crypto').randomBytes(36).toString('base64'))")"
+          sed -i "s|^SEND_SMS_HOOK_SECRET=.*|SEND_SMS_HOOK_SECRET=${SECRET}|" supabase/.env
+          supabase start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor
       - run: pnpm --filter @atarah/backend db:generate
       - name: Format
         run: pnpm format:check
@@ -72,8 +85,10 @@ jobs:
         run: |
           pnpm gen:api
           git diff --exit-code packages/api-contracts
-      - name: Test (backend integration tests start PostgreSQL, Redis and S3 with Testcontainers)
+      - name: Test (backend integration tests run against the local Supabase stack and Redis)
         run: pnpm test
+      - name: Row Level Security check
+        run: node scripts/check-rls.mjs
       - name: Build
         run: pnpm build
       - name: Upload builds for the e2e job
@@ -90,35 +105,13 @@ jobs:
     name: Admin Playwright flow
     runs-on: ubuntu-latest
     needs: node
-    timeout-minutes: 30
+    timeout-minutes: 40
     services:
-      postgres:
-        image: postgres:16-alpine
-        env:
-          POSTGRES_USER: atarah
-          POSTGRES_PASSWORD: atarah_ci_password
-          POSTGRES_DB: atarah
-        ports: ['5432:5432']
-        options: >-
-          --health-cmd "pg_isready -U atarah" --health-interval 5s --health-timeout 3s --health-retries 20
       redis:
         image: redis:7-alpine
-        ports: ['6379:6379']
+        ports: ['56379:6379']
         options: >-
           --health-cmd "redis-cli ping" --health-interval 5s --health-timeout 3s --health-retries 20
-    env:
-      ATARAH_ENV: dev
-      ATARAH_DATABASE_URL: postgresql://atarah:atarah_ci_password@localhost:5432/atarah
-      ATARAH_REDIS_URL: redis://localhost:6379
-      ATARAH_S3_ENDPOINT: http://localhost:9000
-      ATARAH_S3_ACCESS_KEY: ci_access
-      ATARAH_S3_SECRET_KEY: ci_secret_key_value
-      ATARAH_JWT_ACCESS_SECRET: ci-access-secret-ci-access-secret-0000000
-      ATARAH_REFRESH_TOKEN_PEPPER: ci-refresh-pepper-ci-refresh-pepper-0000
-      ATARAH_CODE_PEPPER: ci-code-pepper-ci-code-pepper-000000000
-      ATARAH_DATA_ENCRYPTION_KEY: ci-data-key-ci-data-key-ci-0000000000
-      ATARAH_PUBLIC_URL: http://localhost:3000
-      ATARAH_CORS_ORIGINS: http://localhost:3200
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -127,20 +120,30 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.121.0
+      - name: Start the local Supabase stack
+        run: |
+          cp supabase/.env.example supabase/.env
+          SECRET="v1,whsec_$(node -e "console.log(require('crypto').randomBytes(36).toString('base64'))")"
+          sed -i "s|^SEND_SMS_HOOK_SECRET=.*|SEND_SMS_HOOK_SECRET=${SECRET}|" supabase/.env
+          supabase start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor
       - run: pnpm --filter @atarah/backend db:generate
       - uses: actions/download-artifact@v4
         with:
           name: builds
           path: .
-      - name: Migrate and seed
-        working-directory: apps/backend
+      - name: Backend environment, migrate and seed
         run: |
-          pnpm db:migrate:deploy
-          pnpm db:seed
+          node scripts/supabase-env.mjs
+          pnpm --filter @atarah/backend db:migrate:deploy
+          pnpm --filter @atarah/backend db:provision
+          pnpm --filter @atarah/backend db:seed
       - name: Start the backend
         working-directory: apps/backend
         run: |
-          nohup node dist/main.js > backend.log 2>&1 &
+          nohup node --env-file=.env dist/main.js > backend.log 2>&1 &
           for i in $(seq 1 40); do curl -sf http://localhost:3000/health/live && break; sleep 2; done
       - name: Install Chromium
         working-directory: apps/admin

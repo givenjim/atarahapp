@@ -1,0 +1,199 @@
+// Opportunities (P1-M9): providers, listings, structured eligibility rules, member tracking and link health.
+// Owner module: opportunities. Every table is deny-all for the Supabase client roles (RLS on, no policies, no grants).
+// Trust and publication are staff decisions: a provider can submit (PENDING_REVIEW) but never sets `trust`.
+
+enum OpportunityProviderType {
+  GOVERNMENT
+  NGO
+  CORPORATE
+  FESTIVAL
+  STUDIO
+  EDUCATION
+  OTHER
+}
+
+enum WorkMode {
+  ONSITE
+  REMOTE
+  HYBRID
+}
+
+/// Result of the last link check. UNKNOWN until the first check; BROKEN only flags the listing for admins.
+enum LinkStatus {
+  UNKNOWN
+  OK
+  BROKEN
+}
+
+enum OpportunityRuleType {
+  RESIDENCY
+  AGE_RANGE
+  DISCIPLINE_IN
+  SKILL_IN
+  MIN_PROJECTS
+  DOCUMENT
+  CUSTOM_TEXT
+}
+
+/// An organisation that offers opportunities. `opportunitiesCount` is the number of PUBLISHED listings, refreshed
+/// by the nightly job and on every publish or close.
+model OpportunityProvider {
+  id                 String                  @id @default(uuid()) @db.Uuid
+  name               String
+  type               OpportunityProviderType @default(OTHER)
+  logoMediaId        String?                 @db.Uuid
+  website            String?
+  verificationStatus VerificationStatus      @default(NOT_SUBMITTED)
+  /// Set when the provider has an account (the OPPORTUNITY_PROVIDER role); null for providers staff entered.
+  ownerUserId        String?                 @db.Uuid
+  opportunitiesCount Int                     @default(0)
+  isDemo             Boolean                 @default(false)
+  createdAt          DateTime                @default(now())
+  updatedAt          DateTime                @updatedAt
+
+  logoMedia     MediaAsset?   @relation("ProviderLogo", fields: [logoMediaId], references: [id], onDelete: SetNull)
+  owner         User?         @relation("ProviderOwner", fields: [ownerUserId], references: [id], onDelete: SetNull)
+  opportunities Opportunity[]
+
+  @@index([ownerUserId])
+  @@index([name(ops: raw("gin_trgm_ops"))], type: Gin, map: "opportunity_providers_name_trgm")
+  @@map("opportunity_providers")
+}
+
+/// A listing. Members see only PUBLISHED rows whose deadline has not passed. `applicationDomain` is derived from
+/// `applicationUrl` by the service and is what the "Leaving Atarah" modal names.
+model Opportunity {
+  id                String                   @id @default(uuid()) @db.Uuid
+  providerId        String                   @db.Uuid
+  slug              String                   @unique
+  type              OpportunityType
+  title             String
+  summary           String
+  about             String                   @default("")
+  /// Lists of short strings.
+  requirements      Json                     @default("[]")
+  benefits          Json                     @default("[]")
+  valueMinMinor     BigInt?
+  valueMaxMinor     BigInt?
+  valueCurrency     String?                  @db.Char(3)
+  /// Free text used when the value is not a plain amount ("Paid stipend", "Equity").
+  valueText         String?
+  deadlineAt        DateTime?
+  countryId         String?                  @db.Uuid
+  countyId          String?                  @db.Uuid
+  workMode          WorkMode                 @default(ONSITE)
+  applicationMethod ApplicationMethod        @default(EXTERNAL_WEBSITE)
+  /// An https URL for EXTERNAL_WEBSITE, a mailto-free address for EMAIL (kept in `applicationEmail`).
+  applicationUrl    String?
+  applicationEmail  String?
+  applicationDomain String?
+  trust             OpportunityTrust         @default(EXTERNAL_SOURCE)
+  status            OpportunityStatus        @default(DRAFT)
+  featuredUntil     DateTime?
+  /// Reserved for the public web in Phase 3.
+  isPublic          Boolean                  @default(false)
+  sourceUrl         String?
+  importedAt        DateTime?
+  lastCheckedAt     DateTime?
+  linkStatus        LinkStatus               @default(UNKNOWN)
+  publishedAt       DateTime?
+  createdById       String?                  @db.Uuid
+  /// Generated full-text vector (title, summary). Read-only: the database maintains it.
+  searchVector      Unsupported("tsvector")?
+  isDemo            Boolean                  @default(false)
+  createdAt         DateTime                 @default(now())
+  updatedAt         DateTime                 @updatedAt
+
+  provider    OpportunityProvider          @relation(fields: [providerId], references: [id], onDelete: Restrict)
+  country     Country?                     @relation("OpportunityCountry", fields: [countryId], references: [id], onDelete: SetNull)
+  county      County?                      @relation("OpportunityCounty", fields: [countyId], references: [id], onDelete: SetNull)
+  createdBy   User?                        @relation("OpportunityCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  disciplines OpportunityDiscipline[]
+  rules       OpportunityRequirementRule[]
+  trackings   OpportunityTracking[]
+  linkChecks  ExternalLinkCheck[]
+  attachments PostAttachment[]
+
+  @@index([status, deadlineAt], map: "opportunities_published_deadline_idx")
+  @@index([type, status])
+  @@index([countyId, status])
+  @@index([providerId, status])
+  @@index([searchVector], type: Gin, map: "opportunities_search_vector_idx")
+  @@index([title(ops: raw("gin_trgm_ops"))], type: Gin, map: "opportunities_title_trgm")
+  @@map("opportunities")
+}
+
+model OpportunityDiscipline {
+  opportunityId String   @db.Uuid
+  disciplineId  String   @db.Uuid
+  createdAt     DateTime @default(now())
+
+  opportunity Opportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  discipline  Discipline  @relation("OpportunityDisciplines", fields: [disciplineId], references: [id], onDelete: Restrict)
+
+  @@id([opportunityId, disciplineId])
+  @@index([disciplineId])
+  @@map("opportunity_disciplines")
+}
+
+/// One structured eligibility check. `params` is validated per `ruleType` by the service (zod); see the rule engine.
+model OpportunityRequirementRule {
+  id            String              @id @default(uuid()) @db.Uuid
+  opportunityId String              @db.Uuid
+  ruleType      OpportunityRuleType
+  params        Json                @default("{}")
+  label         String
+  /// A blocking rule that is not met means the member is not eligible; a non-blocking one is advice.
+  isBlocking    Boolean             @default(true)
+  sortOrder     Int                 @default(0)
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+
+  opportunity Opportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+
+  @@index([opportunityId, sortOrder])
+  @@map("opportunity_requirement_rules")
+}
+
+/// A member's relationship to an opportunity. A row exists from the first save or track. Un-saving deletes the
+/// row, and is allowed only while the status is SAVED.
+model OpportunityTracking {
+  id            String                    @id @default(uuid()) @db.Uuid
+  userId        String                    @db.Uuid
+  opportunityId String                    @db.Uuid
+  status        OpportunityTrackingStatus @default(SAVED)
+  savedAt       DateTime?
+  appliedAt     DateTime?
+  completedAt   DateTime?
+  outcome       OpportunityOutcome?
+  /// Reserved for a member checklist; not shown in Phase 1.
+  checklist     Json                      @default("[]")
+  notes         String?
+  createdAt     DateTime                  @default(now())
+  updatedAt     DateTime                  @updatedAt
+
+  user        User        @relation("OpportunityTracker", fields: [userId], references: [id], onDelete: Cascade)
+  opportunity Opportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, opportunityId])
+  @@index([userId, status])
+  @@index([opportunityId, status])
+  @@map("opportunity_trackings")
+}
+
+/// One link-health check. The weekly job writes a row per listing and updates `Opportunity.linkStatus`.
+model ExternalLinkCheck {
+  id            String     @id @default(uuid()) @db.Uuid
+  opportunityId String     @db.Uuid
+  url           String
+  checkedAt     DateTime   @default(now())
+  httpStatus    Int?
+  result        LinkStatus
+  error         String?
+
+  opportunity Opportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+
+  @@index([opportunityId, checkedAt(sort: Desc)])
+  @@index([result, checkedAt(sort: Desc)])
+  @@map("external_link_checks")
+}

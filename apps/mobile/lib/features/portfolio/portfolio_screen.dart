@@ -70,7 +70,7 @@ class ProjectTile extends ConsumerWidget {
                   fit: StackFit.expand,
                   children: [
                     ColoredBox(
-                      color: AtColors.softTile,
+                      color: context.at.softTile,
                       child: image != null
                           ? Image(
                               image: image,
@@ -80,7 +80,7 @@ class ProjectTile extends ConsumerWidget {
                           : Icon(
                               categoryIcon(p.category.json),
                               size: 32,
-                              color: AtColors.muted,
+                              color: context.at.muted,
                             ),
                     ),
                     Positioned(
@@ -92,12 +92,12 @@ class ProjectTile extends ConsumerWidget {
                           if (isDraft)
                             AtTag(label: l10n.pjDraft, tone: AtTone.warning),
                           if (p.hidden)
-                            AtTag(label: l10n.pjHidden, tone: AtTone.pink),
+                            AtTag(label: l10n.pjHidden, tone: AtTone.coral),
                           if (p.featured && !isDraft)
-                            const Icon(
+                            Icon(
                               LucideIcons.star,
                               size: 16,
-                              color: AtColors.white,
+                              color: context.at.white,
                             ),
                         ],
                       ),
@@ -111,14 +111,14 @@ class ProjectTile extends ConsumerWidget {
               p.title.isEmpty ? l10n.pjUntitled : p.title,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+              style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
             ),
             if (subtitle.isNotEmpty)
               Text(
                 subtitle,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+                style: AtTextStyles.meta.copyWith(color: context.at.muted),
               ),
           ],
         ),
@@ -317,7 +317,9 @@ class _PortfolioScreenState extends ConsumerState<PortfolioScreen> {
                     published.isEmpty
                         ? l10n.pjEmptyBody
                         : l10n.pjNothingInFilter,
-                    style: AtTextStyles.bodySm.copyWith(color: AtColors.muted),
+                    style: AtTextStyles.bodySm.copyWith(
+                      color: context.at.muted,
+                    ),
                   ),
                 ),
               const SizedBox(height: 16),
@@ -334,7 +336,7 @@ class _PortfolioScreenState extends ConsumerState<PortfolioScreen> {
                   child: Text(
                     l10n.pjDrafts,
                     style: AtTextStyles.sectionTitleSm.copyWith(
-                      color: AtColors.ink,
+                      color: context.at.ink,
                     ),
                   ),
                 ),
@@ -372,13 +374,13 @@ class _InviteCard extends StatelessWidget {
         children: [
           Text(
             l10n.pjInviteTitle(invite.ownerName, invite.projectTitle),
-            style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+            style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
           ),
           if (invite.role != null) ...[
             const SizedBox(height: 4),
             Text(
               l10n.pjInviteRole(invite.role!),
-              style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+              style: AtTextStyles.meta.copyWith(color: context.at.muted),
             ),
           ],
           const SizedBox(height: 12),

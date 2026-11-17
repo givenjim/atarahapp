@@ -80,9 +80,16 @@ enum _SaveState { saved, saving, failed }
 /// hand), and nothing is public until they publish. [projectId] is `new` for a project that does not exist yet:
 /// the draft is created on the first change, so opening and leaving leaves nothing behind.
 class ProjectEditorScreen extends ConsumerStatefulWidget {
-  const ProjectEditorScreen({super.key, required this.projectId});
+  const ProjectEditorScreen({
+    super.key,
+    required this.projectId,
+    this.prefillSkill,
+  });
 
   final String projectId;
+
+  /// A skill to start a new project with (the practice box of a Skill Labs lesson sets it).
+  final TaxonomyItemDto? prefillSkill;
 
   @override
   ConsumerState<ProjectEditorScreen> createState() =>
@@ -128,6 +135,8 @@ class _ProjectEditorScreenState extends ConsumerState<ProjectEditorScreen> {
     _repo = ref.read(portfolioRepositoryProvider);
     if (widget.projectId == 'new') {
       _loading = false;
+      final skill = widget.prefillSkill;
+      if (skill != null) _skills = [skill];
     } else {
       _id = widget.projectId;
       _load();
@@ -546,7 +555,7 @@ class _ProjectEditorScreenState extends ConsumerState<ProjectEditorScreen> {
       header: true,
       child: Text(
         text,
-        style: AtTextStyles.cardTitle.copyWith(color: AtColors.ink),
+        style: AtTextStyles.cardTitle.copyWith(color: context.at.ink),
       ),
     ),
   );
@@ -633,7 +642,7 @@ class _ProjectEditorScreenState extends ConsumerState<ProjectEditorScreen> {
       children: [
         Text(
           l10n.pjIntro,
-          style: AtTextStyles.bodySm.copyWith(color: AtColors.muted),
+          style: AtTextStyles.bodySm.copyWith(color: context.at.muted),
         ),
         const SizedBox(height: 8),
         Semantics(
@@ -642,8 +651,8 @@ class _ProjectEditorScreenState extends ConsumerState<ProjectEditorScreen> {
             _statusText(l10n),
             style: AtTextStyles.meta.copyWith(
               color: _saveState == _SaveState.failed
-                  ? AtColors.pinkStrong
-                  : AtColors.muted,
+                  ? context.at.coralStrong
+                  : context.at.muted,
             ),
           ),
         ),
@@ -897,7 +906,7 @@ class _ProjectEditorScreenState extends ConsumerState<ProjectEditorScreen> {
         const SizedBox(height: 4),
         Text(
           l10n.pjVisibilityNote,
-          style: AtTextStyles.meta.copyWith(color: AtColors.muted),
+          style: AtTextStyles.meta.copyWith(color: context.at.muted),
         ),
         const SizedBox(height: 8),
         ToggleRow(
@@ -1015,7 +1024,7 @@ class _SkillPickerState extends ConsumerState<_SkillPicker> {
             padding: const EdgeInsets.all(12),
             child: Text(
               l10n.skNoMatches,
-              style: AtTextStyles.bodySm.copyWith(color: AtColors.muted),
+              style: AtTextStyles.bodySm.copyWith(color: context.at.muted),
             ),
           )
         else
@@ -1152,7 +1161,7 @@ class _CollaboratorSheetState extends ConsumerState<_CollaboratorSheet> {
               padding: const EdgeInsets.all(12),
               child: Text(
                 l10n.pjCollabNoMembers,
-                style: AtTextStyles.bodySm.copyWith(color: AtColors.muted),
+                style: AtTextStyles.bodySm.copyWith(color: context.at.muted),
               ),
             )
           else
