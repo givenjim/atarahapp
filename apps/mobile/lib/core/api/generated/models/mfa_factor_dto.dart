@@ -18,10 +18,9 @@ class MfaFactorDto {
     required this.friendlyName,
     required this.createdAt,
   });
-
-  factory MfaFactorDto.fromJson(Map<String, Object?> json) =>
-      _$MfaFactorDtoFromJson(json);
-
+  
+  factory MfaFactorDto.fromJson(Map<String, Object?> json) => _$MfaFactorDtoFromJson(json);
+  
   final String id;
   final MfaFactorDtoType type;
   final MfaFactorDtoStatus status;

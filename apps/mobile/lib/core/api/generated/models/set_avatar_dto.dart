@@ -8,11 +8,12 @@ part 'set_avatar_dto.g.dart';
 
 @JsonSerializable()
 class SetAvatarDto {
-  const SetAvatarDto({required this.mediaId});
-
-  factory SetAvatarDto.fromJson(Map<String, Object?> json) =>
-      _$SetAvatarDtoFromJson(json);
-
+  const SetAvatarDto({
+    required this.mediaId,
+  });
+  
+  factory SetAvatarDto.fromJson(Map<String, Object?> json) => _$SetAvatarDtoFromJson(json);
+  
   /// A READY image the member uploaded through /media (PUBLIC).
   final String mediaId;
 

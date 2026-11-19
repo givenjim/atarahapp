@@ -10,14 +10,15 @@ part 'get_api_v1_creatives_handle_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1CreativesHandleResponse {
-  const GetApiV1CreativesHandleResponse({required this.data, this.meta});
-
-  factory GetApiV1CreativesHandleResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1CreativesHandleResponseFromJson(json);
-
+  const GetApiV1CreativesHandleResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1CreativesHandleResponse.fromJson(Map<String, Object?> json) => _$GetApiV1CreativesHandleResponseFromJson(json);
+  
   final PublicProfileDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1CreativesHandleResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1CreativesHandleResponseToJson(this);
 }

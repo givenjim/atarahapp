@@ -10,11 +10,13 @@ part 'delete_api_v1_me_avatar_response.g.dart';
 
 @JsonSerializable()
 class DeleteApiV1MeAvatarResponse {
-  const DeleteApiV1MeAvatarResponse({required this.data, this.meta});
-
-  factory DeleteApiV1MeAvatarResponse.fromJson(Map<String, Object?> json) =>
-      _$DeleteApiV1MeAvatarResponseFromJson(json);
-
+  const DeleteApiV1MeAvatarResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory DeleteApiV1MeAvatarResponse.fromJson(Map<String, Object?> json) => _$DeleteApiV1MeAvatarResponseFromJson(json);
+  
   final OnboardingStateDto data;
   final dynamic meta;
 

@@ -16,10 +16,9 @@ class ProviderFieldsDto {
     this.website,
     this.ownerUserId,
   });
-
-  factory ProviderFieldsDto.fromJson(Map<String, Object?> json) =>
-      _$ProviderFieldsDtoFromJson(json);
-
+  
+  factory ProviderFieldsDto.fromJson(Map<String, Object?> json) => _$ProviderFieldsDtoFromJson(json);
+  
   final String name;
   final OpportunityProviderType? type;
   final String? website;

@@ -18,10 +18,9 @@ class ExperienceDto {
     this.endDate,
     this.description,
   });
-
-  factory ExperienceDto.fromJson(Map<String, Object?> json) =>
-      _$ExperienceDtoFromJson(json);
-
+  
+  factory ExperienceDto.fromJson(Map<String, Object?> json) => _$ExperienceDtoFromJson(json);
+  
   final String id;
   final String title;
   final String organisation;

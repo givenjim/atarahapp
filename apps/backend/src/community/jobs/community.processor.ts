@@ -22,6 +22,7 @@ import {
   ACC_SAVED_CLEANUP_JOB,
 } from '../../account/jobs/job-names';
 import { EXPORT_JOB } from '../../account/export.service';
+import { CV_RENDER_JOB, CvService } from '../../cv/cv.service';
 import { CommunityJobsService } from './community-jobs.service';
 import { BACKLOG_JOB, LINK_PREVIEW_JOB, RECONCILE_JOB } from './job-names';
 
@@ -36,6 +37,7 @@ export class CommunityProcessor extends WorkerHost implements OnApplicationBoots
     private readonly opportunityJobs: OpportunityJobsService,
     private readonly learningJobs: LearningJobsService,
     private readonly accountJobs: AccountJobsService,
+    private readonly cv: CvService,
     @InjectQueue('maintenance') private readonly queue: Queue,
   ) {
     super();
@@ -97,7 +99,7 @@ export class CommunityProcessor extends WorkerHost implements OnApplicationBoots
     }
   }
 
-  async process(job: Job<{ postId?: string; requestId?: string }>): Promise<unknown> {
+  async process(job: Job<{ postId?: string; requestId?: string; renderId?: string }>): Promise<unknown> {
     switch (job.name) {
       case LINK_PREVIEW_JOB:
         return this.jobs.fetchLinkPreview(String(job.data.postId));
@@ -115,6 +117,8 @@ export class CommunityProcessor extends WorkerHost implements OnApplicationBoots
         return this.opportunityJobs.refreshCounts();
       case LEARNING_LINKS_JOB:
         return this.learningJobs.checkLinks();
+      case CV_RENDER_JOB:
+        return this.cv.build(String(job.data.renderId));
       case EXPORT_JOB:
         return this.accountJobs.buildExport(String(job.data.requestId));
       case ACC_BROADCAST_JOB:

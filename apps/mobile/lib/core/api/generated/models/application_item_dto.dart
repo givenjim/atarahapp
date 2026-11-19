@@ -18,10 +18,9 @@ class ApplicationItemDto {
     required this.status,
     required this.metaLine,
   });
-
-  factory ApplicationItemDto.fromJson(Map<String, Object?> json) =>
-      _$ApplicationItemDtoFromJson(json);
-
+  
+  factory ApplicationItemDto.fromJson(Map<String, Object?> json) => _$ApplicationItemDtoFromJson(json);
+  
   final OpportunityCardDto opportunity;
   final TrackingStateDto tracking;
   final ApplicationItemDtoStatus status;

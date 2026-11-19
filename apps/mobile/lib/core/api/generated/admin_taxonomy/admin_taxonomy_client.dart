@@ -26,8 +26,7 @@ part 'admin_taxonomy_client.g.dart';
 
 @RestApi()
 abstract class AdminTaxonomyClient {
-  factory AdminTaxonomyClient(Dio dio, {String? baseUrl}) =
-      _AdminTaxonomyClient;
+  factory AdminTaxonomyClient(Dio dio, {String? baseUrl}) = _AdminTaxonomyClient;
 
   /// [disciplineId] - Specialisations and skills: only this discipline (id).
   ///
@@ -66,22 +65,19 @@ abstract class AdminTaxonomyClient {
   });
 
   @POST('/api/v1/admin/specialisation-suggestions/{id}/approve')
-  Future<PostApiV1AdminSpecialisationSuggestionsIdApproveResponse>
-  approveSuggestion({
+  Future<PostApiV1AdminSpecialisationSuggestionsIdApproveResponse> approveSuggestion({
     @Path('id') required String id,
     @Body() required ApproveSuggestionDto body,
   });
 
   @POST('/api/v1/admin/specialisation-suggestions/{id}/merge')
-  Future<PostApiV1AdminSpecialisationSuggestionsIdMergeResponse>
-  mergeSuggestion({
+  Future<PostApiV1AdminSpecialisationSuggestionsIdMergeResponse> mergeSuggestion({
     @Path('id') required String id,
     @Body() required MergeSuggestionDto body,
   });
 
   @POST('/api/v1/admin/specialisation-suggestions/{id}/reject')
-  Future<PostApiV1AdminSpecialisationSuggestionsIdRejectResponse>
-  rejectSuggestion({
+  Future<PostApiV1AdminSpecialisationSuggestionsIdRejectResponse> rejectSuggestion({
     @Path('id') required String id,
     @Body() required RejectSuggestionDto body,
   });

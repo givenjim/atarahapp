@@ -10,11 +10,13 @@ part 'get_api_v1_me_profile_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1MeProfileResponse {
-  const GetApiV1MeProfileResponse({required this.data, this.meta});
-
-  factory GetApiV1MeProfileResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1MeProfileResponseFromJson(json);
-
+  const GetApiV1MeProfileResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1MeProfileResponse.fromJson(Map<String, Object?> json) => _$GetApiV1MeProfileResponseFromJson(json);
+  
   final OwnProfileDto data;
   final dynamic meta;
 

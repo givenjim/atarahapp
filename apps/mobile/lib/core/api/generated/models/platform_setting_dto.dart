@@ -14,10 +14,9 @@ class PlatformSettingDto {
     required this.updatedAt,
     this.description,
   });
-
-  factory PlatformSettingDto.fromJson(Map<String, Object?> json) =>
-      _$PlatformSettingDtoFromJson(json);
-
+  
+  factory PlatformSettingDto.fromJson(Map<String, Object?> json) => _$PlatformSettingDtoFromJson(json);
+  
   final String key;
 
   /// A string, number or boolean.

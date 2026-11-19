@@ -10,11 +10,13 @@ part 'post_api_v1_me_services_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1MeServicesResponse {
-  const PostApiV1MeServicesResponse({required this.data, this.meta});
-
-  factory PostApiV1MeServicesResponse.fromJson(Map<String, Object?> json) =>
-      _$PostApiV1MeServicesResponseFromJson(json);
-
+  const PostApiV1MeServicesResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1MeServicesResponse.fromJson(Map<String, Object?> json) => _$PostApiV1MeServicesResponseFromJson(json);
+  
   final ServiceDto data;
   final dynamic meta;
 

@@ -18,10 +18,9 @@ class TrackingStateDto {
     this.completedAt,
     this.outcome,
   });
-
-  factory TrackingStateDto.fromJson(Map<String, Object?> json) =>
-      _$TrackingStateDtoFromJson(json);
-
+  
+  factory TrackingStateDto.fromJson(Map<String, Object?> json) => _$TrackingStateDtoFromJson(json);
+  
   final OpportunityTrackingStatus status;
   final DateTime? savedAt;
   final DateTime? appliedAt;

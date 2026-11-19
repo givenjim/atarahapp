@@ -21,10 +21,9 @@ class AchievementDto {
     this.description,
     this.url,
   });
-
-  factory AchievementDto.fromJson(Map<String, Object?> json) =>
-      _$AchievementDtoFromJson(json);
-
+  
+  factory AchievementDto.fromJson(Map<String, Object?> json) => _$AchievementDtoFromJson(json);
+  
   final String id;
   final AchievementDtoType type;
   final String title;

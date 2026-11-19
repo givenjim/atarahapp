@@ -8,11 +8,12 @@ part 'publish_legal_dto.g.dart';
 
 @JsonSerializable()
 class PublishLegalDto {
-  const PublishLegalDto({this.effectiveAt});
-
-  factory PublishLegalDto.fromJson(Map<String, Object?> json) =>
-      _$PublishLegalDtoFromJson(json);
-
+  const PublishLegalDto({
+    this.effectiveAt,
+  });
+  
+  factory PublishLegalDto.fromJson(Map<String, Object?> json) => _$PublishLegalDtoFromJson(json);
+  
   /// When it takes effect. Defaults to now.
   final DateTime? effectiveAt;
 

@@ -19,8 +19,7 @@ part 'admin_operations_client.g.dart';
 
 @RestApi()
 abstract class AdminOperationsClient {
-  factory AdminOperationsClient(Dio dio, {String? baseUrl}) =
-      _AdminOperationsClient;
+  factory AdminOperationsClient(Dio dio, {String? baseUrl}) = _AdminOperationsClient;
 
   @GET('/api/v1/admin/dashboard')
   Future<GetApiV1AdminDashboardResponse> dashboard();

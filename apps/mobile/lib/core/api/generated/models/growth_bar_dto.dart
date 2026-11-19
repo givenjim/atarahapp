@@ -13,10 +13,9 @@ class GrowthBarDto {
     required this.label,
     required this.percent,
   });
-
-  factory GrowthBarDto.fromJson(Map<String, Object?> json) =>
-      _$GrowthBarDtoFromJson(json);
-
+  
+  factory GrowthBarDto.fromJson(Map<String, Object?> json) => _$GrowthBarDtoFromJson(json);
+  
   final String key;
   final String label;
   final num percent;

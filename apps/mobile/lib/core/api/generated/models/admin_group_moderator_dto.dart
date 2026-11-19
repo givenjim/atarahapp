@@ -11,11 +11,13 @@ part 'admin_group_moderator_dto.g.dart';
 
 @JsonSerializable()
 class AdminGroupModeratorDto {
-  const AdminGroupModeratorDto({required this.person, required this.role});
-
-  factory AdminGroupModeratorDto.fromJson(Map<String, Object?> json) =>
-      _$AdminGroupModeratorDtoFromJson(json);
-
+  const AdminGroupModeratorDto({
+    required this.person,
+    required this.role,
+  });
+  
+  factory AdminGroupModeratorDto.fromJson(Map<String, Object?> json) => _$AdminGroupModeratorDtoFromJson(json);
+  
   final AdminPersonRefDto person;
   final GroupStaffRole role;
 

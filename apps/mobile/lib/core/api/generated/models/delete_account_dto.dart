@@ -8,11 +8,13 @@ part 'delete_account_dto.g.dart';
 
 @JsonSerializable()
 class DeleteAccountDto {
-  const DeleteAccountDto({required this.confirm, this.password});
-
-  factory DeleteAccountDto.fromJson(Map<String, Object?> json) =>
-      _$DeleteAccountDtoFromJson(json);
-
+  const DeleteAccountDto({
+    required this.confirm,
+    this.password,
+  });
+  
+  factory DeleteAccountDto.fromJson(Map<String, Object?> json) => _$DeleteAccountDtoFromJson(json);
+  
   /// Must be the word DELETE.
   final String confirm;
 

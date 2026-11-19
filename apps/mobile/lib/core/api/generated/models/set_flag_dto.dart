@@ -8,11 +8,12 @@ part 'set_flag_dto.g.dart';
 
 @JsonSerializable()
 class SetFlagDto {
-  const SetFlagDto({required this.enabled});
-
-  factory SetFlagDto.fromJson(Map<String, Object?> json) =>
-      _$SetFlagDtoFromJson(json);
-
+  const SetFlagDto({
+    required this.enabled,
+  });
+  
+  factory SetFlagDto.fromJson(Map<String, Object?> json) => _$SetFlagDtoFromJson(json);
+  
   final bool enabled;
 
   Map<String, Object?> toJson() => _$SetFlagDtoToJson(this);

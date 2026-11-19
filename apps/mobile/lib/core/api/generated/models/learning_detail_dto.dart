@@ -51,10 +51,9 @@ class LearningDetailDto {
     this.embedUrl,
     this.itemProgress,
   });
-
-  factory LearningDetailDto.fromJson(Map<String, Object?> json) =>
-      _$LearningDetailDtoFromJson(json);
-
+  
+  factory LearningDetailDto.fromJson(Map<String, Object?> json) => _$LearningDetailDtoFromJson(json);
+  
   final String id;
   final String slug;
   final LearningContentType type;

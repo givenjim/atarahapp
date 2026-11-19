@@ -11,11 +11,13 @@ part 'help_result_dto.g.dart';
 
 @JsonSerializable()
 class HelpResultDto {
-  const HelpResultDto({required this.articles, required this.faq});
-
-  factory HelpResultDto.fromJson(Map<String, Object?> json) =>
-      _$HelpResultDtoFromJson(json);
-
+  const HelpResultDto({
+    required this.articles,
+    required this.faq,
+  });
+  
+  factory HelpResultDto.fromJson(Map<String, Object?> json) => _$HelpResultDtoFromJson(json);
+  
   final List<HelpArticleCardDto> articles;
   final List<FaqDto> faq;
 

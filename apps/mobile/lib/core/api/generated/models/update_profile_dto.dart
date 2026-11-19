@@ -21,10 +21,9 @@ class UpdateProfileDto {
     this.contactForConnections,
     this.acceptConnections,
   });
-
-  factory UpdateProfileDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateProfileDtoFromJson(json);
-
+  
+  factory UpdateProfileDto.fromJson(Map<String, Object?> json) => _$UpdateProfileDtoFromJson(json);
+  
   final String? displayName;
 
   /// Send an empty string to clear it.

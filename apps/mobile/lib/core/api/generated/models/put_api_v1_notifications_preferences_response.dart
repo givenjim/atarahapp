@@ -14,14 +14,11 @@ class PutApiV1NotificationsPreferencesResponse {
     required this.data,
     this.meta,
   });
-
-  factory PutApiV1NotificationsPreferencesResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PutApiV1NotificationsPreferencesResponseFromJson(json);
-
+  
+  factory PutApiV1NotificationsPreferencesResponse.fromJson(Map<String, Object?> json) => _$PutApiV1NotificationsPreferencesResponseFromJson(json);
+  
   final PreferencesDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PutApiV1NotificationsPreferencesResponseToJson(this);
+  Map<String, Object?> toJson() => _$PutApiV1NotificationsPreferencesResponseToJson(this);
 }

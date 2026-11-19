@@ -14,10 +14,9 @@ class FeatureFlagDto {
     required this.enabled,
     required this.phase,
   });
-
-  factory FeatureFlagDto.fromJson(Map<String, Object?> json) =>
-      _$FeatureFlagDtoFromJson(json);
-
+  
+  factory FeatureFlagDto.fromJson(Map<String, Object?> json) => _$FeatureFlagDtoFromJson(json);
+  
   final String key;
   final String description;
   final bool enabled;

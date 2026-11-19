@@ -19,8 +19,7 @@ part 'provider_opportunities_client.g.dart';
 
 @RestApi()
 abstract class ProviderOpportunitiesClient {
-  factory ProviderOpportunitiesClient(Dio dio, {String? baseUrl}) =
-      _ProviderOpportunitiesClient;
+  factory ProviderOpportunitiesClient(Dio dio, {String? baseUrl}) = _ProviderOpportunitiesClient;
 
   @GET('/api/v1/provider/organisations')
   Future<GetApiV1ProviderOrganisationsResponse> organisations();
@@ -46,8 +45,9 @@ abstract class ProviderOpportunitiesClient {
   ///
   /// The name has been replaced because it contains a keyword. Original name: `get`.
   @GET('/api/v1/provider/opportunities/{id}')
-  Future<GetApiV1ProviderOpportunitiesIdResponse>
-  getApiV1ProviderOpportunitiesId({@Path('id') required String id});
+  Future<GetApiV1ProviderOpportunitiesIdResponse> getApiV1ProviderOpportunitiesId({
+    @Path('id') required String id,
+  });
 
   @PATCH('/api/v1/provider/opportunities/{id}')
   Future<PatchApiV1ProviderOpportunitiesIdResponse> update({

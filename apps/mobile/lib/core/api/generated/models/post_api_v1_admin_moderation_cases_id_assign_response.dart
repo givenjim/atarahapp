@@ -14,14 +14,11 @@ class PostApiV1AdminModerationCasesIdAssignResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminModerationCasesIdAssignResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminModerationCasesIdAssignResponseFromJson(json);
-
+  
+  factory PostApiV1AdminModerationCasesIdAssignResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminModerationCasesIdAssignResponseFromJson(json);
+  
   final AdminCaseDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminModerationCasesIdAssignResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminModerationCasesIdAssignResponseToJson(this);
 }

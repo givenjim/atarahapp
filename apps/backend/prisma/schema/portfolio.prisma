@@ -55,12 +55,13 @@ model Project {
   createdAt    DateTime          @default(now())
   updatedAt    DateTime          @updatedAt
 
-  profile       CreativeProfile       @relation(fields: [profileId], references: [id], onDelete: Cascade)
-  discipline    Discipline?           @relation(fields: [disciplineId], references: [id], onDelete: SetNull)
+  profile       CreativeProfile        @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  discipline    Discipline?            @relation(fields: [disciplineId], references: [id], onDelete: SetNull)
   media         ProjectMedia[]
   skills        ProjectSkill[]
   collaborators ProjectCollaborator[]
   links         ProjectLink[]
+  listingLinks  ListingPortfolioLink[] @relation("ProjectListingLinks")
 
   @@index([profileId, status, deletedAt])
   @@index([profileId, featured])
@@ -187,6 +188,7 @@ model ProfileService {
   updatedAt   DateTime             @updatedAt
 
   profile CreativeProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  listing Listing?        @relation("ServiceListing")
 
   @@index([profileId, sortOrder])
   @@map("profile_services")

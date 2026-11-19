@@ -13,10 +13,9 @@ class AdminPersonRefDto {
     required this.displayName,
     required this.handle,
   });
-
-  factory AdminPersonRefDto.fromJson(Map<String, Object?> json) =>
-      _$AdminPersonRefDtoFromJson(json);
-
+  
+  factory AdminPersonRefDto.fromJson(Map<String, Object?> json) => _$AdminPersonRefDtoFromJson(json);
+  
   final String id;
   final String displayName;
   final String? handle;

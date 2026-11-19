@@ -34,10 +34,9 @@ class AdminGroupDto {
     required this.pinnedPostIds,
     required this.createdAt,
   });
-
-  factory AdminGroupDto.fromJson(Map<String, Object?> json) =>
-      _$AdminGroupDtoFromJson(json);
-
+  
+  factory AdminGroupDto.fromJson(Map<String, Object?> json) => _$AdminGroupDtoFromJson(json);
+  
   final String id;
   final String slug;
   final GroupType type;

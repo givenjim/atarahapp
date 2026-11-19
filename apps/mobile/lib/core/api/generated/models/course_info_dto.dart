@@ -22,10 +22,9 @@ class CourseInfoDto {
     this.nextLessonId,
     this.certificate,
   });
-
-  factory CourseInfoDto.fromJson(Map<String, Object?> json) =>
-      _$CourseInfoDtoFromJson(json);
-
+  
+  factory CourseInfoDto.fromJson(Map<String, Object?> json) => _$CourseInfoDtoFromJson(json);
+  
   final num lessonCount;
   final num totalMinutes;
   final bool sequential;

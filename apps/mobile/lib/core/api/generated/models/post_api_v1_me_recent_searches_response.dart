@@ -10,15 +10,15 @@ part 'post_api_v1_me_recent_searches_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1MeRecentSearchesResponse {
-  const PostApiV1MeRecentSearchesResponse({required this.data, this.meta});
-
-  factory PostApiV1MeRecentSearchesResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1MeRecentSearchesResponseFromJson(json);
-
+  const PostApiV1MeRecentSearchesResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1MeRecentSearchesResponse.fromJson(Map<String, Object?> json) => _$PostApiV1MeRecentSearchesResponseFromJson(json);
+  
   final RecentSearchDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1MeRecentSearchesResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1MeRecentSearchesResponseToJson(this);
 }

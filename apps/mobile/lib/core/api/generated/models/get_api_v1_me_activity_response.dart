@@ -10,11 +10,13 @@ part 'get_api_v1_me_activity_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1MeActivityResponse {
-  const GetApiV1MeActivityResponse({required this.data, this.meta});
-
-  factory GetApiV1MeActivityResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1MeActivityResponseFromJson(json);
-
+  const GetApiV1MeActivityResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1MeActivityResponse.fromJson(Map<String, Object?> json) => _$GetApiV1MeActivityResponseFromJson(json);
+  
   final ActivityDto data;
   final dynamic meta;
 

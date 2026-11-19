@@ -15,10 +15,9 @@ class CompletionDto {
     required this.items,
     required this.next,
   });
-
-  factory CompletionDto.fromJson(Map<String, Object?> json) =>
-      _$CompletionDtoFromJson(json);
-
+  
+  factory CompletionDto.fromJson(Map<String, Object?> json) => _$CompletionDtoFromJson(json);
+  
   final num percent;
   final List<CompletionItemDto> items;
 

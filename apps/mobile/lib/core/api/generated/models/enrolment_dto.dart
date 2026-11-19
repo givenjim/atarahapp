@@ -13,10 +13,9 @@ class EnrolmentDto {
     required this.enrolledAt,
     this.nextLessonId,
   });
-
-  factory EnrolmentDto.fromJson(Map<String, Object?> json) =>
-      _$EnrolmentDtoFromJson(json);
-
+  
+  factory EnrolmentDto.fromJson(Map<String, Object?> json) => _$EnrolmentDtoFromJson(json);
+  
   final String courseId;
   final DateTime enrolledAt;
   final String? nextLessonId;

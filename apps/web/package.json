@@ -4,9 +4,9 @@
   "private": true,
   "description": "Atarah public and member web app.",
   "scripts": {
-    "dev": "next dev --port 3100",
-    "build": "next build",
-    "start": "next start --port 3100",
+    "dev": "node init && next dev --port 3100",
+    "build": "node init && next build",
+    "start": "node init && next start --port 3100",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run"

@@ -13,10 +13,9 @@ class HomeConfigDto {
     this.featuredArticleTitle,
     this.updatedAt,
   });
-
-  factory HomeConfigDto.fromJson(Map<String, Object?> json) =>
-      _$HomeConfigDtoFromJson(json);
-
+  
+  factory HomeConfigDto.fromJson(Map<String, Object?> json) => _$HomeConfigDtoFromJson(json);
+  
   final String? featuredArticleId;
   final String? featuredArticleTitle;
   final DateTime? updatedAt;

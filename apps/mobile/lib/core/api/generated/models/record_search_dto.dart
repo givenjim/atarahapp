@@ -8,11 +8,12 @@ part 'record_search_dto.g.dart';
 
 @JsonSerializable()
 class RecordSearchDto {
-  const RecordSearchDto({required this.query});
-
-  factory RecordSearchDto.fromJson(Map<String, Object?> json) =>
-      _$RecordSearchDtoFromJson(json);
-
+  const RecordSearchDto({
+    required this.query,
+  });
+  
+  factory RecordSearchDto.fromJson(Map<String, Object?> json) => _$RecordSearchDtoFromJson(json);
+  
   final String query;
 
   Map<String, Object?> toJson() => _$RecordSearchDtoToJson(this);

@@ -64,5 +64,7 @@ abstract class DiscoverClient {
   Future<void> clear();
 
   @DELETE('/api/v1/me/recent-searches/{id}')
-  Future<void> remove({@Path('id') required String id});
+  Future<void> remove({
+    @Path('id') required String id,
+  });
 }

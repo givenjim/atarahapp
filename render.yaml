@@ -1,0 +1,20 @@
+# Render blueprint for the hosted dev API (free plan). Secret values are NOT here: they are entered in the Render
+# dashboard (Environment > Add from .env). See docs/DEVELOPMENT.md.
+services:
+  - type: web
+    name: atarah-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile.backend
+    dockerContext: .
+    healthCheckPath: /health/ready
+    envVars:
+      - key: ATARAH_REDIS_URL
+        fromService:
+          type: keyvalue
+          name: atarah-redis
+          property: connectionString
+  - type: keyvalue
+    name: atarah-redis
+    plan: free
+    ipAllowList: []

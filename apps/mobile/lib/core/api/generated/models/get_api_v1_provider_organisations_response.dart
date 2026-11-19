@@ -10,15 +10,15 @@ part 'get_api_v1_provider_organisations_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1ProviderOrganisationsResponse {
-  const GetApiV1ProviderOrganisationsResponse({required this.data, this.meta});
-
-  factory GetApiV1ProviderOrganisationsResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1ProviderOrganisationsResponseFromJson(json);
-
+  const GetApiV1ProviderOrganisationsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1ProviderOrganisationsResponse.fromJson(Map<String, Object?> json) => _$GetApiV1ProviderOrganisationsResponseFromJson(json);
+  
   final List<AdminProviderDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1ProviderOrganisationsResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1ProviderOrganisationsResponseToJson(this);
 }

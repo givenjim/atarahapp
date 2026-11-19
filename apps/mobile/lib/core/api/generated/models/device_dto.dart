@@ -8,11 +8,12 @@ part 'device_dto.g.dart';
 
 @JsonSerializable()
 class DeviceDto {
-  const DeviceDto({required this.id});
-
-  factory DeviceDto.fromJson(Map<String, Object?> json) =>
-      _$DeviceDtoFromJson(json);
-
+  const DeviceDto({
+    required this.id,
+  });
+  
+  factory DeviceDto.fromJson(Map<String, Object?> json) => _$DeviceDtoFromJson(json);
+  
   final String id;
 
   Map<String, Object?> toJson() => _$DeviceDtoToJson(this);

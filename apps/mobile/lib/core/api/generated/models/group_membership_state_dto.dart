@@ -13,10 +13,9 @@ class GroupMembershipStateDto {
     required this.joined,
     required this.memberCount,
   });
-
-  factory GroupMembershipStateDto.fromJson(Map<String, Object?> json) =>
-      _$GroupMembershipStateDtoFromJson(json);
-
+  
+  factory GroupMembershipStateDto.fromJson(Map<String, Object?> json) => _$GroupMembershipStateDtoFromJson(json);
+  
   final String groupId;
   final bool joined;
   final num memberCount;

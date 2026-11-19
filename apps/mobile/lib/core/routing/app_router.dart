@@ -18,6 +18,7 @@ import '../../features/community/compose_screen.dart';
 import '../../features/community/groups/group_screen.dart';
 import '../../features/community/people/people_screens.dart';
 import '../../features/community/post_screen.dart';
+import '../../features/cv/cv_screen.dart';
 import '../../features/discover/article_screen.dart';
 import '../../features/discover/articles_screen.dart';
 import '../../features/discover/explore_screen.dart';
@@ -29,6 +30,19 @@ import '../../features/learning/learning_hub_screen.dart';
 import '../../features/learning/learning_repository.dart' show MyLearningTab;
 import '../../features/learning/lesson_screen.dart';
 import '../../features/learning/my_learning_screen.dart';
+import '../../features/marketplace/enquiry_screens.dart';
+import '../../features/marketplace/listing_editor_screen.dart';
+import '../../features/marketplace/listing_screen.dart';
+import '../../features/marketplace/marketplace_browse_screen.dart';
+import '../../features/marketplace/marketplace_screen.dart';
+import '../../features/marketplace/my_listings_screen.dart';
+import '../../features/marketplace/seller_screen.dart';
+import '../../features/mentorship/mentor_apply_screen.dart';
+import '../../features/mentorship/mentor_manage_screens.dart';
+import '../../features/mentorship/mentor_screen.dart';
+import '../../features/mentorship/mentor_tools_screen.dart';
+import '../../features/mentorship/mentors_list_screen.dart';
+import '../../features/mentorship/mentorship_hub_screen.dart';
 import '../../features/notifications/notifications_screen.dart';
 import '../../features/onboarding/onboarding_providers.dart';
 import '../../features/onboarding/onboarding_screen.dart';
@@ -37,6 +51,8 @@ import '../../features/opportunities/opportunities_list_screen.dart';
 import '../../features/opportunities/opportunities_repository.dart' show MyTab;
 import '../../features/opportunities/opportunities_screen.dart';
 import '../../features/opportunities/opportunity_screen.dart';
+import '../../features/payments/payment_models.dart' show PaymentRequest;
+import '../../features/payments/payment_screen.dart';
 import '../../features/portfolio/achievements_screen.dart';
 import '../../features/portfolio/experience_screen.dart';
 import '../../features/portfolio/portfolio_screen.dart';
@@ -74,10 +90,7 @@ part 'app_router.g.dart';
 final List<
   ({String path, String phase, String Function(AppLocalizations) name})
 >
-_detailRoutes = [
-  (path: Routes.listing, phase: 'p2', name: (l) => l.featureListing),
-  (path: Routes.mentor, phase: 'p2', name: (l) => l.featureMentor),
-];
+_detailRoutes = [];
 
 /// Navigation graph: splash -> session check -> welcome / home, the five-tab shell, and the deep-link
 /// routes. Redirect logic lives in [computeRedirect].
@@ -146,6 +159,7 @@ GoRouter appRouter(Ref ref) {
         builder: (_, _) => const OnboardingScreen(),
       ),
       GoRoute(path: Routes.passport, builder: (_, _) => const PassportScreen()),
+      GoRoute(path: Routes.cv, builder: (_, _) => const CvScreen()),
       GoRoute(
         path: Routes.portfolio,
         builder: (_, _) => const PortfolioScreen(),
@@ -280,6 +294,54 @@ GoRouter appRouter(Ref ref) {
         builder: (_, state) =>
             OpportunityScreen(opportunityId: state.pathParameters['id'] ?? ''),
       ),
+      // Marketplace (P2-M3). Fixed paths first: `/marketplace/browse`, `/mine`, `/new` and `/enquiries` are not ids.
+      GoRoute(
+        path: Routes.marketplace,
+        builder: (_, _) => const MarketplaceScreen(),
+      ),
+      GoRoute(
+        path: Routes.marketplaceBrowse,
+        builder: (_, state) => MarketplaceBrowseScreen(
+          categoryId: state.uri.queryParameters['categoryId'],
+          categoryName: state.uri.queryParameters['categoryName'],
+          type: listingTypeOf(state.uri.queryParameters['type']),
+          q: state.uri.queryParameters['q'],
+        ),
+      ),
+      GoRoute(
+        path: Routes.myListings,
+        builder: (_, _) => const MyListingsScreen(),
+      ),
+      GoRoute(
+        path: Routes.listingNew,
+        builder: (_, _) => const ListingEditorScreen(),
+      ),
+      GoRoute(
+        path: Routes.listingEdit,
+        builder: (_, state) =>
+            ListingEditorScreen(listingId: state.pathParameters['id']),
+      ),
+      GoRoute(
+        path: Routes.enquiries,
+        builder: (_, state) => EnquiriesScreen(
+          initialReceived: state.uri.queryParameters['tab'] == 'received',
+        ),
+      ),
+      GoRoute(
+        path: Routes.enquiry,
+        builder: (_, state) =>
+            EnquiryScreen(enquiryId: state.pathParameters['id'] ?? ''),
+      ),
+      GoRoute(
+        path: Routes.seller,
+        builder: (_, state) =>
+            SellerScreen(sellerId: state.pathParameters['id'] ?? ''),
+      ),
+      GoRoute(
+        path: Routes.listing,
+        builder: (_, state) =>
+            ListingScreen(listingId: state.pathParameters['id'] ?? ''),
+      ),
       // Skill Labs. Fixed paths first: `/learning/mine` must not be read as an id.
       GoRoute(
         path: Routes.learning,
@@ -324,6 +386,14 @@ GoRouter appRouter(Ref ref) {
             PostScreen(postId: state.pathParameters['id'] ?? ''),
       ),
       GoRoute(
+        path: Routes.pay,
+        builder: (_, state) => PaymentScreen(
+          request: state.extra is PaymentRequest
+              ? state.extra! as PaymentRequest
+              : null,
+        ),
+      ),
+      GoRoute(
         path: Routes.compose,
         builder: (_, state) => ComposeScreen(
           groupId: state.uri.queryParameters['groupId'],
@@ -339,6 +409,49 @@ GoRouter appRouter(Ref ref) {
         path: Routes.article,
         builder: (_, state) =>
             ArticleScreen(slug: state.pathParameters['slug'] ?? ''),
+      ),
+      // Mentorship (P2-M4). Fixed paths only, so none can be read as a `/mentors/:id` detail route.
+      GoRoute(
+        path: Routes.mentorship,
+        builder: (_, _) => const MentorshipHubScreen(),
+      ),
+      GoRoute(
+        path: Routes.mentorDirectory,
+        builder: (_, _) => const MentorsListScreen(),
+      ),
+      GoRoute(
+        path: Routes.mentorApply,
+        builder: (_, _) => const MentorApplyScreen(),
+      ),
+      GoRoute(
+        path: Routes.mentorTools,
+        builder: (_, _) => const MentorToolsScreen(),
+      ),
+      GoRoute(
+        path: Routes.mentorAvailability,
+        builder: (_, _) => const MentorAvailabilityScreen(),
+      ),
+      GoRoute(
+        path: Routes.mentorSessionTypes,
+        builder: (_, _) => const MentorSessionTypesScreen(),
+      ),
+      GoRoute(
+        path: Routes.mentorProfileEdit,
+        builder: (_, _) => const MentorProfileEditScreen(),
+      ),
+      GoRoute(
+        path: Routes.mentorRequests,
+        builder: (_, _) => const MentorRequestsScreen(),
+      ),
+      GoRoute(
+        path: Routes.mentor,
+        builder: (_, state) =>
+            MentorScreen(mentorId: state.pathParameters['id'] ?? ''),
+      ),
+      GoRoute(
+        path: Routes.mentorPremium,
+        builder: (_, state) =>
+            MentorPremiumScreen(mentorId: state.pathParameters['id'] ?? ''),
       ),
       GoRoute(
         path: Routes.creative,

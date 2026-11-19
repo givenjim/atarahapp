@@ -8,11 +8,12 @@ part 'reorder_lessons_dto.g.dart';
 
 @JsonSerializable()
 class ReorderLessonsDto {
-  const ReorderLessonsDto({required this.lessonIds});
-
-  factory ReorderLessonsDto.fromJson(Map<String, Object?> json) =>
-      _$ReorderLessonsDtoFromJson(json);
-
+  const ReorderLessonsDto({
+    required this.lessonIds,
+  });
+  
+  factory ReorderLessonsDto.fromJson(Map<String, Object?> json) => _$ReorderLessonsDtoFromJson(json);
+  
   /// Every lesson of the course, in the new order.
   final List<String> lessonIds;
 

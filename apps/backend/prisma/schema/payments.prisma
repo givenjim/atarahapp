@@ -1,0 +1,187 @@
+// Payments (P2-M1): the Luxaion payment infrastructure. Owner module: payments.
+// Every table is deny-all for the Supabase client roles (RLS on, no policies, no grants). Amounts are integer minor
+// units (KES cents). A payment reaches SUCCEEDED only through a verified provider confirmation (Master Prompt 6.7).
+// `PaymentMethod`, `PaymentPurpose` and `PaymentStatus` live in enums.prisma.
+
+enum PaymentProviderKey {
+  MPESA_DARAJA
+  CARD
+}
+
+enum PaymentEventKind {
+  INITIATED
+  CALLBACK
+  STATUS_QUERY
+  STATUS_CHANGE
+  REFUND
+  REVIEW
+}
+
+enum PaymentEventSource {
+  API
+  PROVIDER_CALLBACK
+  STATUS_QUERY
+  JOB
+  ADMIN
+}
+
+enum RefundStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+}
+
+enum LedgerEntryType {
+  PAYMENT
+  REFUND
+}
+
+enum PayoutStatus {
+  PENDING
+  PAID
+  FAILED
+}
+
+/// One attempt to collect money. Created by the module that sells something (membership, mentorship), never by a
+/// client-supplied amount. `providerReference` is the provider's own id (M-Pesa CheckoutRequestID) and is how a
+/// callback is matched to a payment.
+model Payment {
+  id                String             @id @default(uuid()) @db.Uuid
+  purpose           PaymentPurpose
+  /// What is being paid for, polymorphic: `membership`, `mentorship_booking`, ... and its id.
+  referenceType     String?
+  referenceId       String?            @db.Uuid
+  payerId           String             @db.Uuid
+  /// The member who is paid (a mentor). Null means the platform is the payee.
+  payeeId           String?            @db.Uuid
+  amountMinor       BigInt
+  currency          String             @default("KES") @db.Char(3)
+  /// Platform's share of `amountMinor`, in minor units (the rest is the payee's net).
+  platformFeeMinor  BigInt             @default(0)
+  refundedMinor     BigInt             @default(0)
+  method            PaymentMethod
+  provider          PaymentProviderKey
+  providerReference String?
+  /// Provider's merchant-side id (M-Pesa MerchantRequestID) and the receipt once paid (MpesaReceiptNumber).
+  merchantReference String?
+  receiptNumber     String?
+  /// Last digits of the paying number only; the full number is never stored.
+  msisdnLast4       String?            @db.VarChar(4)
+  status            PaymentStatus      @default(INITIATED)
+  idempotencyKey    String
+  /// Short code (TIMEOUT, CANCELLED_BY_USER, INSUFFICIENT_FUNDS, AMOUNT_MISMATCH, ...) and a message that tells the member what to do.
+  failureCode       String?
+  failureReason     String?
+  description       String?
+  /// After this the member may retry and the fallback job starts asking the provider.
+  expiresAt         DateTime?
+  lastQueriedAt     DateTime?
+  queryAttempts     Int                @default(0)
+  initiatedAt       DateTime           @default(now())
+  completedAt       DateTime?
+  version           Int                @default(0)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+
+  payer        User                @relation("PaymentPayer", fields: [payerId], references: [id], onDelete: Restrict)
+  events       PaymentEvent[]
+  refunds      Refund[]
+  transactions LedgerTransaction[]
+
+  @@unique([payerId, idempotencyKey])
+  @@unique([provider, providerReference])
+  @@index([payerId, createdAt(sort: Desc)])
+  @@index([status, expiresAt])
+  @@index([referenceType, referenceId])
+  @@map("payments")
+}
+
+/// Every provider callback, status query and status change. The raw provider payload is stored encrypted
+/// (AES-256-GCM) and is never shown in the console. `dedupeKey` makes a duplicated callback a no-op.
+model PaymentEvent {
+  id               String             @id @default(uuid()) @db.Uuid
+  paymentId        String             @db.Uuid
+  kind             PaymentEventKind
+  source           PaymentEventSource
+  fromStatus       PaymentStatus?
+  toStatus         PaymentStatus?
+  /// A sentence for the console's event history. No personal or card data.
+  summary          String
+  payloadEncrypted String?
+  dedupeKey        String?            @unique
+  actorId          String?            @db.Uuid
+  createdAt        DateTime           @default(now())
+
+  payment Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+
+  @@index([paymentId, createdAt])
+  @@map("payment_events")
+}
+
+model Refund {
+  id                String       @id @default(uuid()) @db.Uuid
+  paymentId         String       @db.Uuid
+  amountMinor       BigInt
+  reason            String
+  status            RefundStatus @default(PENDING)
+  /// `AUTOMATIC` went through the provider; `MANUAL` was paid out of band and confirmed by finance staff.
+  mode              String       @default("AUTOMATIC")
+  providerReference String?
+  failureReason     String?
+  /// Staff member, or null when the system refunds (a mentor declines a booking).
+  requestedById     String?      @db.Uuid
+  idempotencyKey    String?
+  completedAt       DateTime?
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  payment      Payment             @relation(fields: [paymentId], references: [id], onDelete: Restrict)
+  transactions LedgerTransaction[]
+
+  @@unique([paymentId, idempotencyKey])
+  @@index([paymentId])
+  @@map("refunds")
+}
+
+/// The ledger. One PAYMENT row when a payment succeeds, one negative REFUND row per completed refund.
+/// gross = platformFee + net always (database check). Never updated.
+model LedgerTransaction {
+  id               String          @id @default(uuid()) @db.Uuid
+  paymentId        String          @db.Uuid
+  refundId         String?         @unique @db.Uuid
+  type             LedgerEntryType
+  payerId          String          @db.Uuid
+  /// Null: the platform is the payee.
+  payeeId          String?         @db.Uuid
+  grossMinor       BigInt
+  platformFeeMinor BigInt
+  netMinor         BigInt
+  currency         String          @db.Char(3)
+  createdAt        DateTime        @default(now())
+
+  payment Payment @relation(fields: [paymentId], references: [id], onDelete: Restrict)
+  refund  Refund? @relation(fields: [refundId], references: [id], onDelete: Restrict)
+
+  @@index([paymentId])
+  @@index([payeeId, createdAt])
+  @@map("transactions")
+}
+
+/// Table only: payouts are not automated in Phase 2.
+model Payout {
+  id                String       @id @default(uuid()) @db.Uuid
+  payeeId           String       @db.Uuid
+  amountMinor       BigInt
+  currency          String       @default("KES") @db.Char(3)
+  status            PayoutStatus @default(PENDING)
+  periodStart       DateTime?
+  periodEnd         DateTime?
+  providerReference String?
+  note              String?
+  paidAt            DateTime?
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  @@index([payeeId, status])
+  @@map("payouts")
+}

@@ -18,10 +18,9 @@ class AccountDto {
     this.pendingEmail,
     this.pendingPhone,
   });
-
-  factory AccountDto.fromJson(Map<String, Object?> json) =>
-      _$AccountDtoFromJson(json);
-
+  
+  factory AccountDto.fromJson(Map<String, Object?> json) => _$AccountDtoFromJson(json);
+  
   final String fullName;
 
   /// The public username (handle).

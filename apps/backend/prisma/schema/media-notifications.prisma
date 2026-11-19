@@ -59,6 +59,7 @@ model MediaAsset {
   learningCovers LearningContent[]     @relation("LearningCover")
   lessonVideos   Lesson[]              @relation("LessonVideo")
   dataExports    DataExportRequest[]   @relation("DataExportFile")
+  listingMedia   ListingMedia[]        @relation("ListingMediaAsset")
 
   @@unique([bucket, objectKey])
   @@index([ownerId, status])

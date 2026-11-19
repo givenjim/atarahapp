@@ -10,11 +10,12 @@ part 'update_preferences_dto.g.dart';
 
 @JsonSerializable()
 class UpdatePreferencesDto {
-  const UpdatePreferencesDto({required this.preferences});
-
-  factory UpdatePreferencesDto.fromJson(Map<String, Object?> json) =>
-      _$UpdatePreferencesDtoFromJson(json);
-
+  const UpdatePreferencesDto({
+    required this.preferences,
+  });
+  
+  factory UpdatePreferencesDto.fromJson(Map<String, Object?> json) => _$UpdatePreferencesDtoFromJson(json);
+  
   final List<PreferenceDto> preferences;
 
   Map<String, Object?> toJson() => _$UpdatePreferencesDtoToJson(this);

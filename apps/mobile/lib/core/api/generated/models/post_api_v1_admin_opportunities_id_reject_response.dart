@@ -14,14 +14,11 @@ class PostApiV1AdminOpportunitiesIdRejectResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminOpportunitiesIdRejectResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminOpportunitiesIdRejectResponseFromJson(json);
-
+  
+  factory PostApiV1AdminOpportunitiesIdRejectResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminOpportunitiesIdRejectResponseFromJson(json);
+  
   final AdminOpportunityDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminOpportunitiesIdRejectResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminOpportunitiesIdRejectResponseToJson(this);
 }

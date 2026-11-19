@@ -10,15 +10,15 @@ part 'get_api_v1_creatives_suggestions_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1CreativesSuggestionsResponse {
-  const GetApiV1CreativesSuggestionsResponse({required this.data, this.meta});
-
-  factory GetApiV1CreativesSuggestionsResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1CreativesSuggestionsResponseFromJson(json);
-
+  const GetApiV1CreativesSuggestionsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1CreativesSuggestionsResponse.fromJson(Map<String, Object?> json) => _$GetApiV1CreativesSuggestionsResponseFromJson(json);
+  
   final List<PersonToMeetDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1CreativesSuggestionsResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1CreativesSuggestionsResponseToJson(this);
 }

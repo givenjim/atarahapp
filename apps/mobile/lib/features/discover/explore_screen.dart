@@ -370,13 +370,13 @@ class _MoreToExplore extends StatelessWidget {
         LucideIcons.store,
         l10n.dcMarketplace,
         l10n.dcMarketplaceBody,
-        () => context.push(Routes.soonPath('p2', name: l10n.dcMarketplace)),
+        () => context.push(Routes.marketplace),
       ),
       (
         LucideIcons.handshake,
         l10n.dcMentorship,
         l10n.dcMentorshipBody,
-        () => context.push(Routes.soonPath('p2', name: l10n.dcMentorship)),
+        () => context.push(Routes.mentorship),
       ),
       (
         LucideIcons.bookOpen,

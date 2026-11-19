@@ -14,14 +14,11 @@ class GetApiV1AdminLearningEmbedHostsResponse {
     required this.data,
     this.meta,
   });
-
-  factory GetApiV1AdminLearningEmbedHostsResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1AdminLearningEmbedHostsResponseFromJson(json);
-
+  
+  factory GetApiV1AdminLearningEmbedHostsResponse.fromJson(Map<String, Object?> json) => _$GetApiV1AdminLearningEmbedHostsResponseFromJson(json);
+  
   final EmbedHostsDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1AdminLearningEmbedHostsResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1AdminLearningEmbedHostsResponseToJson(this);
 }

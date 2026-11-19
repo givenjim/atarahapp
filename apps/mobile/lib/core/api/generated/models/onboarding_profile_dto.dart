@@ -31,10 +31,9 @@ class OnboardingProfileDto {
     required this.locationVisibility,
     required this.avatarUrl,
   });
-
-  factory OnboardingProfileDto.fromJson(Map<String, Object?> json) =>
-      _$OnboardingProfileDtoFromJson(json);
-
+  
+  factory OnboardingProfileDto.fromJson(Map<String, Object?> json) => _$OnboardingProfileDtoFromJson(json);
+  
   final String id;
   final String displayName;
   final String? handle;

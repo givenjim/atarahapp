@@ -12,10 +12,9 @@ class PassportPreviewDto {
     required this.passportNumber,
     required this.issuedAt,
   });
-
-  factory PassportPreviewDto.fromJson(Map<String, Object?> json) =>
-      _$PassportPreviewDtoFromJson(json);
-
+  
+  factory PassportPreviewDto.fromJson(Map<String, Object?> json) => _$PassportPreviewDtoFromJson(json);
+  
   final String passportNumber;
   final DateTime issuedAt;
 

@@ -16,10 +16,9 @@ class UpdateAccountPreferencesDto {
     this.timeZone,
     this.marketingOptIn,
   });
-
-  factory UpdateAccountPreferencesDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateAccountPreferencesDtoFromJson(json);
-
+  
+  factory UpdateAccountPreferencesDto.fromJson(Map<String, Object?> json) => _$UpdateAccountPreferencesDtoFromJson(json);
+  
   final UpdateAccountPreferencesDtoAppearance? appearance;
 
   /// BCP 47 language tag, e.g. en or sw.

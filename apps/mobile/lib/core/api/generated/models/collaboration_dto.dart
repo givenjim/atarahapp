@@ -19,10 +19,9 @@ class CollaborationDto {
     this.role,
     this.ownerHandle,
   });
-
-  factory CollaborationDto.fromJson(Map<String, Object?> json) =>
-      _$CollaborationDtoFromJson(json);
-
+  
+  factory CollaborationDto.fromJson(Map<String, Object?> json) => _$CollaborationDtoFromJson(json);
+  
   final String id;
   final CollaborationDtoStatus status;
   final String? role;

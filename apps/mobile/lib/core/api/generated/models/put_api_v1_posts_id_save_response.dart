@@ -10,11 +10,13 @@ part 'put_api_v1_posts_id_save_response.g.dart';
 
 @JsonSerializable()
 class PutApiV1PostsIdSaveResponse {
-  const PutApiV1PostsIdSaveResponse({required this.data, this.meta});
-
-  factory PutApiV1PostsIdSaveResponse.fromJson(Map<String, Object?> json) =>
-      _$PutApiV1PostsIdSaveResponseFromJson(json);
-
+  const PutApiV1PostsIdSaveResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PutApiV1PostsIdSaveResponse.fromJson(Map<String, Object?> json) => _$PutApiV1PostsIdSaveResponseFromJson(json);
+  
   final SavedStateDto data;
   final dynamic meta;
 

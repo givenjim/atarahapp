@@ -26,10 +26,9 @@ class AdminUserOverviewDto {
     this.profile,
     this.membership,
   });
-
-  factory AdminUserOverviewDto.fromJson(Map<String, Object?> json) =>
-      _$AdminUserOverviewDtoFromJson(json);
-
+  
+  factory AdminUserOverviewDto.fromJson(Map<String, Object?> json) => _$AdminUserOverviewDtoFromJson(json);
+  
   final AdminUserDto user;
 
   /// A temporary suspension ends here.

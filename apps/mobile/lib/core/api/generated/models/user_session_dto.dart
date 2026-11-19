@@ -14,10 +14,9 @@ class UserSessionDto {
     required this.lastActiveAt,
     this.deviceName,
   });
-
-  factory UserSessionDto.fromJson(Map<String, Object?> json) =>
-      _$UserSessionDtoFromJson(json);
-
+  
+  factory UserSessionDto.fromJson(Map<String, Object?> json) => _$UserSessionDtoFromJson(json);
+  
   final String id;
   final String client;
   final String? deviceName;

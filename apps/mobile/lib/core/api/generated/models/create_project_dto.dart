@@ -8,11 +8,12 @@ part 'create_project_dto.g.dart';
 
 @JsonSerializable()
 class CreateProjectDto {
-  const CreateProjectDto({this.title});
-
-  factory CreateProjectDto.fromJson(Map<String, Object?> json) =>
-      _$CreateProjectDtoFromJson(json);
-
+  const CreateProjectDto({
+    this.title,
+  });
+  
+  factory CreateProjectDto.fromJson(Map<String, Object?> json) => _$CreateProjectDtoFromJson(json);
+  
   /// A draft may have no title yet.
   final String? title;
 

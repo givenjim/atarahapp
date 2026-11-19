@@ -10,11 +10,13 @@ part 'get_api_v1_me_membership_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1MeMembershipResponse {
-  const GetApiV1MeMembershipResponse({required this.data, this.meta});
-
-  factory GetApiV1MeMembershipResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1MeMembershipResponseFromJson(json);
-
+  const GetApiV1MeMembershipResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1MeMembershipResponse.fromJson(Map<String, Object?> json) => _$GetApiV1MeMembershipResponseFromJson(json);
+  
   final MembershipViewDto data;
   final dynamic meta;
 

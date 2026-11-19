@@ -10,11 +10,13 @@ part 'post_api_v1_mutes_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1MutesResponse {
-  const PostApiV1MutesResponse({required this.data, this.meta});
-
-  factory PostApiV1MutesResponse.fromJson(Map<String, Object?> json) =>
-      _$PostApiV1MutesResponseFromJson(json);
-
+  const PostApiV1MutesResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1MutesResponse.fromJson(Map<String, Object?> json) => _$PostApiV1MutesResponseFromJson(json);
+  
   final MuteStateDto data;
   final dynamic meta;
 

@@ -12,10 +12,9 @@ class SuggestSpecialisationDto {
     required this.disciplineId,
     required this.name,
   });
-
-  factory SuggestSpecialisationDto.fromJson(Map<String, Object?> json) =>
-      _$SuggestSpecialisationDtoFromJson(json);
-
+  
+  factory SuggestSpecialisationDto.fromJson(Map<String, Object?> json) => _$SuggestSpecialisationDtoFromJson(json);
+  
   final String disciplineId;
   final String name;
 

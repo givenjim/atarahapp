@@ -18,10 +18,9 @@ class ExportStateDto {
     this.downloadUrl,
     this.nextAllowedAt,
   });
-
-  factory ExportStateDto.fromJson(Map<String, Object?> json) =>
-      _$ExportStateDtoFromJson(json);
-
+  
+  factory ExportStateDto.fromJson(Map<String, Object?> json) => _$ExportStateDtoFromJson(json);
+  
   final ExportStateDtoStatus status;
   final String? id;
   final DateTime? requestedAt;

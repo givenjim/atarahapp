@@ -12,10 +12,9 @@ class DeletionStateDto {
     required this.purgeAfter,
     required this.sessionsRevoked,
   });
-
-  factory DeletionStateDto.fromJson(Map<String, Object?> json) =>
-      _$DeletionStateDtoFromJson(json);
-
+  
+  factory DeletionStateDto.fromJson(Map<String, Object?> json) => _$DeletionStateDtoFromJson(json);
+  
   /// Personal data is deleted after this.
   final DateTime purgeAfter;
   final num sessionsRevoked;

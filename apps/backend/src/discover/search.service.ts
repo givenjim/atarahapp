@@ -4,6 +4,8 @@ import { ApiException } from '../common/api.exception';
 import { DomainEventBus } from '../community-core/domain-events';
 import { postVisibleSql } from '../community/post-sql';
 import { ArticlesService } from '../content/articles.service';
+import { MarketplaceService } from '../marketplace/marketplace.service';
+import { notBlockedSql } from '../community-core/blocks';
 import { LearningService } from '../learning/learning.service';
 import { OpportunitiesService } from '../opportunities/opportunities.service';
 import { PrismaService } from '../prisma/prisma.service';
@@ -30,6 +32,7 @@ export class SearchService {
     private readonly articles: ArticlesService,
     private readonly opportunities: OpportunitiesService,
     private readonly learning: LearningService,
+    private readonly marketplace: MarketplaceService,
     private readonly events: DomainEventBus,
   ) {}
 
@@ -54,7 +57,9 @@ export class SearchService {
               ? await this.opportunityGroup(viewerId, q, page)
               : type === 'learning'
                 ? await this.learningGroup(viewerId, q, page)
-                : await this.articleGroup(q, page),
+                : type === 'marketplace'
+                  ? await this.marketplaceGroup(viewerId, q, page)
+                  : await this.articleGroup(q, page),
       );
     }
     // Counts only: the words searched for are never recorded.
@@ -240,6 +245,61 @@ export class SearchService {
         imageUrl: c.coverUrl,
         verified: false,
         path: `/learning/courses/${c.id}`,
+      })),
+    };
+  }
+
+  /** Live listings from active sellers matching the words (title, description, category, seller), best match first. */
+  private async marketplaceGroup(
+    viewerId: string,
+    q: string,
+    page: { page: number; limit: number },
+  ): Promise<SearchGroupDto> {
+    const like = likePattern(q);
+    const from = Prisma.sql`FROM listings l
+      JOIN seller_profiles sp ON sp.id = l."sellerId"
+      JOIN users u ON u.id = sp."userId"
+      JOIN marketplace_categories mc ON mc.id = l."categoryId"
+      LEFT JOIN creative_profiles cp ON cp."userId" = u.id`;
+    const where = Prisma.sql`l.status::text = 'PUBLISHED' AND sp.status::text = 'ACTIVE' AND u.status::text = 'ACTIVE'
+      AND u."deletedAt" IS NULL AND mc."isActive" AND ${notBlockedSql(viewerId, Prisma.sql`u.id`)} AND (
+      l.title ILIKE ${like} OR l.description ILIKE ${like} OR mc.name ILIKE ${like}
+      OR COALESCE(cp."displayName", u."fullName") ILIKE ${like}
+      OR similarity(l.title, ${q}) > 0.3 OR word_similarity(${q}, l.title) > 0.5
+      OR l."searchVector" @@ websearch_to_tsquery('simple', ${q}))`;
+    const rows = await this.prisma.$queryRaw<Array<{ id: string; total: bigint }>>(Prisma.sql`
+      SELECT l.id, count(*) OVER() AS total,
+        GREATEST(similarity(l.title, ${q}), word_similarity(${q}, l.title),
+          CASE WHEN l.title ILIKE ${like} THEN 0.9 ELSE 0 END,
+          CASE WHEN mc.name ILIKE ${like} THEN 0.5 ELSE 0 END,
+          CASE WHEN l.description ILIKE ${like} THEN 0.4 ELSE 0 END,
+          ts_rank(l."searchVector", websearch_to_tsquery('simple', ${q}))) AS score
+      ${from}
+      WHERE ${where}
+      ORDER BY score DESC, l."publishedAt" DESC NULLS LAST, l.id
+      LIMIT ${page.limit} OFFSET ${(page.page - 1) * page.limit}`);
+    let total = rows.length > 0 ? Number(rows[0]!.total) : 0;
+    if (rows.length === 0 && page.page > 1) {
+      const [counted] = await this.prisma.$queryRaw<Array<{ n: bigint }>>(
+        Prisma.sql`SELECT count(*) AS n ${from} WHERE ${where}`,
+      );
+      total = Number(counted?.n ?? 0);
+    }
+    const cards = await this.marketplace.searchCards(
+      viewerId,
+      rows.map((r) => r.id),
+    );
+    return {
+      type: 'marketplace',
+      count: total,
+      items: cards.map((c) => ({
+        type: 'marketplace',
+        id: c.id,
+        title: c.title,
+        subtitle: `${c.categoryName} · ${c.seller.displayName} · ${c.priceLabel}`,
+        imageUrl: c.coverUrl,
+        verified: c.seller.verified,
+        path: `/marketplace/listings/${c.id}`,
       })),
     };
   }

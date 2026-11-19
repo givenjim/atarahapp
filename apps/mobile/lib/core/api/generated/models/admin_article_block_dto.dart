@@ -19,10 +19,9 @@ class AdminArticleBlockDto {
     this.attribution,
     this.mediaId,
   });
-
-  factory AdminArticleBlockDto.fromJson(Map<String, Object?> json) =>
-      _$AdminArticleBlockDtoFromJson(json);
-
+  
+  factory AdminArticleBlockDto.fromJson(Map<String, Object?> json) => _$AdminArticleBlockDtoFromJson(json);
+  
   final AdminArticleBlockDtoType type;
   final String? text;
   final String? title;

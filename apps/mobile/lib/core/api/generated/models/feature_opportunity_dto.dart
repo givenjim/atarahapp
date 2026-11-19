@@ -8,11 +8,12 @@ part 'feature_opportunity_dto.g.dart';
 
 @JsonSerializable()
 class FeatureOpportunityDto {
-  const FeatureOpportunityDto({this.until});
-
-  factory FeatureOpportunityDto.fromJson(Map<String, Object?> json) =>
-      _$FeatureOpportunityDtoFromJson(json);
-
+  const FeatureOpportunityDto({
+    this.until,
+  });
+  
+  factory FeatureOpportunityDto.fromJson(Map<String, Object?> json) => _$FeatureOpportunityDtoFromJson(json);
+  
   /// Feature until this time. Null (or omitted) removes the feature.
   final DateTime? until;
 

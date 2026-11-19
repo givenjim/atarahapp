@@ -14,14 +14,11 @@ class GetApiV1CreativesHandleExperienceResponse {
     required this.data,
     this.meta,
   });
-
-  factory GetApiV1CreativesHandleExperienceResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1CreativesHandleExperienceResponseFromJson(json);
-
+  
+  factory GetApiV1CreativesHandleExperienceResponse.fromJson(Map<String, Object?> json) => _$GetApiV1CreativesHandleExperienceResponseFromJson(json);
+  
   final List<ExperienceDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1CreativesHandleExperienceResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1CreativesHandleExperienceResponseToJson(this);
 }

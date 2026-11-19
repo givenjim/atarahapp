@@ -15,10 +15,9 @@ class MuteStateDto {
     required this.targetId,
     required this.muted,
   });
-
-  factory MuteStateDto.fromJson(Map<String, Object?> json) =>
-      _$MuteStateDtoFromJson(json);
-
+  
+  factory MuteStateDto.fromJson(Map<String, Object?> json) => _$MuteStateDtoFromJson(json);
+  
   final MuteTargetType targetType;
   final String targetId;
   final bool muted;

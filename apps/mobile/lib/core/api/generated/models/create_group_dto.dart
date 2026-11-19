@@ -22,10 +22,9 @@ class CreateGroupDto {
     this.countyId,
     this.coverMediaId,
   });
-
-  factory CreateGroupDto.fromJson(Map<String, Object?> json) =>
-      _$CreateGroupDtoFromJson(json);
-
+  
+  factory CreateGroupDto.fromJson(Map<String, Object?> json) => _$CreateGroupDtoFromJson(json);
+  
   final String name;
 
   /// Lower-case words joined by hyphens. Defaults to the name.

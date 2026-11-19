@@ -22,10 +22,9 @@ class ProjectMediaDto {
     this.height,
     this.caption,
   });
-
-  factory ProjectMediaDto.fromJson(Map<String, Object?> json) =>
-      _$ProjectMediaDtoFromJson(json);
-
+  
+  factory ProjectMediaDto.fromJson(Map<String, Object?> json) => _$ProjectMediaDtoFromJson(json);
+  
   final String id;
   final ProjectMediaDtoKind kind;
   final String mimeType;

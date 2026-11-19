@@ -1005,6 +1005,7 @@ export class PortfolioService {
     priceMin: number | null;
     priceMax: number | null;
     status: string;
+    listing?: { id: string; status: string } | null;
   }) {
     return {
       id: s.id,
@@ -1014,6 +1015,8 @@ export class PortfolioService {
       priceMin: centsToShillings(s.priceMin),
       priceMax: centsToShillings(s.priceMax),
       status: s.status,
+      listingId: s.listing?.id ?? null,
+      listingStatus: s.listing?.status ?? null,
     };
   }
 
@@ -1039,6 +1042,7 @@ export class PortfolioService {
     const rows = await this.prisma.profileService.findMany({
       where: { profileId: await this.profileIdOf(userId) },
       orderBy: [{ sortOrder: 'asc' }, { createdAt: 'asc' }],
+      include: { listing: { select: { id: true, status: true } } },
       take: MAX_SERVICES,
     });
     return rows.map((r) => this.serviceView(r));

@@ -10,11 +10,13 @@ part 'get_api_v1_me_saved_counts_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1MeSavedCountsResponse {
-  const GetApiV1MeSavedCountsResponse({required this.data, this.meta});
-
-  factory GetApiV1MeSavedCountsResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1MeSavedCountsResponseFromJson(json);
-
+  const GetApiV1MeSavedCountsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1MeSavedCountsResponse.fromJson(Map<String, Object?> json) => _$GetApiV1MeSavedCountsResponseFromJson(json);
+  
   final SavedCountsDto data;
   final dynamic meta;
 

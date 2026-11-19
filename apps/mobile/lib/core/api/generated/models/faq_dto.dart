@@ -13,9 +13,9 @@ class FaqDto {
     required this.question,
     required this.answer,
   });
-
+  
   factory FaqDto.fromJson(Map<String, Object?> json) => _$FaqDtoFromJson(json);
-
+  
   final String id;
   final String question;
   final String answer;

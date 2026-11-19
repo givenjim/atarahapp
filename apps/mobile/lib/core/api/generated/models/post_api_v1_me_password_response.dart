@@ -10,11 +10,13 @@ part 'post_api_v1_me_password_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1MePasswordResponse {
-  const PostApiV1MePasswordResponse({required this.data, this.meta});
-
-  factory PostApiV1MePasswordResponse.fromJson(Map<String, Object?> json) =>
-      _$PostApiV1MePasswordResponseFromJson(json);
-
+  const PostApiV1MePasswordResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1MePasswordResponse.fromJson(Map<String, Object?> json) => _$PostApiV1MePasswordResponseFromJson(json);
+  
   final PasswordChangedDto data;
   final dynamic meta;
 

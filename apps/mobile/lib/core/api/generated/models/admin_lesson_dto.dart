@@ -22,10 +22,9 @@ class AdminLessonDto {
     this.practicePrompt,
     this.practiceSkillId,
   });
-
-  factory AdminLessonDto.fromJson(Map<String, Object?> json) =>
-      _$AdminLessonDtoFromJson(json);
-
+  
+  factory AdminLessonDto.fromJson(Map<String, Object?> json) => _$AdminLessonDtoFromJson(json);
+  
   final String id;
   final num sequence;
   final String title;

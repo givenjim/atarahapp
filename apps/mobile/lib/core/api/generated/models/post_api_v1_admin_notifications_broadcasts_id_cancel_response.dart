@@ -14,14 +14,11 @@ class PostApiV1AdminNotificationsBroadcastsIdCancelResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminNotificationsBroadcastsIdCancelResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminNotificationsBroadcastsIdCancelResponseFromJson(json);
-
+  
+  factory PostApiV1AdminNotificationsBroadcastsIdCancelResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminNotificationsBroadcastsIdCancelResponseFromJson(json);
+  
   final BroadcastDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminNotificationsBroadcastsIdCancelResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminNotificationsBroadcastsIdCancelResponseToJson(this);
 }

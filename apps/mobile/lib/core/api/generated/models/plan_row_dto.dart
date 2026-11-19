@@ -13,10 +13,9 @@ class PlanRowDto {
     required this.free,
     required this.pro,
   });
-
-  factory PlanRowDto.fromJson(Map<String, Object?> json) =>
-      _$PlanRowDtoFromJson(json);
-
+  
+  factory PlanRowDto.fromJson(Map<String, Object?> json) => _$PlanRowDtoFromJson(json);
+  
   final String label;
 
   /// Included in the Free plan.

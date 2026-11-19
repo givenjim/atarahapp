@@ -19,10 +19,9 @@ class AdminCategoryDto {
     required this.isActive,
     required this.contentCount,
   });
-
-  factory AdminCategoryDto.fromJson(Map<String, Object?> json) =>
-      _$AdminCategoryDtoFromJson(json);
-
+  
+  factory AdminCategoryDto.fromJson(Map<String, Object?> json) => _$AdminCategoryDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String name;

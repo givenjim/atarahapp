@@ -10,15 +10,15 @@ part 'get_api_v1_admin_users_id_overview_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1AdminUsersIdOverviewResponse {
-  const GetApiV1AdminUsersIdOverviewResponse({required this.data, this.meta});
-
-  factory GetApiV1AdminUsersIdOverviewResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1AdminUsersIdOverviewResponseFromJson(json);
-
+  const GetApiV1AdminUsersIdOverviewResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1AdminUsersIdOverviewResponse.fromJson(Map<String, Object?> json) => _$GetApiV1AdminUsersIdOverviewResponseFromJson(json);
+  
   final AdminUserOverviewDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1AdminUsersIdOverviewResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1AdminUsersIdOverviewResponseToJson(this);
 }

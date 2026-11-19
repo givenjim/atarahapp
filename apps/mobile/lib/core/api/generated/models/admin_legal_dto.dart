@@ -23,10 +23,9 @@ class AdminLegalDto {
     this.effectiveAt,
     this.draftLabel,
   });
-
-  factory AdminLegalDto.fromJson(Map<String, Object?> json) =>
-      _$AdminLegalDtoFromJson(json);
-
+  
+  factory AdminLegalDto.fromJson(Map<String, Object?> json) => _$AdminLegalDtoFromJson(json);
+  
   final LegalDocumentType type;
   final String title;
   final String version;

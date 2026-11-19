@@ -41,10 +41,9 @@ class PublicProfileDto {
     this.portfolioCount,
     this.serviceCount,
   });
-
-  factory PublicProfileDto.fromJson(Map<String, Object?> json) =>
-      _$PublicProfileDtoFromJson(json);
-
+  
+  factory PublicProfileDto.fromJson(Map<String, Object?> json) => _$PublicProfileDtoFromJson(json);
+  
   final String handle;
   final String displayName;
   final String? avatarUrl;

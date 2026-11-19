@@ -18,10 +18,9 @@ class AdminRuleDto {
     required this.isBlocking,
     required this.sortOrder,
   });
-
-  factory AdminRuleDto.fromJson(Map<String, Object?> json) =>
-      _$AdminRuleDtoFromJson(json);
-
+  
+  factory AdminRuleDto.fromJson(Map<String, Object?> json) => _$AdminRuleDtoFromJson(json);
+  
   final String id;
   final OpportunityRuleType ruleType;
   final dynamic params;

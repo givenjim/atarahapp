@@ -21,8 +21,7 @@ part 'notifications_client.g.dart';
 
 @RestApi()
 abstract class NotificationsClient {
-  factory NotificationsClient(Dio dio, {String? baseUrl}) =
-      _NotificationsClient;
+  factory NotificationsClient(Dio dio, {String? baseUrl}) = _NotificationsClient;
 
   /// [unreadOnly] - Only the ones not read yet.
   @GET('/api/v1/notifications')
@@ -60,5 +59,7 @@ abstract class NotificationsClient {
   });
 
   @DELETE('/api/v1/devices/{id}')
-  Future<void> removeDevice({@Path('id') required String id});
+  Future<void> removeDevice({
+    @Path('id') required String id,
+  });
 }

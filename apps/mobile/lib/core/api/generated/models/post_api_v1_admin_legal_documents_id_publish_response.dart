@@ -14,14 +14,11 @@ class PostApiV1AdminLegalDocumentsIdPublishResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminLegalDocumentsIdPublishResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminLegalDocumentsIdPublishResponseFromJson(json);
-
+  
+  factory PostApiV1AdminLegalDocumentsIdPublishResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminLegalDocumentsIdPublishResponseFromJson(json);
+  
   final AdminLegalDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminLegalDocumentsIdPublishResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminLegalDocumentsIdPublishResponseToJson(this);
 }

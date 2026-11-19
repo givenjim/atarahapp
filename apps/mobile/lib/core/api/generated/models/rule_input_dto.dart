@@ -16,10 +16,9 @@ class RuleInputDto {
     required this.label,
     this.isBlocking = true,
   });
-
-  factory RuleInputDto.fromJson(Map<String, Object?> json) =>
-      _$RuleInputDtoFromJson(json);
-
+  
+  factory RuleInputDto.fromJson(Map<String, Object?> json) => _$RuleInputDtoFromJson(json);
+  
   final OpportunityRuleType ruleType;
 
   /// Validated per rule type.

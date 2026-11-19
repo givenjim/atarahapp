@@ -10,15 +10,15 @@ part 'post_api_v1_notifications_read_all_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1NotificationsReadAllResponse {
-  const PostApiV1NotificationsReadAllResponse({required this.data, this.meta});
-
-  factory PostApiV1NotificationsReadAllResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1NotificationsReadAllResponseFromJson(json);
-
+  const PostApiV1NotificationsReadAllResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1NotificationsReadAllResponse.fromJson(Map<String, Object?> json) => _$PostApiV1NotificationsReadAllResponseFromJson(json);
+  
   final MarkedReadDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1NotificationsReadAllResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1NotificationsReadAllResponseToJson(this);
 }

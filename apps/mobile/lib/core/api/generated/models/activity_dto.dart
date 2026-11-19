@@ -11,11 +11,13 @@ part 'activity_dto.g.dart';
 
 @JsonSerializable()
 class ActivityDto {
-  const ActivityDto({required this.resume, required this.counts});
-
-  factory ActivityDto.fromJson(Map<String, Object?> json) =>
-      _$ActivityDtoFromJson(json);
-
+  const ActivityDto({
+    required this.resume,
+    required this.counts,
+  });
+  
+  factory ActivityDto.fromJson(Map<String, Object?> json) => _$ActivityDtoFromJson(json);
+  
   final List<ResumeCardDto> resume;
   final ActivityCountsDto counts;
 

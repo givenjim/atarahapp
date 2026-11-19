@@ -574,6 +574,19 @@ export class ServiceDto {
   @ApiPropertyOptional({ nullable: true, type: Number, description: 'Whole Kenya shillings.' })
   priceMax!: number | null;
   @ApiProperty({ enum: ['PROFILE_ONLY', 'ON_MARKETPLACE'] }) status!: string;
+  @ApiPropertyOptional({
+    type: String,
+    format: 'uuid',
+    nullable: true,
+    description: 'The marketplace listing made from this service, once it was published (P2-M3).',
+  })
+  listingId!: string | null;
+  @ApiPropertyOptional({
+    enum: ['DRAFT', 'UNDER_REVIEW', 'PUBLISHED', 'REJECTED', 'SUSPENDED', 'ARCHIVED'],
+    nullable: true,
+    description: 'Status of that listing.',
+  })
+  listingStatus!: string | null;
 }
 
 // ---- admin moderation -------------------------------------------------------------------------------------

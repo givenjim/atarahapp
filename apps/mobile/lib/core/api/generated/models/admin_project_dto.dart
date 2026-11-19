@@ -31,10 +31,9 @@ class AdminProjectDto {
     this.hiddenReason,
     this.hiddenAt,
   });
-
-  factory AdminProjectDto.fromJson(Map<String, Object?> json) =>
-      _$AdminProjectDtoFromJson(json);
-
+  
+  factory AdminProjectDto.fromJson(Map<String, Object?> json) => _$AdminProjectDtoFromJson(json);
+  
   final String id;
   final String title;
   final String? role;

@@ -1,0 +1,185 @@
+// Verification (P2-M6). Owner module: verification. Cases for Verified Creative, skills, sellers, opportunity providers and
+// mentors; evidence in the private `verification-evidence` bucket; references confirmed by email; badges derived from approved
+// cases. Hand-written migration 20261120060000_verification (partial unique indexes are not expressible in Prisma).
+
+enum VerificationSubjectType {
+  CREATIVE_IDENTITY
+  SKILL
+  SELLER
+  OPPORTUNITY_PROVIDER
+  MENTOR
+}
+
+enum VerificationEvidenceType {
+  GOVERNMENT_ID
+  PORTFOLIO_PROJECT
+  REFERENCE
+  DOCUMENT
+  LINK
+}
+
+enum VerificationReferenceStatus {
+  PENDING
+  CONFIRMED
+  DECLINED
+  EXPIRED
+}
+
+enum VerificationBadgeEndReason {
+  EXPIRED
+  REVOKED
+  SUPERSEDED
+}
+
+/// One request to be verified. `status` follows section 6.2 (NOT_SUBMITTED is the draft the member is still filling in).
+/// `subjectId` is the creative profile id (CREATIVE_IDENTITY), the taxonomy skill id (SKILL), the seller profile id,
+/// the opportunity provider id or the mentor profile id.
+model VerificationCase {
+  id                   String                  @id @default(uuid()) @db.Uuid
+  applicantId          String                  @db.Uuid
+  subjectType          VerificationSubjectType
+  subjectId            String                  @db.Uuid
+  status               VerificationStatus      @default(NOT_SUBMITTED)
+  /// Facts needed to undo the effect of a badge, e.g. `{ "previousSource": "LEARNING" }` for a skill.
+  subjectMeta          Json?
+  submittedAt          DateTime?
+  /// Submission time plus the reviewer service level in working days.
+  slaDueAt             DateTime?
+  reviewerId           String?                 @db.Uuid
+  assignedAt           DateTime?
+  decidedAt            DateTime?
+  /// Shown to the applicant (rejection feedback, revocation reason).
+  feedback             String?
+  /// Reviewer-only notes.
+  decisionNotes        String?
+  /// Set while a reviewer waits for more information; cleared when the applicant resubmits.
+  moreInfoNote         String?
+  moreInfoRequestedAt  DateTime?
+  expiresAt            DateTime?
+  expiryReminderSentAt DateTime?
+  version              Int                     @default(0)
+  createdAt            DateTime                @default(now())
+  updatedAt            DateTime                @updatedAt
+
+  applicant User                    @relation("VerificationApplicant", fields: [applicantId], references: [id], onDelete: Cascade)
+  reviewer  User?                   @relation("VerificationReviewer", fields: [reviewerId], references: [id], onDelete: SetNull)
+  evidence  VerificationEvidence[]
+  references VerificationReference[]
+  events    VerificationCaseEvent[]
+  badge     VerificationBadge?
+
+  @@index([status, submittedAt])
+  @@index([applicantId, subjectType, subjectId])
+  @@index([reviewerId, status])
+  @@index([status, expiresAt])
+  @@map("verification_cases")
+}
+
+/// What a case type asks for. Reference data seeded with the platform; staff can switch a row off.
+model VerificationRequirement {
+  id            String                     @id @default(uuid()) @db.Uuid
+  subjectType   VerificationSubjectType
+  key           String
+  label         String
+  description   String
+  /// Evidence types that count towards this requirement.
+  evidenceTypes VerificationEvidenceType[]
+  minCount      Int                        @default(1)
+  sortOrder     Int                        @default(0)
+  isActive      Boolean                    @default(true)
+  createdAt     DateTime                   @default(now())
+  updatedAt     DateTime                   @updatedAt
+
+  @@unique([subjectType, key])
+  @@map("verification_requirements")
+}
+
+/// One piece of evidence. Files live in the evidence bucket (`mediaAssetId`); the row survives the deletion of a
+/// government ID image (`purgedAt` is set, the decision record stays).
+model VerificationEvidence {
+  id           String                   @id @default(uuid()) @db.Uuid
+  caseId       String                   @db.Uuid
+  type         VerificationEvidenceType
+  label        String?
+  mediaAssetId String?                  @db.Uuid
+  /// A published or private portfolio project of the applicant (PORTFOLIO_PROJECT).
+  projectId    String?                  @db.Uuid
+  url          String?
+  referenceId  String?                  @unique @db.Uuid
+  note         String?
+  /// Government ID images are deleted from storage at this time (decision plus the retention setting).
+  purgeAfter   DateTime?
+  purgedAt     DateTime?
+  createdAt    DateTime                 @default(now())
+
+  case      VerificationCase       @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  reference VerificationReference? @relation(fields: [referenceId], references: [id], onDelete: SetNull)
+
+  @@index([caseId, type])
+  @@index([purgeAfter, purgedAt])
+  @@map("verification_evidence")
+}
+
+/// A referee. Atarah emails a confirmation request carrying a one-time token; only its SHA-256 is stored.
+model VerificationReference {
+  id             String                      @id @default(uuid()) @db.Uuid
+  caseId         String                      @db.Uuid
+  name           String
+  email          String
+  relationship   String
+  status         VerificationReferenceStatus @default(PENDING)
+  tokenHash      String                      @unique
+  tokenExpiresAt DateTime
+  sentAt         DateTime?
+  respondedAt    DateTime?
+  /// The referee's own words, shown to the reviewer only.
+  comment        String?
+  createdAt      DateTime                    @default(now())
+  updatedAt      DateTime                    @updatedAt
+
+  case     VerificationCase      @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  evidence VerificationEvidence?
+
+  @@index([caseId])
+  @@index([status, tokenExpiresAt])
+  @@map("verification_references")
+}
+
+/// An active badge, derived from one approved case. Active means `endedAt` is null and `expiresAt` has not passed;
+/// the expiry job and revocation set `endedAt` and put the matching status on the subject.
+model VerificationBadge {
+  id          String                      @id @default(uuid()) @db.Uuid
+  userId      String                      @db.Uuid
+  subjectType VerificationSubjectType
+  subjectId   String                      @db.Uuid
+  caseId      String                      @unique @db.Uuid
+  grantedAt   DateTime                    @default(now())
+  expiresAt   DateTime?
+  endedAt     DateTime?
+  endReason   VerificationBadgeEndReason?
+  createdAt   DateTime                    @default(now())
+
+  user User             @relation("VerificationBadgeOwner", fields: [userId], references: [id], onDelete: Cascade)
+  case VerificationCase @relation(fields: [caseId], references: [id], onDelete: Cascade)
+
+  @@index([userId, subjectType])
+  @@index([subjectType, subjectId])
+  @@index([endedAt, expiresAt])
+  @@map("verification_badges")
+}
+
+/// The case timeline and the previous decisions a reviewer sees.
+model VerificationCaseEvent {
+  id        String   @id @default(uuid()) @db.Uuid
+  caseId    String   @db.Uuid
+  /// SUBMITTED, RESUBMITTED, CLAIMED, RELEASED, APPROVED, REJECTED, MORE_INFO_REQUESTED, REVOKED, EXPIRED.
+  action    String
+  actorId   String?  @db.Uuid
+  note      String?
+  createdAt DateTime @default(now())
+
+  case VerificationCase @relation(fields: [caseId], references: [id], onDelete: Cascade)
+
+  @@index([caseId, createdAt])
+  @@map("verification_case_events")
+}

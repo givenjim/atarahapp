@@ -10,11 +10,13 @@ part 'practice_dto.g.dart';
 
 @JsonSerializable()
 class PracticeDto {
-  const PracticeDto({required this.prompt, this.skill});
-
-  factory PracticeDto.fromJson(Map<String, Object?> json) =>
-      _$PracticeDtoFromJson(json);
-
+  const PracticeDto({
+    required this.prompt,
+    this.skill,
+  });
+  
+  factory PracticeDto.fromJson(Map<String, Object?> json) => _$PracticeDtoFromJson(json);
+  
   final String prompt;
   final SkillRefDto? skill;
 

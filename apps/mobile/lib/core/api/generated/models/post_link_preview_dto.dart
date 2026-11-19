@@ -15,10 +15,9 @@ class PostLinkPreviewDto {
     required this.image,
     required this.siteName,
   });
-
-  factory PostLinkPreviewDto.fromJson(Map<String, Object?> json) =>
-      _$PostLinkPreviewDtoFromJson(json);
-
+  
+  factory PostLinkPreviewDto.fromJson(Map<String, Object?> json) => _$PostLinkPreviewDtoFromJson(json);
+  
   final String url;
   final String? title;
   final String? description;

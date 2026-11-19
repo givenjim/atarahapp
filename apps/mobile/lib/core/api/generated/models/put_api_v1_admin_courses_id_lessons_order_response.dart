@@ -14,14 +14,11 @@ class PutApiV1AdminCoursesIdLessonsOrderResponse {
     required this.data,
     this.meta,
   });
-
-  factory PutApiV1AdminCoursesIdLessonsOrderResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PutApiV1AdminCoursesIdLessonsOrderResponseFromJson(json);
-
+  
+  factory PutApiV1AdminCoursesIdLessonsOrderResponse.fromJson(Map<String, Object?> json) => _$PutApiV1AdminCoursesIdLessonsOrderResponseFromJson(json);
+  
   final AdminContentDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PutApiV1AdminCoursesIdLessonsOrderResponseToJson(this);
+  Map<String, Object?> toJson() => _$PutApiV1AdminCoursesIdLessonsOrderResponseToJson(this);
 }

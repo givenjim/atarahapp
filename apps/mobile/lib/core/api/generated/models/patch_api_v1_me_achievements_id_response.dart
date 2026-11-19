@@ -10,15 +10,15 @@ part 'patch_api_v1_me_achievements_id_response.g.dart';
 
 @JsonSerializable()
 class PatchApiV1MeAchievementsIdResponse {
-  const PatchApiV1MeAchievementsIdResponse({required this.data, this.meta});
-
-  factory PatchApiV1MeAchievementsIdResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PatchApiV1MeAchievementsIdResponseFromJson(json);
-
+  const PatchApiV1MeAchievementsIdResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PatchApiV1MeAchievementsIdResponse.fromJson(Map<String, Object?> json) => _$PatchApiV1MeAchievementsIdResponseFromJson(json);
+  
   final AchievementDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PatchApiV1MeAchievementsIdResponseToJson(this);
+  Map<String, Object?> toJson() => _$PatchApiV1MeAchievementsIdResponseToJson(this);
 }

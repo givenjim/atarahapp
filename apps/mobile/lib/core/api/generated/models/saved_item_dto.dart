@@ -22,10 +22,9 @@ class SavedItemDto {
     this.imageUrl,
     this.article,
   });
-
-  factory SavedItemDto.fromJson(Map<String, Object?> json) =>
-      _$SavedItemDtoFromJson(json);
-
+  
+  factory SavedItemDto.fromJson(Map<String, Object?> json) => _$SavedItemDtoFromJson(json);
+  
   final SavedKind type;
 
   /// Id of the saved thing (a creative is saved by profile id).

@@ -14,14 +14,11 @@ class PostApiV1AdminTaxonomyKindReorderResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminTaxonomyKindReorderResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminTaxonomyKindReorderResponseFromJson(json);
-
+  
+  factory PostApiV1AdminTaxonomyKindReorderResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminTaxonomyKindReorderResponseFromJson(json);
+  
   final List<AdminTaxonomyItemDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminTaxonomyKindReorderResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminTaxonomyKindReorderResponseToJson(this);
 }

@@ -14,14 +14,11 @@ class GetApiV1CreativesHandleAchievementsResponse {
     required this.data,
     this.meta,
   });
-
-  factory GetApiV1CreativesHandleAchievementsResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1CreativesHandleAchievementsResponseFromJson(json);
-
+  
+  factory GetApiV1CreativesHandleAchievementsResponse.fromJson(Map<String, Object?> json) => _$GetApiV1CreativesHandleAchievementsResponseFromJson(json);
+  
   final List<AchievementDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1CreativesHandleAchievementsResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1CreativesHandleAchievementsResponseToJson(this);
 }

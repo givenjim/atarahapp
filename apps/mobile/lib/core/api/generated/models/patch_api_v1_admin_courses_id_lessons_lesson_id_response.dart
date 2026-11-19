@@ -14,14 +14,11 @@ class PatchApiV1AdminCoursesIdLessonsLessonIdResponse {
     required this.data,
     this.meta,
   });
-
-  factory PatchApiV1AdminCoursesIdLessonsLessonIdResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PatchApiV1AdminCoursesIdLessonsLessonIdResponseFromJson(json);
-
+  
+  factory PatchApiV1AdminCoursesIdLessonsLessonIdResponse.fromJson(Map<String, Object?> json) => _$PatchApiV1AdminCoursesIdLessonsLessonIdResponseFromJson(json);
+  
   final AdminContentDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PatchApiV1AdminCoursesIdLessonsLessonIdResponseToJson(this);
+  Map<String, Object?> toJson() => _$PatchApiV1AdminCoursesIdLessonsLessonIdResponseToJson(this);
 }

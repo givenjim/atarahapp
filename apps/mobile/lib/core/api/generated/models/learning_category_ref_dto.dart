@@ -16,10 +16,9 @@ class LearningCategoryRefDto {
     required this.name,
     required this.group,
   });
-
-  factory LearningCategoryRefDto.fromJson(Map<String, Object?> json) =>
-      _$LearningCategoryRefDtoFromJson(json);
-
+  
+  factory LearningCategoryRefDto.fromJson(Map<String, Object?> json) => _$LearningCategoryRefDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String name;

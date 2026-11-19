@@ -27,10 +27,9 @@ class BroadcastDto {
     this.scheduledAt,
     this.sentAt,
   });
-
-  factory BroadcastDto.fromJson(Map<String, Object?> json) =>
-      _$BroadcastDtoFromJson(json);
-
+  
+  factory BroadcastDto.fromJson(Map<String, Object?> json) => _$BroadcastDtoFromJson(json);
+  
   final String id;
   final String title;
   final String body;

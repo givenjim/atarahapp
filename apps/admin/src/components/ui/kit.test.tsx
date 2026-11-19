@@ -267,12 +267,13 @@ describe('navigation and Soon panels', () => {
       'groups',
       'announcements',
       'portfolio',
+      'payments',
       'notifications',
       'analytics',
       'audit-logs',
       'settings',
     ]);
-    render(<SoonPanel section={sectionBySlug('payments')!} />);
-    expect(screen.getByText('Soon · P2')).toBeInTheDocument();
+    render(<SoonPanel section={sectionBySlug('creative-economy')!} />);
+    expect(screen.getByText('Soon · P3')).toBeInTheDocument();
   });
 });

@@ -44,8 +44,7 @@ part 'admin_opportunities_client.g.dart';
 
 @RestApi()
 abstract class AdminOpportunitiesClient {
-  factory AdminOpportunitiesClient(Dio dio, {String? baseUrl}) =
-      _AdminOpportunitiesClient;
+  factory AdminOpportunitiesClient(Dio dio, {String? baseUrl}) = _AdminOpportunitiesClient;
 
   @GET('/api/v1/admin/opportunity-providers')
   Future<GetApiV1AdminOpportunityProvidersResponse> listProviders({

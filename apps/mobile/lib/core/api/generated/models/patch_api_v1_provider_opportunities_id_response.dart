@@ -14,14 +14,11 @@ class PatchApiV1ProviderOpportunitiesIdResponse {
     required this.data,
     this.meta,
   });
-
-  factory PatchApiV1ProviderOpportunitiesIdResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PatchApiV1ProviderOpportunitiesIdResponseFromJson(json);
-
+  
+  factory PatchApiV1ProviderOpportunitiesIdResponse.fromJson(Map<String, Object?> json) => _$PatchApiV1ProviderOpportunitiesIdResponseFromJson(json);
+  
   final AdminOpportunityDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PatchApiV1ProviderOpportunitiesIdResponseToJson(this);
+  Map<String, Object?> toJson() => _$PatchApiV1ProviderOpportunitiesIdResponseToJson(this);
 }

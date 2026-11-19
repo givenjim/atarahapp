@@ -18,5 +18,7 @@ abstract class PublicClient {
   Future<GetApiV1ConfigPublicResponse> config();
 
   @GET('/api/v1/legal/{type}')
-  Future<GetApiV1LegalTypeResponse> legal({@Path('type') required String type});
+  Future<GetApiV1LegalTypeResponse> legal({
+    @Path('type') required String type,
+  });
 }

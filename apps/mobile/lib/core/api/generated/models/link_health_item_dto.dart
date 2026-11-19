@@ -22,10 +22,9 @@ class LinkHealthItemDto {
     this.error,
     this.checkedAt,
   });
-
-  factory LinkHealthItemDto.fromJson(Map<String, Object?> json) =>
-      _$LinkHealthItemDtoFromJson(json);
-
+  
+  factory LinkHealthItemDto.fromJson(Map<String, Object?> json) => _$LinkHealthItemDtoFromJson(json);
+  
   final String opportunityId;
   final String title;
   final String provider;

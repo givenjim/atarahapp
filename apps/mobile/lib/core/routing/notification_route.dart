@@ -23,6 +23,7 @@ const _known = {
   'explore',
   'community',
   'opportunities',
+  'marketplace',
   'learning',
   'profile',
   'passport',

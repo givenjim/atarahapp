@@ -19,10 +19,9 @@ class RecommendationDto {
     this.subtitle,
     this.imageUrl,
   });
-
-  factory RecommendationDto.fromJson(Map<String, Object?> json) =>
-      _$RecommendationDtoFromJson(json);
-
+  
+  factory RecommendationDto.fromJson(Map<String, Object?> json) => _$RecommendationDtoFromJson(json);
+  
   /// More kinds join as opportunities and Skill Labs arrive.
   final RecommendationDtoType type;
   final String id;

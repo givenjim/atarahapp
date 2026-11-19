@@ -470,10 +470,11 @@ void main() {
       },
     );
 
-    testWidgets('CV and EPK open the Phase 2 placeholder', (t) async {
-      await openPassport(t);
+    testWidgets('Create CV / EPK opens the CV screen', (t) async {
+      final (h, _) = await openPassport(t);
       await tapText(t, 'Create CV / EPK');
-      expect(find.text('Soon · P2'), findsOneWidget);
+      expect(h.path, '/cv');
+      expect(find.text('Soon · P2'), findsNothing);
     });
 
     testWidgets('Back returns to the profile', (t) async {

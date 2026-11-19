@@ -14,10 +14,9 @@ class LearningStatsDto {
     required this.minutesThisMonth,
     required this.hoursThisMonth,
   });
-
-  factory LearningStatsDto.fromJson(Map<String, Object?> json) =>
-      _$LearningStatsDtoFromJson(json);
-
+  
+  factory LearningStatsDto.fromJson(Map<String, Object?> json) => _$LearningStatsDtoFromJson(json);
+  
   final num inProgress;
   final num completed;
   final num minutesThisMonth;

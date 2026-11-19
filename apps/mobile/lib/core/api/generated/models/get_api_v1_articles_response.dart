@@ -10,11 +10,13 @@ part 'get_api_v1_articles_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1ArticlesResponse {
-  const GetApiV1ArticlesResponse({required this.data, this.meta});
-
-  factory GetApiV1ArticlesResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1ArticlesResponseFromJson(json);
-
+  const GetApiV1ArticlesResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1ArticlesResponse.fromJson(Map<String, Object?> json) => _$GetApiV1ArticlesResponseFromJson(json);
+  
   final List<ArticleCardDto> data;
   final dynamic meta;
 

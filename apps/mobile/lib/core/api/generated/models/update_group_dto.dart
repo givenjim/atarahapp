@@ -19,10 +19,9 @@ class UpdateGroupDto {
     required this.isOfficial,
     required this.visibility,
   });
-
-  factory UpdateGroupDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateGroupDtoFromJson(json);
-
+  
+  factory UpdateGroupDto.fromJson(Map<String, Object?> json) => _$UpdateGroupDtoFromJson(json);
+  
   final String name;
   final String description;
   final String? disciplineId;

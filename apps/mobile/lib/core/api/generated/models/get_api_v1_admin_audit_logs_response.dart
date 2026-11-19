@@ -10,11 +10,13 @@ part 'get_api_v1_admin_audit_logs_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1AdminAuditLogsResponse {
-  const GetApiV1AdminAuditLogsResponse({required this.data, this.meta});
-
-  factory GetApiV1AdminAuditLogsResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1AdminAuditLogsResponseFromJson(json);
-
+  const GetApiV1AdminAuditLogsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1AdminAuditLogsResponse.fromJson(Map<String, Object?> json) => _$GetApiV1AdminAuditLogsResponseFromJson(json);
+  
   final List<AuditLogEntryDto> data;
   final dynamic meta;
 

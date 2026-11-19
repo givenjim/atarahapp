@@ -10,15 +10,15 @@ part 'post_api_v1_admin_projects_id_hide_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1AdminProjectsIdHideResponse {
-  const PostApiV1AdminProjectsIdHideResponse({required this.data, this.meta});
-
-  factory PostApiV1AdminProjectsIdHideResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminProjectsIdHideResponseFromJson(json);
-
+  const PostApiV1AdminProjectsIdHideResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1AdminProjectsIdHideResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminProjectsIdHideResponseFromJson(json);
+  
   final AdminProjectDetailDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminProjectsIdHideResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminProjectsIdHideResponseToJson(this);
 }

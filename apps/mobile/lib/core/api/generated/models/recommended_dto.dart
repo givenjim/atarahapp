@@ -10,11 +10,13 @@ part 'recommended_dto.g.dart';
 
 @JsonSerializable()
 class RecommendedDto {
-  const RecommendedDto({required this.content, required this.reason});
-
-  factory RecommendedDto.fromJson(Map<String, Object?> json) =>
-      _$RecommendedDtoFromJson(json);
-
+  const RecommendedDto({
+    required this.content,
+    required this.reason,
+  });
+  
+  factory RecommendedDto.fromJson(Map<String, Object?> json) => _$RecommendedDtoFromJson(json);
+  
   final LearningCardDto content;
 
   /// Why: "Because you want to develop Personal branding".

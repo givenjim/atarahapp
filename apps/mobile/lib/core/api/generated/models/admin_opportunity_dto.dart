@@ -52,10 +52,9 @@ class AdminOpportunityDto {
     this.lastCheckedAt,
     this.publishedAt,
   });
-
-  factory AdminOpportunityDto.fromJson(Map<String, Object?> json) =>
-      _$AdminOpportunityDtoFromJson(json);
-
+  
+  factory AdminOpportunityDto.fromJson(Map<String, Object?> json) => _$AdminOpportunityDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String title;

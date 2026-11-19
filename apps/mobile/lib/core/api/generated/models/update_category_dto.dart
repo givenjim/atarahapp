@@ -16,10 +16,9 @@ class UpdateCategoryDto {
     required this.sortOrder,
     required this.isActive,
   });
-
-  factory UpdateCategoryDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateCategoryDtoFromJson(json);
-
+  
+  factory UpdateCategoryDto.fromJson(Map<String, Object?> json) => _$UpdateCategoryDtoFromJson(json);
+  
   final String name;
   final LearningCategoryGroup group;
   final num sortOrder;

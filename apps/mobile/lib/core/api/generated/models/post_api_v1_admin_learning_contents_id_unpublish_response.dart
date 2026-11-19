@@ -14,14 +14,11 @@ class PostApiV1AdminLearningContentsIdUnpublishResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminLearningContentsIdUnpublishResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminLearningContentsIdUnpublishResponseFromJson(json);
-
+  
+  factory PostApiV1AdminLearningContentsIdUnpublishResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminLearningContentsIdUnpublishResponseFromJson(json);
+  
   final AdminContentDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminLearningContentsIdUnpublishResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminLearningContentsIdUnpublishResponseToJson(this);
 }

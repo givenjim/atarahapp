@@ -17,10 +17,9 @@ class UserRoleGrantDto {
     required this.grantedAt,
     this.grantedBy,
   });
-
-  factory UserRoleGrantDto.fromJson(Map<String, Object?> json) =>
-      _$UserRoleGrantDtoFromJson(json);
-
+  
+  factory UserRoleGrantDto.fromJson(Map<String, Object?> json) => _$UserRoleGrantDtoFromJson(json);
+  
   final RoleKey key;
   final String name;
   final bool isStaff;

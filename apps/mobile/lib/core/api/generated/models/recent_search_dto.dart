@@ -8,11 +8,13 @@ part 'recent_search_dto.g.dart';
 
 @JsonSerializable()
 class RecentSearchDto {
-  const RecentSearchDto({required this.id, required this.query});
-
-  factory RecentSearchDto.fromJson(Map<String, Object?> json) =>
-      _$RecentSearchDtoFromJson(json);
-
+  const RecentSearchDto({
+    required this.id,
+    required this.query,
+  });
+  
+  factory RecentSearchDto.fromJson(Map<String, Object?> json) => _$RecentSearchDtoFromJson(json);
+  
   final String id;
   final String query;
 

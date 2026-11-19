@@ -46,10 +46,9 @@ class OpportunityDto {
     this.applicationDomain,
     this.disciplines,
   });
-
-  factory OpportunityDto.fromJson(Map<String, Object?> json) =>
-      _$OpportunityDtoFromJson(json);
-
+  
+  factory OpportunityDto.fromJson(Map<String, Object?> json) => _$OpportunityDtoFromJson(json);
+  
   final String id;
   final String slug;
   final OpportunityType type;

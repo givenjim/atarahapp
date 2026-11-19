@@ -10,15 +10,15 @@ part 'get_api_v1_help_articles_slug_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1HelpArticlesSlugResponse {
-  const GetApiV1HelpArticlesSlugResponse({required this.data, this.meta});
-
-  factory GetApiV1HelpArticlesSlugResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1HelpArticlesSlugResponseFromJson(json);
-
+  const GetApiV1HelpArticlesSlugResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1HelpArticlesSlugResponse.fromJson(Map<String, Object?> json) => _$GetApiV1HelpArticlesSlugResponseFromJson(json);
+  
   final HelpArticleDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1HelpArticlesSlugResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1HelpArticlesSlugResponseToJson(this);
 }

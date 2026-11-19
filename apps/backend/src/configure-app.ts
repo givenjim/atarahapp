@@ -1,5 +1,5 @@
 import { type NestExpressApplication } from '@nestjs/platform-express';
-import { type INestApplication } from '@nestjs/common';
+import { type INestApplication, RequestMethod } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule, type OpenAPIObject } from '@nestjs/swagger';
 import { Logger } from 'nestjs-pino';
 import helmet from 'helmet';
@@ -42,7 +42,15 @@ export function configureApp(app: INestApplication, options: { useLogger?: boole
   });
 
   // Health probes live outside the versioned prefix.
-  app.setGlobalPrefix(API_PREFIX, { exclude: ['health/live', 'health/ready', 'metrics'] });
+  // The public CV / EPK page (P2-M7) lives at the share URL's own path, `/{handle}/cv/{token}`.
+  app.setGlobalPrefix(API_PREFIX, {
+    exclude: [
+      'health/live',
+      'health/ready',
+      'metrics',
+      { path: ':handle/cv/:token', method: RequestMethod.GET },
+    ],
+  });
   app.useGlobalPipes(createValidationPipe());
   app.useGlobalFilters(new AllExceptionsFilter());
   app.useGlobalInterceptors(new ResponseEnvelopeInterceptor());

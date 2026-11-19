@@ -18,10 +18,9 @@ class PostMediaItemDto {
     required this.width,
     required this.height,
   });
-
-  factory PostMediaItemDto.fromJson(Map<String, Object?> json) =>
-      _$PostMediaItemDtoFromJson(json);
-
+  
+  factory PostMediaItemDto.fromJson(Map<String, Object?> json) => _$PostMediaItemDtoFromJson(json);
+  
   final String id;
   final PostMediaKind kind;
 

@@ -8,11 +8,13 @@ part 'help_contact_dto.g.dart';
 
 @JsonSerializable()
 class HelpContactDto {
-  const HelpContactDto({required this.email, required this.note});
-
-  factory HelpContactDto.fromJson(Map<String, Object?> json) =>
-      _$HelpContactDtoFromJson(json);
-
+  const HelpContactDto({
+    required this.email,
+    required this.note,
+  });
+  
+  factory HelpContactDto.fromJson(Map<String, Object?> json) => _$HelpContactDtoFromJson(json);
+  
   /// Where "Chat with us" sends the member: a support email.
   final String email;
   final String note;

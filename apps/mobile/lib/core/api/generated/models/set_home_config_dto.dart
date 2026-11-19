@@ -8,11 +8,12 @@ part 'set_home_config_dto.g.dart';
 
 @JsonSerializable()
 class SetHomeConfigDto {
-  const SetHomeConfigDto({this.featuredArticleId});
-
-  factory SetHomeConfigDto.fromJson(Map<String, Object?> json) =>
-      _$SetHomeConfigDtoFromJson(json);
-
+  const SetHomeConfigDto({
+    this.featuredArticleId,
+  });
+  
+  factory SetHomeConfigDto.fromJson(Map<String, Object?> json) => _$SetHomeConfigDtoFromJson(json);
+  
   /// A published article. Null un-pins.
   final String? featuredArticleId;
 

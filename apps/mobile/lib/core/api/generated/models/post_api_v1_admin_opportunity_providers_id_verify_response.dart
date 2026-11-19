@@ -14,14 +14,11 @@ class PostApiV1AdminOpportunityProvidersIdVerifyResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminOpportunityProvidersIdVerifyResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminOpportunityProvidersIdVerifyResponseFromJson(json);
-
+  
+  factory PostApiV1AdminOpportunityProvidersIdVerifyResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminOpportunityProvidersIdVerifyResponseFromJson(json);
+  
   final AdminProviderDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminOpportunityProvidersIdVerifyResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminOpportunityProvidersIdVerifyResponseToJson(this);
 }

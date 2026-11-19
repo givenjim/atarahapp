@@ -17,10 +17,9 @@ class UploadTicketDto {
     required this.headers,
     required this.expiresAt,
   });
-
-  factory UploadTicketDto.fromJson(Map<String, Object?> json) =>
-      _$UploadTicketDtoFromJson(json);
-
+  
+  factory UploadTicketDto.fromJson(Map<String, Object?> json) => _$UploadTicketDtoFromJson(json);
+  
   final String id;
 
   /// Signed URL. PUT the file bytes here with the headers below.

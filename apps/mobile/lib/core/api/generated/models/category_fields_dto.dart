@@ -16,10 +16,9 @@ class CategoryFieldsDto {
     this.sortOrder,
     this.isActive,
   });
-
-  factory CategoryFieldsDto.fromJson(Map<String, Object?> json) =>
-      _$CategoryFieldsDtoFromJson(json);
-
+  
+  factory CategoryFieldsDto.fromJson(Map<String, Object?> json) => _$CategoryFieldsDtoFromJson(json);
+  
   final String name;
   final LearningCategoryGroup group;
   final num? sortOrder;

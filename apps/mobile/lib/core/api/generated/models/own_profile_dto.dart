@@ -41,10 +41,9 @@ class OwnProfileDto {
     required this.counts,
     required this.shareUrl,
   });
-
-  factory OwnProfileDto.fromJson(Map<String, Object?> json) =>
-      _$OwnProfileDtoFromJson(json);
-
+  
+  factory OwnProfileDto.fromJson(Map<String, Object?> json) => _$OwnProfileDtoFromJson(json);
+  
   final String id;
   final String? handle;
   final String displayName;

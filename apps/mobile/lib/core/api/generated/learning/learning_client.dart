@@ -63,7 +63,9 @@ abstract class LearningClient {
   });
 
   @GET('/api/v1/learning/{id}')
-  Future<GetApiV1LearningIdResponse> detail({@Path('id') required String id});
+  Future<GetApiV1LearningIdResponse> detail({
+    @Path('id') required String id,
+  });
 
   @POST('/api/v1/learning/{id}/enrol')
   Future<PostApiV1LearningIdEnrolResponse> enrol({
@@ -81,10 +83,14 @@ abstract class LearningClient {
   });
 
   @PUT('/api/v1/learning/{id}/save')
-  Future<void> save({@Path('id') required String id});
+  Future<void> save({
+    @Path('id') required String id,
+  });
 
   @DELETE('/api/v1/learning/{id}/save')
-  Future<void> unsave({@Path('id') required String id});
+  Future<void> unsave({
+    @Path('id') required String id,
+  });
 
   @GET('/api/v1/me/learning')
   Future<GetApiV1MeLearningResponse> mine({

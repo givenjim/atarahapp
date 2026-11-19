@@ -36,6 +36,7 @@ model User {
   roles                 UserRole[]                 @relation("UserRoles")
   rolesGranted          UserRole[]                 @relation("UserRolesGrantedBy")
   memberships           Membership[]
+  payments              Payment[]                  @relation("PaymentPayer")
   mediaAssets           MediaAsset[]
   notifications         Notification[]
   notificationPrefs     NotificationPreference[]
@@ -52,6 +53,13 @@ model User {
   articlesEdited        Article[]                  @relation("ArticleEditor")
   savedItems            SavedItem[]                @relation("SavedBy")
   recentSearches        RecentSearch[]             @relation("RecentSearcher")
+  sellerProfile         SellerProfile?             @relation("SellerUser")
+  listingReviews        ListingReview[]            @relation("ListingReviewer")
+  enquiriesMade         Enquiry[]                  @relation("EnquiryBuyer")
+  enquiriesReceived     Enquiry[]                  @relation("EnquirySeller")
+  enquiryMessages       EnquiryMessage[]           @relation("EnquiryMessageSender")
+  listingReports        ListingReport[]            @relation("ListingReporter")
+  listingViews          ListingView[]              @relation("ListingViewer")
   homeConfigEdits       HomeConfig[]               @relation("HomeConfigEditor")
   posts                 Post[]                     @relation("PostAuthor")
   comments              Comment[]                  @relation("CommentAuthor")
@@ -64,6 +72,9 @@ model User {
   mutesMade             Mute[]                     @relation("MutesMade")
   reportsMade           Report[]                   @relation("ReportsMade")
   casesAssigned         ModerationCase[]           @relation("CaseAssignee")
+  verificationCases     VerificationCase[]         @relation("VerificationApplicant")
+  verificationReviewed  VerificationCase[]         @relation("VerificationReviewer")
+  verificationBadges    VerificationBadge[]        @relation("VerificationBadgeOwner")
   communityRestrictions CommunityRestriction[]     @relation("CommunityRestrictions")
   opportunityTrackings  OpportunityTracking[]      @relation("OpportunityTracker")
   opportunitiesCreated  Opportunity[]              @relation("OpportunityCreator")

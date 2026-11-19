@@ -10,11 +10,13 @@ part 'assign_role_dto.g.dart';
 
 @JsonSerializable()
 class AssignRoleDto {
-  const AssignRoleDto({required this.role, this.reason});
-
-  factory AssignRoleDto.fromJson(Map<String, Object?> json) =>
-      _$AssignRoleDtoFromJson(json);
-
+  const AssignRoleDto({
+    required this.role,
+    this.reason,
+  });
+  
+  factory AssignRoleDto.fromJson(Map<String, Object?> json) => _$AssignRoleDtoFromJson(json);
+  
   final RoleKey role;
 
   /// Why. Kept in the audit log.

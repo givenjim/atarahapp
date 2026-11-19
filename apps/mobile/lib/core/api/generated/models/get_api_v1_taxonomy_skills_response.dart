@@ -10,11 +10,13 @@ part 'get_api_v1_taxonomy_skills_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1TaxonomySkillsResponse {
-  const GetApiV1TaxonomySkillsResponse({required this.data, this.meta});
-
-  factory GetApiV1TaxonomySkillsResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1TaxonomySkillsResponseFromJson(json);
-
+  const GetApiV1TaxonomySkillsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1TaxonomySkillsResponse.fromJson(Map<String, Object?> json) => _$GetApiV1TaxonomySkillsResponseFromJson(json);
+  
   final List<TaxonomyItemDto> data;
   final dynamic meta;
 

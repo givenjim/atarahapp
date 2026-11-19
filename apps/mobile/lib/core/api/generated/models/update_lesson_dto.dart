@@ -19,10 +19,9 @@ class UpdateLessonDto {
     this.practicePrompt,
     this.practiceSkillId,
   });
-
-  factory UpdateLessonDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateLessonDtoFromJson(json);
-
+  
+  factory UpdateLessonDto.fromJson(Map<String, Object?> json) => _$UpdateLessonDtoFromJson(json);
+  
   final String? title;
   final num? durationMinutes;
   final List<ArticleBlockInputDto>? body;

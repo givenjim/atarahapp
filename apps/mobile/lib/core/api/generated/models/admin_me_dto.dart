@@ -32,10 +32,9 @@ class AdminMeDto {
     required this.deletionScheduledFor,
     required this.permissions,
   });
-
-  factory AdminMeDto.fromJson(Map<String, Object?> json) =>
-      _$AdminMeDtoFromJson(json);
-
+  
+  factory AdminMeDto.fromJson(Map<String, Object?> json) => _$AdminMeDtoFromJson(json);
+  
   final String id;
   final String fullName;
   final String? email;

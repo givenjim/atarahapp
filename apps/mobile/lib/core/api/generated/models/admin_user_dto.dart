@@ -21,10 +21,9 @@ class AdminUserDto {
     required this.lastLoginAt,
     required this.createdAt,
   });
-
-  factory AdminUserDto.fromJson(Map<String, Object?> json) =>
-      _$AdminUserDtoFromJson(json);
-
+  
+  factory AdminUserDto.fromJson(Map<String, Object?> json) => _$AdminUserDtoFromJson(json);
+  
   final String id;
   final String fullName;
   final String? email;

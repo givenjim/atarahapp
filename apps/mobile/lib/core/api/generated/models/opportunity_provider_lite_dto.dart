@@ -18,10 +18,9 @@ class OpportunityProviderLiteDto {
     this.logoUrl,
     this.website,
   });
-
-  factory OpportunityProviderLiteDto.fromJson(Map<String, Object?> json) =>
-      _$OpportunityProviderLiteDtoFromJson(json);
-
+  
+  factory OpportunityProviderLiteDto.fromJson(Map<String, Object?> json) => _$OpportunityProviderLiteDtoFromJson(json);
+  
   final String id;
   final String name;
   final OpportunityProviderType type;

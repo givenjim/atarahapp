@@ -36,8 +36,7 @@ part 'admin_community_client.g.dart';
 
 @RestApi()
 abstract class AdminCommunityClient {
-  factory AdminCommunityClient(Dio dio, {String? baseUrl}) =
-      _AdminCommunityClient;
+  factory AdminCommunityClient(Dio dio, {String? baseUrl}) = _AdminCommunityClient;
 
   @GET('/api/v1/admin/reports')
   Future<GetApiV1AdminReportsResponse> adminListReports({
@@ -106,7 +105,9 @@ abstract class AdminCommunityClient {
   });
 
   @DELETE('/api/v1/admin/groups/{id}')
-  Future<void> adminArchiveGroup({@Path('id') required String id});
+  Future<void> adminArchiveGroup({
+    @Path('id') required String id,
+  });
 
   @POST('/api/v1/admin/groups/{id}/moderators')
   Future<PostApiV1AdminGroupsIdModeratorsResponse> adminAssignGroupModerator({
@@ -115,8 +116,7 @@ abstract class AdminCommunityClient {
   });
 
   @DELETE('/api/v1/admin/groups/{id}/moderators/{userId}')
-  Future<DeleteApiV1AdminGroupsIdModeratorsUserIdResponse>
-  adminRemoveGroupModerator({
+  Future<DeleteApiV1AdminGroupsIdModeratorsUserIdResponse> adminRemoveGroupModerator({
     @Path('id') required String id,
     @Path('userId') required String userId,
   });

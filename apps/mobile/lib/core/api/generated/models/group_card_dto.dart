@@ -24,10 +24,9 @@ class GroupCardDto {
     required this.joined,
     required this.role,
   });
-
-  factory GroupCardDto.fromJson(Map<String, Object?> json) =>
-      _$GroupCardDtoFromJson(json);
-
+  
+  factory GroupCardDto.fromJson(Map<String, Object?> json) => _$GroupCardDtoFromJson(json);
+  
   final String id;
   final String slug;
   final GroupType type;

@@ -17,10 +17,9 @@ class HubCategoryDto {
     required this.group,
     required this.count,
   });
-
-  factory HubCategoryDto.fromJson(Map<String, Object?> json) =>
-      _$HubCategoryDtoFromJson(json);
-
+  
+  factory HubCategoryDto.fromJson(Map<String, Object?> json) => _$HubCategoryDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String name;

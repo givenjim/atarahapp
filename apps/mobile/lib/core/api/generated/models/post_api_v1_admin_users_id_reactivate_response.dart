@@ -14,14 +14,11 @@ class PostApiV1AdminUsersIdReactivateResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminUsersIdReactivateResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminUsersIdReactivateResponseFromJson(json);
-
+  
+  factory PostApiV1AdminUsersIdReactivateResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminUsersIdReactivateResponseFromJson(json);
+  
   final AdminUserDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminUsersIdReactivateResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminUsersIdReactivateResponseToJson(this);
 }

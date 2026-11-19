@@ -22,10 +22,9 @@ class HomeDto {
     required this.unavailable,
     this.article,
   });
-
-  factory HomeDto.fromJson(Map<String, Object?> json) =>
-      _$HomeDtoFromJson(json);
-
+  
+  factory HomeDto.fromJson(Map<String, Object?> json) => _$HomeDtoFromJson(json);
+  
   final String firstName;
   final num completionPercent;
   final num unreadNotifications;

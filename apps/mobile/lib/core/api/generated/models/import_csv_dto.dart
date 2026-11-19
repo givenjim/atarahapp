@@ -8,11 +8,12 @@ part 'import_csv_dto.g.dart';
 
 @JsonSerializable()
 class ImportCsvDto {
-  const ImportCsvDto({required this.csv});
-
-  factory ImportCsvDto.fromJson(Map<String, Object?> json) =>
-      _$ImportCsvDtoFromJson(json);
-
+  const ImportCsvDto({
+    required this.csv,
+  });
+  
+  factory ImportCsvDto.fromJson(Map<String, Object?> json) => _$ImportCsvDtoFromJson(json);
+  
   /// The whole CSV file as text (UTF-8).
   final String csv;
 

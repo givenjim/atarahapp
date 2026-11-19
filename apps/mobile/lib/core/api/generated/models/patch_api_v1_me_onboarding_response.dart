@@ -10,11 +10,13 @@ part 'patch_api_v1_me_onboarding_response.g.dart';
 
 @JsonSerializable()
 class PatchApiV1MeOnboardingResponse {
-  const PatchApiV1MeOnboardingResponse({required this.data, this.meta});
-
-  factory PatchApiV1MeOnboardingResponse.fromJson(Map<String, Object?> json) =>
-      _$PatchApiV1MeOnboardingResponseFromJson(json);
-
+  const PatchApiV1MeOnboardingResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PatchApiV1MeOnboardingResponse.fromJson(Map<String, Object?> json) => _$PatchApiV1MeOnboardingResponseFromJson(json);
+  
   final OnboardingStateDto data;
   final dynamic meta;
 

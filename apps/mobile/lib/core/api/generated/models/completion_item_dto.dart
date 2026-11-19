@@ -14,10 +14,9 @@ class CompletionItemDto {
     required this.weight,
     required this.done,
   });
-
-  factory CompletionItemDto.fromJson(Map<String, Object?> json) =>
-      _$CompletionItemDtoFromJson(json);
-
+  
+  factory CompletionItemDto.fromJson(Map<String, Object?> json) => _$CompletionItemDtoFromJson(json);
+  
   final String key;
   final String label;
   final num weight;

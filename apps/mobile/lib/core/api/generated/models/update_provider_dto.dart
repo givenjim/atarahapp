@@ -16,10 +16,9 @@ class UpdateProviderDto {
     required this.website,
     required this.ownerUserId,
   });
-
-  factory UpdateProviderDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateProviderDtoFromJson(json);
-
+  
+  factory UpdateProviderDto.fromJson(Map<String, Object?> json) => _$UpdateProviderDtoFromJson(json);
+  
   final String name;
   final OpportunityProviderType type;
   final String? website;

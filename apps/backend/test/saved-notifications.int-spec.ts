@@ -222,10 +222,9 @@ describe('Saved, activity, notifications, help and broadcasts (integration)', ()
       const me = await member();
       const other = await member();
       const random = '3f2b8c1e-5a4d-4e6f-8a1b-0c9d7e6f5a4b';
-      const soon = await as(me.token).put(`/me/saved/LISTING/${random}`).expect(400);
-      expect(soon.body.error.details.soon).toBe('P2');
+      await as(me.token).put(`/me/saved/LISTING/${random}`).expect(404); // built in P2-M3
       await as(me.token).put(`/me/saved/MENTOR/${random}`).expect(400);
-      await as(me.token).get('/me/saved', { type: 'LISTING' }).expect(400);
+      await as(me.token).get('/me/saved', { type: 'LISTING' }).expect(200);
       await as(me.token).put(`/me/saved/NOPE/${random}`).expect(400);
       await as(me.token).put(`/me/saved/ARTICLE/${random}`).expect(404);
       await as(me.token).put(`/me/saved/CREATIVE/${me.profileId}`).expect(404); // not yourself

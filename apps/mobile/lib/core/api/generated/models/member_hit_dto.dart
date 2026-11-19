@@ -15,10 +15,9 @@ class MemberHitDto {
     this.avatarUrl,
     this.discipline,
   });
-
-  factory MemberHitDto.fromJson(Map<String, Object?> json) =>
-      _$MemberHitDtoFromJson(json);
-
+  
+  factory MemberHitDto.fromJson(Map<String, Object?> json) => _$MemberHitDtoFromJson(json);
+  
   final String userId;
   final String displayName;
   final String handle;

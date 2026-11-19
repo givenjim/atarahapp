@@ -16,10 +16,9 @@ class QueueCountsDto {
     required this.failed,
     required this.completed,
   });
-
-  factory QueueCountsDto.fromJson(Map<String, Object?> json) =>
-      _$QueueCountsDtoFromJson(json);
-
+  
+  factory QueueCountsDto.fromJson(Map<String, Object?> json) => _$QueueCountsDtoFromJson(json);
+  
   final String queue;
   final num waiting;
   final num active;

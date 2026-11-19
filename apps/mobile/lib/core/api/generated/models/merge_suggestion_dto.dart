@@ -8,11 +8,12 @@ part 'merge_suggestion_dto.g.dart';
 
 @JsonSerializable()
 class MergeSuggestionDto {
-  const MergeSuggestionDto({required this.specialisationId});
-
-  factory MergeSuggestionDto.fromJson(Map<String, Object?> json) =>
-      _$MergeSuggestionDtoFromJson(json);
-
+  const MergeSuggestionDto({
+    required this.specialisationId,
+  });
+  
+  factory MergeSuggestionDto.fromJson(Map<String, Object?> json) => _$MergeSuggestionDtoFromJson(json);
+  
   /// The existing specialisation this suggestion duplicates.
   final String specialisationId;
 

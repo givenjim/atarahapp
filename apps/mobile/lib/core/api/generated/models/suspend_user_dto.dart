@@ -8,11 +8,13 @@ part 'suspend_user_dto.g.dart';
 
 @JsonSerializable()
 class SuspendUserDto {
-  const SuspendUserDto({required this.reason, this.durationDays});
-
-  factory SuspendUserDto.fromJson(Map<String, Object?> json) =>
-      _$SuspendUserDtoFromJson(json);
-
+  const SuspendUserDto({
+    required this.reason,
+    this.durationDays,
+  });
+  
+  factory SuspendUserDto.fromJson(Map<String, Object?> json) => _$SuspendUserDtoFromJson(json);
+  
   /// Why the account is being suspended. Kept in the audit log.
   final String reason;
 

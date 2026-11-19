@@ -51,10 +51,9 @@ class AdminContentDto {
     this.lastCheckedAt,
     this.sequential,
   });
-
-  factory AdminContentDto.fromJson(Map<String, Object?> json) =>
-      _$AdminContentDtoFromJson(json);
-
+  
+  factory AdminContentDto.fromJson(Map<String, Object?> json) => _$AdminContentDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String title;

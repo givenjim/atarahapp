@@ -15,10 +15,9 @@ class UserMembershipDto {
     required this.startsAt,
     this.currentPeriodEnd,
   });
-
-  factory UserMembershipDto.fromJson(Map<String, Object?> json) =>
-      _$UserMembershipDtoFromJson(json);
-
+  
+  factory UserMembershipDto.fromJson(Map<String, Object?> json) => _$UserMembershipDtoFromJson(json);
+  
   final String plan;
   final String status;
   final String source;

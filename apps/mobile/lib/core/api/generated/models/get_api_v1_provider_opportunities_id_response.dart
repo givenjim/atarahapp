@@ -14,14 +14,11 @@ class GetApiV1ProviderOpportunitiesIdResponse {
     required this.data,
     this.meta,
   });
-
-  factory GetApiV1ProviderOpportunitiesIdResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1ProviderOpportunitiesIdResponseFromJson(json);
-
+  
+  factory GetApiV1ProviderOpportunitiesIdResponse.fromJson(Map<String, Object?> json) => _$GetApiV1ProviderOpportunitiesIdResponseFromJson(json);
+  
   final AdminOpportunityDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1ProviderOpportunitiesIdResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1ProviderOpportunitiesIdResponseToJson(this);
 }

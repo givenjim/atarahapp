@@ -26,10 +26,9 @@ class ProjectCardDto {
     this.projectDate,
     this.coverUrl,
   });
-
-  factory ProjectCardDto.fromJson(Map<String, Object?> json) =>
-      _$ProjectCardDtoFromJson(json);
-
+  
+  factory ProjectCardDto.fromJson(Map<String, Object?> json) => _$ProjectCardDtoFromJson(json);
+  
   final String id;
   final String title;
   final String? role;

@@ -8,11 +8,13 @@ part 'block_member_dto.g.dart';
 
 @JsonSerializable()
 class BlockMemberDto {
-  const BlockMemberDto({this.userId, this.handle});
-
-  factory BlockMemberDto.fromJson(Map<String, Object?> json) =>
-      _$BlockMemberDtoFromJson(json);
-
+  const BlockMemberDto({
+    this.userId,
+    this.handle,
+  });
+  
+  factory BlockMemberDto.fromJson(Map<String, Object?> json) => _$BlockMemberDtoFromJson(json);
+  
   final String? userId;
 
   /// The member’s handle, as an alternative to `userId`.

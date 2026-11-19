@@ -11,11 +11,13 @@ part 'onboarding_complete_dto.g.dart';
 
 @JsonSerializable()
 class OnboardingCompleteDto {
-  const OnboardingCompleteDto({required this.state, required this.passport});
-
-  factory OnboardingCompleteDto.fromJson(Map<String, Object?> json) =>
-      _$OnboardingCompleteDtoFromJson(json);
-
+  const OnboardingCompleteDto({
+    required this.state,
+    required this.passport,
+  });
+  
+  factory OnboardingCompleteDto.fromJson(Map<String, Object?> json) => _$OnboardingCompleteDtoFromJson(json);
+  
   final OnboardingStateDto state;
   final PassportPreviewDto passport;
 

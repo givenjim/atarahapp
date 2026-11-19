@@ -10,11 +10,13 @@ part 'patch_api_v1_me_projects_id_response.g.dart';
 
 @JsonSerializable()
 class PatchApiV1MeProjectsIdResponse {
-  const PatchApiV1MeProjectsIdResponse({required this.data, this.meta});
-
-  factory PatchApiV1MeProjectsIdResponse.fromJson(Map<String, Object?> json) =>
-      _$PatchApiV1MeProjectsIdResponseFromJson(json);
-
+  const PatchApiV1MeProjectsIdResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PatchApiV1MeProjectsIdResponse.fromJson(Map<String, Object?> json) => _$PatchApiV1MeProjectsIdResponseFromJson(json);
+  
   final ProjectDto data;
   final dynamic meta;
 

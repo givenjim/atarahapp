@@ -31,10 +31,9 @@ class LessonDto {
     this.previousLessonId,
     this.nextLessonId,
   });
-
-  factory LessonDto.fromJson(Map<String, Object?> json) =>
-      _$LessonDtoFromJson(json);
-
+  
+  factory LessonDto.fromJson(Map<String, Object?> json) => _$LessonDtoFromJson(json);
+  
   final String id;
   final String courseId;
   final String courseTitle;

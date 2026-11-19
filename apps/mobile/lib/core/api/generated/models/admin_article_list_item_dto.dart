@@ -23,10 +23,9 @@ class AdminArticleListItemDto {
     required this.updatedAt,
     this.publishedAt,
   });
-
-  factory AdminArticleListItemDto.fromJson(Map<String, Object?> json) =>
-      _$AdminArticleListItemDtoFromJson(json);
-
+  
+  factory AdminArticleListItemDto.fromJson(Map<String, Object?> json) => _$AdminArticleListItemDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String title;

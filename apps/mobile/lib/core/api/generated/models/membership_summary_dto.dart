@@ -15,10 +15,9 @@ class MembershipSummaryDto {
     this.status,
     this.currentPeriodEnd,
   });
-
-  factory MembershipSummaryDto.fromJson(Map<String, Object?> json) =>
-      _$MembershipSummaryDtoFromJson(json);
-
+  
+  factory MembershipSummaryDto.fromJson(Map<String, Object?> json) => _$MembershipSummaryDtoFromJson(json);
+  
   final MembershipSummaryDtoPlan plan;
   final String? status;
   final DateTime? currentPeriodEnd;

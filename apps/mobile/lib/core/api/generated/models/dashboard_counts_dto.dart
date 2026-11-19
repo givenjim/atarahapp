@@ -19,10 +19,9 @@ class DashboardCountsDto {
     required this.opportunitiesApplied7d,
     required this.courseCompletions30d,
   });
-
-  factory DashboardCountsDto.fromJson(Map<String, Object?> json) =>
-      _$DashboardCountsDtoFromJson(json);
-
+  
+  factory DashboardCountsDto.fromJson(Map<String, Object?> json) => _$DashboardCountsDtoFromJson(json);
+  
   /// Accounts created in the last 7 days.
   final num newMembers7d;
 

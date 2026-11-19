@@ -10,14 +10,15 @@ part 'patch_api_v1_me_preferences_response.g.dart';
 
 @JsonSerializable()
 class PatchApiV1MePreferencesResponse {
-  const PatchApiV1MePreferencesResponse({required this.data, this.meta});
-
-  factory PatchApiV1MePreferencesResponse.fromJson(Map<String, Object?> json) =>
-      _$PatchApiV1MePreferencesResponseFromJson(json);
-
+  const PatchApiV1MePreferencesResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PatchApiV1MePreferencesResponse.fromJson(Map<String, Object?> json) => _$PatchApiV1MePreferencesResponseFromJson(json);
+  
   final AccountPreferencesDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PatchApiV1MePreferencesResponseToJson(this);
+  Map<String, Object?> toJson() => _$PatchApiV1MePreferencesResponseToJson(this);
 }

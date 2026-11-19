@@ -10,11 +10,13 @@ part 'search_result_dto.g.dart';
 
 @JsonSerializable()
 class SearchResultDto {
-  const SearchResultDto({required this.query, required this.groups});
-
-  factory SearchResultDto.fromJson(Map<String, Object?> json) =>
-      _$SearchResultDtoFromJson(json);
-
+  const SearchResultDto({
+    required this.query,
+    required this.groups,
+  });
+  
+  factory SearchResultDto.fromJson(Map<String, Object?> json) => _$SearchResultDtoFromJson(json);
+  
   final String query;
 
   /// One group per kind that exists today. A kind with no results has a count of zero.

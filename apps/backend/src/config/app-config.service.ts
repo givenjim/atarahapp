@@ -77,9 +77,35 @@ export class AppConfigService {
   get appLinkBaseUrl(): string {
     return this.env.ATARAH_APP_LINK_BASE_URL.replace(/\/$/, '');
   }
+  /** Browser executable for PDF rendering; empty means auto-detect. */
+  get pdfBrowserPath(): string {
+    return this.env.ATARAH_PDF_BROWSER_PATH;
+  }
   /** Firebase service-account JSON for push. Empty means push is not configured. */
   get fcmServiceAccountJson(): string {
     return this.env.ATARAH_FCM_SERVICE_ACCOUNT_JSON;
+  }
+  /** Payments (P2-M1). Nothing here is required to boot; `mpesaConfigured` says whether M-Pesa can be used. */
+  get payments() {
+    const e = this.env;
+    const base = (e.ATARAH_MPESA_CALLBACK_BASE_URL ?? e.ATARAH_PUBLIC_URL).replace(/\/$/, '');
+    return {
+      encryptionKey: e.ATARAH_PAYMENTS_ENCRYPTION_KEY,
+      mpesa: {
+        env: e.ATARAH_MPESA_ENV,
+        baseUrl:
+          e.ATARAH_MPESA_ENV === 'production'
+            ? 'https://api.safaricom.co.ke'
+            : 'https://sandbox.safaricom.co.ke',
+        consumerKey: e.ATARAH_MPESA_CONSUMER_KEY,
+        consumerSecret: e.ATARAH_MPESA_CONSUMER_SECRET,
+        shortcode: e.ATARAH_MPESA_SHORTCODE,
+        passkey: e.ATARAH_MPESA_PASSKEY,
+        callbackToken: e.ATARAH_MPESA_CALLBACK_TOKEN,
+        callbackUrl: `${base}/api/v1/webhooks/payments/mpesa/${e.ATARAH_MPESA_CALLBACK_TOKEN}`,
+        allowedIps: e.ATARAH_MPESA_CALLBACK_IPS,
+      },
+    };
   }
   get metricsToken(): string {
     return this.env.ATARAH_METRICS_TOKEN;

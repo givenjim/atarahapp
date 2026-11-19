@@ -16,10 +16,9 @@ class DashboardDto {
     required this.queues,
     required this.counts,
   });
-
-  factory DashboardDto.fromJson(Map<String, Object?> json) =>
-      _$DashboardDtoFromJson(json);
-
+  
+  factory DashboardDto.fromJson(Map<String, Object?> json) => _$DashboardDtoFromJson(json);
+  
   final DateTime generatedAt;
 
   /// Only the queues the signed-in admin may act on, most urgent first.

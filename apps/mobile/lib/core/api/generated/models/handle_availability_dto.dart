@@ -16,10 +16,9 @@ class HandleAvailabilityDto {
     required this.reason,
     required this.suggestions,
   });
-
-  factory HandleAvailabilityDto.fromJson(Map<String, Object?> json) =>
-      _$HandleAvailabilityDtoFromJson(json);
-
+  
+  factory HandleAvailabilityDto.fromJson(Map<String, Object?> json) => _$HandleAvailabilityDtoFromJson(json);
+  
   final String handle;
   final bool available;
   final HandleAvailabilityDtoReason? reason;

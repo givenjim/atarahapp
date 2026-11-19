@@ -8,6 +8,7 @@ import { buildLoggerParams } from './common/logger.config';
 import { AppConfigService } from './config/app-config.service';
 import { AppConfigModule } from './config/config.module';
 import { CommunityCoreModule } from './community-core/community-core.module';
+import { CvJobsModule } from './cv/cv-jobs.module';
 import { CommunityJobsModule } from './community/jobs/community-jobs.module';
 import { CommunityProcessor } from './community/jobs/community.processor';
 import { OpportunityJobsModule } from './opportunities/jobs/opportunity-jobs.module';
@@ -18,6 +19,7 @@ import { MessagingModule } from './messaging/messaging.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { NotificationsProcessor } from './notifications/notifications.processor';
 import { PlatformModule } from './feature-flags/platform.module';
+import { PaymentsWorkerModule } from './payments/payments-worker.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { QueuesModule } from './queues/queues.module';
 import { SystemProcessor } from './queues/system.processor';
@@ -49,6 +51,8 @@ import { SupabaseModule } from './supabase/supabase.module';
     LearningJobsModule,
     AccountJobsModule,
     AnalyticsJobsModule,
+    PaymentsWorkerModule,
+    CvJobsModule,
   ],
   providers: [SystemProcessor, MediaProcessor, NotificationsProcessor, CommunityProcessor, AnalyticsProcessor],
 })

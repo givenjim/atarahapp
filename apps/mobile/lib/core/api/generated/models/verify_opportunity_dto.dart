@@ -8,11 +8,12 @@ part 'verify_opportunity_dto.g.dart';
 
 @JsonSerializable()
 class VerifyOpportunityDto {
-  const VerifyOpportunityDto({this.reason});
-
-  factory VerifyOpportunityDto.fromJson(Map<String, Object?> json) =>
-      _$VerifyOpportunityDtoFromJson(json);
-
+  const VerifyOpportunityDto({
+    this.reason,
+  });
+  
+  factory VerifyOpportunityDto.fromJson(Map<String, Object?> json) => _$VerifyOpportunityDtoFromJson(json);
+  
   /// Why, for the audit trail.
   final String? reason;
 

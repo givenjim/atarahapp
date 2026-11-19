@@ -16,31 +16,28 @@ enum PrivacyField {
   experience('EXPERIENCE'),
   @JsonValue('ACTIVITY')
   activity('ACTIVITY'),
-
   /// Default value for all unparsed values, allows backward compatibility when adding new values on the backend.
   $unknown(null);
 
   const PrivacyField(this.json);
 
-  factory PrivacyField.fromJson(String json) =>
-      values.firstWhere((e) => e.json == json, orElse: () => $unknown);
+  factory PrivacyField.fromJson(String json) => values.firstWhere(
+        (e) => e.json == json,
+        orElse: () => $unknown,
+      );
 
   final String? json;
   String toJson() {
     final value = json;
     if (value == null) {
-      throw StateError(
-        'Cannot convert enum value with null JSON representation to String. '
-        'This usually happens for \$unknown or @JsonValue(null) entries.',
-      );
+      throw StateError('Cannot convert enum value with null JSON representation to String. '
+          'This usually happens for \$unknown or @JsonValue(null) entries.');
     }
     return value as String;
   }
 
   @override
   String toString() => json?.toString() ?? super.toString();
-
   /// Returns all defined enum values excluding the $unknown value.
-  static List<PrivacyField> get $valuesDefined =>
-      values.where((value) => value != $unknown).toList();
+  static List<PrivacyField> get $valuesDefined => values.where((value) => value != $unknown).toList();
 }

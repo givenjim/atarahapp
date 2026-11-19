@@ -10,11 +10,13 @@ part 'get_api_v1_admin_groups_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1AdminGroupsResponse {
-  const GetApiV1AdminGroupsResponse({required this.data, this.meta});
-
-  factory GetApiV1AdminGroupsResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1AdminGroupsResponseFromJson(json);
-
+  const GetApiV1AdminGroupsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1AdminGroupsResponse.fromJson(Map<String, Object?> json) => _$GetApiV1AdminGroupsResponseFromJson(json);
+  
   final List<AdminGroupDto> data;
   final dynamic meta;
 

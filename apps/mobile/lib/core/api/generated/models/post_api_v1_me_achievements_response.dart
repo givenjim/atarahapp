@@ -10,14 +10,15 @@ part 'post_api_v1_me_achievements_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1MeAchievementsResponse {
-  const PostApiV1MeAchievementsResponse({required this.data, this.meta});
-
-  factory PostApiV1MeAchievementsResponse.fromJson(Map<String, Object?> json) =>
-      _$PostApiV1MeAchievementsResponseFromJson(json);
-
+  const PostApiV1MeAchievementsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1MeAchievementsResponse.fromJson(Map<String, Object?> json) => _$PostApiV1MeAchievementsResponseFromJson(json);
+  
   final AchievementDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1MeAchievementsResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1MeAchievementsResponseToJson(this);
 }

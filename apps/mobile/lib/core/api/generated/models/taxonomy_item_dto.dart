@@ -13,10 +13,9 @@ class TaxonomyItemDto {
     required this.slug,
     required this.name,
   });
-
-  factory TaxonomyItemDto.fromJson(Map<String, Object?> json) =>
-      _$TaxonomyItemDtoFromJson(json);
-
+  
+  factory TaxonomyItemDto.fromJson(Map<String, Object?> json) => _$TaxonomyItemDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String name;

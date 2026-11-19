@@ -14,10 +14,9 @@ class PostViewerDto {
     required this.muted,
     required this.isAuthor,
   });
-
-  factory PostViewerDto.fromJson(Map<String, Object?> json) =>
-      _$PostViewerDtoFromJson(json);
-
+  
+  factory PostViewerDto.fromJson(Map<String, Object?> json) => _$PostViewerDtoFromJson(json);
+  
   final bool reacted;
   final bool saved;
 

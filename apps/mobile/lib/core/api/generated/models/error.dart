@@ -14,9 +14,9 @@ class Error {
     required this.details,
     required this.requestId,
   });
-
+  
   factory Error.fromJson(Map<String, Object?> json) => _$ErrorFromJson(json);
-
+  
   /// Stable code, e.g. VALIDATION_ERROR, FORBIDDEN, RESOURCE_NOT_FOUND.
   final String code;
 

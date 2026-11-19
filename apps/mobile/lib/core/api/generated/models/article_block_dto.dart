@@ -18,10 +18,9 @@ class ArticleBlockDto {
     this.caption,
     this.attribution,
   });
-
-  factory ArticleBlockDto.fromJson(Map<String, Object?> json) =>
-      _$ArticleBlockDtoFromJson(json);
-
+  
+  factory ArticleBlockDto.fromJson(Map<String, Object?> json) => _$ArticleBlockDtoFromJson(json);
+  
   final ArticleBlockDtoType type;
   final String? text;
   final String? title;

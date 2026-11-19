@@ -10,11 +10,13 @@ part 'get_api_v1_help_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1HelpResponse {
-  const GetApiV1HelpResponse({required this.data, this.meta});
-
-  factory GetApiV1HelpResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1HelpResponseFromJson(json);
-
+  const GetApiV1HelpResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1HelpResponse.fromJson(Map<String, Object?> json) => _$GetApiV1HelpResponseFromJson(json);
+  
   final HelpResultDto data;
   final dynamic meta;
 

@@ -15,10 +15,9 @@ class AdminFaqDto {
     required this.sortOrder,
     required this.published,
   });
-
-  factory AdminFaqDto.fromJson(Map<String, Object?> json) =>
-      _$AdminFaqDtoFromJson(json);
-
+  
+  factory AdminFaqDto.fromJson(Map<String, Object?> json) => _$AdminFaqDtoFromJson(json);
+  
   final String id;
   final String question;
   final String answer;

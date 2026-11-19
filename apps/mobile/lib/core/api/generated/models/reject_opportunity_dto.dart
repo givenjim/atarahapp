@@ -8,11 +8,12 @@ part 'reject_opportunity_dto.g.dart';
 
 @JsonSerializable()
 class RejectOpportunityDto {
-  const RejectOpportunityDto({required this.reason});
-
-  factory RejectOpportunityDto.fromJson(Map<String, Object?> json) =>
-      _$RejectOpportunityDtoFromJson(json);
-
+  const RejectOpportunityDto({
+    required this.reason,
+  });
+  
+  factory RejectOpportunityDto.fromJson(Map<String, Object?> json) => _$RejectOpportunityDtoFromJson(json);
+  
   /// Told to the provider.
   final String reason;
 

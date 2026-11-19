@@ -10,15 +10,15 @@ part 'post_api_v1_admin_learning_contents_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1AdminLearningContentsResponse {
-  const PostApiV1AdminLearningContentsResponse({required this.data, this.meta});
-
-  factory PostApiV1AdminLearningContentsResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminLearningContentsResponseFromJson(json);
-
+  const PostApiV1AdminLearningContentsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1AdminLearningContentsResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminLearningContentsResponseFromJson(json);
+  
   final AdminContentDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminLearningContentsResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminLearningContentsResponseToJson(this);
 }

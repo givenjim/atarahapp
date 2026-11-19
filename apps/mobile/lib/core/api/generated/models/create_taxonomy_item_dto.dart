@@ -13,10 +13,9 @@ class CreateTaxonomyItemDto {
     this.icon,
     this.disciplineId,
   });
-
-  factory CreateTaxonomyItemDto.fromJson(Map<String, Object?> json) =>
-      _$CreateTaxonomyItemDtoFromJson(json);
-
+  
+  factory CreateTaxonomyItemDto.fromJson(Map<String, Object?> json) => _$CreateTaxonomyItemDtoFromJson(json);
+  
   final String name;
 
   /// Disciplines only: a Lucide icon name.

@@ -17,10 +17,9 @@ class SecurityDto {
     required this.activeSessions,
     required this.deviceCount,
   });
-
-  factory SecurityDto.fromJson(Map<String, Object?> json) =>
-      _$SecurityDtoFromJson(json);
-
+  
+  factory SecurityDto.fromJson(Map<String, Object?> json) => _$SecurityDtoFromJson(json);
+  
   final List<MfaFactorDto> factors;
 
   /// The member turned two-step sign-in on (new devices need the second step).

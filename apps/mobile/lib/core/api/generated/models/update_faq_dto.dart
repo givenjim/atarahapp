@@ -14,10 +14,9 @@ class UpdateFaqDto {
     this.sortOrder,
     this.published,
   });
-
-  factory UpdateFaqDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateFaqDtoFromJson(json);
-
+  
+  factory UpdateFaqDto.fromJson(Map<String, Object?> json) => _$UpdateFaqDtoFromJson(json);
+  
   final String? question;
   final String? answer;
   final num? sortOrder;

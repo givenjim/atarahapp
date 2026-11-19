@@ -4,6 +4,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+import 'service_dto_listing_status.dart';
 import 'service_dto_price_type.dart';
 import 'service_dto_status.dart';
 
@@ -19,11 +20,12 @@ class ServiceDto {
     this.description,
     this.priceMin,
     this.priceMax,
+    this.listingId,
+    this.listingStatus,
   });
-
-  factory ServiceDto.fromJson(Map<String, Object?> json) =>
-      _$ServiceDtoFromJson(json);
-
+  
+  factory ServiceDto.fromJson(Map<String, Object?> json) => _$ServiceDtoFromJson(json);
+  
   final String id;
   final String title;
   final String? description;
@@ -35,6 +37,12 @@ class ServiceDto {
   /// Whole Kenya shillings.
   final num? priceMax;
   final ServiceDtoStatus status;
+
+  /// The marketplace listing made from this service, once it was published (P2-M3).
+  final String? listingId;
+
+  /// Status of that listing.
+  final ServiceDtoListingStatus? listingStatus;
 
   Map<String, Object?> toJson() => _$ServiceDtoToJson(this);
 }

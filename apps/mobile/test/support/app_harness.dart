@@ -17,6 +17,7 @@ import 'package:atarah/features/community/community_providers.dart';
 import 'package:atarah/features/community/compose_draft.dart';
 import 'package:atarah/features/community/groups/groups_providers.dart';
 import 'package:atarah/features/community/people/people_providers.dart';
+import 'package:atarah/features/marketplace/marketplace_providers.dart';
 import 'package:atarah/features/discover/discover_providers.dart';
 import 'package:atarah/features/learning/learning_cache.dart';
 import 'package:atarah/features/learning/learning_providers.dart';
@@ -39,6 +40,7 @@ import 'fake_groups.dart';
 import 'fake_learning.dart';
 import 'fake_onboarding.dart';
 import 'fake_opportunities.dart';
+import 'fake_marketplace.dart';
 import 'fake_people.dart';
 import 'fake_portfolio.dart';
 import 'fake_profile.dart';
@@ -169,6 +171,7 @@ class Harness {
     FakeLearningRepository? learning,
     this.groups,
     this.people,
+    FakeMarketplaceRepository? marketplace,
     Flavor flavor = Flavor.dev,
     this.appearance = AtAppearance.light,
     bool online = true,
@@ -196,6 +199,7 @@ class Harness {
        help = help ?? FakeHelpRepository(),
        twoStep = twoStep ?? FakeTwoStepVerifier(),
        learning = learning ?? FakeLearningRepository(),
+       marketplace = marketplace ?? FakeMarketplaceRepository(),
        analytics = RecordingAnalytics(),
        realtime = FakeNotificationsRealtime() {
     container = ProviderContainer(
@@ -227,6 +231,7 @@ class Harness {
         learningRepositoryProvider.overrideWithValue(this.learning),
         if (groups != null) groupsRepositoryProvider.overrideWithValue(groups!),
         if (people != null) peopleRepositoryProvider.overrideWithValue(people!),
+        marketplaceRepositoryProvider.overrideWithValue(this.marketplace),
         learningCacheProvider.overrideWithValue(LearningCache(learningStorage)),
         lessonVideoBuilderProvider.overrideWithValue(videos.build),
         lessonEmbedBuilderProvider.overrideWithValue(embeds.build),
@@ -276,6 +281,7 @@ class Harness {
   /// Optional: when null the real repositories are used (which fail without a network).
   final FakeGroupsRepository? groups;
   final FakePeopleRepository? people;
+  final FakeMarketplaceRepository marketplace;
 
   /// The offline copy of what the member is learning, and the players a lesson asked for.
   final MemoryKeyValueStore learningStorage = MemoryKeyValueStore();

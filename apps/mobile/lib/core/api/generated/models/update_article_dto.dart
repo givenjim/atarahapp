@@ -21,10 +21,9 @@ class UpdateArticleDto {
     this.tags,
     this.blocks,
   });
-
-  factory UpdateArticleDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateArticleDtoFromJson(json);
-
+  
+  factory UpdateArticleDto.fromJson(Map<String, Object?> json) => _$UpdateArticleDtoFromJson(json);
+  
   final String? title;
   final String? summary;
   final String? authorName;

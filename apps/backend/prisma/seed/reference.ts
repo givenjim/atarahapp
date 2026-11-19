@@ -2,6 +2,7 @@ import { type PrismaClient } from '@prisma/client';
 import { FLAG_REGISTRY } from '../../src/feature-flags/flags.registry';
 import { ENTITLEMENTS, PERMISSIONS, PLANS, ROLES } from './data/access';
 import { KENYA, KENYA_COUNTIES } from './data/kenya';
+import { VERIFICATION_REQUIREMENTS } from './data/verification';
 import { seedHelp } from './help';
 import {
   DEVELOPMENT_AREAS,
@@ -225,6 +226,15 @@ export async function runReferenceSeed(prisma: PrismaClient): Promise<Record<str
     (
       await prisma.platformSetting.createMany({
         data: SETTINGS.map((s) => ({ key: s.key, value: s.value, description: s.description })),
+        skipDuplicates: true,
+      })
+    ).count,
+  );
+  add(
+    'verificationRequirements',
+    (
+      await prisma.verificationRequirement.createMany({
+        data: VERIFICATION_REQUIREMENTS.map((r, i) => ({ ...r, sortOrder: i })),
         skipDuplicates: true,
       })
     ).count,

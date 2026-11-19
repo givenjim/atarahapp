@@ -23,10 +23,9 @@ class NotificationItemDto {
     this.deepLink,
     this.data,
   });
-
-  factory NotificationItemDto.fromJson(Map<String, Object?> json) =>
-      _$NotificationItemDtoFromJson(json);
-
+  
+  factory NotificationItemDto.fromJson(Map<String, Object?> json) => _$NotificationItemDtoFromJson(json);
+  
   final String id;
   final NotificationCategory category;
 

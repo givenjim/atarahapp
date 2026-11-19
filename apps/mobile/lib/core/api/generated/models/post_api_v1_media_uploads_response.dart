@@ -10,11 +10,13 @@ part 'post_api_v1_media_uploads_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1MediaUploadsResponse {
-  const PostApiV1MediaUploadsResponse({required this.data, this.meta});
-
-  factory PostApiV1MediaUploadsResponse.fromJson(Map<String, Object?> json) =>
-      _$PostApiV1MediaUploadsResponseFromJson(json);
-
+  const PostApiV1MediaUploadsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1MediaUploadsResponse.fromJson(Map<String, Object?> json) => _$PostApiV1MediaUploadsResponseFromJson(json);
+  
   final UploadTicketDto data;
   final dynamic meta;
 

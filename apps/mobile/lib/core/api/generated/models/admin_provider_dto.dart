@@ -21,10 +21,9 @@ class AdminProviderDto {
     this.website,
     this.ownerUserId,
   });
-
-  factory AdminProviderDto.fromJson(Map<String, Object?> json) =>
-      _$AdminProviderDtoFromJson(json);
-
+  
+  factory AdminProviderDto.fromJson(Map<String, Object?> json) => _$AdminProviderDtoFromJson(json);
+  
   final String id;
   final String name;
   final OpportunityProviderType type;

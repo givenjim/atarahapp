@@ -14,14 +14,11 @@ class PostApiV1AdminOpportunitiesImportPreviewResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminOpportunitiesImportPreviewResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminOpportunitiesImportPreviewResponseFromJson(json);
-
+  
+  factory PostApiV1AdminOpportunitiesImportPreviewResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminOpportunitiesImportPreviewResponseFromJson(json);
+  
   final ImportReportDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminOpportunitiesImportPreviewResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminOpportunitiesImportPreviewResponseToJson(this);
 }

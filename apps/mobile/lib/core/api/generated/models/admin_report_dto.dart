@@ -24,10 +24,9 @@ class AdminReportDto {
     required this.reporter,
     required this.createdAt,
   });
-
-  factory AdminReportDto.fromJson(Map<String, Object?> json) =>
-      _$AdminReportDtoFromJson(json);
-
+  
+  factory AdminReportDto.fromJson(Map<String, Object?> json) => _$AdminReportDtoFromJson(json);
+  
   final String id;
   final ReportTargetType targetType;
   final String targetId;

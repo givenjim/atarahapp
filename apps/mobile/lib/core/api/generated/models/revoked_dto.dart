@@ -8,11 +8,12 @@ part 'revoked_dto.g.dart';
 
 @JsonSerializable()
 class RevokedDto {
-  const RevokedDto({required this.revoked});
-
-  factory RevokedDto.fromJson(Map<String, Object?> json) =>
-      _$RevokedDtoFromJson(json);
-
+  const RevokedDto({
+    required this.revoked,
+  });
+  
+  factory RevokedDto.fromJson(Map<String, Object?> json) => _$RevokedDtoFromJson(json);
+  
   final bool revoked;
 
   Map<String, Object?> toJson() => _$RevokedDtoToJson(this);

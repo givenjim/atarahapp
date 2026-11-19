@@ -14,6 +14,10 @@ ServiceDto _$ServiceDtoFromJson(Map<String, dynamic> json) => ServiceDto(
   description: json['description'] as String?,
   priceMin: json['priceMin'] as num?,
   priceMax: json['priceMax'] as num?,
+  listingId: json['listingId'] as String?,
+  listingStatus: json['listingStatus'] == null
+      ? null
+      : ServiceDtoListingStatus.fromJson(json['listingStatus'] as String),
 );
 
 Map<String, dynamic> _$ServiceDtoToJson(ServiceDto instance) =>
@@ -25,4 +29,6 @@ Map<String, dynamic> _$ServiceDtoToJson(ServiceDto instance) =>
       'priceMin': instance.priceMin,
       'priceMax': instance.priceMax,
       'status': instance.status,
+      'listingId': instance.listingId,
+      'listingStatus': instance.listingStatus,
     };

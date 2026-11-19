@@ -8,11 +8,13 @@ part 'create_article_dto.g.dart';
 
 @JsonSerializable()
 class CreateArticleDto {
-  const CreateArticleDto({required this.title, required this.authorName});
-
-  factory CreateArticleDto.fromJson(Map<String, Object?> json) =>
-      _$CreateArticleDtoFromJson(json);
-
+  const CreateArticleDto({
+    required this.title,
+    required this.authorName,
+  });
+  
+  factory CreateArticleDto.fromJson(Map<String, Object?> json) => _$CreateArticleDtoFromJson(json);
+  
   final String title;
 
   /// The byline.

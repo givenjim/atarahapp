@@ -35,10 +35,9 @@ class OpportunityFieldsDto {
     this.disciplineIds,
     this.rules,
   });
-
-  factory OpportunityFieldsDto.fromJson(Map<String, Object?> json) =>
-      _$OpportunityFieldsDtoFromJson(json);
-
+  
+  factory OpportunityFieldsDto.fromJson(Map<String, Object?> json) => _$OpportunityFieldsDtoFromJson(json);
+  
   final String title;
   final String providerId;
   final OpportunityType type;

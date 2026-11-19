@@ -10,15 +10,15 @@ part 'get_api_v1_admin_jobs_queue_failed_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1AdminJobsQueueFailedResponse {
-  const GetApiV1AdminJobsQueueFailedResponse({required this.data, this.meta});
-
-  factory GetApiV1AdminJobsQueueFailedResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1AdminJobsQueueFailedResponseFromJson(json);
-
+  const GetApiV1AdminJobsQueueFailedResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1AdminJobsQueueFailedResponse.fromJson(Map<String, Object?> json) => _$GetApiV1AdminJobsQueueFailedResponseFromJson(json);
+  
   final List<FailedJobDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1AdminJobsQueueFailedResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1AdminJobsQueueFailedResponseToJson(this);
 }

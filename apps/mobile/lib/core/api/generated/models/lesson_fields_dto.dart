@@ -19,10 +19,9 @@ class LessonFieldsDto {
     this.practicePrompt,
     this.practiceSkillId,
   });
-
-  factory LessonFieldsDto.fromJson(Map<String, Object?> json) =>
-      _$LessonFieldsDtoFromJson(json);
-
+  
+  factory LessonFieldsDto.fromJson(Map<String, Object?> json) => _$LessonFieldsDtoFromJson(json);
+  
   final String title;
   final num? durationMinutes;
   final List<ArticleBlockInputDto>? body;

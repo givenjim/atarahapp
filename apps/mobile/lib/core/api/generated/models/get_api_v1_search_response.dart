@@ -10,11 +10,13 @@ part 'get_api_v1_search_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1SearchResponse {
-  const GetApiV1SearchResponse({required this.data, this.meta});
-
-  factory GetApiV1SearchResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1SearchResponseFromJson(json);
-
+  const GetApiV1SearchResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1SearchResponse.fromJson(Map<String, Object?> json) => _$GetApiV1SearchResponseFromJson(json);
+  
   final SearchResultDto data;
   final dynamic meta;
 

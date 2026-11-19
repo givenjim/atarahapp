@@ -944,6 +944,513 @@ class AppLocalizationsEn extends AppLocalizations {
   String get featureMentor => 'Mentor';
 
   @override
+  String get mnHubTitle => 'Mentorship';
+
+  @override
+  String get mnHubIntro =>
+      'Learn from working creatives. Book one-to-one video sessions with mentors who have done what you want to do.';
+
+  @override
+  String get mnNextSession => 'Your next session';
+
+  @override
+  String mnNextSessionWith(String session, String mentor) {
+    return '$session with $mentor';
+  }
+
+  @override
+  String get mnHowTitle => 'How it works';
+
+  @override
+  String get mnHow1 => 'Find a mentor';
+
+  @override
+  String get mnHow1Body =>
+      'Browse by discipline, price and when they are free.';
+
+  @override
+  String get mnHow2 => 'Choose a session';
+
+  @override
+  String get mnHow2Body => 'Pick the session and a time that suits you.';
+
+  @override
+  String get mnHow3 => 'Meet on video';
+
+  @override
+  String get mnHow3Body => 'Pay securely, then join the call at your time.';
+
+  @override
+  String get mnWhoTitle => 'Who it\'s for';
+
+  @override
+  String get mnWho1 => 'Emerging creatives building a portfolio';
+
+  @override
+  String get mnWho2 => 'Freelancers pricing and pitching their work';
+
+  @override
+  String get mnWho3 => 'Anyone moving into a new discipline';
+
+  @override
+  String get mnTopMentors => 'Top mentors';
+
+  @override
+  String get mnFindMentor => 'Find a mentor';
+
+  @override
+  String get mnNoMentorsYet => 'No mentors yet';
+
+  @override
+  String get mnNoMentorsYetBody =>
+      'Mentors appear here once they are approved. Check back soon.';
+
+  @override
+  String get mnBecomeMentor => 'Become a mentor';
+
+  @override
+  String get mnBecomeMentorBody =>
+      'Share what you know and earn from your sessions.';
+
+  @override
+  String get mnMentorTools => 'Mentor tools';
+
+  @override
+  String get mnMentorToolsBody => 'Availability, sessions and requests.';
+
+  @override
+  String get mnDirectoryTitle => 'Find a mentor';
+
+  @override
+  String get mnSearchHint => 'Search mentors';
+
+  @override
+  String get mnChipVerified => 'Verified';
+
+  @override
+  String get mnChipAvailable => 'Available this week';
+
+  @override
+  String get mnChipVideo => 'Video call';
+
+  @override
+  String mnChipUnderPrice(String price) {
+    return 'Under $price';
+  }
+
+  @override
+  String get mnDiscipline => 'Discipline';
+
+  @override
+  String get mnSortBy => 'Sort by';
+
+  @override
+  String get mnSortRecommended => 'Recommended';
+
+  @override
+  String get mnSortSoonest => 'Soonest available';
+
+  @override
+  String get mnSortPrice => 'Lowest price';
+
+  @override
+  String get mnSortRating => 'Top rated';
+
+  @override
+  String get mnShowMentors => 'Show mentors';
+
+  @override
+  String get mnClearFilters => 'Clear filters';
+
+  @override
+  String get mnNoResults => 'No mentors match';
+
+  @override
+  String get mnNoResultsBody =>
+      'Try removing a filter or searching for something else.';
+
+  @override
+  String mnCount(int count) {
+    return '$count mentors';
+  }
+
+  @override
+  String mnFromPrice(String price) {
+    return 'From $price';
+  }
+
+  @override
+  String mnNextAvailable(String when) {
+    return 'Next: $when';
+  }
+
+  @override
+  String get mnNoAvailability => 'No times open right now';
+
+  @override
+  String mnRatingLine(String rating, int count) {
+    return '$rating ($count)';
+  }
+
+  @override
+  String get mnNewMentor => 'New mentor';
+
+  @override
+  String mnStatRating(int count) {
+    return '$count reviews';
+  }
+
+  @override
+  String get mnStatSessions => 'Sessions';
+
+  @override
+  String get mnStatTimeZone => 'Time zone';
+
+  @override
+  String get mnAbout => 'About';
+
+  @override
+  String get mnExpertise => 'Expertise';
+
+  @override
+  String get mnChooseSession => 'Choose a session';
+
+  @override
+  String get mnCredentials => 'Credentials';
+
+  @override
+  String mnYears(int count) {
+    return '$count years of experience';
+  }
+
+  @override
+  String mnSessionMeta(int minutes) {
+    return '$minutes min · Video call';
+  }
+
+  @override
+  String mnProgrammeSessions(int count) {
+    return '$count sessions';
+  }
+
+  @override
+  String get mnNoSessions => 'This mentor has no sessions on offer right now.';
+
+  @override
+  String mnBookSession(String price) {
+    return 'Book session · $price';
+  }
+
+  @override
+  String get mnBookSessionPlain => 'Book session';
+
+  @override
+  String get mnBookingName => 'Booking';
+
+  @override
+  String get mnUnlockPro => 'Unlock mentorship with Pro';
+
+  @override
+  String get mnOwnProfile => 'This is how members see your profile.';
+
+  @override
+  String get mnGateFeature => 'Mentorship';
+
+  @override
+  String get mnGateWhat =>
+      'Book one-to-one video sessions with mentors, pick a time that suits you, and get a reminder before you meet.';
+
+  @override
+  String get mnGateWhy =>
+      'An hour with someone who has done it can save you months. Browsing mentors stays free.';
+
+  @override
+  String get mnGateHow =>
+      'Upgrade to Atarah Pro, or check whether you qualify for a scholarship.';
+
+  @override
+  String get mnApplyTitle => 'Apply to mentor';
+
+  @override
+  String get mnApplyIntro =>
+      'Tell us about your experience. We filled in what we could from your Creative Passport. A person reviews every application and you will be notified either way.';
+
+  @override
+  String get mnFieldHeadline => 'Headline';
+
+  @override
+  String get mnFieldYears => 'Years of experience';
+
+  @override
+  String get mnFieldStatement => 'Why you want to mentor';
+
+  @override
+  String get mnStatementHelp =>
+      'Who can you help, and how? At least 40 characters.';
+
+  @override
+  String get mnFieldTimeZone => 'Time zone';
+
+  @override
+  String get mnAddTagHint => 'Add an expertise tag';
+
+  @override
+  String get mnAddTag => 'Add tag';
+
+  @override
+  String get mnAdd => 'Add';
+
+  @override
+  String get mnRemove => 'Remove';
+
+  @override
+  String get mnSave => 'Save';
+
+  @override
+  String get mnSaved => 'Saved';
+
+  @override
+  String get mnAddCredential => 'Add a credential';
+
+  @override
+  String get mnCredTitle => 'Credential';
+
+  @override
+  String get mnCredIssuer => 'Issued by (optional)';
+
+  @override
+  String get mnSessionsTitle => 'Sessions you will offer';
+
+  @override
+  String get mnEvidenceTitle => 'Evidence links';
+
+  @override
+  String get mnEvidenceHelp =>
+      'Links to your work, a reel or a profile. They must start with https://.';
+
+  @override
+  String get mnTerms => 'I accept the Mentor Terms';
+
+  @override
+  String get mnSubmitApplication => 'Submit application';
+
+  @override
+  String get mnErrHeadline => 'Add a headline of at least 4 characters.';
+
+  @override
+  String get mnErrYears => 'Years of experience must be between 0 and 80.';
+
+  @override
+  String get mnErrStatement => 'Write at least 40 characters.';
+
+  @override
+  String get mnErrNoSessions => 'Add at least one session you will offer.';
+
+  @override
+  String get mnErrTerms => 'Accept the Mentor Terms to apply.';
+
+  @override
+  String get mnErrLink => 'Links must start with https://.';
+
+  @override
+  String get mnErrName => 'Give the session a name.';
+
+  @override
+  String get mnErrDuration => 'Duration must be between 15 and 480 minutes.';
+
+  @override
+  String get mnErrPrice => 'Enter a price in KES (0 or more).';
+
+  @override
+  String get mnErrCount => 'Number of sessions must be between 1 and 24.';
+
+  @override
+  String get mnProfileFirst => 'Finish your profile first';
+
+  @override
+  String get mnProfileFirstBody =>
+      'Mentor applications use your Creative Passport. Complete your profile, then come back.';
+
+  @override
+  String get mnOpenPassport => 'Open my Passport';
+
+  @override
+  String get mnStatusPending => 'Your application is being reviewed';
+
+  @override
+  String get mnStatusPendingBody =>
+      'We\'ll notify you when there is a decision.';
+
+  @override
+  String get mnStatusApproved => 'You are a mentor';
+
+  @override
+  String get mnStatusRejected => 'Not approved yet';
+
+  @override
+  String get mnStatusRejectedBody => 'You can apply again after a short wait.';
+
+  @override
+  String get mnCannotApply => 'You can\'t apply right now';
+
+  @override
+  String get mnWithdraw => 'Withdraw application';
+
+  @override
+  String get mnViewApplication => 'View application';
+
+  @override
+  String get mnApplyToMentor => 'Apply to mentor';
+
+  @override
+  String get mnToolsNotMentorBody =>
+      'Mentors set their own hours and prices and meet members on video. Apply and we will review your application.';
+
+  @override
+  String get mnStatusLive => 'Live';
+
+  @override
+  String get mnStatusPaused => 'Paused';
+
+  @override
+  String get mnStatusRemoved => 'Removed';
+
+  @override
+  String get mnStatusNotListed => 'Not listed yet';
+
+  @override
+  String get mnNoAvailabilitySet =>
+      'Set your weekly hours so members can book you.';
+
+  @override
+  String get mnNotListedHelp =>
+      'To appear in the directory you need an active session type and some weekly availability.';
+
+  @override
+  String mnStaffPaused(String reason) {
+    return 'Atarah paused your profile: $reason';
+  }
+
+  @override
+  String get mnRowAvailability => 'Availability';
+
+  @override
+  String get mnRowAvailabilityBody => 'Weekly hours and days off';
+
+  @override
+  String get mnRowSessions => 'Session types';
+
+  @override
+  String mnRowSessionsBody(int count) {
+    return '$count active';
+  }
+
+  @override
+  String get mnRowProfile => 'Edit profile';
+
+  @override
+  String get mnRowProfileBody => 'Headline, about, expertise and meeting link';
+
+  @override
+  String get mnRowRequests => 'Booking requests';
+
+  @override
+  String get mnRowRequestsBody => 'Sessions members have booked';
+
+  @override
+  String get mnViewPublic => 'View my public profile';
+
+  @override
+  String get mnPauseProfile => 'Pause my profile';
+
+  @override
+  String get mnPauseHelp =>
+      'A paused profile is hidden from the directory. You can resume any time.';
+
+  @override
+  String get mnRequestsTitle => 'Booking requests';
+
+  @override
+  String get mnRequestsEmpty => 'No booking requests yet';
+
+  @override
+  String get mnRequestsEmptyBody =>
+      'When a member books a session with you, it shows up here.';
+
+  @override
+  String get mnAvailTitle => 'Availability';
+
+  @override
+  String get mnAvailIntro =>
+      'Choose the days and hours you can take sessions. Members see them in their own time zone.';
+
+  @override
+  String get mnFrom => 'From';
+
+  @override
+  String get mnTo => 'To';
+
+  @override
+  String get mnEndAfterStart => 'The end time must be after the start time.';
+
+  @override
+  String get mnSaveAvailability => 'Save availability';
+
+  @override
+  String get mnDaysOff => 'Days off';
+
+  @override
+  String get mnNoDaysOff => 'No days off added.';
+
+  @override
+  String get mnNewSessionType => 'New session type';
+
+  @override
+  String get mnEditSessionType => 'Edit session type';
+
+  @override
+  String get mnSessionName => 'Session name';
+
+  @override
+  String get mnSessionDescription => 'What it covers (optional)';
+
+  @override
+  String get mnDurationMinutes => 'Duration (minutes)';
+
+  @override
+  String get mnPriceKes => 'Price (KES)';
+
+  @override
+  String get mnSessionCount => 'Number of sessions';
+
+  @override
+  String get mnSessionCountHelp =>
+      '1 for a single session, more for a programme.';
+
+  @override
+  String get mnNoSessionTypes => 'No session types yet';
+
+  @override
+  String get mnNoSessionTypesBody =>
+      'Add a session so members can see what you offer and what it costs.';
+
+  @override
+  String get mnOn => 'On';
+
+  @override
+  String get mnOff => 'Off';
+
+  @override
+  String get mnStaffOff => 'Switched off by Atarah';
+
+  @override
+  String get mnVideoLink => 'Video call link';
+
+  @override
+  String get mnVideoLinkHelp =>
+      'Where you meet by default, for example a Google Meet or Zoom link.';
+
+  @override
   String get featureArticle => 'Article';
 
   @override
@@ -4431,4 +4938,829 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get stOfflineNeedsConnection => 'Needs a connection';
+
+  @override
+  String get cvTitle => 'Creative CV / EPK';
+
+  @override
+  String get cvFormatCv => 'CV';
+
+  @override
+  String get cvFormatBio => 'Bio';
+
+  @override
+  String get cvFormatEpk => 'EPK';
+
+  @override
+  String get cvFormatDeck => 'Deck';
+
+  @override
+  String get cvSelectedWork => 'Selected work';
+
+  @override
+  String get cvSkills => 'Skills';
+
+  @override
+  String get cvPreviewNothing => 'Nothing to show yet. Pick a section below.';
+
+  @override
+  String get cvIncludeTitle => 'What to include';
+
+  @override
+  String cvIncludeBody(String format) {
+    return 'Choose the sections and projects that go in your $format. Anything that is not public stays out unless you allow it.';
+  }
+
+  @override
+  String cvAllowNonPublic(String section, String audience) {
+    return 'Allow this $section ($audience) in this document';
+  }
+
+  @override
+  String get cvNotPublicNote =>
+      'Not public, so it is left out unless you allow it. Anyone who gets the PDF or link will see it.';
+
+  @override
+  String get cvProjects => 'Projects';
+
+  @override
+  String cvProjectsLimit(int count) {
+    return 'Choose up to $count. Only your published projects can be listed.';
+  }
+
+  @override
+  String get cvNoProjects =>
+      'Publish a project in your portfolio to list it here.';
+
+  @override
+  String get cvNoProjectsInFormat => 'This format does not list projects.';
+
+  @override
+  String cvProjectNotPublic(String audience) {
+    return 'Visible to: $audience. Included only when you allow non-public projects.';
+  }
+
+  @override
+  String get cvAllowPrivateProjects =>
+      'Allow non-public projects in this document';
+
+  @override
+  String cvWithheld(String sections) {
+    return 'Left out of this document because it is not public: $sections.';
+  }
+
+  @override
+  String get cvShareLink => 'Share link';
+
+  @override
+  String get cvDownloadPdf => 'Download PDF';
+
+  @override
+  String get cvPdfPreparing => 'Preparing your PDF...';
+
+  @override
+  String get cvPdfFailed => 'We couldn\'t create your PDF. Try again.';
+
+  @override
+  String get cvPdfOpenFailed =>
+      'Your PDF is ready but we couldn\'t open it. Try again.';
+
+  @override
+  String get cvSaveFailed => 'We couldn\'t save that. Try again.';
+
+  @override
+  String get cvLoadFailed => 'We couldn\'t load your CV.';
+
+  @override
+  String get cvLinksTitle => 'Share links';
+
+  @override
+  String get cvLinksBody =>
+      'Anyone with a link can read this document, without signing in. Turn a link off at any time.';
+
+  @override
+  String get cvNoLinks => 'No links yet.';
+
+  @override
+  String get cvChooseExpiry => 'When should this link stop working?';
+
+  @override
+  String get cvExpiryNever => 'Never';
+
+  @override
+  String cvExpiryDays(int count) {
+    return 'In $count days';
+  }
+
+  @override
+  String get cvLinkCreated =>
+      'Link created and copied. It is shown only now, so share it before you leave.';
+
+  @override
+  String cvLinkEnding(String hint) {
+    return 'Link ending $hint';
+  }
+
+  @override
+  String cvLinkExpires(String date) {
+    return 'Expires $date';
+  }
+
+  @override
+  String get cvLinkNoExpiry => 'No expiry';
+
+  @override
+  String get cvLinkActive => 'Active';
+
+  @override
+  String get cvLinkExpired => 'Expired';
+
+  @override
+  String get cvLinkRevoked => 'Revoked';
+
+  @override
+  String get cvRevoke => 'Turn off';
+
+  @override
+  String get cvRevoked => 'Link turned off.';
+
+  @override
+  String cvShareText(String name, String format) {
+    return '$name - $format';
+  }
+
+  @override
+  String get cvSaving => 'Saving...';
+
+  @override
+  String get cvVerifiedSkill => 'Verified skill';
+
+  @override
+  String get mkTitle => 'Marketplace';
+
+  @override
+  String get mkSubtitle => 'Hire creatives or sell your services';
+
+  @override
+  String get mkMyListings => 'My listings';
+
+  @override
+  String get mkSearchHint => 'Search services, products, sellers…';
+
+  @override
+  String get mkSegServices => 'Services';
+
+  @override
+  String get mkSegProducts => 'Products';
+
+  @override
+  String get mkSegSellers => 'Sellers';
+
+  @override
+  String get mkFeatured => 'Featured';
+
+  @override
+  String get mkCategories => 'Categories';
+
+  @override
+  String get mkPopularSellers => 'Popular sellers';
+
+  @override
+  String get mkRecent => 'New on Atarah';
+
+  @override
+  String get mkSeeAll => 'See all';
+
+  @override
+  String get mkNothingTitle => 'Nothing here yet';
+
+  @override
+  String get mkNothingBody =>
+      'Listings from creatives show up here once they are approved.';
+
+  @override
+  String get mkStartSellingTitle => 'Start selling on Atarah';
+
+  @override
+  String get mkStartSellingBody =>
+      'List a service or product and let buyers find you.';
+
+  @override
+  String get mkStartSellingCta => 'Create a listing';
+
+  @override
+  String mkCategoryCount(int count) {
+    return '$count listings';
+  }
+
+  @override
+  String get mkMyRequests => 'My requests';
+
+  @override
+  String get mkBrowseAll => 'All listings';
+
+  @override
+  String mkResultCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count results',
+      one: '1 result',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get mkSortRecommended => 'Recommended';
+
+  @override
+  String get mkSortPriceLow => 'Price: low to high';
+
+  @override
+  String get mkSortPriceHigh => 'Price: high to low';
+
+  @override
+  String get mkSortRating => 'Top rated';
+
+  @override
+  String get mkSortNewest => 'Newest';
+
+  @override
+  String get mkSortLabel => 'Sort';
+
+  @override
+  String get mkFilters => 'Filters';
+
+  @override
+  String get mkFilterType => 'Type';
+
+  @override
+  String get mkTypeAll => 'All';
+
+  @override
+  String get mkFilterPrice => 'Price in KES';
+
+  @override
+  String get mkFilterMin => 'From';
+
+  @override
+  String get mkFilterMax => 'Up to';
+
+  @override
+  String get mkFilterRemote => 'Remote only';
+
+  @override
+  String get mkApplyFilters => 'Show results';
+
+  @override
+  String get mkClearFilters => 'Clear all';
+
+  @override
+  String get mkNoResultsTitle => 'No listings match';
+
+  @override
+  String get mkNoResultsBody => 'Try other words or fewer filters.';
+
+  @override
+  String get mkSaveListing => 'Save listing';
+
+  @override
+  String get mkUnsaveListing => 'Remove from saved';
+
+  @override
+  String get mkSaveFailed => 'We could not save that. Try again.';
+
+  @override
+  String get mkWhatsIncluded => 'What\'s included';
+
+  @override
+  String get mkDelivery => 'Delivery';
+
+  @override
+  String mkDeliveryDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days',
+      one: '1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get mkLocation => 'Location';
+
+  @override
+  String get mkWhoFor => 'Who it\'s for';
+
+  @override
+  String get mkPortfolioExamples => 'Portfolio examples';
+
+  @override
+  String get mkReviews => 'Reviews';
+
+  @override
+  String get mkNoReviews => 'No reviews yet.';
+
+  @override
+  String mkReviewCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count reviews',
+      one: '1 review',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get mkRequestBooking => 'Request booking';
+
+  @override
+  String get mkRequestSent => 'Request sent · We\'ll notify you';
+
+  @override
+  String get mkMessageSeller => 'Open your request';
+
+  @override
+  String get mkYourListing => 'This is your listing';
+
+  @override
+  String get mkEditListing => 'Edit listing';
+
+  @override
+  String get mkReport => 'Report this listing';
+
+  @override
+  String get mkShare => 'Share';
+
+  @override
+  String get mkNotAvailable => 'This listing isn\'t available';
+
+  @override
+  String get mkNotAvailableBody => 'It may have been paused or removed.';
+
+  @override
+  String get mkBackToMarket => 'Back to Marketplace';
+
+  @override
+  String get mkSellerStatus => 'Under review. Only you can see this.';
+
+  @override
+  String get mkSeeAllReviews => 'All reviews';
+
+  @override
+  String get mkRequestTitle => 'Request booking';
+
+  @override
+  String get mkRequestNeed => 'What do you need?';
+
+  @override
+  String get mkRequestNeedHint =>
+      'Describe the work, the occasion or the product you want.';
+
+  @override
+  String get mkRequestBudget => 'Budget (optional)';
+
+  @override
+  String get mkRequestTiming => 'When do you need it? (optional)';
+
+  @override
+  String get mkRequestSend => 'Send request';
+
+  @override
+  String get mkRequestError =>
+      'Describe what you need in at least 10 characters.';
+
+  @override
+  String get mkAlreadySent => 'You already sent a request for this listing.';
+
+  @override
+  String get mkReportTitle => 'Report this listing';
+
+  @override
+  String get mkReasonInappropriate => 'Inappropriate';
+
+  @override
+  String get mkReasonHarassment => 'Harassment';
+
+  @override
+  String get mkReasonScam => 'Scam or fake';
+
+  @override
+  String get mkReasonMisleading => 'Misleading';
+
+  @override
+  String get mkReasonImpersonation => 'Impersonation';
+
+  @override
+  String get mkReasonIp => 'Copyright or ownership';
+
+  @override
+  String get mkReasonOther => 'Something else';
+
+  @override
+  String get mkReportNote => 'Anything else we should know? (optional)';
+
+  @override
+  String get mkReportSend => 'Send report';
+
+  @override
+  String get mkReportThanks => 'Thanks. We\'ll take a look.';
+
+  @override
+  String get mkSellerTitle => 'Seller';
+
+  @override
+  String get mkStatRating => 'Rating';
+
+  @override
+  String get mkStatCompleted => 'Completed';
+
+  @override
+  String get mkStatReply => 'Reply time';
+
+  @override
+  String get mkNewSeller => 'New';
+
+  @override
+  String get mkSellerAbout => 'About';
+
+  @override
+  String get mkSellerListings => 'Services and products';
+
+  @override
+  String get mkViewProfile => 'View creative profile';
+
+  @override
+  String mkMemberSince(String date) {
+    return 'Member since $date';
+  }
+
+  @override
+  String get mkSellerNoListings => 'No live listings right now.';
+
+  @override
+  String get mkNewTitle => 'New listing';
+
+  @override
+  String get mkEditTitle => 'Edit listing';
+
+  @override
+  String get mkStepDetails => 'Details';
+
+  @override
+  String get mkStepMedia => 'Media';
+
+  @override
+  String get mkStepPricing => 'Pricing';
+
+  @override
+  String get mkStepPreview => 'Preview';
+
+  @override
+  String mkStepOf(int current, int total) {
+    return 'Step $current of $total';
+  }
+
+  @override
+  String get mkTypeLabel => 'What are you listing?';
+
+  @override
+  String get mkTypeService => 'Service';
+
+  @override
+  String get mkTypeProduct => 'Product';
+
+  @override
+  String get mkTitleLabel => 'Title';
+
+  @override
+  String get mkCategoryLabel => 'Category';
+
+  @override
+  String get mkDescriptionLabel => 'Description';
+
+  @override
+  String get mkIncludedLabel => 'What\'s included';
+
+  @override
+  String get mkIncludedHint => 'Add an item';
+
+  @override
+  String get mkAudienceLabel => 'Who it\'s for';
+
+  @override
+  String get mkDeliveryLabel => 'Delivery time in days';
+
+  @override
+  String get mkWorkModeLabel => 'Where';
+
+  @override
+  String get mkModeRemote => 'Remote';
+
+  @override
+  String get mkModeOnsite => 'On site';
+
+  @override
+  String get mkModeHybrid => 'Hybrid';
+
+  @override
+  String get mkLocationLabel => 'Town or county';
+
+  @override
+  String get mkMediaTitle => 'Add pictures';
+
+  @override
+  String get mkMediaBody => 'The first picture is the cover. Add up to 8.';
+
+  @override
+  String get mkMediaAdd => 'Add pictures';
+
+  @override
+  String get mkProjectsTitle => 'Portfolio examples';
+
+  @override
+  String get mkProjectsBody => 'Pick published projects that show your work.';
+
+  @override
+  String get mkProjectsNone => 'You have no published projects to show yet.';
+
+  @override
+  String get mkPricingTitle => 'Pricing';
+
+  @override
+  String get mkPriceFixed => 'Fixed';
+
+  @override
+  String get mkPriceRange => 'Range';
+
+  @override
+  String get mkPriceOnRequest => 'On request';
+
+  @override
+  String get mkPriceLabel => 'Price';
+
+  @override
+  String get mkPriceMin => 'Lowest price';
+
+  @override
+  String get mkPriceMax => 'Highest price';
+
+  @override
+  String get mkPriceOnRequestNote => 'Buyers will ask you for a price.';
+
+  @override
+  String get mkPreviewTitle => 'Preview';
+
+  @override
+  String get mkPreviewNote => 'This is how buyers will see it.';
+
+  @override
+  String get mkSaveDraft => 'Save draft';
+
+  @override
+  String get mkNext => 'Next';
+
+  @override
+  String get mkSubmit => 'Submit';
+
+  @override
+  String get mkDraftSaved => 'Draft saved.';
+
+  @override
+  String get mkSubmittedReview =>
+      'Submitted. We\'ll review it and let you know.';
+
+  @override
+  String get mkPublishedNow => 'Your listing is live.';
+
+  @override
+  String get mkMissingTitle => 'Before you submit';
+
+  @override
+  String get mkTitleError =>
+      'Give your listing a title (at least 4 characters).';
+
+  @override
+  String get mkCategoryError => 'Pick a category.';
+
+  @override
+  String get mkPriceError => 'Enter a price.';
+
+  @override
+  String get mkPriceMaxError =>
+      'The highest price must be at least the lowest.';
+
+  @override
+  String get mkTermsTitle => 'Seller terms';
+
+  @override
+  String get mkTermsDraftBadge => 'Draft';
+
+  @override
+  String get mkTermsAccept => 'I accept the seller terms';
+
+  @override
+  String get mkTermsContinue => 'Accept and continue';
+
+  @override
+  String get mkTermsDraftNotice =>
+      'These terms are a draft placeholder. The final text is added before launch.';
+
+  @override
+  String get mkUploadFailed =>
+      'A picture did not upload. Remove it and try again.';
+
+  @override
+  String get mkLeaveTitle => 'Leave without saving?';
+
+  @override
+  String get mkLeaveBody => 'Your changes will be lost.';
+
+  @override
+  String get mkLeave => 'Leave';
+
+  @override
+  String get mkReviewNote => 'New listings are checked before they go live.';
+
+  @override
+  String get mkMyListingsTitle => 'My listings';
+
+  @override
+  String get mkStatLive => 'Live';
+
+  @override
+  String get mkStatInterest => 'New interest';
+
+  @override
+  String get mkStatViews => 'Views in 30 days';
+
+  @override
+  String get mkNewListing => 'New listing';
+
+  @override
+  String get mkStatusDraft => 'Draft';
+
+  @override
+  String get mkStatusUnderReview => 'Under review';
+
+  @override
+  String get mkStatusPublished => 'Live';
+
+  @override
+  String get mkStatusRejected => 'Needs changes';
+
+  @override
+  String get mkStatusSuspended => 'Suspended';
+
+  @override
+  String get mkStatusArchived => 'Paused';
+
+  @override
+  String get mkMenuEdit => 'Edit';
+
+  @override
+  String get mkMenuView => 'View';
+
+  @override
+  String get mkMenuPause => 'Pause';
+
+  @override
+  String get mkMenuRestore => 'Restore as draft';
+
+  @override
+  String get mkMenuWithdraw => 'Withdraw from review';
+
+  @override
+  String get mkMenuDelete => 'Delete draft';
+
+  @override
+  String get mkMenuMore => 'More actions';
+
+  @override
+  String get mkDeleteTitle => 'Delete this draft?';
+
+  @override
+  String get mkDeleteBody => 'This can\'t be undone.';
+
+  @override
+  String get mkPauseTitle => 'Pause this listing?';
+
+  @override
+  String get mkPauseBody =>
+      'Buyers won\'t see it until you restore and submit it again.';
+
+  @override
+  String get mkPause => 'Pause';
+
+  @override
+  String get mkInterestTitle => 'Buyer interest';
+
+  @override
+  String get mkInterestEmpty => 'No requests yet.';
+
+  @override
+  String get mkReply => 'Reply';
+
+  @override
+  String mkReasonLine(String reason) {
+    return 'Why: $reason';
+  }
+
+  @override
+  String get mkNotSellerTitle => 'You\'re not selling yet';
+
+  @override
+  String get mkNotSellerBody => 'Create your first listing to start.';
+
+  @override
+  String get mkSuspendedBanner =>
+      'Your seller account is suspended. Contact support to find out more.';
+
+  @override
+  String get mkMenuPublishDraft => 'Submit';
+
+  @override
+  String get mkThreadTitle => 'Request';
+
+  @override
+  String get mkMessageHint => 'Write a message';
+
+  @override
+  String get mkSend => 'Send';
+
+  @override
+  String get mkStatusNew => 'Waiting for a reply';
+
+  @override
+  String get mkStatusReplied => 'In conversation';
+
+  @override
+  String get mkStatusClosed => 'Closed';
+
+  @override
+  String get mkClose => 'Mark as done';
+
+  @override
+  String get mkCloseTitle => 'Mark this request as done?';
+
+  @override
+  String get mkCloseBody => 'You won\'t be able to send more messages.';
+
+  @override
+  String get mkLeaveReview => 'Leave a review';
+
+  @override
+  String get mkReviewTitle => 'How was it?';
+
+  @override
+  String get mkReviewHint => 'Tell others about it (optional)';
+
+  @override
+  String get mkReviewSend => 'Send review';
+
+  @override
+  String get mkReviewed => 'You reviewed this.';
+
+  @override
+  String mkBudgetLine(String amount) {
+    return 'Budget: KES $amount';
+  }
+
+  @override
+  String mkTimingLine(String timing) {
+    return 'When: $timing';
+  }
+
+  @override
+  String get mkRequestsTitle => 'Requests';
+
+  @override
+  String get mkTabSent => 'Sent';
+
+  @override
+  String get mkTabReceived => 'Received';
+
+  @override
+  String get mkRequestsEmpty => 'No requests yet.';
+
+  @override
+  String get mkUnread => 'New';
+
+  @override
+  String get mkAbout => 'About the listing';
+
+  @override
+  String get mkPickCategory => 'Pick a category';
+
+  @override
+  String get mkPickCategoryBody => 'Buyers find your listing by its category.';
+
+  @override
+  String get mkDraftFromService =>
+      'A draft listing was made from this service.';
+
+  @override
+  String get mkNoNote => 'No message yet.';
 }

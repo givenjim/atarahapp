@@ -155,10 +155,7 @@ class _PassportScreenState extends ConsumerState<PassportScreen> {
                         label: l10n.ppCreateCv,
                         variant: AtButtonVariant.tertiary,
                         icon: LucideIcons.fileText,
-                        // CV and EPK creation is a Phase 2 feature.
-                        onPressed: () => context.push(
-                          Routes.soonPath('p2', name: l10n.ppCreateCv),
-                        ),
+                        onPressed: () => context.push(Routes.cv),
                       ),
                     ],
                   ),

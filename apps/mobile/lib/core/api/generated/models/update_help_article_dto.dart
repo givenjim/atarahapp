@@ -17,10 +17,9 @@ class UpdateHelpArticleDto {
     this.sortOrder,
     this.published,
   });
-
-  factory UpdateHelpArticleDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateHelpArticleDtoFromJson(json);
-
+  
+  factory UpdateHelpArticleDto.fromJson(Map<String, Object?> json) => _$UpdateHelpArticleDtoFromJson(json);
+  
   final String? title;
   final String? summary;
   final List<ArticleBlockInputDto>? blocks;

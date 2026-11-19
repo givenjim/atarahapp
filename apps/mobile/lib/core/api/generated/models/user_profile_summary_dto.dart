@@ -18,10 +18,9 @@ class UserProfileSummaryDto {
     this.county,
     this.discipline,
   });
-
-  factory UserProfileSummaryDto.fromJson(Map<String, Object?> json) =>
-      _$UserProfileSummaryDtoFromJson(json);
-
+  
+  factory UserProfileSummaryDto.fromJson(Map<String, Object?> json) => _$UserProfileSummaryDtoFromJson(json);
+  
   final String? handle;
   final String displayName;
   final String? headline;

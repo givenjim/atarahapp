@@ -10,15 +10,15 @@ part 'patch_api_v1_admin_articles_id_response.g.dart';
 
 @JsonSerializable()
 class PatchApiV1AdminArticlesIdResponse {
-  const PatchApiV1AdminArticlesIdResponse({required this.data, this.meta});
-
-  factory PatchApiV1AdminArticlesIdResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PatchApiV1AdminArticlesIdResponseFromJson(json);
-
+  const PatchApiV1AdminArticlesIdResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PatchApiV1AdminArticlesIdResponse.fromJson(Map<String, Object?> json) => _$PatchApiV1AdminArticlesIdResponseFromJson(json);
+  
   final AdminArticleDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PatchApiV1AdminArticlesIdResponseToJson(this);
+  Map<String, Object?> toJson() => _$PatchApiV1AdminArticlesIdResponseToJson(this);
 }

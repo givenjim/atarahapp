@@ -223,6 +223,7 @@ class _HomeBody extends StatelessWidget {
                   title: l10n.dcMarketplace,
                   body: l10n.dcMarketplaceBody,
                   phase: 'p2',
+                  route: Routes.marketplace,
                 ),
               ),
               const SizedBox(width: 12),
@@ -232,6 +233,7 @@ class _HomeBody extends StatelessWidget {
                   title: l10n.dcMentorship,
                   body: l10n.dcMentorshipBody,
                   phase: 'p2',
+                  route: Routes.mentorship,
                 ),
               ),
             ],
@@ -489,6 +491,7 @@ class _SoonTile extends StatelessWidget {
     required this.title,
     required this.body,
     required this.phase,
+    this.route,
   });
 
   final IconData icon;
@@ -496,9 +499,12 @@ class _SoonTile extends StatelessWidget {
   final String body;
   final String phase;
 
+  /// A real screen to open instead of the "Soon" placeholder.
+  final String? route;
+
   @override
   Widget build(BuildContext context) => AtCard(
-    onTap: () => context.push(Routes.soonPath(phase, name: title)),
+    onTap: () => context.push(route ?? Routes.soonPath(phase, name: title)),
     padding: const EdgeInsets.all(14),
     semanticLabel: title,
     child: Column(

@@ -8,11 +8,13 @@ part 'unread_count_dto.g.dart';
 
 @JsonSerializable()
 class UnreadCountDto {
-  const UnreadCountDto({required this.unread, required this.byCategory});
-
-  factory UnreadCountDto.fromJson(Map<String, Object?> json) =>
-      _$UnreadCountDtoFromJson(json);
-
+  const UnreadCountDto({
+    required this.unread,
+    required this.byCategory,
+  });
+  
+  factory UnreadCountDto.fromJson(Map<String, Object?> json) => _$UnreadCountDtoFromJson(json);
+  
   final num unread;
 
   /// Unread per category.

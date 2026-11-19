@@ -10,15 +10,15 @@ part 'patch_api_v1_admin_feature_flags_key_response.g.dart';
 
 @JsonSerializable()
 class PatchApiV1AdminFeatureFlagsKeyResponse {
-  const PatchApiV1AdminFeatureFlagsKeyResponse({required this.data, this.meta});
-
-  factory PatchApiV1AdminFeatureFlagsKeyResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PatchApiV1AdminFeatureFlagsKeyResponseFromJson(json);
-
+  const PatchApiV1AdminFeatureFlagsKeyResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PatchApiV1AdminFeatureFlagsKeyResponse.fromJson(Map<String, Object?> json) => _$PatchApiV1AdminFeatureFlagsKeyResponseFromJson(json);
+  
   final FeatureFlagDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PatchApiV1AdminFeatureFlagsKeyResponseToJson(this);
+  Map<String, Object?> toJson() => _$PatchApiV1AdminFeatureFlagsKeyResponseToJson(this);
 }

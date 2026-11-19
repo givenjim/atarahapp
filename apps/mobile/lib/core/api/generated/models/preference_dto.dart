@@ -15,10 +15,9 @@ class PreferenceDto {
     required this.pushEnabled,
     required this.emailEnabled,
   });
-
-  factory PreferenceDto.fromJson(Map<String, Object?> json) =>
-      _$PreferenceDtoFromJson(json);
-
+  
+  factory PreferenceDto.fromJson(Map<String, Object?> json) => _$PreferenceDtoFromJson(json);
+  
   final PreferenceDtoCategory category;
   final bool pushEnabled;
   final bool emailEnabled;

@@ -10,6 +10,9 @@ abstract final class Routes {
   static const legal = '/legal/:type';
   static const onboarding = '/onboarding';
   static const passport = '/passport';
+
+  /// Creative CV / EPK (P2-M7): pick a format, preview, download a PDF, share a revocable link.
+  static const cv = '/cv';
   static const portfolio = '/portfolio';
   static const projectEdit = '/portfolio/:id/edit';
   static const skills = '/skills';
@@ -44,11 +47,43 @@ abstract final class Routes {
   static const learningMine = '/learning/mine';
   static const learningCategory = '/learning/categories/:slug';
   static const listing = '/marketplace/listings/:id';
+
+  /// The marketplace (P2-M3). Fixed paths register ahead of the parameterised ones so they are never read as an id.
+  static const marketplace = '/marketplace';
+  static const marketplaceBrowse = '/marketplace/browse';
+  static const myListings = '/marketplace/mine';
+  static const listingNew = '/marketplace/new';
+  static const listingEdit = '/marketplace/mine/:id';
+  static const enquiries = '/marketplace/enquiries';
+  static const enquiry = '/marketplace/enquiries/:id';
+  static const seller = '/marketplace/sellers/:id';
   static const mentor = '/mentors/:id';
+
+  /// Mentorship (P2-M4): the hub, the directory, the application, and the mentor's own tools. Fixed paths only, so
+  /// none can be read as the `/mentors/:id` detail route.
+  static const mentorship = '/mentorship';
+  static const mentorDirectory = '/mentorship/mentors';
+  static const mentorApply = '/mentorship/apply';
+  static const mentorTools = '/mentorship/tools';
+  static const mentorAvailability = '/mentorship/tools/availability';
+  static const mentorSessionTypes = '/mentorship/tools/sessions';
+  static const mentorProfileEdit = '/mentorship/tools/profile';
+  static const mentorRequests = '/mentorship/tools/requests';
+
+  /// One mentor's profile.
+  static String mentorPath(String id) => '/mentors/${Uri.encodeComponent(id)}';
+
+  /// The premium gate a Free member sees from "Unlock mentorship with Pro".
+  static const mentorPremium = '/mentors/:id/pro';
+  static String mentorPremiumPath(String id) =>
+      '/mentors/${Uri.encodeComponent(id)}/pro';
   static const article = '/articles/:slug';
   static const group = '/groups/:id';
   static const post = '/posts/:id';
   static const compose = '/compose';
+
+  /// The payment screen (P2-M1). Open it with `context.push<PaymentOutcome>(Routes.pay, extra: PaymentRequest(...))`.
+  static const pay = '/pay';
   static const notifications = '/notifications';
   static const search = '/search';
   static const articles = '/articles';
@@ -120,6 +155,36 @@ abstract final class Routes {
         'groupName=${Uri.encodeQueryComponent(groupName)}',
     ].join('&');
     return query.isEmpty ? compose : '$compose?$query';
+  }
+
+  static String listingPath(String id) =>
+      '/marketplace/listings/${Uri.encodeComponent(id)}';
+
+  static String sellerPath(String id) =>
+      '/marketplace/sellers/${Uri.encodeComponent(id)}';
+
+  static String enquiryPath(String id) =>
+      '/marketplace/enquiries/${Uri.encodeComponent(id)}';
+
+  static String listingEditPath(String id) =>
+      '/marketplace/mine/${Uri.encodeComponent(id)}';
+
+  /// The browse list. A category, a kind (`SERVICE` or `PRODUCT`) and a search can narrow it.
+  static String marketplaceBrowsePath({
+    String? categoryId,
+    String? categoryName,
+    String? type,
+    String? q,
+  }) {
+    final query = [
+      if (categoryId != null)
+        'categoryId=${Uri.encodeQueryComponent(categoryId)}',
+      if (categoryName != null)
+        'categoryName=${Uri.encodeQueryComponent(categoryName)}',
+      if (type != null) 'type=${Uri.encodeQueryComponent(type)}',
+      if (q != null) 'q=${Uri.encodeQueryComponent(q)}',
+    ].join('&');
+    return query.isEmpty ? marketplaceBrowse : '$marketplaceBrowse?$query';
   }
 
   /// One opportunity.

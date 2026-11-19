@@ -8,11 +8,12 @@ part 'saved_state_dto.g.dart';
 
 @JsonSerializable()
 class SavedStateDto {
-  const SavedStateDto({required this.saved});
-
-  factory SavedStateDto.fromJson(Map<String, Object?> json) =>
-      _$SavedStateDtoFromJson(json);
-
+  const SavedStateDto({
+    required this.saved,
+  });
+  
+  factory SavedStateDto.fromJson(Map<String, Object?> json) => _$SavedStateDtoFromJson(json);
+  
   final bool saved;
 
   Map<String, Object?> toJson() => _$SavedStateDtoToJson(this);

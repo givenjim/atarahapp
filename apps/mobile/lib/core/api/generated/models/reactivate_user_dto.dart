@@ -8,11 +8,12 @@ part 'reactivate_user_dto.g.dart';
 
 @JsonSerializable()
 class ReactivateUserDto {
-  const ReactivateUserDto({this.reason});
-
-  factory ReactivateUserDto.fromJson(Map<String, Object?> json) =>
-      _$ReactivateUserDtoFromJson(json);
-
+  const ReactivateUserDto({
+    this.reason,
+  });
+  
+  factory ReactivateUserDto.fromJson(Map<String, Object?> json) => _$ReactivateUserDtoFromJson(json);
+  
   final String? reason;
 
   Map<String, Object?> toJson() => _$ReactivateUserDtoToJson(this);

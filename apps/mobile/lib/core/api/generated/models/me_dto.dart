@@ -31,9 +31,9 @@ class MeDto {
     required this.createdAt,
     required this.deletionScheduledFor,
   });
-
+  
   factory MeDto.fromJson(Map<String, Object?> json) => _$MeDtoFromJson(json);
-
+  
   final String id;
   final String fullName;
   final String? email;

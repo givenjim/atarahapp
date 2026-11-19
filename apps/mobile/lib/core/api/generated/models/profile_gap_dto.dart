@@ -19,10 +19,9 @@ class ProfileGapDto {
     required this.blockingMissingCount,
     required this.rules,
   });
-
-  factory ProfileGapDto.fromJson(Map<String, Object?> json) =>
-      _$ProfileGapDtoFromJson(json);
-
+  
+  factory ProfileGapDto.fromJson(Map<String, Object?> json) => _$ProfileGapDtoFromJson(json);
+  
   final ProfileGapDtoVerdict verdict;
   final num metCount;
   final num missingCount;

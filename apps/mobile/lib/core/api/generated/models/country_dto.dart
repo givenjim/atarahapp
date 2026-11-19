@@ -14,10 +14,9 @@ class CountryDto {
     required this.name,
     required this.callingCode,
   });
-
-  factory CountryDto.fromJson(Map<String, Object?> json) =>
-      _$CountryDtoFromJson(json);
-
+  
+  factory CountryDto.fromJson(Map<String, Object?> json) => _$CountryDtoFromJson(json);
+  
   final String id;
   final String isoCode;
   final String name;

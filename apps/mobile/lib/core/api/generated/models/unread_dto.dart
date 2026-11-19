@@ -8,11 +8,12 @@ part 'unread_dto.g.dart';
 
 @JsonSerializable()
 class UnreadDto {
-  const UnreadDto({required this.unread});
-
-  factory UnreadDto.fromJson(Map<String, Object?> json) =>
-      _$UnreadDtoFromJson(json);
-
+  const UnreadDto({
+    required this.unread,
+  });
+  
+  factory UnreadDto.fromJson(Map<String, Object?> json) => _$UnreadDtoFromJson(json);
+  
   final num unread;
 
   Map<String, Object?> toJson() => _$UnreadDtoToJson(this);

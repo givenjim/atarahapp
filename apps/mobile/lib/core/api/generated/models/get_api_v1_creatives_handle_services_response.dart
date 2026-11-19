@@ -14,14 +14,11 @@ class GetApiV1CreativesHandleServicesResponse {
     required this.data,
     this.meta,
   });
-
-  factory GetApiV1CreativesHandleServicesResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1CreativesHandleServicesResponseFromJson(json);
-
+  
+  factory GetApiV1CreativesHandleServicesResponse.fromJson(Map<String, Object?> json) => _$GetApiV1CreativesHandleServicesResponseFromJson(json);
+  
   final List<ServiceDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1CreativesHandleServicesResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1CreativesHandleServicesResponseToJson(this);
 }

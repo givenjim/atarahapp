@@ -14,14 +14,11 @@ class PutApiV1LearningLessonsIdProgressResponse {
     required this.data,
     this.meta,
   });
-
-  factory PutApiV1LearningLessonsIdProgressResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PutApiV1LearningLessonsIdProgressResponseFromJson(json);
-
+  
+  factory PutApiV1LearningLessonsIdProgressResponse.fromJson(Map<String, Object?> json) => _$PutApiV1LearningLessonsIdProgressResponseFromJson(json);
+  
   final ProgressResultDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PutApiV1LearningLessonsIdProgressResponseToJson(this);
+  Map<String, Object?> toJson() => _$PutApiV1LearningLessonsIdProgressResponseToJson(this);
 }

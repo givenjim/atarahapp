@@ -16,10 +16,9 @@ class PersonToMeetDto {
     required this.connectionState,
     required this.connectionId,
   });
-
-  factory PersonToMeetDto.fromJson(Map<String, Object?> json) =>
-      _$PersonToMeetDtoFromJson(json);
-
+  
+  factory PersonToMeetDto.fromJson(Map<String, Object?> json) => _$PersonToMeetDtoFromJson(json);
+  
   /// `person.reason` is the line shown under the name.
   final CreativeCardDto person;
 

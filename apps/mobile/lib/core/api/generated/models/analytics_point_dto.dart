@@ -14,10 +14,9 @@ class AnalyticsPointDto {
     required this.events,
     required this.actors,
   });
-
-  factory AnalyticsPointDto.fromJson(Map<String, Object?> json) =>
-      _$AnalyticsPointDtoFromJson(json);
-
+  
+  factory AnalyticsPointDto.fromJson(Map<String, Object?> json) => _$AnalyticsPointDtoFromJson(json);
+  
   final String day;
   final String name;
   final num events;

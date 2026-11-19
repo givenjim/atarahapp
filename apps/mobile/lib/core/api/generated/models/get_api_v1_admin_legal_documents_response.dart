@@ -10,15 +10,15 @@ part 'get_api_v1_admin_legal_documents_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1AdminLegalDocumentsResponse {
-  const GetApiV1AdminLegalDocumentsResponse({required this.data, this.meta});
-
-  factory GetApiV1AdminLegalDocumentsResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1AdminLegalDocumentsResponseFromJson(json);
-
+  const GetApiV1AdminLegalDocumentsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1AdminLegalDocumentsResponse.fromJson(Map<String, Object?> json) => _$GetApiV1AdminLegalDocumentsResponseFromJson(json);
+  
   final List<AdminLegalDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1AdminLegalDocumentsResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1AdminLegalDocumentsResponseToJson(this);
 }

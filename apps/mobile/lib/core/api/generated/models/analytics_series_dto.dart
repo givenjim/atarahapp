@@ -17,10 +17,9 @@ class AnalyticsSeriesDto {
     required this.series,
     required this.totals,
   });
-
-  factory AnalyticsSeriesDto.fromJson(Map<String, Object?> json) =>
-      _$AnalyticsSeriesDtoFromJson(json);
-
+  
+  factory AnalyticsSeriesDto.fromJson(Map<String, Object?> json) => _$AnalyticsSeriesDtoFromJson(json);
+  
   final String from;
   final String to;
   final List<AnalyticsPointDto> series;

@@ -10,15 +10,15 @@ part 'post_api_v1_media_id_complete_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1MediaIdCompleteResponse {
-  const PostApiV1MediaIdCompleteResponse({required this.data, this.meta});
-
-  factory PostApiV1MediaIdCompleteResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1MediaIdCompleteResponseFromJson(json);
-
+  const PostApiV1MediaIdCompleteResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1MediaIdCompleteResponse.fromJson(Map<String, Object?> json) => _$PostApiV1MediaIdCompleteResponseFromJson(json);
+  
   final MediaAssetDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1MediaIdCompleteResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1MediaIdCompleteResponseToJson(this);
 }

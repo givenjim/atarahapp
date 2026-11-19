@@ -11,11 +11,14 @@ part 'track_opportunity_dto.g.dart';
 
 @JsonSerializable()
 class TrackOpportunityDto {
-  const TrackOpportunityDto({required this.status, this.outcome, this.notes});
-
-  factory TrackOpportunityDto.fromJson(Map<String, Object?> json) =>
-      _$TrackOpportunityDtoFromJson(json);
-
+  const TrackOpportunityDto({
+    required this.status,
+    this.outcome,
+    this.notes,
+  });
+  
+  factory TrackOpportunityDto.fromJson(Map<String, Object?> json) => _$TrackOpportunityDtoFromJson(json);
+  
   final OpportunityTrackingStatus status;
 
   /// Only with COMPLETED. Defaults to UNKNOWN.

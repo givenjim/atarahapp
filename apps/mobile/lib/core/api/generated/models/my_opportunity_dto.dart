@@ -11,11 +11,13 @@ part 'my_opportunity_dto.g.dart';
 
 @JsonSerializable()
 class MyOpportunityDto {
-  const MyOpportunityDto({required this.opportunity, required this.tracking});
-
-  factory MyOpportunityDto.fromJson(Map<String, Object?> json) =>
-      _$MyOpportunityDtoFromJson(json);
-
+  const MyOpportunityDto({
+    required this.opportunity,
+    required this.tracking,
+  });
+  
+  factory MyOpportunityDto.fromJson(Map<String, Object?> json) => _$MyOpportunityDtoFromJson(json);
+  
   final OpportunityCardDto opportunity;
   final TrackingStateDto tracking;
 

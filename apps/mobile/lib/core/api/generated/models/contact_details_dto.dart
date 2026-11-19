@@ -8,11 +8,13 @@ part 'contact_details_dto.g.dart';
 
 @JsonSerializable()
 class ContactDetailsDto {
-  const ContactDetailsDto({required this.email, required this.phone});
-
-  factory ContactDetailsDto.fromJson(Map<String, Object?> json) =>
-      _$ContactDetailsDtoFromJson(json);
-
+  const ContactDetailsDto({
+    required this.email,
+    required this.phone,
+  });
+  
+  factory ContactDetailsDto.fromJson(Map<String, Object?> json) => _$ContactDetailsDtoFromJson(json);
+  
   final String? email;
   final String? phone;
 

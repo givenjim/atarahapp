@@ -10,11 +10,13 @@ part 'get_api_v1_me_passport_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1MePassportResponse {
-  const GetApiV1MePassportResponse({required this.data, this.meta});
-
-  factory GetApiV1MePassportResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1MePassportResponseFromJson(json);
-
+  const GetApiV1MePassportResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1MePassportResponse.fromJson(Map<String, Object?> json) => _$GetApiV1MePassportResponseFromJson(json);
+  
   final PassportDto data;
   final dynamic meta;
 

@@ -16,10 +16,9 @@ class ActivityCountsDto {
     required this.portfolio,
     required this.pendingConnections,
   });
-
-  factory ActivityCountsDto.fromJson(Map<String, Object?> json) =>
-      _$ActivityCountsDtoFromJson(json);
-
+  
+  factory ActivityCountsDto.fromJson(Map<String, Object?> json) => _$ActivityCountsDtoFromJson(json);
+  
   /// Saved items of every kind.
   final num saved;
 

@@ -20,10 +20,9 @@ class ReplyViewDto {
     required this.createdAt,
     required this.editedAt,
   });
-
-  factory ReplyViewDto.fromJson(Map<String, Object?> json) =>
-      _$ReplyViewDtoFromJson(json);
-
+  
+  factory ReplyViewDto.fromJson(Map<String, Object?> json) => _$ReplyViewDtoFromJson(json);
+  
   final String id;
   final String postId;
   final String parentCommentId;

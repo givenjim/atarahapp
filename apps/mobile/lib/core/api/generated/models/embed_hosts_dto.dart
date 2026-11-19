@@ -8,11 +8,12 @@ part 'embed_hosts_dto.g.dart';
 
 @JsonSerializable()
 class EmbedHostsDto {
-  const EmbedHostsDto({required this.hosts});
-
-  factory EmbedHostsDto.fromJson(Map<String, Object?> json) =>
-      _$EmbedHostsDtoFromJson(json);
-
+  const EmbedHostsDto({
+    required this.hosts,
+  });
+  
+  factory EmbedHostsDto.fromJson(Map<String, Object?> json) => _$EmbedHostsDtoFromJson(json);
+  
   final List<String> hosts;
 
   Map<String, Object?> toJson() => _$EmbedHostsDtoToJson(this);

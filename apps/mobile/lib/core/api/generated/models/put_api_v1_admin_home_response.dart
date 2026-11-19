@@ -10,11 +10,13 @@ part 'put_api_v1_admin_home_response.g.dart';
 
 @JsonSerializable()
 class PutApiV1AdminHomeResponse {
-  const PutApiV1AdminHomeResponse({required this.data, this.meta});
-
-  factory PutApiV1AdminHomeResponse.fromJson(Map<String, Object?> json) =>
-      _$PutApiV1AdminHomeResponseFromJson(json);
-
+  const PutApiV1AdminHomeResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PutApiV1AdminHomeResponse.fromJson(Map<String, Object?> json) => _$PutApiV1AdminHomeResponseFromJson(json);
+  
   final HomeConfigDto data;
   final dynamic meta;
 

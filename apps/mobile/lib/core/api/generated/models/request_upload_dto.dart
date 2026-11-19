@@ -17,10 +17,9 @@ class RequestUploadDto {
     required this.sizeBytes,
     required this.visibility,
   });
-
-  factory RequestUploadDto.fromJson(Map<String, Object?> json) =>
-      _$RequestUploadDtoFromJson(json);
-
+  
+  factory RequestUploadDto.fromJson(Map<String, Object?> json) => _$RequestUploadDtoFromJson(json);
+  
   final RequestUploadDtoKind kind;
 
   /// Must be an allowed type for the kind.

@@ -10,11 +10,13 @@ part 'get_api_v1_me_preferences_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1MePreferencesResponse {
-  const GetApiV1MePreferencesResponse({required this.data, this.meta});
-
-  factory GetApiV1MePreferencesResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1MePreferencesResponseFromJson(json);
-
+  const GetApiV1MePreferencesResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1MePreferencesResponse.fromJson(Map<String, Object?> json) => _$GetApiV1MePreferencesResponseFromJson(json);
+  
   final AccountPreferencesDto data;
   final dynamic meta;
 

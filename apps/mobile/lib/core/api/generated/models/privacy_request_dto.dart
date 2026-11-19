@@ -20,10 +20,9 @@ class PrivacyRequestDto {
     this.dueAt,
     this.completedAt,
   });
-
-  factory PrivacyRequestDto.fromJson(Map<String, Object?> json) =>
-      _$PrivacyRequestDtoFromJson(json);
-
+  
+  factory PrivacyRequestDto.fromJson(Map<String, Object?> json) => _$PrivacyRequestDtoFromJson(json);
+  
   final PrivacyRequestDtoKind kind;
   final String id;
 

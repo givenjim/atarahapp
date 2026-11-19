@@ -216,6 +216,11 @@ just test              # TypeScript tests plus flutter test
 - **Uploads** never pass through the API. `POST /media/uploads` returns a signed `PUT` URL (type and exact length are part of the signature); the client uploads to storage, then calls `POST /media/{id}/complete`. A worker job sniffs the real file type from the bytes, rejects anything that does not match, strips EXIF from images and writes 200/600/1200 px WebP variants. Limits: images 10 MB, video 200 MB, audio 50 MB, documents 10 MB.
 - **Notifications:** feature modules call `NotificationsService.notify()`. It stores the in-app notification, then queues push and email (and SMS when asked) according to the member's preferences. Only `critical` notices ignore preferences.
 
+## 9b. Creative CV / EPK PDFs (P2-M7)
+
+- The worker prints the CV HTML to an A4 PDF with a headless Chromium-family browser started as a child process (`apps/backend/src/cv/pdf-renderer.ts`). Set `ATARAH_PDF_BROWSER_PATH` to its executable, or leave it empty to use the first Chrome, Edge or chromium found in a common install path. With none, a build fails with "PDF creation is not available" and nothing is stored. The production image must install Chromium.
+- Share links are served by the API at `GET /{handle}/cv/{token}` (not under `/api/v1`) until the web app takes over in P3-M4. The member API is `/api/v1/me/creative-cv/...`.
+
 ## 10. Troubleshooting
 
 | Symptom                                                                   | Cause and fix                                                                                                                                                                                                 |
@@ -279,3 +284,16 @@ The brand guard (`pnpm check:brand`) fails on the retired working name anywhere 
 - **Backup:** `bash scripts/db-backup.sh [dir]`, `bash scripts/db-restore.sh <dump> [scratch-db]` (refuses `postgres`), `bash scripts/db-backup-test.sh [db]`. Dumps go to `backups/` (git-ignored).
 - **Audits:** `scripts/check-api-coverage.ts`, `scripts/check-rate-limits.ts` (in `apps/backend`), `scripts/check-auth-config.mjs`, `scripts/check-rls.mjs`: commands in TESTING.md.
 - **Parallel work:** `apps/backend/scripts/with-lock.sh int|gen <command>` serialises integration test runs (they reset the one local database) and API client generation across people or agents working at once.
+
+
+## 13. Payments sandbox (P2-M1)
+
+M-Pesa is off until it is configured and switched on. To run a real sandbox payment (needs Safaricom Daraja sandbox credentials from https://developer.safaricom.co.ke; none are in the repository, so this walkthrough has **not been run**):
+
+1. In `apps/backend/.env` set `ATARAH_MPESA_ENV=sandbox`, `ATARAH_MPESA_CONSUMER_KEY`, `ATARAH_MPESA_CONSUMER_SECRET`, `ATARAH_MPESA_SHORTCODE` (the sandbox shortcode, usually `174379`), `ATARAH_MPESA_PASSKEY` (the sandbox passkey from the portal) and `ATARAH_MPESA_CALLBACK_TOKEN` (`openssl rand -hex 24`).
+2. Safaricom must reach the callback: expose the API over https (any tunnel) and set `ATARAH_MPESA_CALLBACK_BASE_URL` to that origin. The URL it calls is `<origin>/api/v1/webhooks/payments/mpesa/<token>`. Without a tunnel the app still settles: `GET /payments/{id}` asks Safaricom for the status after a few seconds.
+3. Switch the `payments-mpesa` flag on (admin console, Settings), start the API and the worker.
+4. Pay: the development "sandbox check" is `POST /payments` with `{"purpose":"OTHER","method":"MPESA","phone":"<Safaricom test number>","sandboxAmountMinor":100}` and an `Idempotency-Key` header. The real purchases (membership, booking) arrive in P2-M2 and P2-M5.
+5. Look at the result in the console under Payments: the event history shows the prompt, the callback, the status query that confirmed it, and the ledger row.
+
+Tests never call Safaricom: the integration suite (`test/payments.int-spec.ts`) runs the real Daraja adapter against a mocked Safaricom. `ATARAH_MPESA_ENV=production` is refused unless `ATARAH_ENV=production`.

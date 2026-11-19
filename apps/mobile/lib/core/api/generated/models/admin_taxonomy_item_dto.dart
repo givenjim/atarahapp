@@ -19,10 +19,9 @@ class AdminTaxonomyItemDto {
     required this.isActive,
     required this.usage,
   });
-
-  factory AdminTaxonomyItemDto.fromJson(Map<String, Object?> json) =>
-      _$AdminTaxonomyItemDtoFromJson(json);
-
+  
+  factory AdminTaxonomyItemDto.fromJson(Map<String, Object?> json) => _$AdminTaxonomyItemDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String name;

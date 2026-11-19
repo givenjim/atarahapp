@@ -8,11 +8,12 @@ part 'pin_post_body_dto.g.dart';
 
 @JsonSerializable()
 class PinPostBodyDto {
-  const PinPostBodyDto({required this.postId});
-
-  factory PinPostBodyDto.fromJson(Map<String, Object?> json) =>
-      _$PinPostBodyDtoFromJson(json);
-
+  const PinPostBodyDto({
+    required this.postId,
+  });
+  
+  factory PinPostBodyDto.fromJson(Map<String, Object?> json) => _$PinPostBodyDtoFromJson(json);
+  
   /// A post in this group.
   final String postId;
 

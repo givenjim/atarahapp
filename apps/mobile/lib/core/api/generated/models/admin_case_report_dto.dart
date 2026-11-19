@@ -20,10 +20,9 @@ class AdminCaseReportDto {
     required this.reporter,
     required this.createdAt,
   });
-
-  factory AdminCaseReportDto.fromJson(Map<String, Object?> json) =>
-      _$AdminCaseReportDtoFromJson(json);
-
+  
+  factory AdminCaseReportDto.fromJson(Map<String, Object?> json) => _$AdminCaseReportDtoFromJson(json);
+  
   final String id;
   final ReportReason reason;
   final String? note;

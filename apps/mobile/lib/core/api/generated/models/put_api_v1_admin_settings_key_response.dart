@@ -10,15 +10,15 @@ part 'put_api_v1_admin_settings_key_response.g.dart';
 
 @JsonSerializable()
 class PutApiV1AdminSettingsKeyResponse {
-  const PutApiV1AdminSettingsKeyResponse({required this.data, this.meta});
-
-  factory PutApiV1AdminSettingsKeyResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PutApiV1AdminSettingsKeyResponseFromJson(json);
-
+  const PutApiV1AdminSettingsKeyResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PutApiV1AdminSettingsKeyResponse.fromJson(Map<String, Object?> json) => _$PutApiV1AdminSettingsKeyResponseFromJson(json);
+  
   final PlatformSettingDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PutApiV1AdminSettingsKeyResponseToJson(this);
+  Map<String, Object?> toJson() => _$PutApiV1AdminSettingsKeyResponseToJson(this);
 }

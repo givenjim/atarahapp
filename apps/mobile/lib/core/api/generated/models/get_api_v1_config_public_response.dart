@@ -10,11 +10,13 @@ part 'get_api_v1_config_public_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1ConfigPublicResponse {
-  const GetApiV1ConfigPublicResponse({required this.data, this.meta});
-
-  factory GetApiV1ConfigPublicResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1ConfigPublicResponseFromJson(json);
-
+  const GetApiV1ConfigPublicResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1ConfigPublicResponse.fromJson(Map<String, Object?> json) => _$GetApiV1ConfigPublicResponseFromJson(json);
+  
   final PublicConfigDto data;
   final dynamic meta;
 

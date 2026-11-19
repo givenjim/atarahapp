@@ -10,11 +10,13 @@ part 'get_api_v1_groups_ref_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1GroupsRefResponse {
-  const GetApiV1GroupsRefResponse({required this.data, this.meta});
-
-  factory GetApiV1GroupsRefResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1GroupsRefResponseFromJson(json);
-
+  const GetApiV1GroupsRefResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1GroupsRefResponse.fromJson(Map<String, Object?> json) => _$GetApiV1GroupsRefResponseFromJson(json);
+  
   final GroupDetailDto data;
   final dynamic meta;
 

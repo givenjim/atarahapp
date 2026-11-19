@@ -57,10 +57,30 @@ export const envSchema = z
 
     /** Origin used to build links in emails (the app's universal-link domain). Assumed until DEC-007 is confirmed. */
     ATARAH_APP_LINK_BASE_URL: z.string().url().default('https://atarah.app'),
+    /** Chromium-family browser used to print CVs to PDF (P2-M7). Empty means auto-detect common install paths. */
+    ATARAH_PDF_BROWSER_PATH: z.string().optional().default(''),
     ATARAH_FCM_SERVICE_ACCOUNT_JSON: z.string().optional().default(''),
     /** Bearer token the monitoring system presents to GET /metrics. Required in staging and production. */
     ATARAH_METRICS_TOKEN: z.string().optional().default(''),
     ATARAH_SENTRY_DSN: z.string().optional().default(''),
+
+    /**
+     * Payments (P2-M1). All optional: without them M-Pesa reports itself unavailable instead of failing the boot.
+     * `sandbox` talks to Safaricom's sandbox; `production` is refused outside the production environment.
+     */
+    ATARAH_MPESA_ENV: z.enum(['sandbox', 'production']).default('sandbox'),
+    ATARAH_MPESA_CONSUMER_KEY: z.string().optional().default(''),
+    ATARAH_MPESA_CONSUMER_SECRET: z.string().optional().default(''),
+    ATARAH_MPESA_SHORTCODE: z.string().optional().default(''),
+    ATARAH_MPESA_PASSKEY: z.string().optional().default(''),
+    /** The unguessable path segment of the callback URL (at least 32 characters). */
+    ATARAH_MPESA_CALLBACK_TOKEN: z.string().optional().default(''),
+    /** Public origin Safaricom calls back (an https tunnel in development). Defaults to ATARAH_PUBLIC_URL. */
+    ATARAH_MPESA_CALLBACK_BASE_URL: optionalUrl,
+    /** Optional allow-list of Safaricom source IPs. Empty means "token only". */
+    ATARAH_MPESA_CALLBACK_IPS: csv,
+    /** Base64 of 32 random bytes: encrypts raw provider payloads at rest. Dev and test derive a stand-in. */
+    ATARAH_PAYMENTS_ENCRYPTION_KEY: z.string().optional().default(''),
 
     /** Tooling only: skip opening DB/Redis connections (OpenAPI export). Never set in deployed environments. */
     ATARAH_SKIP_CONNECT: z
@@ -69,6 +89,30 @@ export const envSchema = z
       .transform((v) => v === '1'),
   })
   .superRefine((env, ctx) => {
+    if (env.ATARAH_MPESA_ENV === 'production' && env.ATARAH_ENV !== 'production') {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['ATARAH_MPESA_ENV'],
+        message: 'live M-Pesa is only allowed when ATARAH_ENV is production',
+      });
+    }
+    if (env.ATARAH_MPESA_CALLBACK_TOKEN && env.ATARAH_MPESA_CALLBACK_TOKEN.length < 32) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['ATARAH_MPESA_CALLBACK_TOKEN'],
+        message: 'must be at least 32 characters (it is the unguessable part of the callback URL)',
+      });
+    }
+    if (
+      env.ATARAH_PAYMENTS_ENCRYPTION_KEY &&
+      Buffer.from(env.ATARAH_PAYMENTS_ENCRYPTION_KEY, 'base64').length !== 32
+    ) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['ATARAH_PAYMENTS_ENCRYPTION_KEY'],
+        message: 'must be base64 of exactly 32 bytes',
+      });
+    }
     if (env.ATARAH_ENV === 'production' || env.ATARAH_ENV === 'staging') {
       for (const key of ['ATARAH_SEND_SMS_HOOK_SECRET'] as const) {
         if (env[key].startsWith('change-me')) {

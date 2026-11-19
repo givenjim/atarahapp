@@ -10,11 +10,13 @@ part 'opportunity_category_count_dto.g.dart';
 
 @JsonSerializable()
 class OpportunityCategoryCountDto {
-  const OpportunityCategoryCountDto({required this.type, required this.count});
-
-  factory OpportunityCategoryCountDto.fromJson(Map<String, Object?> json) =>
-      _$OpportunityCategoryCountDtoFromJson(json);
-
+  const OpportunityCategoryCountDto({
+    required this.type,
+    required this.count,
+  });
+  
+  factory OpportunityCategoryCountDto.fromJson(Map<String, Object?> json) => _$OpportunityCategoryCountDtoFromJson(json);
+  
   final OpportunityType type;
   final num count;
 

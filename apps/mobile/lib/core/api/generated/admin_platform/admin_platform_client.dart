@@ -16,8 +16,7 @@ part 'admin_platform_client.g.dart';
 
 @RestApi()
 abstract class AdminPlatformClient {
-  factory AdminPlatformClient(Dio dio, {String? baseUrl}) =
-      _AdminPlatformClient;
+  factory AdminPlatformClient(Dio dio, {String? baseUrl}) = _AdminPlatformClient;
 
   @GET('/api/v1/admin/feature-flags')
   Future<GetApiV1AdminFeatureFlagsResponse> listFlags();

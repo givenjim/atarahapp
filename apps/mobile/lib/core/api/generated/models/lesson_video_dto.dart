@@ -14,10 +14,9 @@ class LessonVideoDto {
     this.posterUrl,
     this.durationSeconds,
   });
-
-  factory LessonVideoDto.fromJson(Map<String, Object?> json) =>
-      _$LessonVideoDtoFromJson(json);
-
+  
+  factory LessonVideoDto.fromJson(Map<String, Object?> json) => _$LessonVideoDtoFromJson(json);
+  
   /// Short-lived signed address of the MP4.
   final String url;
   final String? posterUrl;

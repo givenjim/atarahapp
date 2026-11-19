@@ -17,10 +17,9 @@ class PrivacyFieldDto {
     required this.visibility,
     required this.defaultVisibility,
   });
-
-  factory PrivacyFieldDto.fromJson(Map<String, Object?> json) =>
-      _$PrivacyFieldDtoFromJson(json);
-
+  
+  factory PrivacyFieldDto.fromJson(Map<String, Object?> json) => _$PrivacyFieldDtoFromJson(json);
+  
   final PrivacyField field;
   final String label;
   final Visibility visibility;

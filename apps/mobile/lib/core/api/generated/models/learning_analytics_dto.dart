@@ -17,10 +17,9 @@ class LearningAnalyticsDto {
     required this.certificatesIssued,
     required this.items,
   });
-
-  factory LearningAnalyticsDto.fromJson(Map<String, Object?> json) =>
-      _$LearningAnalyticsDtoFromJson(json);
-
+  
+  factory LearningAnalyticsDto.fromJson(Map<String, Object?> json) => _$LearningAnalyticsDtoFromJson(json);
+  
   final num publishedItems;
   final num totalStarts;
   final num totalCompletions;

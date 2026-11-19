@@ -81,11 +81,23 @@ export const SETTINGS: readonly SettingDef[] = [
     value: true,
     description: "A seller's first listings go to UNDER_REVIEW.",
   },
+  {
+    key: 'marketplace.direct_publish_after_approvals',
+    value: 3,
+    description:
+      'A seller with this many approved listings and none rejected or suspended publishes directly (0 turns it off).',
+  },
 
   {
     key: 'verification.sla_working_days',
     value: 5,
     description: 'Reviewer service level for verification cases.',
+  },
+  {
+    key: 'verification.badge_valid_months',
+    value: 12,
+    description:
+      'How long a verification badge stays valid after approval (reviewers may set a shorter date).',
   },
   {
     key: 'verification.id_retention_days',

@@ -8,11 +8,12 @@ part 'reorder_taxonomy_dto.g.dart';
 
 @JsonSerializable()
 class ReorderTaxonomyDto {
-  const ReorderTaxonomyDto({required this.ids});
-
-  factory ReorderTaxonomyDto.fromJson(Map<String, Object?> json) =>
-      _$ReorderTaxonomyDtoFromJson(json);
-
+  const ReorderTaxonomyDto({
+    required this.ids,
+  });
+  
+  factory ReorderTaxonomyDto.fromJson(Map<String, Object?> json) => _$ReorderTaxonomyDtoFromJson(json);
+  
   /// Ids in the new order. Applies within the same list (discipline) only.
   final List<String> ids;
 

@@ -214,14 +214,61 @@ class AtColors extends ThemeExtension<AtColors> {
     washSettings: Color(0xFFEFEDFF),
     scrimSheet: Color.fromRGBO(23, 21, 63, 0.45),
     scrimModal: Color.fromRGBO(23, 21, 63, 0.5),
-    darkCardGradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: <Color>[Color(0xFF17153F), Color(0xFF1F1C55), Color(0xFF2A2478)], stops: <double>[0.0, 0.5, 1.0]),
-    shadowCard: <BoxShadow>[BoxShadow(color: Color.fromRGBO(40, 30, 120, 0.04), offset: Offset(0.0, 4.0), blurRadius: 16.0)],
-    shadowFloating: <BoxShadow>[BoxShadow(color: Color.fromRGBO(60, 40, 160, 0.1), offset: Offset(0.0, 6.0), blurRadius: 18.0)],
-    shadowCta: <BoxShadow>[BoxShadow(color: Color.fromRGBO(81, 69, 216, 0.28), offset: Offset(0.0, 10.0), blurRadius: 22.0)],
-    shadowSelectedTile: <BoxShadow>[BoxShadow(color: Color.fromRGBO(81, 69, 216, 0.3), offset: Offset(0.0, 8.0), blurRadius: 18.0)],
-    shadowDarkCard: <BoxShadow>[BoxShadow(color: Color.fromRGBO(23, 21, 63, 0.25), offset: Offset(0.0, 14.0), blurRadius: 30.0)],
-    shadowSheet: <BoxShadow>[BoxShadow(color: Color.fromRGBO(23, 21, 63, 0.2), offset: Offset(0.0, -10.0), blurRadius: 40.0)],
-    shadowModal: <BoxShadow>[BoxShadow(color: Color.fromRGBO(23, 21, 63, 0.3), offset: Offset(0.0, 30.0), blurRadius: 60.0)],
+    darkCardGradient: LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: <Color>[Color(0xFF17153F), Color(0xFF1F1C55), Color(0xFF2A2478)],
+      stops: <double>[0.0, 0.5, 1.0],
+    ),
+    shadowCard: <BoxShadow>[
+      BoxShadow(
+        color: Color.fromRGBO(40, 30, 120, 0.04),
+        offset: Offset(0.0, 4.0),
+        blurRadius: 16.0,
+      ),
+    ],
+    shadowFloating: <BoxShadow>[
+      BoxShadow(
+        color: Color.fromRGBO(60, 40, 160, 0.1),
+        offset: Offset(0.0, 6.0),
+        blurRadius: 18.0,
+      ),
+    ],
+    shadowCta: <BoxShadow>[
+      BoxShadow(
+        color: Color.fromRGBO(81, 69, 216, 0.28),
+        offset: Offset(0.0, 10.0),
+        blurRadius: 22.0,
+      ),
+    ],
+    shadowSelectedTile: <BoxShadow>[
+      BoxShadow(
+        color: Color.fromRGBO(81, 69, 216, 0.3),
+        offset: Offset(0.0, 8.0),
+        blurRadius: 18.0,
+      ),
+    ],
+    shadowDarkCard: <BoxShadow>[
+      BoxShadow(
+        color: Color.fromRGBO(23, 21, 63, 0.25),
+        offset: Offset(0.0, 14.0),
+        blurRadius: 30.0,
+      ),
+    ],
+    shadowSheet: <BoxShadow>[
+      BoxShadow(
+        color: Color.fromRGBO(23, 21, 63, 0.2),
+        offset: Offset(0.0, -10.0),
+        blurRadius: 40.0,
+      ),
+    ],
+    shadowModal: <BoxShadow>[
+      BoxShadow(
+        color: Color.fromRGBO(23, 21, 63, 0.3),
+        offset: Offset(0.0, 30.0),
+        blurRadius: 60.0,
+      ),
+    ],
   );
 
   static const AtColors dark = AtColors(
@@ -284,14 +331,33 @@ class AtColors extends ThemeExtension<AtColors> {
     washSettings: Color(0xFF25215E),
     scrimSheet: Color.fromRGBO(23, 21, 63, 0.45),
     scrimModal: Color.fromRGBO(23, 21, 63, 0.5),
-    darkCardGradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: <Color>[Color(0xFF1F1C55), Color(0xFF2A2478), Color(0xFF3828C3)], stops: <double>[0.0, 0.5, 1.0]),
-    shadowCard: <BoxShadow>[BoxShadow(color: Color(0xFF2A2766), spreadRadius: 1.0)],
-    shadowFloating: <BoxShadow>[BoxShadow(color: Color(0xFF2A2766), spreadRadius: 1.0)],
-    shadowCta: <BoxShadow>[BoxShadow(color: Color(0xFF2A2766), spreadRadius: 1.0)],
-    shadowSelectedTile: <BoxShadow>[BoxShadow(color: Color(0xFF2A2766), spreadRadius: 1.0)],
-    shadowDarkCard: <BoxShadow>[BoxShadow(color: Color(0xFF2A2766), spreadRadius: 1.0)],
-    shadowSheet: <BoxShadow>[BoxShadow(color: Color(0xFF2A2766), spreadRadius: 1.0)],
-    shadowModal: <BoxShadow>[BoxShadow(color: Color(0xFF2A2766), spreadRadius: 1.0)],
+    darkCardGradient: LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: <Color>[Color(0xFF1F1C55), Color(0xFF2A2478), Color(0xFF3828C3)],
+      stops: <double>[0.0, 0.5, 1.0],
+    ),
+    shadowCard: <BoxShadow>[
+      BoxShadow(color: Color(0xFF2A2766), spreadRadius: 1.0),
+    ],
+    shadowFloating: <BoxShadow>[
+      BoxShadow(color: Color(0xFF2A2766), spreadRadius: 1.0),
+    ],
+    shadowCta: <BoxShadow>[
+      BoxShadow(color: Color(0xFF2A2766), spreadRadius: 1.0),
+    ],
+    shadowSelectedTile: <BoxShadow>[
+      BoxShadow(color: Color(0xFF2A2766), spreadRadius: 1.0),
+    ],
+    shadowDarkCard: <BoxShadow>[
+      BoxShadow(color: Color(0xFF2A2766), spreadRadius: 1.0),
+    ],
+    shadowSheet: <BoxShadow>[
+      BoxShadow(color: Color(0xFF2A2766), spreadRadius: 1.0),
+    ],
+    shadowModal: <BoxShadow>[
+      BoxShadow(color: Color(0xFF2A2766), spreadRadius: 1.0),
+    ],
   );
 
   @override
@@ -456,15 +522,27 @@ class AtColors extends ThemeExtension<AtColors> {
       violetTint1: Color.lerp(violetTint1, other.violetTint1, t)!,
       violetTint2: Color.lerp(violetTint2, other.violetTint2, t)!,
       primaryTint: Color.lerp(primaryTint, other.primaryTint, t)!,
-      primaryTintStrong: Color.lerp(primaryTintStrong, other.primaryTintStrong, t)!,
-      primaryTintFaint: Color.lerp(primaryTintFaint, other.primaryTintFaint, t)!,
+      primaryTintStrong: Color.lerp(
+        primaryTintStrong,
+        other.primaryTintStrong,
+        t,
+      )!,
+      primaryTintFaint: Color.lerp(
+        primaryTintFaint,
+        other.primaryTintFaint,
+        t,
+      )!,
       violetSurface: Color.lerp(violetSurface, other.violetSurface, t)!,
       indigoSurface: Color.lerp(indigoSurface, other.indigoSurface, t)!,
       coral: Color.lerp(coral, other.coral, t)!,
       coralSurface: Color.lerp(coralSurface, other.coralSurface, t)!,
       coralStrong: Color.lerp(coralStrong, other.coralStrong, t)!,
       tangerine: Color.lerp(tangerine, other.tangerine, t)!,
-      tangerineSurface: Color.lerp(tangerineSurface, other.tangerineSurface, t)!,
+      tangerineSurface: Color.lerp(
+        tangerineSurface,
+        other.tangerineSurface,
+        t,
+      )!,
       tangerineStrong: Color.lerp(tangerineStrong, other.tangerineStrong, t)!,
       amberSurface: Color.lerp(amberSurface, other.amberSurface, t)!,
       amberStrong: Color.lerp(amberStrong, other.amberStrong, t)!,
@@ -492,18 +570,38 @@ class AtColors extends ThemeExtension<AtColors> {
       skeleton: Color.lerp(skeleton, other.skeleton, t)!,
       skeletonShimmer: Color.lerp(skeletonShimmer, other.skeletonShimmer, t)!,
       washDefault: Color.lerp(washDefault, other.washDefault, t)!,
-      washOpportunities: Color.lerp(washOpportunities, other.washOpportunities, t)!,
+      washOpportunities: Color.lerp(
+        washOpportunities,
+        other.washOpportunities,
+        t,
+      )!,
       washLearning: Color.lerp(washLearning, other.washLearning, t)!,
       washCommunity: Color.lerp(washCommunity, other.washCommunity, t)!,
       washSettings: Color.lerp(washSettings, other.washSettings, t)!,
       scrimSheet: Color.lerp(scrimSheet, other.scrimSheet, t)!,
       scrimModal: Color.lerp(scrimModal, other.scrimModal, t)!,
-      darkCardGradient: LinearGradient.lerp(darkCardGradient, other.darkCardGradient, t)!,
+      darkCardGradient: LinearGradient.lerp(
+        darkCardGradient,
+        other.darkCardGradient,
+        t,
+      )!,
       shadowCard: BoxShadow.lerpList(shadowCard, other.shadowCard, t)!,
-      shadowFloating: BoxShadow.lerpList(shadowFloating, other.shadowFloating, t)!,
+      shadowFloating: BoxShadow.lerpList(
+        shadowFloating,
+        other.shadowFloating,
+        t,
+      )!,
       shadowCta: BoxShadow.lerpList(shadowCta, other.shadowCta, t)!,
-      shadowSelectedTile: BoxShadow.lerpList(shadowSelectedTile, other.shadowSelectedTile, t)!,
-      shadowDarkCard: BoxShadow.lerpList(shadowDarkCard, other.shadowDarkCard, t)!,
+      shadowSelectedTile: BoxShadow.lerpList(
+        shadowSelectedTile,
+        other.shadowSelectedTile,
+        t,
+      )!,
+      shadowDarkCard: BoxShadow.lerpList(
+        shadowDarkCard,
+        other.shadowDarkCard,
+        t,
+      )!,
       shadowSheet: BoxShadow.lerpList(shadowSheet, other.shadowSheet, t)!,
       shadowModal: BoxShadow.lerpList(shadowModal, other.shadowModal, t)!,
     );
@@ -512,12 +610,42 @@ class AtColors extends ThemeExtension<AtColors> {
 
 /// Gradients that look the same in both appearances.
 abstract final class AtGradients {
-  static const LinearGradient cta = LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: <Color>[Color(0xFF7968FF), Color(0xFF5145D8)], stops: <double>[0.0, 1.0]);
-  static const LinearGradient ctaSquare = LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: <Color>[Color(0xFF7968FF), Color(0xFF5145D8)], stops: <double>[0.0, 1.0]);
-  static const LinearGradient splash = LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: <Color>[Color(0xFF17153F), Color(0xFF0F0D2B)], stops: <double>[0.0, 1.0]);
-  static const LinearGradient ai = LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: <Color>[Color(0xFF7968FF), Color(0xFF5145D8)], stops: <double>[0.0, 1.0]);
-  static const LinearGradient pro = LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: <Color>[Color(0xFFF04478), Color(0xFFFF8A32)], stops: <double>[0.0, 1.0]);
-  static const LinearGradient brandRing = LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: <Color>[Color(0xFFF04478), Color(0xFFFF8A32)], stops: <double>[0.0, 1.0]);
+  static const LinearGradient cta = LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: <Color>[Color(0xFF7968FF), Color(0xFF5145D8)],
+    stops: <double>[0.0, 1.0],
+  );
+  static const LinearGradient ctaSquare = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: <Color>[Color(0xFF7968FF), Color(0xFF5145D8)],
+    stops: <double>[0.0, 1.0],
+  );
+  static const LinearGradient splash = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: <Color>[Color(0xFF17153F), Color(0xFF0F0D2B)],
+    stops: <double>[0.0, 1.0],
+  );
+  static const LinearGradient ai = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: <Color>[Color(0xFF7968FF), Color(0xFF5145D8)],
+    stops: <double>[0.0, 1.0],
+  );
+  static const LinearGradient pro = LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: <Color>[Color(0xFFF04478), Color(0xFFFF8A32)],
+    stops: <double>[0.0, 1.0],
+  );
+  static const LinearGradient brandRing = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: <Color>[Color(0xFFF04478), Color(0xFFFF8A32)],
+    stops: <double>[0.0, 1.0],
+  );
 }
 
 /// Corner radius tokens.
@@ -537,7 +665,9 @@ abstract final class AtRadii {
   static const double inputValue = 14.0;
   static const BorderRadius input = BorderRadius.all(Radius.circular(14.0));
   static const double backButtonValue = 14.0;
-  static const BorderRadius backButton = BorderRadius.all(Radius.circular(14.0));
+  static const BorderRadius backButton = BorderRadius.all(
+    Radius.circular(14.0),
+  );
   static const double tileValue = 12.0;
   static const BorderRadius tile = BorderRadius.all(Radius.circular(12.0));
   static const double tileLgValue = 14.0;
@@ -592,57 +722,117 @@ abstract final class AtMotion {
 abstract final class AtTextStyles {
   static const String fontFamily = 'Plus Jakarta Sans';
   static const TextStyle tabTitle = TextStyle(
-    fontFamily: fontFamily, fontSize: 32.0, fontWeight: FontWeight.w800, height: 1.15, letterSpacing: -0.64,
+    fontFamily: fontFamily,
+    fontSize: 32.0,
+    fontWeight: FontWeight.w800,
+    height: 1.15,
+    letterSpacing: -0.64,
   );
   static const TextStyle subTitle = TextStyle(
-    fontFamily: fontFamily, fontSize: 28.0, fontWeight: FontWeight.w800, height: 1.2, letterSpacing: -0.56,
+    fontFamily: fontFamily,
+    fontSize: 28.0,
+    fontWeight: FontWeight.w800,
+    height: 1.2,
+    letterSpacing: -0.56,
   );
   static const TextStyle detailTitle = TextStyle(
-    fontFamily: fontFamily, fontSize: 24.0, fontWeight: FontWeight.w800, height: 1.2, letterSpacing: -0.24,
+    fontFamily: fontFamily,
+    fontSize: 24.0,
+    fontWeight: FontWeight.w800,
+    height: 1.2,
+    letterSpacing: -0.24,
   );
   static const TextStyle sectionTitle = TextStyle(
-    fontFamily: fontFamily, fontSize: 20.0, fontWeight: FontWeight.w700, height: 1.25,
+    fontFamily: fontFamily,
+    fontSize: 20.0,
+    fontWeight: FontWeight.w700,
+    height: 1.25,
   );
   static const TextStyle sectionTitleSm = TextStyle(
-    fontFamily: fontFamily, fontSize: 17.0, fontWeight: FontWeight.w700, height: 1.3,
+    fontFamily: fontFamily,
+    fontSize: 17.0,
+    fontWeight: FontWeight.w700,
+    height: 1.3,
   );
   static const TextStyle cardTitle = TextStyle(
-    fontFamily: fontFamily, fontSize: 15.0, fontWeight: FontWeight.w700, height: 1.3,
+    fontFamily: fontFamily,
+    fontSize: 15.0,
+    fontWeight: FontWeight.w700,
+    height: 1.3,
   );
   static const TextStyle body = TextStyle(
-    fontFamily: fontFamily, fontSize: 14.5, fontWeight: FontWeight.w400, height: 1.6,
+    fontFamily: fontFamily,
+    fontSize: 14.5,
+    fontWeight: FontWeight.w400,
+    height: 1.6,
   );
   static const TextStyle bodyLg = TextStyle(
-    fontFamily: fontFamily, fontSize: 15.5, fontWeight: FontWeight.w400, height: 1.65,
+    fontFamily: fontFamily,
+    fontSize: 15.5,
+    fontWeight: FontWeight.w400,
+    height: 1.65,
   );
   static const TextStyle bodySm = TextStyle(
-    fontFamily: fontFamily, fontSize: 14.0, fontWeight: FontWeight.w400, height: 1.55,
+    fontFamily: fontFamily,
+    fontSize: 14.0,
+    fontWeight: FontWeight.w400,
+    height: 1.55,
   );
   static const TextStyle meta = TextStyle(
-    fontFamily: fontFamily, fontSize: 12.5, fontWeight: FontWeight.w400, height: 1.4,
+    fontFamily: fontFamily,
+    fontSize: 12.5,
+    fontWeight: FontWeight.w400,
+    height: 1.4,
   );
   static const TextStyle metaSm = TextStyle(
-    fontFamily: fontFamily, fontSize: 12.0, fontWeight: FontWeight.w500, height: 1.4,
+    fontFamily: fontFamily,
+    fontSize: 12.0,
+    fontWeight: FontWeight.w500,
+    height: 1.4,
   );
   static const TextStyle chip = TextStyle(
-    fontFamily: fontFamily, fontSize: 12.5, fontWeight: FontWeight.w600, height: 1.2,
+    fontFamily: fontFamily,
+    fontSize: 12.5,
+    fontWeight: FontWeight.w600,
+    height: 1.2,
   );
   static const TextStyle chipSm = TextStyle(
-    fontFamily: fontFamily, fontSize: 11.0, fontWeight: FontWeight.w600, height: 1.2,
+    fontFamily: fontFamily,
+    fontSize: 11.0,
+    fontWeight: FontWeight.w600,
+    height: 1.2,
   );
   static const TextStyle label = TextStyle(
-    fontFamily: fontFamily, fontSize: 11.0, fontWeight: FontWeight.w700, height: 1.2, letterSpacing: 1.32,
+    fontFamily: fontFamily,
+    fontSize: 11.0,
+    fontWeight: FontWeight.w700,
+    height: 1.2,
+    letterSpacing: 1.32,
   );
   static const TextStyle button = TextStyle(
-    fontFamily: fontFamily, fontSize: 15.0, fontWeight: FontWeight.w700, height: 1.2,
+    fontFamily: fontFamily,
+    fontSize: 15.0,
+    fontWeight: FontWeight.w700,
+    height: 1.2,
   );
   static const TextStyle buttonSm = TextStyle(
-    fontFamily: fontFamily, fontSize: 13.0, fontWeight: FontWeight.w700, height: 1.2,
+    fontFamily: fontFamily,
+    fontSize: 13.0,
+    fontWeight: FontWeight.w700,
+    height: 1.2,
   );
   static const TextStyle wordmark = TextStyle(
-    fontFamily: fontFamily, fontSize: 22.0, fontWeight: FontWeight.w800, height: 1.1, letterSpacing: -0.22,
+    fontFamily: fontFamily,
+    fontSize: 22.0,
+    fontWeight: FontWeight.w800,
+    height: 1.1,
+    letterSpacing: -0.22,
   );
   static const TextStyle tagline = TextStyle(
-    fontFamily: fontFamily, fontSize: 11.0, fontWeight: FontWeight.w600, height: 1.2, letterSpacing: 1.54,
+    fontFamily: fontFamily,
+    fontSize: 11.0,
+    fontWeight: FontWeight.w600,
+    height: 1.2,
+    letterSpacing: 1.54,
   );
 }

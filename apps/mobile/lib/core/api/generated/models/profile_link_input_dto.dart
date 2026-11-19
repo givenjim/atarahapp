@@ -8,11 +8,13 @@ part 'profile_link_input_dto.g.dart';
 
 @JsonSerializable()
 class ProfileLinkInputDto {
-  const ProfileLinkInputDto({required this.label, required this.url});
-
-  factory ProfileLinkInputDto.fromJson(Map<String, Object?> json) =>
-      _$ProfileLinkInputDtoFromJson(json);
-
+  const ProfileLinkInputDto({
+    required this.label,
+    required this.url,
+  });
+  
+  factory ProfileLinkInputDto.fromJson(Map<String, Object?> json) => _$ProfileLinkInputDtoFromJson(json);
+  
   final String label;
 
   /// An https address.

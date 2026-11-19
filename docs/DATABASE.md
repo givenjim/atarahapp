@@ -158,3 +158,16 @@ Migrations `20261102110000_analytics_events` and `20261102120000_phase1_hardenin
 | Sessions                               | Supabase Auth owns them; revoked on suspension, password change and deletion.                                                                                                                                                    |
 
 Backups: `scripts/db-backup.sh` and `scripts/db-restore.sh` (local `pg_dump` and `pg_restore` of the public and auth schemas through the Supabase Postgres container; uploaded files live in Storage and are not in the dump). `scripts/db-backup-test.sh` proves a dump restores into a scratch database with identical row counts. Production backups use Supabase point-in-time recovery (P3-M8).
+
+
+## Payments (P2-M1)
+
+Migration `20261120010000_payments_foundation`: enums `PaymentProviderKey`, `PaymentEventKind`, `PaymentEventSource`, `RefundStatus`, `LedgerEntryType`, `PayoutStatus` (the method, purpose and status enums come from the baseline) and five tables, all with RLS on and the backend role granted.
+
+- `payments`: purpose, polymorphic reference (`referenceType`, `referenceId`, both or neither), payer (FK to `users`, RESTRICT), optional payee, `amountMinor`, `currency`, `platformFeeMinor`, `refundedMinor`, method, provider, `providerReference` (unique with provider), `receiptNumber`, `msisdnLast4`, status, `idempotencyKey` (unique per payer), failure code and reason, `expiresAt`, `lastQueriedAt`, `queryAttempts`, `version`. Checks: amount positive, fee and refunded within the amount.
+- `payment_events`: every callback, status query and status change; `payloadEncrypted` (AES-256-GCM), unique `dedupeKey` for callbacks.
+- `refunds`: amount, reason, status, mode (`AUTOMATIC` or `MANUAL`), requester, optional `idempotencyKey` (unique per payment).
+- `transactions` (the ledger): payer, payee, gross, platform fee, net, `type` PAYMENT or REFUND (refund rows are negative and name their refund). Append-only trigger; partial unique index gives one PAYMENT row per payment; `gross = fee + net` and sign checks.
+- `payouts`: table only (payouts are not automated in Phase 2).
+
+Account deletion re-points `payments.payerId` to the "Deleted member" placeholder so financial records survive (DEC-104).

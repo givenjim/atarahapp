@@ -10,11 +10,13 @@ part 'post_api_v1_me_phone_change_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1MePhoneChangeResponse {
-  const PostApiV1MePhoneChangeResponse({required this.data, this.meta});
-
-  factory PostApiV1MePhoneChangeResponse.fromJson(Map<String, Object?> json) =>
-      _$PostApiV1MePhoneChangeResponseFromJson(json);
-
+  const PostApiV1MePhoneChangeResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1MePhoneChangeResponse.fromJson(Map<String, Object?> json) => _$PostApiV1MePhoneChangeResponseFromJson(json);
+  
   final ContactChangeStartedDto data;
   final dynamic meta;
 

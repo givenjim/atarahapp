@@ -8,11 +8,12 @@ part 'restored_dto.g.dart';
 
 @JsonSerializable()
 class RestoredDto {
-  const RestoredDto({required this.restored});
-
-  factory RestoredDto.fromJson(Map<String, Object?> json) =>
-      _$RestoredDtoFromJson(json);
-
+  const RestoredDto({
+    required this.restored,
+  });
+  
+  factory RestoredDto.fromJson(Map<String, Object?> json) => _$RestoredDtoFromJson(json);
+  
   final bool restored;
 
   Map<String, Object?> toJson() => _$RestoredDtoToJson(this);

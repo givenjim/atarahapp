@@ -9,8 +9,6 @@ coverage/
 *.tsbuildinfo
 
 # Environment and secrets (templates are committed as .env.example)
-.env
-.env.*
 !.env.example
 *.pem
 *.key
@@ -41,7 +39,6 @@ infrastructure/.data/
 .DS_Store
 Thumbs.db
 .idea/
-.vscode/*
 !.vscode/extensions.json
 *.log
 
@@ -59,3 +56,4 @@ apps/admin/e2e/.fixtures/
 
 # Local database dumps (scripts/db-backup.sh)
 backups/
+config.bat

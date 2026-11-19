@@ -36,10 +36,9 @@ class LearningCardDto {
     this.coverUrl,
     this.progress,
   });
-
-  factory LearningCardDto.fromJson(Map<String, Object?> json) =>
-      _$LearningCardDtoFromJson(json);
-
+  
+  factory LearningCardDto.fromJson(Map<String, Object?> json) => _$LearningCardDtoFromJson(json);
+  
   final String id;
   final String slug;
   final LearningContentType type;

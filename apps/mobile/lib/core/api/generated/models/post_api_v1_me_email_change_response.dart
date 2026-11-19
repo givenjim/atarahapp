@@ -10,11 +10,13 @@ part 'post_api_v1_me_email_change_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1MeEmailChangeResponse {
-  const PostApiV1MeEmailChangeResponse({required this.data, this.meta});
-
-  factory PostApiV1MeEmailChangeResponse.fromJson(Map<String, Object?> json) =>
-      _$PostApiV1MeEmailChangeResponseFromJson(json);
-
+  const PostApiV1MeEmailChangeResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1MeEmailChangeResponse.fromJson(Map<String, Object?> json) => _$PostApiV1MeEmailChangeResponseFromJson(json);
+  
   final ContactChangeStartedDto data;
   final dynamic meta;
 

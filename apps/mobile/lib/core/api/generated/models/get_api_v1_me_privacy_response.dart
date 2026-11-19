@@ -10,11 +10,13 @@ part 'get_api_v1_me_privacy_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1MePrivacyResponse {
-  const GetApiV1MePrivacyResponse({required this.data, this.meta});
-
-  factory GetApiV1MePrivacyResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1MePrivacyResponseFromJson(json);
-
+  const GetApiV1MePrivacyResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1MePrivacyResponse.fromJson(Map<String, Object?> json) => _$GetApiV1MePrivacyResponseFromJson(json);
+  
   final PrivacyDto data;
   final dynamic meta;
 

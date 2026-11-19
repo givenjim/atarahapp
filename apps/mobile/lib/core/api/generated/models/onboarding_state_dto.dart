@@ -19,10 +19,9 @@ class OnboardingStateDto {
     required this.completion,
     required this.passportNumber,
   });
-
-  factory OnboardingStateDto.fromJson(Map<String, Object?> json) =>
-      _$OnboardingStateDtoFromJson(json);
-
+  
+  factory OnboardingStateDto.fromJson(Map<String, Object?> json) => _$OnboardingStateDtoFromJson(json);
+  
   /// The step to show next (the resume point).
   final OnboardingStateDtoStep step;
 

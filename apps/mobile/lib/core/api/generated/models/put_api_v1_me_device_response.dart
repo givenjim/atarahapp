@@ -10,11 +10,13 @@ part 'put_api_v1_me_device_response.g.dart';
 
 @JsonSerializable()
 class PutApiV1MeDeviceResponse {
-  const PutApiV1MeDeviceResponse({required this.data, this.meta});
-
-  factory PutApiV1MeDeviceResponse.fromJson(Map<String, Object?> json) =>
-      _$PutApiV1MeDeviceResponseFromJson(json);
-
+  const PutApiV1MeDeviceResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PutApiV1MeDeviceResponse.fromJson(Map<String, Object?> json) => _$PutApiV1MeDeviceResponseFromJson(json);
+  
   final DeviceRegisteredDto data;
   final dynamic meta;
 

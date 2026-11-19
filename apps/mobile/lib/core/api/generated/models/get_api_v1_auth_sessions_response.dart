@@ -10,11 +10,13 @@ part 'get_api_v1_auth_sessions_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1AuthSessionsResponse {
-  const GetApiV1AuthSessionsResponse({required this.data, this.meta});
-
-  factory GetApiV1AuthSessionsResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1AuthSessionsResponseFromJson(json);
-
+  const GetApiV1AuthSessionsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1AuthSessionsResponse.fromJson(Map<String, Object?> json) => _$GetApiV1AuthSessionsResponseFromJson(json);
+  
   final List<SessionViewDto> data;
   final dynamic meta;
 

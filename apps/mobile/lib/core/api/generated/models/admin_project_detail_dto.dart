@@ -45,10 +45,9 @@ class AdminProjectDetailDto {
     this.ownerHandle,
     this.hiddenAt,
   });
-
-  factory AdminProjectDetailDto.fromJson(Map<String, Object?> json) =>
-      _$AdminProjectDetailDtoFromJson(json);
-
+  
+  factory AdminProjectDetailDto.fromJson(Map<String, Object?> json) => _$AdminProjectDetailDtoFromJson(json);
+  
   final String id;
   final String title;
   final String? role;

@@ -8,11 +8,12 @@ part 'update_comment_dto.g.dart';
 
 @JsonSerializable()
 class UpdateCommentDto {
-  const UpdateCommentDto({required this.body});
-
-  factory UpdateCommentDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateCommentDtoFromJson(json);
-
+  const UpdateCommentDto({
+    required this.body,
+  });
+  
+  factory UpdateCommentDto.fromJson(Map<String, Object?> json) => _$UpdateCommentDtoFromJson(json);
+  
   final String body;
 
   Map<String, Object?> toJson() => _$UpdateCommentDtoToJson(this);

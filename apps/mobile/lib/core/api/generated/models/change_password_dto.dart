@@ -12,10 +12,9 @@ class ChangePasswordDto {
     required this.currentPassword,
     required this.newPassword,
   });
-
-  factory ChangePasswordDto.fromJson(Map<String, Object?> json) =>
-      _$ChangePasswordDtoFromJson(json);
-
+  
+  factory ChangePasswordDto.fromJson(Map<String, Object?> json) => _$ChangePasswordDtoFromJson(json);
+  
   final String currentPassword;
   final String newPassword;
 

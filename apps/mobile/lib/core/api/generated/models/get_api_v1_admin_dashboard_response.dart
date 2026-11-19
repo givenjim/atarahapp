@@ -10,11 +10,13 @@ part 'get_api_v1_admin_dashboard_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1AdminDashboardResponse {
-  const GetApiV1AdminDashboardResponse({required this.data, this.meta});
-
-  factory GetApiV1AdminDashboardResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1AdminDashboardResponseFromJson(json);
-
+  const GetApiV1AdminDashboardResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1AdminDashboardResponse.fromJson(Map<String, Object?> json) => _$GetApiV1AdminDashboardResponseFromJson(json);
+  
   final DashboardDto data;
   final dynamic meta;
 

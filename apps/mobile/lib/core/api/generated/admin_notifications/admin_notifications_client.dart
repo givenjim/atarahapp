@@ -19,8 +19,7 @@ part 'admin_notifications_client.g.dart';
 
 @RestApi()
 abstract class AdminNotificationsClient {
-  factory AdminNotificationsClient(Dio dio, {String? baseUrl}) =
-      _AdminNotificationsClient;
+  factory AdminNotificationsClient(Dio dio, {String? baseUrl}) = _AdminNotificationsClient;
 
   @GET('/api/v1/admin/notifications/broadcasts')
   Future<GetApiV1AdminNotificationsBroadcastsResponse> list({
@@ -43,8 +42,9 @@ abstract class AdminNotificationsClient {
   ///
   /// The name has been replaced because it contains a keyword. Original name: `get`.
   @GET('/api/v1/admin/notifications/broadcasts/{id}')
-  Future<GetApiV1AdminNotificationsBroadcastsIdResponse>
-  getApiV1AdminNotificationsBroadcastsId({@Path('id') required String id});
+  Future<GetApiV1AdminNotificationsBroadcastsIdResponse> getApiV1AdminNotificationsBroadcastsId({
+    @Path('id') required String id,
+  });
 
   @POST('/api/v1/admin/notifications/broadcasts/{id}/cancel')
   Future<PostApiV1AdminNotificationsBroadcastsIdCancelResponse> cancel({

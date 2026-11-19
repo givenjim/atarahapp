@@ -18,10 +18,9 @@ class AttentionQueueDto {
     required this.path,
     this.oldestAt,
   });
-
-  factory AttentionQueueDto.fromJson(Map<String, Object?> json) =>
-      _$AttentionQueueDtoFromJson(json);
-
+  
+  factory AttentionQueueDto.fromJson(Map<String, Object?> json) => _$AttentionQueueDtoFromJson(json);
+  
   final String key;
   final String label;
   final num count;

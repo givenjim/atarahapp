@@ -14,14 +14,11 @@ class PostApiV1AdminArticlesIdRestoreResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminArticlesIdRestoreResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminArticlesIdRestoreResponseFromJson(json);
-
+  
+  factory PostApiV1AdminArticlesIdRestoreResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminArticlesIdRestoreResponseFromJson(json);
+  
   final AdminArticleDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminArticlesIdRestoreResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminArticlesIdRestoreResponseToJson(this);
 }

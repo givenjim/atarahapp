@@ -1,0 +1,140 @@
+// Mentorship discovery and mentor onboarding (P2-M4). Owner module: mentorship.
+// `userId` columns are real foreign keys to `users` in the migration but carry no Prisma relation, so this file never
+// touches the shared User model. Every table is deny-all for the Supabase client roles (RLS on, no policies, no grants).
+// The booking table (`MentorshipBooking`) belongs to P2-M5; availability reads it through the busy-slot provider
+// interface (src/mentorship/busy-slots.ts), never by table.
+
+enum MentorStatus {
+  /// Reserved: a pending application lives in `mentor_applications`; a profile exists only once approved.
+  APPLIED
+  APPROVED
+  PAUSED
+  REMOVED
+}
+
+enum MentorApplicationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  WITHDRAWN
+}
+
+model MentorProfile {
+  id                 String             @id @default(uuid()) @db.Uuid
+  userId             String             @unique @db.Uuid
+  headline           String
+  yearsExperience    Int                @default(0)
+  bio                String
+  expertiseTags      String[]
+  /// `disciplines.id` values (validated by the service; no join table so the taxonomy model stays untouched).
+  disciplineIds      String[]           @db.Uuid
+  /// List of `{ title, issuer?, year? }`.
+  credentials        Json               @default("[]")
+  /// IANA zone, e.g. Africa/Nairobi. Weekly availability is expressed in it.
+  timeZone           String
+  /// Default meeting link (https). A booking may override it in P2-M5.
+  videoCallLink      String?
+  status             MentorStatus       @default(APPROVED)
+  verificationStatus VerificationStatus @default(NOT_SUBMITTED)
+  featured           Boolean            @default(false)
+  /// Denormalised stats; P2-M5 maintains them from bookings and feedback.
+  ratingAverage      Float              @default(0)
+  ratingCount        Int                @default(0)
+  sessionsCount      Int                @default(0)
+  approvedAt         DateTime?
+  statusReason       String?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  sessionTypes MentorSessionType[]
+  availability MentorAvailability[]
+  exceptions   MentorAvailabilityException[]
+
+  @@index([status, featured])
+  @@map("mentor_profiles")
+}
+
+model MentorSessionType {
+  id              String              @id @default(uuid()) @db.Uuid
+  mentorId        String              @db.Uuid
+  name            String
+  description     String?
+  durationMinutes Int
+  /// Minor units (KES cents).
+  priceMinor      Int
+  currency        String              @default("KES")
+  format          MentorSessionFormat @default(VIDEO_CALL)
+  /// 1 for a single session; more for a programme.
+  sessionCount    Int                 @default(1)
+  active          Boolean             @default(true)
+  /// Set by staff; the mentor cannot re-activate a type staff switched off.
+  disabledByStaff Boolean             @default(false)
+  staffNote       String?
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+
+  mentor MentorProfile @relation(fields: [mentorId], references: [id], onDelete: Cascade)
+
+  @@index([mentorId, active])
+  @@map("mentor_session_types")
+}
+
+/// One weekly time range. Several rows per weekday are allowed. `weekday` is ISO (1 = Monday ... 7 = Sunday);
+/// start and end are minutes after local midnight in `timeZone`.
+model MentorAvailability {
+  id          String   @id @default(uuid()) @db.Uuid
+  mentorId    String   @db.Uuid
+  weekday     Int
+  startMinute Int
+  endMinute   Int
+  timeZone    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  mentor MentorProfile @relation(fields: [mentorId], references: [id], onDelete: Cascade)
+
+  @@index([mentorId, weekday])
+  @@map("mentor_availability")
+}
+
+/// A whole local date the mentor is off.
+model MentorAvailabilityException {
+  id        String   @id @default(uuid()) @db.Uuid
+  mentorId  String   @db.Uuid
+  date      DateTime @db.Date
+  reason    String?
+  createdAt DateTime @default(now())
+
+  mentor MentorProfile @relation(fields: [mentorId], references: [id], onDelete: Cascade)
+
+  @@unique([mentorId, date])
+  @@map("mentor_availability_exceptions")
+}
+
+model MentorApplication {
+  id                   String                  @id @default(uuid()) @db.Uuid
+  userId               String                  @db.Uuid
+  status               MentorApplicationStatus @default(PENDING)
+  headline             String
+  yearsExperience      Int                     @default(0)
+  statement            String
+  expertiseTags        String[]
+  disciplineIds        String[]                @db.Uuid
+  credentials          Json                    @default("[]")
+  /// List of `{ name, description?, durationMinutes, priceMinor, sessionCount }`; become session types on approval.
+  proposedSessionTypes Json                    @default("[]")
+  evidenceLinks        String[]
+  timeZone             String
+  /// What the Passport said when the member applied (read-only copy for the reviewer).
+  passportSnapshot     Json                    @default("{}")
+  termsAcceptedAt      DateTime
+  reviewedById         String?                 @db.Uuid
+  reviewedAt           DateTime?
+  reviewerNotes        String?
+  createdAt            DateTime                @default(now())
+  updatedAt            DateTime                @updatedAt
+
+  @@index([status, createdAt])
+  @@index([userId, createdAt])
+  @@map("mentor_applications")
+}

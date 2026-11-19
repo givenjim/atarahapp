@@ -868,7 +868,9 @@ void main() {
       },
     );
 
-    testWidgets('marketplace actions open their Phase 2 screen', (t) async {
+    testWidgets('Publish asks for a category, then makes a draft listing', (
+      t,
+    ) async {
       final repo = FakePortfolioRepository()
         ..services.add(
           const ServiceDto(

@@ -15,10 +15,9 @@ class UserReportsDto {
     required this.made,
     required this.recent,
   });
-
-  factory UserReportsDto.fromJson(Map<String, Object?> json) =>
-      _$UserReportsDtoFromJson(json);
-
+  
+  factory UserReportsDto.fromJson(Map<String, Object?> json) => _$UserReportsDtoFromJson(json);
+  
   /// Cases about this member or their content (reporters are never shown).
   final num about;
 

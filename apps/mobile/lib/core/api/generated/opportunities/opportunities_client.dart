@@ -22,8 +22,7 @@ part 'opportunities_client.g.dart';
 
 @RestApi()
 abstract class OpportunitiesClient {
-  factory OpportunitiesClient(Dio dio, {String? baseUrl}) =
-      _OpportunitiesClient;
+  factory OpportunitiesClient(Dio dio, {String? baseUrl}) = _OpportunitiesClient;
 
   @GET('/api/v1/opportunities/home')
   Future<GetApiV1OpportunitiesHomeResponse> home();
@@ -60,7 +59,9 @@ abstract class OpportunitiesClient {
   });
 
   @DELETE('/api/v1/opportunities/{id}/save')
-  Future<void> unsave({@Path('id') required String id});
+  Future<void> unsave({
+    @Path('id') required String id,
+  });
 
   @POST('/api/v1/opportunities/{id}/track')
   Future<PostApiV1OpportunitiesIdTrackResponse> track({

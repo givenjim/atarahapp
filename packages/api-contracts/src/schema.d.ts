@@ -2196,6 +2196,662 @@ export interface paths {
         patch: operations["update"];
         trace?: never;
     };
+    "/api/v1/marketplace/home": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["home"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/marketplace/categories": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["categories"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/marketplace/seller-terms": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["terms"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/marketplace/listings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["listings"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/marketplace/listings/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["listing"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/marketplace/listings/{id}/reviews": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["reviews"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/marketplace/listings/{id}/report": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["report"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/marketplace/listings/{id}/enquiries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["requestBooking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/marketplace/sellers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["sellers"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/marketplace/sellers/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["seller"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/marketplace/enquiries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["myEnquiries"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/marketplace/enquiries/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["thread"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/marketplace/enquiries/{id}/messages": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["send"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/marketplace/enquiries/{id}/close": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["close"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/marketplace/enquiries/{id}/review": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["review"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/listings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["mine"];
+        put?: never;
+        post: operations["create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/listings/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["detail"];
+        put?: never;
+        post?: never;
+        delete: operations["remove"];
+        options?: never;
+        head?: never;
+        patch: operations["update"];
+        trace?: never;
+    };
+    "/api/v1/me/listings/{id}/submit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["submit"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/listings/{id}/withdraw": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["withdraw"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/listings/{id}/archive": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["archive"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/listings/{id}/restore": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["restore"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/services/{id}/listing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["fromService"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/sellers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["sellers"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/sellers/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["seller"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/sellers/{id}/suspend": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["suspendSeller"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/sellers/{id}/reinstate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["reinstateSeller"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/sellers/{id}/direct-publish": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["directPublish"];
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/listings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["listings"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/listings/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["listing"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/listings/{id}/approve": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["approve"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/listings/{id}/reject": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["reject"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/listings/{id}/suspend": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["suspend"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/listings/{id}/reinstate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["reinstate"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/listings/{id}/feature": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["feature"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/reports": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["reports"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/reports/{id}/resolve": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["resolveReport"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/categories": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["categories"];
+        put?: never;
+        post: operations["createCategory"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/categories/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["updateCategory"];
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/reviews": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["reviews"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/reviews/{id}/hide": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["hideReview"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/marketplace/reviews/{id}/restore": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["restoreReview"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/learning": {
         parameters: {
             query?: never;
@@ -3124,6 +3780,438 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/mentorship/home": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["home"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/mentors": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/mentors/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["detail"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/mentors/{id}/slots": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["slots"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/mentor-application/prefill": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["prefill"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/mentor-application": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["mine"];
+        put?: never;
+        post: operations["apply"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/mentor-application/withdraw": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["withdraw"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/mentor": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["me"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/mentor/profile": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["updateProfile"];
+        trace?: never;
+    };
+    "/api/v1/me/mentor/paused": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put: operations["setPaused"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/mentor/availability": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["availability"];
+        put: operations["setWeekly"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/mentor/availability/exceptions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["addException"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/mentor/availability/exceptions/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["removeException"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/mentor/session-types": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["createSessionType"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/mentor/session-types/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["deactivateSessionType"];
+        options?: never;
+        head?: never;
+        patch: operations["updateSessionType"];
+        trace?: never;
+    };
+    "/api/v1/me/mentor/booking-requests": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["bookingRequests"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/mentor-applications": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["applications"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/mentor-applications/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["application"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/mentor-applications/{id}/approve": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["approve"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/mentor-applications/{id}/reject": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["reject"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/mentors": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["mentors"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/mentors/{id}/pause": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["pause"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/mentors/{id}/resume": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["resume"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/mentors/{id}/remove": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["remove"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/mentors/{id}/featured": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["feature"];
+        trace?: never;
+    };
+    "/api/v1/admin/mentor-session-types": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["sessionTypes"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/mentor-session-types/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["setDisabled"];
+        trace?: never;
+    };
     "/api/v1/me/saved": {
         parameters: {
             query?: never;
@@ -3374,6 +4462,134 @@ export interface paths {
         get: operations["getMembership"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/creative-cv/formats": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["formats"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/creative-cv/shares/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["revokeShare"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/creative-cv/renders/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["renderStatus"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/creative-cv/renders/{id}/download": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["download"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/creative-cv/{format}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["state"];
+        put: operations["update"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/creative-cv/{format}/preview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["preview"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/creative-cv/{format}/generate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["generate"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/creative-cv/{format}/shares": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["shares"];
+        put?: never;
+        post: operations["createShare"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3662,6 +4878,150 @@ export interface paths {
         get: operations["privacyRequests"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/methods": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["methods"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["list"];
+        put?: never;
+        post: operations["initiate"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/payments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/payments/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["detail"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/payments/{id}/requery": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["requery"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/payments/{id}/refunds": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["refund"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/payments/{id}/refunds/{refundId}/complete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["completeRefund"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/payments/{id}/refunds/{refundId}/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["cancelRefund"];
         delete?: never;
         options?: never;
         head?: never;
@@ -4917,6 +6277,16 @@ export interface components {
             priceMax?: number | null;
             /** @enum {string} */
             status: "PROFILE_ONLY" | "ON_MARKETPLACE";
+            /**
+             * Format: uuid
+             * @description The marketplace listing made from this service, once it was published (P2-M3).
+             */
+            listingId?: string | null;
+            /**
+             * @description Status of that listing.
+             * @enum {string|null}
+             */
+            listingStatus?: "DRAFT" | "UNDER_REVIEW" | "PUBLISHED" | "REJECTED" | "SUSPENDED" | "ARCHIVED" | null;
         };
         ServiceInputDto: {
             title: string;
@@ -5621,6 +6991,582 @@ export interface components {
             /** @description Why, for the audit trail. */
             reason?: string;
         };
+        CategoryDto: {
+            /** Format: uuid */
+            id: string;
+            slug: string;
+            name: string;
+            /** @description Lucide icon name. */
+            icon: string;
+            /** @description Design-token tone. */
+            tone: string;
+            /** @description Published listings in this category. */
+            count: number;
+        };
+        /** @enum {string} */
+        ListingType: "SERVICE" | "PRODUCT";
+        /** @enum {string} */
+        PricingType: "FIXED" | "RANGE" | "ON_REQUEST";
+        SellerCardDto: {
+            /**
+             * Format: uuid
+             * @description The seller profile id.
+             */
+            id: string;
+            displayName: string;
+            handle?: string | null;
+            headline?: string | null;
+            avatarUrl?: string | null;
+            ratingAverage?: number | null;
+            ratingCount: number;
+            completedCount: number;
+            /** @description Published listings. */
+            listingCount: number;
+            /** @description True only when the seller is verified by Atarah (written by P2-M6). */
+            verified: boolean;
+        };
+        /** @enum {string} */
+        ListingStatus: "DRAFT" | "UNDER_REVIEW" | "PUBLISHED" | "REJECTED" | "SUSPENDED" | "ARCHIVED";
+        ListingCardDto: {
+            /** Format: uuid */
+            id: string;
+            type: components["schemas"]["ListingType"];
+            title: string;
+            categoryName: string;
+            coverUrl?: string | null;
+            pricingType: components["schemas"]["PricingType"];
+            /** @description Ready to show: "KES 5,000", "KES 5,000 to KES 9,000", "Price on request". */
+            priceLabel: string;
+            /** @description "From KES 5,000". */
+            fromLabel?: string | null;
+            seller: components["schemas"]["SellerCardDto"];
+            ratingAverage?: number | null;
+            ratingCount: number;
+            featured: boolean;
+            /** @description The member saved it. */
+            saved: boolean;
+            status: components["schemas"]["ListingStatus"];
+        };
+        MarketplaceHomeDto: {
+            /** @description The member holds the seller role (shows "My listings"). */
+            isSeller: boolean;
+            categories: components["schemas"]["CategoryDto"][];
+            featured: components["schemas"]["ListingCardDto"][];
+            popularSellers: components["schemas"]["SellerCardDto"][];
+            /** @description Newest live listings. */
+            recent: components["schemas"]["ListingCardDto"][];
+        };
+        SellerTermsDto: {
+            version: string;
+            /** @description True while the text is the placeholder, not the owner-approved terms. */
+            isDraft: boolean;
+            title: string;
+            body: string;
+        };
+        /** @enum {string} */
+        ListingSort: "recommended" | "price_low" | "price_high" | "rating" | "newest";
+        ListingMediaDto: {
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            kind: "IMAGE" | "VIDEO" | "AUDIO";
+            url?: string | null;
+        };
+        ListingPortfolioProjectDto: {
+            /** Format: uuid */
+            id: string;
+            title: string;
+            coverUrl?: string | null;
+            category?: string | null;
+        };
+        ListingReviewDto: {
+            /** Format: uuid */
+            id: string;
+            rating: number;
+            body?: string | null;
+            reviewerName: string;
+            reviewerAvatarUrl?: string | null;
+            /** Format: date-time */
+            createdAt: string;
+        };
+        ListingDto: {
+            /** Format: uuid */
+            id: string;
+            type: components["schemas"]["ListingType"];
+            title: string;
+            categoryName: string;
+            coverUrl?: string | null;
+            pricingType: components["schemas"]["PricingType"];
+            /** @description Ready to show: "KES 5,000", "KES 5,000 to KES 9,000", "Price on request". */
+            priceLabel: string;
+            /** @description "From KES 5,000". */
+            fromLabel?: string | null;
+            seller: components["schemas"]["SellerCardDto"];
+            ratingAverage?: number | null;
+            ratingCount: number;
+            featured: boolean;
+            /** @description The member saved it. */
+            saved: boolean;
+            status: components["schemas"]["ListingStatus"];
+            description: string;
+            includedItems: string[];
+            deliveryDays?: number | null;
+            workMode: components["schemas"]["WorkMode"];
+            locationText?: string | null;
+            /** @description Ready to show: "Remote", "Nairobi", "Hybrid · Nairobi". */
+            locationLabel: string;
+            audienceText?: string | null;
+            /** @description Whole shillings. */
+            priceMin?: number | null;
+            /** @description Whole shillings (RANGE). */
+            priceMax?: number | null;
+            /** Format: uuid */
+            categoryId: string;
+            media: components["schemas"]["ListingMediaDto"][];
+            portfolio: components["schemas"]["ListingPortfolioProjectDto"][];
+            /** @description The latest few. The full list has its own endpoint. */
+            reviews: components["schemas"]["ListingReviewDto"][];
+            rejectionReason?: string | null;
+            /** @description The viewer owns the listing. */
+            isOwner: boolean;
+            /**
+             * Format: uuid
+             * @description The viewer already has an open request on this listing.
+             */
+            openEnquiryId?: string | null;
+            /** @description The one-line note shown under the request button. */
+            requestNote: string;
+            /** @description Public share address. */
+            shareUrl: string;
+        };
+        /** @enum {string} */
+        ReportReason: "INAPPROPRIATE" | "HARASSMENT" | "SCAM" | "MISLEADING" | "IMPERSONATION" | "IP_INFRINGEMENT" | "OTHER";
+        ReportListingDto: {
+            reason: components["schemas"]["ReportReason"];
+            note?: string;
+        };
+        /** @enum {string} */
+        EnquiryStatus: "NEW" | "REPLIED" | "CLOSED";
+        EnquiryPartyDto: {
+            /** Format: uuid */
+            userId: string;
+            displayName: string;
+            handle?: string | null;
+            avatarUrl?: string | null;
+        };
+        EnquiryMessageDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            senderId: string;
+            body: string;
+            /** @description Sent by the person asking. */
+            fromMe: boolean;
+            /** Format: date-time */
+            createdAt: string;
+        };
+        EnquiryThreadDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            listingId: string;
+            listingTitle: string;
+            listingCoverUrl?: string | null;
+            status: components["schemas"]["EnquiryStatus"];
+            /**
+             * @description Which side the viewer is.
+             * @enum {string}
+             */
+            role: "BUYER" | "SELLER";
+            /** @description The other person. */
+            counterpart: components["schemas"]["EnquiryPartyDto"];
+            message: string;
+            /** @description Whole shillings. */
+            budget?: number | null;
+            preferredTiming?: string | null;
+            /** @description There is something the viewer has not read. */
+            unread: boolean;
+            /** Format: date-time */
+            lastMessageAt: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: date-time */
+            closedAt?: string | null;
+            /** @description The buyer may leave a review now. */
+            canReview: boolean;
+            /** @description The viewer may close it now. */
+            canClose: boolean;
+            /** @description A review has been left. */
+            reviewed: boolean;
+            messages: components["schemas"]["EnquiryMessageDto"][];
+        };
+        CreateEnquiryDto: {
+            /** @description What you need. */
+            message: string;
+            /** @description Whole shillings. */
+            budget?: number;
+            /** @description For example "Next month" or "By 15 December". */
+            preferredTiming?: string;
+        };
+        SellerProfileDto: {
+            /**
+             * Format: uuid
+             * @description The seller profile id.
+             */
+            id: string;
+            displayName: string;
+            handle?: string | null;
+            headline?: string | null;
+            avatarUrl?: string | null;
+            ratingAverage?: number | null;
+            ratingCount: number;
+            completedCount: number;
+            /** @description Published listings. */
+            listingCount: number;
+            /** @description True only when the seller is verified by Atarah (written by P2-M6). */
+            verified: boolean;
+            /** Format: uuid */
+            userId: string;
+            /** @description Median first reply, in minutes. */
+            medianReplyMinutes?: number | null;
+            /** @description Ready to show: "Replies within 3 hours". */
+            replyLabel?: string | null;
+            /** @description Only real trust lines, for example "Identity verified by Atarah". Empty when there are none. */
+            trustLines: string[];
+            bio?: string | null;
+            location?: string | null;
+            /** Format: date-time */
+            memberSince: string;
+            /** @description Services and products that are live. */
+            listings: components["schemas"]["ListingCardDto"][];
+            /** @description Public creative profile handle exists and can be opened. */
+            hasProfile: boolean;
+        };
+        EnquiryDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            listingId: string;
+            listingTitle: string;
+            listingCoverUrl?: string | null;
+            status: components["schemas"]["EnquiryStatus"];
+            /**
+             * @description Which side the viewer is.
+             * @enum {string}
+             */
+            role: "BUYER" | "SELLER";
+            /** @description The other person. */
+            counterpart: components["schemas"]["EnquiryPartyDto"];
+            message: string;
+            /** @description Whole shillings. */
+            budget?: number | null;
+            preferredTiming?: string | null;
+            /** @description There is something the viewer has not read. */
+            unread: boolean;
+            /** Format: date-time */
+            lastMessageAt: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: date-time */
+            closedAt?: string | null;
+            /** @description The buyer may leave a review now. */
+            canReview: boolean;
+            /** @description The viewer may close it now. */
+            canClose: boolean;
+            /** @description A review has been left. */
+            reviewed: boolean;
+        };
+        SendEnquiryMessageDto: {
+            body: string;
+        };
+        ReviewDto: {
+            rating: number;
+            body?: string;
+        };
+        /** @enum {string} */
+        SellerStatus: "ACTIVE" | "SUSPENDED";
+        MyListingsStatsDto: {
+            live: number;
+            newInterest: number;
+            views30d: number;
+        };
+        MyListingsDto: {
+            isSeller: boolean;
+            sellerStatus?: components["schemas"]["SellerStatus"] | null;
+            stats: components["schemas"]["MyListingsStatsDto"];
+            listings: components["schemas"]["ListingCardDto"][];
+        };
+        MyListingDto: {
+            /** Format: uuid */
+            id: string;
+            type: components["schemas"]["ListingType"];
+            title: string;
+            categoryName: string;
+            coverUrl?: string | null;
+            pricingType: components["schemas"]["PricingType"];
+            /** @description Ready to show: "KES 5,000", "KES 5,000 to KES 9,000", "Price on request". */
+            priceLabel: string;
+            /** @description "From KES 5,000". */
+            fromLabel?: string | null;
+            seller: components["schemas"]["SellerCardDto"];
+            ratingAverage?: number | null;
+            ratingCount: number;
+            featured: boolean;
+            /** @description The member saved it. */
+            saved: boolean;
+            status: components["schemas"]["ListingStatus"];
+            description: string;
+            includedItems: string[];
+            deliveryDays?: number | null;
+            workMode: components["schemas"]["WorkMode"];
+            locationText?: string | null;
+            /** @description Ready to show: "Remote", "Nairobi", "Hybrid · Nairobi". */
+            locationLabel: string;
+            audienceText?: string | null;
+            /** @description Whole shillings. */
+            priceMin?: number | null;
+            /** @description Whole shillings (RANGE). */
+            priceMax?: number | null;
+            /** Format: uuid */
+            categoryId: string;
+            media: components["schemas"]["ListingMediaDto"][];
+            portfolio: components["schemas"]["ListingPortfolioProjectDto"][];
+            /** @description The latest few. The full list has its own endpoint. */
+            reviews: components["schemas"]["ListingReviewDto"][];
+            rejectionReason?: string | null;
+            /** @description The viewer owns the listing. */
+            isOwner: boolean;
+            /**
+             * Format: uuid
+             * @description The viewer already has an open request on this listing.
+             */
+            openEnquiryId?: string | null;
+            /** @description The one-line note shown under the request button. */
+            requestNote: string;
+            /** @description Public share address. */
+            shareUrl: string;
+            /** @description Open and unread requests. */
+            newInterest: number;
+            /** @description Distinct viewers in the last 30 days. */
+            views30d: number;
+            /** Format: uuid */
+            profileServiceId?: string | null;
+            /** @description What the listing still needs before it can be submitted. */
+            missing: string[];
+        };
+        CreateListingDto: {
+            type?: components["schemas"]["ListingType"] | null;
+            title?: string | null;
+            /** Format: uuid */
+            categoryId?: string | null;
+            description?: string | null;
+            includedItems?: string[] | null;
+            /** @description Delivery time in days; 0 clears it. */
+            deliveryDays?: number | null;
+            workMode?: components["schemas"]["WorkMode"] | null;
+            locationText?: string | null;
+            /** @description Who it is for. */
+            audienceText?: string | null;
+            pricingType?: components["schemas"]["PricingType"] | null;
+            /** @description Whole shillings. FIXED and RANGE. */
+            priceMin?: number | null;
+            /** @description Whole shillings. RANGE only. */
+            priceMax?: number | null;
+            /** @description Uploaded public images, in order. The first is the cover. */
+            mediaIds?: string[] | null;
+            /** @description The member’s own published projects to show as examples. */
+            projectIds?: string[] | null;
+            /** @description Required for a member who is not a seller yet: accepts the seller terms and makes them a seller. */
+            acceptTerms?: boolean | null;
+            /** @description The version of the terms that was shown. */
+            termsVersion?: string | null;
+        };
+        ListingFieldsDto: {
+            type?: components["schemas"]["ListingType"] | null;
+            title?: string | null;
+            /** Format: uuid */
+            categoryId?: string | null;
+            description?: string | null;
+            includedItems?: string[] | null;
+            /** @description Delivery time in days; 0 clears it. */
+            deliveryDays?: number | null;
+            workMode?: components["schemas"]["WorkMode"] | null;
+            locationText?: string | null;
+            /** @description Who it is for. */
+            audienceText?: string | null;
+            pricingType?: components["schemas"]["PricingType"] | null;
+            /** @description Whole shillings. FIXED and RANGE. */
+            priceMin?: number | null;
+            /** @description Whole shillings. RANGE only. */
+            priceMax?: number | null;
+            /** @description Uploaded public images, in order. The first is the cover. */
+            mediaIds?: string[] | null;
+            /** @description The member’s own published projects to show as examples. */
+            projectIds?: string[] | null;
+        };
+        SubmitResultDto: {
+            listing: components["schemas"]["ListingDto"];
+            /** @description True when it went live straight away; false when it is waiting for review. */
+            published: boolean;
+        };
+        PublishServiceDto: {
+            /**
+             * Format: uuid
+             * @description The marketplace category for the new draft.
+             */
+            categoryId: string;
+            acceptTerms?: boolean;
+            termsVersion?: string;
+        };
+        AdminSellerDto: {
+            /**
+             * Format: uuid
+             * @description The seller profile id.
+             */
+            id: string;
+            displayName: string;
+            handle?: string | null;
+            headline?: string | null;
+            avatarUrl?: string | null;
+            ratingAverage?: number | null;
+            ratingCount: number;
+            completedCount: number;
+            /** @description Published listings. */
+            listingCount: number;
+            /** @description True only when the seller is verified by Atarah (written by P2-M6). */
+            verified: boolean;
+            /** Format: uuid */
+            userId: string;
+            email: string;
+            status: components["schemas"]["SellerStatus"];
+            verificationStatus: components["schemas"]["VerificationStatus"];
+            canPublishDirectly: boolean;
+            termsVersion: string;
+            /** Format: date-time */
+            termsAcceptedAt: string;
+            suspendedReason?: string | null;
+            liveListings: number;
+            underReviewListings: number;
+            openReports: number;
+        };
+        ReasonDto: {
+            /** @description Recorded in the audit log; the member sees it for rejections. */
+            reason: string;
+        };
+        SetDirectPublishDto: {
+            canPublishDirectly: boolean;
+        };
+        AdminListingDto: {
+            /** Format: uuid */
+            id: string;
+            type: components["schemas"]["ListingType"];
+            title: string;
+            categoryName: string;
+            coverUrl?: string | null;
+            pricingType: components["schemas"]["PricingType"];
+            /** @description Ready to show: "KES 5,000", "KES 5,000 to KES 9,000", "Price on request". */
+            priceLabel: string;
+            /** @description "From KES 5,000". */
+            fromLabel?: string | null;
+            seller: components["schemas"]["SellerCardDto"];
+            ratingAverage?: number | null;
+            ratingCount: number;
+            featured: boolean;
+            /** @description The member saved it. */
+            saved: boolean;
+            status: components["schemas"]["ListingStatus"];
+            description: string;
+            includedItems: string[];
+            media: components["schemas"]["ListingMediaDto"][];
+            rejectionReason?: string | null;
+            suspendedReason?: string | null;
+            /** Format: date-time */
+            featuredUntil?: string | null;
+            /** Format: date-time */
+            publishedAt?: string | null;
+            /** Format: date-time */
+            createdAt: string;
+            openReports: number;
+            sellerStatus: components["schemas"]["SellerStatus"];
+            sellerApprovedBefore: number;
+        };
+        FeatureListingDto: {
+            /**
+             * Format: date-time
+             * @description Null un-features.
+             */
+            until?: string | null;
+        };
+        /** @enum {string} */
+        ListingReportStatus: "OPEN" | "RESOLVED" | "DISMISSED";
+        AdminListingReportDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            listingId: string;
+            listingTitle: string;
+            listingStatus: components["schemas"]["ListingStatus"];
+            sellerName: string;
+            reporterName: string;
+            reason: components["schemas"]["ReportReason"];
+            note?: string | null;
+            status: components["schemas"]["ListingReportStatus"];
+            resolution?: string | null;
+            /** Format: date-time */
+            createdAt: string;
+        };
+        ResolveReportDto: {
+            /** @enum {string} */
+            action: "DISMISS" | "SUSPEND_LISTING";
+            note: string;
+        };
+        AdminMarketplaceCategoryDto: {
+            /** Format: uuid */
+            id: string;
+            slug: string;
+            name: string;
+            /** @description Lucide icon name. */
+            icon: string;
+            /** @description Design-token tone. */
+            tone: string;
+            /** @description Published listings in this category. */
+            count: number;
+            sortOrder: number;
+            isActive: boolean;
+        };
+        MarketplaceCategoryFieldsDto: {
+            name: string;
+            /** @description Lucide icon name. */
+            icon: string;
+            /** @enum {string} */
+            tone: "violet" | "pink" | "orange" | "green" | "blue" | "purple" | "amber";
+            sortOrder?: number;
+            isActive?: boolean;
+        };
+        UpdateMarketplaceCategoryDto: {
+            name?: string | null;
+            icon?: string | null;
+            /** @enum {string|null} */
+            tone?: "violet" | "pink" | "orange" | "green" | "blue" | "purple" | "amber" | null;
+            sortOrder?: number | null;
+            isActive?: boolean | null;
+        };
+        /** @enum {string} */
+        ReviewVisibility: "VISIBLE" | "HIDDEN";
+        AdminReviewDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            listingId: string;
+            listingTitle: string;
+            reviewerName: string;
+            rating: number;
+            body?: string | null;
+            status: components["schemas"]["ReviewVisibility"];
+            hiddenReason?: string | null;
+            /** Format: date-time */
+            createdAt: string;
+        };
         /** @enum {string} */
         LearningContentType: "COURSE" | "TUTORIAL" | "TOOLKIT" | "WEBINAR" | "MASTERCLASS" | "ARTICLE";
         /** @enum {string} */
@@ -6324,8 +8270,6 @@ export interface components {
         };
         /** @enum {string} */
         ReportTargetType: "POST" | "COMMENT" | "USER" | "GROUP";
-        /** @enum {string} */
-        ReportReason: "INAPPROPRIATE" | "HARASSMENT" | "SCAM" | "MISLEADING" | "IMPERSONATION" | "IP_INFRINGEMENT" | "OTHER";
         /**
          * @description What a reporter may know. Who decided, how and why stays internal.
          * @enum {string}
@@ -6579,6 +8523,404 @@ export interface components {
             groupId?: string;
         };
         /** @enum {string} */
+        MentorApplicationStatus: "PENDING" | "APPROVED" | "REJECTED" | "WITHDRAWN";
+        NextSessionDto: {
+            /** Format: uuid */
+            bookingId: string;
+            mentorName: string;
+            sessionName: string;
+            /** Format: date-time */
+            startsAt: string;
+        };
+        MentorCardDto: {
+            /**
+             * Format: uuid
+             * @description The mentor profile id.
+             */
+            id: string;
+            handle?: string | null;
+            displayName: string;
+            avatarUrl?: string | null;
+            headline: string;
+            expertiseTags: string[];
+            /** @description Identity verified by Atarah (driven by the verification status). */
+            verified: boolean;
+            featured: boolean;
+            ratingAverage: number;
+            ratingCount: number;
+            sessionsCount: number;
+            /** @description Cheapest active session, minor units. */
+            fromPriceMinor?: number | null;
+            currency: string;
+            /**
+             * Format: date-time
+             * @description First bookable slot (UTC) from real availability minus bookings; null when none in 60 days.
+             */
+            nextAvailableAt?: string | null;
+            timeZone: string;
+            /** @description Offers at least one video call session. */
+            videoCall: boolean;
+        };
+        MentorshipHomeDto: {
+            /** @description The caller holds MENTORSHIP_BOOKING (Atarah Pro). */
+            canBook: boolean;
+            /** @description The caller is an approved, active mentor. */
+            isMentor: boolean;
+            applicationStatus?: components["schemas"]["MentorApplicationStatus"] | null;
+            /** @description Filled by P2-M5; null until then. */
+            nextSession?: components["schemas"]["NextSessionDto"] | null;
+            topMentors: components["schemas"]["MentorCardDto"][];
+        };
+        /** @enum {string} */
+        MentorSort: "recommended" | "soonest" | "price" | "rating";
+        DisciplineRefDto: {
+            /** Format: uuid */
+            id: string;
+            name: string;
+        };
+        CredentialOutDto: {
+            title: string;
+            issuer?: string | null;
+            year?: number | null;
+        };
+        /** @enum {string} */
+        MentorSessionFormat: "VIDEO_CALL" | "IN_PERSON";
+        SessionTypeDto: {
+            /** Format: uuid */
+            id: string;
+            name: string;
+            description?: string | null;
+            durationMinutes: number;
+            /** @description Minor units. */
+            priceMinor: number;
+            currency: string;
+            format: components["schemas"]["MentorSessionFormat"];
+            sessionCount: number;
+            active: boolean;
+            /** @description Staff switched it off; the mentor cannot turn it back on. */
+            disabledByStaff: boolean;
+        };
+        BookingGateDto: {
+            /** @description The caller may book now (holds MENTORSHIP_BOOKING and is not this mentor). */
+            allowed: boolean;
+            /** @description True when only Atarah Pro is missing: open the premium gate. */
+            requiresPro: boolean;
+            /** @description This is the caller own profile. */
+            isSelf: boolean;
+        };
+        MentorDetailDto: {
+            /**
+             * Format: uuid
+             * @description The mentor profile id.
+             */
+            id: string;
+            handle?: string | null;
+            displayName: string;
+            avatarUrl?: string | null;
+            headline: string;
+            expertiseTags: string[];
+            /** @description Identity verified by Atarah (driven by the verification status). */
+            verified: boolean;
+            featured: boolean;
+            ratingAverage: number;
+            ratingCount: number;
+            sessionsCount: number;
+            /** @description Cheapest active session, minor units. */
+            fromPriceMinor?: number | null;
+            currency: string;
+            /**
+             * Format: date-time
+             * @description First bookable slot (UTC) from real availability minus bookings; null when none in 60 days.
+             */
+            nextAvailableAt?: string | null;
+            timeZone: string;
+            /** @description Offers at least one video call session. */
+            videoCall: boolean;
+            bio: string;
+            yearsExperience: number;
+            disciplines: components["schemas"]["DisciplineRefDto"][];
+            credentials: components["schemas"]["CredentialOutDto"][];
+            /** @description Active session types only. */
+            sessionTypes: components["schemas"]["SessionTypeDto"][];
+            booking: components["schemas"]["BookingGateDto"];
+        };
+        SlotDto: {
+            /** Format: date-time */
+            startsAt: string;
+            /** Format: date-time */
+            endsAt: string;
+            /** @description Calendar date `YYYY-MM-DD` in the member time zone. */
+            localDate: string;
+        };
+        SlotsDto: {
+            /** Format: uuid */
+            mentorId: string;
+            /** Format: uuid */
+            sessionTypeId: string;
+            durationMinutes: number;
+            mentorTimeZone: string;
+            viewerTimeZone: string;
+            slots: components["schemas"]["SlotDto"][];
+        };
+        ApplicationPrefillDto: {
+            headline: string;
+            yearsExperience: number;
+            expertiseTags: string[];
+            disciplineIds: string[];
+            credentials: components["schemas"]["CredentialOutDto"][];
+            statement: string;
+            timeZone: string;
+            /** @description The member profile is complete enough to apply. */
+            profileReady: boolean;
+        };
+        ProposedSessionTypeDto: {
+            name: string;
+            description?: string;
+            durationMinutes: number;
+            /** @description Minor units (KES cents). 150000 is KES 1,500. */
+            priceMinor: number;
+            /** @default 1 */
+            sessionCount: number;
+        };
+        MentorApplicationDto: {
+            /** Format: uuid */
+            id: string;
+            status: components["schemas"]["MentorApplicationStatus"];
+            headline: string;
+            yearsExperience: number;
+            statement: string;
+            expertiseTags: string[];
+            disciplineIds: string[];
+            credentials: components["schemas"]["CredentialOutDto"][];
+            proposedSessionTypes: components["schemas"]["ProposedSessionTypeDto"][];
+            evidenceLinks: string[];
+            timeZone: string;
+            /** @description Shown to the applicant when rejected. */
+            reviewerNotes?: string | null;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: date-time */
+            reviewedAt?: string | null;
+        };
+        MyApplicationDto: {
+            latest?: components["schemas"]["MentorApplicationDto"] | null;
+            /** @description The member may submit a new application now. */
+            canApply: boolean;
+            cannotApplyReason?: string | null;
+        };
+        CredentialDto: {
+            title: string;
+            issuer?: string;
+            year?: number;
+        };
+        ApplyMentorDto: {
+            headline: string;
+            yearsExperience: number;
+            expertiseTags: string[];
+            disciplineIds: string[];
+            credentials: components["schemas"]["CredentialDto"][];
+            /**
+             * @description IANA time zone.
+             * @example Africa/Nairobi
+             */
+            timeZone: string;
+            /** @description Why you want to mentor and who you can help. */
+            statement: string;
+            /** @description https links that back up the application. */
+            evidenceLinks: string[];
+            proposedSessionTypes: components["schemas"]["ProposedSessionTypeDto"][];
+            /** @description Must be true: the member accepted the Mentor Terms. */
+            acceptTerms: boolean;
+        };
+        /** @enum {string} */
+        MentorStatus: "APPLIED" | "APPROVED" | "PAUSED" | "REMOVED";
+        WeeklyRangeDto: {
+            /** @description ISO weekday: 1 = Monday ... 7 = Sunday. */
+            weekday: number;
+            /** @description Minutes after local midnight. */
+            startMinute: number;
+            endMinute: number;
+        };
+        ExceptionDto: {
+            /** Format: uuid */
+            id: string;
+            date: string;
+            reason?: string | null;
+        };
+        AvailabilityDto: {
+            timeZone: string;
+            weekly: components["schemas"]["WeeklyRangeDto"][];
+            exceptions: components["schemas"]["ExceptionDto"][];
+            /** Format: date-time */
+            nextAvailableAt?: string | null;
+        };
+        MyMentorDto: {
+            /** Format: uuid */
+            id: string;
+            status: components["schemas"]["MentorStatus"];
+            statusReason?: string | null;
+            headline: string;
+            bio: string;
+            yearsExperience: number;
+            expertiseTags: string[];
+            disciplines: components["schemas"]["DisciplineRefDto"][];
+            credentials: components["schemas"]["CredentialOutDto"][];
+            timeZone: string;
+            videoCallLink?: string | null;
+            verified: boolean;
+            featured: boolean;
+            ratingAverage: number;
+            ratingCount: number;
+            sessionsCount: number;
+            /** @description Including inactive ones. */
+            sessionTypes: components["schemas"]["SessionTypeDto"][];
+            availability: components["schemas"]["AvailabilityDto"];
+            /** @description Visible in the directory right now. */
+            listed: boolean;
+        };
+        UpdateMentorProfileDto: {
+            headline?: string;
+            bio?: string;
+            yearsExperience?: number;
+            expertiseTags?: string[];
+            disciplineIds?: string[];
+            credentials?: components["schemas"]["CredentialDto"][];
+            /** @example Africa/Nairobi */
+            timeZone?: string;
+            /** @description https meeting link; null clears it. */
+            videoCallLink?: Record<string, never> | null;
+        };
+        SetMentorPausedDto: {
+            /** @description true pauses the profile (hidden from the directory); false resumes it. */
+            paused: boolean;
+        };
+        SetWeeklyAvailabilityDto: {
+            /** @description IANA zone the ranges are in; defaults to the profile zone. */
+            timeZone?: string;
+            /** @description Replaces the whole week. */
+            weekly: components["schemas"]["WeeklyRangeDto"][];
+        };
+        AddExceptionDto: {
+            /**
+             * @description A local calendar date.
+             * @example 2026-12-25
+             */
+            date: string;
+            reason?: string;
+        };
+        SessionTypeFieldsDto: {
+            name: string;
+            description?: string;
+            durationMinutes: number;
+            /** @description Minor units (KES cents). 150000 is KES 1,500. */
+            priceMinor: number;
+            /** @default 1 */
+            sessionCount: number;
+        };
+        UpdateSessionTypeDto: {
+            name?: string;
+            description?: Record<string, never> | null;
+            durationMinutes?: number;
+            priceMinor?: number;
+            sessionCount?: number;
+            active?: boolean;
+        };
+        BookingRequestDto: {
+            /** Format: uuid */
+            id: string;
+            menteeName: string;
+            sessionName: string;
+            /** Format: date-time */
+            startsAt: string;
+            /** Format: date-time */
+            endsAt: string;
+            status: string;
+        };
+        ApplicantRefDto: {
+            /** Format: uuid */
+            userId: string;
+            displayName: string;
+            handle?: string | null;
+            email?: string | null;
+        };
+        AdminApplicationDto: {
+            /** Format: uuid */
+            id: string;
+            status: components["schemas"]["MentorApplicationStatus"];
+            headline: string;
+            yearsExperience: number;
+            statement: string;
+            expertiseTags: string[];
+            disciplineIds: string[];
+            credentials: components["schemas"]["CredentialOutDto"][];
+            proposedSessionTypes: components["schemas"]["ProposedSessionTypeDto"][];
+            evidenceLinks: string[];
+            timeZone: string;
+            /** @description Shown to the applicant when rejected. */
+            reviewerNotes?: string | null;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: date-time */
+            reviewedAt?: string | null;
+            applicant: components["schemas"]["ApplicantRefDto"];
+            /** @description The Passport as it was when applying. */
+            passportSnapshot: {
+                [key: string]: unknown;
+            };
+            /** Format: uuid */
+            reviewedById?: string | null;
+        };
+        DecideApplicationDto: {
+            /** @description Required when rejecting; shown to the applicant. */
+            reason?: string;
+        };
+        AdminMentorDto: {
+            /** Format: uuid */
+            id: string;
+            mentor: components["schemas"]["ApplicantRefDto"];
+            status: components["schemas"]["MentorStatus"];
+            statusReason?: string | null;
+            headline: string;
+            featured: boolean;
+            sessionTypeCount: number;
+            ratingAverage: number;
+            ratingCount: number;
+            sessionsCount: number;
+            /** Format: date-time */
+            approvedAt?: string | null;
+        };
+        MentorStatusChangeDto: {
+            /** @description Why; recorded in the audit log and shown to the mentor. */
+            reason: string;
+        };
+        FeatureMentorDto: {
+            featured: boolean;
+        };
+        AdminSessionTypeDto: {
+            /** Format: uuid */
+            id: string;
+            name: string;
+            description?: string | null;
+            durationMinutes: number;
+            /** @description Minor units. */
+            priceMinor: number;
+            currency: string;
+            format: components["schemas"]["MentorSessionFormat"];
+            sessionCount: number;
+            active: boolean;
+            /** @description Staff switched it off; the mentor cannot turn it back on. */
+            disabledByStaff: boolean;
+            /** Format: uuid */
+            mentorId: string;
+            mentorName: string;
+            staffNote?: string | null;
+        };
+        StaffSessionTypeDto: {
+            /** @description true switches the session type off for members; false allows it again. */
+            disabled: boolean;
+            note?: string;
+        };
+        /** @enum {string} */
         SavedKind: "ARTICLE" | "POST" | "LEARNING" | "CREATIVE" | "OPPORTUNITY" | "LISTING" | "MENTOR";
         SavedItemDto: {
             type: components["schemas"]["SavedKind"];
@@ -6765,6 +9107,125 @@ export interface components {
             comparison: components["schemas"]["PlanRowDto"][];
             /** @description The scholarship note shown under the table. */
             scholarshipNote: string;
+        };
+        CvFormatInfoDto: {
+            /** @enum {string} */
+            format: "CV" | "BIO" | "EPK" | "DECK";
+            label: string;
+            allowedSections: ("BIO" | "LOCATION" | "PORTFOLIO" | "SKILLS" | "EXPERIENCE" | "SERVICES" | "LINKS" | "CONTACT")[];
+            defaultSections: ("BIO" | "LOCATION" | "PORTFOLIO" | "SKILLS" | "EXPERIENCE" | "SERVICES" | "LINKS" | "CONTACT")[];
+            /** @description The most projects the layout lists (0 means the format lists none). */
+            maxProjects: number;
+        };
+        CvShareDto: {
+            id: string;
+            /** @description Last characters of the token, to tell links apart. The full link is shown only once. */
+            hint: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: date-time */
+            expiresAt?: string | null;
+            /** Format: date-time */
+            revokedAt?: string | null;
+            /** @enum {string} */
+            status: "ACTIVE" | "EXPIRED" | "REVOKED";
+        };
+        CvRenderDto: {
+            id: string;
+            /** @enum {string} */
+            status: "QUEUED" | "PROCESSING" | "READY" | "FAILED";
+            /** Format: date-time */
+            requestedAt: string;
+            /** Format: date-time */
+            readyAt?: string | null;
+            /** @description Plain-language reason when FAILED. */
+            error?: string | null;
+        };
+        CvDownloadDto: {
+            /** @description Signed link to the private PDF; it works for a few minutes. */
+            url: string;
+            /** Format: date-time */
+            expiresAt: string;
+        };
+        CvConfigDto: {
+            sections: ("BIO" | "LOCATION" | "PORTFOLIO" | "SKILLS" | "EXPERIENCE" | "SERVICES" | "LINKS" | "CONTACT")[];
+            projectIds: string[];
+            restricted: ("BIO" | "LOCATION" | "PORTFOLIO" | "SKILLS" | "EXPERIENCE" | "SERVICES" | "LINKS" | "CONTACT")[];
+        };
+        CvSectionAudienceDto: {
+            /** @enum {string} */
+            section: "BIO" | "LOCATION" | "PORTFOLIO" | "SKILLS" | "EXPERIENCE" | "SERVICES" | "LINKS" | "CONTACT";
+            /** @enum {string} */
+            visibility: "PUBLIC" | "MEMBERS" | "PRIVATE";
+            /** @description Whether the member may include it in this format at all. */
+            available: boolean;
+        };
+        CvProjectChoiceDto: {
+            id: string;
+            title: string;
+            role?: string | null;
+            year?: number | null;
+            /** @enum {string} */
+            visibility: "PUBLIC" | "MEMBERS" | "PRIVATE";
+        };
+        CvPreviewWorkDto: {
+            title: string;
+            role?: string | null;
+            year?: number | null;
+        };
+        CvPreviewSkillDto: {
+            name: string;
+            /** @description True only when Atarah has verified this skill. */
+            verified: boolean;
+        };
+        CvPreviewDto: {
+            displayName: string;
+            /** @description The format label shown under the name, e.g. "Creative CV". */
+            subtitle: string;
+            avatarUrl?: string | null;
+            identityVerified: boolean;
+            summary?: string | null;
+            work: components["schemas"]["CvPreviewWorkDto"][];
+            skills: components["schemas"]["CvPreviewSkillDto"][];
+            included: ("BIO" | "LOCATION" | "PORTFOLIO" | "SKILLS" | "EXPERIENCE" | "SERVICES" | "LINKS" | "CONTACT")[];
+            /** @description Picked sections left out because they are not public and not explicitly allowed. */
+            withheld: ("BIO" | "LOCATION" | "PORTFOLIO" | "SKILLS" | "EXPERIENCE" | "SERVICES" | "LINKS" | "CONTACT")[];
+        };
+        CvStateDto: {
+            info: components["schemas"]["CvFormatInfoDto"];
+            config: components["schemas"]["CvConfigDto"];
+            sections: components["schemas"]["CvSectionAudienceDto"][];
+            /** @description Published projects the member can list. */
+            projects: components["schemas"]["CvProjectChoiceDto"][];
+            preview: components["schemas"]["CvPreviewDto"];
+            latestRender?: components["schemas"]["CvRenderDto"] | null;
+            shares: components["schemas"]["CvShareDto"][];
+        };
+        UpdateCvDto: {
+            sections?: ("BIO" | "LOCATION" | "PORTFOLIO" | "SKILLS" | "EXPERIENCE" | "SERVICES" | "LINKS" | "CONTACT")[];
+            /** @description The member’s own published projects to list. */
+            projectIds?: string[];
+            /** @description Sections that are not public (members only or private) that the member explicitly allows into this document. */
+            restricted?: ("BIO" | "LOCATION" | "PORTFOLIO" | "SKILLS" | "EXPERIENCE" | "SERVICES" | "LINKS" | "CONTACT")[];
+        };
+        CvShareCreatedDto: {
+            id: string;
+            /** @description Last characters of the token, to tell links apart. The full link is shown only once. */
+            hint: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: date-time */
+            expiresAt?: string | null;
+            /** Format: date-time */
+            revokedAt?: string | null;
+            /** @enum {string} */
+            status: "ACTIVE" | "EXPIRED" | "REVOKED";
+            /** @description The public link, `https://atarah.app/{handle}/cv/{token}`. Shown only now. */
+            url: string;
+        };
+        CreateShareDto: {
+            /** @description The link stops working after this many days. Omit for no expiry. */
+            expiresInDays?: number;
         };
         HelpArticleCardDto: {
             /** Format: uuid */
@@ -6980,6 +9441,224 @@ export interface components {
              * @description When it was finished, cancelled or purged.
              */
             completedAt?: string | null;
+        };
+        PaymentMethodOptionDto: {
+            /** @enum {string} */
+            method: "MPESA" | "CARD";
+            /** @example M-Pesa */
+            label: string;
+            /** @example Pay with your Safaricom line */
+            description: string;
+        };
+        PaymentMethodsDto: {
+            methods: components["schemas"]["PaymentMethodOptionDto"][];
+        };
+        PaymentActionDto: {
+            /** @enum {string} */
+            type: "STK_PROMPT" | "REDIRECT";
+            message?: string;
+            url?: string;
+        };
+        PaymentDto: {
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            status: "INITIATED" | "PENDING" | "SUCCEEDED" | "FAILED" | "CANCELLED" | "REFUNDED" | "PARTIALLY_REFUNDED";
+            /** @enum {string} */
+            purpose: "MEMBERSHIP" | "MENTORSHIP" | "VERIFICATION" | "OTHER";
+            /** @enum {string} */
+            method: "MPESA" | "CARD";
+            /**
+             * @description Minor units (KES cents).
+             * @example 120000
+             */
+            amountMinor: number;
+            /** @example KES */
+            currency: string;
+            description: string | null;
+            referenceType: string | null;
+            /** Format: uuid */
+            referenceId: string | null;
+            /** @description M-Pesa receipt once paid. */
+            receiptNumber: string | null;
+            /** @description Stable code such as CANCELLED_BY_USER or TIMEOUT. */
+            failureCode: string | null;
+            /** @description What to tell the member and what to do next. */
+            failureReason: string | null;
+            /** @description Minor units already refunded. */
+            refundedMinor: number;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: date-time */
+            completedAt: string | null;
+            /** Format: date-time */
+            expiresAt: string | null;
+            /** @description Still open after its time limit: the app offers "Try again" and the server keeps checking. */
+            timedOut: boolean;
+            /** @description Seconds the app should wait before asking again. */
+            pollAfterSeconds: number;
+            /** @description Present on the response that starts a payment. */
+            action?: components["schemas"]["PaymentActionDto"];
+        };
+        InitiatePaymentDto: {
+            /**
+             * @example MEMBERSHIP
+             * @enum {string}
+             */
+            purpose: "MEMBERSHIP" | "MENTORSHIP" | "VERIFICATION" | "OTHER";
+            /**
+             * Format: uuid
+             * @description What is being paid for (a booking, a membership order). The server decides the amount.
+             */
+            referenceId?: string;
+            /**
+             * @example MPESA
+             * @enum {string}
+             */
+            method: "MPESA" | "CARD";
+            /**
+             * @description The Safaricom number that gets the M-Pesa prompt. Required for MPESA. Never stored in full.
+             * @example +254712345678
+             */
+            phone?: string;
+            /**
+             * @description Only the OTHER (sandbox check) purpose reads this: minor units, KES 1 to 100. Ignored otherwise.
+             * @example 100
+             */
+            sandboxAmountMinor?: number;
+        };
+        AdminPayerDto: {
+            /** Format: uuid */
+            id: string;
+            fullName: string;
+        };
+        AdminPaymentDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** @enum {string} */
+            status: "INITIATED" | "PENDING" | "SUCCEEDED" | "FAILED" | "CANCELLED" | "REFUNDED" | "PARTIALLY_REFUNDED";
+            /** @enum {string} */
+            purpose: "MEMBERSHIP" | "MENTORSHIP" | "VERIFICATION" | "OTHER";
+            /** @enum {string} */
+            method: "MPESA" | "CARD";
+            /** @enum {string} */
+            provider: "MPESA_DARAJA" | "CARD";
+            amountMinor: number;
+            refundedMinor: number;
+            currency: string;
+            receiptNumber: string | null;
+            failureCode: string | null;
+            referenceType: string | null;
+            /** Format: uuid */
+            referenceId: string | null;
+            payer: components["schemas"]["AdminPayerDto"];
+        };
+        AdminPaymentEventDto: {
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            kind: "INITIATED" | "CALLBACK" | "STATUS_QUERY" | "STATUS_CHANGE" | "REFUND" | "REVIEW";
+            /** @enum {string} */
+            source: "API" | "PROVIDER_CALLBACK" | "STATUS_QUERY" | "JOB" | "ADMIN";
+            /** @enum {string|null} */
+            fromStatus: "INITIATED" | "PENDING" | "SUCCEEDED" | "FAILED" | "CANCELLED" | "REFUNDED" | "PARTIALLY_REFUNDED" | null;
+            /** @enum {string|null} */
+            toStatus: "INITIATED" | "PENDING" | "SUCCEEDED" | "FAILED" | "CANCELLED" | "REFUNDED" | "PARTIALLY_REFUNDED" | null;
+            summary: string;
+            /** Format: uuid */
+            actorId: string | null;
+            /** Format: date-time */
+            createdAt: string;
+        };
+        AdminRefundDto: {
+            /** Format: uuid */
+            id: string;
+            amountMinor: number;
+            reason: string;
+            /** @enum {string} */
+            status: "PENDING" | "SUCCEEDED" | "FAILED";
+            /** @enum {string} */
+            mode: "AUTOMATIC" | "MANUAL";
+            providerReference: string | null;
+            failureReason: string | null;
+            /** Format: uuid */
+            requestedById: string | null;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: date-time */
+            completedAt: string | null;
+        };
+        AdminLedgerEntryDto: {
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            type: "PAYMENT" | "REFUND";
+            grossMinor: number;
+            platformFeeMinor: number;
+            netMinor: number;
+            /** Format: uuid */
+            payeeId: string | null;
+            /** Format: date-time */
+            createdAt: string;
+        };
+        AdminPaymentDetailDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** @enum {string} */
+            status: "INITIATED" | "PENDING" | "SUCCEEDED" | "FAILED" | "CANCELLED" | "REFUNDED" | "PARTIALLY_REFUNDED";
+            /** @enum {string} */
+            purpose: "MEMBERSHIP" | "MENTORSHIP" | "VERIFICATION" | "OTHER";
+            /** @enum {string} */
+            method: "MPESA" | "CARD";
+            /** @enum {string} */
+            provider: "MPESA_DARAJA" | "CARD";
+            amountMinor: number;
+            refundedMinor: number;
+            currency: string;
+            receiptNumber: string | null;
+            failureCode: string | null;
+            referenceType: string | null;
+            /** Format: uuid */
+            referenceId: string | null;
+            payer: components["schemas"]["AdminPayerDto"];
+            providerReference: string | null;
+            merchantReference: string | null;
+            /** @description Last four digits of the paying number. The full number is never stored. */
+            msisdnLast4: string | null;
+            description: string | null;
+            failureReason: string | null;
+            /** Format: uuid */
+            payeeId: string | null;
+            platformFeeMinor: number;
+            queryAttempts: number;
+            /** Format: date-time */
+            lastQueriedAt: string | null;
+            /** Format: date-time */
+            expiresAt: string | null;
+            /** Format: date-time */
+            completedAt: string | null;
+            /** @description Minor units that can still be refunded (excludes refunds in progress). */
+            refundableMinor: number;
+            events: components["schemas"]["AdminPaymentEventDto"][];
+            refunds: components["schemas"]["AdminRefundDto"][];
+            ledger: components["schemas"]["AdminLedgerEntryDto"][];
+        };
+        RefundPaymentDto: {
+            /**
+             * @description Minor units. Omit to refund everything still refundable.
+             * @example 50000
+             */
+            amountMinor?: number;
+            /** @description Why (kept in the audit log). */
+            reason: string;
+        };
+        CompleteRefundDto: {
+            /** @description Reference of the manual payout (M-Pesa receipt or bank reference). */
+            providerReference?: string;
         };
         ErrorEnvelopeDto: {
             error: {
@@ -27825,6 +30504,6031 @@ export interface operations {
             };
         };
     };
+    home: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MarketplaceHomeDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    categories: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CategoryDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    terms: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["SellerTermsDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    listings: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                type?: components["schemas"]["ListingType"];
+                categoryId?: string;
+                sellerId?: string;
+                q?: string;
+                sort?: components["schemas"]["ListingSort"];
+                /** @description Whole shillings; listings from this price up. */
+                minPrice?: number;
+                /** @description Whole shillings; listings whose lowest price is at most this. */
+                maxPrice?: number;
+                /** @description Only remote listings. */
+                remote?: boolean;
+                /** @description Only listings with a price (not "on request"). */
+                priced?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ListingCardDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    listing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ListingDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    reviews: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+            };
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ListingReviewDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    report: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReportListingDto"];
+            };
+        };
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    requestBooking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateEnquiryDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["EnquiryThreadDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    sellers: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                q?: string;
+                sort?: "popular" | "rating" | "newest";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["SellerCardDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    seller: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["SellerProfileDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    myEnquiries: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                /** @description Requests you sent, or requests on your listings. */
+                as?: "buyer" | "seller";
+                status?: components["schemas"]["EnquiryStatus"];
+                /** @description Only requests on this listing. */
+                listingId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["EnquiryDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    thread: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["EnquiryThreadDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    send: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SendEnquiryMessageDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["EnquiryThreadDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    close: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["EnquiryThreadDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    review: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReviewDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["EnquiryThreadDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    mine: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MyListingsDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateListingDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MyListingDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    detail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MyListingDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ListingFieldsDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MyListingDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    submit: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["SubmitResultDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    withdraw: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MyListingDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    archive: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MyListingDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    restore: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MyListingDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    fromService: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PublishServiceDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MyListingDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    sellers: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                /** @description Name, handle or email. */
+                q?: string;
+                status?: components["schemas"]["SellerStatus"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminSellerDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    seller: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminSellerDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    suspendSeller: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReasonDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminSellerDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    reinstateSeller: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReasonDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminSellerDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    directPublish: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SetDirectPublishDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminSellerDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    listings: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                status?: components["schemas"]["ListingStatus"];
+                q?: string;
+                /** @description Only listings with open reports. */
+                reported?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminListingDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    listing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminListingDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    approve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminListingDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    reject: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReasonDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminListingDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    suspend: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReasonDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminListingDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    reinstate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReasonDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminListingDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    feature: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FeatureListingDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminListingDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    reports: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                status?: components["schemas"]["ListingReportStatus"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminListingReportDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    resolveReport: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ResolveReportDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminListingReportDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    categories: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminMarketplaceCategoryDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    createCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MarketplaceCategoryFieldsDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminMarketplaceCategoryDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    updateCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateMarketplaceCategoryDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminMarketplaceCategoryDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    reviews: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                status?: components["schemas"]["ReviewVisibility"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminReviewDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    hideReview: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReasonDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminReviewDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    restoreReview: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReasonDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminReviewDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
     hub: {
         parameters: {
             query?: never;
@@ -37774,6 +46478,3787 @@ export interface operations {
             };
         };
     };
+    home: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MentorshipHomeDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    list: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                /** @description Name, headline or expertise. */
+                q?: string;
+                disciplineId?: string;
+                /** @description Identity-verified mentors only. */
+                verified?: boolean;
+                /** @description Has a bookable slot in the next 7 days. */
+                availableThisWeek?: boolean;
+                /** @description Has a session type at or under this price (minor units). */
+                maxPriceMinor?: number;
+                /** @description Offers video call sessions. */
+                videoCall?: boolean;
+                sort?: components["schemas"]["MentorSort"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MentorCardDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    detail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MentorDetailDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    slots: {
+        parameters: {
+            query: {
+                sessionTypeId: string;
+                /** @description Defaults to now. */
+                from?: string;
+                /** @description Defaults to 14 days after `from`; at most 60. */
+                to?: string;
+                /** @description The member time zone for `localDate`. */
+                timeZone?: string;
+            };
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["SlotsDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    prefill: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ApplicationPrefillDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    mine: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MyApplicationDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    apply: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ApplyMentorDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MentorApplicationDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    withdraw: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MentorApplicationDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    me: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MyMentorDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    updateProfile: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateMentorProfileDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MyMentorDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    setPaused: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SetMentorPausedDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["MyMentorDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    availability: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AvailabilityDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    setWeekly: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SetWeeklyAvailabilityDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AvailabilityDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    addException: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AddExceptionDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["ExceptionDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    removeException: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    createSessionType: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SessionTypeFieldsDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["SessionTypeDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    deactivateSessionType: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    updateSessionType: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateSessionTypeDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["SessionTypeDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    bookingRequests: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["BookingRequestDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    applications: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                status?: components["schemas"]["MentorApplicationStatus"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminApplicationDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    application: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminApplicationDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    approve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DecideApplicationDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminApplicationDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    reject: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DecideApplicationDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminApplicationDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    mentors: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                status?: components["schemas"]["MentorStatus"];
+                q?: string;
+                featured?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminMentorDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    pause: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MentorStatusChangeDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminMentorDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    resume: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MentorStatusChangeDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminMentorDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MentorStatusChangeDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminMentorDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    feature: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FeatureMentorDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminMentorDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    sessionTypes: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                mentorId?: string;
+                disabledByStaff?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminSessionTypeDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    setDisabled: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StaffSessionTypeDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminSessionTypeDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
     list: {
         parameters: {
             query?: {
@@ -40086,6 +52571,1360 @@ export interface operations {
                      *       "error": {
                      *         "code": "FORBIDDEN",
                      *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    formats: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CvFormatInfoDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    revokeShare: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CvShareDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    renderStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CvRenderDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    download: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CvDownloadDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    state: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                format: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CvStateDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                format: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateCvDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CvStateDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    preview: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                format: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CvPreviewDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    generate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                format: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CvRenderDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    shares: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                format: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CvShareDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    createShare: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                format: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateShareDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CvShareCreatedDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
                      *         "details": {},
                      *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
                      *       }
@@ -43231,6 +57070,1320 @@ export interface operations {
                      *       "error": {
                      *         "code": "FORBIDDEN",
                      *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    methods: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["PaymentMethodsDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    list: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["PaymentDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    initiate: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description A fresh UUID per attempt (8 to 128 characters). */
+                "Idempotency-Key": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["InitiatePaymentDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["PaymentDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["PaymentDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    list: {
+        parameters: {
+            query?: {
+                page?: number;
+                limit?: number;
+                status?: "INITIATED" | "PENDING" | "SUCCEEDED" | "FAILED" | "CANCELLED" | "REFUNDED" | "PARTIALLY_REFUNDED";
+                paymentMethod?: "MPESA" | "CARD";
+                purpose?: "MEMBERSHIP" | "MENTORSHIP" | "VERIFICATION" | "OTHER";
+                /** @description Payment id, M-Pesa receipt or provider reference (exact), or the payer name. */
+                q?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminPaymentDto"][];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    detail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminPaymentDetailDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    requery: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminPaymentDetailDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    refund: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Repeating a refund request with the same key creates one refund. */
+                "Idempotency-Key"?: string;
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RefundPaymentDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminPaymentDetailDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    completeRefund: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+                refundId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CompleteRefundDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminPaymentDetailDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description Too many requests. Wait for `Retry-After` seconds. */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RATE_LIMITED",
+                     *         "message": "Too many requests. Please try again shortly.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+        };
+    };
+    cancelRefund: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+                refundId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["AdminPaymentDetailDto"];
+                        meta?: {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+            };
+            /** @description The request is not valid. `details.fields` lists each problem. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "VALIDATION_ERROR",
+                     *         "message": "Some of the information you sent is not valid.",
+                     *         "details": {
+                     *           "fields": [
+                     *             {
+                     *               "field": "title",
+                     *               "messages": [
+                     *                 "title must be a string"
+                     *               ]
+                     *             }
+                     *           ]
+                     *         },
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description No valid session: sign in again. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "AUTHENTICATION_REQUIRED",
+                     *         "message": "Please sign in to continue.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The account or role may not do this (also PREMIUM_REQUIRED and VERIFICATION_REQUIRED). */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "FORBIDDEN",
+                     *         "message": "You do not have permission to do that.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description It does not exist, or it is not yours or not visible to you. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "RESOURCE_NOT_FOUND",
+                     *         "message": "We could not find what you were looking for.",
+                     *         "details": {},
+                     *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
+                     *       }
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ErrorEnvelopeDto"];
+                };
+            };
+            /** @description The change conflicts with the current state (CONFLICT or INVALID_STATE). */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "CONFLICT",
+                     *         "message": "That cannot be done in its current state.",
                      *         "details": {},
                      *         "requestId": "c0a8012e-7b6d-4d2e-9a43-0f3c1d6a9b10"
                      *       }

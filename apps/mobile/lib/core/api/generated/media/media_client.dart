@@ -35,5 +35,7 @@ abstract class MediaClient {
   });
 
   @DELETE('/api/v1/media/{id}')
-  Future<void> remove({@Path('id') required String id});
+  Future<void> remove({
+    @Path('id') required String id,
+  });
 }

@@ -10,11 +10,12 @@ part 'mark_all_read_dto.g.dart';
 
 @JsonSerializable()
 class MarkAllReadDto {
-  const MarkAllReadDto({required this.category});
-
-  factory MarkAllReadDto.fromJson(Map<String, Object?> json) =>
-      _$MarkAllReadDtoFromJson(json);
-
+  const MarkAllReadDto({
+    required this.category,
+  });
+  
+  factory MarkAllReadDto.fromJson(Map<String, Object?> json) => _$MarkAllReadDtoFromJson(json);
+  
   /// Only this category.
   final NotificationCategory category;
 

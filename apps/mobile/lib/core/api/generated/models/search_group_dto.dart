@@ -16,10 +16,9 @@ class SearchGroupDto {
     required this.count,
     required this.items,
   });
-
-  factory SearchGroupDto.fromJson(Map<String, Object?> json) =>
-      _$SearchGroupDtoFromJson(json);
-
+  
+  factory SearchGroupDto.fromJson(Map<String, Object?> json) => _$SearchGroupDtoFromJson(json);
+  
   final SearchGroupDtoType type;
 
   /// How many results there are in all.

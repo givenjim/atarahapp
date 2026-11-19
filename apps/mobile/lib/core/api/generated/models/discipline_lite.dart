@@ -13,10 +13,9 @@ class DisciplineLite {
     required this.name,
     required this.icon,
   });
-
-  factory DisciplineLite.fromJson(Map<String, Object?> json) =>
-      _$DisciplineLiteFromJson(json);
-
+  
+  factory DisciplineLite.fromJson(Map<String, Object?> json) => _$DisciplineLiteFromJson(json);
+  
   final String id;
   final String name;
   final String icon;

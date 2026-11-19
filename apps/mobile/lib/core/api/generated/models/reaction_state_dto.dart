@@ -8,11 +8,13 @@ part 'reaction_state_dto.g.dart';
 
 @JsonSerializable()
 class ReactionStateDto {
-  const ReactionStateDto({required this.reacted, required this.reactionCount});
-
-  factory ReactionStateDto.fromJson(Map<String, Object?> json) =>
-      _$ReactionStateDtoFromJson(json);
-
+  const ReactionStateDto({
+    required this.reacted,
+    required this.reactionCount,
+  });
+  
+  factory ReactionStateDto.fromJson(Map<String, Object?> json) => _$ReactionStateDtoFromJson(json);
+  
   final bool reacted;
   final num reactionCount;
 

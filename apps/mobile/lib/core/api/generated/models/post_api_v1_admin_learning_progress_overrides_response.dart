@@ -14,14 +14,11 @@ class PostApiV1AdminLearningProgressOverridesResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminLearningProgressOverridesResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminLearningProgressOverridesResponseFromJson(json);
-
+  
+  factory PostApiV1AdminLearningProgressOverridesResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminLearningProgressOverridesResponseFromJson(json);
+  
   final OverrideResultDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminLearningProgressOverridesResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminLearningProgressOverridesResponseToJson(this);
 }

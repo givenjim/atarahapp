@@ -16,10 +16,9 @@ class PostAuthorDto {
     required this.headline,
     required this.verified,
   });
-
-  factory PostAuthorDto.fromJson(Map<String, Object?> json) =>
-      _$PostAuthorDtoFromJson(json);
-
+  
+  factory PostAuthorDto.fromJson(Map<String, Object?> json) => _$PostAuthorDtoFromJson(json);
+  
   final String id;
 
   /// Null for staff accounts without a profile.

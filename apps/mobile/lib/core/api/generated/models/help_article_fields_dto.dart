@@ -18,10 +18,9 @@ class HelpArticleFieldsDto {
     this.sortOrder,
     this.published,
   });
-
-  factory HelpArticleFieldsDto.fromJson(Map<String, Object?> json) =>
-      _$HelpArticleFieldsDtoFromJson(json);
-
+  
+  factory HelpArticleFieldsDto.fromJson(Map<String, Object?> json) => _$HelpArticleFieldsDtoFromJson(json);
+  
   /// Lower-case words and dashes. Never changed after publishing.
   final String slug;
   final String title;

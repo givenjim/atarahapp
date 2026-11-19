@@ -10,11 +10,13 @@ part 'get_api_v1_media_id_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1MediaIdResponse {
-  const GetApiV1MediaIdResponse({required this.data, this.meta});
-
-  factory GetApiV1MediaIdResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1MediaIdResponseFromJson(json);
-
+  const GetApiV1MediaIdResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1MediaIdResponse.fromJson(Map<String, Object?> json) => _$GetApiV1MediaIdResponseFromJson(json);
+  
   final MediaAssetDto data;
   final dynamic meta;
 

@@ -8,11 +8,13 @@ part 'update_account_dto.g.dart';
 
 @JsonSerializable()
 class UpdateAccountDto {
-  const UpdateAccountDto({this.fullName, this.handle});
-
-  factory UpdateAccountDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateAccountDtoFromJson(json);
-
+  const UpdateAccountDto({
+    this.fullName,
+    this.handle,
+  });
+  
+  factory UpdateAccountDto.fromJson(Map<String, Object?> json) => _$UpdateAccountDtoFromJson(json);
+  
   final String? fullName;
 
   /// Lower-case letters, digits and underscores, 3 to 30 characters.

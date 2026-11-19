@@ -12,10 +12,9 @@ class PassportSummaryDto {
     required this.passportNumber,
     required this.issuedAt,
   });
-
-  factory PassportSummaryDto.fromJson(Map<String, Object?> json) =>
-      _$PassportSummaryDtoFromJson(json);
-
+  
+  factory PassportSummaryDto.fromJson(Map<String, Object?> json) => _$PassportSummaryDtoFromJson(json);
+  
   final String passportNumber;
   final DateTime issuedAt;
 

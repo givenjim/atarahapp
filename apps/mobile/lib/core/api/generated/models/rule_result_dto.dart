@@ -21,10 +21,9 @@ class RuleResultDto {
     this.detail,
     this.fix,
   });
-
-  factory RuleResultDto.fromJson(Map<String, Object?> json) =>
-      _$RuleResultDtoFromJson(json);
-
+  
+  factory RuleResultDto.fromJson(Map<String, Object?> json) => _$RuleResultDtoFromJson(json);
+  
   final String id;
   final OpportunityRuleType ruleType;
   final String label;

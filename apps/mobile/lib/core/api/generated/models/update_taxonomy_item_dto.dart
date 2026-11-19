@@ -8,11 +8,14 @@ part 'update_taxonomy_item_dto.g.dart';
 
 @JsonSerializable()
 class UpdateTaxonomyItemDto {
-  const UpdateTaxonomyItemDto({this.name, this.icon, this.isActive});
-
-  factory UpdateTaxonomyItemDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateTaxonomyItemDtoFromJson(json);
-
+  const UpdateTaxonomyItemDto({
+    this.name,
+    this.icon,
+    this.isActive,
+  });
+  
+  factory UpdateTaxonomyItemDto.fromJson(Map<String, Object?> json) => _$UpdateTaxonomyItemDtoFromJson(json);
+  
   final String? name;
   final String? icon;
 

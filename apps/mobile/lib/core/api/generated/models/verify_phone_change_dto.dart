@@ -8,11 +8,13 @@ part 'verify_phone_change_dto.g.dart';
 
 @JsonSerializable()
 class VerifyPhoneChangeDto {
-  const VerifyPhoneChangeDto({required this.phone, required this.code});
-
-  factory VerifyPhoneChangeDto.fromJson(Map<String, Object?> json) =>
-      _$VerifyPhoneChangeDtoFromJson(json);
-
+  const VerifyPhoneChangeDto({
+    required this.phone,
+    required this.code,
+  });
+  
+  factory VerifyPhoneChangeDto.fromJson(Map<String, Object?> json) => _$VerifyPhoneChangeDtoFromJson(json);
+  
   final String phone;
   final String code;
 

@@ -14,14 +14,11 @@ class GetApiV1HandlesHandleAvailabilityResponse {
     required this.data,
     this.meta,
   });
-
-  factory GetApiV1HandlesHandleAvailabilityResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1HandlesHandleAvailabilityResponseFromJson(json);
-
+  
+  factory GetApiV1HandlesHandleAvailabilityResponse.fromJson(Map<String, Object?> json) => _$GetApiV1HandlesHandleAvailabilityResponseFromJson(json);
+  
   final HandleAvailabilityDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1HandlesHandleAvailabilityResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1HandlesHandleAvailabilityResponseToJson(this);
 }

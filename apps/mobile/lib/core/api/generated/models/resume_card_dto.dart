@@ -18,10 +18,9 @@ class ResumeCardDto {
     this.subtitle,
     this.progressPercent,
   });
-
-  factory ResumeCardDto.fromJson(Map<String, Object?> json) =>
-      _$ResumeCardDtoFromJson(json);
-
+  
+  factory ResumeCardDto.fromJson(Map<String, Object?> json) => _$ResumeCardDtoFromJson(json);
+  
   final ResumeCardDtoKind kind;
   final String title;
   final String? subtitle;

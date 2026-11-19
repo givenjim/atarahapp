@@ -17,10 +17,9 @@ class LegalDocumentDto {
     required this.body,
     required this.isDraft,
   });
-
-  factory LegalDocumentDto.fromJson(Map<String, Object?> json) =>
-      _$LegalDocumentDtoFromJson(json);
-
+  
+  factory LegalDocumentDto.fromJson(Map<String, Object?> json) => _$LegalDocumentDtoFromJson(json);
+  
   final LegalDocumentDtoType type;
   final String version;
   final String title;

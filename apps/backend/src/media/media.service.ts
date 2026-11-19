@@ -66,7 +66,7 @@ export class MediaService {
   ) {}
 
   /** Step 1: validate what the client intends to upload and hand back a signed PUT URL. */
-  async requestUpload(ownerId: string, dto: RequestUploadDto) {
+  async requestUpload(ownerId: string, dto: RequestUploadDto, opts: { evidence?: boolean } = {}) {
     const mime = normaliseMime(dto.mimeType);
     if (kindOfMime(mime) !== dto.kind) {
       throw ApiException.validation(
@@ -97,7 +97,12 @@ export class MediaService {
     }
 
     const id = randomUUID();
-    const bucket: StorageBucket = dto.visibility === 'PUBLIC' ? 'PUBLIC' : 'PRIVATE';
+    // Verification evidence (P2-M6) goes to the separate evidence bucket; only the verification module asks for this.
+    const bucket: StorageBucket = opts.evidence
+      ? 'EVIDENCE'
+      : dto.visibility === 'PUBLIC'
+        ? 'PUBLIC'
+        : 'PRIVATE';
     const objectKey = `media/${id}/original.${EXTENSION[mime]}`;
     await this.prisma.mediaAsset.create({
       data: {
@@ -160,7 +165,7 @@ export class MediaService {
   async imageUrl(id: string | null, width: 200 | 600 | 1200 = 600): Promise<string | null> {
     if (!id) return null;
     const asset = await this.prisma.mediaAsset.findFirst({
-      where: { id, status: 'READY', kind: 'IMAGE', deletedAt: null },
+      where: { id, status: 'READY', kind: 'IMAGE', deletedAt: null, bucket: { not: 'EVIDENCE' } },
     });
     if (!asset) return null;
     const ttl =
@@ -356,7 +361,8 @@ export class MediaService {
   }
 
   private async view(asset: MediaAsset): Promise<MediaView> {
-    const ready = asset.status === 'READY';
+    // Evidence is never given a download address through the media API, not even to its owner (DEC-151).
+    const ready = asset.status === 'READY' && asset.bucket !== 'EVIDENCE';
     const bucket = bucketKind(asset.bucket);
     const ttl =
       asset.bucket === 'PUBLIC' ? PUBLIC_DOWNLOAD_TTL_SECONDS : PRIVATE_DOWNLOAD_TTL_SECONDS;

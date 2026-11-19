@@ -10,15 +10,15 @@ part 'get_api_v1_admin_taxonomy_kind_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1AdminTaxonomyKindResponse {
-  const GetApiV1AdminTaxonomyKindResponse({required this.data, this.meta});
-
-  factory GetApiV1AdminTaxonomyKindResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1AdminTaxonomyKindResponseFromJson(json);
-
+  const GetApiV1AdminTaxonomyKindResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1AdminTaxonomyKindResponse.fromJson(Map<String, Object?> json) => _$GetApiV1AdminTaxonomyKindResponseFromJson(json);
+  
   final List<AdminTaxonomyItemDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1AdminTaxonomyKindResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1AdminTaxonomyKindResponseToJson(this);
 }

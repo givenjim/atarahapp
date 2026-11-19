@@ -14,16 +14,11 @@ class DeleteApiV1MeProjectsIdCollaboratorsCollaboratorIdResponse {
     required this.data,
     this.meta,
   });
-
-  factory DeleteApiV1MeProjectsIdCollaboratorsCollaboratorIdResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$DeleteApiV1MeProjectsIdCollaboratorsCollaboratorIdResponseFromJson(
-    json,
-  );
-
+  
+  factory DeleteApiV1MeProjectsIdCollaboratorsCollaboratorIdResponse.fromJson(Map<String, Object?> json) => _$DeleteApiV1MeProjectsIdCollaboratorsCollaboratorIdResponseFromJson(json);
+  
   final ProjectDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$DeleteApiV1MeProjectsIdCollaboratorsCollaboratorIdResponseToJson(this);
+  Map<String, Object?> toJson() => _$DeleteApiV1MeProjectsIdCollaboratorsCollaboratorIdResponseToJson(this);
 }

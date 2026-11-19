@@ -10,14 +10,15 @@ part 'patch_api_v1_admin_groups_id_response.g.dart';
 
 @JsonSerializable()
 class PatchApiV1AdminGroupsIdResponse {
-  const PatchApiV1AdminGroupsIdResponse({required this.data, this.meta});
-
-  factory PatchApiV1AdminGroupsIdResponse.fromJson(Map<String, Object?> json) =>
-      _$PatchApiV1AdminGroupsIdResponseFromJson(json);
-
+  const PatchApiV1AdminGroupsIdResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PatchApiV1AdminGroupsIdResponse.fromJson(Map<String, Object?> json) => _$PatchApiV1AdminGroupsIdResponseFromJson(json);
+  
   final AdminGroupDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PatchApiV1AdminGroupsIdResponseToJson(this);
+  Map<String, Object?> toJson() => _$PatchApiV1AdminGroupsIdResponseToJson(this);
 }

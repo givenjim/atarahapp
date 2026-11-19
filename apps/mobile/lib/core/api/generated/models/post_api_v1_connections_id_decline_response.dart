@@ -10,15 +10,15 @@ part 'post_api_v1_connections_id_decline_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1ConnectionsIdDeclineResponse {
-  const PostApiV1ConnectionsIdDeclineResponse({required this.data, this.meta});
-
-  factory PostApiV1ConnectionsIdDeclineResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1ConnectionsIdDeclineResponseFromJson(json);
-
+  const PostApiV1ConnectionsIdDeclineResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1ConnectionsIdDeclineResponse.fromJson(Map<String, Object?> json) => _$PostApiV1ConnectionsIdDeclineResponseFromJson(json);
+  
   final ConnectionStateDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1ConnectionsIdDeclineResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1ConnectionsIdDeclineResponseToJson(this);
 }

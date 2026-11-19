@@ -8,11 +8,12 @@ part 'publish_article_dto.g.dart';
 
 @JsonSerializable()
 class PublishArticleDto {
-  const PublishArticleDto({this.publishAt});
-
-  factory PublishArticleDto.fromJson(Map<String, Object?> json) =>
-      _$PublishArticleDtoFromJson(json);
-
+  const PublishArticleDto({
+    this.publishAt,
+  });
+  
+  factory PublishArticleDto.fromJson(Map<String, Object?> json) => _$PublishArticleDtoFromJson(json);
+  
   /// Go live at this time. Leave out to publish now.
   final DateTime? publishAt;
 

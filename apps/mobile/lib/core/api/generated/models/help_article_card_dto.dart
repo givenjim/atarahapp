@@ -14,10 +14,9 @@ class HelpArticleCardDto {
     required this.title,
     required this.summary,
   });
-
-  factory HelpArticleCardDto.fromJson(Map<String, Object?> json) =>
-      _$HelpArticleCardDtoFromJson(json);
-
+  
+  factory HelpArticleCardDto.fromJson(Map<String, Object?> json) => _$HelpArticleCardDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String title;

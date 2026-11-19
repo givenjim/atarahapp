@@ -10,11 +10,13 @@ part 'set_trust_dto.g.dart';
 
 @JsonSerializable()
 class SetTrustDto {
-  const SetTrustDto({required this.trust, this.reason});
-
-  factory SetTrustDto.fromJson(Map<String, Object?> json) =>
-      _$SetTrustDtoFromJson(json);
-
+  const SetTrustDto({
+    required this.trust,
+    this.reason,
+  });
+  
+  factory SetTrustDto.fromJson(Map<String, Object?> json) => _$SetTrustDtoFromJson(json);
+  
   final OpportunityTrust trust;
 
   /// Why, for the audit trail.

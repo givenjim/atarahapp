@@ -15,10 +15,9 @@ class FailedJobDto {
     required this.attemptsMade,
     this.failedAt,
   });
-
-  factory FailedJobDto.fromJson(Map<String, Object?> json) =>
-      _$FailedJobDtoFromJson(json);
-
+  
+  factory FailedJobDto.fromJson(Map<String, Object?> json) => _$FailedJobDtoFromJson(json);
+  
   final String id;
   final String name;
   final String failedReason;

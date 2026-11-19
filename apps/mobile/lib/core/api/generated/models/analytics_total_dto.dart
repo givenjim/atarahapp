@@ -13,10 +13,9 @@ class AnalyticsTotalDto {
     required this.events,
     required this.activeMemberDays,
   });
-
-  factory AnalyticsTotalDto.fromJson(Map<String, Object?> json) =>
-      _$AnalyticsTotalDtoFromJson(json);
-
+  
+  factory AnalyticsTotalDto.fromJson(Map<String, Object?> json) => _$AnalyticsTotalDtoFromJson(json);
+  
   final String name;
   final num events;
 

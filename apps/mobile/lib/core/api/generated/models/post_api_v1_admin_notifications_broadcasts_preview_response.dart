@@ -14,14 +14,11 @@ class PostApiV1AdminNotificationsBroadcastsPreviewResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminNotificationsBroadcastsPreviewResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminNotificationsBroadcastsPreviewResponseFromJson(json);
-
+  
+  factory PostApiV1AdminNotificationsBroadcastsPreviewResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminNotificationsBroadcastsPreviewResponseFromJson(json);
+  
   final AudiencePreviewDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminNotificationsBroadcastsPreviewResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminNotificationsBroadcastsPreviewResponseToJson(this);
 }

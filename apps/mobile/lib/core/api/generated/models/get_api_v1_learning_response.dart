@@ -10,11 +10,13 @@ part 'get_api_v1_learning_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1LearningResponse {
-  const GetApiV1LearningResponse({required this.data, this.meta});
-
-  factory GetApiV1LearningResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1LearningResponseFromJson(json);
-
+  const GetApiV1LearningResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1LearningResponse.fromJson(Map<String, Object?> json) => _$GetApiV1LearningResponseFromJson(json);
+  
   final LearningHubDto data;
   final dynamic meta;
 

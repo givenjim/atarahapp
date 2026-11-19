@@ -8,6 +8,7 @@ import { z } from 'zod';
  */
 const id = z.uuid();
 const oppType = z.enum(Object.values(OpportunityType) as [string, ...string[]]);
+const cvFormat = z.enum(['CV', 'BIO', 'EPK', 'DECK']);
 
 export const EVENT_SCHEMAS = {
   registration: z.object({ method: z.enum(['email', 'phone', 'unknown']) }).strict(),
@@ -43,6 +44,11 @@ export const EVENT_SCHEMAS = {
       queryLength: z.enum(['short', 'medium', 'long']),
     })
     .strict(),
+  // Creative CV / EPK (P2-M7): only the format, never the document, the link or who looked.
+  cv_generated: z.object({ format: cvFormat }).strict(),
+  cv_downloaded: z.object({ format: cvFormat }).strict(),
+  cv_shared: z.object({ format: cvFormat }).strict(),
+  cv_viewed: z.object({ format: cvFormat }).strict(),
 } as const;
 
 export type AnalyticsEventName = keyof typeof EVENT_SCHEMAS;

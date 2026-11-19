@@ -86,6 +86,7 @@ model CreativeProfile {
   achievements               Achievement[]
   profileServices            ProfileService[]
   verification               CreativeVerification?
+  documents                  CreativeDocument[]
 
   @@index([primaryDisciplineId])
   @@index([countyId])

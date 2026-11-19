@@ -14,14 +14,11 @@ class GetApiV1NotificationsUnreadCountResponse {
     required this.data,
     this.meta,
   });
-
-  factory GetApiV1NotificationsUnreadCountResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1NotificationsUnreadCountResponseFromJson(json);
-
+  
+  factory GetApiV1NotificationsUnreadCountResponse.fromJson(Map<String, Object?> json) => _$GetApiV1NotificationsUnreadCountResponseFromJson(json);
+  
   final UnreadCountDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1NotificationsUnreadCountResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1NotificationsUnreadCountResponseToJson(this);
 }

@@ -17,10 +17,9 @@ class ProgressOverrideDto {
     required this.reason,
     this.lessonId,
   });
-
-  factory ProgressOverrideDto.fromJson(Map<String, Object?> json) =>
-      _$ProgressOverrideDtoFromJson(json);
-
+  
+  factory ProgressOverrideDto.fromJson(Map<String, Object?> json) => _$ProgressOverrideDtoFromJson(json);
+  
   final String userId;
 
   /// The course (learning content id).

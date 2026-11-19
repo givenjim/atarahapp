@@ -13,10 +13,9 @@ class ImportIssueDto {
     required this.message,
     this.column,
   });
-
-  factory ImportIssueDto.fromJson(Map<String, Object?> json) =>
-      _$ImportIssueDtoFromJson(json);
-
+  
+  factory ImportIssueDto.fromJson(Map<String, Object?> json) => _$ImportIssueDtoFromJson(json);
+  
   final num line;
   final String? column;
   final String message;

@@ -17,10 +17,9 @@ class UserReportDto {
     required this.reportCount,
     required this.createdAt,
   });
-
-  factory UserReportDto.fromJson(Map<String, Object?> json) =>
-      _$UserReportDtoFromJson(json);
-
+  
+  factory UserReportDto.fromJson(Map<String, Object?> json) => _$UserReportDtoFromJson(json);
+  
   final String caseId;
   final String targetType;
   final String topReason;

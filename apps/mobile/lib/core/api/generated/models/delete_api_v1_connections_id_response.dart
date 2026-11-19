@@ -10,15 +10,15 @@ part 'delete_api_v1_connections_id_response.g.dart';
 
 @JsonSerializable()
 class DeleteApiV1ConnectionsIdResponse {
-  const DeleteApiV1ConnectionsIdResponse({required this.data, this.meta});
-
-  factory DeleteApiV1ConnectionsIdResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$DeleteApiV1ConnectionsIdResponseFromJson(json);
-
+  const DeleteApiV1ConnectionsIdResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory DeleteApiV1ConnectionsIdResponse.fromJson(Map<String, Object?> json) => _$DeleteApiV1ConnectionsIdResponseFromJson(json);
+  
   final ConnectionStateDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$DeleteApiV1ConnectionsIdResponseToJson(this);
+  Map<String, Object?> toJson() => _$DeleteApiV1ConnectionsIdResponseToJson(this);
 }

@@ -16,10 +16,9 @@ class GrowthDto {
     required this.strength,
     required this.bars,
   });
-
-  factory GrowthDto.fromJson(Map<String, Object?> json) =>
-      _$GrowthDtoFromJson(json);
-
+  
+  factory GrowthDto.fromJson(Map<String, Object?> json) => _$GrowthDtoFromJson(json);
+  
   final num score;
   final GrowthDtoStrength strength;
   final List<GrowthBarDto> bars;

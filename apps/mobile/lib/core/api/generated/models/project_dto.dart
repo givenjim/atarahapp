@@ -41,10 +41,9 @@ class ProjectDto {
     this.hiddenReason,
     this.publishedAt,
   });
-
-  factory ProjectDto.fromJson(Map<String, Object?> json) =>
-      _$ProjectDtoFromJson(json);
-
+  
+  factory ProjectDto.fromJson(Map<String, Object?> json) => _$ProjectDtoFromJson(json);
+  
   final String id;
   final String title;
   final String? role;

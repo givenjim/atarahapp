@@ -17,10 +17,9 @@ class UpdateServiceDto {
     this.priceMin,
     this.priceMax,
   });
-
-  factory UpdateServiceDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateServiceDtoFromJson(json);
-
+  
+  factory UpdateServiceDto.fromJson(Map<String, Object?> json) => _$UpdateServiceDtoFromJson(json);
+  
   final String? title;
 
   /// Empty clears it.

@@ -19,10 +19,9 @@ class CreatePostDto {
     this.mediaIds,
     this.linkUrl,
   });
-
-  factory CreatePostDto.fromJson(Map<String, Object?> json) =>
-      _$CreatePostDtoFromJson(json);
-
+  
+  factory CreatePostDto.fromJson(Map<String, Object?> json) => _$CreatePostDtoFromJson(json);
+  
   /// ANNOUNCEMENT needs the community.announce permission.
   final PostType type;
 

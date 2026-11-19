@@ -8,11 +8,13 @@ part 'device_registered_dto.g.dart';
 
 @JsonSerializable()
 class DeviceRegisteredDto {
-  const DeviceRegisteredDto({required this.newDevice, required this.verified});
-
-  factory DeviceRegisteredDto.fromJson(Map<String, Object?> json) =>
-      _$DeviceRegisteredDtoFromJson(json);
-
+  const DeviceRegisteredDto({
+    required this.newDevice,
+    required this.verified,
+  });
+  
+  factory DeviceRegisteredDto.fromJson(Map<String, Object?> json) => _$DeviceRegisteredDtoFromJson(json);
+  
   /// True the first time this device signs in to the account.
   final bool newDevice;
 

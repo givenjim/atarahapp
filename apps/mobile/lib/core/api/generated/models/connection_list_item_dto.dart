@@ -17,10 +17,9 @@ class ConnectionListItemDto {
     required this.person,
     required this.since,
   });
-
-  factory ConnectionListItemDto.fromJson(Map<String, Object?> json) =>
-      _$ConnectionListItemDtoFromJson(json);
-
+  
+  factory ConnectionListItemDto.fromJson(Map<String, Object?> json) => _$ConnectionListItemDtoFromJson(json);
+  
   final String id;
   final ConnectionListItemDtoState state;
   final ConnectionPersonDto person;

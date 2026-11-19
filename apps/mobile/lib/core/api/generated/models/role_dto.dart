@@ -17,10 +17,9 @@ class RoleDto {
     required this.isStaff,
     required this.permissions,
   });
-
-  factory RoleDto.fromJson(Map<String, Object?> json) =>
-      _$RoleDtoFromJson(json);
-
+  
+  factory RoleDto.fromJson(Map<String, Object?> json) => _$RoleDtoFromJson(json);
+  
   final RoleKey key;
   final String name;
   final String description;

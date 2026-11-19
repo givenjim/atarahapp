@@ -8,11 +8,12 @@ part 'reject_suggestion_dto.g.dart';
 
 @JsonSerializable()
 class RejectSuggestionDto {
-  const RejectSuggestionDto({this.note});
-
-  factory RejectSuggestionDto.fromJson(Map<String, Object?> json) =>
-      _$RejectSuggestionDtoFromJson(json);
-
+  const RejectSuggestionDto({
+    this.note,
+  });
+  
+  factory RejectSuggestionDto.fromJson(Map<String, Object?> json) => _$RejectSuggestionDtoFromJson(json);
+  
   final String? note;
 
   Map<String, Object?> toJson() => _$RejectSuggestionDtoToJson(this);

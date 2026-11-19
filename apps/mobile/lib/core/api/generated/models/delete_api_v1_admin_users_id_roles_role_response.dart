@@ -14,14 +14,11 @@ class DeleteApiV1AdminUsersIdRolesRoleResponse {
     required this.data,
     this.meta,
   });
-
-  factory DeleteApiV1AdminUsersIdRolesRoleResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$DeleteApiV1AdminUsersIdRolesRoleResponseFromJson(json);
-
+  
+  factory DeleteApiV1AdminUsersIdRolesRoleResponse.fromJson(Map<String, Object?> json) => _$DeleteApiV1AdminUsersIdRolesRoleResponseFromJson(json);
+  
   final AdminUserDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$DeleteApiV1AdminUsersIdRolesRoleResponseToJson(this);
+  Map<String, Object?> toJson() => _$DeleteApiV1AdminUsersIdRolesRoleResponseToJson(this);
 }

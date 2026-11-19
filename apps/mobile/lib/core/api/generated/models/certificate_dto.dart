@@ -13,10 +13,9 @@ class CertificateDto {
     required this.issuedAt,
     this.achievementId,
   });
-
-  factory CertificateDto.fromJson(Map<String, Object?> json) =>
-      _$CertificateDtoFromJson(json);
-
+  
+  factory CertificateDto.fromJson(Map<String, Object?> json) => _$CertificateDtoFromJson(json);
+  
   final String certificateNumber;
   final DateTime issuedAt;
   final String? achievementId;

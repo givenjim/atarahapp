@@ -14,14 +14,11 @@ class PostApiV1AdminGroupsIdModeratorsResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminGroupsIdModeratorsResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminGroupsIdModeratorsResponseFromJson(json);
-
+  
+  factory PostApiV1AdminGroupsIdModeratorsResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminGroupsIdModeratorsResponseFromJson(json);
+  
   final AdminGroupDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminGroupsIdModeratorsResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminGroupsIdModeratorsResponseToJson(this);
 }

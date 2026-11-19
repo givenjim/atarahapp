@@ -11,11 +11,13 @@ part 'update_privacy_dto.g.dart';
 
 @JsonSerializable()
 class UpdatePrivacyDto {
-  const UpdatePrivacyDto({required this.field, required this.visibility});
-
-  factory UpdatePrivacyDto.fromJson(Map<String, Object?> json) =>
-      _$UpdatePrivacyDtoFromJson(json);
-
+  const UpdatePrivacyDto({
+    required this.field,
+    required this.visibility,
+  });
+  
+  factory UpdatePrivacyDto.fromJson(Map<String, Object?> json) => _$UpdatePrivacyDtoFromJson(json);
+  
   final PrivacyField field;
   final Visibility visibility;
 

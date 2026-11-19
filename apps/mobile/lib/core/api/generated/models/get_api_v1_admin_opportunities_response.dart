@@ -10,15 +10,15 @@ part 'get_api_v1_admin_opportunities_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1AdminOpportunitiesResponse {
-  const GetApiV1AdminOpportunitiesResponse({required this.data, this.meta});
-
-  factory GetApiV1AdminOpportunitiesResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1AdminOpportunitiesResponseFromJson(json);
-
+  const GetApiV1AdminOpportunitiesResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1AdminOpportunitiesResponse.fromJson(Map<String, Object?> json) => _$GetApiV1AdminOpportunitiesResponseFromJson(json);
+  
   final List<AdminOpportunityDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1AdminOpportunitiesResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1AdminOpportunitiesResponseToJson(this);
 }

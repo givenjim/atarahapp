@@ -8,11 +8,12 @@ part 'change_email_dto.g.dart';
 
 @JsonSerializable()
 class ChangeEmailDto {
-  const ChangeEmailDto({required this.email});
-
-  factory ChangeEmailDto.fromJson(Map<String, Object?> json) =>
-      _$ChangeEmailDtoFromJson(json);
-
+  const ChangeEmailDto({
+    required this.email,
+  });
+  
+  factory ChangeEmailDto.fromJson(Map<String, Object?> json) => _$ChangeEmailDtoFromJson(json);
+  
   final String email;
 
   Map<String, Object?> toJson() => _$ChangeEmailDtoToJson(this);

@@ -10,11 +10,13 @@ part 'get_api_v1_notifications_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1NotificationsResponse {
-  const GetApiV1NotificationsResponse({required this.data, this.meta});
-
-  factory GetApiV1NotificationsResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1NotificationsResponseFromJson(json);
-
+  const GetApiV1NotificationsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1NotificationsResponse.fromJson(Map<String, Object?> json) => _$GetApiV1NotificationsResponseFromJson(json);
+  
   final List<NotificationItemDto> data;
   final dynamic meta;
 

@@ -10,11 +10,13 @@ part 'get_api_v1_me_security_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1MeSecurityResponse {
-  const GetApiV1MeSecurityResponse({required this.data, this.meta});
-
-  factory GetApiV1MeSecurityResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1MeSecurityResponseFromJson(json);
-
+  const GetApiV1MeSecurityResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1MeSecurityResponse.fromJson(Map<String, Object?> json) => _$GetApiV1MeSecurityResponseFromJson(json);
+  
   final SecurityDto data;
   final dynamic meta;
 

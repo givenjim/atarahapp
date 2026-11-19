@@ -18,10 +18,9 @@ class UpdateAchievementDto {
     this.description,
     this.url,
   });
-
-  factory UpdateAchievementDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateAchievementDtoFromJson(json);
-
+  
+  factory UpdateAchievementDto.fromJson(Map<String, Object?> json) => _$UpdateAchievementDtoFromJson(json);
+  
   final UpdateAchievementDtoType? type;
   final String? title;
 

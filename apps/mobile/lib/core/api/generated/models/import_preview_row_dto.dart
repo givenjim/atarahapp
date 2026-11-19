@@ -18,10 +18,9 @@ class ImportPreviewRowDto {
     required this.providerExists,
     this.deadlineAt,
   });
-
-  factory ImportPreviewRowDto.fromJson(Map<String, Object?> json) =>
-      _$ImportPreviewRowDtoFromJson(json);
-
+  
+  factory ImportPreviewRowDto.fromJson(Map<String, Object?> json) => _$ImportPreviewRowDtoFromJson(json);
+  
   final num line;
   final String title;
   final String provider;

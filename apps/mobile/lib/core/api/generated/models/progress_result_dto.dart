@@ -18,10 +18,9 @@ class ProgressResultDto {
     this.nextLessonId,
     this.certificate,
   });
-
-  factory ProgressResultDto.fromJson(Map<String, Object?> json) =>
-      _$ProgressResultDtoFromJson(json);
-
+  
+  factory ProgressResultDto.fromJson(Map<String, Object?> json) => _$ProgressResultDtoFromJson(json);
+  
   final LessonProgressDto progress;
   final bool courseCompleted;
   final num percent;

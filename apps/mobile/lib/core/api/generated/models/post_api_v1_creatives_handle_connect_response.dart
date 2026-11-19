@@ -14,14 +14,11 @@ class PostApiV1CreativesHandleConnectResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1CreativesHandleConnectResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1CreativesHandleConnectResponseFromJson(json);
-
+  
+  factory PostApiV1CreativesHandleConnectResponse.fromJson(Map<String, Object?> json) => _$PostApiV1CreativesHandleConnectResponseFromJson(json);
+  
   final ConnectionStateDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1CreativesHandleConnectResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1CreativesHandleConnectResponseToJson(this);
 }

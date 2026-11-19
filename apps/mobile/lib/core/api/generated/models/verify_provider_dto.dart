@@ -10,11 +10,13 @@ part 'verify_provider_dto.g.dart';
 
 @JsonSerializable()
 class VerifyProviderDto {
-  const VerifyProviderDto({required this.status, this.reason});
-
-  factory VerifyProviderDto.fromJson(Map<String, Object?> json) =>
-      _$VerifyProviderDtoFromJson(json);
-
+  const VerifyProviderDto({
+    required this.status,
+    this.reason,
+  });
+  
+  factory VerifyProviderDto.fromJson(Map<String, Object?> json) => _$VerifyProviderDtoFromJson(json);
+  
   final VerifyProviderDtoStatus status;
   final String? reason;
 

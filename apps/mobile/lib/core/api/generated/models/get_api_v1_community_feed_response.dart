@@ -10,11 +10,13 @@ part 'get_api_v1_community_feed_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1CommunityFeedResponse {
-  const GetApiV1CommunityFeedResponse({required this.data, this.meta});
-
-  factory GetApiV1CommunityFeedResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1CommunityFeedResponseFromJson(json);
-
+  const GetApiV1CommunityFeedResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1CommunityFeedResponse.fromJson(Map<String, Object?> json) => _$GetApiV1CommunityFeedResponseFromJson(json);
+  
   final List<PostViewDto> data;
   final dynamic meta;
 

@@ -24,10 +24,9 @@ class AuditLogEntryDto {
     required this.requestId,
     required this.createdAt,
   });
-
-  factory AuditLogEntryDto.fromJson(Map<String, Object?> json) =>
-      _$AuditLogEntryDtoFromJson(json);
-
+  
+  factory AuditLogEntryDto.fromJson(Map<String, Object?> json) => _$AuditLogEntryDtoFromJson(json);
+  
   final String id;
   final AuditLogEntryDtoActorType actorType;
   final String? actorId;

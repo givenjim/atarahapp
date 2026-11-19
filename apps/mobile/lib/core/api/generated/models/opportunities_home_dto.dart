@@ -18,10 +18,9 @@ class OpportunitiesHomeDto {
     required this.closingSoon,
     required this.recent,
   });
-
-  factory OpportunitiesHomeDto.fromJson(Map<String, Object?> json) =>
-      _$OpportunitiesHomeDtoFromJson(json);
-
+  
+  factory OpportunitiesHomeDto.fromJson(Map<String, Object?> json) => _$OpportunitiesHomeDtoFromJson(json);
+  
   /// Saved list size, for the badge on the saved button.
   final num savedCount;
   final List<OpportunityCategoryCountDto> categories;

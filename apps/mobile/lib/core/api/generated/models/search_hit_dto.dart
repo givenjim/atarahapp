@@ -19,10 +19,9 @@ class SearchHitDto {
     this.subtitle,
     this.imageUrl,
   });
-
-  factory SearchHitDto.fromJson(Map<String, Object?> json) =>
-      _$SearchHitDtoFromJson(json);
-
+  
+  factory SearchHitDto.fromJson(Map<String, Object?> json) => _$SearchHitDtoFromJson(json);
+  
   final SearchHitDtoType type;
   final String id;
   final String title;

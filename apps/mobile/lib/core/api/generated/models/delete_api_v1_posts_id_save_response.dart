@@ -10,11 +10,13 @@ part 'delete_api_v1_posts_id_save_response.g.dart';
 
 @JsonSerializable()
 class DeleteApiV1PostsIdSaveResponse {
-  const DeleteApiV1PostsIdSaveResponse({required this.data, this.meta});
-
-  factory DeleteApiV1PostsIdSaveResponse.fromJson(Map<String, Object?> json) =>
-      _$DeleteApiV1PostsIdSaveResponseFromJson(json);
-
+  const DeleteApiV1PostsIdSaveResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory DeleteApiV1PostsIdSaveResponse.fromJson(Map<String, Object?> json) => _$DeleteApiV1PostsIdSaveResponseFromJson(json);
+  
   final SavedStateDto data;
   final dynamic meta;
 

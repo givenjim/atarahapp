@@ -17,10 +17,9 @@ class ServiceInputDto {
     this.priceMin,
     this.priceMax,
   });
-
-  factory ServiceInputDto.fromJson(Map<String, Object?> json) =>
-      _$ServiceInputDtoFromJson(json);
-
+  
+  factory ServiceInputDto.fromJson(Map<String, Object?> json) => _$ServiceInputDtoFromJson(json);
+  
   final String title;
   final String? description;
   final ServiceInputDtoPriceType priceType;

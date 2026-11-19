@@ -29,10 +29,9 @@ class PassportDto {
     required this.sections,
     required this.shareUrl,
   });
-
-  factory PassportDto.fromJson(Map<String, Object?> json) =>
-      _$PassportDtoFromJson(json);
-
+  
+  factory PassportDto.fromJson(Map<String, Object?> json) => _$PassportDtoFromJson(json);
+  
   final String passportNumber;
   final DateTime issuedAt;
   final String displayName;

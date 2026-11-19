@@ -14,14 +14,11 @@ class PatchApiV1AdminLearningCategoriesIdResponse {
     required this.data,
     this.meta,
   });
-
-  factory PatchApiV1AdminLearningCategoriesIdResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PatchApiV1AdminLearningCategoriesIdResponseFromJson(json);
-
+  
+  factory PatchApiV1AdminLearningCategoriesIdResponse.fromJson(Map<String, Object?> json) => _$PatchApiV1AdminLearningCategoriesIdResponseFromJson(json);
+  
   final AdminCategoryDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PatchApiV1AdminLearningCategoriesIdResponseToJson(this);
+  Map<String, Object?> toJson() => _$PatchApiV1AdminLearningCategoriesIdResponseToJson(this);
 }

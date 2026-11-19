@@ -19,10 +19,9 @@ class LegalFullDto {
     this.effectiveAt,
     this.draftLabel,
   });
-
-  factory LegalFullDto.fromJson(Map<String, Object?> json) =>
-      _$LegalFullDtoFromJson(json);
-
+  
+  factory LegalFullDto.fromJson(Map<String, Object?> json) => _$LegalFullDtoFromJson(json);
+  
   final LegalDocumentType type;
   final String title;
   final String version;

@@ -10,15 +10,15 @@ part 'post_api_v1_me_projects_id_publish_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1MeProjectsIdPublishResponse {
-  const PostApiV1MeProjectsIdPublishResponse({required this.data, this.meta});
-
-  factory PostApiV1MeProjectsIdPublishResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1MeProjectsIdPublishResponseFromJson(json);
-
+  const PostApiV1MeProjectsIdPublishResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1MeProjectsIdPublishResponse.fromJson(Map<String, Object?> json) => _$PostApiV1MeProjectsIdPublishResponseFromJson(json);
+  
   final ProjectDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1MeProjectsIdPublishResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1MeProjectsIdPublishResponseToJson(this);
 }

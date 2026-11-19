@@ -37,10 +37,9 @@ class AdminCaseDetailDto {
     required this.history,
     required this.allowedActions,
   });
-
-  factory AdminCaseDetailDto.fromJson(Map<String, Object?> json) =>
-      _$AdminCaseDetailDtoFromJson(json);
-
+  
+  factory AdminCaseDetailDto.fromJson(Map<String, Object?> json) => _$AdminCaseDetailDtoFromJson(json);
+  
   final String id;
   final ReportTargetType targetType;
   final String targetId;

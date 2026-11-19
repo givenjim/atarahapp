@@ -10,11 +10,13 @@ part 'get_api_v1_creatives_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1CreativesResponse {
-  const GetApiV1CreativesResponse({required this.data, this.meta});
-
-  factory GetApiV1CreativesResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1CreativesResponseFromJson(json);
-
+  const GetApiV1CreativesResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1CreativesResponse.fromJson(Map<String, Object?> json) => _$GetApiV1CreativesResponseFromJson(json);
+  
   final List<CreativeCardDto> data;
   final dynamic meta;
 

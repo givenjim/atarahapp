@@ -18,10 +18,9 @@ class SessionViewDto {
     required this.lastActiveAt,
     required this.current,
   });
-
-  factory SessionViewDto.fromJson(Map<String, Object?> json) =>
-      _$SessionViewDtoFromJson(json);
-
+  
+  factory SessionViewDto.fromJson(Map<String, Object?> json) => _$SessionViewDtoFromJson(json);
+  
   /// Supabase Auth session id; stable across token refreshes.
   final String id;
   final SessionViewDtoClient client;

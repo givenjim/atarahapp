@@ -14,14 +14,11 @@ class GetApiV1AdminSpecialisationSuggestionsResponse {
     required this.data,
     this.meta,
   });
-
-  factory GetApiV1AdminSpecialisationSuggestionsResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1AdminSpecialisationSuggestionsResponseFromJson(json);
-
+  
+  factory GetApiV1AdminSpecialisationSuggestionsResponse.fromJson(Map<String, Object?> json) => _$GetApiV1AdminSpecialisationSuggestionsResponseFromJson(json);
+  
   final List<AdminSuggestionDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1AdminSpecialisationSuggestionsResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1AdminSpecialisationSuggestionsResponseToJson(this);
 }

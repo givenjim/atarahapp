@@ -8,11 +8,13 @@ part 'rule_fix_dto.g.dart';
 
 @JsonSerializable()
 class RuleFixDto {
-  const RuleFixDto({required this.label, required this.path});
-
-  factory RuleFixDto.fromJson(Map<String, Object?> json) =>
-      _$RuleFixDtoFromJson(json);
-
+  const RuleFixDto({
+    required this.label,
+    required this.path,
+  });
+  
+  factory RuleFixDto.fromJson(Map<String, Object?> json) => _$RuleFixDtoFromJson(json);
+  
   final String label;
 
   /// An in-app path.

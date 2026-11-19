@@ -32,10 +32,9 @@ class AdminArticleDto {
     this.heroMediaId,
     this.heroUrl,
   });
-
-  factory AdminArticleDto.fromJson(Map<String, Object?> json) =>
-      _$AdminArticleDtoFromJson(json);
-
+  
+  factory AdminArticleDto.fromJson(Map<String, Object?> json) => _$AdminArticleDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String title;

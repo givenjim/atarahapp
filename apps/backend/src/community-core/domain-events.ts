@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import {
   type ModerationAction,
   type OpportunityOutcome,
+  type PaymentPurpose,
   type PostAudience,
   type ReportTargetType,
 } from '@prisma/client';
@@ -46,6 +47,41 @@ export type DomainEvent =
       opportunityId: string;
       userId: string;
       outcome: OpportunityOutcome;
+    }
+  // Payments (P2-M1). Consumed by membership (P2-M2) and mentorship (P2-M5). Raised only after the change is committed.
+  | {
+      type: 'PaymentSucceeded';
+      paymentId: string;
+      purpose: PaymentPurpose;
+      referenceType: string | null;
+      referenceId: string | null;
+      payerId: string;
+      amountMinor: number;
+      currency: string;
+    }
+  | {
+      type: 'PaymentFailed';
+      paymentId: string;
+      purpose: PaymentPurpose;
+      referenceType: string | null;
+      referenceId: string | null;
+      payerId: string;
+      /** FAILED (declined, timed out, mismatch) or CANCELLED (the member dismissed the prompt). */
+      status: 'FAILED' | 'CANCELLED';
+      failureCode: string | null;
+      failureReason: string | null;
+    }
+  | {
+      type: 'PaymentRefunded';
+      paymentId: string;
+      refundId: string;
+      purpose: PaymentPurpose;
+      referenceType: string | null;
+      referenceId: string | null;
+      payerId: string;
+      amountMinor: number;
+      /** True once the whole payment has been refunded. */
+      fullyRefunded: boolean;
     }
   | { type: 'ConnectionRequested'; connectionId: string; requesterId: string; addresseeId: string }
   | { type: 'ConnectionAccepted'; connectionId: string; requesterId: string; addresseeId: string }

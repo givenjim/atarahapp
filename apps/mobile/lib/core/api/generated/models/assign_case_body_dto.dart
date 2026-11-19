@@ -8,11 +8,12 @@ part 'assign_case_body_dto.g.dart';
 
 @JsonSerializable()
 class AssignCaseBodyDto {
-  const AssignCaseBodyDto({this.assigneeId});
-
-  factory AssignCaseBodyDto.fromJson(Map<String, Object?> json) =>
-      _$AssignCaseBodyDtoFromJson(json);
-
+  const AssignCaseBodyDto({
+    this.assigneeId,
+  });
+  
+  factory AssignCaseBodyDto.fromJson(Map<String, Object?> json) => _$AssignCaseBodyDtoFromJson(json);
+  
   /// A staff member who can resolve reports; null or omitted unassigns.
   final String? assigneeId;
 

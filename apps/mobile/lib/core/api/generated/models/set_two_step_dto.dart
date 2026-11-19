@@ -8,11 +8,12 @@ part 'set_two_step_dto.g.dart';
 
 @JsonSerializable()
 class SetTwoStepDto {
-  const SetTwoStepDto({required this.enabled});
-
-  factory SetTwoStepDto.fromJson(Map<String, Object?> json) =>
-      _$SetTwoStepDtoFromJson(json);
-
+  const SetTwoStepDto({
+    required this.enabled,
+  });
+  
+  factory SetTwoStepDto.fromJson(Map<String, Object?> json) => _$SetTwoStepDtoFromJson(json);
+  
   final bool enabled;
 
   Map<String, Object?> toJson() => _$SetTwoStepDtoToJson(this);

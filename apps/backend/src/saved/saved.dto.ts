@@ -21,6 +21,7 @@ export const BUILT_SAVED_KINDS: readonly SavedKind[] = [
   'LEARNING',
   'CREATIVE',
   'OPPORTUNITY',
+  'LISTING',
 ];
 export const MAX_COLLECTION = 40;
 

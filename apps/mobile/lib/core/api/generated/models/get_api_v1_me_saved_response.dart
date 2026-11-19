@@ -10,11 +10,13 @@ part 'get_api_v1_me_saved_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1MeSavedResponse {
-  const GetApiV1MeSavedResponse({required this.data, this.meta});
-
-  factory GetApiV1MeSavedResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1MeSavedResponseFromJson(json);
-
+  const GetApiV1MeSavedResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1MeSavedResponse.fromJson(Map<String, Object?> json) => _$GetApiV1MeSavedResponseFromJson(json);
+  
   final List<SavedItemDto> data;
   final dynamic meta;
 

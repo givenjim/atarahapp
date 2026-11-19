@@ -1,0 +1,67 @@
+// Creative CV / EPK and sharing (P2-M7). One document per member and format holds only the member's choices (which
+// sections and projects, and which non-public sections they explicitly allow); the content is always read live from the
+// profile and filtered by visibility when it is rendered. Every table is deny-all for the Supabase client roles.
+
+enum DocumentRenderStatus {
+  QUEUED
+  PROCESSING
+  READY
+  FAILED
+}
+
+model CreativeDocument {
+  id         String                 @id @default(uuid()) @db.Uuid
+  profileId  String                 @db.Uuid
+  format     CreativeDocumentFormat
+  /// Profile sections included in the output.
+  sections   ProfileSection[]
+  /// Projects included (empty means none are listed). Ids of the member's own projects.
+  projectIds String[]               @db.Uuid
+  /// Sections whose audience is not PUBLIC that the member has explicitly allowed into the output.
+  restricted ProfileSection[]
+  createdAt  DateTime               @default(now())
+  updatedAt  DateTime               @updatedAt
+
+  profile CreativeProfile          @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  renders CreativeDocumentRender[]
+  shares  DocumentShareLink[]
+
+  @@unique([profileId, format])
+  @@map("creative_documents")
+}
+
+/// One PDF build. The file lives in the private bucket and is only reachable through a short-lived signed link.
+model CreativeDocumentRender {
+  id          String               @id @default(uuid()) @db.Uuid
+  documentId  String               @db.Uuid
+  status      DocumentRenderStatus @default(QUEUED)
+  /// Storage key in the private bucket, set when READY.
+  objectKey   String?
+  sizeBytes   Int?
+  error       String?
+  requestedAt DateTime             @default(now())
+  readyAt     DateTime?
+
+  document CreativeDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@index([documentId, requestedAt(sort: Desc)])
+  @@index([status, requestedAt])
+  @@map("creative_document_renders")
+}
+
+/// A public, revocable link. Only the SHA-256 of the token is stored: the link is shown once, when it is created.
+model DocumentShareLink {
+  id         String    @id @default(uuid()) @db.Uuid
+  documentId String    @db.Uuid
+  tokenHash  String    @unique
+  /// Last four characters of the token, so the member can tell their links apart.
+  tokenHint  String
+  expiresAt  DateTime?
+  revokedAt  DateTime?
+  createdAt  DateTime  @default(now())
+
+  document CreativeDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@index([documentId, createdAt(sort: Desc)])
+  @@map("document_share_links")
+}

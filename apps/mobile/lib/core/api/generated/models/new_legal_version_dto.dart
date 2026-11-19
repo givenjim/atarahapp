@@ -16,10 +16,9 @@ class NewLegalVersionDto {
     required this.title,
     required this.body,
   });
-
-  factory NewLegalVersionDto.fromJson(Map<String, Object?> json) =>
-      _$NewLegalVersionDtoFromJson(json);
-
+  
+  factory NewLegalVersionDto.fromJson(Map<String, Object?> json) => _$NewLegalVersionDtoFromJson(json);
+  
   final LegalDocumentType type;
   final String version;
   final String title;

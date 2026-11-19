@@ -10,11 +10,13 @@ part 'learning_item_progress_dto.g.dart';
 
 @JsonSerializable()
 class LearningItemProgressDto {
-  const LearningItemProgressDto({required this.status, required this.percent});
-
-  factory LearningItemProgressDto.fromJson(Map<String, Object?> json) =>
-      _$LearningItemProgressDtoFromJson(json);
-
+  const LearningItemProgressDto({
+    required this.status,
+    required this.percent,
+  });
+  
+  factory LearningItemProgressDto.fromJson(Map<String, Object?> json) => _$LearningItemProgressDtoFromJson(json);
+  
   final LessonProgressStatus status;
 
   /// 0 to 100. For a course, completed lessons over all lessons.

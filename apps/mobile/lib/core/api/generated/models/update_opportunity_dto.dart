@@ -35,10 +35,9 @@ class UpdateOpportunityDto {
     required this.disciplineIds,
     required this.rules,
   });
-
-  factory UpdateOpportunityDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateOpportunityDtoFromJson(json);
-
+  
+  factory UpdateOpportunityDto.fromJson(Map<String, Object?> json) => _$UpdateOpportunityDtoFromJson(json);
+  
   final String title;
   final String providerId;
   final OpportunityType type;

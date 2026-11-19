@@ -10,15 +10,15 @@ part 'get_api_v1_taxonomy_interests_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1TaxonomyInterestsResponse {
-  const GetApiV1TaxonomyInterestsResponse({required this.data, this.meta});
-
-  factory GetApiV1TaxonomyInterestsResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1TaxonomyInterestsResponseFromJson(json);
-
+  const GetApiV1TaxonomyInterestsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1TaxonomyInterestsResponse.fromJson(Map<String, Object?> json) => _$GetApiV1TaxonomyInterestsResponseFromJson(json);
+  
   final List<TaxonomyItemDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1TaxonomyInterestsResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1TaxonomyInterestsResponseToJson(this);
 }

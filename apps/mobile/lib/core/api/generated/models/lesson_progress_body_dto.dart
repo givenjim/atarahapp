@@ -13,10 +13,9 @@ class LessonProgressBodyDto {
     this.completed,
     this.restart,
   });
-
-  factory LessonProgressBodyDto.fromJson(Map<String, Object?> json) =>
-      _$LessonProgressBodyDtoFromJson(json);
-
+  
+  factory LessonProgressBodyDto.fromJson(Map<String, Object?> json) => _$LessonProgressBodyDtoFromJson(json);
+  
   /// Where the member has got to, in seconds. Only ever moves forward.
   final num? positionSeconds;
 

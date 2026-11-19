@@ -8,11 +8,12 @@ part 'public_config_dto.g.dart';
 
 @JsonSerializable()
 class PublicConfigDto {
-  const PublicConfigDto({required this.googleSignIn});
-
-  factory PublicConfigDto.fromJson(Map<String, Object?> json) =>
-      _$PublicConfigDtoFromJson(json);
-
+  const PublicConfigDto({
+    required this.googleSignIn,
+  });
+  
+  factory PublicConfigDto.fromJson(Map<String, Object?> json) => _$PublicConfigDtoFromJson(json);
+  
   /// Show "Continue with Google" only when true.
   final bool googleSignIn;
 

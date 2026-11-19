@@ -10,11 +10,13 @@ part 'post_api_v1_groups_ref_join_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1GroupsRefJoinResponse {
-  const PostApiV1GroupsRefJoinResponse({required this.data, this.meta});
-
-  factory PostApiV1GroupsRefJoinResponse.fromJson(Map<String, Object?> json) =>
-      _$PostApiV1GroupsRefJoinResponseFromJson(json);
-
+  const PostApiV1GroupsRefJoinResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1GroupsRefJoinResponse.fromJson(Map<String, Object?> json) => _$PostApiV1GroupsRefJoinResponseFromJson(json);
+  
   final GroupMembershipStateDto data;
   final dynamic meta;
 

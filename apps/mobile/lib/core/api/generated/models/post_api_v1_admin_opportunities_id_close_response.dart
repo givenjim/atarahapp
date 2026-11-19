@@ -14,14 +14,11 @@ class PostApiV1AdminOpportunitiesIdCloseResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminOpportunitiesIdCloseResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminOpportunitiesIdCloseResponseFromJson(json);
-
+  
+  factory PostApiV1AdminOpportunitiesIdCloseResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminOpportunitiesIdCloseResponseFromJson(json);
+  
   final AdminOpportunityDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminOpportunitiesIdCloseResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminOpportunitiesIdCloseResponseToJson(this);
 }

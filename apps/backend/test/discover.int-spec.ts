@@ -384,6 +384,7 @@ describe('Home, finding creatives, search and articles (integration)', () => {
         'posts',
         'opportunities',
         'learning',
+        'marketplace',
       ]);
       const people = exact.groups[0];
       const pieces = exact.groups[1];
@@ -443,7 +444,7 @@ describe('Home, finding creatives, search and articles (integration)', () => {
       expect(
         (await as(viewer.token).get('/search?q=Qwerty&type=marketplace').expect(200)).body.data
           .groups,
-      ).toEqual([]);
+      ).toMatchObject([{ type: 'marketplace', count: 0 }]); // built in P2-M3
       await as(viewer.token).get('/search?q=a').expect(400);
       await as(viewer.token).get('/search?q=%20%20').expect(400);
       await as(viewer.token).get('/search?q=Qwerty&type=nonsense').expect(400);
@@ -681,7 +682,7 @@ describe('Home, finding creatives, search and articles (integration)', () => {
       await as(me.token).put(`/me/saved/ARTICLE/${draft.id}`).expect(404);
       // Posts and every other kind are saved through the same routes now; an article id is not a post.
       await as(me.token).put(`/me/saved/POST/${a.id}`).expect(404);
-      await as(me.token).put(`/me/saved/LISTING/${a.id}`).expect(400); // reserved for Phase 2
+      await as(me.token).put(`/me/saved/LISTING/${a.id}`).expect(404); // an article id is not a listing
       expect((await as(me.token).get(`/articles/${a.slug}`).expect(200)).body.data.saved).toBe(
         true,
       );

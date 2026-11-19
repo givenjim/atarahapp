@@ -17,10 +17,9 @@ class HelpArticleDto {
     required this.summary,
     required this.blocks,
   });
-
-  factory HelpArticleDto.fromJson(Map<String, Object?> json) =>
-      _$HelpArticleDtoFromJson(json);
-
+  
+  factory HelpArticleDto.fromJson(Map<String, Object?> json) => _$HelpArticleDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String title;

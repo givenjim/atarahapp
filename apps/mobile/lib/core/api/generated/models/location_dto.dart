@@ -13,10 +13,9 @@ class LocationDto {
     required this.countyName,
     required this.town,
   });
-
-  factory LocationDto.fromJson(Map<String, Object?> json) =>
-      _$LocationDtoFromJson(json);
-
+  
+  factory LocationDto.fromJson(Map<String, Object?> json) => _$LocationDtoFromJson(json);
+  
   final String? countryName;
   final String? countyName;
   final String? town;

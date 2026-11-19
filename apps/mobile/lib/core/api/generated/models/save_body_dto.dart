@@ -8,11 +8,12 @@ part 'save_body_dto.g.dart';
 
 @JsonSerializable()
 class SaveBodyDto {
-  const SaveBodyDto({this.collection});
-
-  factory SaveBodyDto.fromJson(Map<String, Object?> json) =>
-      _$SaveBodyDtoFromJson(json);
-
+  const SaveBodyDto({
+    this.collection,
+  });
+  
+  factory SaveBodyDto.fromJson(Map<String, Object?> json) => _$SaveBodyDtoFromJson(json);
+  
   /// File it under this collection. Empty clears it.
   final String? collection;
 

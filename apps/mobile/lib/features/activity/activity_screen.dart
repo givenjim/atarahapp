@@ -108,16 +108,14 @@ class ActivityScreen extends ConsumerWidget {
               icon: LucideIcons.users,
               tone: AtTone.violet,
               label: l10n.ayTileMentorship,
-              meta: l10n.aySoonP2,
-              onTap: () => context.push(
-                Routes.soonPath('p2', name: l10n.ayTileMentorship),
-              ),
+              meta: l10n.mnFindMentor,
+              onTap: () => context.push(Routes.mentorship),
             ),
             tile(
               icon: LucideIcons.shoppingBag,
               tone: AtTone.coral,
               label: l10n.ayTileMarketplace,
-              meta: l10n.aySoonP2,
+              meta: l10n.mnFindMentor,
               onTap: () => context.push(
                 Routes.soonPath('p2', name: l10n.ayTileMarketplace),
               ),

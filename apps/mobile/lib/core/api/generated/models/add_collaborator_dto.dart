@@ -8,11 +8,14 @@ part 'add_collaborator_dto.g.dart';
 
 @JsonSerializable()
 class AddCollaboratorDto {
-  const AddCollaboratorDto({this.userId, this.name, this.role});
-
-  factory AddCollaboratorDto.fromJson(Map<String, Object?> json) =>
-      _$AddCollaboratorDtoFromJson(json);
-
+  const AddCollaboratorDto({
+    this.userId,
+    this.name,
+    this.role,
+  });
+  
+  factory AddCollaboratorDto.fromJson(Map<String, Object?> json) => _$AddCollaboratorDtoFromJson(json);
+  
   /// An Atarah member. They must accept.
   final String? userId;
 

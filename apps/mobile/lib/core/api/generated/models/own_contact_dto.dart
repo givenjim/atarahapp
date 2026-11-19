@@ -15,10 +15,9 @@ class OwnContactDto {
     required this.showPhone,
     required this.forConnections,
   });
-
-  factory OwnContactDto.fromJson(Map<String, Object?> json) =>
-      _$OwnContactDtoFromJson(json);
-
+  
+  factory OwnContactDto.fromJson(Map<String, Object?> json) => _$OwnContactDtoFromJson(json);
+  
   final String? email;
   final String? phone;
   final bool showEmail;

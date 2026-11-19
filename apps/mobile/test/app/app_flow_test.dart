@@ -289,8 +289,6 @@ void main() {
 
   group('deep links', () {
     const links = {
-      '/marketplace/listings/5': 'Soon · P2',
-      '/mentors/7': 'Soon · P2',
       '/soon/p3?name=Contextual%20AI': 'Soon · P3',
       '/soon/later?name=Wellness%20Zone': 'Soon · Later',
     };
@@ -313,9 +311,9 @@ void main() {
         addTearDown(t.view.resetPhysicalSize);
         addTearDown(t.view.resetDevicePixelRatio);
         await t.pumpWidget(app(repo));
-        router().go('/mentors/7'); // arrives before the session check completed
+        router().go('/soon/p2?name=Booking'); // arrives before the session check completed
         await t.pumpAndSettle();
-        expect(router().state.uri.path, '/mentors/7');
+        expect(router().state.uri.path, '/soon/p2');
         expect(find.text('Soon · P2'), findsOneWidget);
       },
     );

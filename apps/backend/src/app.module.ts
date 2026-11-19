@@ -14,16 +14,20 @@ import { CommunityModule } from './community/community.module';
 import { PeopleModule } from './community/people.module';
 import { ContentModule } from './content/content.module';
 import { CreativeModule } from './creative/creative.module';
+import { CvModule } from './cv/cv.module';
 import { DiscoverModule } from './discover/discover.module';
 import { buildLoggerParams } from './common/logger.config';
 import { RateLimitModule } from './common/rate-limit.module';
 import { AppConfigService } from './config/app-config.service';
 import { AppConfigModule } from './config/config.module';
+import { MarketplaceModule } from './marketplace/marketplace.module';
 import { OpportunitiesModule } from './opportunities/opportunities.module';
+import { PaymentsModule } from './payments/payments.module';
 import { PlatformModule } from './feature-flags/platform.module';
 import { HealthModule } from './health/health.module';
 import { IdentityModule } from './identity/identity.module';
 import { LearningModule } from './learning/learning.module';
+import { MentorshipModule } from './mentorship/mentorship.module';
 import { MediaModule } from './media/media.module';
 import { MetricsModule } from './metrics/metrics.module';
 import { MessagingModule } from './messaging/messaging.module';
@@ -67,12 +71,16 @@ import { SupabaseModule } from './supabase/supabase.module';
     DiscoverModule,
     CommunityModule,
     OpportunitiesModule,
+    MarketplaceModule,
     LearningModule,
+    MentorshipModule,
     SavedModule,
     ActivityModule,
     AccountModule,
+    CvModule,
     HelpModule,
     BroadcastsModule,
+    PaymentsModule,
     HealthModule,
     MetricsModule,
   ],

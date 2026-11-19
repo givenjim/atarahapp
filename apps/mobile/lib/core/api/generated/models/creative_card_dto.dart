@@ -22,10 +22,9 @@ class CreativeCardDto {
     this.location,
     this.reason,
   });
-
-  factory CreativeCardDto.fromJson(Map<String, Object?> json) =>
-      _$CreativeCardDtoFromJson(json);
-
+  
+  factory CreativeCardDto.fromJson(Map<String, Object?> json) => _$CreativeCardDtoFromJson(json);
+  
   final String handle;
   final String displayName;
   final String? headline;

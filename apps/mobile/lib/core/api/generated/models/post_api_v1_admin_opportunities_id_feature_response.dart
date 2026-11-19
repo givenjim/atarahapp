@@ -14,14 +14,11 @@ class PostApiV1AdminOpportunitiesIdFeatureResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminOpportunitiesIdFeatureResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminOpportunitiesIdFeatureResponseFromJson(json);
-
+  
+  factory PostApiV1AdminOpportunitiesIdFeatureResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminOpportunitiesIdFeatureResponseFromJson(json);
+  
   final AdminOpportunityDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminOpportunitiesIdFeatureResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminOpportunitiesIdFeatureResponseToJson(this);
 }

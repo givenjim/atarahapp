@@ -1738,6 +1738,924 @@ abstract class AppLocalizations {
   /// **'Mentor'**
   String get featureMentor;
 
+  /// No description provided for @mnHubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentorship'**
+  String get mnHubTitle;
+
+  /// No description provided for @mnHubIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn from working creatives. Book one-to-one video sessions with mentors who have done what you want to do.'**
+  String get mnHubIntro;
+
+  /// No description provided for @mnNextSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Your next session'**
+  String get mnNextSession;
+
+  /// No description provided for @mnNextSessionWith.
+  ///
+  /// In en, this message translates to:
+  /// **'{session} with {mentor}'**
+  String mnNextSessionWith(String session, String mentor);
+
+  /// No description provided for @mnHowTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How it works'**
+  String get mnHowTitle;
+
+  /// No description provided for @mnHow1.
+  ///
+  /// In en, this message translates to:
+  /// **'Find a mentor'**
+  String get mnHow1;
+
+  /// No description provided for @mnHow1Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse by discipline, price and when they are free.'**
+  String get mnHow1Body;
+
+  /// No description provided for @mnHow2.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a session'**
+  String get mnHow2;
+
+  /// No description provided for @mnHow2Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the session and a time that suits you.'**
+  String get mnHow2Body;
+
+  /// No description provided for @mnHow3.
+  ///
+  /// In en, this message translates to:
+  /// **'Meet on video'**
+  String get mnHow3;
+
+  /// No description provided for @mnHow3Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay securely, then join the call at your time.'**
+  String get mnHow3Body;
+
+  /// No description provided for @mnWhoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Who it\'s for'**
+  String get mnWhoTitle;
+
+  /// No description provided for @mnWho1.
+  ///
+  /// In en, this message translates to:
+  /// **'Emerging creatives building a portfolio'**
+  String get mnWho1;
+
+  /// No description provided for @mnWho2.
+  ///
+  /// In en, this message translates to:
+  /// **'Freelancers pricing and pitching their work'**
+  String get mnWho2;
+
+  /// No description provided for @mnWho3.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone moving into a new discipline'**
+  String get mnWho3;
+
+  /// No description provided for @mnTopMentors.
+  ///
+  /// In en, this message translates to:
+  /// **'Top mentors'**
+  String get mnTopMentors;
+
+  /// No description provided for @mnFindMentor.
+  ///
+  /// In en, this message translates to:
+  /// **'Find a mentor'**
+  String get mnFindMentor;
+
+  /// No description provided for @mnNoMentorsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No mentors yet'**
+  String get mnNoMentorsYet;
+
+  /// No description provided for @mnNoMentorsYetBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentors appear here once they are approved. Check back soon.'**
+  String get mnNoMentorsYetBody;
+
+  /// No description provided for @mnBecomeMentor.
+  ///
+  /// In en, this message translates to:
+  /// **'Become a mentor'**
+  String get mnBecomeMentor;
+
+  /// No description provided for @mnBecomeMentorBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Share what you know and earn from your sessions.'**
+  String get mnBecomeMentorBody;
+
+  /// No description provided for @mnMentorTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentor tools'**
+  String get mnMentorTools;
+
+  /// No description provided for @mnMentorToolsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Availability, sessions and requests.'**
+  String get mnMentorToolsBody;
+
+  /// No description provided for @mnDirectoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Find a mentor'**
+  String get mnDirectoryTitle;
+
+  /// No description provided for @mnSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search mentors'**
+  String get mnSearchHint;
+
+  /// No description provided for @mnChipVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified'**
+  String get mnChipVerified;
+
+  /// No description provided for @mnChipAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Available this week'**
+  String get mnChipAvailable;
+
+  /// No description provided for @mnChipVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video call'**
+  String get mnChipVideo;
+
+  /// No description provided for @mnChipUnderPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Under {price}'**
+  String mnChipUnderPrice(String price);
+
+  /// No description provided for @mnDiscipline.
+  ///
+  /// In en, this message translates to:
+  /// **'Discipline'**
+  String get mnDiscipline;
+
+  /// No description provided for @mnSortBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by'**
+  String get mnSortBy;
+
+  /// No description provided for @mnSortRecommended.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended'**
+  String get mnSortRecommended;
+
+  /// No description provided for @mnSortSoonest.
+  ///
+  /// In en, this message translates to:
+  /// **'Soonest available'**
+  String get mnSortSoonest;
+
+  /// No description provided for @mnSortPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Lowest price'**
+  String get mnSortPrice;
+
+  /// No description provided for @mnSortRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Top rated'**
+  String get mnSortRating;
+
+  /// No description provided for @mnShowMentors.
+  ///
+  /// In en, this message translates to:
+  /// **'Show mentors'**
+  String get mnShowMentors;
+
+  /// No description provided for @mnClearFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear filters'**
+  String get mnClearFilters;
+
+  /// No description provided for @mnNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No mentors match'**
+  String get mnNoResults;
+
+  /// No description provided for @mnNoResultsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try removing a filter or searching for something else.'**
+  String get mnNoResultsBody;
+
+  /// No description provided for @mnCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} mentors'**
+  String mnCount(int count);
+
+  /// No description provided for @mnFromPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'From {price}'**
+  String mnFromPrice(String price);
+
+  /// No description provided for @mnNextAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Next: {when}'**
+  String mnNextAvailable(String when);
+
+  /// No description provided for @mnNoAvailability.
+  ///
+  /// In en, this message translates to:
+  /// **'No times open right now'**
+  String get mnNoAvailability;
+
+  /// No description provided for @mnRatingLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{rating} ({count})'**
+  String mnRatingLine(String rating, int count);
+
+  /// No description provided for @mnNewMentor.
+  ///
+  /// In en, this message translates to:
+  /// **'New mentor'**
+  String get mnNewMentor;
+
+  /// No description provided for @mnStatRating.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} reviews'**
+  String mnStatRating(int count);
+
+  /// No description provided for @mnStatSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'Sessions'**
+  String get mnStatSessions;
+
+  /// No description provided for @mnStatTimeZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Time zone'**
+  String get mnStatTimeZone;
+
+  /// No description provided for @mnAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get mnAbout;
+
+  /// No description provided for @mnExpertise.
+  ///
+  /// In en, this message translates to:
+  /// **'Expertise'**
+  String get mnExpertise;
+
+  /// No description provided for @mnChooseSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a session'**
+  String get mnChooseSession;
+
+  /// No description provided for @mnCredentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Credentials'**
+  String get mnCredentials;
+
+  /// No description provided for @mnYears.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} years of experience'**
+  String mnYears(int count);
+
+  /// No description provided for @mnSessionMeta.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min · Video call'**
+  String mnSessionMeta(int minutes);
+
+  /// No description provided for @mnProgrammeSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} sessions'**
+  String mnProgrammeSessions(int count);
+
+  /// No description provided for @mnNoSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'This mentor has no sessions on offer right now.'**
+  String get mnNoSessions;
+
+  /// No description provided for @mnBookSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Book session · {price}'**
+  String mnBookSession(String price);
+
+  /// No description provided for @mnBookSessionPlain.
+  ///
+  /// In en, this message translates to:
+  /// **'Book session'**
+  String get mnBookSessionPlain;
+
+  /// No description provided for @mnBookingName.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking'**
+  String get mnBookingName;
+
+  /// No description provided for @mnUnlockPro.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock mentorship with Pro'**
+  String get mnUnlockPro;
+
+  /// No description provided for @mnOwnProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'This is how members see your profile.'**
+  String get mnOwnProfile;
+
+  /// No description provided for @mnGateFeature.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentorship'**
+  String get mnGateFeature;
+
+  /// No description provided for @mnGateWhat.
+  ///
+  /// In en, this message translates to:
+  /// **'Book one-to-one video sessions with mentors, pick a time that suits you, and get a reminder before you meet.'**
+  String get mnGateWhat;
+
+  /// No description provided for @mnGateWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'An hour with someone who has done it can save you months. Browsing mentors stays free.'**
+  String get mnGateWhy;
+
+  /// No description provided for @mnGateHow.
+  ///
+  /// In en, this message translates to:
+  /// **'Upgrade to Atarah Pro, or check whether you qualify for a scholarship.'**
+  String get mnGateHow;
+
+  /// No description provided for @mnApplyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply to mentor'**
+  String get mnApplyTitle;
+
+  /// No description provided for @mnApplyIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us about your experience. We filled in what we could from your Creative Passport. A person reviews every application and you will be notified either way.'**
+  String get mnApplyIntro;
+
+  /// No description provided for @mnFieldHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Headline'**
+  String get mnFieldHeadline;
+
+  /// No description provided for @mnFieldYears.
+  ///
+  /// In en, this message translates to:
+  /// **'Years of experience'**
+  String get mnFieldYears;
+
+  /// No description provided for @mnFieldStatement.
+  ///
+  /// In en, this message translates to:
+  /// **'Why you want to mentor'**
+  String get mnFieldStatement;
+
+  /// No description provided for @mnStatementHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Who can you help, and how? At least 40 characters.'**
+  String get mnStatementHelp;
+
+  /// No description provided for @mnFieldTimeZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Time zone'**
+  String get mnFieldTimeZone;
+
+  /// No description provided for @mnAddTagHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add an expertise tag'**
+  String get mnAddTagHint;
+
+  /// No description provided for @mnAddTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Add tag'**
+  String get mnAddTag;
+
+  /// No description provided for @mnAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get mnAdd;
+
+  /// No description provided for @mnRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get mnRemove;
+
+  /// No description provided for @mnSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get mnSave;
+
+  /// No description provided for @mnSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get mnSaved;
+
+  /// No description provided for @mnAddCredential.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a credential'**
+  String get mnAddCredential;
+
+  /// No description provided for @mnCredTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Credential'**
+  String get mnCredTitle;
+
+  /// No description provided for @mnCredIssuer.
+  ///
+  /// In en, this message translates to:
+  /// **'Issued by (optional)'**
+  String get mnCredIssuer;
+
+  /// No description provided for @mnSessionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sessions you will offer'**
+  String get mnSessionsTitle;
+
+  /// No description provided for @mnEvidenceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Evidence links'**
+  String get mnEvidenceTitle;
+
+  /// No description provided for @mnEvidenceHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Links to your work, a reel or a profile. They must start with https://.'**
+  String get mnEvidenceHelp;
+
+  /// No description provided for @mnTerms.
+  ///
+  /// In en, this message translates to:
+  /// **'I accept the Mentor Terms'**
+  String get mnTerms;
+
+  /// No description provided for @mnSubmitApplication.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit application'**
+  String get mnSubmitApplication;
+
+  /// No description provided for @mnErrHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a headline of at least 4 characters.'**
+  String get mnErrHeadline;
+
+  /// No description provided for @mnErrYears.
+  ///
+  /// In en, this message translates to:
+  /// **'Years of experience must be between 0 and 80.'**
+  String get mnErrYears;
+
+  /// No description provided for @mnErrStatement.
+  ///
+  /// In en, this message translates to:
+  /// **'Write at least 40 characters.'**
+  String get mnErrStatement;
+
+  /// No description provided for @mnErrNoSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least one session you will offer.'**
+  String get mnErrNoSessions;
+
+  /// No description provided for @mnErrTerms.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept the Mentor Terms to apply.'**
+  String get mnErrTerms;
+
+  /// No description provided for @mnErrLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Links must start with https://.'**
+  String get mnErrLink;
+
+  /// No description provided for @mnErrName.
+  ///
+  /// In en, this message translates to:
+  /// **'Give the session a name.'**
+  String get mnErrName;
+
+  /// No description provided for @mnErrDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration must be between 15 and 480 minutes.'**
+  String get mnErrDuration;
+
+  /// No description provided for @mnErrPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a price in KES (0 or more).'**
+  String get mnErrPrice;
+
+  /// No description provided for @mnErrCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of sessions must be between 1 and 24.'**
+  String get mnErrCount;
+
+  /// No description provided for @mnProfileFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish your profile first'**
+  String get mnProfileFirst;
+
+  /// No description provided for @mnProfileFirstBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentor applications use your Creative Passport. Complete your profile, then come back.'**
+  String get mnProfileFirstBody;
+
+  /// No description provided for @mnOpenPassport.
+  ///
+  /// In en, this message translates to:
+  /// **'Open my Passport'**
+  String get mnOpenPassport;
+
+  /// No description provided for @mnStatusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Your application is being reviewed'**
+  String get mnStatusPending;
+
+  /// No description provided for @mnStatusPendingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll notify you when there is a decision.'**
+  String get mnStatusPendingBody;
+
+  /// No description provided for @mnStatusApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'You are a mentor'**
+  String get mnStatusApproved;
+
+  /// No description provided for @mnStatusRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Not approved yet'**
+  String get mnStatusRejected;
+
+  /// No description provided for @mnStatusRejectedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You can apply again after a short wait.'**
+  String get mnStatusRejectedBody;
+
+  /// No description provided for @mnCannotApply.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t apply right now'**
+  String get mnCannotApply;
+
+  /// No description provided for @mnWithdraw.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdraw application'**
+  String get mnWithdraw;
+
+  /// No description provided for @mnViewApplication.
+  ///
+  /// In en, this message translates to:
+  /// **'View application'**
+  String get mnViewApplication;
+
+  /// No description provided for @mnApplyToMentor.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply to mentor'**
+  String get mnApplyToMentor;
+
+  /// No description provided for @mnToolsNotMentorBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentors set their own hours and prices and meet members on video. Apply and we will review your application.'**
+  String get mnToolsNotMentorBody;
+
+  /// No description provided for @mnStatusLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get mnStatusLive;
+
+  /// No description provided for @mnStatusPaused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get mnStatusPaused;
+
+  /// No description provided for @mnStatusRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed'**
+  String get mnStatusRemoved;
+
+  /// No description provided for @mnStatusNotListed.
+  ///
+  /// In en, this message translates to:
+  /// **'Not listed yet'**
+  String get mnStatusNotListed;
+
+  /// No description provided for @mnNoAvailabilitySet.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your weekly hours so members can book you.'**
+  String get mnNoAvailabilitySet;
+
+  /// No description provided for @mnNotListedHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'To appear in the directory you need an active session type and some weekly availability.'**
+  String get mnNotListedHelp;
+
+  /// No description provided for @mnStaffPaused.
+  ///
+  /// In en, this message translates to:
+  /// **'Atarah paused your profile: {reason}'**
+  String mnStaffPaused(String reason);
+
+  /// No description provided for @mnRowAvailability.
+  ///
+  /// In en, this message translates to:
+  /// **'Availability'**
+  String get mnRowAvailability;
+
+  /// No description provided for @mnRowAvailabilityBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly hours and days off'**
+  String get mnRowAvailabilityBody;
+
+  /// No description provided for @mnRowSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'Session types'**
+  String get mnRowSessions;
+
+  /// No description provided for @mnRowSessionsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} active'**
+  String mnRowSessionsBody(int count);
+
+  /// No description provided for @mnRowProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get mnRowProfile;
+
+  /// No description provided for @mnRowProfileBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Headline, about, expertise and meeting link'**
+  String get mnRowProfileBody;
+
+  /// No description provided for @mnRowRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking requests'**
+  String get mnRowRequests;
+
+  /// No description provided for @mnRowRequestsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Sessions members have booked'**
+  String get mnRowRequestsBody;
+
+  /// No description provided for @mnViewPublic.
+  ///
+  /// In en, this message translates to:
+  /// **'View my public profile'**
+  String get mnViewPublic;
+
+  /// No description provided for @mnPauseProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause my profile'**
+  String get mnPauseProfile;
+
+  /// No description provided for @mnPauseHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'A paused profile is hidden from the directory. You can resume any time.'**
+  String get mnPauseHelp;
+
+  /// No description provided for @mnRequestsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking requests'**
+  String get mnRequestsTitle;
+
+  /// No description provided for @mnRequestsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No booking requests yet'**
+  String get mnRequestsEmpty;
+
+  /// No description provided for @mnRequestsEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'When a member books a session with you, it shows up here.'**
+  String get mnRequestsEmptyBody;
+
+  /// No description provided for @mnAvailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Availability'**
+  String get mnAvailTitle;
+
+  /// No description provided for @mnAvailIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the days and hours you can take sessions. Members see them in their own time zone.'**
+  String get mnAvailIntro;
+
+  /// No description provided for @mnFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get mnFrom;
+
+  /// No description provided for @mnTo.
+  ///
+  /// In en, this message translates to:
+  /// **'To'**
+  String get mnTo;
+
+  /// No description provided for @mnEndAfterStart.
+  ///
+  /// In en, this message translates to:
+  /// **'The end time must be after the start time.'**
+  String get mnEndAfterStart;
+
+  /// No description provided for @mnSaveAvailability.
+  ///
+  /// In en, this message translates to:
+  /// **'Save availability'**
+  String get mnSaveAvailability;
+
+  /// No description provided for @mnDaysOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Days off'**
+  String get mnDaysOff;
+
+  /// No description provided for @mnNoDaysOff.
+  ///
+  /// In en, this message translates to:
+  /// **'No days off added.'**
+  String get mnNoDaysOff;
+
+  /// No description provided for @mnNewSessionType.
+  ///
+  /// In en, this message translates to:
+  /// **'New session type'**
+  String get mnNewSessionType;
+
+  /// No description provided for @mnEditSessionType.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit session type'**
+  String get mnEditSessionType;
+
+  /// No description provided for @mnSessionName.
+  ///
+  /// In en, this message translates to:
+  /// **'Session name'**
+  String get mnSessionName;
+
+  /// No description provided for @mnSessionDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'What it covers (optional)'**
+  String get mnSessionDescription;
+
+  /// No description provided for @mnDurationMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration (minutes)'**
+  String get mnDurationMinutes;
+
+  /// No description provided for @mnPriceKes.
+  ///
+  /// In en, this message translates to:
+  /// **'Price (KES)'**
+  String get mnPriceKes;
+
+  /// No description provided for @mnSessionCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of sessions'**
+  String get mnSessionCount;
+
+  /// No description provided for @mnSessionCountHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'1 for a single session, more for a programme.'**
+  String get mnSessionCountHelp;
+
+  /// No description provided for @mnNoSessionTypes.
+  ///
+  /// In en, this message translates to:
+  /// **'No session types yet'**
+  String get mnNoSessionTypes;
+
+  /// No description provided for @mnNoSessionTypesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a session so members can see what you offer and what it costs.'**
+  String get mnNoSessionTypesBody;
+
+  /// No description provided for @mnOn.
+  ///
+  /// In en, this message translates to:
+  /// **'On'**
+  String get mnOn;
+
+  /// No description provided for @mnOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get mnOff;
+
+  /// No description provided for @mnStaffOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Switched off by Atarah'**
+  String get mnStaffOff;
+
+  /// No description provided for @mnVideoLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Video call link'**
+  String get mnVideoLink;
+
+  /// No description provided for @mnVideoLinkHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Where you meet by default, for example a Google Meet or Zoom link.'**
+  String get mnVideoLinkHelp;
+
   /// No description provided for @featureArticle.
   ///
   /// In en, this message translates to:
@@ -7923,6 +8841,1512 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Needs a connection'**
   String get stOfflineNeedsConnection;
+
+  /// No description provided for @cvTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Creative CV / EPK'**
+  String get cvTitle;
+
+  /// No description provided for @cvFormatCv.
+  ///
+  /// In en, this message translates to:
+  /// **'CV'**
+  String get cvFormatCv;
+
+  /// No description provided for @cvFormatBio.
+  ///
+  /// In en, this message translates to:
+  /// **'Bio'**
+  String get cvFormatBio;
+
+  /// No description provided for @cvFormatEpk.
+  ///
+  /// In en, this message translates to:
+  /// **'EPK'**
+  String get cvFormatEpk;
+
+  /// No description provided for @cvFormatDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Deck'**
+  String get cvFormatDeck;
+
+  /// No description provided for @cvSelectedWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected work'**
+  String get cvSelectedWork;
+
+  /// No description provided for @cvSkills.
+  ///
+  /// In en, this message translates to:
+  /// **'Skills'**
+  String get cvSkills;
+
+  /// No description provided for @cvPreviewNothing.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing to show yet. Pick a section below.'**
+  String get cvPreviewNothing;
+
+  /// No description provided for @cvIncludeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What to include'**
+  String get cvIncludeTitle;
+
+  /// No description provided for @cvIncludeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the sections and projects that go in your {format}. Anything that is not public stays out unless you allow it.'**
+  String cvIncludeBody(String format);
+
+  /// No description provided for @cvAllowNonPublic.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow this {section} ({audience}) in this document'**
+  String cvAllowNonPublic(String section, String audience);
+
+  /// No description provided for @cvNotPublicNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Not public, so it is left out unless you allow it. Anyone who gets the PDF or link will see it.'**
+  String get cvNotPublicNote;
+
+  /// No description provided for @cvProjects.
+  ///
+  /// In en, this message translates to:
+  /// **'Projects'**
+  String get cvProjects;
+
+  /// No description provided for @cvProjectsLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose up to {count}. Only your published projects can be listed.'**
+  String cvProjectsLimit(int count);
+
+  /// No description provided for @cvNoProjects.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish a project in your portfolio to list it here.'**
+  String get cvNoProjects;
+
+  /// No description provided for @cvNoProjectsInFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'This format does not list projects.'**
+  String get cvNoProjectsInFormat;
+
+  /// No description provided for @cvProjectNotPublic.
+  ///
+  /// In en, this message translates to:
+  /// **'Visible to: {audience}. Included only when you allow non-public projects.'**
+  String cvProjectNotPublic(String audience);
+
+  /// No description provided for @cvAllowPrivateProjects.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow non-public projects in this document'**
+  String get cvAllowPrivateProjects;
+
+  /// No description provided for @cvWithheld.
+  ///
+  /// In en, this message translates to:
+  /// **'Left out of this document because it is not public: {sections}.'**
+  String cvWithheld(String sections);
+
+  /// No description provided for @cvShareLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Share link'**
+  String get cvShareLink;
+
+  /// No description provided for @cvDownloadPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Download PDF'**
+  String get cvDownloadPdf;
+
+  /// No description provided for @cvPdfPreparing.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing your PDF...'**
+  String get cvPdfPreparing;
+
+  /// No description provided for @cvPdfFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t create your PDF. Try again.'**
+  String get cvPdfFailed;
+
+  /// No description provided for @cvPdfOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Your PDF is ready but we couldn\'t open it. Try again.'**
+  String get cvPdfOpenFailed;
+
+  /// No description provided for @cvSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t save that. Try again.'**
+  String get cvSaveFailed;
+
+  /// No description provided for @cvLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load your CV.'**
+  String get cvLoadFailed;
+
+  /// No description provided for @cvLinksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share links'**
+  String get cvLinksTitle;
+
+  /// No description provided for @cvLinksBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone with a link can read this document, without signing in. Turn a link off at any time.'**
+  String get cvLinksBody;
+
+  /// No description provided for @cvNoLinks.
+  ///
+  /// In en, this message translates to:
+  /// **'No links yet.'**
+  String get cvNoLinks;
+
+  /// No description provided for @cvChooseExpiry.
+  ///
+  /// In en, this message translates to:
+  /// **'When should this link stop working?'**
+  String get cvChooseExpiry;
+
+  /// No description provided for @cvExpiryNever.
+  ///
+  /// In en, this message translates to:
+  /// **'Never'**
+  String get cvExpiryNever;
+
+  /// No description provided for @cvExpiryDays.
+  ///
+  /// In en, this message translates to:
+  /// **'In {count} days'**
+  String cvExpiryDays(int count);
+
+  /// No description provided for @cvLinkCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Link created and copied. It is shown only now, so share it before you leave.'**
+  String get cvLinkCreated;
+
+  /// No description provided for @cvLinkEnding.
+  ///
+  /// In en, this message translates to:
+  /// **'Link ending {hint}'**
+  String cvLinkEnding(String hint);
+
+  /// No description provided for @cvLinkExpires.
+  ///
+  /// In en, this message translates to:
+  /// **'Expires {date}'**
+  String cvLinkExpires(String date);
+
+  /// No description provided for @cvLinkNoExpiry.
+  ///
+  /// In en, this message translates to:
+  /// **'No expiry'**
+  String get cvLinkNoExpiry;
+
+  /// No description provided for @cvLinkActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get cvLinkActive;
+
+  /// No description provided for @cvLinkExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Expired'**
+  String get cvLinkExpired;
+
+  /// No description provided for @cvLinkRevoked.
+  ///
+  /// In en, this message translates to:
+  /// **'Revoked'**
+  String get cvLinkRevoked;
+
+  /// No description provided for @cvRevoke.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off'**
+  String get cvRevoke;
+
+  /// No description provided for @cvRevoked.
+  ///
+  /// In en, this message translates to:
+  /// **'Link turned off.'**
+  String get cvRevoked;
+
+  /// No description provided for @cvShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} - {format}'**
+  String cvShareText(String name, String format);
+
+  /// No description provided for @cvSaving.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving...'**
+  String get cvSaving;
+
+  /// No description provided for @cvVerifiedSkill.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified skill'**
+  String get cvVerifiedSkill;
+
+  /// No description provided for @mkTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Marketplace'**
+  String get mkTitle;
+
+  /// No description provided for @mkSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hire creatives or sell your services'**
+  String get mkSubtitle;
+
+  /// No description provided for @mkMyListings.
+  ///
+  /// In en, this message translates to:
+  /// **'My listings'**
+  String get mkMyListings;
+
+  /// No description provided for @mkSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search services, products, sellers…'**
+  String get mkSearchHint;
+
+  /// No description provided for @mkSegServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get mkSegServices;
+
+  /// No description provided for @mkSegProducts.
+  ///
+  /// In en, this message translates to:
+  /// **'Products'**
+  String get mkSegProducts;
+
+  /// No description provided for @mkSegSellers.
+  ///
+  /// In en, this message translates to:
+  /// **'Sellers'**
+  String get mkSegSellers;
+
+  /// No description provided for @mkFeatured.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured'**
+  String get mkFeatured;
+
+  /// No description provided for @mkCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get mkCategories;
+
+  /// No description provided for @mkPopularSellers.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular sellers'**
+  String get mkPopularSellers;
+
+  /// No description provided for @mkRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'New on Atarah'**
+  String get mkRecent;
+
+  /// No description provided for @mkSeeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get mkSeeAll;
+
+  /// No description provided for @mkNothingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here yet'**
+  String get mkNothingTitle;
+
+  /// No description provided for @mkNothingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Listings from creatives show up here once they are approved.'**
+  String get mkNothingBody;
+
+  /// No description provided for @mkStartSellingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start selling on Atarah'**
+  String get mkStartSellingTitle;
+
+  /// No description provided for @mkStartSellingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'List a service or product and let buyers find you.'**
+  String get mkStartSellingBody;
+
+  /// No description provided for @mkStartSellingCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a listing'**
+  String get mkStartSellingCta;
+
+  /// No description provided for @mkCategoryCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} listings'**
+  String mkCategoryCount(int count);
+
+  /// No description provided for @mkMyRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'My requests'**
+  String get mkMyRequests;
+
+  /// No description provided for @mkBrowseAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All listings'**
+  String get mkBrowseAll;
+
+  /// No description provided for @mkResultCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 result} other{{count} results}}'**
+  String mkResultCount(int count);
+
+  /// No description provided for @mkSortRecommended.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended'**
+  String get mkSortRecommended;
+
+  /// No description provided for @mkSortPriceLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Price: low to high'**
+  String get mkSortPriceLow;
+
+  /// No description provided for @mkSortPriceHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'Price: high to low'**
+  String get mkSortPriceHigh;
+
+  /// No description provided for @mkSortRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Top rated'**
+  String get mkSortRating;
+
+  /// No description provided for @mkSortNewest.
+  ///
+  /// In en, this message translates to:
+  /// **'Newest'**
+  String get mkSortNewest;
+
+  /// No description provided for @mkSortLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort'**
+  String get mkSortLabel;
+
+  /// No description provided for @mkFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters'**
+  String get mkFilters;
+
+  /// No description provided for @mkFilterType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get mkFilterType;
+
+  /// No description provided for @mkTypeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get mkTypeAll;
+
+  /// No description provided for @mkFilterPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Price in KES'**
+  String get mkFilterPrice;
+
+  /// No description provided for @mkFilterMin.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get mkFilterMin;
+
+  /// No description provided for @mkFilterMax.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to'**
+  String get mkFilterMax;
+
+  /// No description provided for @mkFilterRemote.
+  ///
+  /// In en, this message translates to:
+  /// **'Remote only'**
+  String get mkFilterRemote;
+
+  /// No description provided for @mkApplyFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Show results'**
+  String get mkApplyFilters;
+
+  /// No description provided for @mkClearFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all'**
+  String get mkClearFilters;
+
+  /// No description provided for @mkNoResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No listings match'**
+  String get mkNoResultsTitle;
+
+  /// No description provided for @mkNoResultsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try other words or fewer filters.'**
+  String get mkNoResultsBody;
+
+  /// No description provided for @mkSaveListing.
+  ///
+  /// In en, this message translates to:
+  /// **'Save listing'**
+  String get mkSaveListing;
+
+  /// No description provided for @mkUnsaveListing.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from saved'**
+  String get mkUnsaveListing;
+
+  /// No description provided for @mkSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not save that. Try again.'**
+  String get mkSaveFailed;
+
+  /// No description provided for @mkWhatsIncluded.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s included'**
+  String get mkWhatsIncluded;
+
+  /// No description provided for @mkDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery'**
+  String get mkDelivery;
+
+  /// No description provided for @mkDeliveryDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 day} other{{count} days}}'**
+  String mkDeliveryDays(int count);
+
+  /// No description provided for @mkLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get mkLocation;
+
+  /// No description provided for @mkWhoFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Who it\'s for'**
+  String get mkWhoFor;
+
+  /// No description provided for @mkPortfolioExamples.
+  ///
+  /// In en, this message translates to:
+  /// **'Portfolio examples'**
+  String get mkPortfolioExamples;
+
+  /// No description provided for @mkReviews.
+  ///
+  /// In en, this message translates to:
+  /// **'Reviews'**
+  String get mkReviews;
+
+  /// No description provided for @mkNoReviews.
+  ///
+  /// In en, this message translates to:
+  /// **'No reviews yet.'**
+  String get mkNoReviews;
+
+  /// No description provided for @mkReviewCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 review} other{{count} reviews}}'**
+  String mkReviewCount(int count);
+
+  /// No description provided for @mkRequestBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Request booking'**
+  String get mkRequestBooking;
+
+  /// No description provided for @mkRequestSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Request sent · We\'ll notify you'**
+  String get mkRequestSent;
+
+  /// No description provided for @mkMessageSeller.
+  ///
+  /// In en, this message translates to:
+  /// **'Open your request'**
+  String get mkMessageSeller;
+
+  /// No description provided for @mkYourListing.
+  ///
+  /// In en, this message translates to:
+  /// **'This is your listing'**
+  String get mkYourListing;
+
+  /// No description provided for @mkEditListing.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit listing'**
+  String get mkEditListing;
+
+  /// No description provided for @mkReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Report this listing'**
+  String get mkReport;
+
+  /// No description provided for @mkShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get mkShare;
+
+  /// No description provided for @mkNotAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This listing isn\'t available'**
+  String get mkNotAvailable;
+
+  /// No description provided for @mkNotAvailableBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It may have been paused or removed.'**
+  String get mkNotAvailableBody;
+
+  /// No description provided for @mkBackToMarket.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Marketplace'**
+  String get mkBackToMarket;
+
+  /// No description provided for @mkSellerStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Under review. Only you can see this.'**
+  String get mkSellerStatus;
+
+  /// No description provided for @mkSeeAllReviews.
+  ///
+  /// In en, this message translates to:
+  /// **'All reviews'**
+  String get mkSeeAllReviews;
+
+  /// No description provided for @mkRequestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Request booking'**
+  String get mkRequestTitle;
+
+  /// No description provided for @mkRequestNeed.
+  ///
+  /// In en, this message translates to:
+  /// **'What do you need?'**
+  String get mkRequestNeed;
+
+  /// No description provided for @mkRequestNeedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Describe the work, the occasion or the product you want.'**
+  String get mkRequestNeedHint;
+
+  /// No description provided for @mkRequestBudget.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget (optional)'**
+  String get mkRequestBudget;
+
+  /// No description provided for @mkRequestTiming.
+  ///
+  /// In en, this message translates to:
+  /// **'When do you need it? (optional)'**
+  String get mkRequestTiming;
+
+  /// No description provided for @mkRequestSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send request'**
+  String get mkRequestSend;
+
+  /// No description provided for @mkRequestError.
+  ///
+  /// In en, this message translates to:
+  /// **'Describe what you need in at least 10 characters.'**
+  String get mkRequestError;
+
+  /// No description provided for @mkAlreadySent.
+  ///
+  /// In en, this message translates to:
+  /// **'You already sent a request for this listing.'**
+  String get mkAlreadySent;
+
+  /// No description provided for @mkReportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Report this listing'**
+  String get mkReportTitle;
+
+  /// No description provided for @mkReasonInappropriate.
+  ///
+  /// In en, this message translates to:
+  /// **'Inappropriate'**
+  String get mkReasonInappropriate;
+
+  /// No description provided for @mkReasonHarassment.
+  ///
+  /// In en, this message translates to:
+  /// **'Harassment'**
+  String get mkReasonHarassment;
+
+  /// No description provided for @mkReasonScam.
+  ///
+  /// In en, this message translates to:
+  /// **'Scam or fake'**
+  String get mkReasonScam;
+
+  /// No description provided for @mkReasonMisleading.
+  ///
+  /// In en, this message translates to:
+  /// **'Misleading'**
+  String get mkReasonMisleading;
+
+  /// No description provided for @mkReasonImpersonation.
+  ///
+  /// In en, this message translates to:
+  /// **'Impersonation'**
+  String get mkReasonImpersonation;
+
+  /// No description provided for @mkReasonIp.
+  ///
+  /// In en, this message translates to:
+  /// **'Copyright or ownership'**
+  String get mkReasonIp;
+
+  /// No description provided for @mkReasonOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Something else'**
+  String get mkReasonOther;
+
+  /// No description provided for @mkReportNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Anything else we should know? (optional)'**
+  String get mkReportNote;
+
+  /// No description provided for @mkReportSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send report'**
+  String get mkReportSend;
+
+  /// No description provided for @mkReportThanks.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks. We\'ll take a look.'**
+  String get mkReportThanks;
+
+  /// No description provided for @mkSellerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Seller'**
+  String get mkSellerTitle;
+
+  /// No description provided for @mkStatRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get mkStatRating;
+
+  /// No description provided for @mkStatCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get mkStatCompleted;
+
+  /// No description provided for @mkStatReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply time'**
+  String get mkStatReply;
+
+  /// No description provided for @mkNewSeller.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get mkNewSeller;
+
+  /// No description provided for @mkSellerAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get mkSellerAbout;
+
+  /// No description provided for @mkSellerListings.
+  ///
+  /// In en, this message translates to:
+  /// **'Services and products'**
+  String get mkSellerListings;
+
+  /// No description provided for @mkViewProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'View creative profile'**
+  String get mkViewProfile;
+
+  /// No description provided for @mkMemberSince.
+  ///
+  /// In en, this message translates to:
+  /// **'Member since {date}'**
+  String mkMemberSince(String date);
+
+  /// No description provided for @mkSellerNoListings.
+  ///
+  /// In en, this message translates to:
+  /// **'No live listings right now.'**
+  String get mkSellerNoListings;
+
+  /// No description provided for @mkNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New listing'**
+  String get mkNewTitle;
+
+  /// No description provided for @mkEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit listing'**
+  String get mkEditTitle;
+
+  /// No description provided for @mkStepDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get mkStepDetails;
+
+  /// No description provided for @mkStepMedia.
+  ///
+  /// In en, this message translates to:
+  /// **'Media'**
+  String get mkStepMedia;
+
+  /// No description provided for @mkStepPricing.
+  ///
+  /// In en, this message translates to:
+  /// **'Pricing'**
+  String get mkStepPricing;
+
+  /// No description provided for @mkStepPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get mkStepPreview;
+
+  /// No description provided for @mkStepOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {current} of {total}'**
+  String mkStepOf(int current, int total);
+
+  /// No description provided for @mkTypeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'What are you listing?'**
+  String get mkTypeLabel;
+
+  /// No description provided for @mkTypeService.
+  ///
+  /// In en, this message translates to:
+  /// **'Service'**
+  String get mkTypeService;
+
+  /// No description provided for @mkTypeProduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Product'**
+  String get mkTypeProduct;
+
+  /// No description provided for @mkTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get mkTitleLabel;
+
+  /// No description provided for @mkCategoryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get mkCategoryLabel;
+
+  /// No description provided for @mkDescriptionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get mkDescriptionLabel;
+
+  /// No description provided for @mkIncludedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s included'**
+  String get mkIncludedLabel;
+
+  /// No description provided for @mkIncludedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add an item'**
+  String get mkIncludedHint;
+
+  /// No description provided for @mkAudienceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Who it\'s for'**
+  String get mkAudienceLabel;
+
+  /// No description provided for @mkDeliveryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery time in days'**
+  String get mkDeliveryLabel;
+
+  /// No description provided for @mkWorkModeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Where'**
+  String get mkWorkModeLabel;
+
+  /// No description provided for @mkModeRemote.
+  ///
+  /// In en, this message translates to:
+  /// **'Remote'**
+  String get mkModeRemote;
+
+  /// No description provided for @mkModeOnsite.
+  ///
+  /// In en, this message translates to:
+  /// **'On site'**
+  String get mkModeOnsite;
+
+  /// No description provided for @mkModeHybrid.
+  ///
+  /// In en, this message translates to:
+  /// **'Hybrid'**
+  String get mkModeHybrid;
+
+  /// No description provided for @mkLocationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Town or county'**
+  String get mkLocationLabel;
+
+  /// No description provided for @mkMediaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add pictures'**
+  String get mkMediaTitle;
+
+  /// No description provided for @mkMediaBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The first picture is the cover. Add up to 8.'**
+  String get mkMediaBody;
+
+  /// No description provided for @mkMediaAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add pictures'**
+  String get mkMediaAdd;
+
+  /// No description provided for @mkProjectsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Portfolio examples'**
+  String get mkProjectsTitle;
+
+  /// No description provided for @mkProjectsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick published projects that show your work.'**
+  String get mkProjectsBody;
+
+  /// No description provided for @mkProjectsNone.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no published projects to show yet.'**
+  String get mkProjectsNone;
+
+  /// No description provided for @mkPricingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pricing'**
+  String get mkPricingTitle;
+
+  /// No description provided for @mkPriceFixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed'**
+  String get mkPriceFixed;
+
+  /// No description provided for @mkPriceRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Range'**
+  String get mkPriceRange;
+
+  /// No description provided for @mkPriceOnRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'On request'**
+  String get mkPriceOnRequest;
+
+  /// No description provided for @mkPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get mkPriceLabel;
+
+  /// No description provided for @mkPriceMin.
+  ///
+  /// In en, this message translates to:
+  /// **'Lowest price'**
+  String get mkPriceMin;
+
+  /// No description provided for @mkPriceMax.
+  ///
+  /// In en, this message translates to:
+  /// **'Highest price'**
+  String get mkPriceMax;
+
+  /// No description provided for @mkPriceOnRequestNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Buyers will ask you for a price.'**
+  String get mkPriceOnRequestNote;
+
+  /// No description provided for @mkPreviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get mkPreviewTitle;
+
+  /// No description provided for @mkPreviewNote.
+  ///
+  /// In en, this message translates to:
+  /// **'This is how buyers will see it.'**
+  String get mkPreviewNote;
+
+  /// No description provided for @mkSaveDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Save draft'**
+  String get mkSaveDraft;
+
+  /// No description provided for @mkNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get mkNext;
+
+  /// No description provided for @mkSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get mkSubmit;
+
+  /// No description provided for @mkDraftSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft saved.'**
+  String get mkDraftSaved;
+
+  /// No description provided for @mkSubmittedReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Submitted. We\'ll review it and let you know.'**
+  String get mkSubmittedReview;
+
+  /// No description provided for @mkPublishedNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Your listing is live.'**
+  String get mkPublishedNow;
+
+  /// No description provided for @mkMissingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Before you submit'**
+  String get mkMissingTitle;
+
+  /// No description provided for @mkTitleError.
+  ///
+  /// In en, this message translates to:
+  /// **'Give your listing a title (at least 4 characters).'**
+  String get mkTitleError;
+
+  /// No description provided for @mkCategoryError.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a category.'**
+  String get mkCategoryError;
+
+  /// No description provided for @mkPriceError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a price.'**
+  String get mkPriceError;
+
+  /// No description provided for @mkPriceMaxError.
+  ///
+  /// In en, this message translates to:
+  /// **'The highest price must be at least the lowest.'**
+  String get mkPriceMaxError;
+
+  /// No description provided for @mkTermsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Seller terms'**
+  String get mkTermsTitle;
+
+  /// No description provided for @mkTermsDraftBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get mkTermsDraftBadge;
+
+  /// No description provided for @mkTermsAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'I accept the seller terms'**
+  String get mkTermsAccept;
+
+  /// No description provided for @mkTermsContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept and continue'**
+  String get mkTermsContinue;
+
+  /// No description provided for @mkTermsDraftNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'These terms are a draft placeholder. The final text is added before launch.'**
+  String get mkTermsDraftNotice;
+
+  /// No description provided for @mkUploadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'A picture did not upload. Remove it and try again.'**
+  String get mkUploadFailed;
+
+  /// No description provided for @mkLeaveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave without saving?'**
+  String get mkLeaveTitle;
+
+  /// No description provided for @mkLeaveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your changes will be lost.'**
+  String get mkLeaveBody;
+
+  /// No description provided for @mkLeave.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave'**
+  String get mkLeave;
+
+  /// No description provided for @mkReviewNote.
+  ///
+  /// In en, this message translates to:
+  /// **'New listings are checked before they go live.'**
+  String get mkReviewNote;
+
+  /// No description provided for @mkMyListingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My listings'**
+  String get mkMyListingsTitle;
+
+  /// No description provided for @mkStatLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get mkStatLive;
+
+  /// No description provided for @mkStatInterest.
+  ///
+  /// In en, this message translates to:
+  /// **'New interest'**
+  String get mkStatInterest;
+
+  /// No description provided for @mkStatViews.
+  ///
+  /// In en, this message translates to:
+  /// **'Views in 30 days'**
+  String get mkStatViews;
+
+  /// No description provided for @mkNewListing.
+  ///
+  /// In en, this message translates to:
+  /// **'New listing'**
+  String get mkNewListing;
+
+  /// No description provided for @mkStatusDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get mkStatusDraft;
+
+  /// No description provided for @mkStatusUnderReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Under review'**
+  String get mkStatusUnderReview;
+
+  /// No description provided for @mkStatusPublished.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get mkStatusPublished;
+
+  /// No description provided for @mkStatusRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs changes'**
+  String get mkStatusRejected;
+
+  /// No description provided for @mkStatusSuspended.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspended'**
+  String get mkStatusSuspended;
+
+  /// No description provided for @mkStatusArchived.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get mkStatusArchived;
+
+  /// No description provided for @mkMenuEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get mkMenuEdit;
+
+  /// No description provided for @mkMenuView.
+  ///
+  /// In en, this message translates to:
+  /// **'View'**
+  String get mkMenuView;
+
+  /// No description provided for @mkMenuPause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get mkMenuPause;
+
+  /// No description provided for @mkMenuRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore as draft'**
+  String get mkMenuRestore;
+
+  /// No description provided for @mkMenuWithdraw.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdraw from review'**
+  String get mkMenuWithdraw;
+
+  /// No description provided for @mkMenuDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete draft'**
+  String get mkMenuDelete;
+
+  /// No description provided for @mkMenuMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More actions'**
+  String get mkMenuMore;
+
+  /// No description provided for @mkDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this draft?'**
+  String get mkDeleteTitle;
+
+  /// No description provided for @mkDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This can\'t be undone.'**
+  String get mkDeleteBody;
+
+  /// No description provided for @mkPauseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause this listing?'**
+  String get mkPauseTitle;
+
+  /// No description provided for @mkPauseBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Buyers won\'t see it until you restore and submit it again.'**
+  String get mkPauseBody;
+
+  /// No description provided for @mkPause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get mkPause;
+
+  /// No description provided for @mkInterestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Buyer interest'**
+  String get mkInterestTitle;
+
+  /// No description provided for @mkInterestEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No requests yet.'**
+  String get mkInterestEmpty;
+
+  /// No description provided for @mkReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply'**
+  String get mkReply;
+
+  /// No description provided for @mkReasonLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Why: {reason}'**
+  String mkReasonLine(String reason);
+
+  /// No description provided for @mkNotSellerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re not selling yet'**
+  String get mkNotSellerTitle;
+
+  /// No description provided for @mkNotSellerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your first listing to start.'**
+  String get mkNotSellerBody;
+
+  /// No description provided for @mkSuspendedBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'Your seller account is suspended. Contact support to find out more.'**
+  String get mkSuspendedBanner;
+
+  /// No description provided for @mkMenuPublishDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get mkMenuPublishDraft;
+
+  /// No description provided for @mkThreadTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Request'**
+  String get mkThreadTitle;
+
+  /// No description provided for @mkMessageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a message'**
+  String get mkMessageHint;
+
+  /// No description provided for @mkSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get mkSend;
+
+  /// No description provided for @mkStatusNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for a reply'**
+  String get mkStatusNew;
+
+  /// No description provided for @mkStatusReplied.
+  ///
+  /// In en, this message translates to:
+  /// **'In conversation'**
+  String get mkStatusReplied;
+
+  /// No description provided for @mkStatusClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get mkStatusClosed;
+
+  /// No description provided for @mkClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as done'**
+  String get mkClose;
+
+  /// No description provided for @mkCloseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark this request as done?'**
+  String get mkCloseTitle;
+
+  /// No description provided for @mkCloseBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You won\'t be able to send more messages.'**
+  String get mkCloseBody;
+
+  /// No description provided for @mkLeaveReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave a review'**
+  String get mkLeaveReview;
+
+  /// No description provided for @mkReviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How was it?'**
+  String get mkReviewTitle;
+
+  /// No description provided for @mkReviewHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell others about it (optional)'**
+  String get mkReviewHint;
+
+  /// No description provided for @mkReviewSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send review'**
+  String get mkReviewSend;
+
+  /// No description provided for @mkReviewed.
+  ///
+  /// In en, this message translates to:
+  /// **'You reviewed this.'**
+  String get mkReviewed;
+
+  /// No description provided for @mkBudgetLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget: KES {amount}'**
+  String mkBudgetLine(String amount);
+
+  /// No description provided for @mkTimingLine.
+  ///
+  /// In en, this message translates to:
+  /// **'When: {timing}'**
+  String mkTimingLine(String timing);
+
+  /// No description provided for @mkRequestsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Requests'**
+  String get mkRequestsTitle;
+
+  /// No description provided for @mkTabSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent'**
+  String get mkTabSent;
+
+  /// No description provided for @mkTabReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Received'**
+  String get mkTabReceived;
+
+  /// No description provided for @mkRequestsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No requests yet.'**
+  String get mkRequestsEmpty;
+
+  /// No description provided for @mkUnread.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get mkUnread;
+
+  /// No description provided for @mkAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About the listing'**
+  String get mkAbout;
+
+  /// No description provided for @mkPickCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a category'**
+  String get mkPickCategory;
+
+  /// No description provided for @mkPickCategoryBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Buyers find your listing by its category.'**
+  String get mkPickCategoryBody;
+
+  /// No description provided for @mkDraftFromService.
+  ///
+  /// In en, this message translates to:
+  /// **'A draft listing was made from this service.'**
+  String get mkDraftFromService;
+
+  /// No description provided for @mkNoNote.
+  ///
+  /// In en, this message translates to:
+  /// **'No message yet.'**
+  String get mkNoNote;
 }
 
 class _AppLocalizationsDelegate

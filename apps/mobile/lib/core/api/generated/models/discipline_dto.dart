@@ -17,10 +17,9 @@ class DisciplineDto {
     required this.icon,
     required this.specialisations,
   });
-
-  factory DisciplineDto.fromJson(Map<String, Object?> json) =>
-      _$DisciplineDtoFromJson(json);
-
+  
+  factory DisciplineDto.fromJson(Map<String, Object?> json) => _$DisciplineDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String name;

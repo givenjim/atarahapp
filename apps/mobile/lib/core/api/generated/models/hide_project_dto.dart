@@ -8,11 +8,12 @@ part 'hide_project_dto.g.dart';
 
 @JsonSerializable()
 class HideProjectDto {
-  const HideProjectDto({required this.reason});
-
-  factory HideProjectDto.fromJson(Map<String, Object?> json) =>
-      _$HideProjectDtoFromJson(json);
-
+  const HideProjectDto({
+    required this.reason,
+  });
+  
+  factory HideProjectDto.fromJson(Map<String, Object?> json) => _$HideProjectDtoFromJson(json);
+  
   /// Shown to the owner.
   final String reason;
 

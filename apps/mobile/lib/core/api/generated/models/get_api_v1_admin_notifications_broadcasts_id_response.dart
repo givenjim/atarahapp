@@ -14,14 +14,11 @@ class GetApiV1AdminNotificationsBroadcastsIdResponse {
     required this.data,
     this.meta,
   });
-
-  factory GetApiV1AdminNotificationsBroadcastsIdResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1AdminNotificationsBroadcastsIdResponseFromJson(json);
-
+  
+  factory GetApiV1AdminNotificationsBroadcastsIdResponse.fromJson(Map<String, Object?> json) => _$GetApiV1AdminNotificationsBroadcastsIdResponseFromJson(json);
+  
   final BroadcastDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1AdminNotificationsBroadcastsIdResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1AdminNotificationsBroadcastsIdResponseToJson(this);
 }

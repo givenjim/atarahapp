@@ -10,11 +10,13 @@ part 'get_api_v1_admin_auth_me_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1AdminAuthMeResponse {
-  const GetApiV1AdminAuthMeResponse({required this.data, this.meta});
-
-  factory GetApiV1AdminAuthMeResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1AdminAuthMeResponseFromJson(json);
-
+  const GetApiV1AdminAuthMeResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1AdminAuthMeResponse.fromJson(Map<String, Object?> json) => _$GetApiV1AdminAuthMeResponseFromJson(json);
+  
   final AdminMeDto data;
   final dynamic meta;
 

@@ -10,11 +10,13 @@ part 'post_api_v1_blocks_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1BlocksResponse {
-  const PostApiV1BlocksResponse({required this.data, this.meta});
-
-  factory PostApiV1BlocksResponse.fromJson(Map<String, Object?> json) =>
-      _$PostApiV1BlocksResponseFromJson(json);
-
+  const PostApiV1BlocksResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1BlocksResponse.fromJson(Map<String, Object?> json) => _$PostApiV1BlocksResponseFromJson(json);
+  
   final BlockedMemberDto data;
   final dynamic meta;
 

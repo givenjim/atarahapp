@@ -11,11 +11,13 @@ part 'section_visibility_dto.g.dart';
 
 @JsonSerializable()
 class SectionVisibilityDto {
-  const SectionVisibilityDto({required this.section, required this.visibility});
-
-  factory SectionVisibilityDto.fromJson(Map<String, Object?> json) =>
-      _$SectionVisibilityDtoFromJson(json);
-
+  const SectionVisibilityDto({
+    required this.section,
+    required this.visibility,
+  });
+  
+  factory SectionVisibilityDto.fromJson(Map<String, Object?> json) => _$SectionVisibilityDtoFromJson(json);
+  
   final SectionVisibilityDtoSection section;
   final SectionVisibilityDtoVisibility visibility;
 

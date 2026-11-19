@@ -8,11 +8,13 @@ part 'skill_ref_dto.g.dart';
 
 @JsonSerializable()
 class SkillRefDto {
-  const SkillRefDto({required this.id, required this.name});
-
-  factory SkillRefDto.fromJson(Map<String, Object?> json) =>
-      _$SkillRefDtoFromJson(json);
-
+  const SkillRefDto({
+    required this.id,
+    required this.name,
+  });
+  
+  factory SkillRefDto.fromJson(Map<String, Object?> json) => _$SkillRefDtoFromJson(json);
+  
   final String id;
   final String name;
 

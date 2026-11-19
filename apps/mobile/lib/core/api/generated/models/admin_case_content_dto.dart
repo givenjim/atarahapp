@@ -17,10 +17,9 @@ class AdminCaseContentDto {
     required this.postId,
     required this.createdAt,
   });
-
-  factory AdminCaseContentDto.fromJson(Map<String, Object?> json) =>
-      _$AdminCaseContentDtoFromJson(json);
-
+  
+  factory AdminCaseContentDto.fromJson(Map<String, Object?> json) => _$AdminCaseContentDtoFromJson(json);
+  
   /// False when the content has been deleted by its author.
   final bool exists;
   final AdminCaseContentDtoStatus? status;

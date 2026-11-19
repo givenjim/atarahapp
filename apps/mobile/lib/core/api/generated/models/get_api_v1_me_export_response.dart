@@ -10,11 +10,13 @@ part 'get_api_v1_me_export_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1MeExportResponse {
-  const GetApiV1MeExportResponse({required this.data, this.meta});
-
-  factory GetApiV1MeExportResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1MeExportResponseFromJson(json);
-
+  const GetApiV1MeExportResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1MeExportResponse.fromJson(Map<String, Object?> json) => _$GetApiV1MeExportResponseFromJson(json);
+  
   final ExportStateDto data;
   final dynamic meta;
 

@@ -22,10 +22,9 @@ class CommentViewDto {
     required this.editedAt,
     required this.replies,
   });
-
-  factory CommentViewDto.fromJson(Map<String, Object?> json) =>
-      _$CommentViewDtoFromJson(json);
-
+  
+  factory CommentViewDto.fromJson(Map<String, Object?> json) => _$CommentViewDtoFromJson(json);
+  
   final String id;
   final String postId;
 

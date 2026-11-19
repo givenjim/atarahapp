@@ -18,10 +18,9 @@ class LegalSummaryDto {
     this.effectiveAt,
     this.draftLabel,
   });
-
-  factory LegalSummaryDto.fromJson(Map<String, Object?> json) =>
-      _$LegalSummaryDtoFromJson(json);
-
+  
+  factory LegalSummaryDto.fromJson(Map<String, Object?> json) => _$LegalSummaryDtoFromJson(json);
+  
   final LegalDocumentType type;
   final String title;
   final String version;

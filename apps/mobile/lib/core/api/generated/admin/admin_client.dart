@@ -30,7 +30,9 @@ abstract class AdminClient {
   });
 
   @GET('/api/v1/admin/users/{id}')
-  Future<GetApiV1AdminUsersIdResponse> user({@Path('id') required String id});
+  Future<GetApiV1AdminUsersIdResponse> user({
+    @Path('id') required String id,
+  });
 
   @POST('/api/v1/admin/users/{id}/suspend')
   Future<PostApiV1AdminUsersIdSuspendResponse> suspend({

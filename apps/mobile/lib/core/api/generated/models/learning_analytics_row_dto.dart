@@ -18,10 +18,9 @@ class LearningAnalyticsRowDto {
     required this.completions,
     required this.completionRate,
   });
-
-  factory LearningAnalyticsRowDto.fromJson(Map<String, Object?> json) =>
-      _$LearningAnalyticsRowDtoFromJson(json);
-
+  
+  factory LearningAnalyticsRowDto.fromJson(Map<String, Object?> json) => _$LearningAnalyticsRowDtoFromJson(json);
+  
   final String contentId;
   final String title;
   final LearningContentType type;

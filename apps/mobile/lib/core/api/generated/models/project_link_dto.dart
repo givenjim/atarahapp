@@ -14,10 +14,9 @@ class ProjectLinkDto {
     required this.url,
     this.embedUrl,
   });
-
-  factory ProjectLinkDto.fromJson(Map<String, Object?> json) =>
-      _$ProjectLinkDtoFromJson(json);
-
+  
+  factory ProjectLinkDto.fromJson(Map<String, Object?> json) => _$ProjectLinkDtoFromJson(json);
+  
   final String id;
   final String label;
   final String url;

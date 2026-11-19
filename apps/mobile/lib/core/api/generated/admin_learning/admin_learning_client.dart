@@ -37,8 +37,7 @@ part 'admin_learning_client.g.dart';
 
 @RestApi()
 abstract class AdminLearningClient {
-  factory AdminLearningClient(Dio dio, {String? baseUrl}) =
-      _AdminLearningClient;
+  factory AdminLearningClient(Dio dio, {String? baseUrl}) = _AdminLearningClient;
 
   @GET('/api/v1/admin/learning/embed-hosts')
   Future<GetApiV1AdminLearningEmbedHostsResponse> hosts();
@@ -86,8 +85,9 @@ abstract class AdminLearningClient {
   ///
   /// The name has been replaced because it contains a keyword. Original name: `get`.
   @GET('/api/v1/admin/learning/contents/{id}')
-  Future<GetApiV1AdminLearningContentsIdResponse>
-  getApiV1AdminLearningContentsId({@Path('id') required String id});
+  Future<GetApiV1AdminLearningContentsIdResponse> getApiV1AdminLearningContentsId({
+    @Path('id') required String id,
+  });
 
   @PATCH('/api/v1/admin/learning/contents/{id}')
   Future<PatchApiV1AdminLearningContentsIdResponse> update({

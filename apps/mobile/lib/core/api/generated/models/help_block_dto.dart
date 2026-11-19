@@ -16,10 +16,9 @@ class HelpBlockDto {
     this.title,
     this.attribution,
   });
-
-  factory HelpBlockDto.fromJson(Map<String, Object?> json) =>
-      _$HelpBlockDtoFromJson(json);
-
+  
+  factory HelpBlockDto.fromJson(Map<String, Object?> json) => _$HelpBlockDtoFromJson(json);
+  
   final HelpBlockDtoType type;
   final String? text;
   final String? title;

@@ -10,15 +10,15 @@ part 'put_api_v1_posts_id_reactions_response.g.dart';
 
 @JsonSerializable()
 class PutApiV1PostsIdReactionsResponse {
-  const PutApiV1PostsIdReactionsResponse({required this.data, this.meta});
-
-  factory PutApiV1PostsIdReactionsResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PutApiV1PostsIdReactionsResponseFromJson(json);
-
+  const PutApiV1PostsIdReactionsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PutApiV1PostsIdReactionsResponse.fromJson(Map<String, Object?> json) => _$PutApiV1PostsIdReactionsResponseFromJson(json);
+  
   final ReactionStateDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PutApiV1PostsIdReactionsResponseToJson(this);
+  Map<String, Object?> toJson() => _$PutApiV1PostsIdReactionsResponseToJson(this);
 }

@@ -34,10 +34,9 @@ class OpportunityCardDto {
     this.locationLabel,
     this.tracking,
   });
-
-  factory OpportunityCardDto.fromJson(Map<String, Object?> json) =>
-      _$OpportunityCardDtoFromJson(json);
-
+  
+  factory OpportunityCardDto.fromJson(Map<String, Object?> json) => _$OpportunityCardDtoFromJson(json);
+  
   final String id;
   final String slug;
   final OpportunityType type;

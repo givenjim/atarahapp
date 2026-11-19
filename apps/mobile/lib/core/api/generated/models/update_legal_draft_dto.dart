@@ -8,11 +8,13 @@ part 'update_legal_draft_dto.g.dart';
 
 @JsonSerializable()
 class UpdateLegalDraftDto {
-  const UpdateLegalDraftDto({this.title, this.body});
-
-  factory UpdateLegalDraftDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateLegalDraftDtoFromJson(json);
-
+  const UpdateLegalDraftDto({
+    this.title,
+    this.body,
+  });
+  
+  factory UpdateLegalDraftDto.fromJson(Map<String, Object?> json) => _$UpdateLegalDraftDtoFromJson(json);
+  
   final String? title;
   final String? body;
 

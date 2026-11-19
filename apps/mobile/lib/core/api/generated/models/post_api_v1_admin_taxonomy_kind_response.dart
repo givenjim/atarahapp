@@ -10,15 +10,15 @@ part 'post_api_v1_admin_taxonomy_kind_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1AdminTaxonomyKindResponse {
-  const PostApiV1AdminTaxonomyKindResponse({required this.data, this.meta});
-
-  factory PostApiV1AdminTaxonomyKindResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminTaxonomyKindResponseFromJson(json);
-
+  const PostApiV1AdminTaxonomyKindResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1AdminTaxonomyKindResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminTaxonomyKindResponseFromJson(json);
+  
   final AdminTaxonomyItemDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminTaxonomyKindResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminTaxonomyKindResponseToJson(this);
 }

@@ -14,10 +14,9 @@ class FaqFieldsDto {
     this.sortOrder,
     this.published,
   });
-
-  factory FaqFieldsDto.fromJson(Map<String, Object?> json) =>
-      _$FaqFieldsDtoFromJson(json);
-
+  
+  factory FaqFieldsDto.fromJson(Map<String, Object?> json) => _$FaqFieldsDtoFromJson(json);
+  
   final String question;
   final String answer;
   final num? sortOrder;

@@ -70,7 +70,9 @@ abstract class CommunityClient {
   });
 
   @GET('/api/v1/posts/{id}')
-  Future<GetApiV1PostsIdResponse> getPost({@Path('id') required String id});
+  Future<GetApiV1PostsIdResponse> getPost({
+    @Path('id') required String id,
+  });
 
   @PATCH('/api/v1/posts/{id}')
   Future<PatchApiV1PostsIdResponse> updatePost({
@@ -79,7 +81,9 @@ abstract class CommunityClient {
   });
 
   @DELETE('/api/v1/posts/{id}')
-  Future<void> deletePost({@Path('id') required String id});
+  Future<void> deletePost({
+    @Path('id') required String id,
+  });
 
   /// [cursor] - Opaque cursor from the previous page.
   @GET('/api/v1/posts/{id}/comments')
@@ -102,7 +106,9 @@ abstract class CommunityClient {
   });
 
   @DELETE('/api/v1/comments/{id}')
-  Future<void> deleteComment({@Path('id') required String id});
+  Future<void> deleteComment({
+    @Path('id') required String id,
+  });
 
   @PUT('/api/v1/posts/{id}/reactions')
   Future<PutApiV1PostsIdReactionsResponse> reactToPost({

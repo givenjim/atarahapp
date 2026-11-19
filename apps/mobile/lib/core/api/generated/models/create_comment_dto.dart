@@ -8,11 +8,13 @@ part 'create_comment_dto.g.dart';
 
 @JsonSerializable()
 class CreateCommentDto {
-  const CreateCommentDto({required this.body, this.parentCommentId});
-
-  factory CreateCommentDto.fromJson(Map<String, Object?> json) =>
-      _$CreateCommentDtoFromJson(json);
-
+  const CreateCommentDto({
+    required this.body,
+    this.parentCommentId,
+  });
+  
+  factory CreateCommentDto.fromJson(Map<String, Object?> json) => _$CreateCommentDtoFromJson(json);
+  
   final String body;
 
   /// Reply to this top-level comment.

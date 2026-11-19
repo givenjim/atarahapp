@@ -8,11 +8,14 @@ part 'county_dto.g.dart';
 
 @JsonSerializable()
 class CountyDto {
-  const CountyDto({required this.id, required this.code, required this.name});
-
-  factory CountyDto.fromJson(Map<String, Object?> json) =>
-      _$CountyDtoFromJson(json);
-
+  const CountyDto({
+    required this.id,
+    required this.code,
+    required this.name,
+  });
+  
+  factory CountyDto.fromJson(Map<String, Object?> json) => _$CountyDtoFromJson(json);
+  
   final String id;
   final String code;
   final String name;

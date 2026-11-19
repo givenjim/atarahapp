@@ -31,10 +31,9 @@ class GroupDetailDto {
     required this.recentDiscussions,
     required this.viewer,
   });
-
-  factory GroupDetailDto.fromJson(Map<String, Object?> json) =>
-      _$GroupDetailDtoFromJson(json);
-
+  
+  factory GroupDetailDto.fromJson(Map<String, Object?> json) => _$GroupDetailDtoFromJson(json);
+  
   final String id;
   final String slug;
   final GroupType type;

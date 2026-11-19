@@ -10,11 +10,13 @@ part 'contact_change_started_dto.g.dart';
 
 @JsonSerializable()
 class ContactChangeStartedDto {
-  const ContactChangeStartedDto({required this.kind, required this.sentTo});
-
-  factory ContactChangeStartedDto.fromJson(Map<String, Object?> json) =>
-      _$ContactChangeStartedDtoFromJson(json);
-
+  const ContactChangeStartedDto({
+    required this.kind,
+    required this.sentTo,
+  });
+  
+  factory ContactChangeStartedDto.fromJson(Map<String, Object?> json) => _$ContactChangeStartedDtoFromJson(json);
+  
   final ContactChangeStartedDtoKind kind;
 
   /// Where the code or confirmation link was sent.

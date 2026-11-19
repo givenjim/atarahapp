@@ -19,10 +19,9 @@ class LessonSummaryDto {
     required this.hasVideo,
     required this.hasEmbed,
   });
-
-  factory LessonSummaryDto.fromJson(Map<String, Object?> json) =>
-      _$LessonSummaryDtoFromJson(json);
-
+  
+  factory LessonSummaryDto.fromJson(Map<String, Object?> json) => _$LessonSummaryDtoFromJson(json);
+  
   final String id;
   final num sequence;
   final String title;

@@ -10,15 +10,15 @@ part 'post_api_v1_admin_users_id_roles_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1AdminUsersIdRolesResponse {
-  const PostApiV1AdminUsersIdRolesResponse({required this.data, this.meta});
-
-  factory PostApiV1AdminUsersIdRolesResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminUsersIdRolesResponseFromJson(json);
-
+  const PostApiV1AdminUsersIdRolesResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1AdminUsersIdRolesResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminUsersIdRolesResponseFromJson(json);
+  
   final AdminUserDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminUsersIdRolesResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminUsersIdRolesResponseToJson(this);
 }

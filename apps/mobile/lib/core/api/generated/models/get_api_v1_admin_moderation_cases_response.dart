@@ -10,15 +10,15 @@ part 'get_api_v1_admin_moderation_cases_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1AdminModerationCasesResponse {
-  const GetApiV1AdminModerationCasesResponse({required this.data, this.meta});
-
-  factory GetApiV1AdminModerationCasesResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1AdminModerationCasesResponseFromJson(json);
-
+  const GetApiV1AdminModerationCasesResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1AdminModerationCasesResponse.fromJson(Map<String, Object?> json) => _$GetApiV1AdminModerationCasesResponseFromJson(json);
+  
   final List<AdminCaseDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1AdminModerationCasesResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1AdminModerationCasesResponseToJson(this);
 }

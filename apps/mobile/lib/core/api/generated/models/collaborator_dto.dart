@@ -18,10 +18,9 @@ class CollaboratorDto {
     this.handle,
     this.avatarUrl,
   });
-
-  factory CollaboratorDto.fromJson(Map<String, Object?> json) =>
-      _$CollaboratorDtoFromJson(json);
-
+  
+  factory CollaboratorDto.fromJson(Map<String, Object?> json) => _$CollaboratorDtoFromJson(json);
+  
   final String id;
 
   /// A member’s display name, or the name typed in.

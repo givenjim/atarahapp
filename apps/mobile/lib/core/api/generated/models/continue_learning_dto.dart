@@ -18,10 +18,9 @@ class ContinueLearningDto {
     this.nextLessonId,
     this.nextLessonTitle,
   });
-
-  factory ContinueLearningDto.fromJson(Map<String, Object?> json) =>
-      _$ContinueLearningDtoFromJson(json);
-
+  
+  factory ContinueLearningDto.fromJson(Map<String, Object?> json) => _$ContinueLearningDtoFromJson(json);
+  
   final LearningCardDto content;
   final num percent;
   final num lessonsDone;

@@ -19,10 +19,9 @@ class SkillEntryDto {
     required this.projectCount,
     this.level,
   });
-
-  factory SkillEntryDto.fromJson(Map<String, Object?> json) =>
-      _$SkillEntryDtoFromJson(json);
-
+  
+  factory SkillEntryDto.fromJson(Map<String, Object?> json) => _$SkillEntryDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String name;

@@ -34,10 +34,9 @@ class PostViewDto {
     required this.createdAt,
     required this.editedAt,
   });
-
-  factory PostViewDto.fromJson(Map<String, Object?> json) =>
-      _$PostViewDtoFromJson(json);
-
+  
+  factory PostViewDto.fromJson(Map<String, Object?> json) => _$PostViewDtoFromJson(json);
+  
   final String id;
   final PostType type;
   final String body;

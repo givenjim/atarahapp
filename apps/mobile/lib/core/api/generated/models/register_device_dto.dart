@@ -15,10 +15,9 @@ class RegisterDeviceDto {
     required this.platform,
     this.appVersion,
   });
-
-  factory RegisterDeviceDto.fromJson(Map<String, Object?> json) =>
-      _$RegisterDeviceDtoFromJson(json);
-
+  
+  factory RegisterDeviceDto.fromJson(Map<String, Object?> json) => _$RegisterDeviceDtoFromJson(json);
+  
   /// FCM registration token.
   final String token;
   final RegisterDeviceDtoPlatform platform;

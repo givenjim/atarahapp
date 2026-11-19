@@ -8,11 +8,13 @@ part 'two_step_dto.g.dart';
 
 @JsonSerializable()
 class TwoStepDto {
-  const TwoStepDto({required this.enabled, required this.hasVerifiedFactor});
-
-  factory TwoStepDto.fromJson(Map<String, Object?> json) =>
-      _$TwoStepDtoFromJson(json);
-
+  const TwoStepDto({
+    required this.enabled,
+    required this.hasVerifiedFactor,
+  });
+  
+  factory TwoStepDto.fromJson(Map<String, Object?> json) => _$TwoStepDtoFromJson(json);
+  
   final bool enabled;
   final bool hasVerifiedFactor;
 

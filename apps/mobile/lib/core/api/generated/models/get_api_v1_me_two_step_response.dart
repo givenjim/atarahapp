@@ -10,11 +10,13 @@ part 'get_api_v1_me_two_step_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1MeTwoStepResponse {
-  const GetApiV1MeTwoStepResponse({required this.data, this.meta});
-
-  factory GetApiV1MeTwoStepResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1MeTwoStepResponseFromJson(json);
-
+  const GetApiV1MeTwoStepResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1MeTwoStepResponse.fromJson(Map<String, Object?> json) => _$GetApiV1MeTwoStepResponseFromJson(json);
+  
   final TwoStepDto data;
   final dynamic meta;
 

@@ -14,14 +14,11 @@ class DeleteApiV1MutesTargetTypeTargetIdResponse {
     required this.data,
     this.meta,
   });
-
-  factory DeleteApiV1MutesTargetTypeTargetIdResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$DeleteApiV1MutesTargetTypeTargetIdResponseFromJson(json);
-
+  
+  factory DeleteApiV1MutesTargetTypeTargetIdResponse.fromJson(Map<String, Object?> json) => _$DeleteApiV1MutesTargetTypeTargetIdResponseFromJson(json);
+  
   final MuteStateDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$DeleteApiV1MutesTargetTypeTargetIdResponseToJson(this);
+  Map<String, Object?> toJson() => _$DeleteApiV1MutesTargetTypeTargetIdResponseToJson(this);
 }

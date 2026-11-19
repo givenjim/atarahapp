@@ -10,11 +10,13 @@ part 'my_learning_item_dto.g.dart';
 
 @JsonSerializable()
 class MyLearningItemDto {
-  const MyLearningItemDto({required this.content, this.lastActivityAt});
-
-  factory MyLearningItemDto.fromJson(Map<String, Object?> json) =>
-      _$MyLearningItemDtoFromJson(json);
-
+  const MyLearningItemDto({
+    required this.content,
+    this.lastActivityAt,
+  });
+  
+  factory MyLearningItemDto.fromJson(Map<String, Object?> json) => _$MyLearningItemDtoFromJson(json);
+  
   final LearningCardDto content;
   final DateTime? lastActivityAt;
 

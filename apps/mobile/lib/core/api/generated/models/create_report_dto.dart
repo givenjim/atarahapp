@@ -18,10 +18,9 @@ class CreateReportDto {
     this.handle,
     this.note,
   });
-
-  factory CreateReportDto.fromJson(Map<String, Object?> json) =>
-      _$CreateReportDtoFromJson(json);
-
+  
+  factory CreateReportDto.fromJson(Map<String, Object?> json) => _$CreateReportDtoFromJson(json);
+  
   final ReportTargetType targetType;
 
   /// The post, comment, user or group id.

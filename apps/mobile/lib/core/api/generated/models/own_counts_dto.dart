@@ -13,10 +13,9 @@ class OwnCountsDto {
     required this.connections,
     required this.pendingRequests,
   });
-
-  factory OwnCountsDto.fromJson(Map<String, Object?> json) =>
-      _$OwnCountsDtoFromJson(json);
-
+  
+  factory OwnCountsDto.fromJson(Map<String, Object?> json) => _$OwnCountsDtoFromJson(json);
+  
   final num skills;
 
   /// Accepted connections.

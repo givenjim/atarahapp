@@ -15,10 +15,9 @@ class SetSectionVisibilityDto {
     required this.section,
     required this.visibility,
   });
-
-  factory SetSectionVisibilityDto.fromJson(Map<String, Object?> json) =>
-      _$SetSectionVisibilityDtoFromJson(json);
-
+  
+  factory SetSectionVisibilityDto.fromJson(Map<String, Object?> json) => _$SetSectionVisibilityDtoFromJson(json);
+  
   final SetSectionVisibilityDtoSection section;
   final SetSectionVisibilityDtoVisibility visibility;
 

@@ -17,10 +17,9 @@ class ImportReportDto {
     required this.issues,
     required this.preview,
   });
-
-  factory ImportReportDto.fromJson(Map<String, Object?> json) =>
-      _$ImportReportDtoFromJson(json);
-
+  
+  factory ImportReportDto.fromJson(Map<String, Object?> json) => _$ImportReportDtoFromJson(json);
+  
   final num totalCount;
   final num validCount;
   final List<ImportIssueDto> issues;

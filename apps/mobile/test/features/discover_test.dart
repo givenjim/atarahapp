@@ -127,13 +127,11 @@ void main() {
       expect(h.path, '/notifications');
     });
 
-    testWidgets('Marketplace and Mentorship open labelled future screens', (
-      t,
-    ) async {
+    testWidgets('Marketplace opens the marketplace', (t) async {
       final h = await openApp(t);
       await tapText(t, 'Marketplace');
-      expect(h.path, '/soon/p2');
-      expect(find.textContaining('Soon'), findsWidgets);
+      expect(h.path, '/marketplace');
+      expect(find.text('Hire creatives or sell your services'), findsWidgets);
     });
 
     testWidgets('a failed load says so and retrying loads it', (t) async {
@@ -307,7 +305,7 @@ void main() {
           await t.pumpAndSettle();
         }
 
-        await check('Marketplace', '/soon/p2');
+        await check('Marketplace', '/marketplace');
         await check('Mentorship', '/soon/p2');
         await check('Creative economy', '/soon/p3');
         await check('Skill Labs', '/learning');

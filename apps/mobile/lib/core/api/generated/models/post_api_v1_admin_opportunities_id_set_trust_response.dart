@@ -14,14 +14,11 @@ class PostApiV1AdminOpportunitiesIdSetTrustResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminOpportunitiesIdSetTrustResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminOpportunitiesIdSetTrustResponseFromJson(json);
-
+  
+  factory PostApiV1AdminOpportunitiesIdSetTrustResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminOpportunitiesIdSetTrustResponseFromJson(json);
+  
   final AdminOpportunityDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminOpportunitiesIdSetTrustResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminOpportunitiesIdSetTrustResponseToJson(this);
 }

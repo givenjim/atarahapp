@@ -27,22 +27,34 @@ import 'discover/discover_client.dart';
 import 'opportunities/opportunities_client.dart';
 import 'admin_opportunities/admin_opportunities_client.dart';
 import 'provider_opportunities/provider_opportunities_client.dart';
+import 'marketplace/marketplace_client.dart';
+import 'admin_marketplace/admin_marketplace_client.dart';
 import 'learning/learning_client.dart';
 import 'admin_learning/admin_learning_client.dart';
 import 'community_safety/community_safety_client.dart';
 import 'admin_community/admin_community_client.dart';
+import 'mentorship/mentorship_client.dart';
+import 'mentor_tools/mentor_tools_client.dart';
+import 'admin_mentorship/admin_mentorship_client.dart';
 import 'saved/saved_client.dart';
 import 'activity/activity_client.dart';
 import 'account/account_client.dart';
+import 'creative_cv/creative_cv_client.dart';
 import 'help/help_client.dart';
 import 'admin_help/admin_help_client.dart';
 import 'admin_notifications/admin_notifications_client.dart';
+import 'payments/payments_client.dart';
+import 'admin_payments/admin_payments_client.dart';
 
 /// Atarah API `v1.0`.
 ///
 /// Atarah — Create · Connect · Grow. Versioned REST API (Luxaion Creatives).
 class AtarahApiClient {
-  AtarahApiClient(Dio dio, {String? baseUrl}) : _dio = dio, _baseUrl = baseUrl;
+  AtarahApiClient(
+    Dio dio, {
+    String? baseUrl,
+  })  : _dio = dio,
+        _baseUrl = baseUrl;
 
   final Dio _dio;
   final String? _baseUrl;
@@ -72,109 +84,104 @@ class AtarahApiClient {
   OpportunitiesClient? _opportunities;
   AdminOpportunitiesClient? _adminOpportunities;
   ProviderOpportunitiesClient? _providerOpportunities;
+  MarketplaceClient? _marketplace;
+  AdminMarketplaceClient? _adminMarketplace;
   LearningClient? _learning;
   AdminLearningClient? _adminLearning;
   CommunitySafetyClient? _communitySafety;
   AdminCommunityClient? _adminCommunity;
+  MentorshipClient? _mentorship;
+  MentorToolsClient? _mentorTools;
+  AdminMentorshipClient? _adminMentorship;
   SavedClient? _saved;
   ActivityClient? _activity;
   AccountClient? _account;
+  CreativeCvClient? _creativeCv;
   HelpClient? _help;
   AdminHelpClient? _adminHelp;
   AdminNotificationsClient? _adminNotifications;
+  PaymentsClient? _payments;
+  AdminPaymentsClient? _adminPayments;
 
   AuthClient get auth => _auth ??= AuthClient(_dio, baseUrl: _baseUrl);
 
   UsersClient get users => _users ??= UsersClient(_dio, baseUrl: _baseUrl);
 
-  AdminAuthClient get adminAuth =>
-      _adminAuth ??= AdminAuthClient(_dio, baseUrl: _baseUrl);
+  AdminAuthClient get adminAuth => _adminAuth ??= AdminAuthClient(_dio, baseUrl: _baseUrl);
 
   AdminClient get admin => _admin ??= AdminClient(_dio, baseUrl: _baseUrl);
 
-  AdminOperationsClient get adminOperations =>
-      _adminOperations ??= AdminOperationsClient(_dio, baseUrl: _baseUrl);
+  AdminOperationsClient get adminOperations => _adminOperations ??= AdminOperationsClient(_dio, baseUrl: _baseUrl);
 
-  AdminPlatformClient get adminPlatform =>
-      _adminPlatform ??= AdminPlatformClient(_dio, baseUrl: _baseUrl);
+  AdminPlatformClient get adminPlatform => _adminPlatform ??= AdminPlatformClient(_dio, baseUrl: _baseUrl);
 
   MediaClient get media => _media ??= MediaClient(_dio, baseUrl: _baseUrl);
 
-  NotificationsClient get notifications =>
-      _notifications ??= NotificationsClient(_dio, baseUrl: _baseUrl);
+  NotificationsClient get notifications => _notifications ??= NotificationsClient(_dio, baseUrl: _baseUrl);
 
   PublicClient get public => _public ??= PublicClient(_dio, baseUrl: _baseUrl);
 
-  CommunityClient get community =>
-      _community ??= CommunityClient(_dio, baseUrl: _baseUrl);
+  CommunityClient get community => _community ??= CommunityClient(_dio, baseUrl: _baseUrl);
 
-  TaxonomyClient get taxonomy =>
-      _taxonomy ??= TaxonomyClient(_dio, baseUrl: _baseUrl);
+  TaxonomyClient get taxonomy => _taxonomy ??= TaxonomyClient(_dio, baseUrl: _baseUrl);
 
-  LocationsClient get locations =>
-      _locations ??= LocationsClient(_dio, baseUrl: _baseUrl);
+  LocationsClient get locations => _locations ??= LocationsClient(_dio, baseUrl: _baseUrl);
 
-  OnboardingClient get onboarding =>
-      _onboarding ??= OnboardingClient(_dio, baseUrl: _baseUrl);
+  OnboardingClient get onboarding => _onboarding ??= OnboardingClient(_dio, baseUrl: _baseUrl);
 
-  AdminTaxonomyClient get adminTaxonomy =>
-      _adminTaxonomy ??= AdminTaxonomyClient(_dio, baseUrl: _baseUrl);
+  AdminTaxonomyClient get adminTaxonomy => _adminTaxonomy ??= AdminTaxonomyClient(_dio, baseUrl: _baseUrl);
 
-  ProfileClient get profile =>
-      _profile ??= ProfileClient(_dio, baseUrl: _baseUrl);
+  ProfileClient get profile => _profile ??= ProfileClient(_dio, baseUrl: _baseUrl);
 
-  PortfolioClient get portfolio =>
-      _portfolio ??= PortfolioClient(_dio, baseUrl: _baseUrl);
+  PortfolioClient get portfolio => _portfolio ??= PortfolioClient(_dio, baseUrl: _baseUrl);
 
-  AdminPortfolioClient get adminPortfolio =>
-      _adminPortfolio ??= AdminPortfolioClient(_dio, baseUrl: _baseUrl);
+  AdminPortfolioClient get adminPortfolio => _adminPortfolio ??= AdminPortfolioClient(_dio, baseUrl: _baseUrl);
 
-  ArticlesClient get articles =>
-      _articles ??= ArticlesClient(_dio, baseUrl: _baseUrl);
+  ArticlesClient get articles => _articles ??= ArticlesClient(_dio, baseUrl: _baseUrl);
 
-  AdminContentClient get adminContent =>
-      _adminContent ??= AdminContentClient(_dio, baseUrl: _baseUrl);
+  AdminContentClient get adminContent => _adminContent ??= AdminContentClient(_dio, baseUrl: _baseUrl);
 
-  DiscoverClient get discover =>
-      _discover ??= DiscoverClient(_dio, baseUrl: _baseUrl);
+  DiscoverClient get discover => _discover ??= DiscoverClient(_dio, baseUrl: _baseUrl);
 
-  OpportunitiesClient get opportunities =>
-      _opportunities ??= OpportunitiesClient(_dio, baseUrl: _baseUrl);
+  OpportunitiesClient get opportunities => _opportunities ??= OpportunitiesClient(_dio, baseUrl: _baseUrl);
 
-  AdminOpportunitiesClient get adminOpportunities =>
-      _adminOpportunities ??= AdminOpportunitiesClient(_dio, baseUrl: _baseUrl);
+  AdminOpportunitiesClient get adminOpportunities => _adminOpportunities ??= AdminOpportunitiesClient(_dio, baseUrl: _baseUrl);
 
-  ProviderOpportunitiesClient get providerOpportunities =>
-      _providerOpportunities ??= ProviderOpportunitiesClient(
-        _dio,
-        baseUrl: _baseUrl,
-      );
+  ProviderOpportunitiesClient get providerOpportunities => _providerOpportunities ??= ProviderOpportunitiesClient(_dio, baseUrl: _baseUrl);
 
-  LearningClient get learning =>
-      _learning ??= LearningClient(_dio, baseUrl: _baseUrl);
+  MarketplaceClient get marketplace => _marketplace ??= MarketplaceClient(_dio, baseUrl: _baseUrl);
 
-  AdminLearningClient get adminLearning =>
-      _adminLearning ??= AdminLearningClient(_dio, baseUrl: _baseUrl);
+  AdminMarketplaceClient get adminMarketplace => _adminMarketplace ??= AdminMarketplaceClient(_dio, baseUrl: _baseUrl);
 
-  CommunitySafetyClient get communitySafety =>
-      _communitySafety ??= CommunitySafetyClient(_dio, baseUrl: _baseUrl);
+  LearningClient get learning => _learning ??= LearningClient(_dio, baseUrl: _baseUrl);
 
-  AdminCommunityClient get adminCommunity =>
-      _adminCommunity ??= AdminCommunityClient(_dio, baseUrl: _baseUrl);
+  AdminLearningClient get adminLearning => _adminLearning ??= AdminLearningClient(_dio, baseUrl: _baseUrl);
+
+  CommunitySafetyClient get communitySafety => _communitySafety ??= CommunitySafetyClient(_dio, baseUrl: _baseUrl);
+
+  AdminCommunityClient get adminCommunity => _adminCommunity ??= AdminCommunityClient(_dio, baseUrl: _baseUrl);
+
+  MentorshipClient get mentorship => _mentorship ??= MentorshipClient(_dio, baseUrl: _baseUrl);
+
+  MentorToolsClient get mentorTools => _mentorTools ??= MentorToolsClient(_dio, baseUrl: _baseUrl);
+
+  AdminMentorshipClient get adminMentorship => _adminMentorship ??= AdminMentorshipClient(_dio, baseUrl: _baseUrl);
 
   SavedClient get saved => _saved ??= SavedClient(_dio, baseUrl: _baseUrl);
 
-  ActivityClient get activity =>
-      _activity ??= ActivityClient(_dio, baseUrl: _baseUrl);
+  ActivityClient get activity => _activity ??= ActivityClient(_dio, baseUrl: _baseUrl);
 
-  AccountClient get account =>
-      _account ??= AccountClient(_dio, baseUrl: _baseUrl);
+  AccountClient get account => _account ??= AccountClient(_dio, baseUrl: _baseUrl);
+
+  CreativeCvClient get creativeCv => _creativeCv ??= CreativeCvClient(_dio, baseUrl: _baseUrl);
 
   HelpClient get help => _help ??= HelpClient(_dio, baseUrl: _baseUrl);
 
-  AdminHelpClient get adminHelp =>
-      _adminHelp ??= AdminHelpClient(_dio, baseUrl: _baseUrl);
+  AdminHelpClient get adminHelp => _adminHelp ??= AdminHelpClient(_dio, baseUrl: _baseUrl);
 
-  AdminNotificationsClient get adminNotifications =>
-      _adminNotifications ??= AdminNotificationsClient(_dio, baseUrl: _baseUrl);
+  AdminNotificationsClient get adminNotifications => _adminNotifications ??= AdminNotificationsClient(_dio, baseUrl: _baseUrl);
+
+  PaymentsClient get payments => _payments ??= PaymentsClient(_dio, baseUrl: _baseUrl);
+
+  AdminPaymentsClient get adminPayments => _adminPayments ??= AdminPaymentsClient(_dio, baseUrl: _baseUrl);
 }

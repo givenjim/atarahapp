@@ -74,7 +74,9 @@ abstract class PortfolioClient {
   });
 
   @DELETE('/api/v1/me/projects/{id}')
-  Future<void> deleteProject({@Path('id') required String id});
+  Future<void> deleteProject({
+    @Path('id') required String id,
+  });
 
   @POST('/api/v1/me/projects/{id}/publish')
   Future<PostApiV1MeProjectsIdPublishResponse> publishProject({
@@ -88,8 +90,7 @@ abstract class PortfolioClient {
   });
 
   @DELETE('/api/v1/me/projects/{id}/collaborators/{collaboratorId}')
-  Future<DeleteApiV1MeProjectsIdCollaboratorsCollaboratorIdResponse>
-  removeCollaborator({
+  Future<DeleteApiV1MeProjectsIdCollaboratorsCollaboratorIdResponse> removeCollaborator({
     @Path('id') required String id,
     @Path('collaboratorId') required String collaboratorId,
   });
@@ -103,7 +104,9 @@ abstract class PortfolioClient {
   });
 
   @DELETE('/api/v1/me/collaborations/{id}')
-  Future<void> leaveCollaboration({@Path('id') required String id});
+  Future<void> leaveCollaboration({
+    @Path('id') required String id,
+  });
 
   @GET('/api/v1/members/search')
   Future<GetApiV1MembersSearchResponse> searchMembers({
@@ -121,7 +124,9 @@ abstract class PortfolioClient {
   });
 
   @DELETE('/api/v1/me/skills/{skillId}')
-  Future<void> removeSkill({@Path('skillId') required String skillId});
+  Future<void> removeSkill({
+    @Path('skillId') required String skillId,
+  });
 
   @GET('/api/v1/me/experience')
   Future<GetApiV1MeExperienceResponse> myExperience();
@@ -138,7 +143,9 @@ abstract class PortfolioClient {
   });
 
   @DELETE('/api/v1/me/experience/{id}')
-  Future<void> deleteExperience({@Path('id') required String id});
+  Future<void> deleteExperience({
+    @Path('id') required String id,
+  });
 
   @GET('/api/v1/me/achievements')
   Future<GetApiV1MeAchievementsResponse> myAchievements();
@@ -155,7 +162,9 @@ abstract class PortfolioClient {
   });
 
   @DELETE('/api/v1/me/achievements/{id}')
-  Future<void> deleteAchievement({@Path('id') required String id});
+  Future<void> deleteAchievement({
+    @Path('id') required String id,
+  });
 
   @GET('/api/v1/me/services')
   Future<GetApiV1MeServicesResponse> myServices();
@@ -172,7 +181,9 @@ abstract class PortfolioClient {
   });
 
   @DELETE('/api/v1/me/services/{id}')
-  Future<void> deleteService({@Path('id') required String id});
+  Future<void> deleteService({
+    @Path('id') required String id,
+  });
 
   /// [previewAs] - Owner only: see the portfolio as the public or as other members do.
   ///

@@ -16,10 +16,9 @@ class AccountPreferencesDto {
     required this.timeZone,
     required this.marketingOptIn,
   });
-
-  factory AccountPreferencesDto.fromJson(Map<String, Object?> json) =>
-      _$AccountPreferencesDtoFromJson(json);
-
+  
+  factory AccountPreferencesDto.fromJson(Map<String, Object?> json) => _$AccountPreferencesDtoFromJson(json);
+  
   final AccountPreferencesDtoAppearance appearance;
   final String locale;
   final String timeZone;

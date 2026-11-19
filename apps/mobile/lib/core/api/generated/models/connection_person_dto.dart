@@ -15,10 +15,9 @@ class ConnectionPersonDto {
     required this.headline,
     required this.discipline,
   });
-
-  factory ConnectionPersonDto.fromJson(Map<String, Object?> json) =>
-      _$ConnectionPersonDtoFromJson(json);
-
+  
+  factory ConnectionPersonDto.fromJson(Map<String, Object?> json) => _$ConnectionPersonDtoFromJson(json);
+  
   final String handle;
   final String displayName;
   final String? avatarUrl;

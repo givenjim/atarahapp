@@ -250,6 +250,11 @@ export class DeletionService {
           where: { authorId: userId },
           data: { authorId: placeholder },
         }),
+        // Payment records are kept for the books (P2-M1), credited to the placeholder instead of the member.
+        this.prisma.payment.updateMany({
+          where: { payerId: userId },
+          data: { payerId: placeholder },
+        }),
       ]);
       // 2. Delete every file they uploaded (and the renditions made from it).
       const assets = await this.prisma.mediaAsset.findMany({ where: { ownerId: userId } });
@@ -259,6 +264,14 @@ export class DeletionService {
           await this.storage.remove(bucketKind(a.bucket), k).catch(() => undefined);
       }
       await this.prisma.mediaAsset.deleteMany({ where: { ownerId: userId } });
+      // 2b. Delete the CV / EPK PDFs (P2-M7). The document, build and share-link rows go with the profile.
+      const pdfs = await this.prisma.creativeDocumentRender.findMany({
+        where: { document: { profile: { userId } }, objectKey: { not: null } },
+        select: { objectKey: true },
+      });
+      for (const r of pdfs) {
+        if (r.objectKey) await this.storage.remove('private', r.objectKey).catch(() => undefined);
+      }
       // 3. Delete the account. Everything personal hangs off it and goes with it.
       const del = await this.admin.auth.deleteUser(userId);
       if (del.error && !/not found/i.test(del.error.message)) throw new Error(del.error.message);

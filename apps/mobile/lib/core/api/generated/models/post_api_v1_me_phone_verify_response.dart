@@ -10,11 +10,13 @@ part 'post_api_v1_me_phone_verify_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1MePhoneVerifyResponse {
-  const PostApiV1MePhoneVerifyResponse({required this.data, this.meta});
-
-  factory PostApiV1MePhoneVerifyResponse.fromJson(Map<String, Object?> json) =>
-      _$PostApiV1MePhoneVerifyResponseFromJson(json);
-
+  const PostApiV1MePhoneVerifyResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1MePhoneVerifyResponse.fromJson(Map<String, Object?> json) => _$PostApiV1MePhoneVerifyResponseFromJson(json);
+  
   final AccountDto data;
   final dynamic meta;
 

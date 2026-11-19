@@ -1,0 +1,235 @@
+// Marketplace foundation (P2-M3): sellers, listings, enquiries and reviews. No checkout, escrow or payouts (section 4.2).
+// Owner module: marketplace. Every table is deny-all for the Supabase client roles (RLS on, no policies, no grants).
+// A seller is always a member (user link), never a separate person record. Trust is staff-set, never client-set.
+
+enum SellerStatus {
+  ACTIVE
+  SUSPENDED
+}
+
+enum ReviewVisibility {
+  VISIBLE
+  HIDDEN
+}
+
+enum ListingReportStatus {
+  OPEN
+  RESOLVED
+  DISMISSED
+}
+
+/// The marketplace identity of a member. Created when the member accepts the seller terms (first listing); the
+/// SELLER role is granted in the same transaction. The stats are refreshed whenever a review, a reply or a close
+/// changes them (never trusted from a client).
+model SellerProfile {
+  id                 String             @id @default(uuid()) @db.Uuid
+  userId             String             @unique @db.Uuid
+  status             SellerStatus       @default(ACTIVE)
+  /// Written by P2-M6 (seller verification). Shown as a trust line only when VERIFIED.
+  verificationStatus VerificationStatus @default(NOT_SUBMITTED)
+  termsVersion       String
+  termsAcceptedAt    DateTime
+  /// Admin-controlled: a seller with a clean history may publish without review.
+  canPublishDirectly Boolean            @default(false)
+  suspendedReason    String?
+  suspendedAt        DateTime?
+  ratingAverage      Float?
+  ratingCount        Int                @default(0)
+  completedCount     Int                @default(0)
+  medianReplyMinutes Int?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  user     User      @relation("SellerUser", fields: [userId], references: [id], onDelete: Cascade)
+  listings Listing[]
+
+  @@index([status])
+  @@map("seller_profiles")
+}
+
+model Listing {
+  id               String                   @id @default(uuid()) @db.Uuid
+  sellerId         String                   @db.Uuid
+  type             ListingType
+  title            String
+  categoryId       String                   @db.Uuid
+  description      String                   @default("")
+  /// A list of short strings ("What's included").
+  includedItems    Json                     @default("[]")
+  deliveryDays     Int?
+  workMode         WorkMode                 @default(REMOTE)
+  /// Free text town or county for ONSITE and HYBRID listings.
+  locationText     String?
+  audienceText     String?
+  pricingType      PricingType              @default(ON_REQUEST)
+  /// Minor units (cents) of `currency`; `priceMaxMinor` for RANGE only.
+  priceMinMinor    Int?
+  priceMaxMinor    Int?
+  currency         String                   @default("KES") @db.Char(3)
+  status           ListingStatus            @default(DRAFT)
+  rejectionReason  String?
+  suspendedReason  String?
+  featuredUntil    DateTime?
+  publishedAt      DateTime?
+  /// The profile service this listing was made from ("On Marketplace" pill on the profile).
+  profileServiceId String?                  @unique @db.Uuid
+  /// Generated full-text vector (title, description). Read-only: the database maintains it.
+  searchVector     Unsupported("tsvector")?
+  isDemo           Boolean                  @default(false)
+  createdAt        DateTime                 @default(now())
+  updatedAt        DateTime                 @updatedAt
+
+  seller         SellerProfile          @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  category       MarketplaceCategory    @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  profileService ProfileService?        @relation("ServiceListing", fields: [profileServiceId], references: [id], onDelete: SetNull)
+  media          ListingMedia[]
+  portfolio      ListingPortfolioLink[]
+  enquiries      Enquiry[]
+  reviews        ListingReview[]
+  reports        ListingReport[]
+  views          ListingView[]
+
+  @@index([status, publishedAt(sort: Desc)])
+  @@index([sellerId, status])
+  @@index([categoryId, status])
+  @@index([searchVector], type: Gin, map: "listings_search_vector_idx")
+  @@index([title(ops: raw("gin_trgm_ops"))], type: Gin, map: "listings_title_trgm")
+  @@map("listings")
+}
+
+model ListingMedia {
+  id        String   @id @default(uuid()) @db.Uuid
+  listingId String   @db.Uuid
+  mediaId   String   @db.Uuid
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  listing Listing    @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  media   MediaAsset @relation("ListingMediaAsset", fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@unique([listingId, mediaId])
+  @@index([listingId, sortOrder])
+  @@map("listing_media")
+}
+
+model ListingPortfolioLink {
+  id        String   @id @default(uuid()) @db.Uuid
+  listingId String   @db.Uuid
+  projectId String   @db.Uuid
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  project Project @relation("ProjectListingLinks", fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([listingId, projectId])
+  @@index([projectId])
+  @@map("listing_portfolio_links")
+}
+
+/// One review per closed enquiry, by the buyer of that enquiry only (CHECK and unique `enquiryId`).
+model ListingReview {
+  id           String           @id @default(uuid()) @db.Uuid
+  listingId    String           @db.Uuid
+  enquiryId    String           @unique @db.Uuid
+  reviewerId   String           @db.Uuid
+  rating       Int
+  body         String?
+  status       ReviewVisibility @default(VISIBLE)
+  hiddenReason String?
+  hiddenById   String?          @db.Uuid
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  listing  Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  enquiry  Enquiry @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  reviewer User    @relation("ListingReviewer", fields: [reviewerId], references: [id], onDelete: Cascade)
+
+  @@index([listingId, status, createdAt(sort: Desc)])
+  @@map("listing_reviews")
+}
+
+/// A booking request. The thread is `EnquiryMessage`; only the buyer and the listing's seller ever see it.
+/// At most one open enquiry per buyer and listing (partial unique index in the migration).
+model Enquiry {
+  id              String        @id @default(uuid()) @db.Uuid
+  listingId       String        @db.Uuid
+  buyerId         String        @db.Uuid
+  /// The seller's user, copied so the thread survives listing edits and answers "is this yours" with no join.
+  sellerUserId    String        @db.Uuid
+  message         String
+  budgetMinor     Int?
+  preferredTiming String?
+  status          EnquiryStatus @default(NEW)
+  firstReplyAt    DateTime?
+  lastMessageAt   DateTime      @default(now())
+  buyerReadAt     DateTime?
+  sellerReadAt    DateTime?
+  closedAt        DateTime?
+  closedById      String?       @db.Uuid
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  listing  Listing          @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  buyer    User             @relation("EnquiryBuyer", fields: [buyerId], references: [id], onDelete: Cascade)
+  seller   User             @relation("EnquirySeller", fields: [sellerUserId], references: [id], onDelete: Cascade)
+  messages EnquiryMessage[]
+  review   ListingReview?
+
+  @@index([sellerUserId, status, lastMessageAt(sort: Desc)])
+  @@index([buyerId, lastMessageAt(sort: Desc)])
+  @@index([listingId, buyerId])
+  @@map("enquiries")
+}
+
+model EnquiryMessage {
+  id        String   @id @default(uuid()) @db.Uuid
+  enquiryId String   @db.Uuid
+  senderId  String   @db.Uuid
+  body      String
+  createdAt DateTime @default(now())
+
+  enquiry Enquiry @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  sender  User    @relation("EnquiryMessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([enquiryId, createdAt])
+  @@map("enquiry_messages")
+}
+
+/// A member's report of a listing. Reviewed in the admin "reported listings" queue (DEC-120).
+model ListingReport {
+  id           String              @id @default(uuid()) @db.Uuid
+  listingId    String              @db.Uuid
+  reporterId   String              @db.Uuid
+  reason       ReportReason
+  note         String?
+  status       ListingReportStatus @default(OPEN)
+  resolution   String?
+  resolvedById String?             @db.Uuid
+  resolvedAt   DateTime?
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+
+  listing  Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  reporter User    @relation("ListingReporter", fields: [reporterId], references: [id], onDelete: Cascade)
+
+  @@unique([listingId, reporterId])
+  @@index([status, createdAt])
+  @@map("listing_reports")
+}
+
+/// One row per viewer, listing and day (the seller's "views in 30 days" counts these). Own views are not recorded.
+model ListingView {
+  id        String   @id @default(uuid()) @db.Uuid
+  listingId String   @db.Uuid
+  viewerId  String   @db.Uuid
+  viewedOn  DateTime @db.Date
+  createdAt DateTime @default(now())
+
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  viewer  User    @relation("ListingViewer", fields: [viewerId], references: [id], onDelete: Cascade)
+
+  @@unique([listingId, viewerId, viewedOn])
+  @@index([listingId, viewedOn])
+  @@map("listing_views")
+}

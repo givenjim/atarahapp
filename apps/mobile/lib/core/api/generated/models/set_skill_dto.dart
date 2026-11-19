@@ -10,11 +10,12 @@ part 'set_skill_dto.g.dart';
 
 @JsonSerializable()
 class SetSkillDto {
-  const SetSkillDto({required this.level});
-
-  factory SetSkillDto.fromJson(Map<String, Object?> json) =>
-      _$SetSkillDtoFromJson(json);
-
+  const SetSkillDto({
+    required this.level,
+  });
+  
+  factory SetSkillDto.fromJson(Map<String, Object?> json) => _$SetSkillDtoFromJson(json);
+  
   final SetSkillDtoLevel level;
 
   Map<String, Object?> toJson() => _$SetSkillDtoToJson(this);

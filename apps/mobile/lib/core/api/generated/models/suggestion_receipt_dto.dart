@@ -15,10 +15,9 @@ class SuggestionReceiptDto {
     required this.name,
     required this.status,
   });
-
-  factory SuggestionReceiptDto.fromJson(Map<String, Object?> json) =>
-      _$SuggestionReceiptDtoFromJson(json);
-
+  
+  factory SuggestionReceiptDto.fromJson(Map<String, Object?> json) => _$SuggestionReceiptDtoFromJson(json);
+  
   final String id;
   final String name;
   final SuggestionReceiptDtoStatus status;

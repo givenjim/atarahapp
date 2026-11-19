@@ -10,15 +10,15 @@ part 'get_api_v1_legal_documents_type_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1LegalDocumentsTypeResponse {
-  const GetApiV1LegalDocumentsTypeResponse({required this.data, this.meta});
-
-  factory GetApiV1LegalDocumentsTypeResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1LegalDocumentsTypeResponseFromJson(json);
-
+  const GetApiV1LegalDocumentsTypeResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1LegalDocumentsTypeResponse.fromJson(Map<String, Object?> json) => _$GetApiV1LegalDocumentsTypeResponseFromJson(json);
+  
   final LegalFullDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1LegalDocumentsTypeResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1LegalDocumentsTypeResponseToJson(this);
 }

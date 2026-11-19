@@ -27,10 +27,9 @@ class SaveOnboardingStepDto {
     this.handle,
     this.bio,
   });
-
-  factory SaveOnboardingStepDto.fromJson(Map<String, Object?> json) =>
-      _$SaveOnboardingStepDtoFromJson(json);
-
+  
+  factory SaveOnboardingStepDto.fromJson(Map<String, Object?> json) => _$SaveOnboardingStepDtoFromJson(json);
+  
   final SaveOnboardingStepDtoStep step;
 
   /// Skip this step: nothing is saved, the member moves on.

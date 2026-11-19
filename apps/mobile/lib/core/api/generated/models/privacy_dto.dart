@@ -10,11 +10,12 @@ part 'privacy_dto.g.dart';
 
 @JsonSerializable()
 class PrivacyDto {
-  const PrivacyDto({required this.fields});
-
-  factory PrivacyDto.fromJson(Map<String, Object?> json) =>
-      _$PrivacyDtoFromJson(json);
-
+  const PrivacyDto({
+    required this.fields,
+  });
+  
+  factory PrivacyDto.fromJson(Map<String, Object?> json) => _$PrivacyDtoFromJson(json);
+  
   final List<PrivacyFieldDto> fields;
 
   Map<String, Object?> toJson() => _$PrivacyDtoToJson(this);

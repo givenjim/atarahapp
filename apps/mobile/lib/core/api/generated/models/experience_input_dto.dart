@@ -17,10 +17,9 @@ class ExperienceInputDto {
     this.endDate,
     this.description,
   });
-
-  factory ExperienceInputDto.fromJson(Map<String, Object?> json) =>
-      _$ExperienceInputDtoFromJson(json);
-
+  
+  factory ExperienceInputDto.fromJson(Map<String, Object?> json) => _$ExperienceInputDtoFromJson(json);
+  
   final String title;
 
   /// Company, studio, school or "Freelance".

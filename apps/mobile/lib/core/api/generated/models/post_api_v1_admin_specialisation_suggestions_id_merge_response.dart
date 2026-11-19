@@ -14,14 +14,11 @@ class PostApiV1AdminSpecialisationSuggestionsIdMergeResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminSpecialisationSuggestionsIdMergeResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminSpecialisationSuggestionsIdMergeResponseFromJson(json);
-
+  
+  factory PostApiV1AdminSpecialisationSuggestionsIdMergeResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminSpecialisationSuggestionsIdMergeResponseFromJson(json);
+  
   final AdminSuggestionDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminSpecialisationSuggestionsIdMergeResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminSpecialisationSuggestionsIdMergeResponseToJson(this);
 }

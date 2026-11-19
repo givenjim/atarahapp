@@ -22,10 +22,9 @@ class MyReportDto {
     required this.createdAt,
     required this.reviewedAt,
   });
-
-  factory MyReportDto.fromJson(Map<String, Object?> json) =>
-      _$MyReportDtoFromJson(json);
-
+  
+  factory MyReportDto.fromJson(Map<String, Object?> json) => _$MyReportDtoFromJson(json);
+  
   final String id;
   final ReportTargetType targetType;
   final ReportReason reason;

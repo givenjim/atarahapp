@@ -13,10 +13,9 @@ class ProfileLinkDto {
     required this.label,
     required this.url,
   });
-
-  factory ProfileLinkDto.fromJson(Map<String, Object?> json) =>
-      _$ProfileLinkDtoFromJson(json);
-
+  
+  factory ProfileLinkDto.fromJson(Map<String, Object?> json) => _$ProfileLinkDtoFromJson(json);
+  
   final String id;
   final String label;
   final String url;

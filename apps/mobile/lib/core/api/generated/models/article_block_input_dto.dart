@@ -18,10 +18,9 @@ class ArticleBlockInputDto {
     this.caption,
     this.attribution,
   });
-
-  factory ArticleBlockInputDto.fromJson(Map<String, Object?> json) =>
-      _$ArticleBlockInputDtoFromJson(json);
-
+  
+  factory ArticleBlockInputDto.fromJson(Map<String, Object?> json) => _$ArticleBlockInputDtoFromJson(json);
+  
   final ArticleBlockInputDtoType type;
 
   /// The words of a paragraph, heading, callout or quote.

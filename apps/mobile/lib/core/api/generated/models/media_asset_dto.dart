@@ -26,10 +26,9 @@ class MediaAssetDto {
     this.url,
     this.variants,
   });
-
-  factory MediaAssetDto.fromJson(Map<String, Object?> json) =>
-      _$MediaAssetDtoFromJson(json);
-
+  
+  factory MediaAssetDto.fromJson(Map<String, Object?> json) => _$MediaAssetDtoFromJson(json);
+  
   final String id;
   final MediaAssetDtoKind kind;
   final MediaAssetDtoBucket bucket;

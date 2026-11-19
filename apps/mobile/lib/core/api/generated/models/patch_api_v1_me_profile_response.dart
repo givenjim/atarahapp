@@ -10,11 +10,13 @@ part 'patch_api_v1_me_profile_response.g.dart';
 
 @JsonSerializable()
 class PatchApiV1MeProfileResponse {
-  const PatchApiV1MeProfileResponse({required this.data, this.meta});
-
-  factory PatchApiV1MeProfileResponse.fromJson(Map<String, Object?> json) =>
-      _$PatchApiV1MeProfileResponseFromJson(json);
-
+  const PatchApiV1MeProfileResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PatchApiV1MeProfileResponse.fromJson(Map<String, Object?> json) => _$PatchApiV1MeProfileResponseFromJson(json);
+  
   final OwnProfileDto data;
   final dynamic meta;
 

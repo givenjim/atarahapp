@@ -10,11 +10,13 @@ part 'get_api_v1_opportunities_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1OpportunitiesResponse {
-  const GetApiV1OpportunitiesResponse({required this.data, this.meta});
-
-  factory GetApiV1OpportunitiesResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1OpportunitiesResponseFromJson(json);
-
+  const GetApiV1OpportunitiesResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1OpportunitiesResponse.fromJson(Map<String, Object?> json) => _$GetApiV1OpportunitiesResponseFromJson(json);
+  
   final List<OpportunityCardDto> data;
   final dynamic meta;
 

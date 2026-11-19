@@ -16,10 +16,9 @@ class StatusHistoryEntryDto {
     this.from,
     this.to,
   });
-
-  factory StatusHistoryEntryDto.fromJson(Map<String, Object?> json) =>
-      _$StatusHistoryEntryDtoFromJson(json);
-
+  
+  factory StatusHistoryEntryDto.fromJson(Map<String, Object?> json) => _$StatusHistoryEntryDtoFromJson(json);
+  
   final String action;
   final DateTime at;
   final String? actorName;

@@ -10,11 +10,13 @@ part 'get_api_v1_home_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1HomeResponse {
-  const GetApiV1HomeResponse({required this.data, this.meta});
-
-  factory GetApiV1HomeResponse.fromJson(Map<String, Object?> json) =>
-      _$GetApiV1HomeResponseFromJson(json);
-
+  const GetApiV1HomeResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1HomeResponse.fromJson(Map<String, Object?> json) => _$GetApiV1HomeResponseFromJson(json);
+  
   final HomeDto data;
   final dynamic meta;
 

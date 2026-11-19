@@ -10,15 +10,15 @@ part 'post_api_v1_connections_id_accept_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1ConnectionsIdAcceptResponse {
-  const PostApiV1ConnectionsIdAcceptResponse({required this.data, this.meta});
-
-  factory PostApiV1ConnectionsIdAcceptResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1ConnectionsIdAcceptResponseFromJson(json);
-
+  const PostApiV1ConnectionsIdAcceptResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1ConnectionsIdAcceptResponse.fromJson(Map<String, Object?> json) => _$PostApiV1ConnectionsIdAcceptResponseFromJson(json);
+  
   final ConnectionStateDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1ConnectionsIdAcceptResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1ConnectionsIdAcceptResponseToJson(this);
 }

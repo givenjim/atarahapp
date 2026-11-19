@@ -15,10 +15,9 @@ class ModerationActionBodyDto {
     this.reason,
     this.restrictDays,
   });
-
-  factory ModerationActionBodyDto.fromJson(Map<String, Object?> json) =>
-      _$ModerationActionBodyDtoFromJson(json);
-
+  
+  factory ModerationActionBodyDto.fromJson(Map<String, Object?> json) => _$ModerationActionBodyDtoFromJson(json);
+  
   final ModerationAction action;
 
   /// Required for every action except NO_ACTION. Kept internal; never shown to reporters.

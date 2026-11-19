@@ -10,15 +10,15 @@ part 'get_api_v1_me_collaborations_response.g.dart';
 
 @JsonSerializable()
 class GetApiV1MeCollaborationsResponse {
-  const GetApiV1MeCollaborationsResponse({required this.data, this.meta});
-
-  factory GetApiV1MeCollaborationsResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1MeCollaborationsResponseFromJson(json);
-
+  const GetApiV1MeCollaborationsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory GetApiV1MeCollaborationsResponse.fromJson(Map<String, Object?> json) => _$GetApiV1MeCollaborationsResponseFromJson(json);
+  
   final List<CollaborationDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1MeCollaborationsResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1MeCollaborationsResponseToJson(this);
 }

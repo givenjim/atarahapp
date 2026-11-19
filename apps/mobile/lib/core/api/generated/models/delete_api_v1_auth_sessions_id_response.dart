@@ -10,15 +10,15 @@ part 'delete_api_v1_auth_sessions_id_response.g.dart';
 
 @JsonSerializable()
 class DeleteApiV1AuthSessionsIdResponse {
-  const DeleteApiV1AuthSessionsIdResponse({required this.data, this.meta});
-
-  factory DeleteApiV1AuthSessionsIdResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$DeleteApiV1AuthSessionsIdResponseFromJson(json);
-
+  const DeleteApiV1AuthSessionsIdResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory DeleteApiV1AuthSessionsIdResponse.fromJson(Map<String, Object?> json) => _$DeleteApiV1AuthSessionsIdResponseFromJson(json);
+  
   final RevokedDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$DeleteApiV1AuthSessionsIdResponseToJson(this);
+  Map<String, Object?> toJson() => _$DeleteApiV1AuthSessionsIdResponseToJson(this);
 }

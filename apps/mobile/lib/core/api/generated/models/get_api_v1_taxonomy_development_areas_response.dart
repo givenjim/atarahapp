@@ -14,14 +14,11 @@ class GetApiV1TaxonomyDevelopmentAreasResponse {
     required this.data,
     this.meta,
   });
-
-  factory GetApiV1TaxonomyDevelopmentAreasResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1TaxonomyDevelopmentAreasResponseFromJson(json);
-
+  
+  factory GetApiV1TaxonomyDevelopmentAreasResponse.fromJson(Map<String, Object?> json) => _$GetApiV1TaxonomyDevelopmentAreasResponseFromJson(json);
+  
   final List<TaxonomyItemDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1TaxonomyDevelopmentAreasResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1TaxonomyDevelopmentAreasResponseToJson(this);
 }

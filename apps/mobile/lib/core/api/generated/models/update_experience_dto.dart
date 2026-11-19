@@ -17,10 +17,9 @@ class UpdateExperienceDto {
     this.current,
     this.description,
   });
-
-  factory UpdateExperienceDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateExperienceDtoFromJson(json);
-
+  
+  factory UpdateExperienceDto.fromJson(Map<String, Object?> json) => _$UpdateExperienceDtoFromJson(json);
+  
   final String? title;
   final String? organisation;
 

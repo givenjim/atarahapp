@@ -8,11 +8,13 @@ part 'create_announcement_dto.g.dart';
 
 @JsonSerializable()
 class CreateAnnouncementDto {
-  const CreateAnnouncementDto({required this.body, this.groupId});
-
-  factory CreateAnnouncementDto.fromJson(Map<String, Object?> json) =>
-      _$CreateAnnouncementDtoFromJson(json);
-
+  const CreateAnnouncementDto({
+    required this.body,
+    this.groupId,
+  });
+  
+  factory CreateAnnouncementDto.fromJson(Map<String, Object?> json) => _$CreateAnnouncementDtoFromJson(json);
+  
   final String body;
 
   /// Post to one group instead of every member.

@@ -14,14 +14,11 @@ class PostApiV1TaxonomySpecialisationsSuggestionsResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1TaxonomySpecialisationsSuggestionsResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1TaxonomySpecialisationsSuggestionsResponseFromJson(json);
-
+  
+  factory PostApiV1TaxonomySpecialisationsSuggestionsResponse.fromJson(Map<String, Object?> json) => _$PostApiV1TaxonomySpecialisationsSuggestionsResponseFromJson(json);
+  
   final SuggestionReceiptDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1TaxonomySpecialisationsSuggestionsResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1TaxonomySpecialisationsSuggestionsResponseToJson(this);
 }

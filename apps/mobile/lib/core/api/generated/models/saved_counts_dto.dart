@@ -8,11 +8,13 @@ part 'saved_counts_dto.g.dart';
 
 @JsonSerializable()
 class SavedCountsDto {
-  const SavedCountsDto({required this.total, required this.byType});
-
-  factory SavedCountsDto.fromJson(Map<String, Object?> json) =>
-      _$SavedCountsDtoFromJson(json);
-
+  const SavedCountsDto({
+    required this.total,
+    required this.byType,
+  });
+  
+  factory SavedCountsDto.fromJson(Map<String, Object?> json) => _$SavedCountsDtoFromJson(json);
+  
   final num total;
 
   /// Per kind.

@@ -15,10 +15,9 @@ class GroupViewerDto {
     required this.role,
     required this.canPost,
   });
-
-  factory GroupViewerDto.fromJson(Map<String, Object?> json) =>
-      _$GroupViewerDtoFromJson(json);
-
+  
+  factory GroupViewerDto.fromJson(Map<String, Object?> json) => _$GroupViewerDtoFromJson(json);
+  
   final bool joined;
   final GroupViewerDtoRole? role;
 

@@ -15,8 +15,7 @@ part 'admin_portfolio_client.g.dart';
 
 @RestApi()
 abstract class AdminPortfolioClient {
-  factory AdminPortfolioClient(Dio dio, {String? baseUrl}) =
-      _AdminPortfolioClient;
+  factory AdminPortfolioClient(Dio dio, {String? baseUrl}) = _AdminPortfolioClient;
 
   /// [q] - Matches the title, the owner’s name or handle.
   ///

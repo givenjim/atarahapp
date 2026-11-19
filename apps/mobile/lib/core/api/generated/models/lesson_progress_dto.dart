@@ -15,10 +15,9 @@ class LessonProgressDto {
     required this.lastPositionSeconds,
     this.completedAt,
   });
-
-  factory LessonProgressDto.fromJson(Map<String, Object?> json) =>
-      _$LessonProgressDtoFromJson(json);
-
+  
+  factory LessonProgressDto.fromJson(Map<String, Object?> json) => _$LessonProgressDtoFromJson(json);
+  
   final LessonProgressStatus status;
   final num lastPositionSeconds;
   final DateTime? completedAt;

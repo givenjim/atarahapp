@@ -14,14 +14,11 @@ class DeleteApiV1AdminGroupsIdModeratorsUserIdResponse {
     required this.data,
     this.meta,
   });
-
-  factory DeleteApiV1AdminGroupsIdModeratorsUserIdResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$DeleteApiV1AdminGroupsIdModeratorsUserIdResponseFromJson(json);
-
+  
+  factory DeleteApiV1AdminGroupsIdModeratorsUserIdResponse.fromJson(Map<String, Object?> json) => _$DeleteApiV1AdminGroupsIdModeratorsUserIdResponseFromJson(json);
+  
   final AdminGroupDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$DeleteApiV1AdminGroupsIdModeratorsUserIdResponseToJson(this);
+  Map<String, Object?> toJson() => _$DeleteApiV1AdminGroupsIdModeratorsUserIdResponseToJson(this);
 }

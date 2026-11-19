@@ -19,10 +19,9 @@ class LearningHubDto {
     required this.recommended,
     this.continueLearning,
   });
-
-  factory LearningHubDto.fromJson(Map<String, Object?> json) =>
-      _$LearningHubDtoFromJson(json);
-
+  
+  factory LearningHubDto.fromJson(Map<String, Object?> json) => _$LearningHubDtoFromJson(json);
+  
   final ContinueLearningDto? continueLearning;
   final List<LearningCardDto> featured;
   final List<HubCategoryDto> categories;

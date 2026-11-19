@@ -32,6 +32,7 @@ export const BUILT_SEARCH_TYPES: readonly SearchType[] = [
   'posts',
   'opportunities',
   'learning',
+  'marketplace',
 ];
 
 export const MAX_QUERY = 80;

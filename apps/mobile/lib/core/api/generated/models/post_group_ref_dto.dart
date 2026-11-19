@@ -13,10 +13,9 @@ class PostGroupRefDto {
     required this.slug,
     required this.name,
   });
-
-  factory PostGroupRefDto.fromJson(Map<String, Object?> json) =>
-      _$PostGroupRefDtoFromJson(json);
-
+  
+  factory PostGroupRefDto.fromJson(Map<String, Object?> json) => _$PostGroupRefDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String name;

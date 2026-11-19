@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,12 +12,14 @@ import '../../core/l10n/app_localizations.dart';
 import '../../core/networking/failures.dart';
 import '../../core/providers.dart';
 import '../../core/routing/routes.dart';
+import '../marketplace/listing_editor_screen.dart' show SellerTermsSheet;
+import '../marketplace/marketplace_providers.dart';
 import '../profile/profile_providers.dart';
 import 'portfolio_common.dart';
 import 'portfolio_providers.dart';
 
-/// My services: what the member offers on their profile. Marketplace listings arrive in Phase 2, so each
-/// service stays "Profile only" and the marketplace actions open their labelled screen.
+/// My services: what the member offers on their profile. "Publish" turns a service into a draft marketplace listing;
+/// once it has one the pill reads "On Marketplace" and "View listing" opens it.
 class ServicesScreen extends ConsumerWidget {
   const ServicesScreen({super.key});
 
@@ -33,6 +37,68 @@ class ServicesScreen extends ConsumerWidget {
     if (changed == true) {
       ref.invalidate(myServicesProvider);
       ref.invalidate(myProfileProvider);
+    }
+  }
+
+  /// "Publish": asks for a category, then makes a draft listing from the service (the seller terms come first for a
+  /// member who is not a seller yet) and opens it so the member can finish and submit it.
+  Future<void> _publish(
+    BuildContext context,
+    WidgetRef ref,
+    ServiceDto service,
+  ) async {
+    final l10n = AppLocalizations.of(context);
+    final categories = await ref.read(marketplaceCategoriesProvider.future);
+    if (!context.mounted) return;
+    final category = await showAtBottomSheet<CategoryDto>(
+      context: context,
+      title: l10n.mkPickCategory,
+      builder: (ctx) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            l10n.mkPickCategoryBody,
+            style: AtTextStyles.bodySm.copyWith(color: ctx.at.body),
+          ),
+          const SizedBox(height: 12),
+          for (final c in categories)
+            AtListRow(title: c.name, onTap: () => Navigator.of(ctx).pop(c)),
+        ],
+      ),
+    );
+    if (category == null || !context.mounted) return;
+    final repo = ref.read(marketplaceRepositoryProvider);
+    try {
+      final mine = await ref.read(myListingsProvider.future);
+      var accept = false;
+      String? version;
+      if (!mine.isSeller) {
+        if (!context.mounted) return;
+        final terms = await showAtBottomSheet<SellerTermsDto>(
+          context: context,
+          title: l10n.mkTermsTitle,
+          builder: (_) => const SellerTermsSheet(),
+        );
+        if (terms == null) return;
+        accept = true;
+        version = terms.version;
+      }
+      final listing = await repo.fromService(
+        service.id,
+        category.id,
+        acceptTerms: accept ? true : null,
+        termsVersion: version,
+      );
+      ref.invalidate(myServicesProvider);
+      ref.invalidate(myListingsProvider);
+      if (context.mounted) {
+        unawaited(context.push(Routes.listingEditPath(listing.id)));
+      }
+    } on AppFailure catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(e.message)));
+      }
     }
   }
 
@@ -113,20 +179,23 @@ class ServicesScreen extends ConsumerWidget {
                           spacing: 8,
                           runSpacing: 4,
                           children: [
-                            _Action(
-                              label: l10n.svPublish,
-                              icon: LucideIcons.store,
-                              onTap: () => context.push(
-                                Routes.soonPath('p2', name: l10n.svPublish),
+                            if (s.listingId == null)
+                              _Action(
+                                label: l10n.svPublish,
+                                icon: LucideIcons.store,
+                                onTap: () => _publish(context, ref, s),
+                              )
+                            else
+                              _Action(
+                                label: l10n.svViewListing,
+                                icon: LucideIcons.externalLink,
+                                onTap: () => context.push(
+                                  s.listingStatus ==
+                                          ServiceDtoListingStatus.published
+                                      ? Routes.listingPath(s.listingId!)
+                                      : Routes.listingEditPath(s.listingId!),
+                                ),
                               ),
-                            ),
-                            _Action(
-                              label: l10n.svViewListing,
-                              icon: LucideIcons.externalLink,
-                              onTap: () => context.push(
-                                Routes.soonPath('p2', name: l10n.svViewListing),
-                              ),
-                            ),
                             _Action(
                               label: l10n.svEdit,
                               icon: LucideIcons.pencil,

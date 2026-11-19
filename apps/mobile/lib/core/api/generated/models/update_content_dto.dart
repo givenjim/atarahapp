@@ -36,10 +36,9 @@ class UpdateContentDto {
     required this.skillIds,
     required this.sequential,
   });
-
-  factory UpdateContentDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateContentDtoFromJson(json);
-
+  
+  factory UpdateContentDto.fromJson(Map<String, Object?> json) => _$UpdateContentDtoFromJson(json);
+  
   final String title;
   final LearningContentType type;
   final String summary;

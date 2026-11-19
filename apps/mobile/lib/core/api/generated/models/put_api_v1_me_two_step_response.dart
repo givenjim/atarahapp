@@ -10,11 +10,13 @@ part 'put_api_v1_me_two_step_response.g.dart';
 
 @JsonSerializable()
 class PutApiV1MeTwoStepResponse {
-  const PutApiV1MeTwoStepResponse({required this.data, this.meta});
-
-  factory PutApiV1MeTwoStepResponse.fromJson(Map<String, Object?> json) =>
-      _$PutApiV1MeTwoStepResponseFromJson(json);
-
+  const PutApiV1MeTwoStepResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PutApiV1MeTwoStepResponse.fromJson(Map<String, Object?> json) => _$PutApiV1MeTwoStepResponseFromJson(json);
+  
   final TwoStepDto data;
   final dynamic meta;
 

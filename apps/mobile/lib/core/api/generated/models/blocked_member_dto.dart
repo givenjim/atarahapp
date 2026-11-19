@@ -15,10 +15,9 @@ class BlockedMemberDto {
     required this.avatarUrl,
     required this.blockedAt,
   });
-
-  factory BlockedMemberDto.fromJson(Map<String, Object?> json) =>
-      _$BlockedMemberDtoFromJson(json);
-
+  
+  factory BlockedMemberDto.fromJson(Map<String, Object?> json) => _$BlockedMemberDtoFromJson(json);
+  
   final String userId;
   final String? handle;
   final String displayName;

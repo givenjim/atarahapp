@@ -14,14 +14,11 @@ class PatchApiV1AdminLegalDocumentsIdResponse {
     required this.data,
     this.meta,
   });
-
-  factory PatchApiV1AdminLegalDocumentsIdResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PatchApiV1AdminLegalDocumentsIdResponseFromJson(json);
-
+  
+  factory PatchApiV1AdminLegalDocumentsIdResponse.fromJson(Map<String, Object?> json) => _$PatchApiV1AdminLegalDocumentsIdResponseFromJson(json);
+  
   final AdminLegalDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PatchApiV1AdminLegalDocumentsIdResponseToJson(this);
+  Map<String, Object?> toJson() => _$PatchApiV1AdminLegalDocumentsIdResponseToJson(this);
 }

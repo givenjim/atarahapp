@@ -10,15 +10,15 @@ part 'patch_api_v1_me_passport_visibility_response.g.dart';
 
 @JsonSerializable()
 class PatchApiV1MePassportVisibilityResponse {
-  const PatchApiV1MePassportVisibilityResponse({required this.data, this.meta});
-
-  factory PatchApiV1MePassportVisibilityResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PatchApiV1MePassportVisibilityResponseFromJson(json);
-
+  const PatchApiV1MePassportVisibilityResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PatchApiV1MePassportVisibilityResponse.fromJson(Map<String, Object?> json) => _$PatchApiV1MePassportVisibilityResponseFromJson(json);
+  
   final List<SectionVisibilityDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PatchApiV1MePassportVisibilityResponseToJson(this);
+  Map<String, Object?> toJson() => _$PatchApiV1MePassportVisibilityResponseToJson(this);
 }

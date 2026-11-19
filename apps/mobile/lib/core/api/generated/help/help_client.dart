@@ -20,7 +20,9 @@ abstract class HelpClient {
 
   /// [q] - Search the articles and the FAQ.
   @GET('/api/v1/help')
-  Future<GetApiV1HelpResponse> search({@Query('q') String? q});
+  Future<GetApiV1HelpResponse> search({
+    @Query('q') String? q,
+  });
 
   @GET('/api/v1/help/articles/{slug}')
   Future<GetApiV1HelpArticlesSlugResponse> article({

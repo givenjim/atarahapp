@@ -29,10 +29,9 @@ class AdminCaseDto {
     required this.createdAt,
     required this.resolvedAt,
   });
-
-  factory AdminCaseDto.fromJson(Map<String, Object?> json) =>
-      _$AdminCaseDtoFromJson(json);
-
+  
+  factory AdminCaseDto.fromJson(Map<String, Object?> json) => _$AdminCaseDtoFromJson(json);
+  
   final String id;
   final ReportTargetType targetType;
   final String targetId;

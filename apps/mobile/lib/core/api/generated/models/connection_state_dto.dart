@@ -16,10 +16,9 @@ class ConnectionStateDto {
     required this.canConnect,
     this.reason,
   });
-
-  factory ConnectionStateDto.fromJson(Map<String, Object?> json) =>
-      _$ConnectionStateDtoFromJson(json);
-
+  
+  factory ConnectionStateDto.fromJson(Map<String, Object?> json) => _$ConnectionStateDtoFromJson(json);
+  
   final String? id;
   final ConnectionStateDtoState state;
 

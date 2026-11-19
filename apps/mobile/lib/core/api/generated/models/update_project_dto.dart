@@ -27,10 +27,9 @@ class UpdateProjectDto {
     this.skillIds,
     this.links,
   });
-
-  factory UpdateProjectDto.fromJson(Map<String, Object?> json) =>
-      _$UpdateProjectDtoFromJson(json);
-
+  
+  factory UpdateProjectDto.fromJson(Map<String, Object?> json) => _$UpdateProjectDtoFromJson(json);
+  
   final String? title;
 
   /// Your role on the project. Empty clears it.

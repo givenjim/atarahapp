@@ -8,11 +8,12 @@ part 'approve_suggestion_dto.g.dart';
 
 @JsonSerializable()
 class ApproveSuggestionDto {
-  const ApproveSuggestionDto({this.name});
-
-  factory ApproveSuggestionDto.fromJson(Map<String, Object?> json) =>
-      _$ApproveSuggestionDtoFromJson(json);
-
+  const ApproveSuggestionDto({
+    this.name,
+  });
+  
+  factory ApproveSuggestionDto.fromJson(Map<String, Object?> json) => _$ApproveSuggestionDtoFromJson(json);
+  
   /// Publish it under a corrected name.
   final String? name;
 

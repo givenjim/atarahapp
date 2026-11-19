@@ -8,11 +8,13 @@ part 'marked_read_dto.g.dart';
 
 @JsonSerializable()
 class MarkedReadDto {
-  const MarkedReadDto({required this.unread, required this.marked});
-
-  factory MarkedReadDto.fromJson(Map<String, Object?> json) =>
-      _$MarkedReadDtoFromJson(json);
-
+  const MarkedReadDto({
+    required this.unread,
+    required this.marked,
+  });
+  
+  factory MarkedReadDto.fromJson(Map<String, Object?> json) => _$MarkedReadDtoFromJson(json);
+  
   final num unread;
   final num marked;
 

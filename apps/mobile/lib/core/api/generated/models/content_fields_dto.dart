@@ -36,10 +36,9 @@ class ContentFieldsDto {
     this.skillIds,
     this.sequential,
   });
-
-  factory ContentFieldsDto.fromJson(Map<String, Object?> json) =>
-      _$ContentFieldsDtoFromJson(json);
-
+  
+  factory ContentFieldsDto.fromJson(Map<String, Object?> json) => _$ContentFieldsDtoFromJson(json);
+  
   final String title;
   final LearningContentType type;
   final String summary;

@@ -54,7 +54,9 @@ abstract class AdminHelpClient {
   });
 
   @DELETE('/api/v1/admin/help-articles/{id}')
-  Future<void> deleteArticle({@Path('id') required String id});
+  Future<void> deleteArticle({
+    @Path('id') required String id,
+  });
 
   @GET('/api/v1/admin/faq')
   Future<GetApiV1AdminFaqResponse> listFaq({
@@ -75,7 +77,9 @@ abstract class AdminHelpClient {
   });
 
   @DELETE('/api/v1/admin/faq/{id}')
-  Future<void> deleteFaq({@Path('id') required String id});
+  Future<void> deleteFaq({
+    @Path('id') required String id,
+  });
 
   @GET('/api/v1/admin/legal-documents')
   Future<GetApiV1AdminLegalDocumentsResponse> listLegal({

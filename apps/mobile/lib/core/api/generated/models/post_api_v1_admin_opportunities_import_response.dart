@@ -14,14 +14,11 @@ class PostApiV1AdminOpportunitiesImportResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminOpportunitiesImportResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminOpportunitiesImportResponseFromJson(json);
-
+  
+  factory PostApiV1AdminOpportunitiesImportResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminOpportunitiesImportResponseFromJson(json);
+  
   final ImportCommitResultDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminOpportunitiesImportResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminOpportunitiesImportResponseToJson(this);
 }

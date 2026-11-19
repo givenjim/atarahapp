@@ -264,6 +264,10 @@ export const EVENT_LABELS: Record<string, string> = {
   opportunity_applied: 'Opportunities applied',
   course_started: 'Courses started',
   course_completed: 'Courses completed',
+  cv_generated: 'CVs generated',
+  cv_downloaded: 'CV PDFs downloaded',
+  cv_shared: 'CV share links created',
+  cv_viewed: 'CV share links opened',
   search_performed: 'Searches',
 };
 export const EVENT_NAMES = Object.keys(EVENT_LABELS);

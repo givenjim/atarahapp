@@ -14,14 +14,11 @@ class GetApiV1AdminOpportunitiesLinkHealthResponse {
     required this.data,
     this.meta,
   });
-
-  factory GetApiV1AdminOpportunitiesLinkHealthResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$GetApiV1AdminOpportunitiesLinkHealthResponseFromJson(json);
-
+  
+  factory GetApiV1AdminOpportunitiesLinkHealthResponse.fromJson(Map<String, Object?> json) => _$GetApiV1AdminOpportunitiesLinkHealthResponseFromJson(json);
+  
   final List<LinkHealthItemDto> data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$GetApiV1AdminOpportunitiesLinkHealthResponseToJson(this);
+  Map<String, Object?> toJson() => _$GetApiV1AdminOpportunitiesLinkHealthResponseToJson(this);
 }

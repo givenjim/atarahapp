@@ -10,11 +10,14 @@ part 'mute_target_dto.g.dart';
 
 @JsonSerializable()
 class MuteTargetDto {
-  const MuteTargetDto({required this.targetType, this.targetId, this.handle});
-
-  factory MuteTargetDto.fromJson(Map<String, Object?> json) =>
-      _$MuteTargetDtoFromJson(json);
-
+  const MuteTargetDto({
+    required this.targetType,
+    this.targetId,
+    this.handle,
+  });
+  
+  factory MuteTargetDto.fromJson(Map<String, Object?> json) => _$MuteTargetDtoFromJson(json);
+  
   final MuteTargetType targetType;
 
   /// A user id (USER) or a post id (POST).

@@ -76,7 +76,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final isPro = user?.membership.plan.name.toLowerCase() == 'pro';
     final roles = user?.roles.map((r) => r.json).toSet() ?? const <String?>{};
     final tools = [
-      if (roles.contains('MENTOR')) l10n.pfMentorTools,
+      if (roles.contains('MENTOR')) l10n.pfMentorTools else l10n.mnBecomeMentor,
       if (roles.contains('SELLER')) l10n.pfSellerTools,
     ];
 
@@ -137,7 +137,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         icon: LucideIcons.wrench,
                         tone: AtTone.success,
                         showDivider: i < tools.length - 1,
-                        onTap: () => _soon('p2', name),
+                        onTap: name == l10n.pfMentorTools
+                            ? () => context.push(Routes.mentorTools)
+                            : name == l10n.mnBecomeMentor
+                            ? () => context.push(Routes.mentorApply)
+                            : () => _soon('p2', name),
                       ),
                   ],
                 ),
@@ -184,6 +188,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     tone: AtTone.coral,
                     showDivider: true,
                     onTap: () => context.push(Routes.services),
+                  ),
+                  AtListRow(
+                    title: l10n.cvTitle,
+                    icon: LucideIcons.fileText,
+                    tone: AtTone.indigo,
+                    showDivider: true,
+                    onTap: () => context.push(Routes.cv),
                   ),
                   AtListRow(
                     title: l10n.pfConnections,

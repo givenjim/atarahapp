@@ -10,15 +10,15 @@ part 'post_api_v1_admin_announcements_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1AdminAnnouncementsResponse {
-  const PostApiV1AdminAnnouncementsResponse({required this.data, this.meta});
-
-  factory PostApiV1AdminAnnouncementsResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminAnnouncementsResponseFromJson(json);
-
+  const PostApiV1AdminAnnouncementsResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1AdminAnnouncementsResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminAnnouncementsResponseFromJson(json);
+  
   final PostViewDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminAnnouncementsResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminAnnouncementsResponseToJson(this);
 }

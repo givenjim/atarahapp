@@ -14,10 +14,9 @@ class GroupModeratorBodyDto {
     required this.userId,
     this.role = GroupStaffRole.moderator,
   });
-
-  factory GroupModeratorBodyDto.fromJson(Map<String, Object?> json) =>
-      _$GroupModeratorBodyDtoFromJson(json);
-
+  
+  factory GroupModeratorBodyDto.fromJson(Map<String, Object?> json) => _$GroupModeratorBodyDtoFromJson(json);
+  
   final String userId;
   final GroupStaffRole role;
 

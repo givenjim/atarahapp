@@ -8,11 +8,13 @@ part 'override_result_dto.g.dart';
 
 @JsonSerializable()
 class OverrideResultDto {
-  const OverrideResultDto({required this.ok, required this.courseCompleted});
-
-  factory OverrideResultDto.fromJson(Map<String, Object?> json) =>
-      _$OverrideResultDtoFromJson(json);
-
+  const OverrideResultDto({
+    required this.ok,
+    required this.courseCompleted,
+  });
+  
+  factory OverrideResultDto.fromJson(Map<String, Object?> json) => _$OverrideResultDtoFromJson(json);
+  
   final bool ok;
   final bool courseCompleted;
 

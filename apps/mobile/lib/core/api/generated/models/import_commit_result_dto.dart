@@ -16,10 +16,9 @@ class ImportCommitResultDto {
     required this.status,
     required this.issues,
   });
-
-  factory ImportCommitResultDto.fromJson(Map<String, Object?> json) =>
-      _$ImportCommitResultDtoFromJson(json);
-
+  
+  factory ImportCommitResultDto.fromJson(Map<String, Object?> json) => _$ImportCommitResultDtoFromJson(json);
+  
   final num created;
   final num skipped;
 

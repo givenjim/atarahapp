@@ -14,14 +14,11 @@ class PostApiV1AuthSessionsRevokeOthersResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AuthSessionsRevokeOthersResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AuthSessionsRevokeOthersResponseFromJson(json);
-
+  
+  factory PostApiV1AuthSessionsRevokeOthersResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AuthSessionsRevokeOthersResponseFromJson(json);
+  
   final SessionsRevokedDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AuthSessionsRevokeOthersResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AuthSessionsRevokeOthersResponseToJson(this);
 }

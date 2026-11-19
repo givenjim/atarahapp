@@ -18,10 +18,9 @@ class AdminCaseActionDto {
     required this.actor,
     required this.createdAt,
   });
-
-  factory AdminCaseActionDto.fromJson(Map<String, Object?> json) =>
-      _$AdminCaseActionDtoFromJson(json);
-
+  
+  factory AdminCaseActionDto.fromJson(Map<String, Object?> json) => _$AdminCaseActionDtoFromJson(json);
+  
   final String id;
   final ModerationAction action;
   final String? reason;

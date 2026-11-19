@@ -13,10 +13,9 @@ class SpecialisationDto {
     required this.slug,
     required this.name,
   });
-
-  factory SpecialisationDto.fromJson(Map<String, Object?> json) =>
-      _$SpecialisationDtoFromJson(json);
-
+  
+  factory SpecialisationDto.fromJson(Map<String, Object?> json) => _$SpecialisationDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String name;

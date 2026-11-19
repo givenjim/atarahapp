@@ -10,11 +10,13 @@ part 'post_api_v1_admin_faq_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1AdminFaqResponse {
-  const PostApiV1AdminFaqResponse({required this.data, this.meta});
-
-  factory PostApiV1AdminFaqResponse.fromJson(Map<String, Object?> json) =>
-      _$PostApiV1AdminFaqResponseFromJson(json);
-
+  const PostApiV1AdminFaqResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1AdminFaqResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminFaqResponseFromJson(json);
+  
   final AdminFaqDto data;
   final dynamic meta;
 

@@ -20,8 +20,7 @@ part 'community_safety_client.g.dart';
 
 @RestApi()
 abstract class CommunitySafetyClient {
-  factory CommunitySafetyClient(Dio dio, {String? baseUrl}) =
-      _CommunitySafetyClient;
+  factory CommunitySafetyClient(Dio dio, {String? baseUrl}) = _CommunitySafetyClient;
 
   @POST('/api/v1/blocks')
   Future<PostApiV1BlocksResponse> blockMember({
@@ -29,7 +28,9 @@ abstract class CommunitySafetyClient {
   });
 
   @DELETE('/api/v1/blocks/{userId}')
-  Future<void> unblockMember({@Path('userId') required String userId});
+  Future<void> unblockMember({
+    @Path('userId') required String userId,
+  });
 
   @GET('/api/v1/me/blocks')
   Future<GetApiV1MeBlocksResponse> listBlockedMembers({

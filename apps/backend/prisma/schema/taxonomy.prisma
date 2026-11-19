@@ -178,5 +178,7 @@ model MarketplaceCategory {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  listings Listing[]
+
   @@map("marketplace_categories")
 }

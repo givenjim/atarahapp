@@ -5,6 +5,8 @@ import { pageMeta } from '../common/pagination';
 import { notBlockedWhere } from '../community-core/blocks';
 import { postVisibleSql, POST_FROM } from '../community/post-sql';
 import { ArticlesService, livePublished } from '../content/articles.service';
+import { listingVisibleWhere } from '../marketplace/marketplace-views.service';
+import { priceLabel } from '../marketplace/marketplace-logic';
 import { MediaService } from '../media/media.service';
 import { OpportunitiesService } from '../opportunities/opportunities.service';
 import { PrismaService } from '../prisma/prisma.service';
@@ -27,8 +29,8 @@ const isUnique = (e: unknown) =>
 
 /** What each resolver returns before it is stamped with the save time and collection. */
 type Resolved = Omit<SavedItemDto, 'savedAt' | 'collection' | 'type' | 'targetId'>;
-type TableKind = Exclude<SavedKind, 'OPPORTUNITY' | 'LISTING' | 'MENTOR'>;
-const TABLE_KINDS: readonly TableKind[] = ['ARTICLE', 'POST', 'LEARNING', 'CREATIVE'];
+type TableKind = Exclude<SavedKind, 'OPPORTUNITY' | 'MENTOR'>;
+const TABLE_KINDS: readonly TableKind[] = ['ARTICLE', 'POST', 'LEARNING', 'CREATIVE', 'LISTING'];
 
 /**
  * Everything a member saved, whatever it is. One table (`saved_items`) holds articles, posts, learning content and
@@ -112,6 +114,12 @@ export class SavedService {
         ok = rows.length > 0;
         break;
       }
+      case 'LISTING':
+        ok =
+          (await this.prisma.listing.count({
+            where: { AND: [{ id }, listingVisibleWhere(userId), { seller: { userId: { not: userId } } }] },
+          })) > 0;
+        break;
       case 'CREATIVE':
         ok =
           (await this.prisma.creativeProfile.count({
@@ -262,6 +270,33 @@ export class SavedService {
           subtitle: `${c.type.charAt(0)}${c.type.slice(1).toLowerCase()} · ${c.category.name}`,
           imageUrl: await this.media.imageUrl(c.coverMediaId, 200),
           path: `/learning/courses/${c.id}`,
+          article: null,
+        });
+      }
+    }
+
+    const listingIds = ids('LISTING');
+    if (listingIds.length) {
+      const found = await this.prisma.listing.findMany({
+        where: { id: { in: listingIds }, ...listingVisibleWhere(userId) },
+        include: {
+          category: { select: { name: true } },
+          seller: {
+            select: {
+              user: { select: { fullName: true, creativeProfile: { select: { displayName: true } } } },
+            },
+          },
+          media: { orderBy: { sortOrder: 'asc' }, take: 1, select: { mediaId: true } },
+        },
+      });
+      for (const l of found) {
+        out.set(`LISTING:${l.id}`, {
+          title: l.title,
+          subtitle: `${l.seller.user.creativeProfile?.displayName ?? l.seller.user.fullName} · ${
+            priceLabel(l.pricingType, l.priceMinMinor, l.priceMaxMinor).label
+          }`,
+          imageUrl: await this.media.imageUrl(l.media[0]?.mediaId ?? null, 200),
+          path: `/marketplace/listings/${l.id}`,
           article: null,
         });
       }

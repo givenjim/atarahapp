@@ -16,10 +16,9 @@ class GroupPostBodyDto {
     this.mediaIds,
     this.linkUrl,
   });
-
-  factory GroupPostBodyDto.fromJson(Map<String, Object?> json) =>
-      _$GroupPostBodyDtoFromJson(json);
-
+  
+  factory GroupPostBodyDto.fromJson(Map<String, Object?> json) => _$GroupPostBodyDtoFromJson(json);
+  
   final PostType type;
   final String? body;
   final List<String>? mediaIds;

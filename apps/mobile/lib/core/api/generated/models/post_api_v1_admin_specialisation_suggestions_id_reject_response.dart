@@ -14,14 +14,11 @@ class PostApiV1AdminSpecialisationSuggestionsIdRejectResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1AdminSpecialisationSuggestionsIdRejectResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1AdminSpecialisationSuggestionsIdRejectResponseFromJson(json);
-
+  
+  factory PostApiV1AdminSpecialisationSuggestionsIdRejectResponse.fromJson(Map<String, Object?> json) => _$PostApiV1AdminSpecialisationSuggestionsIdRejectResponseFromJson(json);
+  
   final AdminSuggestionDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1AdminSpecialisationSuggestionsIdRejectResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1AdminSpecialisationSuggestionsIdRejectResponseToJson(this);
 }

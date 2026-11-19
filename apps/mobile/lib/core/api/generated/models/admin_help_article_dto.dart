@@ -20,10 +20,9 @@ class AdminHelpArticleDto {
     required this.published,
     required this.updatedAt,
   });
-
-  factory AdminHelpArticleDto.fromJson(Map<String, Object?> json) =>
-      _$AdminHelpArticleDtoFromJson(json);
-
+  
+  factory AdminHelpArticleDto.fromJson(Map<String, Object?> json) => _$AdminHelpArticleDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String title;

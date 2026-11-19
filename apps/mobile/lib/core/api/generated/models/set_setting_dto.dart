@@ -8,11 +8,13 @@ part 'set_setting_dto.g.dart';
 
 @JsonSerializable()
 class SetSettingDto {
-  const SetSettingDto({required this.value, this.description});
-
-  factory SetSettingDto.fromJson(Map<String, Object?> json) =>
-      _$SetSettingDtoFromJson(json);
-
+  const SetSettingDto({
+    required this.value,
+    this.description,
+  });
+  
+  factory SetSettingDto.fromJson(Map<String, Object?> json) => _$SetSettingDtoFromJson(json);
+  
   /// The new value. It must be the same kind (string, number or boolean) as the current one.
   final dynamic value;
   final String? description;

@@ -10,15 +10,15 @@ part 'patch_api_v1_admin_taxonomy_kind_id_response.g.dart';
 
 @JsonSerializable()
 class PatchApiV1AdminTaxonomyKindIdResponse {
-  const PatchApiV1AdminTaxonomyKindIdResponse({required this.data, this.meta});
-
-  factory PatchApiV1AdminTaxonomyKindIdResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PatchApiV1AdminTaxonomyKindIdResponseFromJson(json);
-
+  const PatchApiV1AdminTaxonomyKindIdResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PatchApiV1AdminTaxonomyKindIdResponse.fromJson(Map<String, Object?> json) => _$PatchApiV1AdminTaxonomyKindIdResponseFromJson(json);
+  
   final AdminTaxonomyItemDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PatchApiV1AdminTaxonomyKindIdResponseToJson(this);
+  Map<String, Object?> toJson() => _$PatchApiV1AdminTaxonomyKindIdResponseToJson(this);
 }

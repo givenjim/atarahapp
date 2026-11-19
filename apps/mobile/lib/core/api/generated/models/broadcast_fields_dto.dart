@@ -20,10 +20,9 @@ class BroadcastFieldsDto {
     this.targetValue,
     this.scheduledAt,
   });
-
-  factory BroadcastFieldsDto.fromJson(Map<String, Object?> json) =>
-      _$BroadcastFieldsDtoFromJson(json);
-
+  
+  factory BroadcastFieldsDto.fromJson(Map<String, Object?> json) => _$BroadcastFieldsDtoFromJson(json);
+  
   final String title;
   final String body;
 

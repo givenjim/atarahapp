@@ -15,10 +15,9 @@ class RegisterSessionDeviceDto {
     required this.name,
     required this.platform,
   });
-
-  factory RegisterSessionDeviceDto.fromJson(Map<String, Object?> json) =>
-      _$RegisterSessionDeviceDtoFromJson(json);
-
+  
+  factory RegisterSessionDeviceDto.fromJson(Map<String, Object?> json) => _$RegisterSessionDeviceDtoFromJson(json);
+  
   /// Random id the app generates once per install. Never a hardware identifier.
   final String deviceHash;
 

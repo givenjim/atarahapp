@@ -23,10 +23,9 @@ class AdminSuggestionDto {
     required this.resolvedAt,
     required this.createdAt,
   });
-
-  factory AdminSuggestionDto.fromJson(Map<String, Object?> json) =>
-      _$AdminSuggestionDtoFromJson(json);
-
+  
+  factory AdminSuggestionDto.fromJson(Map<String, Object?> json) => _$AdminSuggestionDtoFromJson(json);
+  
   final String id;
   final String name;
   final String disciplineId;

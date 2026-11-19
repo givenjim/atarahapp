@@ -18,10 +18,9 @@ class AchievementInputDto {
     this.description,
     this.url,
   });
-
-  factory AchievementInputDto.fromJson(Map<String, Object?> json) =>
-      _$AchievementInputDtoFromJson(json);
-
+  
+  factory AchievementInputDto.fromJson(Map<String, Object?> json) => _$AchievementInputDtoFromJson(json);
+  
   final AchievementInputDtoType type;
   final String title;
 

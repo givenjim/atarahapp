@@ -14,14 +14,11 @@ class PostApiV1MeCollaborationsIdAcceptResponse {
     required this.data,
     this.meta,
   });
-
-  factory PostApiV1MeCollaborationsIdAcceptResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1MeCollaborationsIdAcceptResponseFromJson(json);
-
+  
+  factory PostApiV1MeCollaborationsIdAcceptResponse.fromJson(Map<String, Object?> json) => _$PostApiV1MeCollaborationsIdAcceptResponseFromJson(json);
+  
   final CollaborationDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1MeCollaborationsIdAcceptResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1MeCollaborationsIdAcceptResponseToJson(this);
 }

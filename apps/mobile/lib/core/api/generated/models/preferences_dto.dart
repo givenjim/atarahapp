@@ -10,11 +10,12 @@ part 'preferences_dto.g.dart';
 
 @JsonSerializable()
 class PreferencesDto {
-  const PreferencesDto({required this.preferences});
-
-  factory PreferencesDto.fromJson(Map<String, Object?> json) =>
-      _$PreferencesDtoFromJson(json);
-
+  const PreferencesDto({
+    required this.preferences,
+  });
+  
+  factory PreferencesDto.fromJson(Map<String, Object?> json) => _$PreferencesDtoFromJson(json);
+  
   /// One entry per category. Categories never changed are on.
   final List<PreferenceDto> preferences;
 

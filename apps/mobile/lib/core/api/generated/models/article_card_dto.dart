@@ -23,10 +23,9 @@ class ArticleCardDto {
     this.sourceLabel,
     this.heroUrl,
   });
-
-  factory ArticleCardDto.fromJson(Map<String, Object?> json) =>
-      _$ArticleCardDtoFromJson(json);
-
+  
+  factory ArticleCardDto.fromJson(Map<String, Object?> json) => _$ArticleCardDtoFromJson(json);
+  
   final String id;
   final String slug;
   final String title;

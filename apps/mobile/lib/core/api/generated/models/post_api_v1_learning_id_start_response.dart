@@ -10,15 +10,15 @@ part 'post_api_v1_learning_id_start_response.g.dart';
 
 @JsonSerializable()
 class PostApiV1LearningIdStartResponse {
-  const PostApiV1LearningIdStartResponse({required this.data, this.meta});
-
-  factory PostApiV1LearningIdStartResponse.fromJson(
-    Map<String, Object?> json,
-  ) => _$PostApiV1LearningIdStartResponseFromJson(json);
-
+  const PostApiV1LearningIdStartResponse({
+    required this.data,
+    this.meta,
+  });
+  
+  factory PostApiV1LearningIdStartResponse.fromJson(Map<String, Object?> json) => _$PostApiV1LearningIdStartResponseFromJson(json);
+  
   final LearningItemProgressDto data;
   final dynamic meta;
 
-  Map<String, Object?> toJson() =>
-      _$PostApiV1LearningIdStartResponseToJson(this);
+  Map<String, Object?> toJson() => _$PostApiV1LearningIdStartResponseToJson(this);
 }
